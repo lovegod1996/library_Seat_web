@@ -11,6 +11,13 @@
     <title>Title</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+
+        .table-condensed {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    </style>
 </head>
 <body>
 <div class="col-sm-12">

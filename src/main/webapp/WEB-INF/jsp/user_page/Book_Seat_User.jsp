@@ -12,11 +12,9 @@
     <!-- Bootstrap Core CSS -->
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <%--日期选择控件--%>
-    <link rel="stylesheet" href="//res.layui.com/layui/build/css/layui.css?t=1498856285724" media="all">
     <link rel="stylesheet" href="//res.layui.com/css/global.css?t=1498856285724" media="all">
     <link rel="stylesheet" href="//res.layui.com/layui/build/css/layui.css" media="all">
     <script src="//res.layui.com/layui/build/layui.js?t=1498856285724" charset="utf-8"></script>
-
 
     <style type="text/css">
         body {

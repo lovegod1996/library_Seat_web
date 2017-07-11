@@ -23,7 +23,7 @@
           type="text/css">
 
     <style type="text/css">
-        body{
+        body {
             padding-left: 5%;
             padding-right: 5%;
         }
