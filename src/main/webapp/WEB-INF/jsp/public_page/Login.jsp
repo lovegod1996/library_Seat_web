@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,7 +48,7 @@
                     <h3 class="panel-title">登录</h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form">
+                    <form role="form" action="${pageContext.request.contextPath }/admin/loginSub" method="post">
                         <fieldset>
                             <div class="form-group">
                                 <%--登录账号只能是字母数字--%>
@@ -81,5 +84,10 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
+
+<script type="text/javascript">
+    <c:if test="${!empty error_msg}">alert("${error_msg}");</c:if>
+</script>
+
 </body>
 </html>

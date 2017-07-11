@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>Header</title>
@@ -38,25 +41,37 @@
         <!-- /.navbar-header -->
 
         <ul class="nav navbar-top-links navbar-right">
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i><span>小明</span>
-                </a>
-                <!-- /.dropdown-user -->
-            </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-gear fa-fw"></i><span>设置</span>
-                </a>
-                <!-- /.dropdown-user -->
-            </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-power-off fa-fw"></i><span>退出</span>
-                </a>
-                <!-- /.dropdown-user -->
-            </li>
 
+<c:choose>
+    <c:when test="${empty sessionScope.admin.id}">
+        <li class="dropdown">
+            <a class="dropdown-toggle"  href="${pageContext.request.contextPath }/jsp/login">
+                <i class="fa fa-user fa-fw"></i><span>登录</span>
+            </a>
+            <!-- /.dropdown-user -->
+        </li>
+    </c:when>
+    <c:otherwise>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-user fa-fw"></i><span>${sessionScope.admin.loginname}</span>
+            </a>
+            <!-- /.dropdown-user -->
+        </li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-gear fa-fw"></i><span>设置</span>
+            </a>
+            <!-- /.dropdown-user -->
+        </li>
+        <li class="dropdown">
+            <a class="dropdown-toggle"  href="${pageContext.request.contextPath }/admin/loginOut">
+                <i class="fa fa-power-off fa-fw"></i><span>退出</span>
+            </a>
+            <!-- /.dropdown-user -->
+        </li>
+    </c:otherwise>
+</c:choose>
         </ul>
         <!-- /.navbar-top-links -->
     </nav>
