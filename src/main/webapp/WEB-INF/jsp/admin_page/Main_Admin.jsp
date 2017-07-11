@@ -37,16 +37,12 @@
             <div class="panel-heading">
                 <i class="fa fa-bar-chart-o fa-fw"></i> 座位实时使用状态
                 <div class="pull-right">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                            南楼<span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu pull-right" role="menu">
-                            <li><a href="#">北楼</a></li>
-                            <li><a href="#">北楼</a></li>
-                            <li><a href="#">北楼</a></li>
-                        </ul>
-                    </div>
+                    <FORM METHOD=POST ACTION="" name="selectform">
+                        <SELECT NAME="building" onChange="getCity()">
+                            <OPTION VALUE="南楼">南楼 </OPTION>
+                            <OPTION VALUE="北楼">北楼 </OPTION>
+                        </SELECT>
+                    </FORM>
                 </div>
             </div>
             <!-- /.panel-heading -->
@@ -63,15 +59,16 @@
                 <i class="fa fa-bell fa-fw"></i> 公告
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body">
+            <div class="panel-body" style="height: 400px">
                 <div class="list-group">
-                    <a href="<%=request.getContextPath()%>/jsp/news_Content" target="mainFrame_Admin" class="list-group-item">
-                        <i class="fa fa-comment fa-fw"></i> New Comment
-                        <span class="pull-right text-muted small"><em>4 minutes ago</em></span>
+                    <a href="<%=request.getContextPath()%>/jsp/news_Content" target="mainFrame_Admin"
+                       class="list-group-item">我是标题
+                        <span class="pull-right text-muted small"><em>2017.07.11</em></span>
                     </a>
                 </div>
                 <!-- /.list-group -->
-                <a href="<%=request.getContextPath()%>/jsp/news_List" target="mainFrame_Admin" class="btn btn-default btn-block">View All Alerts</a>
+                <a href="<%=request.getContextPath()%>/jsp/news_List_Admin" target="mainFrame_Admin"
+                   class="btn btn-default btn-block">查看更多</a>
             </div>
             <!-- /.panel-body -->
         </div>

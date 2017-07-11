@@ -33,105 +33,47 @@
         <ul class="nav" id="side-menu">
 
             <li>
-                <a href="<%=request.getContextPath()%>/jsp/index_Admin" target="_parent" class="active"><i class="fa fa-dashboard fa-fw"></i> 后台管理首页</a>
+                <a href="<%=request.getContextPath()%>/jsp/index_Admin" target="_parent" class="active"><i
+                        class="fa fa-dashboard fa-fw"></i> 后台管理首页</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 预约管理<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-hdd-o fa-fw"></i> 预约管理<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="<%=request.getContextPath()%>/jsp/seatInUse" target="mainFrame_Admin">当前预约</a>
+                        <a href="<%=request.getContextPath()%>/jsp/seat_In_Book" target="mainFrame_Admin">当前入座</a>
                     </li>
                     <li>
-                        <a href="#">当前入座</a>
+                        <a href="<%=request.getContextPath()%>/jsp/seat_In_Use" target="mainFrame_Admin">当前入座</a>
                     </li>
                     <li>
-                        <a href="#">学生列表</a>
+                        <a href="<%=request.getContextPath()%>/jsp/seat_In_Empty" target="mainFrame_Admin">当前空闲</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-table fa-fw"></i> 座位管理<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="#">当前预约</a>
-                    </li>
-                    <li>
-                        <a href="#">当前入座</a>
-                    </li>
-                    <li>
-                        <a href="#">学生列表</a>
-                    </li>
-                </ul>
+                <a href="#"><i class="fa fa-puzzle-piece fa-fw"></i> 座位管理</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-edit fa-fw"></i>用户管理</a>
+                <a href="#"><i class="fa fa-user fa-fw"></i> 用户管理</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-wrench fa-fw"></i>通知管理<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-bell fa-fw"></i> 通知管理<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="#">Panels and Wells</a>
+                        <a href="<%=request.getContextPath()%>/jsp/news_List_Admin" target="mainFrame_Admin">通知列表</a>
                     </li>
                     <li>
-                        <a href="#">Buttons</a>
-                    </li>
-                    <li>
-                        <a href="#">Notifications</a>
-                    </li>
-                    <li>
-                        <a href="#">Typography</a>
-                    </li>
-                    <li>
-                        <a href="#"> Icons</a>
-                    </li>
-                    <li>
-                        <a href="#">Grid</a>
+                        <a href="<%=request.getContextPath()%>/jsp/add_News" target="mainFrame_Admin">发布通知</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-sitemap fa-fw"></i>其他设置<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="#">Second Level Item</a>
-                    </li>
-                    <li>
-                        <a href="#">Second Level Item</a>
-                    </li>
-                    <li>
-                        <a href="#">Third Level <span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li>
-                                <a href="#">Third Level Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Third Level Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Third Level Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Third Level Item</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-third-level -->
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
+                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 数据统计</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-files-o fa-fw"></i>待定<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="#">Blank Page</a>
-                    </li>
-                    <li>
-                        <a href="#">Login Page</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
+                <a href="#"><i class="fa fa-gear fa-fw"></i> 设置时间参数</a>
             </li>
         </ul>
     </div>

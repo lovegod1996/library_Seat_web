@@ -37,8 +37,8 @@
         </div>
         <div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">iOS</a></li>
-                <li><a href="#">SVN</a></li>
+                <li class="active"><a href="<%=request.getContextPath()%>/index.jsp" target="_parent">首页</a></li>
+                <li><a href="<%=request.getContextPath()%>/jsp/index_Admin" target="_blank">后台临时入口</a></li>
                 <li><a href="#">SVN</a></li>
                 <li><a href="#">SVN</a></li>
             </ul>

@@ -15,4 +15,9 @@ public class user_pageController {
     public String main_User(Model model) throws Exception {
         return "user_page/Main_User";
     }
+
+    @RequestMapping("/news_List_User")
+    public String news_List_User(Model model) throws Exception {
+        return "user_page/News_List_User";
+    }
 }

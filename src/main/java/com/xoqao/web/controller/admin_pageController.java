@@ -21,13 +21,28 @@ public class admin_pageController {
         return "admin_page/Main_Admin";
     }
 
-    @RequestMapping("/seatInUse")
-    public String seatInUse(Model model) throws Exception {
-        return "admin_page/SeatInUse";
+    @RequestMapping("/seat_In_Use")
+    public String seat_In_Use(Model model) throws Exception {
+        return "admin_page/Seat_In_Use";
+    }
+
+    @RequestMapping("/seat_In_Book")
+    public String seat_In_Book(Model model) throws Exception {
+        return "admin_page/Seat_In_Book";
+    }
+
+    @RequestMapping("/seat_In_Empty")
+    public String seat_In_Empty(Model model) throws Exception {
+        return "admin_page/Seat_In_Empty";
     }
 
     @RequestMapping("/add_News")
     public String add_News(Model model) throws Exception {
         return "admin_page/Add_News";
+    }
+
+    @RequestMapping("/news_List_Admin")
+    public String news_List_Admin(Model model) throws Exception {
+        return "admin_page/News_List_Admin";
     }
 }

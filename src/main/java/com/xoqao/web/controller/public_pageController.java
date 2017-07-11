@@ -30,4 +30,9 @@ public class public_pageController {
     public String header_User(Model model) throws Exception {
         return "public_page/Header_User";
     }
+
+    @RequestMapping("/news_Content")
+    public String news_Content(Model model) throws Exception {
+        return "public_page/News_Content";
+    }
 }

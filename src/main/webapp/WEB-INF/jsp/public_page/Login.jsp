@@ -25,7 +25,8 @@
     <link href="<%= request.getContextPath()%>/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="<%= request.getContextPath()%>/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<%= request.getContextPath()%>/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,18 +48,20 @@
                     <form role="form">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="学号/工号" name="email" type="email" autofocus>
+                                <%--登录账号只能是字母数字--%>
+                                <input class="form-control" placeholder="学号/工号" name="loginId" type="text"
+                                       onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')" autofocus required>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="密码" name="password" type="password" value="">
+                                <input class="form-control" placeholder="密码" name="password" type="password" value=""
+                                       required>
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <input name="remember" type="checkbox" value="Remember Me">记住我
                                 </label>
                             </div>
-                            <!-- Change this to a button or input when using this as a form -->
-                            <a href="<%=request.getContextPath()%>/jsp/index_Admin" target="_parent" class="btn btn-lg btn-success btn-block">登录</a>
+                            <button class="btn btn-lg btn-success btn-block" type="submit">登录</button>
                         </fieldset>
                     </form>
                 </div>
