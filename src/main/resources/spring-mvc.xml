@@ -17,6 +17,7 @@
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/img/**" location="/img/"/>
     <mvc:resources mapping="/back/**" location="/back/"/>
+    <!--模板页需要-->
     <mvc:resources mapping="/vendor/**" location="/vendor/"/>
     <mvc:resources mapping="/dist/**" location="/dist/"/>
 
