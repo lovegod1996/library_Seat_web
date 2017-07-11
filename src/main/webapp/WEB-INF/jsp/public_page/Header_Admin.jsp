@@ -65,7 +65,7 @@
             <!-- /.dropdown-user -->
         </li>
         <li class="dropdown">
-            <a class="dropdown-toggle"  href="${pageContext.request.contextPath }/admin/loginOut">
+            <a class="dropdown-toggle"  href="${pageContext.request.contextPath }/admin/loginOut" target="_parent">
                 <i class="fa fa-power-off fa-fw"></i><span>退出</span>
             </a>
             <!-- /.dropdown-user -->
