@@ -20,4 +20,9 @@ public class user_pageController {
     public String news_List_User(Model model) throws Exception {
         return "user_page/News_List_User";
     }
+
+    @RequestMapping("/book_Seat_User")
+    public String book_Seat_User(Model model) throws Exception {
+        return "user_page/Book_Seat_User";
+    }
 }

@@ -21,6 +21,7 @@
     <!-- Custom Fonts -->
     <link href="<%= request.getContextPath()%>/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet"
           type="text/css">
+
     <style type="text/css">
         body{
             padding-left: 5%;
@@ -39,14 +40,14 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="<%=request.getContextPath()%>/index.jsp" target="_parent">首页</a></li>
                 <li><a href="<%=request.getContextPath()%>/jsp/index_Admin" target="_blank">后台临时入口</a></li>
-                <li><a href="#">SVN</a></li>
+                <li><a href="<%=request.getContextPath()%>/jsp/book_Seat_User" target="mainFrame_User">预约</a></li>
                 <li><a href="#">SVN</a></li>
             </ul>
         </div>
 
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
-                <a href="<%=request.getContextPath()%>/jsp/login" target="mainFrame_User">
+                <a href="<%=request.getContextPath()%>/jsp/login" target="_parent">
                     <i class="fa fa-user fa-fw"></i><span>登录</span>
                 </a>
             </li>
