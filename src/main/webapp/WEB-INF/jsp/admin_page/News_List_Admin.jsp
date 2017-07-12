@@ -43,10 +43,11 @@
                 </tr>
                 </thead>
                 <tbody>
-<<<<<<< HEAD
+
 
                 <c:forEach items="${news}" var="newss">
                     <tr>
+                        <td><input type="checkbox"></td>
                         <td>${newss.nid}</td>
                         <td><a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${newss.nid}" target="mainFrame_Admin">${newss.title}</a></td>
                         <td><fmt:formatDate value="${newss.creattime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
@@ -61,44 +62,6 @@
                         <td colspan="4">${nullList}</td>
                     </tr>
                 </c:if>
-=======
-                <tr>
-                    <td><input type="checkbox" name="" lay-skin="primary"></td>
-                    <td>1</td>
-                    <td>123</td>
-                    <td>123</td>
-                    <td>
-                        <div class="layui-btn-group">
-                            <button class="layui-btn ">编辑</button>
-                            <button class="layui-btn">删除</button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="" lay-skin="primary"></td>
-                    <td>1</td>
-                    <td>123</td>
-                    <td>123</td>
-                    <td>
-                        <div class="layui-btn-group">
-                            <button class="layui-btn ">编辑</button>
-                            <button class="layui-btn">删除</button>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="" lay-skin="primary"></td>
-                    <td>1</td>
-                    <td>123</td>
-                    <td>123</td>
-                    <td>
-                        <div class="layui-btn-group">
-                            <button class="layui-btn ">编辑</button>
-                            <button class="layui-btn">删除</button>
-                        </div>
-                    </td>
-                </tr>
->>>>>>> 14fd40242f612618abd4163ed643a4286aab6a95
 
                 </tbody>
             </table>

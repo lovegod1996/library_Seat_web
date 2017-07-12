@@ -38,6 +38,18 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <!--[endif]-->
 
+    <%--layui--%>
+    <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
+
+    <style type="text/css">
+        .fogetPwd {
+            position: relative;
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -59,11 +71,24 @@
                                 <input class="form-control" placeholder="密码" name="password" type="password" value=""
                                        required>
                             </div>
-                            <div class="checkbox">
+                            <div class="checkbox" style="float: left">
                                 <label>
                                     <input name="remember" type="checkbox" value="Remember Me">记住我
                                 </label>
                             </div>
+                            <div class="radio" style="float: left;margin-left: 20px">
+                                <label class="checkbox-inline">
+                                    <input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="option1"
+                                           checked>用户
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="radio" name="optionsRadiosinline" id="optionsRadios2" value="option2">管理员
+                                </label>
+                            </div>
+                            <div class="fogetPwd" style="float: left">
+                                <a data-method="notice" class="layui-btn layui-btn-mini" target="_parent">忘记密码?</a>
+                            </div>
+
                             <button class="btn btn-lg btn-success btn-block" type="submit">登录</button>
                         </fieldset>
                     </form>
@@ -85,9 +110,56 @@
 <!-- Custom Theme JavaScript -->
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
 
+<<<<<<< HEAD
 <script type="text/javascript">
     <c:if test="${!empty error_msg}">alert("${error_msg}");</c:if>
 </script>
 
+=======
+<script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+<script>
+    layui.use('layer', function () { //独立版的layer无需执行这一句
+        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+
+//触发事件
+        var active = {
+            notice: function () {
+//示范一个公告层
+                layer.open({
+                    type: 2
+                    ,
+                    title: ['添加用户', 'font-size:18px;text-align:center;background:#32AA9F']
+                    ,
+                    closeBtn: false
+                    ,
+                    area: ['400px', '550px']
+                    ,
+                    shade: 0
+                    ,
+                    id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                    ,
+                    btn: ['关闭']
+                    ,
+                    moveType: 0 //拖拽模式，0或者1
+                    ,
+                    content: ['/Library_Seat/view/forgetPassword']
+                    ,
+                    success: function (layero) {
+                        var btn = layero.find('.layui-layer-btn');
+                        btn.css('text-align', 'center');
+                        btn.class('layui-btn layui-btn-primary')
+                    }
+                });
+            }
+        };
+
+        $('.layui-btn').on('click', function () {
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });
+
+    });
+</script>
+>>>>>>> 14fd40242f612618abd4163ed643a4286aab6a95
 </body>
 </html>

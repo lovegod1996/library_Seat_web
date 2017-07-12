@@ -11,6 +11,8 @@
     <title>Title</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <%--layui--%>
+    <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <style type="text/css">
         body {
             width: 75%;
@@ -33,7 +35,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="content" class="col-sm-2 control-label">内容</label>
+                <label class="col-sm-2 control-label">内容</label>
                 <div class="col-sm-9">
                     <textarea class="form-control" id="content" name="content" rows="10" placeholder="请输入内容" required></textarea>
                 </div>
@@ -49,7 +51,20 @@
             </div>
         </form>
     </div>
+    <!-- /.panel -->
 </div>
-<!-- /.panel -->
+<!-- jQuery -->
+<script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="<%= request.getContextPath()%>/vendor/metisMenu/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
+<script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+
 </body>
 </html>

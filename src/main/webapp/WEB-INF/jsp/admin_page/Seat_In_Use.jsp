@@ -100,7 +100,6 @@
                 </tr>
                 </thead>
                 <tbody>
-<<<<<<< HEAD
                 <c:forEach items="${userLearned}" var="userLearn">
                     <tr>
                         <td>${userLearn.sno}</td>
@@ -122,50 +121,6 @@
                     </tr>
                 </c:if>
 
-=======
-                <tr>
-                    <td><input type="checkbox" name="" lay-skin="primary"></td>
-                    <td>1</td>
-                    <td>小明</td>
-                    <td>计算机学院</td>
-                    <td>软件工程</td>
-                    <td>141班</td>
-                    <td>S2-0101</td>
-                    <td>9:00-12:00</td>
-                    <td>使用中</td>
-                    <td>
-                        <button type="button" class="btn btn-danger btn-sm">操作</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="" lay-skin="primary"></td>
-                    <td>1</td>
-                    <td>小明</td>
-                    <td>计算机学院</td>
-                    <td>软件工程</td>
-                    <td>141班</td>
-                    <td>S2-0101</td>
-                    <td>9:00-12:00</td>
-                    <td>使用中</td>
-                    <td>
-                        <button type="button" class="btn btn-danger btn-sm">操作</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="" lay-skin="primary"></td>
-                    <td>1</td>
-                    <td>小明</td>
-                    <td>计算机学院</td>
-                    <td>软件工程</td>
-                    <td>141班</td>
-                    <td>S2-0101</td>
-                    <td>9:00-12:00</td>
-                    <td>使用中</td>
-                    <td>
-                        <button type="button" class="btn btn-danger btn-sm">操作</button>
-                    </td>
-                </tr>
->>>>>>> 14fd40242f612618abd4163ed643a4286aab6a95
                 </tbody>
             </table>
             <div style="text-align: center">

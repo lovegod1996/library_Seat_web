@@ -37,7 +37,6 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">内容</label>
                 <div class="col-sm-9">
-<<<<<<< HEAD
                     <textarea class="form-control" id="content" name="content" rows="10" placeholder="请输入内容" required></textarea>
                 </div>
             </div>
@@ -49,13 +48,6 @@
                 <div class="col-sm-1" >
                     <button type="submit" class="btn btn-primary">发布</button>
                 </div>
-=======
-                    <textarea class="layui-textarea" id="content" rows="10" placeholder="请输入内容" required></textarea>
-                </div>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary" style="margin-left: 20%">发布</button>
->>>>>>> 14fd40242f612618abd4163ed643a4286aab6a95
             </div>
         </form>
     </div>

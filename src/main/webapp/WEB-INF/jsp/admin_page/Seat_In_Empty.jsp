@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: 1Q84
@@ -83,8 +83,6 @@
                 </tr>
                 </thead>
                 <tbody>
-<<<<<<< HEAD
-
                 <c:forEach items="${seats}" var="seat">
                     <tr>
                         <td>${seat.sid}</td>
@@ -101,32 +99,6 @@
                         <td colspan="5">${nullList}</td>
                     </tr>
                 </c:if>
-=======
-                <tr>
-                    <td>1</td>
-                    <td>S2-0101</td>
-                    <td>空闲中</td>
-                    <td>
-                        <button data-method="notice" class="layui-btn">入座</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>S2-0101</td>
-                    <td>空闲中</td>
-                    <td>
-                        <button data-method="notice" class="layui-btn">入座</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>S2-0101</td>
-                    <td>空闲中</td>
-                    <td>
-                        <button data-method="notice" class="layui-btn">入座</button>
-                    </td>
-                </tr>
->>>>>>> 14fd40242f612618abd4163ed643a4286aab6a95
                 </tbody>
             </table>
             <div style="text-align: center">

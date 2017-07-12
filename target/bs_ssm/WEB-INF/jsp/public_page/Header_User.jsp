@@ -1,3 +1,4 @@
+<%@ taglib prefix="target" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: 1Q84
@@ -9,6 +10,9 @@
 <html>
 <head>
     <title>Title</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- Bootstrap Core CSS -->
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -23,7 +27,7 @@
           type="text/css">
 
     <style type="text/css">
-        body{
+        body {
             padding-left: 5%;
             padding-right: 5%;
         }
@@ -41,6 +45,7 @@
                 <li class="active"><a href="<%=request.getContextPath()%>/index.jsp" target="_parent">首页</a></li>
                 <li><a href="<%=request.getContextPath()%>/jsp/index_Admin" target="_blank">后台临时入口</a></li>
                 <li><a href="<%=request.getContextPath()%>/jsp/book_Seat_User" target="mainFrame_User">预约</a></li>
+                <li><a href="<%=request.getContextPath()%>/view/information_User" target="mainFrame_User">我的</a></li>
                 <li><a href="#">SVN</a></li>
             </ul>
         </div>
@@ -49,7 +54,7 @@
             <li class="dropdown">
                 <a href="<%=request.getContextPath()%>/jsp/login" target="_parent">
                     <i class="fa fa-user fa-fw"></i><span>登录</span>
-                </a>
+                    </a>
             </li>
         </ul>
     </nav>
@@ -65,5 +70,6 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
+
 </body>
 </html>
