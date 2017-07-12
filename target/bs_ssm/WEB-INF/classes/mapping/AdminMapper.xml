@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoqao.web.dao.AdminMapper" >
+    <!--根据用户名或账号查询管理员-->
+    <select id="findAdminByNameOrId" resultType="com.xoqao.web.bean.admin.Admin">
+        SELECT id,loginname,password,role FROM admin WHERE id LIKE '${loginstr}' OR loginname LIKE '${loginstr}'
+    </select>
+
+</mapper>

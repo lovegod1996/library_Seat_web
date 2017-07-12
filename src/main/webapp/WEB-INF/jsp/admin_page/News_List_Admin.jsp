@@ -14,6 +14,8 @@
     <title>Title</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <%--layui--%>
+    <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
 </head>
 <body>
 <div class="col-sm-12">
@@ -22,17 +24,26 @@
             <i class="fa fa-bar-chart-o fa-fw"></i> 通知列表
         </div>
         <!-- /.panel-heading -->
-        <div class="table table-condensed">
-            <table class="table">
+        <div class="layui-form">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="7%">
+                    <col width="8%">
+                    <col width="45%">
+                    <col width="20%">
+                    <col width="20%">
+                </colgroup>
                 <thead>
                 <tr>
+                    <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
                     <th>序号</th>
                     <th>标题</th>
                     <th>发布时间</th>
-                    <th>修改</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
+<<<<<<< HEAD
 
                 <c:forEach items="${news}" var="newss">
                     <tr>
@@ -50,6 +61,44 @@
                         <td colspan="4">${nullList}</td>
                     </tr>
                 </c:if>
+=======
+                <tr>
+                    <td><input type="checkbox" name="" lay-skin="primary"></td>
+                    <td>1</td>
+                    <td>123</td>
+                    <td>123</td>
+                    <td>
+                        <div class="layui-btn-group">
+                            <button class="layui-btn ">编辑</button>
+                            <button class="layui-btn">删除</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="" lay-skin="primary"></td>
+                    <td>1</td>
+                    <td>123</td>
+                    <td>123</td>
+                    <td>
+                        <div class="layui-btn-group">
+                            <button class="layui-btn ">编辑</button>
+                            <button class="layui-btn">删除</button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="" lay-skin="primary"></td>
+                    <td>1</td>
+                    <td>123</td>
+                    <td>123</td>
+                    <td>
+                        <div class="layui-btn-group">
+                            <button class="layui-btn ">编辑</button>
+                            <button class="layui-btn">删除</button>
+                        </div>
+                    </td>
+                </tr>
+>>>>>>> 14fd40242f612618abd4163ed643a4286aab6a95
 
                 </tbody>
             </table>
@@ -118,5 +167,23 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
+
+<script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+<script>
+    layui.use('form', function () {
+        var $ = layui.jquery, form = layui.form();
+
+        //全选
+        form.on('checkbox(allChoose)', function (data) {
+            //language=JQuery-CSS
+            var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
+            child.each(function (index, item) {
+                item.checked = data.elem.checked;
+            });
+            form.render('checkbox');
+        });
+
+    });
+</script>
 </body>
 </html>

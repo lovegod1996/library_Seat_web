@@ -9,14 +9,47 @@
 <html>
 <head>
     <title>Title</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- Bootstrap Core CSS -->
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <%--日期选择控件--%>
-    <link rel="stylesheet" href="//res.layui.com/layui/build/css/layui.css?t=1498856285724" media="all">
-    <link rel="stylesheet" href="//res.layui.com/css/global.css?t=1498856285724" media="all">
-    <link rel="stylesheet" href="//res.layui.com/layui/build/css/layui.css" media="all">
-    <script src="//res.layui.com/layui/build/layui.js?t=1498856285724" charset="utf-8"></script>
+    <%--layui 日期选择控件--%>
+    <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
+    <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+    <script>
+        layui.use('laydate', function () {
+            var laydate = layui.laydate;
+            var start = {
+                min: laydate.now()
+                , max: '2099-06-16 23:59:59'
+                , istoday: false
+                , choose: function (datas) {
+                    end.min = datas; //开始日选好后，重置结束日的最小日期
+                    end.start = datas //将结束日的初始值设定为开始日
+                }
+            };
 
+            var end = {
+                min: laydate.now()
+                , max: '2099-06-16 23:59:59'
+                , istoday: false
+                , choose: function (datas) {
+                    start.max = datas; //结束日选好后，重置开始日的最大日期
+                }
+            };
+
+            document.getElementById('LAY_demorange_s').onclick = function () {
+                start.elem = this;
+                laydate(start);
+            };
+            document.getElementById('LAY_demorange_e').onclick = function () {
+                end.elem = this;
+                laydate(end);
+            }
+
+        });
+    </script>
 
     <style type="text/css">
         body {
@@ -48,55 +81,6 @@
                 sltCity[i + 1] = new Option(provinceCity[i], provinceCity[i]);
             }
         }
-    </script>
-
-    <script>
-        layui.config({
-            base: '//res.layui.com/lay/modules/layui/'
-            , version: '1498856285724'
-        }).use('global');
-
-        window.global = {
-            preview: function () {
-                var preview = document.getElementById('LAY_preview');
-                return preview ? preview.innerHTML : '';
-            }()
-        };
-    </script>
-
-    <script>
-        layui.use('laydate', function () {
-            var laydate = layui.laydate;
-
-            var start = {
-                min: laydate.now()
-                , max: '2099-06-16 23:59:59'
-                , istoday: false
-                , choose: function (datas) {
-                    end.min = datas; //开始日选好后，重置结束日的最小日期
-                    end.start = datas //将结束日的初始值设定为开始日
-                }
-            };
-
-            var end = {
-                min: laydate.now()
-                , max: '2099-06-16 23:59:59'
-                , istoday: false
-                , choose: function (datas) {
-                    start.max = datas; //结束日选好后，重置开始日的最大日期
-                }
-            };
-
-            document.getElementById('LAY_demorange_s').onclick = function () {
-                start.elem = this;
-                laydate(start);
-            }
-            document.getElementById('LAY_demorange_e').onclick = function () {
-                end.elem = this
-                laydate(end);
-            }
-
-        });
     </script>
 
 </head>

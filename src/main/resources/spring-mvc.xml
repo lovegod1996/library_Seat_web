@@ -21,6 +21,9 @@
     <mvc:resources mapping="/vendor/**" location="/vendor/"/>
     <mvc:resources mapping="/dist/**" location="/dist/"/>
 
+    <mvc:resources mapping="/layui/**" location="/layui/"/>
+
+
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
     <bean id="mappingJacksonHttpMessageConverter"
           class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">

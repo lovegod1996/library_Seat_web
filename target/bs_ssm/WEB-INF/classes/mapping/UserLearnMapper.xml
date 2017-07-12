@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoqao.web.dao.UserLearnMapper">
+    <!--查询所有预约情况-->
+    <select id="findfloorBookSeat" resultType="com.xoqao.web.bean.userbook.UserLearn">
+        SELECT user.uid,user.nick,user.sno,user.name,user.college,user.classes,user.phone,user.major,seat.seatnumber,seat.sid,book.date,book.unpromise,book.period,book.downtime,book.uptime
+        FROM user,seat,book
+        WHERE
+          seat.seatnumber LIKE '${floor}%' AND seat.seatstate=1 AND seat.userid=user.uid AND seat.sid=book.seatid AND  user.uid=book.userid
+        ORDER BY book.date DESC
+    </select>
+
+    <select id="findfloorBookSeatPage" resultType="com.xoqao.web.bean.userbook.UserLearn">
+        SELECT user.uid,user.nick,user.sno,user.name,user.college,user.classes,user.phone,user.major,seat.seatnumber,seat.sid,book.date,book.unpromise,book.period,book.downtime,book.uptime
+        FROM user,seat,book
+        WHERE
+        seat.seatnumber LIKE '${floor}%' AND seat.seatstate=1 AND seat.userid=user.uid AND seat.sid=book.seatid AND  user.uid=book.userid
+        ORDER BY book.date DESC
+        limit #{startRow},#{pageSize}
+    </select>
+
+    <!--查询所有入座情况-->
+    <select id="findfloorAllSeat" resultType="com.xoqao.web.bean.userbook.UserLearn">
+        SELECT user.uid,user.nick,user.sno,user.name,user.college,user.classes,user.phone,user.major,seat.seatnumber,seat.sid,book.date,book.unpromise,book.period,book.downtime,book.uptime
+        FROM user,seat,book
+        WHERE
+        seat.seatnumber LIKE '${floor}%' AND seat.seatstate=2 AND seat.userid=user.uid AND seat.sid=book.seatid AND  user.uid=book.userid
+        ORDER BY book.date DESC
+    </select>
+
+    <select id="findfloorAllSeatPage" resultType="com.xoqao.web.bean.userbook.UserLearn">
+        SELECT user.uid,user.nick,user.sno,user.name,user.college,user.classes,user.phone,user.major,seat.seatnumber,seat.sid,book.date,book.unpromise,book.period,book.downtime,book.uptime
+        FROM user,seat,book
+        WHERE
+        seat.seatnumber LIKE '${floor}%' AND seat.seatstate=2 AND seat.userid=user.uid AND seat.sid=book.seatid AND  user.uid=book.userid
+        ORDER BY book.date DESC
+        limit #{startRow},#{pageSize}
+    </select>
+    <!--查询未使用的座位-->
+    <select id="findAllNoSeat" resultType="com.xoqao.web.bean.seat.Seat">
+        SELECT sid,seatnumber,seatstate,userid,seattype FROM  seat WHERE  seatstate=0 AND seatnumber LIKE '${floor}%'
+    </select>
+    <select id="findAllNoSeatPage" resultType="com.xoqao.web.bean.seat.Seat">
+        SELECT sid,seatnumber,seatstate,userid,seattype FROM  seat WHERE  seatstate=0 AND seatnumber LIKE '${floor}%' limit #{startRow},#{pageSize}
+    </select>
+</mapper>
