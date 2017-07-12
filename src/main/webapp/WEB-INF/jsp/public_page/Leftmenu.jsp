@@ -40,7 +40,7 @@
                 <a href="#"><i class="fa fa-hdd-o fa-fw"></i> 预约管理<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="<%=request.getContextPath()%>/jsp/seat_In_Book" target="mainFrame_Admin">当前入座</a>
+                        <a href="<%=request.getContextPath()%>/jsp/seat_In_Book" target="mainFrame_Admin">当前预约</a>
                     </li>
                     <li>
                         <a href="<%=request.getContextPath()%>/jsp/seat_In_Use" target="mainFrame_Admin">当前入座</a>
@@ -55,7 +55,7 @@
                 <a href="#"><i class="fa fa-puzzle-piece fa-fw"></i> 座位管理</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-user fa-fw"></i> 用户管理</a>
+                <a href="<%=request.getContextPath()%>/view/managing_Users" target="mainFrame_Admin"><i class="fa fa-user fa-fw"></i> 用户管理</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-bell fa-fw"></i> 通知管理<span class="fa arrow"></span></a>
@@ -73,7 +73,8 @@
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 数据统计</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-gear fa-fw"></i> 设置时间参数</a>
+                <a href="<%=request.getContextPath()%>/view/setNewTime" target="mainFrame_Admin"><i
+                        class="fa fa-gear fa-fw"></i> 设置时间参数</a>
             </li>
         </ul>
     </div>

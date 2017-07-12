@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 1Q84
@@ -11,7 +12,8 @@
     <title>Title</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <%--layui--%>
+    <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script language="JavaScript" type="text/javascript">
         //定义了楼层的二维数组，里面的顺序跟楼的顺序是相同的。通过selectedIndex获得楼的下标值来得到相应的楼层数组
         var city = [
@@ -73,7 +75,7 @@
                     <td>S2-0101</td>
                     <td>空闲中</td>
                     <td>
-                        <button type="button" class="btn btn-danger btn-sm">操作</button>
+                        <button data-method="notice" class="layui-btn">入座</button>
                     </td>
                 </tr>
                 <tr>
@@ -81,7 +83,7 @@
                     <td>S2-0101</td>
                     <td>空闲中</td>
                     <td>
-                        <button type="button" class="btn btn-danger btn-sm">操作</button>
+                        <button data-method="notice" class="layui-btn">入座</button>
                     </td>
                 </tr>
                 <tr>
@@ -89,7 +91,7 @@
                     <td>S2-0101</td>
                     <td>空闲中</td>
                     <td>
-                        <button type="button" class="btn btn-danger btn-sm">操作</button>
+                        <button data-method="notice" class="layui-btn">入座</button>
                     </td>
                 </tr>
                 </tbody>
@@ -111,6 +113,9 @@
     <!-- /.panel -->
 </div>
 <!-- /.col-sm-12 -->
+
+
+
 <!-- jQuery -->
 <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
 
@@ -122,5 +127,50 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
+
+<script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+<script>
+    layui.use('layer', function () { //独立版的layer无需执行这一句
+        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+
+//触发事件
+        var active = {
+            notice: function () {
+//示范一个公告层
+                layer.open({
+                    type: 2
+                    ,
+                    title: ['立即入座', 'font-size:18px;text-align:center;background:#32AA9F']
+                    ,
+                    closeBtn: false
+                    ,
+                    area: ['400px','550px']
+                    ,
+                    shade: 0
+                    ,
+                    id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                    ,
+                    btn: ['关闭']
+                    ,
+                    moveType: 0 //拖拽模式，0或者1
+                    ,
+                    content: ['/Library_Seat/view/seat_Now', 'no']
+                    ,
+                    success: function (layero) {
+                        var btn = layero.find('.layui-layer-btn');
+                        btn.css('text-align', 'center');
+                        btn.class('layui-btn layui-btn-primary')
+                    }
+                });
+            }
+        };
+
+        $('.layui-btn').on('click', function () {
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });
+
+    });
+</script>
 </body>
 </html>

@@ -10,6 +10,8 @@
 <head>
     <!-- Bootstrap Core CSS -->
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <%--layui--%>
+    <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
 
     <script language="JavaScript" type="text/javascript">
         //定义了楼层的二维数组，里面的顺序跟楼的顺序是相同的。通过selectedIndex获得楼的下标值来得到相应的楼层数组
@@ -56,10 +58,23 @@
             </div>
         </div>
         <!-- /.panel-heading -->
-        <div class="table table-condensed">
-            <table class="table">
+        <div class="layui-form">
+            <table class="layui-table">
+                <%--<colgroup>--%>
+                    <%--<col width="10%">--%>
+                    <%--<col width="10%">--%>
+                    <%--<col width="10%">--%>
+                    <%--<col width="10%">--%>
+                    <%--<col width="10%">--%>
+                    <%--<col width="10%">--%>
+                    <%--<col width="10%">--%>
+                    <%--<col width="10%">--%>
+                    <%--<col width="10%">--%>
+                    <%--<col width="10%">--%>
+                <%--</colgroup>--%>
                 <thead>
                 <tr>
+                    <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
                     <th>学号</th>
                     <th>姓名</th>
                     <th>学院</th>
@@ -73,6 +88,7 @@
                 </thead>
                 <tbody>
                 <tr>
+                    <td><input type="checkbox" name="" lay-skin="primary"></td>
                     <td>1</td>
                     <td>小明</td>
                     <td>计算机学院</td>
@@ -80,12 +96,13 @@
                     <td>141班</td>
                     <td>S2-0101</td>
                     <td>9:00-12:00</td>
-                    <td>预约中</td>
+                    <td>使用中</td>
                     <td>
-                        <button type="button" class="btn btn-danger btn-sm">释放</button>
+                        <button type="button" class="btn btn-danger btn-sm">操作</button>
                     </td>
                 </tr>
                 <tr>
+                    <td><input type="checkbox" name="" lay-skin="primary"></td>
                     <td>1</td>
                     <td>小明</td>
                     <td>计算机学院</td>
@@ -93,12 +110,13 @@
                     <td>141班</td>
                     <td>S2-0101</td>
                     <td>9:00-12:00</td>
-                    <td>预约中</td>
+                    <td>使用中</td>
                     <td>
-                        <button type="button" class="btn btn-danger btn-sm">释放</button>
+                        <button type="button" class="btn btn-danger btn-sm">操作</button>
                     </td>
                 </tr>
                 <tr>
+                    <td><input type="checkbox" name="" lay-skin="primary"></td>
                     <td>1</td>
                     <td>小明</td>
                     <td>计算机学院</td>
@@ -106,9 +124,9 @@
                     <td>141班</td>
                     <td>S2-0101</td>
                     <td>9:00-12:00</td>
-                    <td>预约中</td>
+                    <td>使用中</td>
                     <td>
-                        <button type="button" class="btn btn-danger btn-sm">释放</button>
+                        <button type="button" class="btn btn-danger btn-sm">操作</button>
                     </td>
                 </tr>
                 </tbody>
@@ -141,5 +159,23 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
+
+<script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+<script>
+    layui.use('form', function () {
+        var $ = layui.jquery, form = layui.form();
+
+        //全选
+        form.on('checkbox(allChoose)', function (data) {
+            //language=JQuery-CSS
+            var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
+            child.each(function (index, item) {
+                item.checked = data.elem.checked;
+            });
+            form.render('checkbox');
+        });
+
+    });
+</script>
 </body>
 </html>
