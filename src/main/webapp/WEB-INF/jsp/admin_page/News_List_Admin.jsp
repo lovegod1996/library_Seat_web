@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>Title</title>
@@ -30,44 +33,72 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><a href="<%=request.getContextPath()%>/jsp/news_Content" target="mainFrame_Admin">我是标题</a></td>
-                    <td>2017年7月11日</td>
-                    <td>
-                        <button type="button" class="btn btn-primary btn-sm">编辑</button>
-                        <button type="button" class="btn btn-danger btn-sm">删除</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td><a href="<%=request.getContextPath()%>/jsp/news_Content" target="mainFrame_Admin">我是标题</a></td>
-                    <td>2017年7月11日</td>
-                    <td>
-                        <button type="button" class="btn btn-primary btn-sm">编辑</button>
-                        <button type="button" class="btn btn-danger btn-sm">删除</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td><a href="<%=request.getContextPath()%>/jsp/news_Content" target="mainFrame_Admin">我是标题</a></td>
-                    <td>2017年7月11日</td>
-                    <td>
-                        <button type="button" class="btn btn-primary btn-sm">编辑</button>
-                        <button type="button" class="btn btn-danger btn-sm">删除</button>
-                    </td>
-                </tr>
+
+                <c:forEach items="${news}" var="newss">
+                    <tr>
+                        <td>${newss.nid}</td>
+                        <td><a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${newss.nid}" target="mainFrame_Admin">${newss.title}</a></td>
+                        <td><fmt:formatDate value="${newss.creattime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm">编辑</button>
+                            <a href="<%=request.getContextPath()%>/admin/newsDele?nid=${newss.nid}" class="btn btn-danger btn-sm">删除</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+                <c:if test="${ nullList != null}">
+                    <tr style="text-align: center">
+                        <td colspan="4">${nullList}</td>
+                    </tr>
+                </c:if>
+
                 </tbody>
             </table>
             <div style="text-align: center">
                 <ul class="pagination">
-                    <li><a href="#">&laquo;</a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&raquo;</a></li>
+                    <li>
+                        <c:if test="${currentPage ==1}">
+                            <a href="#" class="disabled">&laquo;</a>
+                        </c:if>
+                        <c:if test="${currentPage != 1}">
+                            <a href="${pageContext.request.contextPath }/jsp/news_List_Admin.form?page=${currentPage-1}">&laquo;</a>
+                        </c:if>
+                    </li>
+                    <c:if test="${currentPage==1}">
+                        <li class="active"><a href="#">1</a></li>
+                    </c:if>
+                    <c:if test="${currentPage!=1}">
+                        <li>
+                            <a href="${pageContext.request.contextPath }/jsp/news_List_Admin.form?page=1">1</a>
+                        </li>
+                    </c:if>
+                    <%
+                        int pageTimes = (Integer) session.getAttribute("pageTimes");
+                        for (int i = 1; i < pageTimes; i++) {
+
+                            request.setAttribute("page", i + 1);
+                            pageContext.setAttribute("i", i);
+                    %>
+
+                    <c:if test="${i<(currentPage+5)&&i>(currentPage-5)}">
+                        <c:if test="${currentPage == page}">
+                            <li><a href="#" class="active"><%=i + 1%>
+                            </a></li>
+                        </c:if>
+                        <c:if test="${currentPage != page}">
+                            <li>
+                                <a href="${pageContext.request.contextPath }/jsp/news_List_Admin.form?page=<%=i+1%>"><%=i + 1%>
+                                </a></li>
+                        </c:if>
+                    </c:if>
+                    <% } %>
+                    <c:if test="${currentPage == pageTimes}">
+                        <li>    <a href="#" class="active">&raquo;</a> </li>
+                    </c:if>
+                    <c:if test="${currentPage != pageTimes}">
+                        <li>  <a href="${pageContext.request.contextPath }/jsp/news_List_Admin.form?page=${currentPage+1}">&raquo;</a>  </li>
+                    </c:if>
+
+
                 </ul>
             </div>
 

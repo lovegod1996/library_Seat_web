@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>Title</title>
@@ -15,8 +18,8 @@
     <script language="JavaScript" type="text/javascript">
         //定义了楼层的二维数组，里面的顺序跟楼的顺序是相同的。通过selectedIndex获得楼的下标值来得到相应的楼层数组
         var city = [
-            ["南一", "南二", "南三", "南四"],
-            ["北一", "北二", "北三", "北四"]
+            ["南1", "南2", "南3", "南4"],
+            ["北1", "北2", "北3", "北4"]
         ];
 
         function getCity() {
@@ -35,6 +38,13 @@
                 sltCity[i + 1] = new Option(provinceCity[i], provinceCity[i]);
             }
         }
+        function getData() {
+            var floor = $("#floor").val();
+            var url = "/Lseat/jsp/seat_In_Use?floor=" + floor;
+            window.location.href = encodeURI(url);
+        }
+
+
     </script>
 </head>
 <body>
@@ -42,7 +52,8 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <i class="fa fa-bar-chart-o fa-fw"></i> 使用中座位统计
-            <button type="button" class="btn btn-success btn-xs" style="margin-left:20px ">实时刷新</button>
+            <a href="${pageContext.request.contextPath }/jsp/seat_In_Use" class="btn btn-success btn-xs"
+               style="margin-left:20px ">点击刷新</a>
             <div class="pull-right">
                 <FORM METHOD=POST ACTION="" name="selectform">
                     <SELECT NAME="building" onChange="getCity()">
@@ -50,8 +61,9 @@
                         <OPTION VALUE="南楼">南楼 </OPTION>
                         <OPTION VALUE="北楼">北楼 </OPTION>
                     </SELECT>
-                    <SELECT NAME="floor">
+                    <SELECT NAME="floor" onchange="getData()" id="floor">
                         <OPTION VALUE="0">选择所在楼层 </OPTION>
+                        <OPTION VALUE="0">${floor}</OPTION>
                     </SELECT>
                 </FORM>
             </div>
@@ -73,56 +85,74 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>小明</td>
-                    <td>计算机学院</td>
-                    <td>软件工程</td>
-                    <td>141班</td>
-                    <td>S2-0101</td>
-                    <td>9:00-12:00</td>
-                    <td>使用中</td>
-                    <td>
-                        <button type="button" class="btn btn-danger btn-sm">操作</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>小明</td>
-                    <td>计算机学院</td>
-                    <td>软件工程</td>
-                    <td>141班</td>
-                    <td>S2-0101</td>
-                    <td>9:00-12:00</td>
-                    <td>使用中</td>
-                    <td>
-                        <button type="button" class="btn btn-danger btn-sm">操作</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>小明</td>
-                    <td>计算机学院</td>
-                    <td>软件工程</td>
-                    <td>141班</td>
-                    <td>S2-0101</td>
-                    <td>9:00-12:00</td>
-                    <td>使用中</td>
-                    <td>
-                        <button type="button" class="btn btn-danger btn-sm">操作</button>
-                    </td>
-                </tr>
+                <c:forEach items="${userLearned}" var="userLearn">
+                    <tr>
+                        <td>${userLearn.sno}</td>
+                        <td>${userLearn.name}</td>
+                        <td>${userLearn.college}</td>
+                        <td>${userLearn.major}</td>
+                        <td>${userLearn.classes}</td>
+                        <td>${userLearn.seatnumber}</td>
+                        <td>${userLearn.period}</td>
+                        <td>学习中</td>
+                        <td>
+                            <button type="button" class="btn btn-danger btn-sm">操作</button>
+                        </td>
+                    </tr>
+                </c:forEach>
+                <c:if test="${ nullList != null}">
+                    <tr style="text-align: center">
+                        <td colspan="9">${nullList}</td>
+                    </tr>
+                </c:if>
+
                 </tbody>
             </table>
             <div style="text-align: center">
                 <ul class="pagination">
-                    <li><a href="#">&laquo;</a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&raquo;</a></li>
+
+                    <li>
+                        <c:if test="${currentPage ==1}">
+                            <a href="#" class="disabled">&laquo;</a>
+                        </c:if>
+                        <c:if test="${currentPage != 1}">
+                            <a href="${pageContext.request.contextPath }/jsp/seat_In_Use.form?page=${currentPage-1}&floor=${floor}">&laquo;</a>
+                        </c:if>
+                    </li>
+                    <c:if test="${currentPage==1}">
+                        <li class="active"><a href="#">1</a></li>
+                    </c:if>
+                    <c:if test="${currentPage!=1}">
+                        <li>
+                            <a href="${pageContext.request.contextPath }/jsp/seat_In_Use.form?page=1&floor=${floor}">1</a>
+                        </li>
+                    </c:if>
+                    <%
+                        int pageTimes = (Integer) session.getAttribute("pageTimes");
+                        for (int i = 1; i < pageTimes; i++) {
+
+                            request.setAttribute("page", i + 1);
+                            pageContext.setAttribute("i", i);
+                    %>
+
+                    <c:if test="${i<(currentPage+5)&&i>(currentPage-5)}">
+                        <c:if test="${currentPage == page}">
+                            <li><a href="#" class="active"><%=i + 1%>
+                            </a></li>
+                        </c:if>
+                        <c:if test="${currentPage != page}">
+                            <li>
+                                <a href="${pageContext.request.contextPath }/jsp/seat_In_Use.form?page=<%=i+1%>&floor=${floor}"><%=i + 1%>
+                                </a></li>
+                        </c:if>
+                    </c:if>
+                    <% } %>
+                    <c:if test="${currentPage == pageTimes}">
+                        <li>    <a href="#" class="active">&raquo;</a> </li>
+                    </c:if>
+                    <c:if test="${currentPage != pageTimes}">
+                        <li>  <a href="${pageContext.request.contextPath }/jsp/seat_In_Use.form?page=${currentPage+1}&floor=${floor}">&raquo;</a>  </li>
+                    </c:if>
                 </ul>
             </div>
 

@@ -40,7 +40,7 @@
                 <a href="#"><i class="fa fa-hdd-o fa-fw"></i> 预约管理<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="<%=request.getContextPath()%>/jsp/seat_In_Book" target="mainFrame_Admin">当前入座</a>
+                        <a href="<%=request.getContextPath()%>/jsp/seat_In_Book" target="mainFrame_Admin">当前预约</a>
                     </li>
                     <li>
                         <a href="<%=request.getContextPath()%>/jsp/seat_In_Use" target="mainFrame_Admin">当前入座</a>
