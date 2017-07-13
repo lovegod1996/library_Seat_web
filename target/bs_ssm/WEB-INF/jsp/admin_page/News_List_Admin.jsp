@@ -43,10 +43,11 @@
                 </tr>
                 </thead>
                 <tbody>
-<<<<<<< HEAD
+
 
                 <c:forEach items="${news}" var="newss">
                     <tr>
+                        <td><input type="checkbox"></td>
                         <td>${newss.nid}</td>
                         <td><a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${newss.nid}" target="mainFrame_Admin">${newss.title}</a></td>
                         <td><fmt:formatDate value="${newss.creattime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>

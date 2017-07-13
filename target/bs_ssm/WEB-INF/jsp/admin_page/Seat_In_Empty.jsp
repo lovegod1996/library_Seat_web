@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: 1Q84
@@ -43,7 +43,7 @@
 
         function getData() {
             var floor = $("#floor").val();
-            var url = "/Lseat/jsp/seat_In_Empty?floor=" + floor;
+            var url = "/LS/jsp/seat_In_Empty?floor=" + floor;
             window.location.href = encodeURI(url);
         }
 

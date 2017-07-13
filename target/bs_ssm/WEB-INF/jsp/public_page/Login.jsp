@@ -110,12 +110,10 @@
 <!-- Custom Theme JavaScript -->
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
 
-<<<<<<< HEAD
+
 <script type="text/javascript">
     <c:if test="${!empty error_msg}">alert("${error_msg}");</c:if>
 </script>
-
-=======
 <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
 <script>
     layui.use('layer', function () { //独立版的layer无需执行这一句
@@ -160,6 +158,6 @@
 
     });
 </script>
->>>>>>> 14fd40242f612618abd4163ed643a4286aab6a95
+
 </body>
 </html>

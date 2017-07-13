@@ -42,7 +42,7 @@
 
         function getData() {
             var floor = $("#floor").val();
-            var url = "/Lseat/jsp/seat_In_Book?floor=" + floor;
+            var url = "/LS/jsp/seat_In_Book?floor=" + floor;
             window.location.href = encodeURI(url);
         }
 
@@ -102,6 +102,7 @@
 
                 <c:forEach items="${userLearns}" var="userLearn">
                     <tr>
+                        <td><input type="checkbox"></td>
                         <td>${userLearn.sno}</td>
                         <td>${userLearn.name}</td>
                         <td>${userLearn.college}</td>
@@ -188,11 +189,7 @@
 <!-- Custom Theme JavaScript -->
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
 
-<<<<<<< HEAD
 
-
-
-=======
 <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
 <script>
     layui.use('form', function () {
@@ -210,6 +207,6 @@
 
     });
 </script>
->>>>>>> 14fd40242f612618abd4163ed643a4286aab6a95
+
 </body>
 </html>
