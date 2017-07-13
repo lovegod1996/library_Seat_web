@@ -47,42 +47,37 @@
 <body>
 <div id="wrapper">
     <div class="col-sm-12">
-        <form class="form-horizontal" role="form" name="addform">
-            <div class="form-group">
-                <label class="control-label" style="float: left">入学年份</label>
-                <div class="col-sm-7" style="float: left">
-                    <input type="text" class="layui-input" placeholder="输入" required>
-                </div>
-            </div>
+        <form class="form-horizontal" role="form" name="addform" action="<%= request.getContextPath()%>/view/aduserSub" method="post" target="mainFrame_Admin">
+
             <div class="form-group">
                 <label class="control-label" style="float: left">姓名</label>
                 <div class="col-sm-7" style="float: left">
-                    <input type="text" class="layui-input" placeholder="输入" required>
+                    <input type="text" name="name" class="layui-input" placeholder="输入" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label" style="float: left">学号</label>
                 <div class="col-sm-7" style="float: left">
-                    <input type="text" class="layui-input" placeholder="输入" required>
+                    <input type="text" name="sno" class="layui-input" placeholder="输入" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label" style="float: left">学院</label>
                 <div class="col-sm-7" style="float: left">
-                    <input type="text" class="layui-input" placeholder="输入" required>
+                    <input type="text" name="college" class="layui-input" placeholder="输入" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label" style="float: left">专业</label>
                 <div class="col-sm-7" style="float: left">
-                    <input type="text" class="layui-input" placeholder="输入" required>
+                    <input type="text" name="major" class="layui-input" placeholder="输入" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label" style="float: left">班级</label>
                 <div class="col-sm-7" style="float: left">
-                    <input type="text" class="layui-input" placeholder="输入" required>
+                    <input type="text" name="classes" class="layui-input" placeholder="输入" required>
                 </div>
             </div>
 

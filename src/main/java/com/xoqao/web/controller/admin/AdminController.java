@@ -3,8 +3,10 @@ package com.xoqao.web.controller.admin;
 import com.xoqao.web.bean.admin.Admin;
 import com.xoqao.web.bean.news.News;
 import com.xoqao.web.bean.seat.Seat;
+import com.xoqao.web.bean.user.User;
 import com.xoqao.web.service.AdminService;
 import com.xoqao.web.service.NewsService;
+import com.xoqao.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +33,8 @@ public class AdminController {
 
     @Autowired
     private NewsService newsService;
+    @Autowired
+    private UserService userService;
 
     /**
      * 后台登录提交
@@ -42,15 +46,29 @@ public class AdminController {
      * @throws Exception
      */
     @RequestMapping("/loginSub")
-    public String adminLoginSub(Model model, String loginId, String password, HttpSession httpSession) throws Exception {
-        Admin admin = adminService.findadminBynameOrid(loginId);
-        if (password.trim().equals(admin.getPassword())) {
-            httpSession.setAttribute("admin", admin);
-            return "admin_page/Index_Admin";
+    public String adminLoginSub(Model model, String loginId, String password, Integer optionsRadiosinline, HttpSession httpSession) throws Exception {
+
+        if (optionsRadiosinline == 1) {
+            User userByphoneOrSno = userService.findUserByphoneOrSno(loginId);
+            if (password.trim().equals(userByphoneOrSno.getPassword())) {
+                httpSession.setAttribute("user", userByphoneOrSno);
+                return "toIndex";
+            } else {
+                model.addAttribute("error_msg", "密码输入错误！");
+                return "public_page/Login";
+            }
         } else {
-            model.addAttribute("error_msg", "密码输入错误！");
-            return "public_page/Login";
+            Admin admin = adminService.findadminBynameOrid(loginId);
+            if (password.trim().equals(admin.getPassword())) {
+                httpSession.setAttribute("admin", admin);
+                return "admin_page/Index_Admin";
+            } else {
+                model.addAttribute("error_msg", "密码输入错误！");
+                return "public_page/Login";
+            }
         }
+
+
     }
 
     /**
@@ -64,7 +82,8 @@ public class AdminController {
     @RequestMapping("/loginOut")
     public String adminLogout(Model model, HttpSession httpSession) throws Exception {
         httpSession.removeAttribute("admin");
-        return "public_page/Login";
+        httpSession.removeAttribute("user");
+        return "toIndex";
     }
 
     /**
@@ -77,24 +96,23 @@ public class AdminController {
      * @throws Exception
      */
     @RequestMapping("/adNewsSub")
-    public String newsSub(Model model,Integer page, String title, String content,HttpSession httpSession) throws Exception {
-      Integer pageSize=5;
+    public String newsSub(Model model, Integer page, String title, String content, HttpSession httpSession) throws Exception {
+        Integer pageSize = 5;
 
-        News news=new News();
+        News news = new News();
         news.setTitle(title);
         news.setContent(content);
         news.setCreattime(new Date());
         try {
             newsService.insertNews(news);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
 
-
         List<News> allNews = newsService.findAllNews();
 
-        model.addAttribute("NewsSize",allNews.size());
+        model.addAttribute("NewsSize", allNews.size());
         int pageTims;
         if (allNews.size() % pageSize == 0) {
             pageTims = allNews.size() / pageSize;
@@ -116,17 +134,18 @@ public class AdminController {
         model.addAttribute("currentPage", page);
 
         List<News> allNewsPage = newsService.findAllNewsPage(startRow, pageSize);
-        if(allNewsPage.size()>0){
-            model.addAttribute("news",allNewsPage);
+        if (allNewsPage.size() > 0) {
+            model.addAttribute("news", allNewsPage);
             return "admin_page/News_List_Admin";
-        }else{
-            model.addAttribute("nullList","暂无数据");
+        } else {
+            model.addAttribute("nullList", "暂无数据");
             return "admin_page/News_List_Admin";
         }
     }
 
     /**
      * 删除资讯
+     *
      * @param model
      * @param page
      * @param nid
@@ -135,13 +154,13 @@ public class AdminController {
      * @throws Exception
      */
     @RequestMapping("/newsDele")
-    public String newsDelte(Model model,Integer page,Integer nid,HttpSession httpSession)throws Exception{
+    public String newsDelte(Model model, Integer page, Integer nid, HttpSession httpSession) throws Exception {
         newsService.deleteNews(nid);
 
-        Integer pageSize=5;
+        Integer pageSize = 5;
         List<News> allNews = newsService.findAllNews();
 
-        model.addAttribute("NewsSize",allNews.size());
+        model.addAttribute("NewsSize", allNews.size());
         int pageTims;
         if (allNews.size() % pageSize == 0) {
             pageTims = allNews.size() / pageSize;
@@ -163,15 +182,14 @@ public class AdminController {
         model.addAttribute("currentPage", page);
 
         List<News> allNewsPage = newsService.findAllNewsPage(startRow, pageSize);
-        if(allNewsPage.size()>0){
-            model.addAttribute("news",allNewsPage);
+        if (allNewsPage.size() > 0) {
+            model.addAttribute("news", allNewsPage);
             return "admin_page/News_List_Admin";
-        }else{
-            model.addAttribute("nullList","暂无数据");
+        } else {
+            model.addAttribute("nullList", "暂无数据");
             return "admin_page/News_List_Admin";
         }
     }
-
 
 
     public static HttpSession getSession() {

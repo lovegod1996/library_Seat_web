@@ -43,7 +43,7 @@
 
         function getData() {
             var floor = $("#floor").val();
-            var url = "/LS/jsp/seat_In_Empty?floor=" + floor;
+            var url = "/Lseat/jsp/seat_In_Empty?floor=" + floor;
             window.location.href = encodeURI(url);
         }
 

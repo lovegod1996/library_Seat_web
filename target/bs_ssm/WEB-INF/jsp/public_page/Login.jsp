@@ -78,11 +78,11 @@
                             </div>
                             <div class="radio" style="float: left;margin-left: 20px">
                                 <label class="checkbox-inline">
-                                    <input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="option1"
-                                           checked>用户
+                                    <input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="1"
+                                           checked>学生
                                 </label>
                                 <label class="checkbox-inline">
-                                    <input type="radio" name="optionsRadiosinline" id="optionsRadios2" value="option2">管理员
+                                    <input type="radio" name="optionsRadiosinline" id="optionsRadios2" value="2">管理员
                                 </label>
                             </div>
                             <div class="fogetPwd" style="float: left">
@@ -110,10 +110,11 @@
 <!-- Custom Theme JavaScript -->
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
 
-
 <script type="text/javascript">
     <c:if test="${!empty error_msg}">alert("${error_msg}");</c:if>
 </script>
+
+
 <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
 <script>
     layui.use('layer', function () { //独立版的layer无需执行这一句

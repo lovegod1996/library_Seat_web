@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>管理用户</title>
@@ -16,27 +19,39 @@
 
     <script language="JavaScript" type="text/javascript">
         //定义了专业的二维数组，里面的顺序跟学院的顺序是相同的。通过selectedIndex获得学院的下标值来得到相应的专业数组
-        var major = [
-            ["软件", "计科", "网络"],
-            ["网络", "软件", "计科"]
-        ];
+
+        function getYear() {
+            var year = $("#year").val();
+            var url = "/LS/view/managing_Users?year=" + year + "&college=&major=";
+            window.location.href = encodeURI(url);
+        }
 
         function getCollege() {
-            //获得学院下拉框的对象
-            var sltCollege = document.selectform.college;
-            //获得专业下拉框的对象
-            var sltMajor = document.selectform.major;
-            //得到对应楼的专业数组
-            var collegeMajor = major[sltCollege.selectedIndex - 1];
 
-            //清空专业下拉框，仅留提示选项
-            sltMajor.length = 1;
-
-            //将专业数组中的值填充到学院下拉框中
-            for (var i = 0; i < collegeMajor.length; i++) {
-                sltMajor[i + 1] = new Option(collegeMajor[i], collegeMajor[i]);
-            }
+            $.ajax({
+                url: "${pageContext.request.contextPath }/view/collegeMajor.form",
+                data: 'college=' + $("#college").val(),
+                type: 'post',
+                success: function (result) {
+                    $("#major option").remove();//清空原来的选项
+                    //  alert(result);
+                    result = eval(result);
+                    for (var i = 0; i < result.length; i++) {
+                        $("#major").append("<option > " + result[i] + "</option>")
+                    }
+                }
+            })
         }
+
+        function getMajor() {
+            var major = $("#major").val();
+            var college = $("#college").val();
+            var year = $("#year").val();
+
+            var url = "/LS/view/managing_Users?year=" + year + "&college=" + college + "&major=" + major;
+            window.location.href = encodeURI(url);
+        }
+
     </script>
 </head>
 <body>
@@ -45,25 +60,39 @@
         <div class="panel-heading">
             <label style="float: left">用户管理</label>
             <form method="post" action="" name="selectform" style="float: left;margin-left: 20px;width: 40%">
-                <select name="year" style="float: left">
+                <select name="year" id="year" onchange="getYear()" style="float: left">
                     <option value="0">按年份筛选</option>
+                    <c:if test="${year!=null}">
+                        <option value="${year}" selected>${year}</option>
+                    </c:if>
                     <option value="2017">2017</option>
+                    <option value="2018">2018</option>
                     <option value="2016">2016</option>
                     <option value="2015">2015</option>
                     <option value="2014">2014</option>
                 </select>
-                <select name="college" onchange="getCollege()" style="float: left;margin-left: 1%">
-                    <option value="0">按学院筛选</option>
-                    <option value="计算机学院">计算机学院</option>
-                    <option value="软件学院">软件学院</option>
+                <select name="college" id="college" onchange="getCollege()" style="float: left;margin-left: 1%">
+                    <c:if test="${college!=null}">
+                        <option value="${college}">${college}</option>
+                    </c:if>
+                    <c:forEach items="${colleges}" var="collegee">
+                        <option value="${collegee}">${collegee}</option>
+                    </c:forEach>
                 </select>
-                <select name="major" style="float: left;margin-left: 1%">
-                    <option value="0">按专业筛选</option>
+                <select name="major" id="major" onchange="getMajor()" style="float: left;margin-left: 1%">
+                    <option value="0">选择专业</option>
+                    <c:if test="${major!=null}">
+                        <option value="${major}">${major}</option>
+                    </c:if>
                 </select>
             </form>
-            <button type="button" data-method="notice" class="layui-btn layui-btn-mini" style="margin-left:20px ">添加用户</button>
-            <button type="button" class="layui-btn layui-btn-mini layui-btn-danger" style="margin-left:20px ">删除用户</button>
-            <button type="button" class="layui-btn layui-btn-mini layui-btn-normal" style="margin-left:20px ">实时刷新</button>
+            <button type="button" data-method="notice" class="layui-btn layui-btn-mini" style="margin-left:20px ">添加用户
+            </button>
+            <button type="button" class="layui-btn layui-btn-mini layui-btn-danger" style="margin-left:20px ">删除用户
+            </button>
+            <a href="${pageContext.request.contextPath }/view/managing_Users.form?year=${year}&college=${college}&major=${major}"
+               class="layui-btn layui-btn-mini layui-btn-normal" style="margin-left:20px ">点击刷新
+            </a>
 
         </div>
         <!-- /.panel-heading -->
@@ -73,7 +102,6 @@
                 <tr>
                     <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
                     <th>序号</th>
-                    <th>入学年份</th>
                     <th>姓名</th>
                     <th>学号</th>
                     <th>学院</th>
@@ -83,56 +111,79 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><input type="checkbox" name="" lay-skin="primary"></td>
-                    <td>1</td>
-                    <td>2014</td>
-                    <td>小明</td>
-                    <td>201400002222</td>
-                    <td>计算机学院</td>
-                    <td>软件工程</td>
-                    <td>141班</td>
-                    <td>
-                        <button type="button" class="btn btn-danger btn-sm">删除</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="" lay-skin="primary"></td>
-                    <td>1</td>
-                    <td>2014</td>
-                    <td>小明</td>
-                    <td>201400002222</td>
-                    <td>计算机学院</td>
-                    <td>软件工程</td>
-                    <td>141班</td>
-                    <td>
-                        <button type="button" class="btn btn-danger btn-sm">删除</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="" lay-skin="primary"></td>
-                    <td>1</td>
-                    <td>2014</td>
-                    <td>小明</td>
-                    <td>201400002222</td>
-                    <td>计算机学院</td>
-                    <td>软件工程</td>
-                    <td>141班</td>
-                    <td>
-                        <button type="button" class="btn btn-danger btn-sm">删除</button>
-                    </td>
-                </tr>
+
+                <c:forEach items="${users}" var="userss">
+                    <tr>
+                        <td><input type="checkbox" name="" lay-skin="primary"></td>
+                        <td>${userss.uid}</td>
+                        <td>${userss.name}</td>
+                        <td>${userss.sno}</td>
+                        <td>${userss.college}</td>
+                        <td>${userss.major}</td>
+                        <td>${userss.classes}</td>
+                        <td>
+                            <a href="${pageContext.request.contextPath }/view/userDelete?uid=${userss.uid}" class="btn btn-danger btn-sm">删除</a>
+                        </td>
+                    </tr>
+
+                </c:forEach>
+
+                <c:if test="${ nullList != null}">
+                    <tr style="text-align: center">
+                        <td colspan="8">${nullList}</td>
+                    </tr>
+                </c:if>
                 </tbody>
             </table>
             <div style="text-align: center">
                 <ul class="pagination">
-                    <li><a href="#">&laquo;</a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&raquo;</a></li>
+
+
+                    <li>
+                        <c:if test="${currentPage ==1}">
+                            <a href="#" class="disabled">&laquo;</a>
+                        </c:if>
+                        <c:if test="${currentPage != 1}">
+                            <a href="${pageContext.request.contextPath }/view/managing_Users.form?page=${currentPage-1}&year=${year}&college=${college}&major=${major}">&laquo;</a>
+                        </c:if>
+                    </li>
+                    <c:if test="${currentPage==1}">
+                        <li class="active"><a href="#">1</a></li>
+                    </c:if>
+                    <c:if test="${currentPage!=1}">
+                        <li>
+                            <a href="${pageContext.request.contextPath }/view/managing_Users.form?page=1&year=${year}&college=${college}&major=${major}">1</a>
+                        </li>
+                    </c:if>
+                    <%
+                        int pageTimes = (Integer) session.getAttribute("pageTimes");
+                        for (int i = 1; i < pageTimes; i++) {
+
+                            request.setAttribute("page", i + 1);
+                            pageContext.setAttribute("i", i);
+                    %>
+
+                    <c:if test="${i<(currentPage+5)&&i>(currentPage-5)}">
+                        <c:if test="${currentPage == page}">
+                            <li><a href="#" class="active"><%=i + 1%>
+                            </a></li>
+                        </c:if>
+                        <c:if test="${currentPage != page}">
+                            <li>
+                                <a href="${pageContext.request.contextPath }/view/managing_Users.form?page=<%=i+1%>&year=${year}&college=${college}&major=${major}"><%=i + 1%>
+                                </a></li>
+                        </c:if>
+                    </c:if>
+                    <% } %>
+                    <c:if test="${currentPage == pageTimes}">
+                        <li><a href="#" class="active">&raquo;</a></li>
+                    </c:if>
+                    <c:if test="${currentPage != pageTimes}">
+                        <li>
+                            <a href="${pageContext.request.contextPath }/view/managing_Users.form?page=${currentPage+1}&year=${year}&college=${college}&major=${major}">&raquo;</a>
+                        </li>
+                    </c:if>
+
                 </ul>
             </div>
 
@@ -170,7 +221,10 @@
 
     });
 </script>
-
+<script type="text/javascript">
+    <c:if test="${!empty error_msg}">alert("${error_msg}");
+    </c:if>
+</script>
 <script>
     layui.use('layer', function () { //独立版的layer无需执行这一句
         var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
@@ -186,7 +240,7 @@
                     ,
                     closeBtn: false
                     ,
-                    area: ['400px','550px']
+                    area: ['400px', '550px']
                     ,
                     shade: 0
                     ,
