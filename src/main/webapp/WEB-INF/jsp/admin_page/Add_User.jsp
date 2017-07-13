@@ -37,35 +37,12 @@
             margin-top: 10%;
             margin-left: 25%;
         }
-        select{
-            width: 150px;
+
+        input {
+            width: 250px;
         }
     </style>
 
-    <script language="JavaScript" type="text/javascript">
-        //定义了专业的二维数组，里面的顺序跟学院的顺序是相同的。通过selectedIndex获得学院的下标值来得到相应的专业数组
-        var major = [
-            ["软件", "计科", "网络"],
-            ["网络", "软件", "计科"]
-        ];
-
-        function getCollege() {
-            //获得学院下拉框的对象
-            var sltCollege = document.addform.college;
-            //获得专业下拉框的对象
-            var sltMajor = document.addform.major;
-            //得到对应楼的专业数组
-            var collegeMajor = major[sltCollege.selectedIndex - 1];
-
-            //清空专业下拉框，仅留提示选项
-            sltMajor.length = 1;
-
-            //将专业数组中的值填充到学院下拉框中
-            for (var i = 0; i < collegeMajor.length; i++) {
-                sltMajor[i + 1] = new Option(collegeMajor[i], collegeMajor[i]);
-            }
-        }
-    </script>
 </head>
 <body>
 <div id="wrapper">
@@ -74,44 +51,38 @@
             <div class="form-group">
                 <label class="control-label" style="float: left">入学年份</label>
                 <div class="col-sm-7" style="float: left">
-                    <input type="text" class="layui-input" placeholder="输入" style="width: 220px" required>
+                    <input type="text" class="layui-input" placeholder="输入" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label" style="float: left">姓名</label>
                 <div class="col-sm-7" style="float: left">
-                    <input type="text" class="layui-input" placeholder="输入" style="width: 220px" required>
+                    <input type="text" class="layui-input" placeholder="输入" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label" style="float: left">学号</label>
                 <div class="col-sm-7" style="float: left">
-                    <input type="text" class="layui-input" placeholder="输入" style="width: 220px" required>
+                    <input type="text" class="layui-input" placeholder="输入" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label" style="float: left">学院</label>
                 <div class="col-sm-7" style="float: left">
-                    <select name="college" onchange="getCollege()" style="float: left;margin-left: 1%">
-                        <option value="0">选择学院</option>
-                        <option value="计算机学院">计算机学院</option>
-                        <option value="软件学院">软件学院</option>
-                    </select>
+                    <input type="text" class="layui-input" placeholder="输入" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label" style="float: left">专业</label>
                 <div class="col-sm-7" style="float: left">
-                    <select name="major" style="float: left;margin-left: 1%" required>
-                        <option value="0">选择专业</option>
-                    </select>
+                    <input type="text" class="layui-input" placeholder="输入" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label" style="float: left">班级</label>
                 <div class="col-sm-7" style="float: left">
-                    <input type="text" class="layui-input" placeholder="输入" style="width: 220px" required>
+                    <input type="text" class="layui-input" placeholder="输入" required>
                 </div>
             </div>
 

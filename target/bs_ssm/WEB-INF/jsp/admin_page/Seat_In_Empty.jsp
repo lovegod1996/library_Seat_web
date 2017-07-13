@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: 1Q84
@@ -90,7 +90,7 @@
                         <td>${seat.seattype}</td>
                         <td>空闲中</td>
                         <td>
-                            <button type="button" class="btn btn-danger btn-sm">操作</button>
+                            <button type="button" class="layui-btn" data-method="notice">入座</button>
                         </td>
                     </tr>
                 </c:forEach>
@@ -155,8 +155,6 @@
 </div>
 <!-- /.col-sm-12 -->
 
-
-
 <!-- jQuery -->
 <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
 
@@ -195,7 +193,7 @@
                     ,
                     moveType: 0 //拖拽模式，0或者1
                     ,
-                    content: ['/Library_Seat/view/seat_Now', 'no']
+                    content: ['/LS/view/seat_Now', 'no']
                     ,
                     success: function (layero) {
                         var btn = layero.find('.layui-layer-btn');

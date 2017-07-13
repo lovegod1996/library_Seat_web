@@ -188,11 +188,7 @@
 <!-- Custom Theme JavaScript -->
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
 
-<<<<<<< HEAD
 
-
-
-=======
 <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
 <script>
     layui.use('form', function () {
@@ -210,6 +206,6 @@
 
     });
 </script>
->>>>>>> 14fd40242f612618abd4163ed643a4286aab6a95
+
 </body>
 </html>

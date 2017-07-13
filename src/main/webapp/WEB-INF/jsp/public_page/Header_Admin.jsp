@@ -45,7 +45,7 @@
 <c:choose>
     <c:when test="${empty sessionScope.admin.id}">
         <li class="dropdown">
-            <a class="dropdown-toggle"  href="${pageContext.request.contextPath }/jsp/login">
+            <a class="dropdown-toggle"  href="${pageContext.request.contextPath }/jsp/login" target="_parent">
                 <i class="fa fa-user fa-fw"></i><span>登录</span>
             </a>
             <!-- /.dropdown-user -->

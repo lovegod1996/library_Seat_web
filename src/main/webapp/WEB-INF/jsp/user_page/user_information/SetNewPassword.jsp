@@ -15,7 +15,7 @@
     <style type="text/css">
         body {
             width: 50%;
-            margin-left: 25%;
+            margin-left: 20%;
         }
         .content_title{
             text-align: center;

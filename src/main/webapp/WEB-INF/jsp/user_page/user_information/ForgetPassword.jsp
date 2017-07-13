@@ -30,15 +30,10 @@
             width: 25%;
             text-align: center;
         }
-
         button {
             width: 50%;
             margin-top: 10%;
             margin-left: 25%;
-        }
-
-        select {
-            width: 150px;
         }
     </style>
 </head>
@@ -61,10 +56,8 @@
             <div class="form-group">
                 <label class="control-label" style="float: left">验证码</label>
                 <div class="col-sm-7" style="float: left">
-                    <input type="text" class="layui-input" placeholder="输入" style="width: 220px" required>
-                </div>
-                <div class="col-sm-7" style="float: left;margin-left: 25%">
-                    <input type="button" class="layui-btn" value="点击发送验证码" onclick="sendCode(this)"/>
+                    <input type="text" class="layui-input" placeholder="输入" style="width: 80px;float: left" required>
+                    <input type="button" class="layui-btn" value="点击发送验证码" style="width: 130px;float: left;margin-left: 10px" onclick="sendCode(this)"/>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">确定</button>
@@ -78,13 +71,13 @@
     function sendCode(thisBtn) {
         btn = thisBtn;
         btn.disabled = true; //将按钮置为不可点击
-        btn.value = nums + '秒后可重新获取';
+        btn.value = nums + '秒后重新获取';
         clock = setInterval(doLoop, 1000); //一秒执行一次
     }
     function doLoop() {
         nums--;
         if (nums > 0) {
-            btn.value = nums + '秒后可重新获取';
+            btn.value = nums + '秒后重新获取';
         } else {
             clearInterval(clock); //清除js定时器
             btn.disabled = false;
