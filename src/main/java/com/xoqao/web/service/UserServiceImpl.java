@@ -1,7 +1,6 @@
 package com.xoqao.web.service;
 
 
-
 import com.xoqao.web.bean.user.User;
 import com.xoqao.web.dao.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +18,38 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public User findUserByphone(String phone) throws Exception {
-        User userByphone = userMapper.findUserByphone(phone);
-        return userByphone;
+
+    public User findUserByphoneOrSno(String loginstr) throws Exception {
+        User userByphoneOrSno = userMapper.findUserByphoneOrSno(loginstr);
+        return userByphoneOrSno;
     }
 
-    public List<User> findAllUsers() throws Exception {
-        List<User> allUsers = userMapper.findAllUsers();
+    public List<User> findAllUsers(String year, String college, String major) throws Exception {
+        List<User> allUsers = userMapper.findAllUsers(year, college, major);
         return allUsers;
     }
 
+    public List<User> findAllUsersPage(String year, String college, String major, Integer startRow, Integer pageSize) throws Exception {
+        List<User> allUsersPage = userMapper.findAllUsersPage(year, college, major, startRow, pageSize);
+        return allUsersPage;
+    }
 
+
+    public void deleteUserByID(Integer uid) throws Exception {
+        userMapper.deleteUserByID(uid);
+    }
+
+    public void insertUser(User user) throws Exception {
+        userMapper.insertUser(user);
+    }
+
+    public List<String> findAllCollege() throws Exception {
+        List<String> allCollege = userMapper.findAllCollege();
+        return allCollege;
+    }
+
+    public List<String> findMajorByCollege(String college) throws Exception {
+        List<String> majorByCollege = userMapper.findMajorByCollege(college);
+        return majorByCollege;
+    }
 }

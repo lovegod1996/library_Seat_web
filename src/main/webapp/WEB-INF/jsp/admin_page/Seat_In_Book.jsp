@@ -42,7 +42,7 @@
 
         function getData() {
             var floor = $("#floor").val();
-            var url = "/Lseat/jsp/seat_In_Book?floor=" + floor;
+            var url = "/LS/jsp/seat_In_Book?floor=" + floor;
             window.location.href = encodeURI(url);
         }
 
@@ -102,6 +102,7 @@
 
                 <c:forEach items="${userLearns}" var="userLearn">
                     <tr>
+                        <td><input type="checkbox"></td>
                         <td>${userLearn.sno}</td>
                         <td>${userLearn.name}</td>
                         <td>${userLearn.college}</td>

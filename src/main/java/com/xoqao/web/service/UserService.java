@@ -12,8 +12,19 @@ import java.util.List;
  */
 public interface UserService {
 
-    User findUserByphone(String phone) throws Exception;
+    User findUserByphoneOrSno( String loginstr) throws Exception;
 
-    List<User> findAllUsers()throws Exception;
+
+    List<User> findAllUsers( String year, String college,String major)throws Exception;
+
+    List<User> findAllUsersPage( String year,String college, String major, Integer startRow  ,Integer pageSize)throws Exception;
+
+    void deleteUserByID( Integer uid)throws Exception;
+
+    void insertUser( User user)throws Exception;
+
+    List<String> findAllCollege()throws Exception;
+
+    List<String> findMajorByCollege(String college)throws Exception;
 
 }

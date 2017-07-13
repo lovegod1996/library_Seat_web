@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>Title</title>
@@ -59,10 +62,12 @@
             <!-- /.panel-heading -->
             <div class="panel-body" style="height: 400px">
                 <div class="list-group">
-                    <a href="<%=request.getContextPath()%>/jsp/news_Content" target="mainFrame_User"
-                       class="list-group-item">我是标题
-                        <span class="pull-right text-muted small"><em>2017.07.11</em></span>
-                    </a>
+                    <c:forEach items="${newsTop}" var="newss">
+                        <a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${newss.nid}"
+                           class="list-group-item">${newss.title}
+                            <span class="pull-right text-muted small"><em><fmt:formatDate value="${newss.creattime}" pattern="yyyy-MM-dd HH:mm:ss"/></em></span>
+                        </a>
+                    </c:forEach>
                 </div>
                 <!-- /.list-group -->
                 <a href="<%=request.getContextPath()%>/jsp/news_List_User" target="mainFrame_User"

@@ -28,6 +28,11 @@ public class NewsServiceImpl implements NewsService {
         return allNews;
     }
 
+    public List<News> findAllNewsTop() throws Exception {
+        List<News> allNewsTop = newsMapper.findAllNewsTop();
+        return allNewsTop;
+    }
+
     public List<News> findAllNewsPage(Integer startRow, Integer pageSize) throws Exception {
         List<News> allNewsPage = newsMapper.findAllNewsPage(startRow, pageSize);
         return allNewsPage;
@@ -40,5 +45,9 @@ public class NewsServiceImpl implements NewsService {
 
     public void deleteNews(Integer nid) throws Exception {
         newsMapper.deleteNews(nid);
+    }
+
+    public void updateNewsByid(News news) throws Exception {
+        newsMapper.updateNewsByid(news);
     }
 }

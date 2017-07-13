@@ -3,7 +3,7 @@
 <mapper namespace="com.xoqao.web.dao.NewsMapper">
     <!--添加资讯-->
     <insert id="insertNews">
-        <selectKey resultType="java.lang.Integer" keyProperty="nid" order="AFTER" >
+        <selectKey resultType="java.lang.Integer" keyProperty="nid" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
         INSERT INTO news (title,content,creattime) VALUES (#{news.title},#{news.content},#{news.creattime})
@@ -13,6 +13,11 @@
     <select id="findAllNews" resultType="com.xoqao.web.bean.news.News">
         SELECT nid,title,content,creattime FROM  news
         ORDER BY  creattime DESC
+    </select>
+
+    <select id="findAllNewsTop" resultType="com.xoqao.web.bean.news.News">
+        SELECT nid,title,content,creattime FROM  news
+        ORDER BY  creattime DESC limit 3
     </select>
 
     <select id="findAllNewsPage" resultType="com.xoqao.web.bean.news.News">
@@ -27,7 +32,14 @@
     </select>
 
     <!--删除资讯-->
-    <delete id="deleteNews" >
+    <delete id="deleteNews">
         DELETE FROM news WHERE  nid =#{nid}
     </delete>
+
+    <!--更新资讯信息-->
+    <update id="updateNewsByid">
+    UPDATE news
+     SET title=#{news.title},content=#{news.content},creattime=#{news.creattime}
+     WHERE nid =#{news.nid}
+</update>
 </mapper>

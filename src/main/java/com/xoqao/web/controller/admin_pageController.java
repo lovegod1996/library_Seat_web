@@ -36,6 +36,8 @@ public class admin_pageController {
 
     @RequestMapping("/main_Admin")
     public String main_Admin(Model model) throws Exception {
+        List<News> allNewsTop = newsService.findAllNewsTop();
+        model.addAttribute("newsTop", allNewsTop);
         return "admin_page/Main_Admin";
     }
 
@@ -185,7 +187,7 @@ public class admin_pageController {
     @RequestMapping("/news_List_Admin")
     public String news_List_Admin(Model model, Integer page, HttpSession httpSession) throws Exception {
 
-        Integer pageSize=5;
+        Integer pageSize = 5;
 
         List<News> allNews = newsService.findAllNews();
 

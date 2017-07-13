@@ -11,15 +11,14 @@ import java.io.Serializable;
 
 public class User implements Serializable {
     private Integer uid;
-    private String username;
+    private String nick;
+    private String sno;
     private String password;
-    private String gender;
+    private String college;
+    private String classes;
     private String phone;
-    private String headerpic;
-    private String id;
     private String name;
-    private String registtime;
-
+    private String major;
 
     public Integer getUid() {
         return uid;
@@ -29,12 +28,20 @@ public class User implements Serializable {
         this.uid = uid;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNick() {
+        return nick;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public String getSno() {
+        return sno;
+    }
+
+    public void setSno(String sno) {
+        this.sno = sno;
     }
 
     public String getPassword() {
@@ -45,12 +52,20 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getGender() {
-        return gender;
+    public String getCollege() {
+        return college;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setCollege(String college) {
+        this.college = college;
+    }
+
+    public String getClasses() {
+        return classes;
+    }
+
+    public void setClasses(String classes) {
+        this.classes = classes;
     }
 
     public String getPhone() {
@@ -61,22 +76,6 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-    public String getHeaderpic() {
-        return headerpic;
-    }
-
-    public void setHeaderpic(String headerpic) {
-        this.headerpic = headerpic;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -85,26 +84,26 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getRegisttime() {
-        return registtime;
+    public String getMajor() {
+        return major;
     }
 
-    public void setRegisttime(String registtime) {
-        this.registtime = registtime;
+    public void setMajor(String major) {
+        this.major = major;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "uid=" + uid +
-                ", username='" + username + '\'' +
+                ", nick='" + nick + '\'' +
+                ", sno='" + sno + '\'' +
                 ", password='" + password + '\'' +
-                ", gender='" + gender + '\'' +
+                ", college='" + college + '\'' +
+                ", classes='" + classes + '\'' +
                 ", phone='" + phone + '\'' +
-                ", headerpic='" + headerpic + '\'' +
-                ", id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", registtime='" + registtime + '\'' +
+                ", major='" + major + '\'' +
                 '}';
     }
 }
