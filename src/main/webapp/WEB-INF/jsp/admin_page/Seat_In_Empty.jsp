@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: 1Q84
@@ -13,10 +12,15 @@
 <html>
 <head>
     <title>Title</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- Bootstrap Core CSS -->
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <%--layui--%>
+    <%--layui 日期选择控件--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
+    <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+
     <script language="JavaScript" type="text/javascript">
         //定义了楼层的二维数组，里面的顺序跟楼的顺序是相同的。通过selectedIndex获得楼的下标值来得到相应的楼层数组
         var city = [
@@ -46,11 +50,69 @@
             var url = "/Lseat/jsp/seat_In_Empty?floor=" + floor;
             window.location.href = encodeURI(url);
         }
-
     </script>
+
+    <%--自动填充座位号--%>
+    <script language=javascript>
+        var selectedTr = null;
+        function c1(obj) {
+            obj.style.backgroundColor = '#F5F5F5'; //把点到的那一行变颜色;
+            if (selectedTr != null)
+                selectedTr.style.removeAttribute("backgroundColor");
+            if (selectedTr == obj)
+                selectedTr = null;//加上此句，以控制点击变白，再点击反灰
+            else
+                selectedTr = obj;
+        }
+        /*得到选中行的第二列的座位号*/
+        function check() {
+            if (selectedTr != null) {
+                var str = selectedTr.cells[1].childNodes[0].value;
+                document.getElementById("seatNum").innerHTML = str;
+            } else {
+                alert("请选择一行");
+            }
+        }
+    </script>
+
+    <%--选择日期--%>
+    <script>
+        layui.use('laydate', function () {
+            var laydate = layui.laydate;
+            var start = {
+                min: laydate.now()
+                , max: '2099-06-16 23:59:59'
+                , istoday: false
+                , choose: function (datas) {
+                    end.min = datas; //开始日选好后，重置结束日的最小日期
+                    end.start = datas //将结束日的初始值设定为开始日
+                }
+            };
+
+            var end = {
+                min: laydate.now()
+                , max: '2099-06-16 23:59:59'
+                , istoday: false
+                , choose: function (datas) {
+                    start.max = datas; //结束日选好后，重置开始日的最大日期
+                }
+            };
+
+            document.getElementById('LAY_demorange_s').onclick = function () {
+                start.elem = this;
+                laydate(start);
+            };
+            document.getElementById('LAY_demorange_e').onclick = function () {
+                end.elem = this;
+                laydate(end);
+            }
+
+        });
+    </script>
+
 </head>
 <body>
-<div class="col-sm-12">
+<div class="col-sm-8">
     <div class="panel panel-default">
         <div class="panel-heading">
             <i class="fa fa-bar-chart-o fa-fw"></i> 空闲座位统计
@@ -79,18 +141,21 @@
                     <th>座位号</th>
                     <th>特别</th>
                     <th>座位状态</th>
-                    <th>修改</th>
+                    <th>入座</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${seats}" var="seat">
-                    <tr>
+                    <tr onclick="c1(this);">
                         <td>${seat.sid}</td>
-                        <td>${seat.seatnumber}</td>
+                            <%--<td>${seat.seatnumber}</td>--%>
+                        <td><input type="text" disabled="disabled"
+                                   style="border:none;background-color: transparent;width: 100px"
+                                   value=${seat.seatnumber}></td>
                         <td>${seat.seattype}</td>
                         <td>空闲中</td>
                         <td>
-                            <button type="button" class="layui-btn" data-method="notice">入座</button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="check()">入座</button>
                         </td>
                     </tr>
                 </c:forEach>
@@ -140,16 +205,64 @@
                     </c:if>
                     <% } %>
                     <c:if test="${currentPage == pageTimes}">
-                        <li>    <a href="#" class="active">&raquo;</a> </li>
+                        <li><a href="#" class="active">&raquo;</a></li>
                     </c:if>
                     <c:if test="${currentPage != pageTimes}">
-                        <li>  <a href="${pageContext.request.contextPath }/jsp/seat_In_Empty.form?page=${currentPage+1}&floor=${floor}">&raquo;</a>  </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath }/jsp/seat_In_Empty.form?page=${currentPage+1}&floor=${floor}">&raquo;</a>
+                        </li>
                     </c:if>
 
                 </ul>
             </div>
 
         </div>
+    </div>
+    <!-- /.panel -->
+</div>
+<div class="col-sm-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-bell fa-fw"></i> 预约座位
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body" style="height: 400px">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">座位号</label>
+                    <div class="col-sm-9">
+                        <label type="text" class="layui-input" id="seatNum" placeholder="点击预约自动填充" style="width: 220px"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">学号</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="layui-input" id="studentID" placeholder="点击预约自动填充" required style="width: 220px">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">开始</label>
+                    <div class="col-sm-9">
+                        <div class="layui-inline">
+                            <input class="layui-input" placeholder="开始时间" style="width: 220px" required
+                                   onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm',min: laydate.now(0), max: laydate.now(+1)})">
+                            <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">结束</label>
+                    <div class="col-sm-9">
+                        <div class="layui-inline">
+                            <input class="layui-input" placeholder="结束时间" style="width: 220px" required
+                                   onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm',min: laydate.now(0), max: laydate.now(+1)})">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">确定</button>
+            </form>
+        </div>
+        <!-- /.panel-body -->
     </div>
     <!-- /.panel -->
 </div>
@@ -168,48 +281,6 @@
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
 
 <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
-<script>
-    layui.use('layer', function () { //独立版的layer无需执行这一句
-        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
 
-//触发事件
-        var active = {
-            notice: function () {
-//示范一个公告层
-                layer.open({
-                    type: 2
-                    ,
-                    title: ['立即入座', 'font-size:18px;text-align:center;background:#32AA9F']
-                    ,
-                    closeBtn: false
-                    ,
-                    area: ['400px','550px']
-                    ,
-                    shade: 0
-                    ,
-                    id: 'LAY_layuipro' //设定一个id，防止重复弹出
-                    ,
-                    btn: ['关闭']
-                    ,
-                    moveType: 0 //拖拽模式，0或者1
-                    ,
-                    content: ['/LS/view/seat_Now', 'no']
-                    ,
-                    success: function (layero) {
-                        var btn = layero.find('.layui-layer-btn');
-                        btn.css('text-align', 'center');
-                        btn.class('layui-btn layui-btn-primary')
-                    }
-                });
-            }
-        };
-
-        $('.layui-btn').on('click', function () {
-            var othis = $(this), method = othis.data('method');
-            active[method] ? active[method].call(this, othis) : '';
-        });
-
-    });
-</script>
 </body>
 </html>
