@@ -57,9 +57,6 @@
         </div>
 
         <ul class="nav navbar-top-links navbar-right">
-<<<<<<< HEAD
-
-
                 <c:choose>
                     <c:when test="${empty sessionScope}">
                     <li class="dropdown">
@@ -98,16 +95,6 @@
                     </c:otherwise>
                 </c:choose>
 
-
-
-
-=======
-            <li class="dropdown">
-                <a href="<%=request.getContextPath()%>/jsp/login" target="_parent">
-                    <i class="fa fa-user fa-fw"></i><span>登录</span>
-                </a>
-            </li>
->>>>>>> e68c7c1063950754ddb5fa6f32963a17a1dfd330
         </ul>
     </nav>
 </div>

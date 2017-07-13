@@ -45,7 +45,7 @@
                 <c:forEach items="${news}" var="newss">
                     <tr>
                         <td>${newss.nid}</td>
-                        <td><a href="<%=request.getContextPath()%>/jsp/news_Content" target="mainFrame_User">${newss.title}</a></td>
+                        <td><a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${newss.nid}" target="mainFrame_User">${newss.title}</a></td>
                         <td><fmt:formatDate value="${newss.creattime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                     </tr>
                 </c:forEach>
