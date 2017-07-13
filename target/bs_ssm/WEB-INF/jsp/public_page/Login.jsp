@@ -47,7 +47,7 @@
             display: block;
             margin-top: 10px;
             margin-bottom: 10px;
-            margin-left: 10px;
+            margin-left: 20px;
         }
     </style>
 </head>
@@ -126,7 +126,7 @@
                 layer.open({
                     type: 2
                     ,
-                    title: ['添加用户', 'font-size:18px;text-align:center;background:#32AA9F']
+                    title: ['忘记密码', 'font-size:18px;text-align:center;background:#32AA9F']
                     ,
                     closeBtn: false
                     ,
@@ -140,7 +140,7 @@
                     ,
                     moveType: 0 //拖拽模式，0或者1
                     ,
-                    content: ['/Library_Seat/view/forgetPassword']
+                    content: ['/LS/view/forgetPassword']
                     ,
                     success: function (layero) {
                         var btn = layero.find('.layui-layer-btn');

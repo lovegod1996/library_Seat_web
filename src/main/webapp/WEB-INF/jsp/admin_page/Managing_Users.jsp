@@ -196,7 +196,7 @@
                     ,
                     moveType: 0 //拖拽模式，0或者1
                     ,
-                    content: ['/Library_Seat/view/add_User']
+                    content: ['/LS/view/add_User']
                     ,
                     success: function (layero) {
                         var btn = layero.find('.layui-layer-btn');
