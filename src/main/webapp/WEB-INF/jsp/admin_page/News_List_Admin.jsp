@@ -52,7 +52,7 @@
                         <td><a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${newss.nid}" target="mainFrame_Admin">${newss.title}</a></td>
                         <td><fmt:formatDate value="${newss.creattime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-sm">编辑</button>
+                            <a href="<%=request.getContextPath()%>/admin/editNews?nid=${newss.nid}" class="btn btn-primary btn-sm">编辑</a>
                             <a href="<%=request.getContextPath()%>/admin/newsDele?nid=${newss.nid}" class="btn btn-danger btn-sm">删除</a>
                         </td>
                     </tr>

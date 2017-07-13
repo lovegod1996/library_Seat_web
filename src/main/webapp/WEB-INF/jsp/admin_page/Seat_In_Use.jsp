@@ -118,7 +118,7 @@
                 </c:forEach>
                 <c:if test="${ nullList != null}">
                     <tr style="text-align: center">
-                        <td colspan="9">${nullList}</td>
+                        <td colspan="10">${nullList}</td>
                     </tr>
                 </c:if>
 

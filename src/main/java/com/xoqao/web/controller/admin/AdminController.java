@@ -191,6 +191,74 @@ public class AdminController {
         }
     }
 
+    /**
+     * 进入编辑资讯
+     *
+     * @param model
+     * @param nid
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/editNews")
+    public String newsEdit(Model model, Integer nid) throws Exception {
+        News news = newsService.findNewsByid(nid);
+        model.addAttribute("news", news);
+        return "admin_page/Edit_News";
+    }
+
+    /**
+     * 更新资讯信息
+     *
+     * @param model
+     * @param nid
+     * @param title
+     * @param content
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/editNewsSub")
+    public String newsEditSub(Model model,Integer page, Integer nid, String title, String content,HttpSession httpSession) throws Exception {
+        News news = new News();
+        news.setTitle(title);
+        news.setNid(nid);
+        news.setContent(content);
+        news.setCreattime(new Date());
+
+        newsService.updateNewsByid(news);
+        Integer pageSize = 5;
+        List<News> allNews = newsService.findAllNews();
+
+        model.addAttribute("NewsSize", allNews.size());
+        int pageTims;
+        if (allNews.size() % pageSize == 0) {
+            pageTims = allNews.size() / pageSize;
+        } else {
+            pageTims = allNews.size() / pageSize + 1;
+        }
+        httpSession.setAttribute("pageTimes", pageTims);
+        //页面初始的时候没有初试值
+        if (null == page) {
+            page = 1;
+        }
+        //每页开始的第几条记录
+        int startRow;
+        if (allNews.size() < pageSize) {
+            startRow = 0;
+        } else {
+            startRow = (page - 1) * pageSize;
+        }
+        model.addAttribute("currentPage", page);
+
+        List<News> allNewsPage = newsService.findAllNewsPage(startRow, pageSize);
+        if (allNewsPage.size() > 0) {
+            model.addAttribute("news", allNewsPage);
+            return "admin_page/News_List_Admin";
+        } else {
+            model.addAttribute("nullList", "暂无数据");
+            return "admin_page/News_List_Admin";
+        }
+    }
+
 
     public static HttpSession getSession() {
         HttpSession session = null;

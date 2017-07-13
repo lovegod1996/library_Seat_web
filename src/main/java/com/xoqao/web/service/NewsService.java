@@ -17,10 +17,14 @@ public interface NewsService {
 
     List<News> findAllNews()throws Exception;
 
+    List<News> findAllNewsTop() throws Exception;
+
     List<News> findAllNewsPage( Integer startRow  ,Integer pageSize)throws Exception;
 
     News findNewsByid(Integer nid)throws Exception;
 
     void deleteNews(Integer nid)throws Exception;
+
+    void updateNewsByid( News news) throws Exception;
 
 }
