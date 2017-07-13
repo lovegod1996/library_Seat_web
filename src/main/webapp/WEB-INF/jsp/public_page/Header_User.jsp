@@ -38,6 +38,9 @@
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
+            <img src="<%=request.getContextPath()%>/img/ZZTI.jpg" class="img-circle" style="width: 50px;height: 50px">
+        </div>
+        <div class="navbar-header">
             <a class="navbar-brand" href="#">图书馆座位预约系统</a>
         </div>
         <div>
@@ -54,7 +57,7 @@
             <li class="dropdown">
                 <a href="<%=request.getContextPath()%>/jsp/login" target="_parent">
                     <i class="fa fa-user fa-fw"></i><span>登录</span>
-                    </a>
+                </a>
             </li>
         </ul>
     </nav>

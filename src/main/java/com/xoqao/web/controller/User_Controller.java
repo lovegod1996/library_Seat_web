@@ -46,6 +46,11 @@ public class User_Controller {
         return "user_page/user_information/SetNewPassword";
     }
 
+    @RequestMapping("setNewPhonenumber")
+    public String setNewPhonenumber(Model model) throws Exception{
+        return "user_page/user_information/SetNewPhonenumber";
+    }
+
     @RequestMapping("forgetPassword")
     public String forgetPassword(Model model) throws Exception{
         return "user_page/user_information/ForgetPassword";

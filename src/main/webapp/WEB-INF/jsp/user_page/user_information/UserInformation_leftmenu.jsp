@@ -9,34 +9,49 @@
 <html>
 <head>
     <title>Title</title>
+    <!-- Custom CSS -->
+    <link href="<%= request.getContextPath()%>/dist/css/sb-admin-2.css" rel="stylesheet">
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
     <style type="text/css">
-        body {
-            margin-left: 40%;
+        body{
+            padding-left: 20%;
+            text-align: center;
         }
-
         ul {
             background-color: #F8F8F8;
             height: 100%;
+            width: 100%;
+            padding-left: 25%;
+        }
+        .layui-nav-tree{
+            width: 100%;
         }
     </style>
 </head>
 <body>
-<ul class="layui-nav layui-nav-tree" lay-filter="demo">
-    <li class="layui-nav-item layui-this"><a href="<%=request.getContextPath()%>/view/userInformation_rightcontent"
-                                             target="mainFrame_UserInformation">个人资料</a></li>
-    <li class="layui-nav-item"><a href="<%=request.getContextPath()%>/view/study_List" target="mainFrame_UserInformation">学习记录</a></li>
-    <li class="layui-nav-item"><a href="<%=request.getContextPath()%>/view/study_Statistics" target="mainFrame_UserInformation">学习统计</a></li>
-    <li class="layui-nav-item"><a href="<%=request.getContextPath()%>/view/unpromise_List" target="mainFrame_UserInformation">失信记录</a></li>
-    <li class="layui-nav-item">
-        <a href="javascript:;">设置</a>
-        <dl class="layui-nav-child">
-            <dd><a href="<%=request.getContextPath()%>/view/setNewPassword" target="mainFrame_UserInformation">重置密码</a></dd>
-        </dl>
-    </li>
-</ul>
+<div id="wrapper">
+    <ul class="layui-nav layui-nav-tree" lay-filter="demo">
+        <li class="layui-nav-item layui-this"><a href="<%=request.getContextPath()%>/view/userInformation_rightcontent"
+                                                 target="mainFrame_UserInformation">个人资料</a></li>
+        <li class="layui-nav-item"><a href="<%=request.getContextPath()%>/view/study_List"
+                                      target="mainFrame_UserInformation">学习记录</a></li>
+        <li class="layui-nav-item"><a href="<%=request.getContextPath()%>/view/study_Statistics"
+                                      target="mainFrame_UserInformation">学习统计</a></li>
+        <li class="layui-nav-item"><a href="<%=request.getContextPath()%>/view/unpromise_List"
+                                      target="mainFrame_UserInformation">失信记录</a></li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">其他设置</a>
+            <dl class="layui-nav-child">
+                <dd><a href="<%=request.getContextPath()%>/view/setNewPassword"
+                       target="mainFrame_UserInformation">重置密码</a></dd>
+                <dd><a href="<%=request.getContextPath()%>/view/setNewPhonenumber"
+                       target="mainFrame_UserInformation">重置手机号</a></dd>
+            </dl>
+        </li>
+    </ul>
+</div>
 <!-- jQuery -->
 <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
 <script>
