@@ -11,11 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/view")
 public class Admin_Controller {
 
-    @RequestMapping("/seat_Now")
-    public String seat_Now(Model model)throws Exception{
-        return "admin_page/Seat_Now";
-    }
-
     @RequestMapping("/setNewTime")
     public String setNewTime(Model model)throws Exception{
         return "admin_page/SetNewTime";

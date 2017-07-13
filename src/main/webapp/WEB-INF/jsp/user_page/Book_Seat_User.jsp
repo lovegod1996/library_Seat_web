@@ -87,7 +87,13 @@
     <script language=javascript>
         var selectedTr = null;
         function c1(obj) {
-            selectedTr = obj;
+            obj.style.backgroundColor = '#F5F5F5'; //把点到的那一行变颜色;
+            if (selectedTr != null)
+                selectedTr.style.removeAttribute("backgroundColor");
+            if (selectedTr == obj)
+                selectedTr = null;//加上此句，以控制点击变白，再点击反灰
+            else
+                selectedTr = obj;
         }
         /*得到选中行的第二列的座位号*/
         function check() {
@@ -135,7 +141,7 @@
                     <tbody>
                     <tr onclick="c1(this);">
                         <td>1</td>
-                        <td><input type="text" disabled="disabled" style="border:none;background-color: #FFF;width: 100px" value="S1-0101"></td>
+                        <td><input type="text" disabled="disabled" style="border:none;background-color: transparent;width: 100px" value="S1-0101"></td>
                         <td>空闲中</td>
                         <td>
                             <button type="button" class="btn btn-primary btn-sm" onclick="check()">预约</button>
