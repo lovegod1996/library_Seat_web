@@ -2,13 +2,13 @@
   Created by IntelliJ IDEA.
   User: 1Q84
   Date: 2017/7/13
-  Time: 12:05
+  Time: 16:50
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>重置手机号</title>
+    <title>绑定手机号</title>
     <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
     <%--layui --%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
@@ -37,7 +37,7 @@
 </head>
 <body>
 <div class="content_title">
-    <p style="font-size: 30px;margin-top: 20px">重置手机号</p>
+    <p style="font-size: 30px;margin-top: 20px">绑定手机号</p>
 </div>
 <hr>
 <form class="form-horizontal" role="form" name="resetform">

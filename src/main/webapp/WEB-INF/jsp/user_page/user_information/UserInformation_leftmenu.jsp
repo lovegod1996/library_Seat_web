@@ -46,6 +46,8 @@
             <dl class="layui-nav-child">
                 <dd><a href="<%=request.getContextPath()%>/view/setNewPassword"
                        target="mainFrame_UserInformation">重置密码</a></dd>
+                <dd><a href="<%=request.getContextPath()%>/view/bindingPhonenumber"
+                       target="mainFrame_UserInformation">绑定手机号</a></dd>
                 <dd><a href="<%=request.getContextPath()%>/view/setNewPhonenumber"
                        target="mainFrame_UserInformation">重置手机号</a></dd>
             </dl>

@@ -56,4 +56,14 @@ public class User_Controller {
         return "user_page/user_information/ForgetPassword";
     }
 
+    @RequestMapping("bindingPhonenumber")
+    public String bindingPhonenumber(Model model) throws Exception{
+        return "user_page/user_information/BindingPhonenumber";
+    }
+
+    @RequestMapping("information_User_Self")
+    public String information_User_Self(Model model) throws Exception{
+        return "user_page/user_information/Information_User_Self";
+    }
+
 }
