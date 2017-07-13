@@ -27,7 +27,7 @@
         <div class="layui-form">
             <table class="layui-table">
                 <colgroup>
-                    <col width="7%">
+                    <col>
                     <col width="8%">
                     <col width="45%">
                     <col width="20%">

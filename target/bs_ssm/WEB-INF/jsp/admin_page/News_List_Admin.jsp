@@ -27,7 +27,7 @@
         <div class="layui-form">
             <table class="layui-table">
                 <colgroup>
-                    <col width="7%">
+                    <col>
                     <col width="8%">
                     <col width="45%">
                     <col width="20%">
@@ -43,10 +43,11 @@
                 </tr>
                 </thead>
                 <tbody>
-<<<<<<< HEAD
+
 
                 <c:forEach items="${news}" var="newss">
                     <tr>
+                        <td><input type="checkbox"></td>
                         <td>${newss.nid}</td>
                         <td><a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${newss.nid}" target="mainFrame_Admin">${newss.title}</a></td>
                         <td><fmt:formatDate value="${newss.creattime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
