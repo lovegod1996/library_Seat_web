@@ -50,7 +50,7 @@
             </div>
             <!-- /.panel-heading -->
             <!-- EChart 显示各楼层座位状态-->
-            <div id="main" style="width: 600px;height:400px;"></div>
+            <div id="main" style="width: 100%;height:400px;"></div>
         </div>
         <!-- /.panel -->
     </div>
@@ -97,6 +97,59 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
+
+<%--echart--%>
+<script src="<%=request.getContextPath()%>/js/echarts-all.js"></script>
+<script src="<%=request.getContextPath()%>/js/macarons.js"></script>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts图表
+    var myChart = echarts.init(document.getElementById('main'), 'macarons');
+    var option = {
+        title: {
+            text: '',
+            subtext: ''
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['空闲中', '已预约', '已入座']
+        },
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                data: ['南一', '南二', '南三', '南四', '南五', '南六']
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                name: '空闲中',
+                type: 'bar',
+                data: [23.2, 25.6, 76.7, 135.6, 6.4, 13.3]
+            },
+            {
+                name: '已预约',
+                type: 'bar',
+                data: [34.6, 5.9, 9.0, 175.6, 6.0, 24.3, 60]
+            },
+            {
+                name: '已入座',
+                type: 'bar',
+                data: [2.9, 28.7, 70.7, 18.8, 6.0, 2.4, 55]
+            }
+        ]
+    };
+
+
+    // 为echarts对象加载数据
+    myChart.setOption(option);
+</script>
 
 </body>
 </html>

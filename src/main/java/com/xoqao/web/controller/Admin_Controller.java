@@ -20,6 +20,7 @@ import java.util.List;
 @RequestMapping("/view")
 public class Admin_Controller {
 
+
     @Autowired
     private UserService userService;
 
@@ -28,6 +29,7 @@ public class Admin_Controller {
     public String seat_Now(Model model) throws Exception {
         return "admin_page/Seat_Now";
     }
+
 
     @RequestMapping("/setNewTime")
     public String setNewTime(Model model) throws Exception {

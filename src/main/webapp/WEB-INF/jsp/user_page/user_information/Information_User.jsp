@@ -10,7 +10,7 @@
 <head>
     <title>个人信息</title>
 </head>
-<frameset cols="30%,*" frameborder="no" border="0" framespacing="0">
+<frameset cols="25%,*" frameborder="no" border="0" framespacing="0">
     <frame src="<%=request.getContextPath()%>/view/userInformation_leftmenu" name="leftFrame_UserInformation"
            scrolling="No" noresize="noresize" id="leftFrame_UserInformation" title="leftFrame_UserInformation"/>
     <frame src="<%=request.getContextPath()%>/view/userInformation_rightcontent" name="mainFrame_UserInformation"

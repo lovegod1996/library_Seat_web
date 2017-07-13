@@ -8,7 +8,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>我的资料</title>
+    <title>我的</title>
+    <script language="javascript">
+        window.location.href = "<%=request.getContextPath()%>/view/information_User_Self"
+    </script>
 </head>
 <body>
 
