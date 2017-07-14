@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>我的信息</title>
@@ -44,22 +47,18 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="row" style="width: 70%">
-        <div class="user_img col-lg-4">
-            <img src="<%=request.getContextPath()%>/img/ZZTI.jpg">
-        </div>
-        <div class="user_msg col-lg-8">
-            <label class="control-label">姓名</label><label class="control-label" style="margin-left: 20px">小明</label><br>
-            <label class="control-label">学号</label><label class="control-label"
-                                                          style="margin-left: 20px">201400834117</label><br>
-            <label class="control-label">学院</label><label class="control-label"
-                                                          style="margin-left: 20px">计算机学院</label><br>
-            <label class="control-label">专业</label><label class="control-label"
-                                                          style="margin-left: 20px">软件工程</label><br>
-            <label class="control-label">班级</label><label class="control-label"
-                                                          style="margin-left: 20px">141</label><br>
-        </div>
+<div id="wrapper">
+    <div class="user_img">
+        <img src="<%=request.getContextPath()%>/img/ZZTI.jpg">
+    </div>
+    <div class="user_msg">
+        <label class="control-label">姓名</label><label class="control-label" style="margin-left: 20px">${users.name}</label><br>
+        <label class="control-label">学号</label><label class="control-label"
+                                                      style="margin-left: 20px">${users.sno}</label><br>
+        <label class="control-label">学院</label><label class="control-label" style="margin-left: 20px">${users.college}</label><br>
+        <label class="control-label">专业</label><label class="control-label" style="margin-left: 20px">${users.major}</label><br>
+        <label class="control-label">班级</label><label class="control-label" style="margin-left: 20px">${users.classes}</label><br>
+
     </div>
     <div class="row" style="width: 70%">
         <div class="layui-tab">

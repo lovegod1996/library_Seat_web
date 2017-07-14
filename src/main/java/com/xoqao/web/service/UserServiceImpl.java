@@ -52,4 +52,9 @@ public class UserServiceImpl implements UserService {
         List<String> majorByCollege = userMapper.findMajorByCollege(college);
         return majorByCollege;
     }
+
+    public User findUserBySno(String sno) throws Exception {
+        User userBySno = userMapper.findUserBySno(sno);
+        return userBySno;
+    }
 }

@@ -44,7 +44,6 @@
                 </thead>
                 <tbody>
 
-
                 <c:forEach items="${news}" var="newss">
                     <tr>
                         <td><input type="checkbox"></td>
@@ -59,7 +58,7 @@
                 </c:forEach>
                 <c:if test="${ nullList != null}">
                     <tr style="text-align: center">
-                        <td colspan="4">${nullList}</td>
+                        <td colspan="5">${nullList}</td>
                     </tr>
                 </c:if>
 

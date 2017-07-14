@@ -81,8 +81,7 @@ public class AdminController {
      */
     @RequestMapping("/loginOut")
     public String adminLogout(Model model, HttpSession httpSession) throws Exception {
-        httpSession.removeAttribute("admin");
-        httpSession.removeAttribute("user");
+        httpSession.invalidate();
         return "toIndex";
     }
 

@@ -47,7 +47,7 @@
 
         function getData() {
             var floor = $("#floor").val();
-            var url = "/Lseat/jsp/seat_In_Empty?floor=" + floor;
+            var url = "/LS/jsp/seat_In_Empty?floor=" + floor;
             window.location.href = encodeURI(url);
         }
     </script>
@@ -227,24 +227,24 @@
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body" style="height: 400px">
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" role="form" action="<%= request.getContextPath()%>/jsp/adSeatBookSub" method="post" onsubmit="getnum(this)">
                 <div class="form-group">
                     <label class="col-sm-3 control-label">座位号</label>
                     <div class="col-sm-9">
-                        <label type="text" class="layui-input" id="seatNum" placeholder="点击预约自动填充" style="width: 220px"></label>
+                        <label type="text" class="layui-input"  id="seatNum" placeholder="点击预约自动填充" style="width: 220px"></label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">学号</label>
                     <div class="col-sm-9">
-                        <input type="text" class="layui-input" id="studentID" placeholder="点击预约自动填充" required style="width: 220px">
+                        <input type="text" class="layui-input" name="sno" id="studentID" placeholder="请输入学号" required style="width: 220px">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">开始</label>
                     <div class="col-sm-9">
                         <div class="layui-inline">
-                            <input class="layui-input" placeholder="开始时间" style="width: 220px" required
+                            <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px" required
                                    onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm',min: laydate.now(0), max: laydate.now(+1)})">
                             <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
                         </div>
@@ -254,7 +254,7 @@
                     <label class="col-sm-3 control-label">结束</label>
                     <div class="col-sm-9">
                         <div class="layui-inline">
-                            <input class="layui-input" placeholder="结束时间" style="width: 220px" required
+                            <input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px" required
                                    onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm',min: laydate.now(0), max: laydate.now(+1)})">
                         </div>
                     </div>
@@ -281,6 +281,20 @@
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
 
 <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+
+<script type="text/javascript">
+    function getnum(form) {
+        var $form = $(form);
+//        var seatNum=$("#seatNum").val();
+        var seatNum=document.getElementById("seatNum").innerText;
+        alert(seatNum);
+        var editor = "<input type='hidden' name='seatNum' value='" + seatNum+ "' />";
+        $form.append(editor);
+    }
+
+    <c:if test="${!empty error_msg}">alert("${error_msg}");</c:if>
+
+</script>
 
 </body>
 </html>
