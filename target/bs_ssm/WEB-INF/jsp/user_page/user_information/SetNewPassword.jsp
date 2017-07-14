@@ -33,6 +33,16 @@
             margin-left: 30%;
             margin-top: 50px;
         }
+
+        #errmsg, #errmsg1 {
+            margin-top: 10px;
+            width: 360px;
+            display: none
+        }
+
+        .layui-inline {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -46,27 +56,35 @@
         <li>手机验证码</li>
     </ul>
     <div class="layui-tab-content">
+
+        <%--Tip  一页--%>
         <div class="layui-tab-item layui-show">
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" role="form" onsubmit="return check()">
                 <div class="layui-inline">
                     <label class="layui-form-label">旧密码</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="oldPwd" class="layui-input" required style="width: 250px">
+                        <input type="password" name="oldPwd" id="oldPwd" class="layui-input" required style="width: 250px">
                     </div>
                 </div>
-                <div class="layui-inline" style="margin-top: 10px">
+                <div class="layui-inline">
                     <label class="layui-form-label">新密码</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="newPwd" class="layui-input" required style="width: 250px">
+                        <input type="password" name="newPwd" id="newPwd" class="layui-input" required style="width: 250px">
                     </div>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="layui-btn">确定</button>
+                <div id="errmsg1">
+                    <label class="layui-form-label" style="color: #FF6838">错误提示</label>
+                    <label class="layui-form-label" style="text-align: left;color: #FF6838;width: 100px">两次输入不一致</label>
+                </div>
+                <div class="layui-inline" style="width: 360px;text-align: center">
+                    <button type="submit" class="layui-btn" onclick="check()">确定</button>
                 </div>
             </form>
         </div>
+
+        <%--Tip  二页--%>
         <div class="layui-tab-item">
-            <form class="form-horizontal" role="form" name="resetform">
+            <form class="form-horizontal" role="form" name="resetform" onsubmit="return check()">
                 <div class="layui-inline">
                     <label class="layui-form-label">验证手机</label>
                     <div class="layui-input-inline">
@@ -76,17 +94,38 @@
                 <div class="form-group" style="margin-top: 10px">
                     <label class="col-sm-3 layui-form-label">验证码</label>
                     <div class="col-sm-7">
-                        <input type="text" class="layui-input" id="code" placeholder="输入" style="width: 120px;float: left" required>
-                        <input type="button" class="layui-btn layui-btn-primary" value="点击发送验证码" style="width: 120px;float: left;margin-left: 10px"
+                        <input type="text" class="layui-input" id="code" placeholder="输入"
+                               style="width: 120px;float: left" required>
+                        <input type="button" class="layui-btn layui-btn-primary" value="点击发送验证码"
+                               style="width: 120px;float: left;margin-left: 10px"
                                onclick="sendCode(this)"/>
                     </div>
                 </div>
-                <button type="submit" class="layui-btn">确定</button>
+                <div class="layui-inline">
+                    <label class="layui-form-label">新密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password" name="pwd1" id="pwd1" class="layui-input" required style="width: 250px">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">再次输入</label>
+                    <div class="layui-input-inline">
+                        <input type="password" name="pwd2" id="pwd2" class="layui-input" required style="width: 250px">
+                    </div>
+                </div>
+                <div id="errmsg" class="layui-inline">
+                    <label class="layui-form-label" style="color: #FF6838">错误提示</label>
+                    <label class="layui-form-label" style="text-align: left;color: #FF6838;width: 100px">两次输入不一致</label>
+                </div>
+                <div class="layui-inline" style="width: 360px;text-align: center">
+                    <button type="submit" class="layui-btn" onclick="check()">确定</button>
+                </div>
             </form>
         </div>
     </div>
 </div>
 
+<%--Tip页切换--%>
 <script>
     layui.use('element', function () {
         var $ = layui.jquery
@@ -135,6 +174,25 @@
             btn.disabled = false;
             btn.value = '点击发送验证码';
             nums = 10; //重置时间
+        }
+    }
+</script>
+
+<script language="JavaScript">
+    function check() {
+        var pd1 = document.getElementById("pwd1").value;
+        var pd2 = document.getElementById("pwd2").value;
+        var pd3 = document.getElementById("oldPwd").value;
+        var pd4 = document.getElementById("newPwd").value;
+        if (pd1 !== pd2) {
+//            显示不一致信息
+            document.getElementById('errmsg').style.display = 'block';
+            return false;
+        }
+        if (pd3 !== pd4) {
+//            显示不一致信息
+            document.getElementById('errmsg1').style.display = 'block';
+            return false;
         }
     }
 </script>

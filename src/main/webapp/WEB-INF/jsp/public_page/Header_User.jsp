@@ -52,7 +52,7 @@
                 <li><a href="<%=request.getContextPath()%>/jsp/index_Admin" target="_blank">后台临时入口</a></li>
                 <li><a href="<%=request.getContextPath()%>/jsp/book_Seat_User" target="mainFrame_User">预约</a></li>
                 <li><a href="<%=request.getContextPath()%>/view/information_User" target="mainFrame_User">我的</a></li>
-                <li><a href="#">SVN</a></li>
+                <li><a href="<%=request.getContextPath()%>/view/page404" target="mainFrame_User">404测试</a></li>
             </ul>
         </div>
 

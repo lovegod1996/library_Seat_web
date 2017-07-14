@@ -14,13 +14,6 @@
     <title>Title</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="<%= request.getContextPath()%>/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="<%= request.getContextPath()%>/dist/css/sb-admin-2.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="<%= request.getContextPath()%>/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet"
           type="text/css">
@@ -88,15 +81,8 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-<!-- Metis Menu Plugin JavaScript -->
-<script src="<%= request.getContextPath()%>/vendor/metisMenu/metisMenu.min.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
-
 <%--echart--%>
 <script src="<%=request.getContextPath()%>/js/echarts-all.js"></script>
-<script src="<%=request.getContextPath()%>/js/macarons.js"></script>
 <script type="text/javascript">
     // 基于准备好的dom，初始化echarts图表
     var myChart = echarts.init(document.getElementById('main'), 'macarons');

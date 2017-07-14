@@ -52,14 +52,11 @@
                 <li><a href="<%=request.getContextPath()%>/jsp/index_Admin" target="_blank">后台临时入口</a></li>
                 <li><a href="<%=request.getContextPath()%>/jsp/book_Seat_User" target="mainFrame_User">预约</a></li>
                 <li><a href="<%=request.getContextPath()%>/view/information_User" target="mainFrame_User">我的</a></li>
-                <li><a href="#">SVN</a></li>
+                <li><a href="<%=request.getContextPath()%>/view/page404" target="mainFrame_User">404测试</a></li>
             </ul>
         </div>
 
         <ul class="nav navbar-top-links navbar-right">
-<<<<<<< HEAD
-
-
                 <c:choose>
                     <c:when test="${empty sessionScope}">
                     <li class="dropdown">
@@ -98,16 +95,6 @@
                     </c:otherwise>
                 </c:choose>
 
-
-
-
-=======
-            <li class="dropdown">
-                <a href="<%=request.getContextPath()%>/jsp/login" target="_parent">
-                    <i class="fa fa-user fa-fw"></i><span>登录</span>
-                </a>
-            </li>
->>>>>>> e68c7c1063950754ddb5fa6f32963a17a1dfd330
         </ul>
     </nav>
 </div>
