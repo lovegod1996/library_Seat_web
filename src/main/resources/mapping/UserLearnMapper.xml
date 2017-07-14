@@ -3,7 +3,7 @@
 <mapper namespace="com.xoqao.web.dao.UserLearnMapper">
     <!--查询所有预约情况-->
     <select id="findfloorBookSeat" resultType="com.xoqao.web.bean.userbook.UserLearn">
-        SELECT user.uid,user.nick,user.sno,user.name,user.college,user.classes,user.phone,user.major,seat.seatnumber,seat.sid,book.date,book.unpromise,book.period,book.downtime,book.uptime
+        SELECT user.uid,user.nick,user.sno,user.name,user.college,user.classes,user.phone,user.major,seat.seatnumber,seat.sid,book.bid,book.date,book.unpromise,book.period,book.downtime,book.uptime
         FROM user,seat,book
         WHERE
           seat.seatnumber LIKE '${floor}%' AND seat.seatstate=1 AND seat.userid=user.uid AND seat.sid=book.seatid AND  user.uid=book.userid
@@ -11,7 +11,7 @@
     </select>
 
     <select id="findfloorBookSeatPage" resultType="com.xoqao.web.bean.userbook.UserLearn">
-        SELECT user.uid,user.nick,user.sno,user.name,user.college,user.classes,user.phone,user.major,seat.seatnumber,seat.sid,book.date,book.unpromise,book.period,book.downtime,book.uptime
+        SELECT user.uid,user.nick,user.sno,user.name,user.college,user.classes,user.phone,user.major,seat.seatnumber,seat.sid,book.bid,book.date,book.unpromise,book.period,book.downtime,book.uptime
         FROM user,seat,book
         WHERE
         seat.seatnumber LIKE '${floor}%' AND seat.seatstate=1 AND seat.userid=user.uid AND seat.sid=book.seatid AND  user.uid=book.userid
@@ -21,7 +21,7 @@
 
     <!--查询所有入座情况-->
     <select id="findfloorAllSeat" resultType="com.xoqao.web.bean.userbook.UserLearn">
-        SELECT user.uid,user.nick,user.sno,user.name,user.college,user.classes,user.phone,user.major,seat.seatnumber,seat.sid,book.date,book.unpromise,book.period,book.downtime,book.uptime
+        SELECT user.uid,user.nick,user.sno,user.name,user.college,user.classes,user.phone,user.major,seat.seatnumber,seat.sid,book.bid,book.date,book.unpromise,book.period,book.downtime,book.uptime
         FROM user,seat,book
         WHERE
         seat.seatnumber LIKE '${floor}%' AND seat.seatstate=2 AND seat.userid=user.uid AND seat.sid=book.seatid AND  user.uid=book.userid
@@ -29,7 +29,7 @@
     </select>
 
     <select id="findfloorAllSeatPage" resultType="com.xoqao.web.bean.userbook.UserLearn">
-        SELECT user.uid,user.nick,user.sno,user.name,user.college,user.classes,user.phone,user.major,seat.seatnumber,seat.sid,book.date,book.unpromise,book.period,book.downtime,book.uptime
+        SELECT user.uid,user.nick,user.sno,user.name,user.college,user.classes,user.phone,user.major,seat.seatnumber,seat.sid,book.bid,book.date,book.unpromise,book.period,book.downtime,book.uptime
         FROM user,seat,book
         WHERE
         seat.seatnumber LIKE '${floor}%' AND seat.seatstate=2 AND seat.userid=user.uid AND seat.sid=book.seatid AND  user.uid=book.userid
@@ -42,5 +42,67 @@
     </select>
     <select id="findAllNoSeatPage" resultType="com.xoqao.web.bean.seat.Seat">
         SELECT sid,seatnumber,seatstate,userid,seattype FROM  seat WHERE  seatstate=0 AND seatnumber LIKE '${floor}%' limit #{startRow},#{pageSize}
+    </select>
+
+    <!--添加学生预约-->
+    <insert id="insertBook">
+        <selectKey resultType="java.lang.Integer" keyProperty="bid" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO book  (userid,seatid,date,period) VALUES (#{userid},#{seatid},#{date},#{period})
+    </insert>
+
+    <!--根据bid删除预约-->
+    <delete id="deleteBookByid">
+        DELETE FROM book WHERE bid =#{bid}
+    </delete>
+
+    <!--根据bid查询预约信息-->
+    <select id="findBookByid" resultType="com.xoqao.web.bean.userbook.UserLearn">
+          SELECT user.uid,user.nick,user.sno,user.name,user.college,user.classes,user.phone,user.major,seat.seatnumber,seat.sid,book.bid,book.date,book.unpromise,book.period,book.downtime,book.uptime
+        FROM user,seat,book
+        WHERE
+        book.bid =#{bid} AND seat.seatstate=1 AND seat.userid=user.uid AND seat.sid=book.seatid AND  user.uid=book.userid
+    </select>
+
+    <!--根据bid设置失信-->
+    <update id="updateUnpromise">
+        UPDATE book SET unpromise=1 WHERE bid=#{bid}
+    </update>
+
+
+    <!--根据uid查询学习记录-->
+    <select id="findUserLearnByUid" resultType="com.xoqao.web.bean.userbook.UserLearn">
+        SELECT user.uid,user.nick,user.sno,user.name,user.college,user.classes,user.phone,user.major,seat.seatnumber,seat.sid,book.bid,book.date,book.unpromise,book.period,book.downtime,book.uptime
+        FROM user,seat,book
+        WHERE
+        book.userid =#{uid} AND book.downtime != NULL  AND seat.sid=book.seatid AND  user.uid=book.userid
+        ORDER BY book.date DESC
+    </select>
+
+    <select id="findUserLearnByUidPage" resultType="com.xoqao.web.bean.userbook.UserLearn">
+        SELECT user.uid,user.nick,user.sno,user.name,user.college,user.classes,user.phone,user.major,seat.seatnumber,seat.sid,book.bid,book.date,book.unpromise,book.period,book.downtime,book.uptime
+        FROM user,seat,book
+        WHERE
+        book.userid =#{uid} AND book.downtime != NULL  AND seat.sid=book.seatid AND  user.uid=book.userid
+        ORDER BY book.date DESC
+        limit #{startRow},#{pageSize}
+    </select>
+
+    <!--根据uid查询学习失信记录-->
+    <select id="findUserLearnPerByUid" resultType="com.xoqao.web.bean.userbook.UserLearn">
+        SELECT user.uid,user.nick,user.sno,user.name,user.college,user.classes,user.phone,user.major,seat.seatnumber,seat.sid,book.bid,book.date,book.unpromise,book.period,book.downtime,book.uptime
+        FROM user,seat,book
+        WHERE
+        book.userid =#{uid} AND book.unpromise = 1  AND seat.sid=book.seatid AND  user.uid=book.userid
+        ORDER BY book.date DESC
+    </select>
+
+    <select id="findUserLearnPerByUidPage" resultType="com.xoqao.web.bean.userbook.UserLearn">
+        SELECT user.uid,user.nick,user.sno,user.name,user.college,user.classes,user.phone,user.major,seat.seatnumber,seat.sid,book.bid,book.date,book.unpromise,book.period,book.downtime,book.uptime
+        FROM user,seat,book
+        WHERE
+        book.userid =#{uid} AND book.unpromise = 1  AND seat.sid=book.seatid AND  user.uid=book.userid
+        ORDER BY book.date DESC
     </select>
 </mapper>

@@ -4,6 +4,7 @@ import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.userbook.UserLearn;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,5 +26,36 @@ public interface UserLearnService {
     List<Seat> findAllNoSeat( String floor)throws Exception;
 
     List<Seat> findAllNoSeatPage( String floor, Integer startRow  ,Integer pageSize)throws Exception;
+
+    void insertBook(Integer userid,Integer seatid, Date date, String period)throws Exception;
+
+    /**
+     * 删除预约
+     * @param bid
+     * @throws Exception
+     */
+    void deleteBook( Integer bid) throws Exception;
+
+    /**
+     * 查找预约id
+     * @param bid
+     * @return
+     * @throws Exception
+     */
+    UserLearn findBookByid( Integer bid) throws Exception;
+    /**
+     * 更新失信情况
+     * @param bid
+     * @throws Exception
+     */
+    void updateUnpromise( Integer bid)throws Exception;
+
+    List<UserLearn> findUserLearnByUid( Integer uid)throws Exception;
+
+    List<UserLearn> findUserLearnByUidPage( Integer uid, Integer startRow, Integer pageSize)throws Exception;
+
+    List<UserLearn> findUserLearnPerByUid( Integer uid)throws Exception;
+
+    List<UserLearn> findUserLearnPerByUidPage( Integer uid,  Integer startRow,  Integer pageSize)throws Exception;
 
 }

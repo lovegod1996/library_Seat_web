@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>Title</title>
@@ -27,18 +30,18 @@
     </div>
     <!-- /.panel-heading -->
     <div class="table table-condensed">
-        <form class="form-horizontal" role="form" action="<%= request.getContextPath()%>/admin/adNewsSub" method="post">
+        <form class="form-horizontal" role="form" action="<%= request.getContextPath()%>/admin/editNewsSub" method="post">
             <div class="form-group">
                 <label for="title" class="col-sm-2 control-label">标题</label>
                 <div class="col-sm-9">
                     <input type="hidden" name="nid" value="${news.nid}">
-                    <input type="text" class="form-control" id="title" name="title" placeholder="${news.title}" value="${news.title}" required>
+                    <input type="text" class="form-control" id="title" name="title"  value="${news.title}" required>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">内容</label>
                 <div class="col-sm-9">
-                    <textarea class="form-control" id="content" name="content" rows="10" placeholder="请输入内容" required>${news.content}</textarea>
+                    <textarea class="form-control" id="content" name="content" rows="10"  required>${news.content}</textarea>
                 </div>
             </div>
             <div class="form-group">

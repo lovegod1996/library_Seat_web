@@ -40,4 +40,9 @@
   <select id="findMajorByCollege" resultType="java.lang.String">
     SELECT DISTINCT major FROM user WHERE college LIKE '${college}' GROUP BY major
   </select>
+
+    <!--根据学生学号查询具体学生-->
+    <select id="findUserBySno" resultType="com.xoqao.web.bean.user.User">
+         SELECT  uid,nick,sno,password,college,classes,phone,name,major  FROM  user where  sno LIKE '${sno}'
+    </select>
 </mapper>

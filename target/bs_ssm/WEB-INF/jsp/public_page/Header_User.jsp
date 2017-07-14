@@ -49,17 +49,12 @@
         <div>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="<%=request.getContextPath()%>/" target="_parent">首页</a></li>
-                <li><a href="<%=request.getContextPath()%>/jsp/index_Admin" target="_blank">后台临时入口</a></li>
                 <li><a href="<%=request.getContextPath()%>/jsp/book_Seat_User" target="mainFrame_User">预约</a></li>
-                <li><a href="<%=request.getContextPath()%>/view/information_User" target="mainFrame_User">我的</a></li>
-                <li><a href="#">SVN</a></li>
+                <%--<li><a href="#">SVN</a></li>--%>
             </ul>
         </div>
 
         <ul class="nav navbar-top-links navbar-right">
-<<<<<<< HEAD
-
-
                 <c:choose>
                     <c:when test="${empty sessionScope}">
                     <li class="dropdown">
@@ -71,7 +66,7 @@
                     <c:otherwise>
                         <c:if test="${sessionScope.user !=null}">
                             <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <a class="dropdown-toggle" href="<%=request.getContextPath()%>/view/information_User" target="mainFrame_User">
                                     <i class="fa fa-user fa-fw"></i><span>${sessionScope.user.name}</span>
                                 </a>
                             </li>
@@ -84,7 +79,7 @@
                         </c:if>
                         <c:if test="${sessionScope.admin !=null}">
                             <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <a class="dropdown-toggle"  href="<%=request.getContextPath()%>/jsp/index_Admin" target="_blank">
                                     <i class="fa fa-user fa-fw"></i><span>${sessionScope.admin.loginname}</span>
                                 </a>
                             </li>
@@ -98,16 +93,6 @@
                     </c:otherwise>
                 </c:choose>
 
-
-
-
-=======
-            <li class="dropdown">
-                <a href="<%=request.getContextPath()%>/jsp/login" target="_parent">
-                    <i class="fa fa-user fa-fw"></i><span>登录</span>
-                </a>
-            </li>
->>>>>>> e68c7c1063950754ddb5fa6f32963a17a1dfd330
         </ul>
     </nav>
 </div>

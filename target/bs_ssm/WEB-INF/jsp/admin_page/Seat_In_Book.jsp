@@ -112,13 +112,13 @@
                         <td>${userLearn.period}</td>
                         <td>预约中</td>
                         <td>
-                            <button type="button" class="btn btn-danger btn-sm">释放</button>
+                            <a href="<%=request.getContextPath()%>/jsp/releaseBook?bid=${userLearn.bid}" class="btn btn-danger btn-sm">释放</a>
                         </td>
                     </tr>
                 </c:forEach>
                 <c:if test="${ nullList != null}">
                     <tr style="text-align: center">
-                        <td colspan="9">${nullList}</td>
+                        <td colspan="10">${nullList}</td>
                     </tr>
                 </c:if>
 
@@ -204,9 +204,11 @@
             });
             form.render('checkbox');
         });
-
     });
 </script>
 
+<script type="text/javascript">
+    <c:if test="${!empty error_msg}">alert("${error_msg}");</c:if>
+</script>
 </body>
 </html>

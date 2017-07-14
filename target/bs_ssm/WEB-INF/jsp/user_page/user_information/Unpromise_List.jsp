@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>失信记录</title>
@@ -34,40 +37,72 @@
                     <th>序号</th>
                     <th>日期</th>
                     <th>座号</th>
-                    <th>时间段</th>
+                    <th>预约时间段</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>123</td>
-                    <td>123</td>
-                    <td>123</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>123</td>
-                    <td>123</td>
-                    <td>123</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>123</td>
-                    <td>123</td>
-                    <td>123</td>
-                </tr>
+                <c:forEach items="${userLearns}" var="userlearn" varStatus="step">
+                    <tr>
+                        <td>${step.index}</td>
+                        <td><fmt:formatDate value="${userlearn.date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                        <td>${userlearn.seatnumber}</td>
+                        <td>${userlearn.period}</td>
+                    </tr>
+                </c:forEach>
+
+                <c:if test="${ nullList != null}">
+                    <tr style="text-align: center">
+                        <td colspan="4">${nullList}</td>
+                    </tr>
+                </c:if>
 
                 </tbody>
             </table>
             <div style="text-align: center">
                 <ul class="pagination">
-                    <li><a href="#">&laquo;</a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&raquo;</a></li>
+                    <li>
+                        <c:if test="${currentPage ==1}">
+                            <a href="#" class="disabled">&laquo;</a>
+                        </c:if>
+                        <c:if test="${currentPage != 1}">
+                            <a href="${pageContext.request.contextPath }/view/unpromise_List.form?page=${currentPage-1}">&laquo;</a>
+                        </c:if>
+                    </li>
+                    <c:if test="${currentPage==1}">
+                        <li class="active"><a href="#">1</a></li>
+                    </c:if>
+                    <c:if test="${currentPage!=1}">
+                        <li>
+                            <a href="${pageContext.request.contextPath }/view/unpromise_List.form?page=1">1</a>
+                        </li>
+                    </c:if>
+                    <%
+                        int pageTimes = (Integer) session.getAttribute("pageTimes");
+                        for (int i = 1; i < pageTimes; i++) {
+
+                            request.setAttribute("page", i + 1);
+                            pageContext.setAttribute("i", i);
+                    %>
+
+                    <c:if test="${i<(currentPage+5)&&i>(currentPage-5)}">
+                        <c:if test="${currentPage == page}">
+                            <li><a href="#" class="active"><%=i + 1%>
+                            </a></li>
+                        </c:if>
+                        <c:if test="${currentPage != page}">
+                            <li>
+                                <a href="${pageContext.request.contextPath }/view/unpromise_List.form?page=<%=i+1%>"><%=i + 1%>
+                                </a></li>
+                        </c:if>
+                    </c:if>
+                    <% } %>
+                    <c:if test="${currentPage == pageTimes}">
+                        <li>    <a href="#" class="active">&raquo;</a> </li>
+                    </c:if>
+                    <c:if test="${currentPage != pageTimes}">
+                        <li>  <a href="${pageContext.request.contextPath }/view/unpromise_List.form?page=${currentPage+1}">&raquo;</a>  </li>
+                    </c:if>
+
                 </ul>
             </div>
 

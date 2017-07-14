@@ -35,6 +35,7 @@
                 success: function (result) {
                     $("#major option").remove();//清空原来的选项
                     //  alert(result);
+                    $("#major").append("<option > --选择专业--</option>");
                     result = eval(result);
                     for (var i = 0; i < result.length; i++) {
                         $("#major").append("<option > " + result[i] + "</option>")
@@ -72,17 +73,18 @@
                     <option value="2014">2014</option>
                 </select>
                 <select name="college" id="college" onchange="getCollege()" style="float: left;margin-left: 1%">
+                    <option >--选择学院名称--</option>
                     <c:if test="${college!=null}">
-                        <option value="${college}">${college}</option>
+                        <option value="${college}" selected>${college}</option>
                     </c:if>
                     <c:forEach items="${colleges}" var="collegee">
                         <option value="${collegee}">${collegee}</option>
                     </c:forEach>
                 </select>
                 <select name="major" id="major" onchange="getMajor()" style="float: left;margin-left: 1%">
-                    <option value="0">选择专业</option>
+                    <option value="0">--选择专业--</option>
                     <c:if test="${major!=null}">
-                        <option value="${major}">${major}</option>
+                        <option value="${major}" selected>${major}</option>
                     </c:if>
                 </select>
             </form>

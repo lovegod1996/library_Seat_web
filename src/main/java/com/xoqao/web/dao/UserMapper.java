@@ -23,4 +23,6 @@ public interface UserMapper {
     List<String> findAllCollege()throws Exception;
 
     List<String> findMajorByCollege(@Param("college") String college)throws Exception;
+
+    User findUserBySno(@Param("sno") String sno)throws Exception;
 }

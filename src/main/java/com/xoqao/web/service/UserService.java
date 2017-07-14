@@ -27,4 +27,5 @@ public interface UserService {
 
     List<String> findMajorByCollege(String college)throws Exception;
 
+    User findUserBySno(String sno)throws Exception;
 }
