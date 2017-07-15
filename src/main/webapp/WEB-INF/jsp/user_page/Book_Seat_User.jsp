@@ -271,7 +271,7 @@
                 <div class="col-sm-9">
                     <div class="layui-inline">
                         <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px" required
-                               onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm',min: laydate.now(0), max: laydate.now(+1)})">
+                               onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
                             <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
                     </div>
                 </div>
@@ -281,7 +281,7 @@
                 <div class="col-sm-9">
                     <div class="layui-inline">
                         <input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px" required
-                               onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm',min: laydate.now(0), max: laydate.now(+1)})">
+                               onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
                     </div>
                 </div>
             </div>

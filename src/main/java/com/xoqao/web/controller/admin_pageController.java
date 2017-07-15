@@ -336,7 +336,7 @@ public class admin_pageController {
 
              String[] period=bookByid.getPeriod().split("--");
 
-            SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             String format = simpleDateFormat.format(new Date());
 
