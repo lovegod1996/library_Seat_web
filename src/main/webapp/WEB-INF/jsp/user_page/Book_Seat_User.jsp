@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>Title</title>
@@ -61,8 +64,8 @@
     <script language="JavaScript" type="text/javascript">
         //定义了楼层的二维数组，里面的顺序跟楼的顺序是相同的。通过selectedIndex获得楼的下标值来得到相应的楼层数组
         var city = [
-            ["南一", "南二", "南三", "南四"],
-            ["北一", "北二", "北三", "北四"]
+            ["南1", "南2", "南3", "南4"],
+            ["北1", "北2", "北3", "北4"]
         ];
 
         function getCity() {
@@ -80,6 +83,12 @@
             for (var i = 0; i < provinceCity.length; i++) {
                 sltCity[i + 1] = new Option(provinceCity[i], provinceCity[i]);
             }
+        }
+
+        function getData() {
+            var floor = $("#floor").val();
+            var url = "/LS/jsp/book_Seat_User?floor=" + floor;
+            window.location.href = encodeURI(url);
         }
     </script>
 
@@ -126,7 +135,8 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-bar-chart-o fa-fw"></i> 空闲座位统计
-                <button type="button" class="btn btn-success btn-xs" style="margin-left:20px ">实时刷新</button>
+                <a href="${pageContext.request.contextPath }/jsp/book_Seat_User" class="btn btn-success btn-xs"
+                   style="margin-left:20px ">点击刷新</a>
                 <div class="pull-right">
                     <FORM METHOD=POST ACTION="" name="selectform">
                         <SELECT NAME="building" onChange="getCity()">
@@ -134,7 +144,7 @@
                             <OPTION VALUE="南楼">南楼</OPTION>
                             <OPTION VALUE="北楼">北楼</OPTION>
                         </SELECT>
-                        <SELECT NAME="floor">
+                        <SELECT NAME="floor" onchange="getData()" id="floor">
                             <OPTION VALUE="0">选择所在楼层</OPTION>
                         </SELECT>
                     </FORM>
@@ -152,26 +162,70 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr onclick="c1(this);">
-                        <td>1</td>
-                        <td><input type="text" disabled="disabled" style="border:none;background-color: transparent;width: 100px" value="S1-0101"></td>
-                        <td>空闲中</td>
-                        <td>
-                            <button type="button" class="btn btn-primary btn-sm" onclick="check()">预约</button>
-                        </td>
-                    </tr>
+                    <c:forEach items="${seats}" var="seat" varStatus="step">
+                        <tr onclick="c1(this);">
+                            <td>${step.index}</td>
+                            <td><input type="text" disabled="disabled" style="border:none;background-color: transparent;width: 100px" value="${seat.seatnumber}"></td>
+                            <td>空闲中</td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-sm" onclick="check()">预约</button>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    <c:if test="${ nullList != null}">
+                        <tr style="text-align: center">
+                            <td colspan="4">${nullList}</td>
+                        </tr>
+                    </c:if>
                     </tbody>
                 </table>
 
                 <div style="text-align: center">
                     <ul class="pagination">
-                        <li><a href="#">&laquo;</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
+                        <li>
+                            <c:if test="${currentPage ==1}">
+                                <a href="#" class="disabled">&laquo;</a>
+                            </c:if>
+                            <c:if test="${currentPage != 1}">
+                                <a href="${pageContext.request.contextPath }/jsp/book_Seat_User.form?page=${currentPage-1}&floor=${floor}">&laquo;</a>
+                            </c:if>
+                        </li>
+                        <c:if test="${currentPage==1}">
+                            <li class="active"><a href="#">1</a></li>
+                        </c:if>
+                        <c:if test="${currentPage!=1}">
+                            <li>
+                                <a href="${pageContext.request.contextPath }/jsp/book_Seat_User.form?page=1&floor=${floor}">1</a>
+                            </li>
+                        </c:if>
+                        <%
+                            int pageTimes = (Integer) session.getAttribute("pageTimes");
+                            for (int i = 1; i < pageTimes; i++) {
+
+                                request.setAttribute("page", i + 1);
+                                pageContext.setAttribute("i", i);
+                        %>
+
+                        <c:if test="${i<(currentPage+5)&&i>(currentPage-5)}">
+                            <c:if test="${currentPage == page}">
+                                <li><a href="#" class="active"><%=i + 1%>
+                                </a></li>
+                            </c:if>
+                            <c:if test="${currentPage != page}">
+                                <li>
+                                    <a href="${pageContext.request.contextPath }/jsp/book_Seat_User.form?page=<%=i+1%>&floor=${floor}"><%=i + 1%>
+                                    </a></li>
+                            </c:if>
+                        </c:if>
+                        <% } %>
+                        <c:if test="${currentPage == pageTimes}">
+                            <li><a href="#" class="active">&raquo;</a></li>
+                        </c:if>
+                        <c:if test="${currentPage != pageTimes}">
+                            <li>
+                                <a href="${pageContext.request.contextPath }/jsp/book_Seat_User.form?page=${currentPage+1}&floor=${floor}">&raquo;</a>
+                            </li>
+                        </c:if>
                     </ul>
                 </div>
             </div>
@@ -186,34 +240,71 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="height: 400px">
-                <form class="form-horizontal" role="form">
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">座位号</label>
-                        <div class="col-sm-9">
-                            <label type="text" class="layui-input" id="seatNum" style="width: 220px"><span id="show_msg">点击入座自动填入</span></label>
-                        </div>
+
+<c:choose>
+    <c:when test="${userLearn!=null}">
+        <table class="table" width="80%">
+            <caption style="text-align: center">您已预约座位</caption>
+            <tbody>
+            <tr>
+                <td>
+                    <label for="hasseatnum">预约座位号</label>
+                    <span id="hasseatnum">${userLearn.seatnumber}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="booktime">预约时间</label>
+                    <span id="booktime"><fmt:formatDate value="${userLearn.date}" pattern="yyyy-MM-dd HH:mm:ss"/></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="timestep">预约时间段</label>
+                    <span id="timestep">${userLearn.period}</span>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    <a href="<%=request.getContextPath()%>/jsp/releaseUserBook?bid=${userLearn.bid}" class="btn btn-danger btn-sm">释放</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </c:when>
+    <c:otherwise>
+        <form class="form-horizontal" role="form" action="<%= request.getContextPath()%>/jsp/bookSeatUserSub" method="post" onsubmit="getnum(this)">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">座位号</label>
+                <div class="col-sm-9">
+                    <label type="text" class="layui-input" id="seatNum" placeholder="点击预约自动填充" style="width: 220px"></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">开始</label>
+                <div class="col-sm-9">
+                    <div class="layui-inline">
+                        <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px" required
+                               onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
+                            <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">开始</label>
-                        <div class="col-sm-9">
-                            <div class="layui-inline">
-                                <input class="layui-input" placeholder="开始时间" style="width: 220px" required
-                                       onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm',min: laydate.now(0), max: laydate.now(+1)})">
-                                <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">结束</label>
+                <div class="col-sm-9">
+                    <div class="layui-inline">
+                        <input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px" required
+                               onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">结束</label>
-                        <div class="col-sm-9">
-                            <div class="layui-inline">
-                                <input class="layui-input" placeholder="结束时间" style="width: 220px" required
-                                       onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm',min: laydate.now(0), max: laydate.now(+1)})">
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">确定</button>
-                </form>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">确定</button>
+        </form>
+
+    </c:otherwise>
+</c:choose>
+
             </div>
             <!-- /.panel-body -->
         </div>
@@ -232,6 +323,20 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
+
+<script type="text/javascript">
+    function getnum(form) {
+        var $form = $(form);
+//        var seatNum=$("#seatNum").val();
+        var seatNum=document.getElementById("seatNum").innerText;
+//        alert(seatNum);
+        var editor = "<input type='hidden' name='seatNum' value='" + seatNum+ "' />";
+        $form.append(editor);
+    }
+
+    <c:if test="${!empty error_msg}">alert("${error_msg}");</c:if>
+
+</script>
 
 </body>
 </html>

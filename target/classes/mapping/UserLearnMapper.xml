@@ -105,4 +105,14 @@
         book.userid =#{uid} AND book.unpromise = 1  AND seat.sid=book.seatid AND  user.uid=book.userid
         ORDER BY book.date DESC
     </select>
+
+    <!--查找最新预约记录-->
+    <select id="findUserLearnNew" resultType="com.xoqao.web.bean.userbook.UserLearn">
+         SELECT user.uid,user.nick,user.sno,user.name,user.college,user.classes,user.phone,user.major,seat.seatnumber,seat.sid,book.bid,book.date,book.unpromise,book.period,book.downtime,book.uptime
+        FROM user,seat,book
+        WHERE
+        book.userid =#{uid} AND seat.seatstate=1  AND seat.sid=book.seatid AND  user.uid=book.userid
+        ORDER BY book.date DESC
+        limit 1
+    </select>
 </mapper>

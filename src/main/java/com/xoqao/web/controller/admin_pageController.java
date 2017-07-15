@@ -336,7 +336,7 @@ public class admin_pageController {
 
              String[] period=bookByid.getPeriod().split("--");
 
-            SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             String format = simpleDateFormat.format(new Date());
 
@@ -385,7 +385,6 @@ public class admin_pageController {
             model.addAttribute("nullList", "暂无数据");
             return "admin_page/Seat_In_Empty";
         }
-
     }
 
     public static HttpSession getSession() {

@@ -58,4 +58,11 @@ public interface UserLearnService {
 
     List<UserLearn> findUserLearnPerByUidPage( Integer uid,  Integer startRow,  Integer pageSize)throws Exception;
 
+    /**
+     * 查找用户最新预约
+     * @param uid
+     * @return
+     * @throws Exception
+     */
+    UserLearn findUserLearnNew(Integer uid)throws Exception;
 }
