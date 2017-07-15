@@ -63,9 +63,7 @@
                     <form role="form" action="${pageContext.request.contextPath }/admin/loginSub" method="post">
                         <fieldset>
                             <div class="form-group">
-                                <%--登录账号只能是字母数字--%>
-                                <input class="form-control" placeholder="学号/工号" name="loginId" type="text"
-                                       onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')" autofocus required>
+                                <input class="form-control" placeholder="学号/工号" name="loginId" type="text" autofocus required>
                             </div>
                             <div class="form-group">
                                 <input class="form-control" placeholder="密码" name="password" type="password" value=""

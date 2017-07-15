@@ -48,25 +48,28 @@
 </head>
 <body>
 <div id="wrapper">
-    <div class="user_img">
-        <img src="<%=request.getContextPath()%>/img/ZZTI.jpg">
-    </div>
-    <div class="user_msg">
-        <label class="control-label">姓名</label><label class="control-label" style="margin-left: 20px">${users.name}</label><br>
-        <label class="control-label">学号</label><label class="control-label"
-                                                      style="margin-left: 20px">${users.sno}</label><br>
-        <label class="control-label">学院</label><label class="control-label" style="margin-left: 20px">${users.college}</label><br>
-        <label class="control-label">专业</label><label class="control-label" style="margin-left: 20px">${users.major}</label><br>
-        <label class="control-label">班级</label><label class="control-label" style="margin-left: 20px">${users.classes}</label><br>
+    <div class="row">
+        <div class="user_img">
+            <img src="<%=request.getContextPath()%>/img/ZZTI.jpg">
+        </div>
+        <div class="user_msg">
+            <label class="control-label">姓名</label><label class="control-label" style="margin-left: 20px">${users.name}</label><br>
+            <label class="control-label">学号</label><label class="control-label"
+                                                          style="margin-left: 20px">${users.sno}</label><br>
+            <label class="control-label">学院</label><label class="control-label" style="margin-left: 20px">${users.college}</label><br>
+            <label class="control-label">专业</label><label class="control-label" style="margin-left: 20px">${users.major}</label><br>
+            <label class="control-label">班级</label><label class="control-label" style="margin-left: 20px">${users.classes}</label><br>
 
+        </div>
     </div>
-    <div class="row" style="width: 70%">
+
+    <div class="row">
         <div class="layui-tab">
             <ul class="layui-tab-title">
                 <li class="layui-this">天视图</li>
                 <li>周视图</li>
                 <li>月视图</li>
-                <li>年视图</li>
+                <li>学年视图</li>
             </ul>
             <div class="layui-tab-content">
                 <%-- 一页--%>

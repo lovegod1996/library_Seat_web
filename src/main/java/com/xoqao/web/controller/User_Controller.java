@@ -1,6 +1,5 @@
 package com.xoqao.web.controller;
 
-import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.user.User;
 import com.xoqao.web.bean.userbook.UserLearn;
 import com.xoqao.web.service.UserLearnService;
@@ -80,11 +79,6 @@ public class User_Controller {
            model.addAttribute("nullList", "你怎么还不去看书呢？");
        }
         return "user_page/user_information/Study_List";
-    }
-
-    @RequestMapping("study_Statistics")
-    public String study_Statistics(Model model) throws Exception {
-        return "user_page/user_information/Study_Statistics";
     }
 
     @RequestMapping("/unpromise_List")

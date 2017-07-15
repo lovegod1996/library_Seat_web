@@ -115,6 +115,19 @@
         }
     </script>
 
+    <style>
+        #seatNum{
+            cursor: pointer;
+        }
+        #seatNum:hover #show_msg{
+            display: block;
+        }
+
+        #seatNum #show_msg{
+            display: none;
+        }
+    </style>
+
 </head>
 <body>
 <div id="wrapper">
@@ -227,6 +240,7 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="height: 400px">
+<<<<<<< HEAD
 <c:choose>
     <c:when test="${userLearn!=null}">
         <table class="table" width="80%">
@@ -273,6 +287,24 @@
                         <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px" required
                                onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
                             <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
+=======
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">座位号</label>
+                        <div class="col-sm-9">
+                            <label type="text" class="layui-input" id="seatNum" style="width: 220px"><span id="show_msg">点击入座自动填入</span></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">开始</label>
+                        <div class="col-sm-9">
+                            <div class="layui-inline">
+                                <input class="layui-input" placeholder="开始时间" style="width: 220px" required
+                                       onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm',min: laydate.now(0), max: laydate.now(+1)})">
+                                <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
+                            </div>
+                        </div>
+>>>>>>> 1Q841995-master
                     </div>
                 </div>
             </div>

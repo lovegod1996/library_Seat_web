@@ -115,6 +115,19 @@
         }
     </script>
 
+    <style>
+        #seatNum{
+            cursor: pointer;
+        }
+        #seatNum:hover #show_msg{
+            display: block;
+        }
+
+        #seatNum #show_msg{
+            display: none;
+        }
+    </style>
+
 </head>
 <body>
 <div id="wrapper">
@@ -227,6 +240,7 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="height: 400px">
+
 <c:choose>
     <c:when test="${userLearn!=null}">
         <table class="table" width="80%">
