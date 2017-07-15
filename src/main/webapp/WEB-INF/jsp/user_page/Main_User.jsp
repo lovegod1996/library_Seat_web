@@ -32,7 +32,7 @@
                 <i class="fa fa-bar-chart-o fa-fw"></i> 座位实时使用状态
                 <div class="pull-right">
                     <FORM METHOD=POST ACTION="" name="selectform">
-                        <SELECT NAME="building" onChange="getCity()">
+                        <SELECT NAME="building" id="floorSide" onChange="getData()">
                             <OPTION VALUE="南楼">南楼</OPTION>
                             <OPTION VALUE="北楼">北楼</OPTION>
                         </SELECT>
@@ -41,7 +41,10 @@
             </div>
             <!-- /.panel-heading -->
             <!-- EChart 显示各楼层座位状态-->
+
             <div id="main" style="width:100%;height:400px;"></div>
+
+
         </div>
         <!-- /.panel -->
     </div>
@@ -58,7 +61,8 @@
                     <c:forEach items="${newsTop}" var="newss">
                         <a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${newss.nid}"
                            class="list-group-item">${newss.title}
-                            <span class="pull-right text-muted small"><em><fmt:formatDate value="${newss.creattime}" pattern="yyyy-MM-dd HH:mm:ss"/></em></span>
+                            <span class="pull-right text-muted small"><em><fmt:formatDate value="${newss.creattime}"
+                                                                                          pattern="yyyy-MM-dd HH:mm:ss"/></em></span>
                         </a>
                     </c:forEach>
                 </div>
@@ -84,53 +88,100 @@
 <%--echart--%>
 <script src="<%=request.getContextPath()%>/js/echarts-all.js"></script>
 <script type="text/javascript">
-    // 基于准备好的dom，初始化echarts图表
-    var myChart = echarts.init(document.getElementById('main'), 'macarons');
-    var option = {
-        title: {
-            text: '',
-            subtext: ''
-        },
-        tooltip: {
-            trigger: 'axis'
-        },
-        legend: {
-            data: ['空闲中', '已预约', '已入座']
-        },
-        calculable: true,
-        xAxis: [
-            {
-                type: 'category',
-                data: ['南一', '南二', '南三', '南四', '南五', '南六']
-            }
-        ],
-        yAxis: [
-            {
-                type: 'value'
-            }
-        ],
-        series: [
-            {
-                name: '空闲中',
-                type: 'bar',
-                data: [23.2, 25.6, 76.7, 135.6, 6.4, 13.3]
-            },
-            {
-                name: '已预约',
-                type: 'bar',
-                data: [34.6, 5.9, 9.0, 175.6, 6.0, 24.3, 60]
-            },
-            {
-                name: '已入座',
-                type: 'bar',
-                data: [2.9, 28.7, 70.7, 18.8, 6.0, 2.4, 55]
-            }
-        ]
+    window.onload=function () {
+        getData();
     };
 
+    function getData() {
+        // 基于准备好的dom，初始化echarts图表
+        var myChart = echarts.init(document.getElementById('main'));
 
-    // 为echarts对象加载数据
-    myChart.setOption(option);
+        myChart.showLoading({text: '正在努力的读取数据中...'});    //数据加载完之前先显示一段简单的loading动画
+
+        var floors = [];  //所有楼层
+        var noBook = [];  //空闲
+        var booknum = [];  //预约
+        var seated = []; //入座
+
+        var floorside = $("#floorSide").val();
+
+        $.ajax({
+            type: "post",
+            async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+            url: "${pageContext.request.contextPath }/jsp/getSeatData.form",    //getTrendData
+            data: 'floor=' + floorside,
+            //  dataType : "json",        //返回数据形式为json
+            success: function (result) {
+                //请求成功时执行该函数内容，result即为服务器返回的json对象
+                result = eval(result);
+                if (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        floors.push(result[i].floor);    //挨个取出类别并填入类别数组
+                    }
+                    for (var i = 0; i < result.length; i++) {
+                        noBook.push(result[i].nobook);    //挨个取出销量并填入销量数组
+                    }
+                    for (var i = 0; i < result.length; i++) {
+                        booknum.push(result[i].bookNum);    //挨个取出销量并填入销量数组
+                    }
+                    for (var i = 0; i < result.length; i++) {
+                        seated.push(result[i].seatedNum);    //挨个取出销量并填入销量数组
+                    }
+                    myChart.hideLoading();    //隐藏加载动画
+
+                    var option = {
+                        title: {
+                            text: '',
+                            subtext: ''
+                        },
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data: ['空闲中', '已预约', '已入座']
+                        },
+                        calculable: true,
+                        xAxis: [
+                            {
+                                type: 'category',
+                                data: floors
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'value'
+                            }
+                        ],
+                        series: [
+                            {
+                                name: '空闲中',
+                                type: 'bar',
+                                data: noBook
+                            },
+                            {
+                                name: '已预约',
+                                type: 'bar',
+                                data: booknum
+                            },
+                            {
+                                name: '已入座',
+                                type: 'bar',
+                                data: seated
+                            }
+                        ]
+                    };
+                    myChart.setOption(option);
+                }
+            },
+            error: function (errorMsg) {
+                //请求失败时执行该函数
+                alert("图表请求数据失败!");
+                myChart.hideLoading();
+            }
+        });
+    }
+
+
 </script>
 </body>
 </html>

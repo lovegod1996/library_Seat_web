@@ -5,6 +5,8 @@ import com.xoqao.web.dao.SeatMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 说明：
  * Author: lovegod
@@ -24,5 +26,15 @@ public class SeatServiceImpl implements SeatService {
 
     public void updateSeat(Integer state, Integer userid, Integer sid) throws Exception {
         seatMapper.updateSeat(state, userid, sid);
+    }
+
+    public List<String> findFloor(String floor) throws Exception {
+        List<String> floor1 = seatMapper.findFloor(floor);
+        return floor1;
+    }
+
+    public Integer findCountBystate(String floor, Integer state) throws Exception {
+        Integer countBystate = seatMapper.findCountBystate(floor, state);
+        return countBystate;
     }
 }

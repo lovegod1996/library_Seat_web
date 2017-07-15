@@ -9,6 +9,7 @@ package com.xoqao.web.bean.seat;
 public class Seat {
     private Integer sid;
     private String seatnumber;
+    private String floor;
     private Integer seatstate;
     private Integer userid;
     private String seattype;
@@ -53,11 +54,21 @@ public class Seat {
         this.seattype = seattype;
     }
 
+
+    public String getFloor() {
+        return floor;
+    }
+
+    public void setFloor(String floor) {
+        this.floor = floor;
+    }
+
     @Override
     public String toString() {
         return "Seat{" +
                 "sid=" + sid +
                 ", seatnumber='" + seatnumber + '\'' +
+                ", floor='" + floor + '\'' +
                 ", seatstate=" + seatstate +
                 ", userid=" + userid +
                 ", seattype='" + seattype + '\'' +

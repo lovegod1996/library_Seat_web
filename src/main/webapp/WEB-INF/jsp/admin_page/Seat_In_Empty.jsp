@@ -287,7 +287,6 @@
         var $form = $(form);
 //        var seatNum=$("#seatNum").val();
         var seatNum=document.getElementById("seatNum").innerText;
-        alert(seatNum);
         var editor = "<input type='hidden' name='seatNum' value='" + seatNum+ "' />";
         $form.append(editor);
     }

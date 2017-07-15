@@ -4,11 +4,22 @@
 
     <!--根据座位号查询座位信息-->
     <select id="findSeatByNum" resultType="com.xoqao.web.bean.seat.Seat">
-       SELECT  sid,seatnumber,seatstate,userid,seattype FROM seat WHERE seatnumber LIKE '${number}'
+       SELECT  sid,seatnumber,floor,seatstate,userid,seattype FROM seat WHERE seatnumber LIKE '${number}'
    </select>
 
     <!--根据sid更新座位状态-->
     <update id="updateSeat">
         UPDATE seat SET seatstate=#{state},userid =#{userid}  WHERE  sid=#{sid}
     </update>
+
+    <!--根据楼区查找楼层-->
+    <select id="findFloor" resultType="java.lang.String">
+        SELECT DISTINCT floor FROM seat WHERE floor LIKE '${floor}%'
+    </select>
+
+    <!--根据楼层喝状态查找数量-->
+    <select id="findCountBystate" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM seat WHERE floor LIKE '${floor}%' AND seatstate =#{state}
+    </select>
+
 </mapper>
