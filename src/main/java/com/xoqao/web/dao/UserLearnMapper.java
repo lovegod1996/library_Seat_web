@@ -95,7 +95,7 @@ public interface UserLearnMapper {
     List<UserLearn> findUserLearnByUidPage(@Param("uid") Integer uid, @Param("startRow") Integer startRow, @Param("pageSize") Integer pageSize)throws Exception;
 
     /**
-     * 查找微信失信记录
+     * 查找用户失信记录
      * @param uid
      * @return
      * @throws Exception
@@ -104,4 +104,11 @@ public interface UserLearnMapper {
 
     List<UserLearn> findUserLearnPerByUidPage(@Param("uid") Integer uid, @Param("startRow") Integer startRow, @Param("pageSize") Integer pageSize)throws Exception;
 
+    /**
+     * 查找用户最新预约
+     * @param uid
+     * @return
+     * @throws Exception
+     */
+    UserLearn findUserLearnNew(@Param("uid") Integer uid)throws Exception;
 }

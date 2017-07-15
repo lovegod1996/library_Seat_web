@@ -88,4 +88,9 @@ public class UserLearnServiceImpl implements UserLearnService {
         List<UserLearn> userLearnPerByUidPage = userLearnMapper.findUserLearnPerByUidPage(uid, startRow, pageSize);
         return userLearnPerByUidPage;
     }
+
+    public UserLearn findUserLearnNew(Integer uid) throws Exception {
+        UserLearn userLearnNew = userLearnMapper.findUserLearnNew(uid);
+        return userLearnNew;
+    }
 }

@@ -7,8 +7,16 @@ package com.xoqao.web.commen;
  * Email:dx96_j@163.com
  */
 public class CommenValue {
-
+    /**
+     * 预约最长时长
+     */
     public static  Integer MAX_LongTime=240;
-
+    /**
+     * 最长迟到时间
+     */
     public static Integer MAX_LATER=15;
+    /**
+     * 最多失信次数
+     */
+    public static Integer MAX_UNPERMISE=3;
 }

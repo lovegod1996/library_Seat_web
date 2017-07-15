@@ -49,7 +49,10 @@
         <div>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="<%=request.getContextPath()%>/" target="_parent">首页</a></li>
-                <li><a href="<%=request.getContextPath()%>/jsp/book_Seat_User" target="mainFrame_User">预约</a></li>
+
+                <c:if test="${sessionScope.user !=null}">
+                    <li><a href="<%=request.getContextPath()%>/jsp/book_Seat_User" target="mainFrame_User">预约</a></li>
+                </c:if>
                 <%--<li><a href="#">SVN</a></li>--%>
             </ul>
         </div>

@@ -385,7 +385,6 @@ public class admin_pageController {
             model.addAttribute("nullList", "暂无数据");
             return "admin_page/Seat_In_Empty";
         }
-
     }
 
     public static HttpSession getSession() {
