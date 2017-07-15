@@ -17,6 +17,9 @@
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
 
+    <%--验证表单--%>
+    <script src="<%=request.getContextPath()%>/js/checkForm.js"></script>
+
     <style type="text/css">
         body {
             padding-top: 20px;
@@ -47,37 +50,43 @@
 <body>
 <div id="wrapper">
     <div class="col-sm-12">
-        <form class="form-horizontal" role="form" name="addform" action="<%= request.getContextPath()%>/view/aduserSub" method="post" target="mainFrame_Admin">
+        <form class="form-horizontal" role="form" name="addform" action="<%= request.getContextPath()%>/view/aduserSub"
+              method="post" target="mainFrame_Admin">
 
             <div class="form-group">
                 <label class="control-label" style="float: left">姓名</label>
                 <div class="col-sm-7" style="float: left">
-                    <input type="text" name="name" class="layui-input" placeholder="输入" required>
+                    <input type="text" name="name" id="checkname" class="layui-input" placeholder="输入" required
+                           >
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label" style="float: left">学号</label>
                 <div class="col-sm-7" style="float: left">
-                    <input type="text" name="sno" class="layui-input" placeholder="输入" required>
+                    <input type="text" name="sno" id="checkstudentid" class="layui-input" placeholder="输入" required
+                           >
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label" style="float: left">学院</label>
                 <div class="col-sm-7" style="float: left">
-                    <input type="text" name="college" class="layui-input" placeholder="输入" required>
+                    <input type="text" name="college" id="checkcollege" class="layui-input" placeholder="输入" required
+                           >
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label" style="float: left">专业</label>
                 <div class="col-sm-7" style="float: left">
-                    <input type="text" name="major" class="layui-input" placeholder="输入" required>
+                    <input type="text" name="major" id="checkmajor" class="layui-input" placeholder="输入" required
+                           >
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label" style="float: left">班级</label>
                 <div class="col-sm-7" style="float: left">
-                    <input type="text" name="classes" class="layui-input" placeholder="输入" required>
+                    <input type="text" name="classes" id="checkclass" class="layui-input" placeholder="输入" required
+                           >
                 </div>
             </div>
 

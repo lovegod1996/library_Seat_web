@@ -1,7 +1,6 @@
 package com.xoqao.web.controller;
 
 import com.xoqao.web.bean.user.User;
-import com.xoqao.web.bean.userbook.UserLearn;
 import com.xoqao.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +33,16 @@ public class Admin_Controller {
     @RequestMapping("/setNewTime")
     public String setNewTime(Model model) throws Exception {
         return "admin_page/SetNewTime";
+    }
+
+    @RequestMapping("/managing_Seat")
+    public String managing_Seat(Model model)throws Exception{
+        return "admin_page/Managing_Seat";
+    }
+
+    @RequestMapping("/managing_Floor")
+    public String mnaging_Floor(Model model)throws Exception{
+        return "admin_page/Managing_Floor";
     }
 
     @RequestMapping("/managing_Users")

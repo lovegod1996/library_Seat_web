@@ -17,9 +17,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- Bootstrap Core CSS -->
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <%--layui 日期选择控件--%>
+    <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+
+    <%--验证表单--%>
+    <script src="<%=request.getContextPath()%>/js/checkForm.js"></script>
 
     <script language="JavaScript" type="text/javascript">
         //定义了楼层的二维数组，里面的顺序跟楼的顺序是相同的。通过selectedIndex获得楼的下标值来得到相应的楼层数组
@@ -110,6 +113,19 @@
         });
     </script>
 
+    <style>
+        #seatNum{
+            cursor: pointer;
+        }
+        #seatNum:hover #show_msg{
+            display: block;
+        }
+
+        #seatNum #show_msg{
+            display: none;
+        }
+    </style>
+
 </head>
 <body>
 <div class="col-sm-8">
@@ -155,7 +171,7 @@
                         <td>${seat.seattype}</td>
                         <td>空闲中</td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-sm" onclick="check()">入座</button>
+                            <button type="button" id="inSeat" class="btn btn-primary btn-sm" onclick="check()">入座</button>
                         </td>
                     </tr>
                 </c:forEach>
@@ -227,24 +243,24 @@
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body" style="height: 400px">
-            <form class="form-horizontal" role="form" action="<%= request.getContextPath()%>/jsp/adSeatBookSub" method="post" onsubmit="getnum(this)">
+            <form class="form-horizontal" role="form" action="<%= request.getContextPath()%>/jsp/adSeatBookSub" method="post" onsubmit="getnum(this);return checkStudentID()">
                 <div class="form-group">
                     <label class="col-sm-3 control-label">座位号</label>
                     <div class="col-sm-9">
-                        <label type="text" class="layui-input"  id="seatNum" placeholder="点击预约自动填充" style="width: 220px"></label>
+                        <label type="text" class="layui-input" id="seatNum" style="width: 220px"><span id="show_msg">点击入座自动填入</span></label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">学号</label>
                     <div class="col-sm-9">
-                        <input type="text" class="layui-input" name="sno" id="studentID" placeholder="请输入学号" required style="width: 220px">
+                        <input type="text" class="layui-input" name="sno" id="checkstudentid" required placeholder="请输入学号" style="width: 220px" onblur="checkStudentID()">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">开始</label>
                     <div class="col-sm-9">
                         <div class="layui-inline">
-                            <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px" required
+                            <input class="layui-input" name="stime" placeholder="开始时间" required style="width: 220px"
                                    onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm',min: laydate.now(0), max: laydate.now(+1)})">
                             <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
                         </div>
@@ -254,12 +270,12 @@
                     <label class="col-sm-3 control-label">结束</label>
                     <div class="col-sm-9">
                         <div class="layui-inline">
-                            <input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px" required
+                            <input class="layui-input" name="etime" required placeholder="结束时间" style="width: 220px"
                                    onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm',min: laydate.now(0), max: laydate.now(+1)})">
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">确定</button>
+                <button type="submit" class="btn btn-primary" onclick="checkStudentID()">确定</button>
             </form>
         </div>
         <!-- /.panel-body -->
@@ -274,20 +290,11 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-<!-- Metis Menu Plugin JavaScript -->
-<script src="<%= request.getContextPath()%>/vendor/metisMenu/metisMenu.min.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
-
-<script src="<%=request.getContextPath()%>/layui/layui.js"></script>
-
 <script type="text/javascript">
     function getnum(form) {
         var $form = $(form);
 //        var seatNum=$("#seatNum").val();
         var seatNum=document.getElementById("seatNum").innerText;
-        alert(seatNum);
         var editor = "<input type='hidden' name='seatNum' value='" + seatNum+ "' />";
         $form.append(editor);
     }

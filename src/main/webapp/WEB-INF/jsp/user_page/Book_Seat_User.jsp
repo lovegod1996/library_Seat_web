@@ -106,6 +106,19 @@
         }
     </script>
 
+    <style>
+        #seatNum{
+            cursor: pointer;
+        }
+        #seatNum:hover #show_msg{
+            display: block;
+        }
+
+        #seatNum #show_msg{
+            display: none;
+        }
+    </style>
+
 </head>
 <body>
 <div id="wrapper">
@@ -177,7 +190,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">座位号</label>
                         <div class="col-sm-9">
-                            <label type="text" class="layui-input" id="seatNum" placeholder="点击预约自动填充" style="width: 220px"></label>
+                            <label type="text" class="layui-input" id="seatNum" style="width: 220px"><span id="show_msg">点击入座自动填入</span></label>
                         </div>
                     </div>
                     <div class="form-group">

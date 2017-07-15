@@ -13,6 +13,8 @@
     <%--layui --%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+    <%--验证表单--%>
+    <script src="<%=request.getContextPath()%>/js/checkForm.js"></script>
 
     <style type="text/css">
         body {
@@ -40,22 +42,22 @@
     <p style="font-size: 30px;margin-top: 20px">绑定手机号</p>
 </div>
 <hr>
-<form class="form-horizontal" role="form" name="resetform">
+<form class="form-horizontal" role="form" name="resetform" onsubmit="return checkForm_BindingPhonenumber()">
     <div class="layui-inline">
         <label class="layui-form-label">验证手机</label>
         <div class="layui-input-inline">
-            <input type="tel" name="phone" class="layui-input" required style="width: 250px">
+            <input type="tel" name="phone" id="checkphonenumber" class="layui-input" style="width: 250px" onblur="checkPhoneNumber()">
         </div>
     </div>
     <div class="form-group" style="margin-top: 10px">
         <label class="col-sm-3 layui-form-label">验证码</label>
         <div class="col-sm-7">
-            <input type="text" class="layui-input" id="code" placeholder="输入" style="width: 120px;float: left" required>
+            <input type="text" class="layui-input" id="checkcode" placeholder="输入" style="width: 120px;float: left" onblur="checkCode()">
             <input type="button" class="layui-btn layui-btn-primary" value="点击发送验证码" style="width: 120px;float: left;margin-left: 10px"
                    onclick="sendCode(this)"/>
         </div>
     </div>
-    <button type="submit" class="layui-btn">确定</button>
+    <button type="submit" class="layui-btn" onclick="checkForm_BindingPhonenumber()">确定</button>
 </form>
 
 <script type="text/javascript">

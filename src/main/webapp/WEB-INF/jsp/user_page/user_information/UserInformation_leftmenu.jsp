@@ -37,8 +37,6 @@
                                                  target="mainFrame_UserInformation">个人资料</a></li>
         <li class="layui-nav-item"><a href="<%=request.getContextPath()%>/view/study_List"
                                       target="mainFrame_UserInformation">学习记录</a></li>
-        <li class="layui-nav-item"><a href="<%=request.getContextPath()%>/view/study_Statistics"
-                                      target="mainFrame_UserInformation">学习统计</a></li>
         <li class="layui-nav-item"><a href="<%=request.getContextPath()%>/view/unpromise_List"
                                       target="mainFrame_UserInformation">失信记录</a></li>
         <li class="layui-nav-item">

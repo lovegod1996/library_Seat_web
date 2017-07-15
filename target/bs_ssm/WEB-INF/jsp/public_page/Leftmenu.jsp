@@ -52,10 +52,19 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-puzzle-piece fa-fw"></i> 座位管理</a>
+                <a href="#"><i class="fa fa-puzzle-piece fa-fw"></i> 座位管理<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="<%=request.getContextPath()%>/view/managing_Seat" target="mainFrame_Admin">增删座位管理</a>
+                    </li>
+                    <li>
+                        <a href="<%=request.getContextPath()%>/view/managing_Floor" target="mainFrame_Admin">开闭馆管理</a>
+                    </li>
+                </ul>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/view/managing_Users" target="mainFrame_Admin"><i class="fa fa-user fa-fw"></i> 用户管理</a>
+                <a href="<%=request.getContextPath()%>/view/managing_Users" target="mainFrame_Admin"><i
+                        class="fa fa-user fa-fw"></i> 用户管理</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-bell fa-fw"></i> 通知管理<span class="fa arrow"></span></a>
