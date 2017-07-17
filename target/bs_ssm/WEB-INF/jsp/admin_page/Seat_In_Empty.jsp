@@ -100,28 +100,19 @@
                     start.max = datas; //结束日选好后，重置开始日的最大日期
                 }
             };
-
-            document.getElementById('LAY_demorange_s').onclick = function () {
-                start.elem = this;
-                laydate(start);
-            };
-            document.getElementById('LAY_demorange_e').onclick = function () {
-                end.elem = this;
-                laydate(end);
-            }
-
         });
     </script>
 
     <style>
-        #seatNum{
+        #seatNum {
             cursor: pointer;
         }
-        #seatNum:hover #show_msg{
+
+        #seatNum:hover #show_msg {
             display: block;
         }
 
-        #seatNum #show_msg{
+        #seatNum #show_msg {
             display: none;
         }
     </style>
@@ -171,7 +162,8 @@
                         <td>${seat.seattype}</td>
                         <td>空闲中</td>
                         <td>
-                            <button type="button" id="inSeat" class="btn btn-primary btn-sm" onclick="check()">入座</button>
+                            <button type="button" id="inSeat" class="btn btn-primary btn-sm" onclick="check()">入座
+                            </button>
                         </td>
                     </tr>
                 </c:forEach>
@@ -243,7 +235,8 @@
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body" style="height: 400px">
-            <form class="form-horizontal" role="form" action="<%= request.getContextPath()%>/jsp/adSeatBookSub" method="post" onsubmit="getnum(this);return checkStudentID()">
+            <form class="form-horizontal" role="form" action="<%= request.getContextPath()%>/jsp/adSeatBookSub"
+                  method="post" onsubmit="getnum(this);return checkStudentID()">
                 <div class="form-group">
                     <label class="col-sm-3 control-label">座位号</label>
                     <div class="col-sm-9">
@@ -253,17 +246,16 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">学号</label>
                     <div class="col-sm-9">
-                        <input type="text" class="layui-input" name="sno" id="checkstudentid" required placeholder="请输入学号" style="width: 220px" onblur="checkStudentID()">
+                        <input type="text" class="layui-input" name="sno" id="checkstudentid" required
+                               placeholder="请输入学号" style="width: 220px" onblur="checkStudentID()">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">开始</label>
                     <div class="col-sm-9">
                         <div class="layui-inline">
-
                             <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px" required
                                    onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
-
                             <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
                         </div>
                     </div>
@@ -296,12 +288,13 @@
     function getnum(form) {
         var $form = $(form);
 //        var seatNum=$("#seatNum").val();
-        var seatNum=document.getElementById("seatNum").innerText;
-        var editor = "<input type='hidden' name='seatNum' value='" + seatNum+ "' />";
+        var seatNum = document.getElementById("seatNum").innerText;
+        var editor = "<input type='hidden' name='seatNum' value='" + seatNum + "' />";
         $form.append(editor);
     }
 
-    <c:if test="${!empty error_msg}">alert("${error_msg}");</c:if>
+    <c:if test="${!empty error_msg}">alert("${error_msg}");
+    </c:if>
 
 </script>
 

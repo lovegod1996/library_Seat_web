@@ -44,52 +44,82 @@
             width: 100px;
             height: 100px;
         }
+
+        .upload {
+            padding: 4px 10px;
+            height: 20px;
+            line-height: 20px;
+            position: relative;
+            border: 1px solid #999;
+            text-decoration: none;
+            color: #666;
+        }
+
+        .change {
+            position: absolute;
+            overflow: hidden;
+            right: 0;
+            top: 0;
+            opacity: 0;
+        }
+
+        .imgCom {
+            width: 100px;
+            height: 100px;
+            border:1px solid #34A8FF;
+        }
+
+        .imgCom > img {
+            width: 100%;
+            height: 100%;
+        }
     </style>
+    <script type="text/javascript">
+        function preview(file) {
+            var prevDiv = document.getElementById('preview');
+            if (file.files && file.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (evt) {
+                    prevDiv.innerHTML = '<img src="' + evt.target.result + '" />';
+                }
+                reader.readAsDataURL(file.files[0]);
+            }
+            else {
+                prevDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+            }
+        }
+    </script>
 </head>
 <body>
 <div id="wrapper">
-<<<<<<< HEAD
-    <div class="user_img">
-        <img src="<%=request.getContextPath()%>/img/ZZTI.jpg">
-    </div>
-    <div class="user_msg">
-        <label class="control-label">姓名</label><label class="control-label" style="margin-left: 20px">${users.name}</label><br>
-        <label class="control-label">学号</label><label class="control-label"
-                                                      style="margin-left: 20px">${users.sno}</label><br>
-        <label class="control-label">学院</label><label class="control-label" style="margin-left: 20px">${users.college}</label><br>
-        <label class="control-label">专业</label><label class="control-label" style="margin-left: 20px">${users.major}</label><br>
-        <label class="control-label">班级</label><label class="control-label" style="margin-left: 20px">${users.classes}</label><br>
-
-    </div>
-    <div class="row" style="width: 70%">
-=======
     <div class="row">
-        <div class="user_img">
-            <img src="<%=request.getContextPath()%>/img/ZZTI.jpg">
+        <div class="user_img" style="text-align: center;display:table-cell; vertical-align:middle;">
+            <p><div class="imgCom" id="preview"></div></p>
+            <p><a href="javascript:;" class="upload" style="margin-top: 20px">点击上传
+                <input class="change" type="file" multiple="multiple" onchange="preview(this)"/></a></p>
         </div>
         <div class="user_msg">
-            <label class="control-label">姓名</label><label class="control-label" style="margin-left: 20px">${users.name}</label><br>
+            <label class="control-label">姓名</label><label class="control-label"
+                                                          style="margin-left: 20px">${users.name}</label><br>
             <label class="control-label">学号</label><label class="control-label"
                                                           style="margin-left: 20px">${users.sno}</label><br>
-            <label class="control-label">学院</label><label class="control-label" style="margin-left: 20px">${users.college}</label><br>
-            <label class="control-label">专业</label><label class="control-label" style="margin-left: 20px">${users.major}</label><br>
-            <label class="control-label">班级</label><label class="control-label" style="margin-left: 20px">${users.classes}</label><br>
+            <label class="control-label">学院</label><label class="control-label"
+                                                          style="margin-left: 20px">${users.college}</label><br>
+            <label class="control-label">专业</label><label class="control-label"
+                                                          style="margin-left: 20px">${users.major}</label><br>
+            <label class="control-label">班级</label><label class="control-label"
+                                                          style="margin-left: 20px">${users.classes}</label><br>
 
         </div>
     </div>
 
     <div class="row">
->>>>>>> 1Q841995-master
         <div class="layui-tab">
             <ul class="layui-tab-title">
                 <li class="layui-this">天视图</li>
                 <li>周视图</li>
                 <li>月视图</li>
-<<<<<<< HEAD
-                <li>年视图</li>
-=======
                 <li>学年视图</li>
->>>>>>> 1Q841995-master
             </ul>
             <div class="layui-tab-content">
                 <%-- 一页--%>

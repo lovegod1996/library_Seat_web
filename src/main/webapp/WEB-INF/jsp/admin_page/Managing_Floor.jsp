@@ -25,13 +25,6 @@
             <div class="layui-tab-item layui-show">
                 <div class="layui-form">
                     <table class="layui-table">
-                        <colgroup>
-                            <col width="50">
-                            <col width="150">
-                            <col width="150">
-                            <col width="200">
-                            <col>
-                        </colgroup>
                         <thead>
                         <tr>
                             <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
@@ -45,19 +38,16 @@
                             <td><input type="checkbox" name="" lay-skin="primary"></td>
                             <td>南一</td>
                             <td>
-                                <input class="layui-input" name="stime" placeholder="开始时间" required style="width: 220px"
-                                       onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm'})">
-                            </td>
-                            <td>
-                                <button class="layui-btn">闭馆</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" lay-skin="primary"></td>
-                            <td>南二</td>
-                            <td>
-                                <input class="layui-input" name="stime" placeholder="开始时间" required style="width: 220px"
-                                       onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm'})">
+                                <div class="layui-form-pane">
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-inline">
+                                            <input class="layui-input" placeholder="开始时间" id="LAY_demorange_s_south">
+                                        </div>
+                                        <div class="layui-input-inline">
+                                            <input class="layui-input" placeholder="截止时间" id="LAY_demorange_e_south">
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                             <td>
                                 <button class="layui-btn">闭馆</button>
@@ -71,13 +61,6 @@
             <div class="layui-tab-item">
                 <div class="layui-form">
                     <table class="layui-table">
-                        <colgroup>
-                            <col width="50">
-                            <col width="150">
-                            <col width="150">
-                            <col width="200">
-                            <col>
-                        </colgroup>
                         <thead>
                         <tr>
                             <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
@@ -91,19 +74,16 @@
                             <td><input type="checkbox" name="" lay-skin="primary"></td>
                             <td>北一</td>
                             <td>
-                                <input class="layui-input" name="stime" placeholder="开始时间" required style="width: 220px"
-                                       onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm'})">
-                            </td>
-                            <td>
-                                <button class="layui-btn">闭馆</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" name="" lay-skin="primary"></td>
-                            <td>北二</td>
-                            <td>
-                                <input class="layui-input" name="stime" placeholder="开始时间" required style="width: 220px"
-                                       onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm'})">
+                                <div class="layui-form-pane">
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-inline">
+                                            <input class="layui-input" placeholder="开始时间" id="LAY_demorange_s_north">
+                                        </div>
+                                        <div class="layui-input-inline">
+                                            <input class="layui-input" placeholder="截止时间" id="LAY_demorange_e_north">
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                             <td>
                                 <button class="layui-btn">闭馆</button>
@@ -170,6 +150,8 @@
         var laydate = layui.laydate;
         var start = {
             min: laydate.now()
+            ,format: 'YYYY-MM-DD hh:mm:ss' //日期格式
+            , istime: true
             , max: '2099-06-16 23:59:59'
             , istoday: false
             , choose: function (datas) {
@@ -180,6 +162,8 @@
 
         var end = {
             min: laydate.now()
+            ,format: 'YYYY-MM-DD hh:mm:ss' //日期格式
+            , istime: true
             , max: '2099-06-16 23:59:59'
             , istoday: false
             , choose: function (datas) {
@@ -187,11 +171,19 @@
             }
         };
 
-        document.getElementById('LAY_demorange_s').onclick = function () {
+        document.getElementById('LAY_demorange_s_south').onclick = function () {
             start.elem = this;
             laydate(start);
         };
-        document.getElementById('LAY_demorange_e').onclick = function () {
+        document.getElementById('LAY_demorange_s_north').onclick = function () {
+            start.elem = this;
+            laydate(start);
+        };
+        document.getElementById('LAY_demorange_e_south').onclick = function () {
+            end.elem = this;
+            laydate(end);
+        };
+        document.getElementById('LAY_demorange_e_north').onclick = function () {
             end.elem = this;
             laydate(end);
         }

@@ -20,6 +20,9 @@
     <%--layui --%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+
+    <%--获取当前时间--%>
+    <script src="<%=request.getContextPath()%>/js/nowtime.js"></script>
     <script>
         layui.use('laydate', function () {
             var laydate = layui.laydate;
@@ -135,6 +138,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-bar-chart-o fa-fw"></i> 空闲座位统计
+                <font id="nowtime" style="margin-left: 20px"></font>
                 <a href="${pageContext.request.contextPath }/jsp/book_Seat_User" class="btn btn-success btn-xs"
                    style="margin-left:20px ">点击刷新</a>
                 <div class="pull-right">

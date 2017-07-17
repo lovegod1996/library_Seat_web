@@ -25,6 +25,9 @@
     <link href="<%= request.getContextPath()%>/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet"
           type="text/css">
 
+    <%--获取当前时间--%>
+    <script src="<%=request.getContextPath()%>/js/nowtime.js"></script>
+
     <style type="text/css">
         body {
             margin-left: 2%;
@@ -39,6 +42,9 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-bar-chart-o fa-fw"></i> 座位实时使用状态
+                <font id="nowtime" style="margin-left: 20px;"></font>
+                <a href="${pageContext.request.contextPath }/jsp/main_Admin" class="btn btn-success btn-xs"
+                   style="margin-left:20px ">点击刷新</a>
                 <div class="pull-right">
                     <FORM METHOD=POST ACTION="" name="selectform">
                         <SELECT NAME="building" id="floorSide" onChange="getData()">
@@ -108,7 +114,7 @@
 
     function getData() {
         // 基于准备好的dom，初始化echarts图表
-        var myChart = echarts.init(document.getElementById('main'));
+        var myChart = echarts.init(document.getElementById('main'),'macarons');
 
         myChart.showLoading({text: '正在努力的读取数据中...'});    //数据加载完之前先显示一段简单的loading动画
 
