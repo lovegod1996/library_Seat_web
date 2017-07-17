@@ -991,7 +991,7 @@
       <updated>1500082136783</updated>
       <workItem from="1500082150772" duration="29744000" />
       <workItem from="1500185831927" duration="1896000" />
-      <workItem from="1500257703382" duration="12904000" />
+      <workItem from="1500257703382" duration="12910000" />
     </task>
     <task id="LOCAL-00001" summary="完成用户前端预约">
       <created>1500090370699</created>
@@ -1035,14 +1035,22 @@
       <option name="project" value="LOCAL" />
       <updated>1500280389723</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="完成修改旧密码">
+      <created>1500281447663</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1500281447663</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44544000" />
+    <option name="totallyTimeSpent" value="44550000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
