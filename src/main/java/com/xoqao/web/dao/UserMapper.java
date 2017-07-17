@@ -5,6 +5,7 @@ import com.xoqao.web.bean.user.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Service
@@ -25,4 +26,9 @@ public interface UserMapper {
     List<String> findMajorByCollege(@Param("college") String college)throws Exception;
 
     User findUserBySno(@Param("sno") String sno)throws Exception;
+
+
+    void updatePass(@Param("uid") Integer uid,@Param("password")String password)throws Exception;
+
+    void updatePhone(@Param("uid")Integer uid,@Param("phone")String phone)throws Exception;
 }

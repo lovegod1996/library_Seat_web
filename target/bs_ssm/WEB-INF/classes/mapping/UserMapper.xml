@@ -30,8 +30,6 @@
     </selectKey>
     INSERT INTO  user ( nick,sno,password,college,classes,phone,name,major ) VALUES (#{user.nick},#{user.sno},#{user.password},#{user.college},#{user.classes},#{user.phone},#{user.name},#{user.major})
   </insert>
-
-
   <!--查询所有的学院-->
   <select id="findAllCollege" resultType="java.lang.String">
     SELECT college from user GROUP BY  college
@@ -45,4 +43,13 @@
     <select id="findUserBySno" resultType="com.xoqao.web.bean.user.User">
          SELECT  uid,nick,sno,password,college,classes,phone,name,major  FROM  user where  sno LIKE '${sno}'
     </select>
+
+    <!--根据学生id修改学生密码-->
+    <update id="updatePass">
+        UPDATE  user SET password =#{password} WHERE  uid=#{uid}
+    </update>
+    <!--根据学生id修改手机号-->
+    <update id="updatePhone">
+        UPDATE user SET  phone=#{phone} WHERE uid=#{uid}
+    </update>
 </mapper>
