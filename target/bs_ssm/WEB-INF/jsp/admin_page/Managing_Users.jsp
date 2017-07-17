@@ -93,7 +93,7 @@
             <button type="button" class="layui-btn layui-btn-mini layui-btn-danger" style="margin-left:20px ">删除用户
             </button>
             <a href="${pageContext.request.contextPath }/view/managing_Users.form?year=${year}&college=${college}&major=${major}"
-               class="layui-btn layui-btn-mini layui-btn-normal" style="margin-left:20px ">点击刷新
+               class="btn btn-success btn-xs" style="margin-left:20px ">点击刷新
             </a>
 
         </div>
