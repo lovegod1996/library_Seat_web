@@ -206,15 +206,8 @@
                     <label class="col-sm-3 control-label">开始</label>
                     <div class="col-sm-9">
                         <div class="layui-inline">
-<<<<<<< HEAD
-
                             <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px" required
                                    onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
-
-=======
-                            <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px" required
-                                   onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
->>>>>>> 1Q841995-master
                             <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
                         </div>
                     </div>

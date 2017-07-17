@@ -205,68 +205,6 @@
             <!-- /.panel-heading -->
             <div class="panel-body" style="height: 400px">
 
-<<<<<<< HEAD
-<c:choose>
-    <c:when test="${userLearn!=null}">
-        <table class="table" width="80%">
-            <caption style="text-align: center">您已预约座位</caption>
-            <tbody>
-            <tr>
-                <td>
-                    <label for="hasseatnum">预约座位号</label>
-                    <span id="hasseatnum">${userLearn.seatnumber}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="booktime">预约时间</label>
-                    <span id="booktime"><fmt:formatDate value="${userLearn.date}" pattern="yyyy-MM-dd HH:mm:ss"/></span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="timestep">预约时间段</label>
-                    <span id="timestep">${userLearn.period}</span>
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: center">
-                    <a href="<%=request.getContextPath()%>/jsp/releaseUserBook?bid=${userLearn.bid}" class="btn btn-danger btn-sm">释放</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </c:when>
-    <c:otherwise>
-        <form class="form-horizontal" role="form" action="<%= request.getContextPath()%>/jsp/bookSeatUserSub" method="post" onsubmit="getnum(this)">
-            <div class="form-group">
-                <label class="col-sm-3 control-label">座位号</label>
-                <div class="col-sm-9">
-                    <label type="text" class="layui-input" id="seatNum" placeholder="点击预约自动填充" style="width: 220px"></label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">开始</label>
-                <div class="col-sm-9">
-                    <div class="layui-inline">
-                        <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px" required
-                               onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
-                            <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">结束</label>
-                <div class="col-sm-9">
-                    <div class="layui-inline">
-                        <input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px" required
-                               onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
-                    </div>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">确定</button>
-        </form>
-=======
                 <c:choose>
                     <c:when test="${userLearn!=null}">
                         <table class="table" width="80%">
@@ -333,7 +271,6 @@
                             </div>
                             <button type="submit" class="btn btn-primary">确定</button>
                         </form>
->>>>>>> 1Q841995-master
 
                     </c:otherwise>
                 </c:choose>
