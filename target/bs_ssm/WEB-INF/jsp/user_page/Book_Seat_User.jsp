@@ -96,40 +96,15 @@
     </script>
 
     <%--自动填充座位号--%>
-    <script language=javascript>
-        var selectedTr = null;
-        function c1(obj) {
-            obj.style.backgroundColor = '#F5F5F5'; //把点到的那一行变颜色;
-            if (selectedTr != null)
-                selectedTr.style.removeAttribute("backgroundColor");
-            if (selectedTr == obj)
-                selectedTr = null;//加上此句，以控制点击变白，再点击反灰
-            else
-                selectedTr = obj;
-        }
-        /*得到选中行的第二列的座位号*/
-        function check() {
-            if (selectedTr != null) {
-                var str = selectedTr.cells[1].childNodes[0].value;
-                document.getElementById("seatNum").innerHTML = str;
-            } else {
-                alert("请选择一行");
-            }
+    <script language="javascript">
+        function getTableContent(node) {
+            // 按钮的父节点的父节点是tr。
+            var tr1 = node.parentNode.parentNode;
+//            alert(tr1.rowIndex);
+//            alert(tb1.rows[tr1.rowIndex].cells[1].getElementsByTagName("INPUT")[0].value);
+            document.getElementById("seatNum").innerHTML = tb1.rows[tr1.rowIndex].cells[1].getElementsByTagName("INPUT")[0].value;
         }
     </script>
-
-    <style>
-        #seatNum{
-            cursor: pointer;
-        }
-        #seatNum:hover #show_msg{
-            display: block;
-        }
-
-        #seatNum #show_msg{
-            display: none;
-        }
-    </style>
 
 </head>
 <body>
@@ -156,7 +131,7 @@
             </div>
             <!-- /.panel-heading -->
             <div class="table table-condensed">
-                <table class="table">
+                <table class="table" id="tb1">
                     <thead>
                     <tr>
                         <th>序号</th>
@@ -169,10 +144,14 @@
                     <c:forEach items="${seats}" var="seat" varStatus="step">
                         <tr onclick="c1(this);">
                             <td>${step.index}</td>
-                            <td><input type="text" disabled="disabled" style="border:none;background-color: transparent;width: 100px" value="${seat.seatnumber}"></td>
+                            <td><input type="text" disabled="disabled" name="INPUT"
+                                       style="border:none;background-color: transparent;width: 100px"
+                                       value="${seat.seatnumber}"></td>
                             <td>空闲中</td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-sm" onclick="check()">预约</button>
+                                <button type="button" class="btn btn-primary btn-sm" onclick="getTableContent(this)">
+                                    预约
+                                </button>
                             </td>
                         </tr>
                     </c:forEach>
@@ -245,69 +224,75 @@
             <!-- /.panel-heading -->
             <div class="panel-body" style="height: 400px">
 
-<c:choose>
-    <c:when test="${userLearn!=null}">
-        <table class="table" width="80%">
-            <caption style="text-align: center">您已预约座位</caption>
-            <tbody>
-            <tr>
-                <td>
-                    <label for="hasseatnum">预约座位号</label>
-                    <span id="hasseatnum">${userLearn.seatnumber}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="booktime">预约时间</label>
-                    <span id="booktime"><fmt:formatDate value="${userLearn.date}" pattern="yyyy-MM-dd HH:mm:ss"/></span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="timestep">预约时间段</label>
-                    <span id="timestep">${userLearn.period}</span>
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: center">
-                    <a href="<%=request.getContextPath()%>/jsp/releaseUserBook?bid=${userLearn.bid}" class="btn btn-danger btn-sm">释放</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </c:when>
-    <c:otherwise>
-        <form class="form-horizontal" role="form" action="<%= request.getContextPath()%>/jsp/bookSeatUserSub" method="post" onsubmit="getnum(this)">
-            <div class="form-group">
-                <label class="col-sm-3 control-label">座位号</label>
-                <div class="col-sm-9">
-                    <label type="text" class="layui-input" id="seatNum" placeholder="点击预约自动填充" style="width: 220px"></label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">开始</label>
-                <div class="col-sm-9">
-                    <div class="layui-inline">
-                        <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px" required
-                               onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
-                            <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">结束</label>
-                <div class="col-sm-9">
-                    <div class="layui-inline">
-                        <input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px" required
-                               onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
-                    </div>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">确定</button>
-        </form>
+                <c:choose>
+                    <c:when test="${userLearn!=null}">
+                        <table class="table" width="80%">
+                            <caption style="text-align: center">您已预约座位</caption>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <label for="hasseatnum">预约座位号</label>
+                                    <span id="hasseatnum">${userLearn.seatnumber}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="booktime">预约时间</label>
+                                    <span id="booktime"><fmt:formatDate value="${userLearn.date}"
+                                                                        pattern="yyyy-MM-dd HH:mm:ss"/></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="timestep">预约时间段</label>
+                                    <span id="timestep">${userLearn.period}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center">
+                                    <a href="<%=request.getContextPath()%>/jsp/releaseUserBook?bid=${userLearn.bid}"
+                                       class="btn btn-danger btn-sm">释放</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </c:when>
+                    <c:otherwise>
+                        <form class="form-horizontal" role="form"
+                              action="<%= request.getContextPath()%>/jsp/bookSeatUserSub" method="post"
+                              onsubmit="getnum(this)">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">座位号</label>
+                                <div class="col-sm-9">
+                                    <label type="text" class="layui-input" id="seatNum" style="width: 220px">点击预约自动填充</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">开始</label>
+                                <div class="col-sm-9">
+                                    <div class="layui-inline">
+                                        <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px"
+                                               required
+                                               onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
+                                            <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">结束</label>
+                                <div class="col-sm-9">
+                                    <div class="layui-inline">
+                                        <input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px"
+                                               required
+                                               onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">确定</button>
+                        </form>
 
-    </c:otherwise>
-</c:choose>
+                    </c:otherwise>
+                </c:choose>
 
             </div>
             <!-- /.panel-body -->
@@ -322,23 +307,18 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-<!-- Metis Menu Plugin JavaScript -->
-<script src="<%= request.getContextPath()%>/vendor/metisMenu/metisMenu.min.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
-
 <script type="text/javascript">
     function getnum(form) {
         var $form = $(form);
 //        var seatNum=$("#seatNum").val();
-        var seatNum=document.getElementById("seatNum").innerText;
+        var seatNum = document.getElementById("seatNum").innerText;
 //        alert(seatNum);
-        var editor = "<input type='hidden' name='seatNum' value='" + seatNum+ "' />";
+        var editor = "<input type='hidden' name='seatNum' value='" + seatNum + "' />";
         $form.append(editor);
     }
 
-    <c:if test="${!empty error_msg}">alert("${error_msg}");</c:if>
+    <c:if test="${!empty error_msg}">alert("${error_msg}");
+    </c:if>
 
 </script>
 

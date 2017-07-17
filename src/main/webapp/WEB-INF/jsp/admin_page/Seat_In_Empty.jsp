@@ -56,25 +56,13 @@
     </script>
 
     <%--自动填充座位号--%>
-    <script language=javascript>
-        var selectedTr = null;
-        function c1(obj) {
-            obj.style.backgroundColor = '#F5F5F5'; //把点到的那一行变颜色;
-            if (selectedTr != null)
-                selectedTr.style.removeAttribute("backgroundColor");
-            if (selectedTr == obj)
-                selectedTr = null;//加上此句，以控制点击变白，再点击反灰
-            else
-                selectedTr = obj;
-        }
-        /*得到选中行的第二列的座位号*/
-        function check() {
-            if (selectedTr != null) {
-                var str = selectedTr.cells[1].childNodes[0].value;
-                document.getElementById("seatNum").innerHTML = str;
-            } else {
-                alert("请选择一行");
-            }
+    <script language="javascript">
+        function getTableContent(node) {
+            // 按钮的父节点的父节点是tr。
+            var tr1 = node.parentNode.parentNode;
+//            alert(tr1.rowIndex);
+//            alert(tb1.rows[tr1.rowIndex].cells[1].getElementsByTagName("INPUT")[0].value);
+            document.getElementById("seatNum").innerHTML = tb1.rows[tr1.rowIndex].cells[1].getElementsByTagName("INPUT")[0].value;
         }
     </script>
 
@@ -103,20 +91,6 @@
         });
     </script>
 
-    <style>
-        #seatNum {
-            cursor: pointer;
-        }
-
-        #seatNum:hover #show_msg {
-            display: block;
-        }
-
-        #seatNum #show_msg {
-            display: none;
-        }
-    </style>
-
 </head>
 <body>
 <div class="col-sm-8">
@@ -141,7 +115,7 @@
         </div>
         <!-- /.panel-heading -->
         <div class="table table-condensed">
-            <table class="table">
+            <table class="table" id="tb1">
                 <thead>
                 <tr>
                     <th>序号</th>
@@ -156,13 +130,13 @@
                     <tr onclick="c1(this);">
                         <td>${seat.sid}</td>
                             <%--<td>${seat.seatnumber}</td>--%>
-                        <td><input type="text" disabled="disabled"
+                        <td><input type="text" disabled="disabled" name="INPUT"
                                    style="border:none;background-color: transparent;width: 100px"
                                    value=${seat.seatnumber}></td>
                         <td>${seat.seattype}</td>
                         <td>空闲中</td>
                         <td>
-                            <button type="button" id="inSeat" class="btn btn-primary btn-sm" onclick="check()">入座
+                            <button type="button" id="inSeat" class="btn btn-primary btn-sm" onclick="getTableContent(this)">入座
                             </button>
                         </td>
                     </tr>
@@ -240,7 +214,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">座位号</label>
                     <div class="col-sm-9">
-                        <label type="text" class="layui-input" id="seatNum" style="width: 220px"><span id="show_msg">点击入座自动填入</span></label>
+                        <label type="text" class="layui-input" id="seatNum" style="width: 220px">点击入座自动填入</label>
                     </div>
                 </div>
                 <div class="form-group">
