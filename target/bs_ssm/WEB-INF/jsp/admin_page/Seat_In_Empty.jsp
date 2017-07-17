@@ -26,28 +26,6 @@
 
     <script language="JavaScript" type="text/javascript">
         //定义了楼层的二维数组，里面的顺序跟楼的顺序是相同的。通过selectedIndex获得楼的下标值来得到相应的楼层数组
-        var city = [
-            ["南1", "南2", "南3", "南4"],
-            ["北1", "北2", "北3", "北4"]
-        ];
-
-        function getCity() {
-            //获得南北楼下拉框的对象
-            var sltProvince = document.selectform.building;
-            //获得楼层下拉框的对象
-            var sltCity = document.selectform.floor;
-            //得到对应楼的楼层数组
-            var provinceCity = city[sltProvince.selectedIndex - 1];
-
-            //清空楼层下拉框，仅留提示选项
-            sltCity.length = 1;
-
-            //将楼层数组中的值填充到楼下拉框中
-            for (var i = 0; i < provinceCity.length; i++) {
-                sltCity[i + 1] = new Option(provinceCity[i], provinceCity[i]);
-            }
-        }
-
         function getData() {
             var floor = $("#floor").val();
             var url = "/LS/jsp/seat_In_Empty?floor=" + floor;
@@ -260,13 +238,10 @@
                     <label class="col-sm-3 control-label">开始</label>
                     <div class="col-sm-9">
                         <div class="layui-inline">
-<<<<<<< HEAD
+
                             <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px" required
                                    onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
-=======
-                            <input class="layui-input" name="stime" placeholder="开始时间" required style="width: 220px"
-                                   onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm',min: laydate.now(0), max: laydate.now(+1)})">
->>>>>>> 1Q841995-master
+
                             <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
                         </div>
                     </div>
@@ -275,13 +250,8 @@
                     <label class="col-sm-3 control-label">结束</label>
                     <div class="col-sm-9">
                         <div class="layui-inline">
-<<<<<<< HEAD
                             <input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px" required
                                    onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
-=======
-                            <input class="layui-input" name="etime" required placeholder="结束时间" style="width: 220px"
-                                   onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm',min: laydate.now(0), max: laydate.now(+1)})">
->>>>>>> 1Q841995-master
                         </div>
                     </div>
                 </div>
@@ -310,6 +280,52 @@
     }
 
     <c:if test="${!empty error_msg}">alert("${error_msg}");</c:if>
+
+
+    function getCity() {
+        $.ajax({
+            type: "post",
+            async: false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+            url: "${pageContext.request.contextPath }/admin/getfloors.form",    //getTrendData
+            data: "",
+            //  dataType : "json",        //返回数据形式为json
+            success: function (result) {
+//            alert(result);
+                //请求成功时执行该函数内容，result即为服务器返回的json对象
+//            result = eval(result);
+                var result = eval('(' + result + ')');
+                if (result) {
+
+                    //获得南北楼下拉框的对象
+                    var sltProvince = document.selectform.building;
+                    //获得楼层下拉框的对象
+                    var sltCity = document.selectform.floor;
+                    //得到对应楼的楼层数组
+                    var  south=[];
+                    var north=[];
+                    south=result.south;
+//                alert(south);
+                    north=result.north;
+
+                    var city = [
+                        south,
+                        north
+                    ];
+                    var provinceCity = city[sltProvince.selectedIndex - 1];
+                    //清空楼层下拉框，仅留提示选项
+                    sltCity.length = 1;
+                    //将楼层数组中的值填充到楼下拉框中
+                    for (var i = 0; i < provinceCity.length; i++) {
+                        sltCity[i + 1] = new Option(provinceCity[i], provinceCity[i]);
+                    }
+                }
+            },
+            error: function (errorMsg) {
+                //请求失败时执行该函数
+                alert("请求数据失败!");
+            }
+        });
+    }
 
 </script>
 

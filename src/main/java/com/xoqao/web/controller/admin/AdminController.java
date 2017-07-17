@@ -2,15 +2,18 @@ package com.xoqao.web.controller.admin;
 
 import com.xoqao.web.bean.admin.Admin;
 import com.xoqao.web.bean.news.News;
+import com.xoqao.web.bean.seat.Floors;
 import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.user.User;
 import com.xoqao.web.service.AdminService;
 import com.xoqao.web.service.NewsService;
+import com.xoqao.web.service.SeatService;
 import com.xoqao.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -35,6 +38,9 @@ public class AdminController {
     private NewsService newsService;
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private SeatService seatService;
 
     /**
      * 后台登录提交
@@ -216,7 +222,7 @@ public class AdminController {
      * @throws Exception
      */
     @RequestMapping("/editNewsSub")
-    public String newsEditSub(Model model,Integer page, Integer nid, String title, String content,HttpSession httpSession) throws Exception {
+    public String newsEditSub(Model model, Integer page, Integer nid, String title, String content, HttpSession httpSession) throws Exception {
         News news = new News();
         news.setTitle(title);
         news.setNid(nid);
@@ -258,6 +264,23 @@ public class AdminController {
         }
     }
 
+    /**
+     * 获取所有楼层信息
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/getfloors")
+    public @ResponseBody
+    Floors getFloors() throws Exception {
+        List<String> south = seatService.findFloor("南");
+        List<String> north = seatService.findFloor("北");
+
+        Floors floors = new Floors();
+        floors.setNorth(north);
+        floors.setSouth(south);
+        return floors;
+    }
 
     public static HttpSession getSession() {
         HttpSession session = null;
