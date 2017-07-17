@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -127,6 +128,26 @@ public class User_Controller {
     public String setNewPassword(Model model) throws Exception {
         return "user_page/user_information/SetNewPassword";
     }
+
+    /**
+     * 设置新密码提交
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/setNewPassSub")
+    public String setNewPassSub(Model model,String oldPwd,String newPwd,HttpSession httpSession)throws Exception{
+        User user = (User) httpSession.getAttribute("user");
+        if (oldPwd.trim().equals(user.getPassword())){
+              userService.updatePhone(user.getUid(),newPwd);
+            return"forward:/information_User_Self";
+        }else{
+            model.addAttribute("error_msg","您的旧密码输入错误，请重新输入！");
+            return "user_page/user_information/SetNewPassword";
+        }
+
+    }
+
 
     @RequestMapping("setNewPhonenumber")
     public String setNewPhonenumber(Model model) throws Exception {

@@ -57,4 +57,12 @@ public class UserServiceImpl implements UserService {
         User userBySno = userMapper.findUserBySno(sno);
         return userBySno;
     }
+
+    public void updatePass(Integer uid, String password) throws Exception {
+        userMapper.updatePass(uid, password);
+    }
+
+    public void updatePhone(Integer uid, String phone) throws Exception {
+userMapper.updatePhone(uid, phone);
+    }
 }
