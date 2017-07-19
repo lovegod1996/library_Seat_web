@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>图书馆座位预约系统</title>
+    <title>FloorAdmin</title>
 </head>
 <frameset rows="50,*" cols="*" frameborder="no" border="0" framespacing="0">
     <frame src="<%=request.getContextPath()%>/jsp/header_Admin" name="topFrame_Admin" scrolling="No" noresize="noresize"

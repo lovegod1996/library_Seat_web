@@ -1,14 +1,11 @@
 <%--
   Created by IntelliJ IDEA.
   User: 1Q84
-  Date: 2017/7/10
-  Time: 14:45
+  Date: 2017/7/19
+  Time: 15:00
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ page isELIgnored="false" %>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>用户登录</title>
+    <title>管理员登录</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -57,17 +54,30 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">登录</h3>
+                    <h3 class="panel-title">管理员登录</h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form" action="${pageContext.request.contextPath }/admin/loginSub" method="post">
+                    <form role="form" action="" method="">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="学号/工号" name="loginId" type="text" autofocus required>
+                                <input class="form-control" placeholder="管理员账号" name="loginId" type="text" autofocus
+                                       required>
                             </div>
                             <div class="form-group">
                                 <input class="form-control" placeholder="密码" name="password" type="password" value=""
                                        required>
+                            </div>
+                            <div class="radio" style="float: left;margin-left: 20px">
+                                <label>
+                                    <input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="1"
+                                           checked>楼层管理员
+                                </label>
+                                <label>
+                                    <input type="radio" name="optionsRadiosinline" id="optionsRadios2" value="2">图书馆管理员
+                                </label>
+                                <label>
+                                    <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="3">系统管理员
+                                </label>
                             </div>
                             <div class="checkbox" style="float: left">
                                 <label>
@@ -100,7 +110,8 @@
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
 
 <script type="text/javascript">
-    <c:if test="${!empty error_msg}">alert("${error_msg}");</c:if>
+    <c:if test="${!empty error_msg}">alert("${error_msg}");
+    </c:if>
 </script>
 
 
@@ -151,3 +162,4 @@
 
 </body>
 </html>
+

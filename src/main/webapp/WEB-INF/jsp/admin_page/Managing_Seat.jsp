@@ -29,26 +29,6 @@
         <div class="layui-tab-item layui-show">
             <form class="layui-form" action="" style="width:40%;float: left">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">选择楼</label>
-                    <div class="layui-input-block">
-                        <select name="interest" lay-filter="building" id="building">
-                            <option value="0"></option>
-                            <option value="南楼">南楼</option>
-                            <option value="北楼">北楼</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">选择层</label>
-                    <div class="layui-input-block">
-                        <select name="interest" lay-filter="floor" id="floor">
-                            <option value="0"></option>
-                            <option value="一层">一层</option>
-                            <option value="二层">二层</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="layui-form-item">
                     <label class="layui-form-label">选择行</label>
                     <div class="layui-input-block">
                         <select name="interest" lay-filter="hang" id="hang">
@@ -139,18 +119,9 @@
 <%--//右侧二维码下面lable值--%>
 <script>
     function getSeatMsg() {
-        var obj_building = document.getElementById("building"); //定位id
-        var obj_floor = document.getElementById("floor"); //定位id
         var obj_hang = document.getElementById("hang"); //定位id
         var obj_lie = document.getElementById("lie"); //定位id
 
-        var index_building = obj_building.selectedIndex; // 选中索引
-        var text_building = obj_building.options[index_building].text; // 选中文本
-        var value_building = obj_building.options[index_building].value; // 选中值
-
-        var index_floor = obj_floor.selectedIndex; // 选中索引
-        var text_floor = obj_floor.options[index_floor].text; // 选中文本
-        var value_floor = obj_floor.options[index_floor].value; // 选中值
 
         var index_hang = obj_hang.selectedIndex; // 选中索引
         var text_hang = obj_hang.options[index_hang].text; // 选中文本
@@ -160,7 +131,7 @@
         var text_lie = obj_lie.options[index_lie].text; // 选中文本
         var value_lie = obj_lie.options[index_lie].value; // 选中值
 
-        document.getElementById('showSeatMsg').innerHTML = value_building + "&nbsp;" + value_floor + "&nbsp;" + value_hang + "&nbsp;" + value_lie;
+        document.getElementById('showSeatMsg').innerHTML = value_hang + "&nbsp;" + value_lie;
         var qrcode = new QRCode(document.getElementById("qrcode"), {
             width: 200,//设置宽高
             height: 200

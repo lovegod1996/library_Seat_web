@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Login</title>
+    <title>用户登录</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -72,15 +72,6 @@
                             <div class="checkbox" style="float: left">
                                 <label>
                                     <input name="remember" type="checkbox" value="Remember Me">记住我
-                                </label>
-                            </div>
-                            <div class="radio" style="float: left;margin-left: 20px">
-                                <label class="checkbox-inline">
-                                    <input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="1"
-                                           checked>学生
-                                </label>
-                                <label class="checkbox-inline">
-                                    <input type="radio" name="optionsRadiosinline" id="optionsRadios2" value="2">管理员
                                 </label>
                             </div>
                             <div class="fogetPwd" style="float: left">

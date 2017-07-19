@@ -37,7 +37,6 @@
 <body>
 
 <div id="wrapper">
-
     <div class="col-sm-8">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -88,7 +87,6 @@
         <!-- /.panel -->
     </div>
     <!-- /.col-lg-4 -->
-
 </div>
 <!-- /#wrapper -->
 

@@ -59,14 +59,13 @@
 
     <style type="text/css">
         body {
-            width: 80%;
-            margin-left: 10%;
+            width: 90%;
+            margin-left: 5%;
         }
     </style>
 
     <script language="JavaScript" type="text/javascript">
         //定义了楼层的二维数组，里面的顺序跟楼的顺序是相同的。通过selectedIndex获得楼的下标值来得到相应的楼层数组
-
 
 
         function getData() {
@@ -111,86 +110,89 @@
                 </div>
             </div>
             <!-- /.panel-heading -->
-            <div class="table table-condensed">
-                <table class="table" id="tb1">
-                    <thead>
-                    <tr>
-                        <th>序号</th>
-                        <th>座位号</th>
-                        <th>座位状态</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${seats}" var="seat" varStatus="step">
-                        <tr onclick="c1(this);">
-                            <td>${step.index}</td>
-                            <td><input type="text" disabled="disabled" name="INPUT"
-                                       style="border:none;background-color: transparent;width: 100px"
-                                       value="${seat.seatnumber}"></td>
-                            <td>空闲中</td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-sm" onclick="getTableContent(this)">
-                                    预约
-                                </button>
-                            </td>
+            <div class="panel-body" style="height: 400px">
+                <div class="table table-condensed">
+                    <table class="table" id="tb1">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>座位号</th>
+                            <th>座位状态</th>
+                            <th>操作</th>
                         </tr>
-                    </c:forEach>
-                    <c:if test="${ nullList != null}">
-                        <tr style="text-align: center">
-                            <td colspan="4">${nullList}</td>
-                        </tr>
-                    </c:if>
-                    </tbody>
-                </table>
-
-                <div style="text-align: center">
-                    <ul class="pagination">
-                        <li>
-                            <c:if test="${currentPage ==1}">
-                                <a href="#" class="disabled">&laquo;</a>
-                            </c:if>
-                            <c:if test="${currentPage != 1}">
-                                <a href="${pageContext.request.contextPath }/jsp/book_Seat_User.form?page=${currentPage-1}&floor=${floor}">&laquo;</a>
-                            </c:if>
-                        </li>
-                        <c:if test="${currentPage==1}">
-                            <li class="active"><a href="#">1</a></li>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${seats}" var="seat" varStatus="step">
+                            <tr onclick="c1(this);">
+                                <td>${step.index}</td>
+                                <td><input type="text" disabled="disabled" name="INPUT"
+                                           style="border:none;background-color: transparent;width: 100px"
+                                           value="${seat.seatnumber}"></td>
+                                <td>空闲中</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                            onclick="getTableContent(this)">
+                                        预约
+                                    </button>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        <c:if test="${ nullList != null}">
+                            <tr style="text-align: center">
+                                <td colspan="4">${nullList}</td>
+                            </tr>
                         </c:if>
-                        <c:if test="${currentPage!=1}">
+                        </tbody>
+                    </table>
+
+                    <div style="text-align: center">
+                        <ul class="pagination">
                             <li>
-                                <a href="${pageContext.request.contextPath }/jsp/book_Seat_User.form?page=1&floor=${floor}">1</a>
+                                <c:if test="${currentPage ==1}">
+                                    <a href="#" class="disabled">&laquo;</a>
+                                </c:if>
+                                <c:if test="${currentPage != 1}">
+                                    <a href="${pageContext.request.contextPath }/jsp/book_Seat_User.form?page=${currentPage-1}&floor=${floor}">&laquo;</a>
+                                </c:if>
                             </li>
-                        </c:if>
-                        <%
-                            int pageTimes = (Integer) session.getAttribute("pageTimes");
-                            for (int i = 1; i < pageTimes; i++) {
-
-                                request.setAttribute("page", i + 1);
-                                pageContext.setAttribute("i", i);
-                        %>
-
-                        <c:if test="${i<(currentPage+5)&&i>(currentPage-5)}">
-                            <c:if test="${currentPage == page}">
-                                <li><a href="#" class="active"><%=i + 1%>
-                                </a></li>
+                            <c:if test="${currentPage==1}">
+                                <li class="active"><a href="#">1</a></li>
                             </c:if>
-                            <c:if test="${currentPage != page}">
+                            <c:if test="${currentPage!=1}">
                                 <li>
-                                    <a href="${pageContext.request.contextPath }/jsp/book_Seat_User.form?page=<%=i+1%>&floor=${floor}"><%=i + 1%>
-                                    </a></li>
+                                    <a href="${pageContext.request.contextPath }/jsp/book_Seat_User.form?page=1&floor=${floor}">1</a>
+                                </li>
                             </c:if>
-                        </c:if>
-                        <% } %>
-                        <c:if test="${currentPage == pageTimes}">
-                            <li><a href="#" class="active">&raquo;</a></li>
-                        </c:if>
-                        <c:if test="${currentPage != pageTimes}">
-                            <li>
-                                <a href="${pageContext.request.contextPath }/jsp/book_Seat_User.form?page=${currentPage+1}&floor=${floor}">&raquo;</a>
-                            </li>
-                        </c:if>
-                    </ul>
+                            <%
+                                int pageTimes = (Integer) session.getAttribute("pageTimes");
+                                for (int i = 1; i < pageTimes; i++) {
+
+                                    request.setAttribute("page", i + 1);
+                                    pageContext.setAttribute("i", i);
+                            %>
+
+                            <c:if test="${i<(currentPage+5)&&i>(currentPage-5)}">
+                                <c:if test="${currentPage == page}">
+                                    <li><a href="#" class="active"><%=i + 1%>
+                                    </a></li>
+                                </c:if>
+                                <c:if test="${currentPage != page}">
+                                    <li>
+                                        <a href="${pageContext.request.contextPath }/jsp/book_Seat_User.form?page=<%=i+1%>&floor=${floor}"><%=i + 1%>
+                                        </a></li>
+                                </c:if>
+                            </c:if>
+                            <% } %>
+                            <c:if test="${currentPage == pageTimes}">
+                                <li><a href="#" class="active">&raquo;</a></li>
+                            </c:if>
+                            <c:if test="${currentPage != pageTimes}">
+                                <li>
+                                    <a href="${pageContext.request.contextPath }/jsp/book_Seat_User.form?page=${currentPage+1}&floor=${floor}">&raquo;</a>
+                                </li>
+                            </c:if>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -212,21 +214,21 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    <label for="hasseatnum">预约座位号</label>
-                                    <span id="hasseatnum">${userLearn.seatnumber}</span>
+                                    <label for="hasseatnum">座位号</label>
+                                    <span id="hasseatnum" class="layui-input">${userLearn.seatnumber}</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <label for="booktime">预约时间</label>
-                                    <span id="booktime"><fmt:formatDate value="${userLearn.date}"
-                                                                        pattern="yyyy-MM-dd HH:mm:ss"/></span>
+                                    <span id="booktime" class="layui-input"><fmt:formatDate value="${userLearn.date}"
+                                                                                            pattern="yyyy-MM-dd HH:mm:ss"/></span>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <label for="timestep">预约时间段</label>
-                                    <span id="timestep">${userLearn.period}</span>
+                                    <span id="timestep" class="layui-input">${userLearn.period}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -245,7 +247,8 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">座位号</label>
                                 <div class="col-sm-9">
-                                    <label type="text" class="layui-input" id="seatNum" style="width: 220px">点击预约自动填充</label>
+                                    <label type="text" class="layui-input" id="seatNum"
+                                           style="width: 220px">点击预约自动填充</label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -302,9 +305,6 @@
     </c:if>
 
 
-
-
-
     function getCity() {
         $.ajax({
             type: "post",
@@ -324,11 +324,11 @@
                     //获得楼层下拉框的对象
                     var sltCity = document.selectform.floor;
                     //得到对应楼的楼层数组
-                    var  south=[];
-                    var north=[];
-                    south=result.south;
+                    var south = [];
+                    var north = [];
+                    south = result.south;
 //                alert(south);
-                    north=result.north;
+                    north = result.north;
 
                     var city = [
                         south,
