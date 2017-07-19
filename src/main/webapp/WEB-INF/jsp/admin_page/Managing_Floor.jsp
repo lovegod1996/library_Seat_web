@@ -15,88 +15,136 @@
 </head>
 <body>
 
-<div class="col-sm-8">
-    <div class="layui-tab">
-        <ul class="layui-tab-title">
-            <li class="layui-this">南楼</li>
-            <li>北楼</li>
-        </ul>
-        <div class="layui-tab-content">
-            <div class="layui-tab-item layui-show">
-                <div class="layui-form">
-                    <table class="layui-table">
-                        <thead>
-                        <tr>
-                            <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
-                            <th>楼层</th>
-                            <th>闭馆时间</th>
-                            <th>闭馆</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><input type="checkbox" name="" lay-skin="primary"></td>
-                            <td>南一</td>
-                            <td>
-                                <div class="layui-form-pane">
-                                    <div class="layui-form-item">
-                                        <div class="layui-input-inline">
-                                            <input class="layui-input" placeholder="开始时间" id="LAY_demorange_s_south">
-                                        </div>
-                                        <div class="layui-input-inline">
-                                            <input class="layui-input" placeholder="截止时间" id="LAY_demorange_e_south">
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <button class="layui-btn">闭馆</button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <button class="layui-btn">同时选择多层闭馆</button>
-                </div>
-            </div>
-            <div class="layui-tab-item">
-                <div class="layui-form">
-                    <table class="layui-table">
-                        <thead>
-                        <tr>
-                            <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
-                            <th>楼层</th>
-                            <th>闭馆时间</th>
-                            <th>闭馆</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><input type="checkbox" name="" lay-skin="primary"></td>
-                            <td>北一</td>
-                            <td>
-                                <div class="layui-form-pane">
-                                    <div class="layui-form-item">
-                                        <div class="layui-input-inline">
-                                            <input class="layui-input" placeholder="开始时间" id="LAY_demorange_s_north">
-                                        </div>
-                                        <div class="layui-input-inline">
-                                            <input class="layui-input" placeholder="截止时间" id="LAY_demorange_e_north">
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <button class="layui-btn">闭馆</button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <button class="layui-btn">同时选择多层闭馆</button>
-                </div>
+<div class="layui-tab">
+    <ul class="layui-tab-title">
+        <li class="layui-this">这是几楼</li>
+    </ul>
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+            <div class="layui-form">
+                <table class="layui-table">
+                    <thead>
+                    <tr>
+                        <th width="15%">楼层</th>
+                        <th width="30%">时间段</th>
+                        <th width="15%">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>周一</td>
+                        <td style="text-align: left">
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="">
+                                    <option value="">直接选择或搜索选择</option>
+                                    <option value="1">layer</option>
+                                    <option value="2">form</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="layui-btn">开馆</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>周二</td>
+                        <td style="text-align: left">
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="">
+                                    <option value="">直接选择或搜索选择</option>
+                                    <option value="1">layer</option>
+                                    <option value="2">form</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="layui-btn">开馆</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>周三</td>
+                        <td style="text-align: left">
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="">
+                                    <option value="">直接选择或搜索选择</option>
+                                    <option value="1">layer</option>
+                                    <option value="2">form</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="layui-btn">开馆</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>周四</td>
+                        <td style="text-align: left">
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="">
+                                    <option value="">直接选择或搜索选择</option>
+                                    <option value="1">layer</option>
+                                    <option value="2">form</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="layui-btn">开馆</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>周五</td>
+                        <td style="text-align: left">
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="">
+                                    <option value="">直接选择或搜索选择</option>
+                                    <option value="1">layer</option>
+                                    <option value="2">form</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="layui-btn">开馆</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>周六</td>
+                        <td style="text-align: left">
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="">
+                                    <option value="">直接选择或搜索选择</option>
+                                    <option value="1">layer</option>
+                                    <option value="2">form</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="layui-btn">开馆</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>周日</td>
+                        <td style="text-align: left">
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="">
+                                    <option value="">直接选择或搜索选择</option>
+                                    <option value="1">layer</option>
+                                    <option value="2">form</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="layui-btn">开馆</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
+
 
 <%--Tip页切换--%>
 <script>
@@ -150,7 +198,7 @@
         var laydate = layui.laydate;
         var start = {
             min: laydate.now()
-            ,format: 'YYYY-MM-DD hh:mm:ss' //日期格式
+            , format: 'YYYY-MM-DD hh:mm:ss' //日期格式
             , istime: true
             , max: '2099-06-16 23:59:59'
             , istoday: false
@@ -162,7 +210,7 @@
 
         var end = {
             min: laydate.now()
-            ,format: 'YYYY-MM-DD hh:mm:ss' //日期格式
+            , format: 'YYYY-MM-DD hh:mm:ss' //日期格式
             , istime: true
             , max: '2099-06-16 23:59:59'
             , istoday: false

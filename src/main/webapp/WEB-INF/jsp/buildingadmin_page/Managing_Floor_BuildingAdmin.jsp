@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: 1Q84
-  Date: 2017/7/15
-  Time: 15:50
+  Date: 2017/7/19
+  Time: 14:34
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,10 +14,9 @@
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
 </head>
 <body>
-
 <div class="layui-tab">
     <ul class="layui-tab-title">
-        <li class="layui-this">这是几楼</li>
+        <li class="layui-this">这是南楼</li>
     </ul>
     <div class="layui-tab-content">
         <div class="layui-tab-item layui-show">
@@ -26,14 +25,21 @@
                     <thead>
                     <tr>
                         <th width="15%">楼层</th>
-                        <th width="30%">时间段</th>
+                        <th width="50%">时间段</th>
                         <th width="15%">操作</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>周一</td>
+                        <td>南一</td>
                         <td style="text-align: left">
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="">
+                                    <option value="">直接选择或搜索选择</option>
+                                    <option value="1">layer</option>
+                                    <option value="2">form</option>
+                                </select>
+                            </div>
                             <div class="layui-input-inline">
                                 <select name="modules" lay-verify="required" lay-search="">
                                     <option value="">直接选择或搜索选择</option>
@@ -48,7 +54,7 @@
                     </tr>
 
                     <tr>
-                        <td>周二</td>
+                        <td>南二</td>
                         <td style="text-align: left">
                             <div class="layui-input-inline">
                                 <select name="modules" lay-verify="required" lay-search="">
@@ -57,75 +63,6 @@
                                     <option value="2">form</option>
                                 </select>
                             </div>
-                        </td>
-                        <td>
-                            <button class="layui-btn">开馆</button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>周三</td>
-                        <td style="text-align: left">
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">直接选择或搜索选择</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="layui-btn">开馆</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>周四</td>
-                        <td style="text-align: left">
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">直接选择或搜索选择</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="layui-btn">开馆</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>周五</td>
-                        <td style="text-align: left">
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">直接选择或搜索选择</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="layui-btn">开馆</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>周六</td>
-                        <td style="text-align: left">
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">直接选择或搜索选择</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="layui-btn">开馆</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>周日</td>
-                        <td style="text-align: left">
                             <div class="layui-input-inline">
                                 <select name="modules" lay-verify="required" lay-search="">
                                     <option value="">直接选择或搜索选择</option>

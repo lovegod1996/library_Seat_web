@@ -57,22 +57,27 @@
     <div class="col-sm-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <i class="fa fa-bell fa-fw"></i> 公告
+                <i class="fa fa-bell fa-fw"></i> 排行榜
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="height: 400px">
                 <div class="list-group">
-                    <c:forEach items="${newsTop}" var="newss">
-                        <a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${newss.nid}"
-                           class="list-group-item">${newss.title}
-                            <span class="pull-right text-muted small"><em><fmt:formatDate value="${newss.creattime}"
-                                                                                          pattern="yyyy-MM-dd HH:mm:ss"/></em></span>
-                        </a>
-                    </c:forEach>
+                    <a href="#" class="list-group-item">张三
+                        <span class="pull-right text-muted small"><em>第一名</em></span>
+                    </a>
+                    <a href="#" class="list-group-item">张三
+                        <span class="pull-right text-muted small"><em>第一名</em></span>
+                    </a>
+                    <a href="#" class="list-group-item">张三
+                        <span class="pull-right text-muted small"><em>第一名</em></span>
+                    </a>
+                    <a href="#" class="list-group-item">张三
+                        <span class="pull-right text-muted small"><em>第一名</em></span>
+                    </a>
                 </div>
                 <!-- /.list-group -->
-                <a href="<%=request.getContextPath()%>/jsp/news_List_User" target="mainFrame_User"
-                   class="btn btn-default btn-block">查看更多</a>
+                <%--<a href="<%=request.getContextPath()%>/jsp/news_List_User" target="mainFrame_User"--%>
+                <%--class="btn btn-default btn-block">查看更多</a>--%>
             </div>
             <!-- /.panel-body -->
         </div>
@@ -83,6 +88,51 @@
 </div>
 <!-- /#wrapper -->
 
+
+<div class="col-sm-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-bell fa-fw"></i> 公告
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body" style="height: 400px">
+            <div class="list-group">
+                <c:forEach items="${newsTop}" var="newss">
+                    <a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${newss.nid}"
+                    >${newss.title}
+                        <span class="pull-right text-muted small"><em><fmt:formatDate value="${newss.creattime}"
+                                                                                      pattern="yyyy-MM-dd HH:mm:ss"/></em></span>
+                    </a>
+                </c:forEach>
+            </div>
+            <!-- /.list-group -->
+            <a href="<%=request.getContextPath()%>/jsp/news_List_Admin" target="mainFrame_User"
+               class="btn btn-default btn-block">查看更多</a>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</div>
+<div class="col-sm-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-bell fa-fw"></i> 开馆时间安排
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body" style="height: 400px">
+            <div class="list-group">
+                <li>南一
+                    <span class="pull-right text-muted small"><em>09:00--21:30</em></span>
+                </li>
+                <li>南一
+                    <span class="pull-right text-muted small"><em>09:00--21:30</em></span>
+                </li>
+                <li>南一
+                    <span class="pull-right text-muted small"><em>09:00--21:30</em></span>
+                </li>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- jQuery -->
 <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
 
@@ -92,13 +142,13 @@
 <%--echart--%>
 <script src="<%=request.getContextPath()%>/js/echarts-all.js"></script>
 <script type="text/javascript">
-    window.onload=function () {
+    window.onload = function () {
         getData();
     };
 
     function getData() {
         // 基于准备好的dom，初始化echarts图表
-        var myChart = echarts.init(document.getElementById('main'),'macarons');
+        var myChart = echarts.init(document.getElementById('main'), 'macarons');
 
         myChart.showLoading({text: '正在努力的读取数据中...'});    //数据加载完之前先显示一段简单的loading动画
 

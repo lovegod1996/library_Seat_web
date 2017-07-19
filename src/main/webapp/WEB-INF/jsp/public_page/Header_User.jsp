@@ -54,47 +54,59 @@
                     <li><a href="<%=request.getContextPath()%>/jsp/book_Seat_User" target="mainFrame_User">预约</a></li>
                 </c:if>
                 <%--<li><a href="#">SVN</a></li>--%>
+                <li><a href="<%=request.getContextPath()%>/jsp/index_Admin" target="_blank">层管理员测试</a></li>
+                <li><a href="<%=request.getContextPath()%>/view/index_BuildingAdmin" target="_blank">楼管理员测试</a></li>
+                <li><a href="<%=request.getContextPath()%>/view/index_SuperAdmin" target="_blank">系统管理员测试</a></li>
             </ul>
         </div>
 
         <ul class="nav navbar-top-links navbar-right">
-                <c:choose>
-                    <c:when test="${empty sessionScope}">
+            <c:choose>
+                <c:when test="${empty sessionScope}">
                     <li class="dropdown">
                         <a href="<%=request.getContextPath()%>/jsp/login" target="_parent">
-                            <i class="fa fa-user fa-fw"></i><span>登录</span>
+                            <i class="fa fa-user fa-fw"></i><span>用户登录</span>
                         </a>
                     </li>
-                    </c:when>
-                    <c:otherwise>
-                        <c:if test="${sessionScope.user !=null}">
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="<%=request.getContextPath()%>/view/information_User" target="mainFrame_User">
-                                    <i class="fa fa-user fa-fw"></i><span>${sessionScope.user.name}</span>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle"  href="${pageContext.request.contextPath }/admin/loginOut" target="_parent">
-                                    <i class="fa fa-power-off fa-fw"></i><span>退出</span>
-                                </a>
-                                <!-- /.dropdown-user -->
-                            </li>
-                        </c:if>
-                        <c:if test="${sessionScope.admin !=null}">
-                            <li class="dropdown">
-                                <a class="dropdown-toggle"  href="<%=request.getContextPath()%>/jsp/index_Admin" target="_blank">
-                                    <i class="fa fa-user fa-fw"></i><span>${sessionScope.admin.loginname}</span>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle"  href="${pageContext.request.contextPath }/admin/loginOut" target="_parent">
-                                    <i class="fa fa-power-off fa-fw"></i><span>退出</span>
-                                </a>
-                                <!-- /.dropdown-user -->
-                            </li>
-                        </c:if>
-                    </c:otherwise>
-                </c:choose>
+                    <li>
+                        <a href="<%=request.getContextPath()%>/view/login_ForAdmin" target="_parent">
+                            <i class="fa fa-user fa-fw"></i><span>Admin登录</span>
+                        </a>
+                    </li>
+                </c:when>
+                <c:otherwise>
+                    <c:if test="${sessionScope.user !=null}">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="<%=request.getContextPath()%>/view/information_User"
+                               target="mainFrame_User">
+                                <i class="fa fa-user fa-fw"></i><span>${sessionScope.user.name}</span>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="${pageContext.request.contextPath }/admin/loginOut"
+                               target="_parent">
+                                <i class="fa fa-power-off fa-fw"></i><span>退出</span>
+                            </a>
+                            <!-- /.dropdown-user -->
+                        </li>
+                    </c:if>
+                    <c:if test="${sessionScope.admin !=null}">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="<%=request.getContextPath()%>/jsp/index_Admin"
+                               target="_blank">
+                                <i class="fa fa-user fa-fw"></i><span>${sessionScope.admin.loginname}</span>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="${pageContext.request.contextPath }/admin/loginOut"
+                               target="_parent">
+                                <i class="fa fa-power-off fa-fw"></i><span>退出</span>
+                            </a>
+                            <!-- /.dropdown-user -->
+                        </li>
+                    </c:if>
+                </c:otherwise>
+            </c:choose>
 
         </ul>
     </nav>

@@ -15,4 +15,9 @@ public class Public_Controller {
     public String page404 (Model model) throws Exception{
         return "public_page/404";
     }
+
+    @RequestMapping("/login_ForAdmin")
+    public String login_ForAdmin (Model model) throws Exception{
+        return "public_page/Login_ForAdmin";
+    }
 }
