@@ -1,14 +1,13 @@
 package com.xoqao.web.controller.admin;
 
 import com.xoqao.web.bean.admin.Admin;
+import com.xoqao.web.bean.building.Building;
+import com.xoqao.web.bean.floors.Floor;
 import com.xoqao.web.bean.news.News;
 import com.xoqao.web.bean.seat.Floors;
 import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.user.User;
-import com.xoqao.web.service.AdminService;
-import com.xoqao.web.service.NewsService;
-import com.xoqao.web.service.SeatService;
-import com.xoqao.web.service.UserService;
+import com.xoqao.web.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,6 +41,11 @@ public class AdminController {
     @Autowired
     private SeatService seatService;
 
+    @Autowired
+    private BuildingService buildingService;
+    @Autowired
+    private FloorService floorService;
+
     /**
      * 后台登录提交
      *
@@ -51,11 +55,9 @@ public class AdminController {
      * @return
      * @throws Exception
      */
-    @RequestMapping("/loginSub")
-    public String adminLoginSub(Model model, String loginId, String password, Integer optionsRadiosinline, HttpSession httpSession) throws Exception {
-
-        if (optionsRadiosinline == 1) {
-            User userByphoneOrSno = userService.findUserByphoneOrSno(loginId);
+    @RequestMapping("/userloginSub")
+    public String userLoginSub(Model model, String loginId, String password,  HttpSession httpSession) throws Exception {
+            User userByphoneOrSno = userService.findUserBySno(loginId);
             if (password.trim().equals(userByphoneOrSno.getPassword())) {
                 httpSession.setAttribute("user", userByphoneOrSno);
                 return "toIndex";
@@ -63,20 +65,54 @@ public class AdminController {
                 model.addAttribute("error_msg", "密码输入错误！");
                 return "public_page/Login";
             }
-        } else {
-            Admin admin = adminService.findadminBynameOrid(loginId);
-            if (password.trim().equals(admin.getPassword())) {
-                httpSession.setAttribute("admin", admin);
-                return "admin_page/Index_Admin";
-            } else {
-                model.addAttribute("error_msg", "密码输入错误！");
-                return "public_page/Login";
-            }
-        }
-
-
     }
 
+    /**
+     * 管理员登录
+     * @param model
+     * @param loginId
+     * @param password
+     * @param optionsRadiosinline
+     * @param httpSession
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/adminLoginSub")
+    public String adminLoginSub(Model model,String loginId,String password,Integer optionsRadiosinline,HttpSession httpSession)throws Exception{
+         if(optionsRadiosinline==1){
+             Floor floorBycount = floorService.findFloorBycount(loginId);
+             if(floorBycount!=null&&password.equals(floorBycount.getPassword())){
+                 httpSession.setAttribute("admin",floorBycount);
+                 httpSession.setAttribute("admintype",1);
+                 return "admin_page/Index_Admin";
+             }else{
+                 model.addAttribute("error_msg", "信息输入错误！");
+                 return "public_page/Login_ForAdmin";
+             }
+         }else if(optionsRadiosinline==2){
+             Building buildAdminByCount = buildingService.findBuildAdminByCount(loginId);
+             if(buildAdminByCount!=null&&password.equals(buildAdminByCount.getPassword())){
+                 httpSession.setAttribute("admin",buildAdminByCount);
+                 httpSession.setAttribute("admintype",2);
+                 return "buildingadmin_page/Index_BuildingAdmin";
+             }else{
+                 model.addAttribute("error_msg", "信息输入错误！");
+                 return "public_page/Login_ForAdmin";
+             }
+         }else if(optionsRadiosinline==3){
+             Admin adminByCount = adminService.findAdminByCount(loginId);
+             if(adminByCount!=null&&password.equals(adminByCount.getPassword())){
+                 httpSession.setAttribute("admin",adminByCount);
+                 httpSession.setAttribute("admintype",3);
+                 return "superadmin_page/Index_SuperAdmin";
+             }else{
+                 model.addAttribute("error_msg", "信息输入错误！");
+                 return "public_page/Login_ForAdmin";
+             }
+         }else{
+             return "public_page/Login_ForAdmin";
+         }
+    }
     /**
      * 退出登录
      *

@@ -57,7 +57,7 @@
                     <h3 class="panel-title">管理员登录</h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form" action="" method="">
+                    <form role="form" action="<%=request.getContextPath()%>/admin/adminLoginSub" method="post">
                         <fieldset>
                             <div class="form-group">
                                 <input class="form-control" placeholder="管理员账号" name="loginId" type="text" autofocus

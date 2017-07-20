@@ -43,7 +43,7 @@
         <ul class="nav navbar-top-links navbar-right">
 
 <c:choose>
-    <c:when test="${empty sessionScope.admin.id}">
+    <c:when test="${empty sessionScope.admin}">
         <li class="dropdown">
             <a class="dropdown-toggle"  href="${pageContext.request.contextPath }/jsp/login" target="_parent">
                 <i class="fa fa-user fa-fw"></i><span>登录</span>
@@ -54,7 +54,7 @@
     <c:otherwise>
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i><span>${sessionScope.admin.loginname}</span>
+                <i class="fa fa-user fa-fw"></i><span>${sessionScope.admin.name}</span>
             </a>
             <!-- /.dropdown-user -->
         </li>

@@ -8,11 +8,11 @@ package com.xoqao.web.bean.seat;
  */
 public class Seat {
     private Integer sid;
+    private Integer fid;
+    private Integer row;
+    private Integer column;
     private String seatnumber;
-    private String floor;
-    private Integer seatstate;
-    private Integer userid;
-    private String seattype;
+    private Integer statue;
 
     public Integer getSid() {
         return sid;
@@ -20,6 +20,30 @@ public class Seat {
 
     public void setSid(Integer sid) {
         this.sid = sid;
+    }
+
+    public Integer getFid() {
+        return fid;
+    }
+
+    public void setFid(Integer fid) {
+        this.fid = fid;
+    }
+
+    public Integer getRow() {
+        return row;
+    }
+
+    public void setRow(Integer row) {
+        this.row = row;
+    }
+
+    public Integer getColumn() {
+        return column;
+    }
+
+    public void setColumn(Integer column) {
+        this.column = column;
     }
 
     public String getSeatnumber() {
@@ -30,48 +54,23 @@ public class Seat {
         this.seatnumber = seatnumber;
     }
 
-    public Integer getSeatstate() {
-        return seatstate;
+    public Integer getStatue() {
+        return statue;
     }
 
-    public void setSeatstate(Integer seatstate) {
-        this.seatstate = seatstate;
-    }
-
-    public Integer getUserid() {
-        return userid;
-    }
-
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
-
-    public String getSeattype() {
-        return seattype;
-    }
-
-    public void setSeattype(String seattype) {
-        this.seattype = seattype;
-    }
-
-
-    public String getFloor() {
-        return floor;
-    }
-
-    public void setFloor(String floor) {
-        this.floor = floor;
+    public void setStatue(Integer statue) {
+        this.statue = statue;
     }
 
     @Override
     public String toString() {
         return "Seat{" +
                 "sid=" + sid +
+                ", fid=" + fid +
+                ", row=" + row +
+                ", column=" + column +
                 ", seatnumber='" + seatnumber + '\'' +
-                ", floor='" + floor + '\'' +
-                ", seatstate=" + seatstate +
-                ", userid=" + userid +
-                ", seattype='" + seattype + '\'' +
+                ", statue=" + statue +
                 '}';
     }
 }

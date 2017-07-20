@@ -68,11 +68,6 @@
                             <i class="fa fa-user fa-fw"></i><span>用户登录</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="<%=request.getContextPath()%>/view/login_ForAdmin" target="_parent">
-                            <i class="fa fa-user fa-fw"></i><span>Admin登录</span>
-                        </a>
-                    </li>
                 </c:when>
                 <c:otherwise>
                     <c:if test="${sessionScope.user !=null}">

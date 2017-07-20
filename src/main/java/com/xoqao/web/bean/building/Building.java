@@ -1,32 +1,33 @@
-package com.xoqao.web.bean.admin;
+package com.xoqao.web.bean.building;
 
 /**
  * 说明：
  * Author: lovegod
- * Date:  2017/7/11.
+ * Date:  2017/7/20.
  * Email:dx96_j@163.com
  */
-public class Admin {
-    private Integer aid;
-    private String acountnumber;
+public class Building {
+    private Integer bid;
+    private String accountnumber;
     private String password;
     private String name;
     private String employer;
+    private String manage;
 
-    public Integer getAid() {
-        return aid;
+    public Integer getBid() {
+        return bid;
     }
 
-    public void setAid(Integer aid) {
-        this.aid = aid;
+    public void setBid(Integer bid) {
+        this.bid = bid;
     }
 
-    public String getAcountnumber() {
-        return acountnumber;
+    public String getAccountnumber() {
+        return accountnumber;
     }
 
-    public void setAcountnumber(String acountnumber) {
-        this.acountnumber = acountnumber;
+    public void setAccountnumber(String accountnumber) {
+        this.accountnumber = accountnumber;
     }
 
     public String getPassword() {
@@ -53,14 +54,23 @@ public class Admin {
         this.employer = employer;
     }
 
+    public String getManage() {
+        return manage;
+    }
+
+    public void setManage(String manage) {
+        this.manage = manage;
+    }
+
     @Override
     public String toString() {
-        return "Admin{" +
-                "aid=" + aid +
-                ", acountnumber='" + acountnumber + '\'' +
+        return "Building{" +
+                "bid=" + bid +
+                ", accountnumber='" + accountnumber + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", employer='" + employer + '\'' +
+                ", manage='" + manage + '\'' +
                 '}';
     }
 }

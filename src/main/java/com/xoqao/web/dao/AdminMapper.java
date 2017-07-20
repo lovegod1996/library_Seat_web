@@ -14,5 +14,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Service
 public interface AdminMapper {
 
-    Admin findAdminByNameOrId(@Param("loginstr") String loginStr)throws Exception;
+    Admin findAdminByCount(@Param("loginstr") String loginStr)throws Exception;
 }

@@ -17,8 +17,8 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     AdminMapper adminMapper;
 
-    public Admin findadminBynameOrid(String loginstr) throws Exception {
-        Admin adminByNameOrId = adminMapper.findAdminByNameOrId(loginstr);
+    public Admin findAdminByCount(String loginstr) throws Exception {
+        Admin adminByNameOrId = adminMapper.findAdminByCount(loginstr);
         return adminByNameOrId;
     }
 }
