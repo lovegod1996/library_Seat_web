@@ -98,13 +98,9 @@
                    style="margin-left:20px ">点击刷新</a>
                 <div class="pull-right">
                     <FORM METHOD=POST ACTION="" name="selectform">
-                        <SELECT NAME="building" onChange="getCity()">
-                            <OPTION VALUE="0">选择南北楼</OPTION>
-                            <OPTION VALUE="南楼">南楼</OPTION>
-                            <OPTION VALUE="北楼">北楼</OPTION>
-                        </SELECT>
                         <SELECT NAME="floor" onchange="getData()" id="floor">
                             <OPTION VALUE="0">选择所在楼层</OPTION>
+                            <OPTION VALUE="南一">南一</OPTION>
                         </SELECT>
                     </FORM>
                 </div>
@@ -118,12 +114,14 @@
                             <th>序号</th>
                             <th>座位号</th>
                             <th>座位状态</th>
+                            <th>可用时间段</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <c:forEach items="${seats}" var="seat" varStatus="step">
-                            <tr onclick="c1(this);">
+                            <%--<tr onclick="c1(this);">--%>
+                            <tr>
                                 <td>${step.index}</td>
                                 <td><input type="text" disabled="disabled" name="INPUT"
                                            style="border:none;background-color: transparent;width: 100px"

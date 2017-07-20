@@ -57,6 +57,7 @@
                 <li><a href="<%=request.getContextPath()%>/jsp/index_Admin" target="_blank">层管理员测试</a></li>
                 <li><a href="<%=request.getContextPath()%>/view/index_BuildingAdmin" target="_blank">楼管理员测试</a></li>
                 <li><a href="<%=request.getContextPath()%>/view/index_SuperAdmin" target="_blank">系统管理员测试</a></li>
+                <li><a href="<%=request.getContextPath()%>/view/choose_Building" target="_parent">选择南北楼测试</a></li>
             </ul>
         </div>
 
@@ -65,12 +66,7 @@
                 <c:when test="${empty sessionScope}">
                     <li class="dropdown">
                         <a href="<%=request.getContextPath()%>/jsp/login" target="_parent">
-                            <i class="fa fa-user fa-fw"></i><span>用户登录</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<%=request.getContextPath()%>/view/login_ForAdmin" target="_parent">
-                            <i class="fa fa-user fa-fw"></i><span>Admin登录</span>
+                            <i class="fa fa-user fa-fw"></i><span>登录</span>
                         </a>
                     </li>
                 </c:when>

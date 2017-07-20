@@ -67,7 +67,7 @@
                                 <input class="form-control" placeholder="密码" name="password" type="password" value=""
                                        required>
                             </div>
-                            <div class="radio" style="float: left;margin-left: 20px">
+                            <div class="radio" style="float: left">
                                 <label>
                                     <input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="1"
                                            checked>楼层管理员
