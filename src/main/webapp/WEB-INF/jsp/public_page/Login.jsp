@@ -40,7 +40,8 @@
 
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
-
+    <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+    <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
     <style type="text/css">
         .fogetPwd {
             position: relative;
@@ -63,7 +64,8 @@
                     <form role="form" action="${pageContext.request.contextPath }/admin/userloginSub" method="post">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="学号/工号" name="loginId" type="text" autofocus required>
+                                <input class="form-control" placeholder="学号/工号" name="loginId" type="text" autofocus
+                                       required>
                             </div>
                             <div class="form-group">
                                 <input class="form-control" placeholder="密码" name="password" type="password" value=""
@@ -82,6 +84,13 @@
                             </div>
 
                             <button class="btn btn-lg btn-success btn-block" type="submit">登录</button>
+
+                            <div class="form-group" style="margin-top: 20px;text-align: center">
+                                <a href="<%=request.getContextPath()%>/view/login_ForAdmin" target="_parent">管理员登录
+                                    <i class="layui-icon">&#xe602;</i>
+                                    <i class="layui-icon">&#xe602;</i>
+                                </a>
+                            </div>
                         </fieldset>
                     </form>
                 </div>
@@ -103,7 +112,8 @@
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
 
 <script type="text/javascript">
-    <c:if test="${!empty error_msg}">alert("${error_msg}");</c:if>
+    <c:if test="${!empty error_msg}">alert("${error_msg}");
+    </c:if>
 </script>
 
 

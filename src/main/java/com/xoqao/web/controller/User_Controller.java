@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -171,6 +170,11 @@ public class User_Controller {
         model.addAttribute("users", user);
 
         return "user_page/user_information/Information_User_Self";
+    }
+
+    @RequestMapping("choose_Building")
+    public String choose_Building(Model model) throws Exception {
+        return "user_page/Choose_Building";
     }
 
 }

@@ -36,14 +36,21 @@
                         <td style="text-align: left">
                             <div class="layui-input-inline">
                                 <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">直接选择或搜索选择</option>
+                                    <option value="">开始时间</option>
+                                    <option value="1">layer</option>
+                                    <option value="2">form</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="">
+                                    <option value="">结束时间</option>
                                     <option value="1">layer</option>
                                     <option value="2">form</option>
                                 </select>
                             </div>
                         </td>
                         <td>
-                            <button class="layui-btn">开馆</button>
+                            <button class="layui-btn">保存</button>
                         </td>
                     </tr>
 
@@ -52,14 +59,21 @@
                         <td style="text-align: left">
                             <div class="layui-input-inline">
                                 <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">直接选择或搜索选择</option>
+                                    <option value="">开始时间</option>
+                                    <option value="1">layer</option>
+                                    <option value="2">form</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="">
+                                    <option value="">结束时间</option>
                                     <option value="1">layer</option>
                                     <option value="2">form</option>
                                 </select>
                             </div>
                         </td>
                         <td>
-                            <button class="layui-btn">开馆</button>
+                            <button class="layui-btn">保存</button>
                         </td>
                     </tr>
 
@@ -68,14 +82,21 @@
                         <td style="text-align: left">
                             <div class="layui-input-inline">
                                 <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">直接选择或搜索选择</option>
+                                    <option value="">开始时间</option>
+                                    <option value="1">layer</option>
+                                    <option value="2">form</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="">
+                                    <option value="">结束时间</option>
                                     <option value="1">layer</option>
                                     <option value="2">form</option>
                                 </select>
                             </div>
                         </td>
                         <td>
-                            <button class="layui-btn">开馆</button>
+                            <button class="layui-btn">保存</button>
                         </td>
                     </tr>
                     <tr>
@@ -83,14 +104,21 @@
                         <td style="text-align: left">
                             <div class="layui-input-inline">
                                 <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">直接选择或搜索选择</option>
+                                    <option value="">开始时间</option>
+                                    <option value="1">layer</option>
+                                    <option value="2">form</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="">
+                                    <option value="">结束时间</option>
                                     <option value="1">layer</option>
                                     <option value="2">form</option>
                                 </select>
                             </div>
                         </td>
                         <td>
-                            <button class="layui-btn">开馆</button>
+                            <button class="layui-btn">保存</button>
                         </td>
                     </tr>
                     <tr>
@@ -98,14 +126,21 @@
                         <td style="text-align: left">
                             <div class="layui-input-inline">
                                 <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">直接选择或搜索选择</option>
+                                    <option value="">开始时间</option>
+                                    <option value="1">layer</option>
+                                    <option value="2">form</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="">
+                                    <option value="">结束时间</option>
                                     <option value="1">layer</option>
                                     <option value="2">form</option>
                                 </select>
                             </div>
                         </td>
                         <td>
-                            <button class="layui-btn">开馆</button>
+                            <button class="layui-btn">保存</button>
                         </td>
                     </tr>
                     <tr>
@@ -113,14 +148,21 @@
                         <td style="text-align: left">
                             <div class="layui-input-inline">
                                 <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">直接选择或搜索选择</option>
+                                    <option value="">开始时间</option>
+                                    <option value="1">layer</option>
+                                    <option value="2">form</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="">
+                                    <option value="">结束时间</option>
                                     <option value="1">layer</option>
                                     <option value="2">form</option>
                                 </select>
                             </div>
                         </td>
                         <td>
-                            <button class="layui-btn">开馆</button>
+                            <button class="layui-btn">保存</button>
                         </td>
                     </tr>
                     <tr>
@@ -128,14 +170,21 @@
                         <td style="text-align: left">
                             <div class="layui-input-inline">
                                 <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">直接选择或搜索选择</option>
+                                    <option value="">开始时间</option>
+                                    <option value="1">layer</option>
+                                    <option value="2">form</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline">
+                                <select name="modules" lay-verify="required" lay-search="">
+                                    <option value="">结束时间</option>
                                     <option value="1">layer</option>
                                     <option value="2">form</option>
                                 </select>
                             </div>
                         </td>
                         <td>
-                            <button class="layui-btn">开馆</button>
+                            <button class="layui-btn">保存</button>
                         </td>
                     </tr>
                     </tbody>
