@@ -61,10 +61,10 @@
                     <h3 class="panel-title">登录</h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form" action="${pageContext.request.contextPath }/admin/userloginSub" method="post">
+                    <form action="${pageContext.request.contextPath }/admin/userloginSub" method="post">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="学号/工号" name="loginId" type="text" autofocus
+                                <input class="form-control" placeholder="学号/工号" name="loginId" autofocus
                                        required>
                             </div>
                             <div class="form-group">
@@ -76,14 +76,14 @@
                                     <input name="remember" type="checkbox" value="Remember Me">记住我
                                 </label>
                             </div>
-                            <div class="fogetPwd" style="float: left">
-                                <a data-method="notice" class="layui-btn layui-btn-mini" target="_parent">忘记密码?</a>
-                                    <a href="<%=request.getContextPath()%>/view/login_ForAdmin" target="_parent">
-                                        <i class="fa fa-user fa-fw"></i><span>Admin登录</span>
-                                    </a>
-                            </div>
+                            <%--<div class="fogetPwd" style="float: left">--%>
+                                <%--<a data-method="notice" class="layui-btn layui-btn-mini" target="_parent">忘记密码?</a>--%>
+                                    <%--<a href="<%=request.getContextPath()%>/view/login_ForAdmin" target="_parent">--%>
+                                        <%--<i class="fa fa-user fa-fw"></i><span>Admin登录</span>--%>
+                                    <%--</a>--%>
+                            <%--</div>--%>
 
-                            <button class="btn btn-lg btn-success btn-block" type="submit">登录</button>
+                            <button class="btn btn-lg btn-success btn-block">登录</button>
 
                             <div class="form-group" style="margin-top: 20px;text-align: center">
                                 <a href="<%=request.getContextPath()%>/view/login_ForAdmin" target="_parent">管理员登录

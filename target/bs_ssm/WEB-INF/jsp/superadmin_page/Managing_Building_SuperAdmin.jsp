@@ -33,16 +33,28 @@
         .white_content {
             display: none;
             position: absolute;
-            top: 35%;
+            top: 20%;
             left: 32%;
-            width: 35%;
-            height: 30%;
+            width: 400px;
+            height: 250px;
             padding: 16px;
             border: 1px solid orange;
             background-color: white;
             z-index: 1002;
             overflow: auto;
-        }  </style>
+        }
+    </style>
+
+    <script language="javascript">
+        function getTableContent(node) {
+            // 按钮的父节点的父节点是tr。
+            var tr1 = node.parentNode.parentNode;
+            //alert(tr1.rowIndex);获得行
+            //alert(tb1.rows[tr1.rowIndex].cells[1].getElementsByTagName("INPUT")[0].value);
+            document.getElementById("buildingname").value = tb1.rows[tr1.rowIndex].cells[1].innerText;
+            document.getElementById("buildingadmin").value = tb1.rows[tr1.rowIndex].cells[2].innerHTML;
+        }
+    </script>
 
 </head>
 <body>
@@ -75,10 +87,10 @@
                                                 target="mainFrame_SuperAdmin">中原工学院南区图书馆</a></td>
                         <td>Administrator</td>
                         <td>
-                            <div class="layui-btn-group">
-                                <button type="button" class="layui-btn layui-btn-small">编辑</button>
-                                <button type="button" class="layui-btn layui-btn-small">删除</button>
-                            </div>
+                            <button type="button" class="layui-btn layui-btn-small" onclick="document.getElementById('light1').style.display='block';
+                                        document.getElementById('fade').style.display='block';getTableContent(this)">编辑
+                            </button>
+                            <button type="button" class="layui-btn layui-btn-small">删除</button>
                         </td>
                     </tr>
                     </tbody>
@@ -87,7 +99,7 @@
         </div>
     </div>
 </div>
-
+<%--添加弹出框--%>
 <div id="light" class="white_content">
     <div style="text-align: end;width: 100%">
         <a class="layui-icon" href="javascript:void(0)"
@@ -98,17 +110,48 @@
         <div class="layui-form-item">
             <label class="layui-form-label">添加图书馆</label>
             <div class="layui-input-inline">
-                <input type="text" placeholder="请输入" class="layui-input" required>
+                <input placeholder="请输入" class="layui-input" required>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">添加管理员</label>
             <div class="layui-input-inline">
-                <input type="text" placeholder="请输入" class="layui-input" required>
+                <input placeholder="请输入" class="layui-input" required>
             </div>
         </div>
         <div class="layui-form-item">
-            <button type="submit" class="layui-btn">确认</button>
+            <label class="layui-form-label"></label>
+            <div class="layui-input-inline">
+                <label style="color: #777777">默认密码为 123456</label>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn" style="margin:20px 0 0 45%">确认</button>
+        </div>
+    </form>
+</div>
+<%--编辑弹出框--%>
+<div id="light1" class="white_content">
+    <div style="text-align: end;width: 100%">
+        <a class="layui-icon" href="javascript:void(0)"
+           onclick="document.getElementById('light1').style.display='none';document.getElementById('fade').style.display='none'">
+            &#x1006;</a>
+    </div>
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">编辑图书馆</label>
+            <div class="layui-input-inline">
+                <input id="buildingname" class="layui-input" required>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">编辑管理员</label>
+            <div class="layui-input-inline">
+                <input id="buildingadmin" class="layui-input" required>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn" style="margin:20px 0 0 45%">确认</button>
         </div>
     </form>
 </div>

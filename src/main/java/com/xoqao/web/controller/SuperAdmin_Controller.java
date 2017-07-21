@@ -41,4 +41,24 @@ public class SuperAdmin_Controller {
         return "superadmin_page/Managing_User_SuperAdmin";
     }
 
+    @RequestMapping("/seat_DataStatistics_SuperAdmin")
+    public String seat_DataStatistics_SuperAdmin(Model model) throws Exception{
+        return "superadmin_page/Seat_DataStatistics_SuperAdmin";
+    }
+
+    @RequestMapping("/study_DataStatistics_SuperAdmin")
+    public String study_DataStatistics_SuperAdmin(Model model) throws Exception{
+        return "superadmin_page/Study_DataStatistics_SuperAdmin";
+    }
+
+    @RequestMapping("/seat_DataStatistics_ForEachBuilding")
+    public String seat_DataStatistics_ForEachBuilding(Model model) throws Exception{
+        return "superadmin_page/Seat_DataStatistics_ForEachBuilding";
+    }
+
+    @RequestMapping("/study_DataStatistics_ForEachBuilding")
+    public String study_DataStatistics_ForEachBuilding(Model model) throws Exception{
+        return "superadmin_page/Study_DataStatistics_ForEachBuilding";
+    }
+
 }

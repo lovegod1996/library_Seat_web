@@ -40,8 +40,8 @@ public class user_pageController {
     @RequestMapping("/main_User")
     public String main_User(Model model) throws Exception {
 
-        List<News> allNewsTop = newsService.findAllNewsTop();
-        model.addAttribute("newsTop", allNewsTop);
+//        List<News> allNewsTop = newsService.findAllNewsTop();
+//        model.addAttribute("newsTop", allNewsTop);
         return "user_page/Main_User";
     }
 
