@@ -49,7 +49,7 @@
                             </div>
                         </td>
                         <td>
-                            <button class="layui-btn">开馆</button>
+                            <button class="layui-btn">保存</button>
                         </td>
                     </tr>
 
@@ -72,7 +72,7 @@
                             </div>
                         </td>
                         <td>
-                            <button class="layui-btn">开馆</button>
+                            <button class="layui-btn">保存</button>
                         </td>
                     </tr>
                     </tbody>

@@ -74,9 +74,6 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-            <li>
-                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 数据统计</a>
-            </li>
         </ul>
     </div>
     <!-- /.sidebar-collapse -->

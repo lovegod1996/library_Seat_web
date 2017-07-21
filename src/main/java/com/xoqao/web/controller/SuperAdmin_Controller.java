@@ -26,6 +26,11 @@ public class SuperAdmin_Controller {
         return "superadmin_page/Main_SuperAdmin";
     }
 
+    @RequestMapping("/managing_Building_SuperAdmin")
+    public String managing_Building_SuperAdmin(Model model) throws Exception{
+        return "superadmin_page/Managing_Building_SuperAdmin";
+    }
+
     @RequestMapping("/managing_Floor_SuperAdmin")
     public String managing_Floor_SuperAdmin(Model model) throws Exception{
         return "superadmin_page/Managing_Floor_SuperAdmin";
@@ -36,8 +41,4 @@ public class SuperAdmin_Controller {
         return "superadmin_page/Managing_User_SuperAdmin";
     }
 
-    @RequestMapping("/managing_Powers_SuperAdmin")
-    public String managing_Powers_SuperAdmin(Model model) throws Exception{
-        return "superadmin_page/Managing_Powers_SuperAdmin";
-    }
 }

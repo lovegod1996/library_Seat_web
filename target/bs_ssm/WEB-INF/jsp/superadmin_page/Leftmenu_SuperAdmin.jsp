@@ -37,11 +37,7 @@
                         class="fa fa-dashboard fa-fw"></i> 后台管理首页</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/view/managing_Powers_SuperAdmin"
-                   target="mainFrame_SuperAdmin"><i class="fa fa-hdd-o fa-fw"></i> 管理员权限分配</a>
-            </li>
-            <li>
-                <a href="<%=request.getContextPath()%>/view/managing_Floor_SuperAdmin"
+                <a href="<%=request.getContextPath()%>/view/managing_Building_SuperAdmin"
                    target="mainFrame_SuperAdmin"><i class="fa fa-hdd-o fa-fw"></i> 创建楼和楼层</a>
             </li>
             <li>
