@@ -5,6 +5,8 @@ import com.xoqao.web.dao.BuildingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 说明：
  * Author: lovegod
@@ -20,5 +22,15 @@ public class BulidingServiceImpl implements BuildingService {
     public Building findBuildAdminByCount(String loginstr) throws Exception {
         Building buildAdminByCount = buildingMapper.findBuildAdminByCount(loginstr);
         return buildAdminByCount;
+    }
+
+    public Building findBuildingById(Integer bid) throws Exception {
+        Building buildingById = buildingMapper.findBuildingById(bid);
+        return buildingById;
+    }
+
+    public List<Building> findAllBuilding() throws Exception {
+        List<Building> allBuilding = buildingMapper.findAllBuilding();
+        return allBuilding;
     }
 }

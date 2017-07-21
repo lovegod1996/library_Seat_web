@@ -6,4 +6,8 @@
         SELECT aid,acountnumber,password,name,employer  FROM admin WHERE acountnumber LIKE '${loginstr}'
     </select>
 
+    <!--根据id查找管理员-->
+    <select id="findAdminByid" resultType="com.xoqao.web.bean.admin.Admin">
+          SELECT aid,acountnumber,password,name,employer  FROM admin WHERE aid =#{aid}
+    </select>
 </mapper>

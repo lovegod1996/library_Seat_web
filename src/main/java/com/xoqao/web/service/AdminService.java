@@ -1,6 +1,7 @@
 package com.xoqao.web.service;
 
 import com.xoqao.web.bean.admin.Admin;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 说明：
@@ -10,4 +11,6 @@ import com.xoqao.web.bean.admin.Admin;
  */
 public interface AdminService {
     Admin findAdminByCount(String loginstr)throws Exception;
+
+    Admin findAdminByid(Integer aid)throws Exception;
 }

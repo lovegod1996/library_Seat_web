@@ -30,22 +30,22 @@
 </head>
 <body>
 <div class="content_title">
-    <h2>${news.title}</h2>
-    <span>发布时间</span>&nbsp;&nbsp;<span><fmt:formatDate value="${news.creattime}"
+    <h2>${notice.title}</h2>
+    <span>发布时间</span>&nbsp;&nbsp;<span><fmt:formatDate value="${notice.creattime}"
                                                        pattern="yyyy-MM-dd HH:mm:ss"/></span>
 </div>
 <hr>
 <div class="content_main">
     <p>
-        ${news.content}
+        ${notice.content}
       </p>
 </div>
 <div class="content_bootom">
-    <c:if test="${news.nid!=1}">
-        <span>上一篇</span>&nbsp;<a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${news.nid-1}">点我就是上一篇</a>
+    <c:if test="${notice.nid!=1}">
+        <span>上一篇</span>&nbsp;<a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${notice.nid-1}">点我就是上一篇</a>
     </c:if>
     <br>
-    <span>下一篇</span>&nbsp;<a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${news.nid+1}">点我就是下一篇</a>
+    <span>下一篇</span>&nbsp;<a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${notice.nid+1}">点我就是下一篇</a>
 </div>
 
 <script type="text/javascript">

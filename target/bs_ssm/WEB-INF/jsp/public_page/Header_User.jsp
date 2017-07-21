@@ -54,9 +54,9 @@
                     <li><a href="<%=request.getContextPath()%>/jsp/book_Seat_User" target="mainFrame_User">预约</a></li>
                 </c:if>
                 <%--<li><a href="#">SVN</a></li>--%>
-                <li><a href="<%=request.getContextPath()%>/jsp/index_Admin" target="_blank">层管理员测试</a></li>
-                <li><a href="<%=request.getContextPath()%>/view/index_BuildingAdmin" target="_blank">楼管理员测试</a></li>
-                <li><a href="<%=request.getContextPath()%>/view/index_SuperAdmin" target="_blank">系统管理员测试</a></li>
+                <%--<li><a href="<%=request.getContextPath()%>/jsp/index_Admin" target="_blank">层管理员测试</a></li>--%>
+                <%--<li><a href="<%=request.getContextPath()%>/view/index_BuildingAdmin" target="_blank">楼管理员测试</a></li>--%>
+                <%--<li><a href="<%=request.getContextPath()%>/view/index_SuperAdmin" target="_blank">系统管理员测试</a></li>--%>
                 <li><a href="<%=request.getContextPath()%>/view/choose_Building" target="_parent">选择南北楼测试</a></li>
             </ul>
         </div>
@@ -66,11 +66,7 @@
                 <c:when test="${empty sessionScope}">
                     <li class="dropdown">
                         <a href="<%=request.getContextPath()%>/jsp/login" target="_parent">
-<<<<<<< HEAD
-                            <i class="fa fa-user fa-fw"></i><span>用户登录</span>
-=======
                             <i class="fa fa-user fa-fw"></i><span>登录</span>
->>>>>>> d4d4c8622d9baa18a0dac9fd78549c3d31729919
                         </a>
                     </li>
                 </c:when>
@@ -94,7 +90,7 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="<%=request.getContextPath()%>/jsp/index_Admin"
                                target="_blank">
-                                <i class="fa fa-user fa-fw"></i><span>${sessionScope.admin.loginname}</span>
+                                <i class="fa fa-user fa-fw"></i><span>${sessionScope.admin.name}</span>
                             </a>
                         </li>
                         <li class="dropdown">

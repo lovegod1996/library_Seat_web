@@ -78,9 +78,6 @@
                             </div>
                             <div class="fogetPwd" style="float: left">
                                 <a data-method="notice" class="layui-btn layui-btn-mini" target="_parent">忘记密码?</a>
-                                    <a href="<%=request.getContextPath()%>/view/login_ForAdmin" target="_parent">
-                                        <i class="fa fa-user fa-fw"></i><span>Admin登录</span>
-                                    </a>
                             </div>
 
                             <button class="btn btn-lg btn-success btn-block" type="submit">登录</button>

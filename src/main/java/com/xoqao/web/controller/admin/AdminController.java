@@ -4,6 +4,7 @@ import com.xoqao.web.bean.admin.Admin;
 import com.xoqao.web.bean.building.Building;
 import com.xoqao.web.bean.floors.Floor;
 import com.xoqao.web.bean.news.News;
+import com.xoqao.web.bean.news.Notice;
 import com.xoqao.web.bean.seat.Floors;
 import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.user.User;
@@ -46,6 +47,8 @@ public class AdminController {
     @Autowired
     private FloorService floorService;
 
+    @Autowired
+    private NoticeService noticeService;
     /**
      * 后台登录提交
      *
@@ -56,19 +59,20 @@ public class AdminController {
      * @throws Exception
      */
     @RequestMapping("/userloginSub")
-    public String userLoginSub(Model model, String loginId, String password,  HttpSession httpSession) throws Exception {
-            User userByphoneOrSno = userService.findUserBySno(loginId);
-            if (password.trim().equals(userByphoneOrSno.getPassword())) {
-                httpSession.setAttribute("user", userByphoneOrSno);
-                return "toIndex";
-            } else {
-                model.addAttribute("error_msg", "密码输入错误！");
-                return "public_page/Login";
-            }
+    public String userLoginSub(Model model, String loginId, String password, HttpSession httpSession) throws Exception {
+        User userByphoneOrSno = userService.findUserBySno(loginId);
+        if (password.trim().equals(userByphoneOrSno.getPassword())) {
+            httpSession.setAttribute("user", userByphoneOrSno);
+            return "toIndex";
+        } else {
+            model.addAttribute("error_msg", "密码输入错误！");
+            return "public_page/Login";
+        }
     }
 
     /**
      * 管理员登录
+     *
      * @param model
      * @param loginId
      * @param password
@@ -78,41 +82,42 @@ public class AdminController {
      * @throws Exception
      */
     @RequestMapping("/adminLoginSub")
-    public String adminLoginSub(Model model,String loginId,String password,Integer optionsRadiosinline,HttpSession httpSession)throws Exception{
-         if(optionsRadiosinline==1){
-             Floor floorBycount = floorService.findFloorBycount(loginId);
-             if(floorBycount!=null&&password.equals(floorBycount.getPassword())){
-                 httpSession.setAttribute("admin",floorBycount);
-                 httpSession.setAttribute("admintype",1);
-                 return "admin_page/Index_Admin";
-             }else{
-                 model.addAttribute("error_msg", "信息输入错误！");
-                 return "public_page/Login_ForAdmin";
-             }
-         }else if(optionsRadiosinline==2){
-             Building buildAdminByCount = buildingService.findBuildAdminByCount(loginId);
-             if(buildAdminByCount!=null&&password.equals(buildAdminByCount.getPassword())){
-                 httpSession.setAttribute("admin",buildAdminByCount);
-                 httpSession.setAttribute("admintype",2);
-                 return "buildingadmin_page/Index_BuildingAdmin";
-             }else{
-                 model.addAttribute("error_msg", "信息输入错误！");
-                 return "public_page/Login_ForAdmin";
-             }
-         }else if(optionsRadiosinline==3){
-             Admin adminByCount = adminService.findAdminByCount(loginId);
-             if(adminByCount!=null&&password.equals(adminByCount.getPassword())){
-                 httpSession.setAttribute("admin",adminByCount);
-                 httpSession.setAttribute("admintype",3);
-                 return "superadmin_page/Index_SuperAdmin";
-             }else{
-                 model.addAttribute("error_msg", "信息输入错误！");
-                 return "public_page/Login_ForAdmin";
-             }
-         }else{
-             return "public_page/Login_ForAdmin";
-         }
+    public String adminLoginSub(Model model, String loginId, String password, Integer optionsRadiosinline, HttpSession httpSession) throws Exception {
+        if (optionsRadiosinline == 1) {
+            Floor floorBycount = floorService.findFloorBycount(loginId);
+            if (floorBycount != null && password.equals(floorBycount.getPassword())) {
+                httpSession.setAttribute("admin", floorBycount);
+                httpSession.setAttribute("admintype", 1);
+                return "admin_page/Index_Admin";
+            } else {
+                model.addAttribute("error_msg", "信息输入错误！");
+                return "public_page/Login_ForAdmin";
+            }
+        } else if (optionsRadiosinline == 2) {
+            Building buildAdminByCount = buildingService.findBuildAdminByCount(loginId);
+            if (buildAdminByCount != null && password.equals(buildAdminByCount.getPassword())) {
+                httpSession.setAttribute("admin", buildAdminByCount);
+                httpSession.setAttribute("admintype", 2);
+                return "buildingadmin_page/Index_BuildingAdmin";
+            } else {
+                model.addAttribute("error_msg", "信息输入错误！");
+                return "public_page/Login_ForAdmin";
+            }
+        } else if (optionsRadiosinline == 3) {
+            Admin adminByCount = adminService.findAdminByCount(loginId);
+            if (adminByCount != null && password.equals(adminByCount.getPassword())) {
+                httpSession.setAttribute("admin", adminByCount);
+                httpSession.setAttribute("admintype", 3);
+                return "superadmin_page/Index_SuperAdmin";
+            } else {
+                model.addAttribute("error_msg", "信息输入错误！");
+                return "public_page/Login_ForAdmin";
+            }
+        } else {
+            return "public_page/Login_ForAdmin";
+        }
     }
+
     /**
      * 退出登录
      *
@@ -140,25 +145,42 @@ public class AdminController {
     public String newsSub(Model model, Integer page, String title, String content, HttpSession httpSession) throws Exception {
         Integer pageSize = 5;
 
-        News news = new News();
-        news.setTitle(title);
-        news.setContent(content);
-        news.setCreattime(new Date());
+        Notice notice=new Notice();
+
+        Integer type = (Integer) httpSession.getAttribute("admintype");
+        if(type==1){
+            Floor floorBycount= (Floor) httpSession.getAttribute("admin");
+            notice.setType(1);
+            notice.setUid(floorBycount.getFid());
+            notice.setWorkstation(floorBycount.getEmployer());
+        }else if(type==2){
+            Building buildAdminByCount = (Building) httpSession.getAttribute("admin");
+            notice.setType(2);
+            notice.setUid(buildAdminByCount.getBid());
+            notice.setWorkstation(buildAdminByCount.getEmployer());
+        }else if(type==3){
+            Admin adminByCount= (Admin) httpSession.getAttribute("admin");
+            notice.setType(3);
+            notice.setUid(adminByCount.getAid());
+            notice.setWorkstation(adminByCount.getEmployer());
+        }
+        notice.setTitle(title);
+        notice.setContent(content);
+        notice.setCreattime(new Date());
         try {
-            newsService.insertNews(news);
+         noticeService.insertNotice(notice);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        List<Notice> allNotice = noticeService.findAllNotice();
 
 
-        List<News> allNews = newsService.findAllNews();
-
-        model.addAttribute("NewsSize", allNews.size());
+        model.addAttribute("NewsSize", allNotice.size());
         int pageTims;
-        if (allNews.size() % pageSize == 0) {
-            pageTims = allNews.size() / pageSize;
+        if (allNotice.size() % pageSize == 0) {
+            pageTims = allNotice.size() / pageSize;
         } else {
-            pageTims = allNews.size() / pageSize + 1;
+            pageTims = allNotice.size() / pageSize + 1;
         }
         httpSession.setAttribute("pageTimes", pageTims);
         //页面初始的时候没有初试值
@@ -167,16 +189,17 @@ public class AdminController {
         }
         //每页开始的第几条记录
         int startRow;
-        if (allNews.size() < pageSize) {
+        if (allNotice.size() < pageSize) {
             startRow = 0;
         } else {
             startRow = (page - 1) * pageSize;
         }
         model.addAttribute("currentPage", page);
 
-        List<News> allNewsPage = newsService.findAllNewsPage(startRow, pageSize);
-        if (allNewsPage.size() > 0) {
-            model.addAttribute("news", allNewsPage);
+//        List<News> allNewsPage = newsService.findAllNewsPage(startRow, pageSize);
+        List<Notice> allNoticepage = noticeService.findAllNoticepage(startRow, pageSize);
+        if (allNoticepage.size() > 0) {
+            model.addAttribute("news", allNoticepage);
             return "admin_page/News_List_Admin";
         } else {
             model.addAttribute("nullList", "暂无数据");

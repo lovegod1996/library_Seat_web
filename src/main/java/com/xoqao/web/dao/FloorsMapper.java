@@ -15,4 +15,5 @@ public interface FloorsMapper {
 
     Floor findFloorAdminByCount(@Param("loginstr") String acount)throws Exception;
 
+    Floor findfloorByid(@Param("fid") Integer fid)throws Exception;
 }
