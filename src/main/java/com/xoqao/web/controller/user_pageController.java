@@ -43,8 +43,14 @@ public class user_pageController {
     private NoticeService noticeService;
     @RequestMapping("/main_User")
     public String main_User(Model model) throws Exception {
+<<<<<<< HEAD
         List<Notice> allNoticetop = noticeService.findAllNoticetop();
         model.addAttribute("noticestop",allNoticetop);
+=======
+
+//        List<News> allNewsTop = newsService.findAllNewsTop();
+//        model.addAttribute("newsTop", allNewsTop);
+>>>>>>> 2ef2feb752cc96347c20560a3a4cc001b48bcc32
         return "user_page/Main_User";
     }
 

@@ -10,7 +10,7 @@
 <head>
     <title>Title</title>
     <script language="javascript">
-
+        window.location.href="/LS/jsp/main_Admin"
     </script>
 </head>
 <body>

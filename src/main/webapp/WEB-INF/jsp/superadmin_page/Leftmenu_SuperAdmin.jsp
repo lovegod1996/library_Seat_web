@@ -9,7 +9,6 @@
 <html>
 <head>
     <title>Title</title>
-    <title>leftMenu</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -48,7 +47,8 @@
                 <a href="#"><i class="fa fa-bell fa-fw"></i> 通知管理<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="<%=request.getContextPath()%>/jsp/news_List_Admin" target="mainFrame_SuperAdmin">通知列表</a>
+                        <a href="<%=request.getContextPath()%>/jsp/news_List_Admin"
+                           target="mainFrame_SuperAdmin">通知列表</a>
                     </li>
                     <li>
                         <a href="<%=request.getContextPath()%>/jsp/add_News" target="mainFrame_SuperAdmin">发布通知</a>
@@ -56,7 +56,17 @@
                 </ul>
             </li>
             <li>
-                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 数据统计</a>
+                <a href="#"><i class="fa fa-bell fa-fw"></i> 数据统计<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="<%=request.getContextPath()%>/view/study_DataStatistics_SuperAdmin"
+                           target="mainFrame_SuperAdmin">学习情况统计</a>
+                    </li>
+                    <li>
+                        <a href="<%=request.getContextPath()%>/view/seat_DataStatistics_SuperAdmin"
+                           target="mainFrame_SuperAdmin">座位使用统计</a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>
