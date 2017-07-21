@@ -257,5 +257,17 @@ public class Admin_Controller {
         return majorByCollege;
     }
 
+//    座位使用情况统计
+    @RequestMapping("/seat_DataStatistics")
+    public String seat_DataStatistics(Model model) throws Exception {
+        return "admin_page/Seat_DataStatistics";
+    }
+
+//    学习统计
+    @RequestMapping("/study_DataStatistics")
+    public String study_DataStatistics(Model model) throws Exception {
+        return "admin_page/Study_DataStatistics";
+    }
+
 
 }

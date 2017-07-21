@@ -2,13 +2,14 @@
   Created by IntelliJ IDEA.
   User: 1Q84
   Date: 2017/7/21
-  Time: 15:06
+  Time: 17:32
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>每栋楼座位使用详情</title>
+    <title>Title</title>
+
     <%--layui --%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
@@ -31,13 +32,7 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td>南一</td>
-                    <td>585</td>
-                    <td>200</td>
-                    <td>80%</td>
-                </tr>
-                <tr>
-                    <td>南一</td>
+                    <td>当前楼层</td>
                     <td>585</td>
                     <td>200</td>
                     <td>80%</td>

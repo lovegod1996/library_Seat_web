@@ -2,13 +2,14 @@
   Created by IntelliJ IDEA.
   User: 1Q84
   Date: 2017/7/21
-  Time: 15:24
+  Time: 17:32
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
+
     <%--layui --%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
@@ -48,34 +49,9 @@
 <div class="layui-tab">
     <ul class="layui-tab-title">
         <li class="layui-this">楼层</li>
-        <li>详情</li>
     </ul>
     <div class="layui-tab-content">
         <div class="layui-tab-item layui-show">
-            <div class="layui-form">
-                <table class="layui-table" lay-skin="line">
-                    <thead>
-                    <tr>
-                        <th>序号</th>
-                        <th>楼层</th>
-                        <th>学习时间</th>
-                        <th>入馆次数</th>
-                        <th>失信次数</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>南一</td>
-                        <td>100</td>
-                        <td>25</td>
-                        <td>2</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="layui-tab-item">
             <form class="layui-form" action="">
                 <div class="layui-form-item">
                     <div class="layui-input-inline">
@@ -139,40 +115,8 @@
 </div>
 </div>
 
-<%--Tip页切换--%>
 <script>
-    layui.use('element', function () {
-        var $ = layui.jquery
-            , element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块
-
-        //触发事件
-        var active = {
-            tabChange: function () {
-                //切换到指定Tab项
-                element.tabChange('demo', '22'); //
-            }
-        };
-
-        $('.site-demo-active').on('click', function () {
-            var othis = $(this), type = othis.data('type');
-            active[type] ? active[type].call(this, othis) : '';
-        });
-
-        //Hash地址的定位
-        var layid = location.hash.replace(/^#test=/, '');
-        element.tabChange('test', layid);
-
-        element.on('tab(test)', function (elem) {
-            location.hash = 'test=' + $(this).attr('lay-id');
-        });
-
-    });
-</script>
-
-<script>
-    layui.use(['form'], function () {
-
-    });
+    layui.use(['form'], function () {});
 </script>
 
 </body>
