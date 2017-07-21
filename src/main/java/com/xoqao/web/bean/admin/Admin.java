@@ -7,25 +7,26 @@ package com.xoqao.web.bean.admin;
  * Email:dx96_j@163.com
  */
 public class Admin {
-    private Integer id;
-    private String loginname;
+    private Integer aid;
+    private String acountnumber;
     private String password;
-    private String role;
+    private String name;
+    private String employer;
 
-    public Integer getId() {
-        return id;
+    public Integer getAid() {
+        return aid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setAid(Integer aid) {
+        this.aid = aid;
     }
 
-    public String getLoginname() {
-        return loginname;
+    public String getAcountnumber() {
+        return acountnumber;
     }
 
-    public void setLoginname(String loginname) {
-        this.loginname = loginname;
+    public void setAcountnumber(String acountnumber) {
+        this.acountnumber = acountnumber;
     }
 
     public String getPassword() {
@@ -36,21 +37,30 @@ public class Admin {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public String getName() {
+        return name;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmployer() {
+        return employer;
+    }
+
+    public void setEmployer(String employer) {
+        this.employer = employer;
     }
 
     @Override
     public String toString() {
         return "Admin{" +
-                "id=" + id +
-                ", loginname='" + loginname + '\'' +
+                "aid=" + aid +
+                ", acountnumber='" + acountnumber + '\'' +
                 ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
+                ", name='" + name + '\'' +
+                ", employer='" + employer + '\'' +
                 '}';
     }
 }

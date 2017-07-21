@@ -9,5 +9,5 @@ import com.xoqao.web.bean.admin.Admin;
  * Email:dx96_j@163.com
  */
 public interface AdminService {
-    Admin findadminBynameOrid(String loginstr)throws Exception;
+    Admin findAdminByCount(String loginstr)throws Exception;
 }

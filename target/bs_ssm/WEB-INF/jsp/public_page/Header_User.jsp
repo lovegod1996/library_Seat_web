@@ -66,7 +66,11 @@
                 <c:when test="${empty sessionScope}">
                     <li class="dropdown">
                         <a href="<%=request.getContextPath()%>/jsp/login" target="_parent">
+<<<<<<< HEAD
+                            <i class="fa fa-user fa-fw"></i><span>用户登录</span>
+=======
                             <i class="fa fa-user fa-fw"></i><span>登录</span>
+>>>>>>> d4d4c8622d9baa18a0dac9fd78549c3d31729919
                         </a>
                     </li>
                 </c:when>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoqao.web.dao.BuildingMapper" >
+    <!--根据用户名或账号查询管理员-->
+    <select id="findBuildAdminByCount" resultType="com.xoqao.web.bean.building.Building">
+        SELECT bid,accountnumber,password,name,employer,manage  FROM buliding WHERE accountnumber LIKE '${loginstr}'
+    </select>
+
+</mapper>
