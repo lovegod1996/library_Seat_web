@@ -34,10 +34,10 @@
         .white_content {
             display: none;
             position: absolute;
-            top: 35%;
+            top: 20%;
             left: 32%;
-            width: 35%;
-            height: 30%;
+            width: 400px;
+            height: 250px;
             padding: 16px;
             border: 1px solid orange;
             background-color: white;
@@ -45,6 +45,17 @@
             overflow: auto;
         }
     </style>
+
+    <script language="javascript">
+        function getTableContent(node) {
+            // 按钮的父节点的父节点是tr。
+            var tr1 = node.parentNode.parentNode;
+            //alert(tr1.rowIndex);获得行
+            //alert(tb1.rows[tr1.rowIndex].cells[1].getElementsByTagName("INPUT")[0].value);
+            document.getElementById("floorname").value= tb1.rows[tr1.rowIndex].cells[1].innerHTML;
+            document.getElementById("flooradmin").value = tb1.rows[tr1.rowIndex].cells[2].innerHTML;
+        }
+    </script>
 
 </head>
 <body>
@@ -76,12 +87,10 @@
                         <td>南一</td>
                         <td>Admin</td>
                         <td>
-                            <div class="layui-btn-group">
-                                <button type="button" class="layui-btn layui-btn-small" onclick="document.getElementById('light1').style.display='block';
-                                        document.getElementById('fade').style.display='block';">编辑
-                                </button>
-                                <button type="button" class="layui-btn layui-btn-small">删除</button>
-                            </div>
+                            <button type="button" class="layui-btn layui-btn-small" onclick="document.getElementById('light1').style.display='block';
+                                        document.getElementById('fade').style.display='block';getTableContent(this)">编辑
+                            </button>
+                            <button type="button" class="layui-btn layui-btn-small">删除</button>
                         </td>
                     </tr>
                     </tbody>
@@ -102,17 +111,23 @@
         <div class="layui-form-item">
             <label class="layui-form-label">添加楼层</label>
             <div class="layui-input-inline">
-                <input type="text" placeholder="请输入" class="layui-input" required>
+                <input placeholder="请输入" class="layui-input" required>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">添加管理员</label>
             <div class="layui-input-inline">
-                <input type="text" placeholder="请输入" class="layui-input" required>
+                <input placeholder="请输入" class="layui-input" required>
             </div>
         </div>
         <div class="layui-form-item">
-            <button type="submit" class="layui-btn">确认</button>
+            <label class="layui-form-label"></label>
+            <div class="layui-input-inline">
+                <label style="color: #777777">默认密码为 123456</label>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn" style="margin:20px 0 0 45%">确认</button>
         </div>
     </form>
 </div>
@@ -128,17 +143,17 @@
         <div class="layui-form-item">
             <label class="layui-form-label">编辑楼层</label>
             <div class="layui-input-inline">
-                <input type="text" id="floorname" class="layui-input" required>
+                <input id="floorname" class="layui-input" required>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">添加管理员</label>
+            <label class="layui-form-label">编辑管理员</label>
             <div class="layui-input-inline">
-                <input type="text" id="flooradmin" class="layui-input" required>
+                <input id="flooradmin" class="layui-input" required>
             </div>
         </div>
         <div class="layui-form-item">
-            <button type="submit" class="layui-btn">确认</button>
+            <button class="layui-btn" style="margin:20px 0 0 45%">确认</button>
         </div>
     </form>
 </div>

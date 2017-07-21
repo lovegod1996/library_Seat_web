@@ -45,6 +45,7 @@ public class user_pageController {
     public String main_User(Model model) throws Exception {
         List<Notice> allNoticetop = noticeService.findAllNoticetop();
         model.addAttribute("noticestop",allNoticetop);
+
         return "user_page/Main_User";
     }
 

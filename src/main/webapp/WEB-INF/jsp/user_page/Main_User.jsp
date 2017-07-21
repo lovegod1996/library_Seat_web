@@ -57,7 +57,7 @@
     <div class="col-sm-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <i class="fa fa-bell fa-fw"></i> 排行榜
+                <i class="glyphicon glyphicon-star"></i> 排行榜
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="height: 400px">
@@ -115,7 +115,7 @@
 <div class="col-sm-4">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <i class="fa fa-bell fa-fw"></i> 开馆时间安排
+            <i class="glyphicon glyphicon-time"></i> 开馆时间安排
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body" style="height: 400px">

@@ -51,7 +51,17 @@
                 </ul>
             </li>
             <li>
-                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 数据统计</a>
+                <a href="#"><i class="fa fa-bell fa-fw"></i> 数据统计<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="<%=request.getContextPath()%>/view/study_DataStatistics_ForEachBuilding"
+                           target="mainFrame_BuildingAdmin">学习情况统计</a>
+                    </li>
+                    <li>
+                        <a href="<%=request.getContextPath()%>/view/seat_DataStatistics_ForEachBuilding"
+                           target="mainFrame_BuildingAdmin">座位使用统计</a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>

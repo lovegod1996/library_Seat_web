@@ -51,13 +51,19 @@
                 <li class="active"><a href="<%=request.getContextPath()%>/" target="_parent">首页</a></li>
 
                 <c:if test="${sessionScope.user !=null}">
-                    <li><a href="<%=request.getContextPath()%>/jsp/book_Seat_User" target="mainFrame_User">预约</a></li>
+                    <li><a href="<%=request.getContextPath()%>/view/choose_Building" target="mainFrame_User">预约</a></li>
                 </c:if>
+<<<<<<< HEAD
                 <%--<li><a href="#">SVN</a></li>--%>
                 <%--<li><a href="<%=request.getContextPath()%>/jsp/index_Admin" target="_blank">层管理员测试</a></li>--%>
                 <%--<li><a href="<%=request.getContextPath()%>/view/index_BuildingAdmin" target="_blank">楼管理员测试</a></li>--%>
                 <%--<li><a href="<%=request.getContextPath()%>/view/index_SuperAdmin" target="_blank">系统管理员测试</a></li>--%>
                 <li><a href="<%=request.getContextPath()%>/view/choose_Building" target="_parent">选择南北楼测试</a></li>
+=======
+                <li><a href="<%=request.getContextPath()%>/jsp/index_Admin" target="_blank">层管理员测试</a></li>
+                <li><a href="<%=request.getContextPath()%>/view/index_BuildingAdmin" target="_blank">楼管理员测试</a></li>
+                <li><a href="<%=request.getContextPath()%>/view/index_SuperAdmin" target="_blank">系统管理员测试</a></li>
+>>>>>>> 2ef2feb752cc96347c20560a3a4cc001b48bcc32
             </ul>
         </div>
 
