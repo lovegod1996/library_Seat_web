@@ -91,25 +91,13 @@
                                                     target="mainFrame_SuperAdmin">${building.employer}</a></td>
                             <td>${building.accountnumber}</td>
                             <td>
-                                <div class="layui-btn-group">
-                                    <button type="button" class="layui-btn layui-btn-small">编辑</button>
-                                    <button type="button" class="layui-btn layui-btn-small">删除</button>
-                                </div>
+                                <button type="button" class="layui-btn layui-btn-small" onclick="document.getElementById('light1').style.display='block';
+                                        document.getElementById('fade').style.display='block';getTableContent(this)">编辑
+                                </button>
+                                <button type="button" class="layui-btn layui-btn-small">删除</button>
                             </td>
                         </tr>
                     </c:forEach>
-                    <tr>
-                        <td>1</td>
-                        <td id="libraryname"><a href="<%=request.getContextPath()%>/view/managing_Floor_SuperAdmin"
-                                                target="mainFrame_SuperAdmin">中原工学院南区图书馆</a></td>
-                        <td>Administrator</td>
-                        <td>
-                            <button type="button" class="layui-btn layui-btn-small" onclick="document.getElementById('light1').style.display='block';
-                                        document.getElementById('fade').style.display='block';getTableContent(this)">编辑
-                            </button>
-                            <button type="button" class="layui-btn layui-btn-small">删除</button>
-                        </td>
-                    </tr>
                     </tbody>
                 </table>
             </div>

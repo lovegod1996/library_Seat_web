@@ -12,6 +12,19 @@
     <%--layui --%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+    <!-- jQuery -->
+    <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
+
+    <%--<script language="javascript">--%>
+        <%--function getTableContent(node) {--%>
+            <%--// 按钮的父节点的父节点是tr。--%>
+            <%--var tr1 = node.parentNode.parentNode;--%>
+            <%--//获得图书馆名称，传值至详情页面--%>
+            <%--var buildingname;--%>
+            <%--buildingname = tb1.rows[tr1.rowIndex].cells[1].innerText;--%>
+            <%--return buildingname;--%>
+        <%--}--%>
+    <%--</script>--%>
 </head>
 <body>
 <div class="layui-tab">
@@ -25,17 +38,14 @@
                 <tr>
                     <th>序号</th>
                     <th>图书馆</th>
-                    <th>详情</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>1</td>
-                    <td>中原工学院南区图书馆</td>
                     <td>
-                        <a type="button" class="layui-btn layui-btn-small"
-                           href="<%=request.getContextPath()%>/view/study_DataStatistics_ForEachBuilding"
-                           target="mainFrame_SuperAdmin">详情</a>
+                        <a href="<%=request.getContextPath()%>/view/study_DataStatistics_ForEachBuilding"
+                           target="mainFrame_SuperAdmin">中原工学院南区图书馆</a>
                     </td>
                 </tr>
                 </tbody>

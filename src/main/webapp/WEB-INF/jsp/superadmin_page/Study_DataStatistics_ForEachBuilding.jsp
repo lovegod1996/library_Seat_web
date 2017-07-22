@@ -83,11 +83,16 @@
                             <option value="">学院搜索选择</option>
                             <option value="1">layer</option>
                             <option value="2">form</option>
+                            <option value="2">form</option>
+                            <option value="2">form</option>
                         </select>
                     </div>
                     <div class="layui-input-inline">
                         <select name="modules" lay-verify="required" lay-search="">
                             <option value="">专业搜索选择</option>
+                            <option value="1">layer</option>
+                            <option value="1">layer</option>
+                            <option value="1">layer</option>
                             <option value="1">layer</option>
                             <option value="2">form</option>
                         </select>
@@ -96,6 +101,9 @@
                         <select name="modules" lay-verify="required" lay-search="">
                             <option value="">班级搜索选择</option>
                             <option value="1">layer</option>
+                            <option value="2">form</option>
+                            <option value="2">form</option>
+                            <option value="2">form</option>
                             <option value="2">form</option>
                         </select>
                     </div>
