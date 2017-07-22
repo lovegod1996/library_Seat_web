@@ -16,9 +16,14 @@ import java.util.List;
 @Service
 public interface BuildingMapper {
 
-    Building findBuildAdminByCount(@Param("loginstr") String loginstr)throws Exception;
+    Building findBuildAdminByCount(@Param("loginstr") String loginstr) throws Exception;
 
-    Building findBuildingById(@Param("bid") Integer bid)throws Exception;
+    Building findBuildingById(@Param("bid") Integer bid) throws Exception;
 
-    List<Building> findAllBuilding()throws Exception;
+    List<Building> findAllBuilding() throws Exception;
+
+    void insertLibaray(@Param("building") Building building) throws Exception;
+
+    void deleteLibaray(@Param("bid") Integer bid) throws Exception;
+
 }

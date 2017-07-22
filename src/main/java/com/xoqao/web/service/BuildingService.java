@@ -18,4 +18,9 @@ public interface BuildingService {
     Building findBuildingById( Integer bid)throws Exception;
 
     List<Building> findAllBuilding()throws Exception;
+
+
+    void insertLibaray(Building building) throws Exception;
+
+    void deleteLibaray(Integer bid) throws Exception;
 }

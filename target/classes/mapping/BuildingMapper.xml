@@ -15,5 +15,17 @@
      SELECT bid,accountnumber,password,name,employer,manage  FROM buliding
     </select>
 
+    <!--添加图书馆信息-->
+    <insert id="insertLibaray">
+        <selectKey resultType="java.lang.Integer" keyProperty="bid" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO buliding (accountnumber,password,name,employer,manage) VALUES
+        (#{building.accountnumber},#{building.password},#{building.name},#{building.employer},#{building.manage})
+    </insert>
 
+    <!--删除图书馆-->
+    <delete id="deleteLibaray">
+        DELETE FROM buliding WHERE  bid=#{bid}
+    </delete>
 </mapper>

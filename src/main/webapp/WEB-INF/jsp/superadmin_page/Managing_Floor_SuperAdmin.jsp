@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>Title</title>
@@ -61,7 +64,7 @@
 <body>
 <div class="layui-tab">
     <ul class="layui-tab-title">
-        <li class="layui-this" id="libraryname">中原工学院南区图书馆</li>
+        <li class="layui-this" id="libraryname">${building.employer}</li>
         <li>
             <button class="layui-btn layui-btn-small" href="javascript:void(0)"
                     onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">
@@ -82,17 +85,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>南一</td>
-                        <td>Admin</td>
-                        <td>
-                            <button type="button" class="layui-btn layui-btn-small" onclick="document.getElementById('light1').style.display='block';
+                    <c:forEach items="${floors}" var="floor" varStatus="step">
+                        <tr>
+                            <td>${step.index}</td>
+                            <td>${floor.employer}</td>
+                            <td>${floor.accountnumber}</td>
+                            <td>
+                                <button type="button" class="layui-btn layui-btn-small" onclick="document.getElementById('light1').style.display='block';
                                         document.getElementById('fade').style.display='block';getTableContent(this)">编辑
-                            </button>
-                            <button type="button" class="layui-btn layui-btn-small">删除</button>
-                        </td>
-                    </tr>
+                                </button>
+                                <a href="<%=request.getContextPath()%>/view/deletefloor?bid=${building.bid}&&fid=${floor.fid}" class="layui-btn layui-btn-small">删除</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>

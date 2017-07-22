@@ -93,23 +93,12 @@
                             <td>
                                 <div class="layui-btn-group">
                                     <button type="button" class="layui-btn layui-btn-small">编辑</button>
-                                    <button type="button" class="layui-btn layui-btn-small">删除</button>
+                                    <a  href="<%=request.getContextPath()%>/view/buidingdelete?bid=${building.bid}" class="layui-btn layui-btn-small">删除</a>
                                 </div>
                             </td>
                         </tr>
                     </c:forEach>
-                    <tr>
-                        <td>1</td>
-                        <td id="libraryname"><a href="<%=request.getContextPath()%>/view/managing_Floor_SuperAdmin"
-                                                target="mainFrame_SuperAdmin">中原工学院南区图书馆</a></td>
-                        <td>Administrator</td>
-                        <td>
-                            <button type="button" class="layui-btn layui-btn-small" onclick="document.getElementById('light1').style.display='block';
-                                        document.getElementById('fade').style.display='block';getTableContent(this)">编辑
-                            </button>
-                            <button type="button" class="layui-btn layui-btn-small">删除</button>
-                        </td>
-                    </tr>
+
                     </tbody>
                 </table>
             </div>
@@ -123,17 +112,17 @@
            onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
             &#x1006;</a>
     </div>
-    <form class="layui-form">
+    <form class="layui-form" action="<%=request.getContextPath()%>/view/admin/adbuilding" method="post">
         <div class="layui-form-item">
             <label class="layui-form-label">添加图书馆</label>
             <div class="layui-input-inline">
-                <input placeholder="请输入" class="layui-input" required>
+                <input placeholder="请输入" name="libaray" class="layui-input" required>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">添加管理员</label>
             <div class="layui-input-inline">
-                <input placeholder="请输入" class="layui-input" required>
+                <input placeholder="请输入" name="admin" class="layui-input" required>
             </div>
         </div>
         <div class="layui-form-item">
@@ -143,7 +132,7 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <button class="layui-btn" style="margin:20px 0 0 45%">确认</button>
+            <button class="layui-btn" type="submit" style="margin:20px 0 0 45%">确认</button>
         </div>
     </form>
 </div>
