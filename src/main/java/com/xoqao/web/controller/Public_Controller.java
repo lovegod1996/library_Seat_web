@@ -16,6 +16,11 @@ public class Public_Controller {
         return "public_page/404";
     }
 
+    @RequestMapping("/page500")
+    public String page500 (Model model) throws Exception{
+        return "public_page/500";
+    }
+
     @RequestMapping("/login_ForAdmin")
     public String login_ForAdmin (Model model) throws Exception{
         return "public_page/Login_ForAdmin";

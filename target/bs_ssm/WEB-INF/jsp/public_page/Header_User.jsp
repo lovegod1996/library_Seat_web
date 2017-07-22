@@ -55,8 +55,8 @@
                 </c:if>
 
                 <%--<li><a href="#">SVN</a></li>--%>
-                <%--<li><a href="<%=request.getContextPath()%>/jsp/index_Admin" target="_blank">层管理员测试</a></li>--%>
-                <%--<li><a href="<%=request.getContextPath()%>/view/index_BuildingAdmin" target="_blank">楼管理员测试</a></li>--%>
+                <li><a href="<%=request.getContextPath()%>/view/page404" target="_blank">404</a></li>
+                <li><a href="<%=request.getContextPath()%>/view/page500" target="_blank">500</a></li>
                 <%--<li><a href="<%=request.getContextPath()%>/view/index_SuperAdmin" target="_blank">系统管理员测试</a></li>--%>
                 <li><a href="<%=request.getContextPath()%>/view/choose_Building" target="_parent">选择南北楼测试</a></li>
 

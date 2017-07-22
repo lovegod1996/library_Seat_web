@@ -27,6 +27,7 @@
         }
 
         .box ul li {
+            /*宽度根据<li></li>数量自动计算填充*/
             /*width: 50%;*/
             height: 100%;
             float: left;
@@ -76,6 +77,10 @@
             var ul_width = $ul.width();
             var li_num = $ul.find("li").length;
             $ul.find("li").css("width", ul_width / li_num);
+
+            $('.dask').click(function () {
+                window.location.href = "/LS/jsp/book_Seat_User";
+            });
         });
     </script>
 </head>
@@ -92,18 +97,6 @@
             <a href="#"><img src="<%=request.getContextPath()%>/img/touming.png"></a>
             <div class="dask">
                 <p style="font-size: 30px;margin-top: 20px;text-align: center">南楼</p>
-            </div>
-        </li>
-        <li>
-            <a href="#"><img src="<%=request.getContextPath()%>/img/touming.png"></a>
-            <div class="dask">
-                <p style="font-size: 30px;margin-top: 20px;text-align: center">东楼</p>
-            </div>
-        </li>
-        <li>
-            <a href="#"><img src="<%=request.getContextPath()%>/img/touming.png"></a>
-            <div class="dask">
-                <p style="font-size: 30px;margin-top: 20px;text-align: center">西楼</p>
             </div>
         </li>
     </ul>
