@@ -3,6 +3,8 @@ package com.xoqao.web.service;
 import com.xoqao.web.bean.building.Building;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * 说明：
  * Author: lovegod
@@ -12,4 +14,8 @@ import org.apache.ibatis.annotations.Param;
 public interface BuildingService {
 
     Building findBuildAdminByCount( String loginstr)throws Exception;
+
+    Building findBuildingById( Integer bid)throws Exception;
+
+    List<Building> findAllBuilding()throws Exception;
 }

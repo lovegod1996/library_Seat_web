@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoqao.web.dao.NoticeMapper">
+
+    <!--添加资讯-->
+    <insert id="insertNotice">
+        <selectKey resultType="java.lang.Integer" keyProperty="nid" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO notice (title,content,creattime,type,uid) VALUES
+        (#{notice.title},#{notice.content},#{notice.creattime},#{notice.type},#{notice.uid})
+    </insert>
+
+    <!--查看素有资讯-->
+    <select id="findAllNotice" resultType="com.xoqao.web.bean.news.Notice">
+    SELECT nid,title,content,creattime,type,uid
+    FROM notice
+     ORDER BY  creattime DESC
+    </select>
+    <select id="findAllNoticetop" resultType="com.xoqao.web.bean.news.Notice">
+        SELECT nid,title,content,creattime,type,uid
+        FROM notice
+        ORDER BY  creattime DESC limit 3
+    </select>
+    <select id="findAllNoticepage" resultType="com.xoqao.web.bean.news.Notice">
+        SELECT nid,title,content,creattime,type,uid
+        FROM notice
+        ORDER BY  creattime DESC
+        limit #{startRow},#{pageSize}
+    </select>
+
+    <!--查看详细资讯信息-->
+    <select id="findNoticeByid" resultType="com.xoqao.web.bean.news.Notice">
+        SELECT nid,title,content,creattime,type,uid
+        FROM notice
+        WHERE nid =#{nid}
+    </select>
+
+    <!--删除资讯信息-->
+    <delete id="deleteNotice">
+    DELETE FROM notice WHERE nid=#{nid}
+    </delete>
+
+    <!--更新资讯信息-->
+    <update id="updateNotice">
+        UPDATE notice
+        SET title=#{notice.title},content=#{notice.content},creattime=#{notice.creattime}
+        WHERE nid =#{notice.nid}
+    </update>
+
+</mapper>

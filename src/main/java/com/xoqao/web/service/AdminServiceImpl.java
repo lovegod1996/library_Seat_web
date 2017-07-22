@@ -21,4 +21,9 @@ public class AdminServiceImpl implements AdminService {
         Admin adminByNameOrId = adminMapper.findAdminByCount(loginstr);
         return adminByNameOrId;
     }
+
+    public Admin findAdminByid(Integer aid) throws Exception {
+        Admin adminByid = adminMapper.findAdminByid(aid);
+        return adminByid;
+    }
 }

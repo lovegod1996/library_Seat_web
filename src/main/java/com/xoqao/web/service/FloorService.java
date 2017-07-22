@@ -1,6 +1,7 @@
 package com.xoqao.web.service;
 
 import com.xoqao.web.bean.floors.Floor;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * 说明：
@@ -10,4 +11,6 @@ import com.xoqao.web.bean.floors.Floor;
  */
 public interface FloorService {
     Floor findFloorBycount(String count)throws Exception;
+
+    Floor findfloorByid( Integer fid)throws Exception;
 }

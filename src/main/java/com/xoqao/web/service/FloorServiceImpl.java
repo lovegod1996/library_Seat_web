@@ -22,5 +22,10 @@ public class FloorServiceImpl implements FloorService {
         return floorAdminByCount;
     }
 
+    public Floor findfloorByid(Integer fid) throws Exception {
+        Floor floor = floorsMapper.findfloorByid(fid);
+        return floor;
+    }
+
 
 }

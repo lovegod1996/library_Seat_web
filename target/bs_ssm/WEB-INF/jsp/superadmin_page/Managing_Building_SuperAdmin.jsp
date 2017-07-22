@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>创建楼</title>
@@ -81,6 +84,20 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${allbuidings}" var="building" varStatus="step">
+                        <tr>
+                            <td>${step.index+1}</td>
+                            <td ><a href="<%=request.getContextPath()%>/view/managing_Floor_SuperAdmin"
+                                                    target="mainFrame_SuperAdmin">${building.employer}</a></td>
+                            <td>${building.accountnumber}</td>
+                            <td>
+                                <div class="layui-btn-group">
+                                    <button type="button" class="layui-btn layui-btn-small">编辑</button>
+                                    <button type="button" class="layui-btn layui-btn-small">删除</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </c:forEach>
                     <tr>
                         <td>1</td>
                         <td id="libraryname"><a href="<%=request.getContextPath()%>/view/managing_Floor_SuperAdmin"

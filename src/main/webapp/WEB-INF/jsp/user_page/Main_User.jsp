@@ -97,10 +97,10 @@
         <!-- /.panel-heading -->
         <div class="panel-body" style="height: 400px">
             <div class="list-group">
-                <c:forEach items="${newsTop}" var="newss">
-                    <a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${newss.nid}"
-                    >${newss.title}
-                        <span class="pull-right text-muted small"><em><fmt:formatDate value="${newss.creattime}"
+                <c:forEach items="${noticestop}" var="notice">
+                    <a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${notice.nid}"
+                    >${notice.title}
+                        <span class="pull-right text-muted small"><em><fmt:formatDate value="${notice.creattime}"
                                                                                       pattern="yyyy-MM-dd HH:mm:ss"/></em></span>
                     </a>
                 </c:forEach>

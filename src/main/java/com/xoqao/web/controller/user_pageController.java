@@ -1,12 +1,14 @@
 package com.xoqao.web.controller;
 
 import com.xoqao.web.bean.news.News;
+import com.xoqao.web.bean.news.Notice;
 import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.seat.SeatState;
 import com.xoqao.web.bean.user.User;
 import com.xoqao.web.bean.userbook.UserLearn;
 import com.xoqao.web.commen.CommenValue;
 import com.xoqao.web.service.NewsService;
+import com.xoqao.web.service.NoticeService;
 import com.xoqao.web.service.SeatService;
 import com.xoqao.web.service.UserLearnService;
 import com.xoqao.web.utils.DateUtil;
@@ -37,11 +39,13 @@ public class user_pageController {
     @Autowired
     private SeatService seatService;
 
+    @Autowired
+    private NoticeService noticeService;
     @RequestMapping("/main_User")
     public String main_User(Model model) throws Exception {
+        List<Notice> allNoticetop = noticeService.findAllNoticetop();
+        model.addAttribute("noticestop",allNoticetop);
 
-//        List<News> allNewsTop = newsService.findAllNewsTop();
-//        model.addAttribute("newsTop", allNewsTop);
         return "user_page/Main_User";
     }
 
@@ -114,53 +118,53 @@ public class user_pageController {
     @RequestMapping("/book_Seat_User")
     public String book_Seat_User(Model model, Integer page, String floor, HttpSession httpSession) throws Exception {
 
-        User user = (User) httpSession.getAttribute("user");
-
-        int pageSize = 5;
-        if (floor != null && floor.length() > 0) {
-            if (floor.contains("%")) {
-                floor = URLDecoder.decode(floor, "utf-8");
-                floor = floor.replace("南", "S").replace("北", "N");
-            } else {
-                floor = floor.replace("南", "S").replace("北", "N");
-            }
-        }
-
-        List<Seat> allNoSeat = userLearnService.findAllNoSeat(floor);
-        if (allNoSeat.size() > 0) {
-            model.addAttribute("SeatSize", allNoSeat.size());
-            int pageTims;
-            if (allNoSeat.size() % pageSize == 0) {
-                pageTims = allNoSeat.size() / pageSize;
-            } else {
-                pageTims = allNoSeat.size() / pageSize + 1;
-            }
-            httpSession.setAttribute("pageTimes", pageTims);
-            //页面初始的时候没有初试值
-            if (null == page) {
-                page = 1;
-            }
-            //每页开始的第几条记录
-            int startRow;
-            if (allNoSeat.size() < pageSize) {
-                startRow = 0;
-            } else {
-                startRow = (page - 1) * pageSize;
-            }
-            model.addAttribute("currentPage", page);
-            model.addAttribute("floor", floor);
-            List<Seat> allNoSeatPage = userLearnService.findAllNoSeatPage(floor, startRow, pageSize);
-            model.addAttribute("seats", allNoSeatPage);
-        } else {
-            httpSession.setAttribute("pageTimes", 1);
-            model.addAttribute("nullList", "暂无空闲座位，请稍后查看！");
-        }
-
-        UserLearn userLearnNew = userLearnService.findUserLearnNew(user.getUid());
-
-        if (userLearnNew != null) {
-            model.addAttribute("userLearn", userLearnNew);
-        }
+//        User user = (User) httpSession.getAttribute("user");
+//
+//        int pageSize = 5;
+//        if (floor != null && floor.length() > 0) {
+//            if (floor.contains("%")) {
+//                floor = URLDecoder.decode(floor, "utf-8");
+//                floor = floor.replace("南", "S").replace("北", "N");
+//            } else {
+//                floor = floor.replace("南", "S").replace("北", "N");
+//            }
+//        }
+//
+//        List<Seat> allNoSeat = userLearnService.findAllNoSeat(floor);
+//        if (allNoSeat.size() > 0) {
+//            model.addAttribute("SeatSize", allNoSeat.size());
+//            int pageTims;
+//            if (allNoSeat.size() % pageSize == 0) {
+//                pageTims = allNoSeat.size() / pageSize;
+//            } else {
+//                pageTims = allNoSeat.size() / pageSize + 1;
+//            }
+//            httpSession.setAttribute("pageTimes", pageTims);
+//            //页面初始的时候没有初试值
+//            if (null == page) {
+//                page = 1;
+//            }
+//            //每页开始的第几条记录
+//            int startRow;
+//            if (allNoSeat.size() < pageSize) {
+//                startRow = 0;
+//            } else {
+//                startRow = (page - 1) * pageSize;
+//            }
+//            model.addAttribute("currentPage", page);
+//            model.addAttribute("floor", floor);
+//            List<Seat> allNoSeatPage = userLearnService.findAllNoSeatPage(floor, startRow, pageSize);
+//            model.addAttribute("seats", allNoSeatPage);
+//        } else {
+//            httpSession.setAttribute("pageTimes", 1);
+//            model.addAttribute("nullList", "暂无空闲座位，请稍后查看！");
+//        }
+//
+//        UserLearn userLearnNew = userLearnService.findUserLearnNew(user.getUid());
+//
+//        if (userLearnNew != null) {
+//            model.addAttribute("userLearn", userLearnNew);
+//        }
         return "user_page/Book_Seat_User";
     }
 

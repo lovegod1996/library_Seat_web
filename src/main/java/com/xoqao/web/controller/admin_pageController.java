@@ -1,14 +1,15 @@
 package com.xoqao.web.controller;
 
+import com.xoqao.web.bean.admin.Admin;
+import com.xoqao.web.bean.building.Building;
+import com.xoqao.web.bean.floors.Floor;
+import com.xoqao.web.bean.news.Notice;
 import com.xoqao.web.bean.user.User;
 import com.xoqao.web.commen.CommenValue;
 import com.xoqao.web.bean.news.News;
 import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.userbook.UserLearn;
-import com.xoqao.web.service.NewsService;
-import com.xoqao.web.service.SeatService;
-import com.xoqao.web.service.UserLearnService;
-import com.xoqao.web.service.UserService;
+import com.xoqao.web.service.*;
 import com.xoqao.web.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,15 +42,29 @@ public class admin_pageController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private NoticeService noticeService;
+
     @RequestMapping("/index_Admin")
-    public String index_Admin(Model model) throws Exception {
+    public String index_Admin(Model model, HttpSession httpSession) throws Exception {
+        Integer type = (Integer) httpSession.getAttribute("admintype");
+        if (type == 1) {
+            Floor floorBycount = (Floor) httpSession.getAttribute("admin");
+            return "admin_page/Index_Admin";
+        } else if (type == 2) {
+            Building buildAdminByCount = (Building) httpSession.getAttribute("admin");
+            return "buildingadmin_page/Index_BuildingAdmin";
+        } else if (type == 3) {
+            Admin adminByCount = (Admin) httpSession.getAttribute("admin");
+            return "superadmin_page/Index_SuperAdmin";
+        }
         return "admin_page/Index_Admin";
     }
 
     @RequestMapping("/main_Admin")
     public String main_Admin(Model model) throws Exception {
-        List<News> allNewsTop = newsService.findAllNewsTop();
-        model.addAttribute("newsTop", allNewsTop);
+        List<Notice> allNoticetop = noticeService.findAllNoticetop();
+        model.addAttribute("noticeTop", allNoticetop);
         return "admin_page/Main_Admin";
     }
 
@@ -321,6 +336,7 @@ public class admin_pageController {
 
     /**
      * 释放预约
+     *
      * @param model
      * @param bid
      * @param page
@@ -330,30 +346,30 @@ public class admin_pageController {
      */
     @RequestMapping("/releaseBook")
     public String releaseBook(Model model, Integer bid, Integer page, HttpSession httpSession) throws Exception {
-        UserLearn bookByid=null;
+        UserLearn bookByid = null;
         try {
-             bookByid = userLearnService.findBookByid(bid);
+            bookByid = userLearnService.findBookByid(bid);
 
-             String[] period=bookByid.getPeriod().split("--");
+            String[] period = bookByid.getPeriod().split("--");
 
-            SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
             String format = simpleDateFormat.format(new Date());
 
             Integer disTime = DateUtil.getDisTime(period[0], format);
 
-            if(disTime>CommenValue.MAX_LATER){
-                  userLearnService.updateUnpromise(bookByid.getBid());
-            }else {
+            if (disTime > CommenValue.MAX_LATER) {
+                userLearnService.updateUnpromise(bookByid.getBid());
+            } else {
                 userLearnService.deleteBook(bid);
             }
-            seatService.updateSeat(0,null,bookByid.getSid());
+            seatService.updateSeat(0, null, bookByid.getSid());
 
         } catch (Exception e) {
             e.printStackTrace();
-            model.addAttribute("error_msg","释放失败！");
+            model.addAttribute("error_msg", "释放失败！");
         }
-        String floor=bookByid.getSeatnumber().substring(0,2);
+        String floor = bookByid.getSeatnumber().substring(0, 2);
         int pageSize = 5;
         List<Seat> allNoSeat = userLearnService.findAllNoSeat(floor);
         model.addAttribute("SeatSize", allNoSeat.size());

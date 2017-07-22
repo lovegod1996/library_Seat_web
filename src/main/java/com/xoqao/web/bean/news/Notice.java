@@ -10,11 +10,12 @@ import java.util.Date;
  */
 public class Notice {
     private Integer nid;
-    private String titile;
+    private String title;
     private String content;
     private Date creattime;
     private Integer type;
     private Integer uid;
+    private String workstation;
 
     public Integer getNid() {
         return nid;
@@ -24,12 +25,12 @@ public class Notice {
         this.nid = nid;
     }
 
-    public String getTitile() {
-        return titile;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitile(String titile) {
-        this.titile = titile;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
@@ -64,15 +65,24 @@ public class Notice {
         this.uid = uid;
     }
 
+    public String getWorkstation() {
+        return workstation;
+    }
+
+    public void setWorkstation(String workstation) {
+        this.workstation = workstation;
+    }
+
     @Override
     public String toString() {
         return "Notice{" +
                 "nid=" + nid +
-                ", titile='" + titile + '\'' +
+                ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", creattime=" + creattime +
                 ", type=" + type +
                 ", uid=" + uid +
+                ", workstation='" + workstation + '\'' +
                 '}';
     }
 }

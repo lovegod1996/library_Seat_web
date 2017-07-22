@@ -4,6 +4,9 @@ import com.xoqao.web.bean.building.Building;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.Max;
+import java.util.List;
+
 /**
  * 说明：
  * Author: lovegod
@@ -14,4 +17,8 @@ import org.springframework.stereotype.Service;
 public interface BuildingMapper {
 
     Building findBuildAdminByCount(@Param("loginstr") String loginstr)throws Exception;
+
+    Building findBuildingById(@Param("bid") Integer bid)throws Exception;
+
+    List<Building> findAllBuilding()throws Exception;
 }

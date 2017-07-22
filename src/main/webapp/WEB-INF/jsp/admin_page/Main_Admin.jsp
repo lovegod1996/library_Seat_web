@@ -70,10 +70,10 @@
             <div class="panel-body" style="height: 400px">
                 <div class="list-group">
 
-                    <c:forEach items="${newsTop}" var="newss">
-                        <a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${newss.nid}"
-                           class="list-group-item">${newss.title}
-                            <span class="pull-right text-muted small"><em><fmt:formatDate value="${newss.creattime}" pattern="yyyy-MM-dd HH:mm:ss"/></em></span>
+                    <c:forEach items="${noticeTop}" var="notice">
+                        <a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${notice.nid}"
+                           class="list-group-item">${notice.title}
+                            <span class="pull-right text-muted small"><em><fmt:formatDate value="${notice.creattime}" pattern="yyyy-MM-dd HH:mm:ss"/></em></span>
                         </a>
                     </c:forEach>
 
