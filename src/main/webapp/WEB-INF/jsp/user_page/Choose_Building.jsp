@@ -100,6 +100,13 @@
             </div>
         </li>
     </ul>
+
+    <%--底部缩略图居中--%>
+    <%--<div style="width: 30%;height: 50px;margin-left: 35%;position: fixed;bottom: 0;background-color: #2b542c">--%>
+        <%--<ul class="UL_BOTTOM">--%>
+
+        <%--</ul>--%>
+    <%--</div>--%>
 </div>
 </body>
 </html>
