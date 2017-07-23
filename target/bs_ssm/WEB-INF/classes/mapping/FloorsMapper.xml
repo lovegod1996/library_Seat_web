@@ -9,5 +9,22 @@
     <select id="findfloorByid" resultType="com.xoqao.web.bean.floors.Floor">
            SELECT fid,bid,accountnumber,password,name,employer,floor  FROM floor WHERE fid=#{fid}
     </select>
+<!--根据楼长id查找楼层信息-->
+    <select id="findfloorsBybid" resultType="com.xoqao.web.bean.floors.Floor">
+        SELECT fid,bid,accountnumber,password,name,employer,floor  FROM floor WHERE bid=#{bid}
+    </select>
 
+    <!--添加楼层信息-->
+    <insert id="insertFloors">
+        <selectKey resultType="java.lang.Integer" keyProperty="fid" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO floor (bid,accountnumber,password,name,employer,floor) VALUES
+        (#{floor.bid},#{floor.accountnumber},#{floor.password},#{floor.name},#{floor.employer},#{floor.floor})
+    </insert>
+
+    <!--删除楼层信息-->
+    <delete id="deletefloor">
+        DELETE FROM floor WHERE fid=#{fid}
+    </delete>
 </mapper>

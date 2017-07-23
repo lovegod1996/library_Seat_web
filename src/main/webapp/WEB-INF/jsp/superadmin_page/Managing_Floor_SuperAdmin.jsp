@@ -15,10 +15,8 @@
     <%--layui --%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
-
     <!-- jQuery -->
     <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
-
     <style>
         .black_overlay {
             display: none;
@@ -81,6 +79,7 @@
                         <th>序号</th>
                         <th>楼层</th>
                         <th>管理员</th>
+                        <th>姓名</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -88,8 +87,9 @@
                     <c:forEach items="${floors}" var="floor" varStatus="step">
                         <tr>
                             <td>${step.index}</td>
-                            <td>${floor.employer}</td>
+                            <td>${floor.floor}(${floor.employer})</td>
                             <td>${floor.accountnumber}</td>
+                            <td>${floor.name}</td>
                             <td>
                                 <button type="button" class="layui-btn layui-btn-small" onclick="document.getElementById('light1').style.display='block';
                                         document.getElementById('fade').style.display='block';getTableContent(this)">编辑
@@ -98,6 +98,11 @@
                             </td>
                         </tr>
                     </c:forEach>
+                    <c:if test="${nullList!=null}">
+                        <tr>
+                            <td colspan="5">${nullList}</td>
+                        </tr>
+                    </c:if>
                     </tbody>
                 </table>
             </div>
@@ -112,17 +117,25 @@
            onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
             &#x1006;</a>
     </div>
-    <form class="layui-form">
+    <form class="layui-form" action="<%=request.getContextPath()%>/view/adfloorSub" method="post">
+
         <div class="layui-form-item">
             <label class="layui-form-label">添加楼层</label>
             <div class="layui-input-inline">
-                <input placeholder="请输入" class="layui-input" required>
+                <input type="hidden" value="${building.bid}" name="bid">
+                <input placeholder="请输入" name="floorname" class="layui-input" required>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">添加藏书类别</label>
+            <div class="layui-input-inline">
+                <input placeholder="请输入" name="floorsort" class="layui-input" required>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">添加管理员</label>
             <div class="layui-input-inline">
-                <input placeholder="请输入" class="layui-input" required>
+                <input placeholder="请输入" name="username" class="layui-input" required>
             </div>
         </div>
         <div class="layui-form-item">

@@ -79,7 +79,8 @@
                     <tr>
                         <th>序号</th>
                         <th>图书馆</th>
-                        <th>管理员</th>
+                        <th>号码</th>
+                        <th>姓名</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -87,13 +88,16 @@
                     <c:forEach items="${allbuidings}" var="building" varStatus="step">
                         <tr>
                             <td>${step.index+1}</td>
-                            <td ><a href="<%=request.getContextPath()%>/view/managing_Floor_SuperAdmin"
-                                                    target="mainFrame_SuperAdmin">${building.employer}</a></td>
+                            <td>
+                                <a href="<%=request.getContextPath()%>/view/managing_Floor_SuperAdmin?bid=${building.bid}"
+                                   target="mainFrame_SuperAdmin">${building.employer}</a></td>
                             <td>${building.accountnumber}</td>
+                            <td>${building.name}</td>
                             <td>
                                 <div class="layui-btn-group">
                                     <button type="button" class="layui-btn layui-btn-small">编辑</button>
-                                    <a  href="<%=request.getContextPath()%>/view/buidingdelete?bid=${building.bid}" class="layui-btn layui-btn-small">删除</a>
+                                    <a href="<%=request.getContextPath()%>/view/buidingdelete?bid=${building.bid}"
+                                       class="layui-btn layui-btn-small">删除</a>
                                 </div>
                             </td>
                         </tr>
