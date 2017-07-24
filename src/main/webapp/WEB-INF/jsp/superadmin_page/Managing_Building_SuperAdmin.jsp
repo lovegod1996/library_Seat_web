@@ -94,15 +94,14 @@
                             <td>${building.accountnumber}</td>
                             <td>${building.name}</td>
                             <td>
-                                <div class="layui-btn-group">
-                                    <button type="button" class="layui-btn layui-btn-small">编辑</button>
-                                    <a href="<%=request.getContextPath()%>/view/buidingdelete?bid=${building.bid}"
-                                       class="layui-btn layui-btn-small">删除</a>
-                                </div>
+                                <button type="button" class="layui-btn layui-btn-small" onclick="document.getElementById('light1').style.display='block';
+                                        document.getElementById('fade').style.display='block';getTableContent(this)">编辑
+                                </button>
+                                <a href="<%=request.getContextPath()%>/view/buidingdelete?bid=${building.bid}"
+                                   class="layui-btn layui-btn-small">删除</a>
                             </td>
                         </tr>
                     </c:forEach>
-
                     </tbody>
                 </table>
             </div>

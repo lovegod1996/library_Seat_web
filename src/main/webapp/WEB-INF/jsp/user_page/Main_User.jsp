@@ -19,6 +19,9 @@
           type="text/css">
     <%--获取当前时间--%>
     <script src="<%=request.getContextPath()%>/js/nowtime.js"></script>
+    <%--layui --%>
+    <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
+    <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
     <style type="text/css">
         body {
             width: 80%;
@@ -60,24 +63,24 @@
                 <i class="glyphicon glyphicon-star"></i> 排行榜
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body" style="height: 400px">
-                <div class="list-group">
-                    <a href="#" class="list-group-item">张三
-                        <span class="pull-right text-muted small"><em>第一名</em></span>
-                    </a>
-                    <a href="#" class="list-group-item">张三
-                        <span class="pull-right text-muted small"><em>第一名</em></span>
-                    </a>
-                    <a href="#" class="list-group-item">张三
-                        <span class="pull-right text-muted small"><em>第一名</em></span>
-                    </a>
-                    <a href="#" class="list-group-item">张三
-                        <span class="pull-right text-muted small"><em>第一名</em></span>
-                    </a>
-                </div>
-                <!-- /.list-group -->
-                <%--<a href="<%=request.getContextPath()%>/jsp/news_List_User" target="mainFrame_User"--%>
-                <%--class="btn btn-default btn-block">查看更多</a>--%>
+            <div class="panel-body" style="height: 400px;padding: 0 0 0 0 ">
+                <table class="layui-table" lay-even="" lay-skin="nob">
+                    <tr>
+                        <td>第一名</td>
+                        <td>小黄</td>
+                        <td>排名依据</td>
+                    </tr>
+                    <tr>
+                        <td>第二名</td>
+                        <td>小红</td>
+                        <td>排名依据</td>
+                    </tr>
+                    <tr>
+                        <td>第三名</td>
+                        <td>小绿</td>
+                        <td>排名依据</td>
+                    </tr>
+                </table>
             </div>
             <!-- /.panel-body -->
         </div>
@@ -96,15 +99,16 @@
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body" style="height: 400px">
-            <div class="list-group">
-                <c:forEach items="${noticestop}" var="notice">
-                    <a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${notice.nid}"
-                    >${notice.title}
+
+            <c:forEach items="${noticestop}" var="notice">
+                <div class="list-group">
+                    <a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${notice.nid}">${notice.title}
                         <span class="pull-right text-muted small"><em><fmt:formatDate value="${notice.creattime}"
                                                                                       pattern="yyyy-MM-dd HH:mm:ss"/></em></span>
                     </a>
-                </c:forEach>
-            </div>
+                </div>
+            </c:forEach>
+
             <!-- /.list-group -->
             <a href="<%=request.getContextPath()%>/jsp/news_List_Admin" target="mainFrame_User"
                class="btn btn-default btn-block">查看更多</a>

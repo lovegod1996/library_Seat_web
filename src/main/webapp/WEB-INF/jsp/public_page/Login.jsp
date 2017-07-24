@@ -58,7 +58,6 @@
                                 <a data-method="notice" class="layui-btn layui-btn-mini" target="_parent">忘记密码?</a>
                             </div>
 
-
                             <button class="btn btn-lg btn-success btn-block">登录</button>
 
                             <div class="form-group" style="margin-top: 20px;text-align: center">

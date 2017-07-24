@@ -27,7 +27,8 @@
         }
 
         .box ul li {
-            width: 50%;
+            /*宽度根据<li></li>数量自动计算填充*/
+            /*width: 50%;*/
             height: 100%;
             float: left;
             position: relative;
@@ -71,32 +72,41 @@
                     $(this).find(".dask").stop().animate({"top": 0, opacity: 0}, 300)
                 }
             );
-            $('#dask1').click(function () {
+
+            var $ul = $(".UL");
+            var ul_width = $ul.width();
+            var li_num = $ul.find("li").length;
+            $ul.find("li").css("width", ul_width / li_num);
+
+            $('.dask').click(function () {
                 window.location.href = "/LS/jsp/book_Seat_User";
             });
-            $('#dask2').click(function () {
-                window.location.href = "/LS/jsp/book_Seat_User";
-            })
         });
-
     </script>
 </head>
 <body>
 <div class="box">
-    <ul>
+    <ul class="UL">
         <li>
             <a href="#"><img src="<%=request.getContextPath()%>/img/touming.png"></a>
-            <div class="dask" id="dask1">
+            <div class="dask">
                 <p style="font-size: 30px;margin-top: 20px;text-align: center">北楼</p>
             </div>
         </li>
         <li>
             <a href="#"><img src="<%=request.getContextPath()%>/img/touming.png"></a>
-            <div class="dask" id="dask2">
+            <div class="dask">
                 <p style="font-size: 30px;margin-top: 20px;text-align: center">南楼</p>
             </div>
         </li>
     </ul>
+
+    <%--底部缩略图居中--%>
+    <%--<div style="width: 30%;height: 50px;margin-left: 35%;position: fixed;bottom: 0;background-color: #2b542c">--%>
+        <%--<ul class="UL_BOTTOM">--%>
+
+        <%--</ul>--%>
+    <%--</div>--%>
 </div>
 </body>
 </html>

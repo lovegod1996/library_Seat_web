@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-<img src="<%=request.getContextPath()%>/img/notfound.gif">
+<img src="<%=request.getContextPath()%>/img/404pic.png">
 <div>
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;text-align: center">
         <legend>页面出问题了呢，我也很绝望啊</legend>

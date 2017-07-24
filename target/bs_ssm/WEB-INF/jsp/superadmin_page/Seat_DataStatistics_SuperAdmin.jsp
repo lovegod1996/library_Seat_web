@@ -25,17 +25,14 @@
                 <tr>
                     <th>序号</th>
                     <th>图书馆</th>
-                    <th>详情</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>1</td>
-                    <td>中原工学院南区图书馆</td>
                     <td>
-                        <a type="button" class="layui-btn layui-btn-small"
-                           href="<%=request.getContextPath()%>/view/seat_DataStatistics_ForEachBuilding"
-                           target="mainFrame_SuperAdmin">详情</a>
+                        <a href="<%=request.getContextPath()%>/view/seat_DataStatistics_ForEachBuilding"
+                           target="mainFrame_SuperAdmin">中原工学院南区图书馆</a>
                     </td>
                 </tr>
                 </tbody>
