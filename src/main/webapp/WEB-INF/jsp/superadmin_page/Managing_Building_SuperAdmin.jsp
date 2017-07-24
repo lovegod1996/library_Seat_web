@@ -151,7 +151,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">编辑图书馆</label>
             <div class="layui-input-inline">
-                <input id="buildingname" name="libaray" class="layui-input" required>
+                <input  id="buildingname" name="libaray" class="layui-input" required>
                 <input type="hidden" id="buildingid" name="bid">
             </div>
         </div>

@@ -180,7 +180,12 @@ public class SuperAdmin_Controller {
         Floor floor = new Floor();
         List<Floor> floors = floorService.findfloorsBybid(bid);
         Building buildingById = buildingService.findBuildingById(bid);
-        String number = buildingById.getBid() + "00" + (floors.get(floors.size() - 1).getFid() + 1);
+        String number=null;
+        if(floors.size()>0){
+            number = buildingById.getAccountnumber() + "00" + (floors.get(floors.size() - 1).getFid() + 1);
+        }else{
+            number=buildingById.getAccountnumber() + "00" +1;
+        }
         floor.setAccountnumber(number);
         floor.setBid(bid);
         floor.setEmployer(floorsort);

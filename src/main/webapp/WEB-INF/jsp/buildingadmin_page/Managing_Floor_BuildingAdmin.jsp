@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>开闭馆管理</title>
@@ -16,7 +19,7 @@
 <body>
 <div class="layui-tab">
     <ul class="layui-tab-title">
-        <li class="layui-this">这是南楼</li>
+        <li class="layui-this">${sessionScope.admin.employer}</li>
     </ul>
     <div class="layui-tab-content">
         <div class="layui-tab-item layui-show">
@@ -25,56 +28,31 @@
                     <thead>
                     <tr>
                         <th width="15%">楼层</th>
-                        <th width="50%">时间段</th>
+                        <th width="30%">藏书分类</th>
+                        <th width="20%">管理员</th>
+                        <th width="15%">开放状态</th>
                         <th width="15%">操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>南一</td>
-                        <td style="text-align: left">
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">直接选择或搜索选择</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">直接选择或搜索选择</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="layui-btn">保存</button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>南二</td>
-                        <td style="text-align: left">
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">直接选择或搜索选择</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">直接选择或搜索选择</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="layui-btn">保存</button>
-                        </td>
-                    </tr>
+                    <c:forEach items="${floors}" var="floor">
+                        <tr>
+                            <td>${floor.floor}</td>
+                            <td>${floor.employer}</td>
+                            <td>${floor.name}</td>
+                            <td>${floor.statue == 0?"开放":"关闭"}</td>
+                            <td>
+                                <c:if test="${floor.statue==0}">
+                                    <a href="<%=request.getContextPath()%>/view/floor/changestatue?fid=${floor.fid}&&statue=${floor.statue}">关闭</a> </c:if>
+                                <c:if test="${floor.statue==1}"><a href="<%=request.getContextPath()%>/view/floor/changestatue?fid=${floor.fid}&&statue=${floor.statue}">开馆</a> </c:if>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    <c:if test="${nullList!=null}">
+                        <tr>
+                            <td colspan="5" style="text-align: center">${nullList}</td>
+                        </tr>
+                    </c:if>
                     </tbody>
                 </table>
             </div>

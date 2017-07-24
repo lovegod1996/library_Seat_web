@@ -47,5 +47,9 @@ public class FloorServiceImpl implements FloorService {
         floorsMapper.updateFloor(floor);
     }
 
+    public void updateStatueByid(Integer statue, Integer fid) throws Exception {
+        floorsMapper.updateStatueByid(statue, fid);
+    }
+
 
 }

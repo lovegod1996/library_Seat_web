@@ -54,7 +54,7 @@
             //alert(tr1.rowIndex);获得行
             //alert(tb1.rows[tr1.rowIndex].cells[1].getElementsByTagName("INPUT")[0].value);
             document.getElementById("floorname").value= tb1.rows[tr1.rowIndex].cells[1].innerHTML;
-            document.getElementById("flooradmin").value = tb1.rows[tr1.rowIndex].cells[3].innerHTML;
+            document.getElementById("flooradmin").value = tb1.rows[tr1.rowIndex].cells[4].value;
             document.getElementById("floorsort").value = tb1.rows[tr1.rowIndex].cells[2].innerHTML;
             document.getElementById("floorid").value = tb1.rows[tr1.rowIndex].cells[0].value;
         }
@@ -181,7 +181,7 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <button class="layui-btn" type="submit"  style="margin:20px 0 0 45%">确认</button>
+            <button class="layui-btn"   style="margin:20px 0 0 45%">确认</button>
         </div>
     </form>
 </div>

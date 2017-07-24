@@ -55,7 +55,8 @@
             //alert(tr1.rowIndex);获得行
             //alert(tb1.rows[tr1.rowIndex].cells[1].getElementsByTagName("INPUT")[0].value);
             document.getElementById("buildingname").value = tb1.rows[tr1.rowIndex].cells[1].innerText;
-            document.getElementById("buildingadmin").value = tb1.rows[tr1.rowIndex].cells[2].innerHTML;
+            document.getElementById("buildingadmin").value = tb1.rows[tr1.rowIndex].cells[3].innerHTML;
+            document.getElementById("buildingid").value = tb1.rows[tr1.rowIndex].cells[0].innerHTML;
         }
     </script>
 
@@ -77,7 +78,7 @@
                 <table class="layui-table" id="tb1">
                     <thead>
                     <tr>
-                        <th>序号</th>
+                        <th>编号</th>
                         <th>图书馆</th>
                         <th>号码</th>
                         <th>姓名</th>
@@ -87,7 +88,7 @@
                     <tbody>
                     <c:forEach items="${allbuidings}" var="building" varStatus="step">
                         <tr>
-                            <td>${step.index+1}</td>
+                            <td>${building.bid}</td>
                             <td>
                                 <a href="<%=request.getContextPath()%>/view/managing_Floor_SuperAdmin?bid=${building.bid}"
                                    target="mainFrame_SuperAdmin">${building.employer}</a></td>
@@ -146,17 +147,18 @@
            onclick="document.getElementById('light1').style.display='none';document.getElementById('fade').style.display='none'">
             &#x1006;</a>
     </div>
-    <form class="layui-form">
+    <form class="layui-form" action="<%=request.getContextPath()%>/view/editBuilding" method="post">
         <div class="layui-form-item">
             <label class="layui-form-label">编辑图书馆</label>
             <div class="layui-input-inline">
-                <input id="buildingname" class="layui-input" required>
+                <input  id="buildingname" name="libaray" class="layui-input" required>
+                <input type="hidden" id="buildingid" name="bid">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">编辑管理员</label>
             <div class="layui-input-inline">
-                <input id="buildingadmin" class="layui-input" required>
+                <input id="buildingadmin" name="admin" class="layui-input" required>
             </div>
         </div>
         <div class="layui-form-item">

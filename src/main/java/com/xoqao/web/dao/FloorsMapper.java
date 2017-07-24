@@ -3,6 +3,7 @@ package com.xoqao.web.dao;
 import com.xoqao.web.bean.floors.Floor;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -26,4 +27,5 @@ public interface FloorsMapper {
     void deletefloor(@Param("fid") Integer fid) throws Exception;
 
     void updateFloor(@Param("floor") Floor floor) throws Exception;
+    void updateStatueByid(@Param("statue") Integer statue,@Param("fid") Integer fid)throws Exception;
 }

@@ -36,7 +36,7 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
         modelAndView.addObject("message",message);
         //指向错误界面
 
-        modelAndView.setViewName("err");
+        modelAndView.setViewName("public_page/500");
 
         return modelAndView;
     }
