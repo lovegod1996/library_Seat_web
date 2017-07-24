@@ -33,4 +33,12 @@ public class BulidingServiceImpl implements BuildingService {
         List<Building> allBuilding = buildingMapper.findAllBuilding();
         return allBuilding;
     }
+
+    public void insertLibaray(Building building) throws Exception {
+        buildingMapper.insertLibaray(building);
+    }
+
+    public void deleteLibaray(Integer bid) throws Exception {
+        buildingMapper.deleteLibaray(bid);
+    }
 }

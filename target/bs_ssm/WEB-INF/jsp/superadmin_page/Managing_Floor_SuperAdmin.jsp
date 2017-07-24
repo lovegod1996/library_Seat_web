@@ -6,16 +6,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>Title</title>
     <%--layui --%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
-
     <!-- jQuery -->
     <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
-
     <style>
         .black_overlay {
             display: none;
@@ -56,12 +57,11 @@
             document.getElementById("flooradmin").value = tb1.rows[tr1.rowIndex].cells[2].innerHTML;
         }
     </script>
-
 </head>
 <body>
 <div class="layui-tab">
     <ul class="layui-tab-title">
-        <li class="layui-this" id="libraryname">中原工学院南区图书馆</li>
+        <li class="layui-this" id="libraryname">${building.employer}</li>
         <li>
             <button class="layui-btn layui-btn-small" href="javascript:void(0)"
                     onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">
@@ -78,21 +78,30 @@
                         <th>序号</th>
                         <th>楼层</th>
                         <th>管理员</th>
+                        <th>姓名</th>
                         <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>南一</td>
-                        <td>Admin</td>
-                        <td>
-                            <button type="button" class="layui-btn layui-btn-small" onclick="document.getElementById('light1').style.display='block';
+                    <c:forEach items="${floors}" var="floor" varStatus="step">
+                        <tr>
+                            <td>${step.index}</td>
+                            <td>${floor.floor}(${floor.employer})</td>
+                            <td>${floor.accountnumber}</td>
+                            <td>${floor.name}</td>
+                            <td>
+                                <button type="button" class="layui-btn layui-btn-small" onclick="document.getElementById('light1').style.display='block';
                                         document.getElementById('fade').style.display='block';getTableContent(this)">编辑
-                            </button>
-                            <button type="button" class="layui-btn layui-btn-small">删除</button>
-                        </td>
-                    </tr>
+                                </button>
+                                <a href="<%=request.getContextPath()%>/view/deletefloor?bid=${building.bid}&&fid=${floor.fid}" class="layui-btn layui-btn-small">删除</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    <c:if test="${nullList!=null}">
+                        <tr>
+                            <td colspan="5">${nullList}</td>
+                        </tr>
+                    </c:if>
                     </tbody>
                 </table>
             </div>
@@ -107,17 +116,25 @@
            onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
             &#x1006;</a>
     </div>
-    <form class="layui-form">
+    <form class="layui-form" action="<%=request.getContextPath()%>/view/adfloorSub" method="post">
+
         <div class="layui-form-item">
             <label class="layui-form-label">添加楼层</label>
             <div class="layui-input-inline">
-                <input placeholder="请输入" class="layui-input" required>
+                <input type="hidden" value="${building.bid}" name="bid">
+                <input placeholder="请输入" name="floorname" class="layui-input" required>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">添加藏书类别</label>
+            <div class="layui-input-inline">
+                <input placeholder="请输入" name="floorsort" class="layui-input" required>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">添加管理员</label>
             <div class="layui-input-inline">
-                <input placeholder="请输入" class="layui-input" required>
+                <input placeholder="请输入" name="username" class="layui-input" required>
             </div>
         </div>
         <div class="layui-form-item">

@@ -5,6 +5,8 @@ import com.xoqao.web.dao.FloorsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 说明：
  * Author: lovegod
@@ -25,6 +27,20 @@ public class FloorServiceImpl implements FloorService {
     public Floor findfloorByid(Integer fid) throws Exception {
         Floor floor = floorsMapper.findfloorByid(fid);
         return floor;
+    }
+
+    public List<Floor> findfloorsBybid(Integer bid) throws Exception {
+
+        List<Floor> floors = floorsMapper.findfloorsBybid(bid);
+        return floors;
+    }
+
+    public void insertFloors(Floor floor) throws Exception {
+floorsMapper.insertFloors(floor);
+    }
+
+    public void deletefloor(Integer fid) throws Exception {
+floorsMapper.deletefloor(fid);
     }
 
 

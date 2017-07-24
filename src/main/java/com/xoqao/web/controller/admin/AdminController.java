@@ -49,6 +49,7 @@ public class AdminController {
 
     @Autowired
     private NoticeService noticeService;
+
     /**
      * 后台登录提交
      *
@@ -145,21 +146,21 @@ public class AdminController {
     public String newsSub(Model model, Integer page, String title, String content, HttpSession httpSession) throws Exception {
         Integer pageSize = 5;
 
-        Notice notice=new Notice();
+        Notice notice = new Notice();
 
         Integer type = (Integer) httpSession.getAttribute("admintype");
-        if(type==1){
-            Floor floorBycount= (Floor) httpSession.getAttribute("admin");
+        if (type == 1) {
+            Floor floorBycount = (Floor) httpSession.getAttribute("admin");
             notice.setType(1);
             notice.setUid(floorBycount.getFid());
             notice.setWorkstation(floorBycount.getEmployer());
-        }else if(type==2){
+        } else if (type == 2) {
             Building buildAdminByCount = (Building) httpSession.getAttribute("admin");
             notice.setType(2);
             notice.setUid(buildAdminByCount.getBid());
             notice.setWorkstation(buildAdminByCount.getEmployer());
-        }else if(type==3){
-            Admin adminByCount= (Admin) httpSession.getAttribute("admin");
+        } else if (type == 3) {
+            Admin adminByCount = (Admin) httpSession.getAttribute("admin");
             notice.setType(3);
             notice.setUid(adminByCount.getAid());
             notice.setWorkstation(adminByCount.getEmployer());
@@ -168,7 +169,7 @@ public class AdminController {
         notice.setContent(content);
         notice.setCreattime(new Date());
         try {
-         noticeService.insertNotice(notice);
+            noticeService.insertNotice(notice);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -199,7 +200,7 @@ public class AdminController {
 //        List<News> allNewsPage = newsService.findAllNewsPage(startRow, pageSize);
         List<Notice> allNoticepage = noticeService.findAllNoticepage(startRow, pageSize);
         if (allNoticepage.size() > 0) {
-            model.addAttribute("news", allNoticepage);
+            model.addAttribute("notices", allNoticepage);
             return "admin_page/News_List_Admin";
         } else {
             model.addAttribute("nullList", "暂无数据");
@@ -219,17 +220,15 @@ public class AdminController {
      */
     @RequestMapping("/newsDele")
     public String newsDelte(Model model, Integer page, Integer nid, HttpSession httpSession) throws Exception {
-        newsService.deleteNews(nid);
-
+        noticeService.deleteNotice(nid);
         Integer pageSize = 5;
-        List<News> allNews = newsService.findAllNews();
-
-        model.addAttribute("NewsSize", allNews.size());
+        List<Notice> allNotice = noticeService.findAllNotice();
+        model.addAttribute("NoticeSize", allNotice.size());
         int pageTims;
-        if (allNews.size() % pageSize == 0) {
-            pageTims = allNews.size() / pageSize;
+        if (allNotice.size() % pageSize == 0) {
+            pageTims = allNotice.size() / pageSize;
         } else {
-            pageTims = allNews.size() / pageSize + 1;
+            pageTims = allNotice.size() / pageSize + 1;
         }
         httpSession.setAttribute("pageTimes", pageTims);
         //页面初始的时候没有初试值
@@ -238,16 +237,15 @@ public class AdminController {
         }
         //每页开始的第几条记录
         int startRow;
-        if (allNews.size() < pageSize) {
+        if (allNotice.size() < pageSize) {
             startRow = 0;
         } else {
             startRow = (page - 1) * pageSize;
         }
         model.addAttribute("currentPage", page);
-
-        List<News> allNewsPage = newsService.findAllNewsPage(startRow, pageSize);
-        if (allNewsPage.size() > 0) {
-            model.addAttribute("news", allNewsPage);
+        List<Notice> allNoticepage = noticeService.findAllNoticepage(startRow, pageSize);
+        if (allNoticepage.size() > 0) {
+            model.addAttribute("notices", allNoticepage);
             return "admin_page/News_List_Admin";
         } else {
             model.addAttribute("nullList", "暂无数据");
@@ -265,8 +263,8 @@ public class AdminController {
      */
     @RequestMapping("/editNews")
     public String newsEdit(Model model, Integer nid) throws Exception {
-        News news = newsService.findNewsByid(nid);
-        model.addAttribute("news", news);
+        Notice noticeByid = noticeService.findNoticeByid(nid);
+        model.addAttribute("notice", noticeByid);
         return "admin_page/Edit_News";
     }
 
@@ -282,22 +280,37 @@ public class AdminController {
      */
     @RequestMapping("/editNewsSub")
     public String newsEditSub(Model model, Integer page, Integer nid, String title, String content, HttpSession httpSession) throws Exception {
-        News news = new News();
-        news.setTitle(title);
-        news.setNid(nid);
-        news.setContent(content);
-        news.setCreattime(new Date());
-
-        newsService.updateNewsByid(news);
+        Notice notice = new Notice();
+        notice.setTitle(title);
+        notice.setNid(nid);
+        notice.setContent(content);
+        notice.setCreattime(new Date());
+        Integer type = (Integer) httpSession.getAttribute("admintype");
+        if (type == 1) {
+            Floor floorBycount = (Floor) httpSession.getAttribute("admin");
+            notice.setType(1);
+            notice.setUid(floorBycount.getFid());
+            notice.setWorkstation(floorBycount.getEmployer());
+        } else if (type == 2) {
+            Building buildAdminByCount = (Building) httpSession.getAttribute("admin");
+            notice.setType(2);
+            notice.setUid(buildAdminByCount.getBid());
+            notice.setWorkstation(buildAdminByCount.getEmployer());
+        } else if (type == 3) {
+            Admin adminByCount = (Admin) httpSession.getAttribute("admin");
+            notice.setType(3);
+            notice.setUid(adminByCount.getAid());
+            notice.setWorkstation(adminByCount.getEmployer());
+        }
+        noticeService.updateNotice(notice);
         Integer pageSize = 5;
-        List<News> allNews = newsService.findAllNews();
-
-        model.addAttribute("NewsSize", allNews.size());
+        List<Notice> allNotice = noticeService.findAllNotice();
+        model.addAttribute("NoticeSize", allNotice.size());
         int pageTims;
-        if (allNews.size() % pageSize == 0) {
-            pageTims = allNews.size() / pageSize;
+        if (allNotice.size() % pageSize == 0) {
+            pageTims = allNotice.size() / pageSize;
         } else {
-            pageTims = allNews.size() / pageSize + 1;
+            pageTims = allNotice.size() / pageSize + 1;
         }
         httpSession.setAttribute("pageTimes", pageTims);
         //页面初始的时候没有初试值
@@ -306,16 +319,16 @@ public class AdminController {
         }
         //每页开始的第几条记录
         int startRow;
-        if (allNews.size() < pageSize) {
+        if (allNotice.size() < pageSize) {
             startRow = 0;
         } else {
             startRow = (page - 1) * pageSize;
         }
         model.addAttribute("currentPage", page);
 
-        List<News> allNewsPage = newsService.findAllNewsPage(startRow, pageSize);
-        if (allNewsPage.size() > 0) {
-            model.addAttribute("news", allNewsPage);
+        List<Notice> allNoticepage = noticeService.findAllNoticepage(startRow, pageSize);
+        if (allNoticepage.size() > 0) {
+            model.addAttribute("notices", allNoticepage);
             return "admin_page/News_List_Admin";
         } else {
             model.addAttribute("nullList", "暂无数据");
