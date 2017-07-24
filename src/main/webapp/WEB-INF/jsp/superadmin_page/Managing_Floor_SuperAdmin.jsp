@@ -57,7 +57,6 @@
             document.getElementById("flooradmin").value = tb1.rows[tr1.rowIndex].cells[2].innerHTML;
         }
     </script>
-
 </head>
 <body>
 <div class="layui-tab">
