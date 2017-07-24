@@ -26,4 +26,5 @@ public interface BuildingMapper {
 
     void deleteLibaray(@Param("bid") Integer bid) throws Exception;
 
+    void updateBuilding(@Param("building") Building building)throws Exception;
 }

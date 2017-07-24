@@ -22,4 +22,6 @@ public interface FloorService {
     void insertFloors(Floor floor)throws Exception;
 
     void deletefloor( Integer fid)throws Exception;
+
+    void updateFloor( Floor floor) throws Exception;
 }

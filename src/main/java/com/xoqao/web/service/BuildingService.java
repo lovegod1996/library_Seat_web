@@ -23,4 +23,6 @@ public interface BuildingService {
     void insertLibaray(Building building) throws Exception;
 
     void deleteLibaray(Integer bid) throws Exception;
+
+    void updateBuilding( Building building)throws Exception;
 }

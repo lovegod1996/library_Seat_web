@@ -14,6 +14,11 @@
         SELECT fid,bid,accountnumber,password,name,employer,floor  FROM floor WHERE bid=#{bid}
     </select>
 
+    <!--编辑楼层信息-->
+    <update id="updateFloor">
+        UPDATE floor SET floor=#{floor.floor},employer=#{floor.employer},name=#{floor.name} WHERE fid=#{floor.fid}
+    </update>
+
     <!--添加楼层信息-->
     <insert id="insertFloors">
         <selectKey resultType="java.lang.Integer" keyProperty="fid" order="AFTER">

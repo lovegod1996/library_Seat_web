@@ -15,13 +15,15 @@ import java.util.List;
 @Service
 public interface FloorsMapper {
 
-    Floor findFloorAdminByCount(@Param("loginstr") String acount)throws Exception;
+    Floor findFloorAdminByCount(@Param("loginstr") String acount) throws Exception;
 
-    Floor findfloorByid(@Param("fid") Integer fid)throws Exception;
+    Floor findfloorByid(@Param("fid") Integer fid) throws Exception;
 
-    List<Floor> findfloorsBybid(@Param("bid") Integer bid)throws Exception;
+    List<Floor> findfloorsBybid(@Param("bid") Integer bid) throws Exception;
 
-    void insertFloors(@Param("floor") Floor floor)throws Exception;
+    void insertFloors(@Param("floor") Floor floor) throws Exception;
 
-    void deletefloor(@Param("fid") Integer fid)throws Exception;
+    void deletefloor(@Param("fid") Integer fid) throws Exception;
+
+    void updateFloor(@Param("floor") Floor floor) throws Exception;
 }
