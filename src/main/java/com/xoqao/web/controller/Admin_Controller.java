@@ -165,6 +165,12 @@ public class Admin_Controller {
     @RequestMapping("/addSeatSub")
     public String Seatadd(Model model, Integer left, Integer row, Integer column, String mark, HttpSession httpSession) throws Exception {
         Floor floor = (Floor) httpSession.getAttribute("admin");
+        //添加座位前需要先查看每周的开放时间是否已经设置完成
+        List<WeekOpen> weekOpens = weekOpenService.findweekByfid(floor.getFid());
+        if(weekOpens.size()!=7){
+            model.addAttribute("error_msg","请先添加每周的开放时间段.");
+            return "redirect:/view/managing_Floor";
+        }
         Seat seat = new Seat();
         seat.setColumns(column);
         seat.setFid(floor.getFid());
