@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoqao.web.dao.WeekOpenMapper" >
+
+    <!--根据楼层id查询周开放信息-->
+<select id="findweekByfid" resultType="com.xoqao.web.bean.weekopen.WeekOpen">
+    SELECT woid,lid,param1,param2,week,statue FROM  weekopen WHERE lid=#{fid} ORDER BY  week
+</select>
+
+    <!--修改周开放状态-->
+    <update id="updatestatue">
+        UPDATE weekopen SET statue=#{statue} FROM woid=#{woid}
+    </update>
+
+    <!--删除周时间安排-->
+    <delete id="deletestatue">
+        DELETE FROM  weekopen WHERE woid=#{woid}
+    </delete>
+
+    <!--添加日期安排信息-->
+    <insert id="insertweek">
+        <selectKey resultType="java.lang.Integer" keyProperty="woid" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO  weekopen (lid,param1,param2,week,statue)VALUES (#{weekOpen.lid},#{weekOpen.param1},#{weekOpen.param2},#{weekOpen.week},0)
+    </insert>
+</mapper>
