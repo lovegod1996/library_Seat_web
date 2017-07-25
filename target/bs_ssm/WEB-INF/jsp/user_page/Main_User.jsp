@@ -99,15 +99,16 @@
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body" style="height: 400px">
-            <div class="list-group">
-                <c:forEach items="${noticestop}" var="notice">
-                    <a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${notice.nid}"
-                    >${notice.title}
+
+            <c:forEach items="${noticestop}" var="notice">
+                <div class="list-group">
+                    <a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${notice.nid}">${notice.title}
                         <span class="pull-right text-muted small"><em><fmt:formatDate value="${notice.creattime}"
                                                                                       pattern="yyyy-MM-dd HH:mm:ss"/></em></span>
                     </a>
-                </c:forEach>
-            </div>
+                </div>
+            </c:forEach>
+
             <!-- /.list-group -->
             <a href="<%=request.getContextPath()%>/jsp/news_List_Admin" target="mainFrame_User"
                class="btn btn-default btn-block">查看更多</a>
