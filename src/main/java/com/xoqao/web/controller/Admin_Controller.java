@@ -180,9 +180,17 @@ public class Admin_Controller {
         return "redirect:/view/floorSeat?page=1";
     }
 
-
+    /**
+     * 进入设置开放时间
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/managing_Floor")
-    public String mnaging_Floor(Model model) throws Exception {
+    public String mnaging_Floor(Model model,HttpSession httpSession) throws Exception {
+
+
+
         return "admin_page/Managing_Floor";
     }
 

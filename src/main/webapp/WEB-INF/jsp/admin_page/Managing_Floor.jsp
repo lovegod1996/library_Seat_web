@@ -6,18 +6,25 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>开闭馆管理</title>
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+    <script type="text/javascript">
+        $("#param2").disable();
+    </script>
 </head>
 <body>
 
 <div class="layui-tab">
     <ul class="layui-tab-title">
-        <li class="layui-this">这是几楼</li>
+        <li class="layui-this">一周开放状态</li>
+        <li class="layui-this">添加</li>
     </ul>
     <div class="layui-tab-content">
         <div class="layui-tab-item layui-show">
@@ -190,6 +197,50 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="layui-tab-item">
+          <div class="layui-form">
+              <form class="layui-form" action="" method="post">
+                  <table class="layui-table">
+                      <tbody>
+                      <tr>
+                          <td>
+                              <select class="layui-form-select" name="week">
+                                  <option value="1">周一</option>
+                                  <option value="2">周二</option>
+                                  <option value="3">周三</option>
+                                  <option value="4">周四</option>
+                                  <option value="5">周五</option>
+                                  <option value="6">周六</option>
+                                  <option value="7">周七</option>
+                              </select>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <select class="layui-form-select" name="param1" id="param1">
+                                  <option>9:00-21:00</option>
+                                  <option>9:00-11:30</option>
+                              </select>
+                              <select  class="layui-form-select" name="param2" id="param2">
+                                  <option>16:00-21:00</option>
+                                  <option>14:00-21:00</option>
+                              </select>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <button type="submit" class="btn btn-primary">提交</button>
+                          </td>
+                      </tr>
+                      </tbody>
+                  </table>
+
+
+              </form>
+          </div>
+
+
         </div>
     </div>
 </div>
