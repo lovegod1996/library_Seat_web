@@ -68,6 +68,19 @@
                     </li>
                 </ul>
             </li>
+            <li style="height:100%;margin-top: 50px;padding-left: 10px;">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <label type="text">职责：&nbsp;&nbsp;系统管理员</label>
+                    </div>
+                    <div class="layui-form-item">
+                        <label type="text">姓名：&nbsp;&nbsp;Super</label>
+                    </div>
+                    <div class="layui-form-item">
+                        <label type="text">账号：&nbsp;&nbsp;SuperAdmin</label>
+                    </div>
+                </div>
+            </li>
         </ul>
     </div>
 </div>

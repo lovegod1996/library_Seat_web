@@ -21,6 +21,9 @@
     <!-- Custom Fonts -->
     <link href="<%= request.getContextPath()%>/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet"
           type="text/css">
+    <%--layui--%>
+    <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
+
     <style type="text/css">
         body {
             background-color: #F8F8F8;
@@ -31,7 +34,6 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
-
             <li>
                 <a href="<%=request.getContextPath()%>/jsp/index_Admin" target="_parent" class="active"><i
                         class="fa fa-dashboard fa-fw"></i> 后台管理首页</a>
@@ -89,6 +91,34 @@
                            target="mainFrame_Admin">座位使用统计</a>
                     </li>
                 </ul>
+            </li>
+            <li style="height:100%;margin-top: 50px;padding-left: 10px;">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <label type="text">职责：&nbsp;&nbsp;文史阅览室管理员</label>
+                    </div>
+                    <div class="layui-form-item">
+                        <label type="text">姓名：&nbsp;&nbsp;小明</label>
+                    </div>
+                    <div class="layui-form-item">
+                        <label type="text">账号：&nbsp;&nbsp;Admin1</label>
+                    </div>
+                    <div class="layui-form-item">
+                        <label type="text">图书馆状态：&nbsp;&nbsp;开放</label>
+                    </div>
+                    <div class="layui-form-item">
+                        <label type="text">管理楼层状态：&nbsp;&nbsp;开放</label>
+                    </div>
+                    <div class="layui-form-item">
+                        <label type="text">该层座位：&nbsp;&nbsp;100</label>
+                    </div>
+                    <div class="layui-form-item">
+                        <label type="text">当前使用：&nbsp;&nbsp;100</label>
+                    </div>
+                    <div class="layui-form-item">
+                        <label type="text">可预约：&nbsp;&nbsp;100</label>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>

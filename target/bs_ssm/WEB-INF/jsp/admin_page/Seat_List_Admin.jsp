@@ -26,14 +26,14 @@
         <!-- /.panel-heading -->
         <div class="layui-form">
             <table class="layui-table">
-                <colgroup>
-                    <col>
-                    <col width="8%">
-                    <col width="20%">
-                    <col width="8%">
-                    <col width="15%">
-                    <col width="40%">
-                </colgroup>
+                <%--<colgroup>--%>
+                <%--<col>--%>
+                <%--<col width="8%">--%>
+                <%--<col width="20%">--%>
+                <%--<col width="8%">--%>
+                <%--<col width="15%">--%>
+                <%--<col width="40%">--%>
+                <%--</colgroup>--%>
                 <thead>
                 <tr>
                     <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
@@ -56,14 +56,20 @@
                         <td>${seat.row}排${seat.columns}列</td>
                         <td>${seat.statue==0?"是":"否"}</td>
                         <td>
-                            <a href="#">二维码</a>
-                            <c:if test="${seat.statue==0}">
-                                <a href="${pageContext.request.contextPath }/view/changeSeatStatue?statue=${seat.statue}&&sid=${seat.sid}">关闭预约</a>
-                            </c:if>
-                            <c:if test="${seat.statue==1}">
-                                <a href="${pageContext.request.contextPath }/view/changeSeatStatue?statue=${seat.statue}&&sid=${seat.sid}">开启预约</a>
-                            </c:if>
-                            <a href="${pageContext.request.contextPath }/view/deleteSeat?sid=${seat.sid}">删除</a>
+                            <div class="layui-btn-group">
+                                <a href="#" class="layui-btn layui-btn-primary layui-btn-small">二维码</a>
+                                <c:if test="${seat.statue==0}">
+                                    <a href="${pageContext.request.contextPath }/view/changeSeatStatue?statue=${seat.statue}&&sid=${seat.sid}"
+                                       class="layui-btn layui-btn-primary layui-btn-small">关闭预约</a>
+                                </c:if>
+                                <c:if test="${seat.statue==1}">
+                                    <a href="${pageContext.request.contextPath }/view/changeSeatStatue?statue=${seat.statue}&&sid=${seat.sid}"
+                                       class="layui-btn layui-btn-primary layui-btn-small">开启预约</a>
+                                </c:if>
+                                <a href="${pageContext.request.contextPath }/view/deleteSeat?sid=${seat.sid}"
+                                   class="layui-btn layui-btn-primary layui-btn-small">删除</a>
+                            </div>
+
                         </td>
                     </tr>
                 </c:forEach>

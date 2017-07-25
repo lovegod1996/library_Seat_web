@@ -15,16 +15,14 @@
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
-    <script type="text/javascript">
-        $("#param2").disable();
-    </script>
+
 </head>
 <body>
 
 <div class="layui-tab">
     <ul class="layui-tab-title">
         <li class="layui-this">一周开放状态</li>
-        <li class="layui-this">添加</li>
+        <li class="layui">添加</li>
     </ul>
     <div class="layui-tab-content">
         <div class="layui-tab-item layui-show">
@@ -218,19 +216,21 @@
                       </tr>
                       <tr>
                           <td>
-                              <select class="layui-form-select" name="param1" id="param1">
+                              <select class="layui-form-select" name="param1" id="param1" onload="changeItem(this)">
                                   <option>9:00-21:00</option>
                                   <option>9:00-11:30</option>
                               </select>
-                              <select  class="layui-form-select" name="param2" id="param2">
-                                  <option>16:00-21:00</option>
-                                  <option>14:00-21:00</option>
-                              </select>
                           </td>
+                      <td>
+                          <select  class="layui-form-select" name="param2" id="param2" disabled style="display:none">
+                              <option>16:00-21:00</option>
+                              <option>14:00-21:00</option>
+                          </select>
+                      </td>
                       </tr>
                       <tr>
                           <td>
-                              <button type="submit" class="btn btn-primary">提交</button>
+                              <button  class="btn btn-primary">提交</button>
                           </td>
                       </tr>
                       </tbody>
@@ -293,56 +293,67 @@
 </script>
 
 <%--选择日期--%>
-<script>
-    layui.use('laydate', function () {
-        var laydate = layui.laydate;
-        var start = {
-            min: laydate.now()
-            , format: 'YYYY-MM-DD hh:mm:ss' //日期格式
-            , istime: true
-            , max: '2099-06-16 23:59:59'
-            , istoday: false
-            , choose: function (datas) {
-                end.min = datas; //开始日选好后，重置结束日的最小日期
-                end.start = datas //将结束日的初始值设定为开始日
-            }
-        };
+<%--<script>--%>
+    <%--layui.use('laydate', function () {--%>
+        <%--var laydate = layui.laydate;--%>
+        <%--var start = {--%>
+            <%--min: laydate.now()--%>
+            <%--, format: 'YYYY-MM-DD hh:mm:ss' //日期格式--%>
+            <%--, istime: true--%>
+            <%--, max: '2099-06-16 23:59:59'--%>
+            <%--, istoday: false--%>
+            <%--, choose: function (datas) {--%>
+                <%--end.min = datas; //开始日选好后，重置结束日的最小日期--%>
+                <%--end.start = datas //将结束日的初始值设定为开始日--%>
+            <%--}--%>
+        <%--};--%>
 
-        var end = {
-            min: laydate.now()
-            , format: 'YYYY-MM-DD hh:mm:ss' //日期格式
-            , istime: true
-            , max: '2099-06-16 23:59:59'
-            , istoday: false
-            , choose: function (datas) {
-                start.max = datas; //结束日选好后，重置开始日的最大日期
-            }
-        };
+        <%--var end = {--%>
+            <%--min: laydate.now()--%>
+            <%--, format: 'YYYY-MM-DD hh:mm:ss' //日期格式--%>
+            <%--, istime: true--%>
+            <%--, max: '2099-06-16 23:59:59'--%>
+            <%--, istoday: false--%>
+            <%--, choose: function (datas) {--%>
+                <%--start.max = datas; //结束日选好后，重置开始日的最大日期--%>
+            <%--}--%>
+        <%--};--%>
 
-        document.getElementById('LAY_demorange_s_south').onclick = function () {
-            start.elem = this;
-            laydate(start);
-        };
-        document.getElementById('LAY_demorange_s_north').onclick = function () {
-            start.elem = this;
-            laydate(start);
-        };
-        document.getElementById('LAY_demorange_e_south').onclick = function () {
-            end.elem = this;
-            laydate(end);
-        };
-        document.getElementById('LAY_demorange_e_north').onclick = function () {
-            end.elem = this;
-            laydate(end);
-        }
+        <%--document.getElementById('LAY_demorange_s_south').onclick = function () {--%>
+            <%--start.elem = this;--%>
+            <%--laydate(start);--%>
+        <%--};--%>
+        <%--document.getElementById('LAY_demorange_s_north').onclick = function () {--%>
+            <%--start.elem = this;--%>
+            <%--laydate(start);--%>
+        <%--};--%>
+        <%--document.getElementById('LAY_demorange_e_south').onclick = function () {--%>
+            <%--end.elem = this;--%>
+            <%--laydate(end);--%>
+        <%--};--%>
+        <%--document.getElementById('LAY_demorange_e_north').onclick = function () {--%>
+            <%--end.elem = this;--%>
+            <%--laydate(end);--%>
+        <%--}--%>
 
-    });
-</script>
+    <%--});--%>
+<%--</script>--%>
 
 <!-- jQuery -->
 <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+    function changeItem(obj) {
+//    var index=obj.selectedIndex;
+        alert(obj);
+//    if(index==obj.options.length-1){
+//            document.getElementById("param2").style.display="block";
+//        }
+    }
+</script>
 </body>
 </html>
