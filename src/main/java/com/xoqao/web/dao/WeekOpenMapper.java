@@ -23,4 +23,6 @@ void updatestatue(@Param("statue") Integer statue,@Param("woid") Integer woid)th
 void deletestatue(@Param("woid") Integer woid)throws Exception;
 
 void insertweek(@Param("weekOpen") WeekOpen weekOpen)throws Exception;
+
+List<WeekOpen> findopentody()throws Exception;
 }

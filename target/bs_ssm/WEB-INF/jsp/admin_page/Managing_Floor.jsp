@@ -40,6 +40,7 @@
                     <tr>
                         <th width="15%">一周内</th>
                         <th width="30%">时间段</th>
+                        <th width="10%">开放状态</th>
                         <th width="15%">操作</th>
                     </tr>
                     </thead>
@@ -48,15 +49,16 @@
                         <tr>
                             <td>周${week.week}</td>
                             <td>${week.param1};${week.param2}</td>
+                            <td>${week.statue==0?"是":"否"}</td>
                             <td>
                                 <a href="#">编辑</a>
                                 <c:if test="${week.statue==0}">
-                                    <a href="">关闭预约</a>
+                                    <a href="<%=request.getContextPath()%>/view/changeWeekStatue?woid=${week.woid}&&statue=${week.statue}">关闭预约</a>
                                 </c:if>
                                 <c:if test="${week.statue==1}">
-                                    <a href="">开放预约</a>
+                                    <a href="<%=request.getContextPath()%>/view/changeWeekStatue?woid=${week.woid}&&statue=${week.statue}">开放预约</a>
                                 </c:if>
-                                <a href="">删除</a>
+                                <a href="<%=request.getContextPath()%>/view/deleteWeek?woid=${week.woid}">删除</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -221,7 +223,8 @@
 
 <script type="text/javascript">
 
-
+    <c:if test="${!empty error_msg}">alert("${error_msg}");
+    </c:if>
 </script>
 </body>
 </html>

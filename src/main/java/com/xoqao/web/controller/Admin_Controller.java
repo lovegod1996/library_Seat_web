@@ -223,7 +223,12 @@ public class Admin_Controller {
        weekOpen.setWeek(week);
        weekOpen.setParam1(param1);
        weekOpen.setParam2(param2);
-       weekOpenService.insertweek(weekOpen);
+       try {
+           weekOpenService.insertweek(weekOpen);
+       }catch (Exception e){
+           e.printStackTrace();
+           model.addAttribute("error_msg","周"+week+"的已存在");
+       }
        return "redirect:/view/managing_Floor";
     }
 

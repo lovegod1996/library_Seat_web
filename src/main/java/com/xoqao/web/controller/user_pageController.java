@@ -1,17 +1,19 @@
 package com.xoqao.web.controller;
 
+import com.xoqao.web.bean.building.Building;
+import com.xoqao.web.bean.floors.Floor;
 import com.xoqao.web.bean.news.News;
 import com.xoqao.web.bean.news.Notice;
 import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.seat.SeatState;
 import com.xoqao.web.bean.user.User;
 import com.xoqao.web.bean.userbook.UserLearn;
+import com.xoqao.web.bean.weekopen.WeekOpen;
+import com.xoqao.web.bean.weekopen.WeekOpenCus;
 import com.xoqao.web.commen.CommenValue;
-import com.xoqao.web.service.NewsService;
-import com.xoqao.web.service.NoticeService;
-import com.xoqao.web.service.SeatService;
-import com.xoqao.web.service.UserLearnService;
+import com.xoqao.web.service.*;
 import com.xoqao.web.utils.DateUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,7 @@ import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -41,11 +44,34 @@ public class user_pageController {
 
     @Autowired
     private NoticeService noticeService;
+
+    @Autowired
+    private WeekOpenService weekOpenService;
+
+    @Autowired
+    private FloorService floorService;
+    @Autowired
+    private BuildingService buildingService;
     @RequestMapping("/main_User")
     public String main_User(Model model) throws Exception {
         List<Notice> allNoticetop = noticeService.findAllNoticetop();
         model.addAttribute("noticestop",allNoticetop);
 
+        List<WeekOpen> findopentody = weekOpenService.findopentody();
+
+        Iterator<WeekOpen> iterator = findopentody.iterator();
+        List<WeekOpenCus> weekOpenCuses=new ArrayList<WeekOpenCus>();
+        while (iterator.hasNext()){
+            WeekOpen next = iterator.next();
+            Floor floor = floorService.findfloorByid(next.getLid());
+            Building buildingById = buildingService.findBuildingById(floor.getBid());
+            WeekOpenCus weekOpenCus=new WeekOpenCus();
+            BeanUtils.copyProperties(next,weekOpenCus);
+            weekOpenCus.setFloor(floor.getEmployer());
+            weekOpenCus.setBuilding(buildingById.getEmployer());
+            weekOpenCuses.add(weekOpenCus);
+        }
+        model.addAttribute("weekopens",weekOpenCuses);
         return "user_page/Main_User";
     }
 

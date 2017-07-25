@@ -78,7 +78,7 @@
         </property>
     </bean>
     <!--全局异常处理器-->
-    <bean class="com.xoqao.web.exception.CustomExceptionResolver"></bean>
+    <!--<bean class="com.xoqao.web.exception.CustomExceptionResolver"></bean>-->
 
     <!--数据校验-->
     <mvc:annotation-driven>

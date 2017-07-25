@@ -9,7 +9,7 @@
 
     <!--修改周开放状态-->
     <update id="updatestatue">
-        UPDATE weekopen SET statue=#{statue} FROM woid=#{woid}
+        UPDATE weekopen SET statue=#{statue} WHERE woid=#{woid}
     </update>
 
     <!--删除周时间安排-->
@@ -24,4 +24,10 @@
         </selectKey>
         INSERT INTO  weekopen (lid,param1,param2,week,statue)VALUES (#{weekOpen.lid},#{weekOpen.param1},#{weekOpen.param2},#{weekOpen.week},0)
     </insert>
+    <!--查看当天场馆开放情况-->
+    <select id="findopentody" resultType="com.xoqao.web.bean.weekopen.WeekOpen">
+        SELECT woid,lid,param1,param2,week,statue
+        FROM  weekopen
+        WHERE week=WEEKDAY(NOW())+1 AND statue=0
+    </select>
 </mapper>

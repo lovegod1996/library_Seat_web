@@ -19,4 +19,6 @@ public interface WeekOpenService {
     void deletestatue( Integer woid)throws Exception;
 
     void insertweek( WeekOpen weekOpen)throws Exception;
+
+    List<WeekOpen> findopentody()throws Exception;
 }
