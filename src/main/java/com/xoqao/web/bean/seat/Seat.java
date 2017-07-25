@@ -10,7 +10,8 @@ public class Seat {
     private Integer sid;
     private Integer fid;
     private Integer row;
-    private Integer column;
+    private Integer leftside;
+    private Integer columns;
     private String seatnumber;
     private Integer statue;
 
@@ -38,12 +39,12 @@ public class Seat {
         this.row = row;
     }
 
-    public Integer getColumn() {
-        return column;
+    public Integer getColumns() {
+        return columns;
     }
 
-    public void setColumn(Integer column) {
-        this.column = column;
+    public void setColumns(Integer columns) {
+        this.columns = columns;
     }
 
     public String getSeatnumber() {
@@ -62,13 +63,22 @@ public class Seat {
         this.statue = statue;
     }
 
+    public Integer getLeftside() {
+        return leftside;
+    }
+
+    public void setLeftside(Integer leftside) {
+        this.leftside = leftside;
+    }
+
     @Override
     public String toString() {
         return "Seat{" +
                 "sid=" + sid +
                 ", fid=" + fid +
                 ", row=" + row +
-                ", column=" + column +
+                ", leftside=" + leftside +
+                ", columns=" + columns +
                 ", seatnumber='" + seatnumber + '\'' +
                 ", statue=" + statue +
                 '}';

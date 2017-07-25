@@ -247,87 +247,7 @@ public class admin_pageController {
 
     @RequestMapping("/adSeatBookSub")
     public String adSeatBook(Model model, String seatNum, String sno, String stime, String etime, Integer page, HttpSession httpSession) throws Exception {
-
-        String floor = seatNum.substring(0, 2);
-        Integer disTime = DateUtil.getDisTime(stime, etime);
-
-        if (disTime < CommenValue.MAX_LongTime) {
-            User userBySno = userService.findUserBySno(sno);
-            Seat seatByNum = seatService.findSeatByNum(seatNum);
-            try {
-                userLearnService.insertBook(userBySno.getUid(), seatByNum.getSid(), new Date(), stime + "--" + etime);
-                seatService.updateSeat(1, userBySno.getUid(), seatByNum.getSid());
-            } catch (Exception e) {
-                e.printStackTrace();
-                model.addAttribute("error_msg", "预约失败");
-            }
-            int pageSize = 5;
-            List<UserLearn> userLearns = userLearnService.findfloorBookSeat(floor);
-            model.addAttribute("userLearnSize", userLearns.size());
-            int pageTims;
-            if (userLearns.size() % pageSize == 0) {
-                pageTims = userLearns.size() / pageSize;
-            } else {
-                pageTims = userLearns.size() / pageSize + 1;
-            }
-            httpSession.setAttribute("pageTimes", pageTims);
-            //页面初始的时候没有初试值
-            if (null == page) {
-                page = 1;
-            }
-            //每页开始的第几条记录
-            int startRow;
-            if (userLearns.size() < pageSize) {
-                startRow = 0;
-            } else {
-                startRow = (page - 1) * pageSize;
-            }
-            model.addAttribute("currentPage", page);
-            model.addAttribute("floor", floor);
-            List<UserLearn> userLearns1 = userLearnService.findfloorBookSeatPage(floor, startRow, pageSize);
-            if (userLearns1.size() > 0) {
-                model.addAttribute("userLearns", userLearns1);
-                return "admin_page/Seat_In_Book";
-            } else {
-                model.addAttribute("nullList", "暂无数据");
-                return "admin_page/Seat_In_Book";
-            }
-
-        } else {
-            model.addAttribute("error_msg", "选取时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
-            int pageSize = 5;
-
-            List<Seat> allNoSeat = userLearnService.findAllNoSeat(floor);
-            model.addAttribute("SeatSize", allNoSeat.size());
-            int pageTims;
-            if (allNoSeat.size() % pageSize == 0) {
-                pageTims = allNoSeat.size() / pageSize;
-            } else {
-                pageTims = allNoSeat.size() / pageSize + 1;
-            }
-            httpSession.setAttribute("pageTimes", pageTims);
-            //页面初始的时候没有初试值
-            if (null == page) {
-                page = 1;
-            }
-            //每页开始的第几条记录
-            int startRow;
-            if (allNoSeat.size() < pageSize) {
-                startRow = 0;
-            } else {
-                startRow = (page - 1) * pageSize;
-            }
-            model.addAttribute("currentPage", page);
-            model.addAttribute("floor", floor);
-            List<Seat> allNoSeatPage = userLearnService.findAllNoSeatPage(floor, startRow, pageSize);
-            if (allNoSeatPage.size() > 0) {
-                model.addAttribute("seats", allNoSeatPage);
                 return "admin_page/Seat_In_Empty";
-            } else {
-                model.addAttribute("nullList", "暂无数据");
-                return "admin_page/Seat_In_Empty";
-            }
-        }
     }
 
     /**
@@ -342,61 +262,8 @@ public class admin_pageController {
      */
     @RequestMapping("/releaseBook")
     public String releaseBook(Model model, Integer bid, Integer page, HttpSession httpSession) throws Exception {
-        UserLearn bookByid = null;
-        try {
-            bookByid = userLearnService.findBookByid(bid);
 
-            String[] period = bookByid.getPeriod().split("--");
-
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-            String format = simpleDateFormat.format(new Date());
-
-            Integer disTime = DateUtil.getDisTime(period[0], format);
-
-            if (disTime > CommenValue.MAX_LATER) {
-                userLearnService.updateUnpromise(bookByid.getBid());
-            } else {
-                userLearnService.deleteBook(bid);
-            }
-            seatService.updateSeat(0, null, bookByid.getSid());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            model.addAttribute("error_msg", "释放失败！");
-        }
-        String floor = bookByid.getSeatnumber().substring(0, 2);
-        int pageSize = 5;
-        List<Seat> allNoSeat = userLearnService.findAllNoSeat(floor);
-        model.addAttribute("SeatSize", allNoSeat.size());
-        int pageTims;
-        if (allNoSeat.size() % pageSize == 0) {
-            pageTims = allNoSeat.size() / pageSize;
-        } else {
-            pageTims = allNoSeat.size() / pageSize + 1;
-        }
-        httpSession.setAttribute("pageTimes", pageTims);
-        //页面初始的时候没有初试值
-        if (null == page) {
-            page = 1;
-        }
-        //每页开始的第几条记录
-        int startRow;
-        if (allNoSeat.size() < pageSize) {
-            startRow = 0;
-        } else {
-            startRow = (page - 1) * pageSize;
-        }
-        model.addAttribute("currentPage", page);
-        model.addAttribute("floor", floor);
-        List<Seat> allNoSeatPage = userLearnService.findAllNoSeatPage(floor, startRow, pageSize);
-        if (allNoSeatPage.size() > 0) {
-            model.addAttribute("seats", allNoSeatPage);
             return "admin_page/Seat_In_Empty";
-        } else {
-            model.addAttribute("nullList", "暂无数据");
-            return "admin_page/Seat_In_Empty";
-        }
     }
 
     public static HttpSession getSession() {

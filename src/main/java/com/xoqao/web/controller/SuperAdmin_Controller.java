@@ -176,7 +176,7 @@ public class SuperAdmin_Controller {
      * @throws Exception
      */
     @RequestMapping("/adfloorSub")
-    public String adfloorsub(Model model, Integer bid, String floorname, String floorsort, String username) throws Exception {
+    public String adfloorsub(Model model, Integer bid, Integer floorname, String floorsort, String username) throws Exception {
         Floor floor = new Floor();
         List<Floor> floors = floorService.findfloorsBybid(bid);
         Building buildingById = buildingService.findBuildingById(bid);
@@ -217,7 +217,7 @@ public class SuperAdmin_Controller {
      * @throws Exception
      */
     @RequestMapping("/editfllorSub")
-    public String editfloor(Model model, Integer fid, String floorname, String floorsort, String username) throws Exception {
+    public String editfloor(Model model, Integer fid, Integer floorname, String floorsort, String username) throws Exception {
         Floor floor = floorService.findfloorByid(fid);
         floor.setFloor(floorname);
         floor.setEmployer(floorsort);

@@ -13,7 +13,7 @@ public class Floor {
     private String password;
     private String name;
     private String employer;
-    private String floor;
+    private Integer floor;
     private Integer statue;
 
     public Integer getFid() {
@@ -64,11 +64,11 @@ public class Floor {
         this.employer = employer;
     }
 
-    public String getFloor() {
+    public Integer getFloor() {
         return floor;
     }
 
-    public void setFloor(String floor) {
+    public void setFloor(Integer floor) {
         this.floor = floor;
     }
 

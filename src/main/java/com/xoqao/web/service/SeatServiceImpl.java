@@ -19,22 +19,31 @@ public class SeatServiceImpl implements SeatService {
     @Autowired
     private SeatMapper seatMapper;
 
-    public Seat findSeatByNum(String number) throws Exception {
-        Seat seatByNum = seatMapper.findSeatByNum(number);
-        return seatByNum;
+
+    public void insertSeat(Seat seat) throws Exception {
+        seatMapper.insertSeat(seat);
     }
 
-    public void updateSeat(Integer state, Integer userid, Integer sid) throws Exception {
-        seatMapper.updateSeat(state, userid, sid);
+    public List<Seat> findSeatsByFid(Integer fid) throws Exception {
+        List<Seat> seatsByFid = seatMapper.findSeatsByFid(fid);
+        return seatsByFid;
     }
 
-    public List<String> findFloor(String floor) throws Exception {
-        List<String> floor1 = seatMapper.findFloor(floor);
-        return floor1;
+    public List<Seat> findSeatsByFidPage(Integer fid, Integer startRow, Integer pageSize) throws Exception {
+        List<Seat> seatsByFidPage = seatMapper.findSeatsByFidPage(fid, startRow, pageSize);
+        return seatsByFidPage;
     }
 
-    public Integer findCountBystate(String floor, Integer state) throws Exception {
-        Integer countBystate = seatMapper.findCountBystate(floor, state);
-        return countBystate;
+    public void updateSeatSatue(Integer statue, Integer sid) throws Exception {
+        seatMapper.updateSeatSatue(statue, sid);
+    }
+
+    public Seat findByid(Integer sid) throws Exception {
+        Seat byid = seatMapper.findByid(sid);
+        return byid;
+    }
+
+    public void deleteSeat(Integer sid) throws Exception {
+        seatMapper.deleteSeat(sid);
     }
 }

@@ -21,40 +21,70 @@
 <body>
 <div class="layui-tab">
     <ul class="layui-tab-title">
-        <li class="layui-this">增加</li>
-        <li>删除</li>
+        <li class="layui-this">单个增加</li>
+        <%--<li>删除</li>--%>
     </ul>
     <div class="layui-tab-content">
         <%--增加座位页面--%>
         <div class="layui-tab-item layui-show">
-            <form class="layui-form" action="" style="width:40%;float: left">
+            <form class="layui-form" action="<%=request.getContextPath()%>/view/addSeatSub" method="post" style="width:40%;float: left">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">选择左右</label>
+                    <div class="layui-input-block">
+                        <select name="left" lay-filter="hang" id="left">
+                            <option value="0"></option>
+                            <option value="0">左</option>
+                            <option value="1">右</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">选择行</label>
                     <div class="layui-input-block">
-                        <select name="interest" lay-filter="hang" id="hang">
+                        <select name="row" lay-filter="hang" id="hang">
                             <option value="0"></option>
-                            <option value="01行">01</option>
-                            <option value="02行">02</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
                         </select>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">选择列</label>
                     <div class="layui-input-block">
-                        <select name="interest" lay-filter="lie" id="lie">
+                        <select name="column" lay-filter="lie" id="lie">
                             <option value="0"></option>
-                            <option value="01列">01</option>
-                            <option value="02列">02</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
                         </select>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">选择标志</label>
                     <div class="layui-input-block">
-                        <select name="interest" lay-filter="sign" id="sign">
-                            <option value="0"></option>
-                            <option value="1">向阳</option>
-                            <option value="2">靠窗</option>
+                        <select name="mark" lay-filter="sign" id="sign">
+                            <option></option>
+                            <option value="向阳">向阳</option>
+                            <option value="靠窗">靠窗</option>
                         </select>
                     </div>
                 </div>
@@ -144,6 +174,10 @@
 <script src="<%=request.getContextPath()%>/js/qrcode.js"></script>
 <!-- jQuery -->
 <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
+
+<script type="text/javascript">
+    <c:if test="${!empty error_msg}">alert("${error_msg}");</c:if>
+</script>
 
 </body>
 </html>

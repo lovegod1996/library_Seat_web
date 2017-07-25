@@ -40,7 +40,7 @@
                             <td>${floor.floor}</td>
                             <td>${floor.employer}</td>
                             <td>${floor.name}</td>
-                            <td>${floor.statue==0? "开放":"关闭"}</td>
+                            <td>${floor.statue == 0?"开放":"关闭"}</td>
                             <td>
                                 <c:if test="${floor.statue==0}">
                                     <a href="<%=request.getContextPath()%>/view/floor/changestatue?fid=${floor.fid}&&statue=${floor.statue}">关闭</a> </c:if>

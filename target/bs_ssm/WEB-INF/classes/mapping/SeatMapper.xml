@@ -2,24 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xoqao.web.dao.SeatMapper">
 
-    <!--根据座位号查询座位信息-->
-    <select id="findSeatByNum" resultType="com.xoqao.web.bean.seat.Seat">
-       SELECT  sid,seatnumber,floor,seatstate,userid,seattype FROM seat WHERE seatnumber LIKE '${number}'
-   </select>
+    <!--添加座位信息-->
+    <insert id="insertSeat">
+        <selectKey resultType="java.lang.Integer" keyProperty="sid" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO seat (fid,leftside,row,columns,seatnumber,statue)VALUES
+        (#{seat.fid},#{seat.leftside},#{seat.row},#{seat.columns},#{seat.seatnumber},0)
+    </insert>
 
-    <!--根据sid更新座位状态-->
-    <update id="updateSeat">
-        UPDATE seat SET seatstate=#{state},userid =#{userid}  WHERE  sid=#{sid}
+    <!--根据楼层id查询所有座位-->
+    <select id="findSeatsByFid" resultType="com.xoqao.web.bean.seat.Seat">
+        SELECT sid,fid,row,leftside,columns,seatnumber,statue FROM seat WHERE fid=#{fid}
+    </select>
+
+    <select id="findSeatsByFidPage" resultType="com.xoqao.web.bean.seat.Seat">
+        SELECT sid,fid,row,leftside,columns,seatnumber,statue FROM seat WHERE fid=#{fid}
+         limit #{startRow},#{pageSize}
+    </select>
+
+    <!--根据座位id修改座位状态-->
+    <update id="updateSeatSatue">
+        UPDATE seat SET statue=#{statue} WHERE sid=#{sid}
     </update>
 
-    <!--根据楼区查找楼层-->
-    <select id="findFloor" resultType="java.lang.String">
-        SELECT DISTINCT floor FROM seat WHERE floor LIKE '${floor}%'
+    <!--根据座位id查询座位信息-->
+    <select id="findByid" resultType="com.xoqao.web.bean.seat.Seat">
+         SELECT sid,fid,row,leftside,columns,seatnumber,statue FROM seat WHERE sid=#{sid}
     </select>
-
-    <!--根据楼层喝状态查找数量-->
-    <select id="findCountBystate" resultType="java.lang.Integer">
-        SELECT COUNT(*) FROM seat WHERE floor LIKE '${floor}%' AND seatstate =#{state}
-    </select>
-
+    <!--根据座位id删除座位-->
+    <delete id="deleteSeat">
+    DELETE FROM seat WHERE sid=#{sid}
+    </delete>
 </mapper>
