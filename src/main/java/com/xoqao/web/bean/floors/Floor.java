@@ -13,7 +13,8 @@ public class Floor {
     private String password;
     private String name;
     private String employer;
-    private String floor;
+    private Integer floor;
+    private Integer statue;
 
     public Integer getFid() {
         return fid;
@@ -63,12 +64,20 @@ public class Floor {
         this.employer = employer;
     }
 
-    public String getFloor() {
+    public Integer getFloor() {
         return floor;
     }
 
-    public void setFloor(String floor) {
+    public void setFloor(Integer floor) {
         this.floor = floor;
+    }
+
+    public Integer getStatue() {
+        return statue;
+    }
+
+    public void setStatue(Integer statue) {
+        this.statue = statue;
     }
 
     @Override
@@ -81,6 +90,7 @@ public class Floor {
                 ", name='" + name + '\'' +
                 ", employer='" + employer + '\'' +
                 ", floor='" + floor + '\'' +
+                ", statue=" + statue +
                 '}';
     }
 }

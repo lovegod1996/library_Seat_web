@@ -12,24 +12,15 @@ import java.util.List;
  * Email:dx96_j@163.com
  */
 public interface SeatService {
-    Seat findSeatByNum(String number) throws Exception;
+    void insertSeat( Seat seat) throws Exception;
 
-    void updateSeat(Integer state, Integer userid, Integer sid) throws Exception;
+    List<Seat> findSeatsByFid(Integer fid) throws Exception;
 
-    /**
-     * 根据楼区查找楼层
-     * @param floor
-     * @return
-     * @throws Exception
-     */
-    List<String> findFloor( String floor)throws Exception;
+    List<Seat> findSeatsByFidPage(Integer fid,Integer startRow, Integer pageSize) throws Exception;
 
-    /**
-     * 根据楼层和状态查找数量
-     * @param floor
-     * @param state
-     * @return
-     * @throws Exception
-     */
-    Integer findCountBystate(String floor,Integer state)throws Exception;
+    void updateSeatSatue(Integer statue,  Integer sid) throws Exception;
+
+    Seat findByid(Integer sid)throws Exception;
+
+    void deleteSeat( Integer sid) throws Exception;
 }

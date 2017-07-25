@@ -24,6 +24,11 @@
         (#{building.accountnumber},#{building.password},#{building.name},#{building.employer},#{building.manage})
     </insert>
 
+    <!--修改图书馆-->
+    <update id="updateBuilding">
+        UPDATE buliding SET name=#{building.name},employer=#{building.employer} WHERE bid=#{building.bid}
+    </update>
+
     <!--删除图书馆-->
     <delete id="deleteLibaray">
         DELETE FROM buliding WHERE  bid=#{bid}

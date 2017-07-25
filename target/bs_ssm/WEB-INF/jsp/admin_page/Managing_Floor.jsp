@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>开闭馆管理</title>
@@ -17,7 +20,7 @@
 
 <div class="layui-tab">
     <ul class="layui-tab-title">
-        <li class="layui-this">这是几楼</li>
+        <li class="layui-this">${sessionScope.admin.employer}</li>
     </ul>
     <div class="layui-tab-content">
         <div class="layui-tab-item layui-show">

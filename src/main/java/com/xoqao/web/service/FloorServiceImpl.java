@@ -36,11 +36,19 @@ public class FloorServiceImpl implements FloorService {
     }
 
     public void insertFloors(Floor floor) throws Exception {
-floorsMapper.insertFloors(floor);
+        floorsMapper.insertFloors(floor);
     }
 
     public void deletefloor(Integer fid) throws Exception {
-floorsMapper.deletefloor(fid);
+        floorsMapper.deletefloor(fid);
+    }
+
+    public void updateFloor(Floor floor) throws Exception {
+        floorsMapper.updateFloor(floor);
+    }
+
+    public void updateStatueByid(Integer statue, Integer fid) throws Exception {
+        floorsMapper.updateStatueByid(statue, fid);
     }
 
 

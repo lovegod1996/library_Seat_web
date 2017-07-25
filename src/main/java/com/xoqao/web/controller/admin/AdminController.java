@@ -345,13 +345,8 @@ public class AdminController {
     @RequestMapping("/getfloors")
     public @ResponseBody
     Floors getFloors() throws Exception {
-        List<String> south = seatService.findFloor("南");
-        List<String> north = seatService.findFloor("北");
 
-        Floors floors = new Floors();
-        floors.setNorth(north);
-        floors.setSouth(south);
-        return floors;
+        return null;
     }
 
     public static HttpSession getSession() {

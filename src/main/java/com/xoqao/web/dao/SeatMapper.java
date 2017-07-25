@@ -15,24 +15,15 @@ import java.util.List;
 @Service
 public interface SeatMapper {
 
-    Seat findSeatByNum(@Param("number") String number) throws Exception;
+    void insertSeat(@Param("seat") Seat seat) throws Exception;
 
-   void updateSeat(@Param("state") Integer state,@Param("userid")Integer userid,@Param("sid")Integer sid)throws Exception;
+    List<Seat> findSeatsByFid(@Param("fid") Integer fid) throws Exception;
 
-    /**
-     * 根据楼区查找楼层
-     * @param floor
-     * @return
-     * @throws Exception
-     */
-   List<String> findFloor(@Param("floor") String floor)throws Exception;
+    List<Seat> findSeatsByFidPage(@Param("fid") Integer fid, @Param("startRow") Integer startRow, @Param("pageSize") Integer pageSize) throws Exception;
 
-    /**
-     * 根据楼层和状态查找数量
-     * @param floor
-     * @param state
-     * @return
-     * @throws Exception
-     */
-   Integer findCountBystate(@Param("floor") String floor,@Param("state") Integer state)throws Exception;
+    void updateSeatSatue(@Param("statue") Integer statue, @Param("sid") Integer sid) throws Exception;
+
+    Seat findByid(@Param("sid") Integer sid) throws Exception;
+
+    void deleteSeat(@Param("sid") Integer sid) throws Exception;
 }

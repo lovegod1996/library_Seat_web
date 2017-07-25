@@ -52,27 +52,8 @@ public class user_pageController {
     @RequestMapping("/getSeatData")
     public @ResponseBody
     List<SeatState> getSeatDate(String floor) throws Exception {
-        if (null == floor) {
-            floor = "南";
-        }else{
-            floor=floor.substring(0,1);
-        }
-        List<SeatState> seatStates = new ArrayList<SeatState>();
-        List<String> floor1 = seatService.findFloor(floor);
-        if (floor1.size() > 0) {
-            for (int i = 0; i < floor1.size(); i++) {
-                SeatState seatState = new SeatState();
-                seatState.setFloor(floor1.get(i));
-                Integer nobook = seatService.findCountBystate(floor1.get(i), 0);
-                Integer bookNum = seatService.findCountBystate(floor1.get(i), 1);
-                Integer seatedNum = seatService.findCountBystate(floor1.get(i), 2);
-                seatState.setNobook(nobook);
-                seatState.setBookNum(bookNum);
-                seatState.setSeatedNum(seatedNum);
-                seatStates.add(seatState);
-            }
-        }
-        return seatStates;
+
+        return null;
     }
 
 
@@ -170,66 +151,7 @@ public class user_pageController {
 
     @RequestMapping("/bookSeatUserSub")
     public String bookSeatUserSub(Model model, String seatNum, String stime, String etime, Integer page, HttpSession httpSession) throws Exception {
-        User user = (User) httpSession.getAttribute("user");
 
-        String floor = seatNum.substring(0, 2);
-
-        Integer disTime = DateUtil.getDisTime(stime, etime);
-        if (disTime < CommenValue.MAX_LongTime) {
-
-            List<UserLearn> userLearnPerByUid = userLearnService.findUserLearnPerByUid(user.getUid());
-            if (userLearnPerByUid.size() < CommenValue.MAX_UNPERMISE) {
-                Seat seatByNum = seatService.findSeatByNum(seatNum);
-                try {
-                    userLearnService.insertBook(user.getUid(), seatByNum.getSid(), new Date(), stime + "--" + etime);
-                    seatService.updateSeat(1, user.getUid(), seatByNum.getSid());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    model.addAttribute("error_msg", "预约失败");
-                }
-            } else {
-                model.addAttribute("error_msg", "预约失败,您已失信超过" + CommenValue.MAX_UNPERMISE + "次");
-            }
-        } else {
-            model.addAttribute("error_msg", "选取时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
-        }
-        int pageSize = 5;
-
-        List<Seat> allNoSeat = userLearnService.findAllNoSeat(floor);
-        if (allNoSeat.size() > 0) {
-            model.addAttribute("SeatSize", allNoSeat.size());
-            int pageTims;
-            if (allNoSeat.size() % pageSize == 0) {
-                pageTims = allNoSeat.size() / pageSize;
-            } else {
-                pageTims = allNoSeat.size() / pageSize + 1;
-            }
-            httpSession.setAttribute("pageTimes", pageTims);
-            //页面初始的时候没有初试值
-            if (null == page) {
-                page = 1;
-            }
-            //每页开始的第几条记录
-            int startRow;
-            if (allNoSeat.size() < pageSize) {
-                startRow = 0;
-            } else {
-                startRow = (page - 1) * pageSize;
-            }
-            model.addAttribute("currentPage", page);
-            model.addAttribute("floor", floor);
-            List<Seat> allNoSeatPage = userLearnService.findAllNoSeatPage(floor, startRow, pageSize);
-            model.addAttribute("seats", allNoSeatPage);
-        } else {
-            httpSession.setAttribute("pageTimes", 1);
-            model.addAttribute("nullList", "暂无空闲座位，请稍后查看！");
-        }
-
-        UserLearn userLearnNew = userLearnService.findUserLearnNew(user.getUid());
-
-        if (userLearnNew != null) {
-            model.addAttribute("userLearn", userLearnNew);
-        }
         return "user_page/Book_Seat_User";
     }
 
@@ -264,7 +186,6 @@ public class user_pageController {
             } else {
                 userLearnService.deleteBook(bid);
             }
-            seatService.updateSeat(0, null, bookByid.getSid());
 
         } catch (Exception e) {
             e.printStackTrace();

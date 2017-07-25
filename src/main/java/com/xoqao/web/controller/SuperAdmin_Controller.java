@@ -105,6 +105,26 @@ public class SuperAdmin_Controller {
     }
 
     /**
+     * 修改图书馆信息
+     * @param model
+     * @param bid
+     * @param libaray
+     * @param admin
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/editBuilding")
+    public String editBuilding(Model model,Integer bid, String libaray, String admin)throws Exception{
+        Building buildingById = buildingService.findBuildingById(bid);
+        buildingById.setEmployer(libaray);
+        buildingById.setName(admin);
+        buildingService.updateBuilding(buildingById);
+        List<Building> allBuilding1 = buildingService.findAllBuilding();
+        model.addAttribute("allbuidings", allBuilding1);
+        return "superadmin_page/Managing_Building_SuperAdmin";
+    }
+
+    /**
      * 进入楼层管理
      *
      * @param model
@@ -119,6 +139,9 @@ public class SuperAdmin_Controller {
         List<Floor> floors = floorService.findfloorsBybid(bid);
 
         model.addAttribute("floors", floors);
+        if (floors.size() == 0) {
+            model.addAttribute("nullList", "暂无楼层信息");
+        }
         model.addAttribute("building", buildingById);
         return "superadmin_page/Managing_Floor_SuperAdmin";
     }
@@ -153,11 +176,16 @@ public class SuperAdmin_Controller {
      * @throws Exception
      */
     @RequestMapping("/adfloorSub")
-    public String adfloorsub(Model model, Integer bid, String floorname, String floorsort, String username) throws Exception {
+    public String adfloorsub(Model model, Integer bid, Integer floorname, String floorsort, String username) throws Exception {
         Floor floor = new Floor();
         List<Floor> floors = floorService.findfloorsBybid(bid);
         Building buildingById = buildingService.findBuildingById(bid);
-        String number = buildingById.getBid() + "00" + (floors.get(floors.size() - 1).getFid() + 1);
+        String number=null;
+        if(floors.size()>0){
+            number = buildingById.getAccountnumber() + "00" + (floors.get(floors.size() - 1).getFid() + 1);
+        }else{
+            number=buildingById.getAccountnumber() + "00" +1;
+        }
         floor.setAccountnumber(number);
         floor.setBid(bid);
         floor.setEmployer(floorsort);
@@ -166,7 +194,7 @@ public class SuperAdmin_Controller {
         floor.setPassword("123456");
         try {
             floorService.insertFloors(floor);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         List<Floor> floors1 = floorService.findfloorsBybid(bid);
@@ -178,6 +206,32 @@ public class SuperAdmin_Controller {
         return "superadmin_page/Managing_Floor_SuperAdmin";
     }
 
+    /**
+     * 修改楼层信息
+     *
+     * @param model
+     * @param floorname
+     * @param floorsort
+     * @param username
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/editfllorSub")
+    public String editfloor(Model model, Integer fid, Integer floorname, String floorsort, String username) throws Exception {
+        Floor floor = floorService.findfloorByid(fid);
+        floor.setFloor(floorname);
+        floor.setEmployer(floorsort);
+        floor.setName(username);
+        floorService.updateFloor(floor);
+        Building buildingById = buildingService.findBuildingById(floor.getBid());
+        List<Floor> floors1 = floorService.findfloorsBybid(floor.getBid());
+        model.addAttribute("floors", floors1);
+        if (floors1.size() == 0) {
+            model.addAttribute("nullList", "暂无楼层信息请添加信息");
+        }
+        model.addAttribute("building", buildingById);
+        return "superadmin_page/Managing_Floor_SuperAdmin";
+    }
 
     @RequestMapping("/managing_User_SuperAdmin")
     public String managing_User_SuperAdmin(Model model) throws Exception {

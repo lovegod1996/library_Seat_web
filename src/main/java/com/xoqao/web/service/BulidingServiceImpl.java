@@ -41,4 +41,8 @@ public class BulidingServiceImpl implements BuildingService {
     public void deleteLibaray(Integer bid) throws Exception {
         buildingMapper.deleteLibaray(bid);
     }
+
+    public void updateBuilding(Building building) throws Exception {
+        buildingMapper.updateBuilding(building);
+    }
 }

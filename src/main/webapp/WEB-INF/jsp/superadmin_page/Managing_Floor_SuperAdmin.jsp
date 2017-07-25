@@ -54,7 +54,9 @@
             //alert(tr1.rowIndex);获得行
             //alert(tb1.rows[tr1.rowIndex].cells[1].getElementsByTagName("INPUT")[0].value);
             document.getElementById("floorname").value= tb1.rows[tr1.rowIndex].cells[1].innerHTML;
-            document.getElementById("flooradmin").value = tb1.rows[tr1.rowIndex].cells[2].innerHTML;
+            document.getElementById("flooradmin").value = tb1.rows[tr1.rowIndex].cells[4].value;
+            document.getElementById("floorsort").value = tb1.rows[tr1.rowIndex].cells[2].innerHTML;
+            document.getElementById("floorid").value = tb1.rows[tr1.rowIndex].cells[0].value;
         }
     </script>
 </head>
@@ -75,8 +77,9 @@
                 <table class="layui-table" id="tb1">
                     <thead>
                     <tr>
-                        <th>序号</th>
+                        <th>编码</th>
                         <th>楼层</th>
+                        <th>藏书信息</th>
                         <th>管理员</th>
                         <th>姓名</th>
                         <th>操作</th>
@@ -85,8 +88,9 @@
                     <tbody>
                     <c:forEach items="${floors}" var="floor" varStatus="step">
                         <tr>
-                            <td>${step.index}</td>
-                            <td>${floor.floor}(${floor.employer})</td>
+                            <td>${floor.fid}</td>
+                            <td>${floor.floor}</td>
+                            <td>${floor.employer}</td>
                             <td>${floor.accountnumber}</td>
                             <td>${floor.name}</td>
                             <td>
@@ -156,21 +160,28 @@
            onclick="document.getElementById('light1').style.display='none';document.getElementById('fade').style.display='none'">
             &#x1006;</a>
     </div>
-    <form class="layui-form">
+    <form class="layui-form" action="<%=request.getContextPath()%>/view/editfllorSub" method="post">
         <div class="layui-form-item">
             <label class="layui-form-label">编辑楼层</label>
             <div class="layui-input-inline">
-                <input id="floorname" class="layui-input" required>
+                <input type="hidden" id="floorid" name="fid">
+                <input id="floorname"  name="floorname" class="layui-input" required>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">编辑藏书信息</label>
+            <div class="layui-input-inline">
+                <input id="floorsort" name="floorsort"  class="layui-input" required>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">编辑管理员</label>
             <div class="layui-input-inline">
-                <input id="flooradmin" class="layui-input" required>
+                <input id="flooradmin" name="username"  class="layui-input" required>
             </div>
         </div>
         <div class="layui-form-item">
-            <button class="layui-btn" style="margin:20px 0 0 45%">确认</button>
+            <button class="layui-btn"   style="margin:20px 0 0 45%">确认</button>
         </div>
     </form>
 </div>

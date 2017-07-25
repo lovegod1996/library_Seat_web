@@ -55,7 +55,10 @@
                 <a href="#"><i class="fa fa-puzzle-piece fa-fw"></i> 座位管理<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="<%=request.getContextPath()%>/view/managing_Seat" target="mainFrame_Admin">增删座位管理</a>
+                        <a href="<%=request.getContextPath()%>/view/managing_Seat" target="mainFrame_Admin">增加座位</a>
+                    </li>
+                    <li>
+                        <a href="<%=request.getContextPath()%>/view/floorSeat" target="mainFrame_Admin">查看座位</a>
                     </li>
                     <li>
                         <a href="<%=request.getContextPath()%>/view/managing_Floor" target="mainFrame_Admin">开闭馆管理</a>
