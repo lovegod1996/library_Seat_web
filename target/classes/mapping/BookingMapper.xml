@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoqao.web.dao.BookingMapper">
+    <!--查询当前楼层未预约座位-->
+    <select id="findCanBookingToday" resultType="com.xoqao.web.bean.seat.Seat">
+        SELECT seat.sid,seat.fid,seat.row,seat.leftside,seat.columns,seat.seatnumber,seat.statue FROM seat,floor
+        WHERE
+        (SELECT COUNT(1) as num FROM booking WHERE  booking.sid=seat.sid AND TO_DAYS(NOW())=TO_DAYS(bstime) OR TO_DAYS(NOW())=TO_DAYS(stime))=0
+        AND seat.fid=floor.fid AND floor.statue=0 AND floor.fid=#{fid}
+        ORDER BY seat.sid
+    </select>
+
+    <select id="findCanBookingTodayPage" resultType="com.xoqao.web.bean.seat.Seat">
+        SELECT seat.sid,seat.fid,seat.row,seat.leftside,seat.columns,seat.seatnumber,seat.statue FROM seat,floor
+        WHERE
+        (SELECT COUNT(1) as num FROM booking WHERE  booking.sid=seat.sid AND TO_DAYS(NOW())=TO_DAYS(bstime) OR TO_DAYS(NOW())=TO_DAYS(stime))=0
+        AND seat.fid=floor.fid AND floor.statue=0 AND floor.fid=#{fid}
+        ORDER BY seat.sid
+        limit #{startRow},#{pageSize}
+    </select>
+
+</mapper>
