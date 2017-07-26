@@ -57,30 +57,26 @@
                 <tr>
                     <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
                     <th>学号</th>
-                    <th>姓名</th>
-                    <th>学院</th>
-                    <th>专业</th>
-                    <th>班级</th>
                     <th>座位号</th>
+                    <th>位置</th>
                     <th>预约时间</th>
-                    <th>座位状态</th>
-                    <th>修改</th>
+                    <th>入座时间</th>
+                    <th>状态</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${userLearned}" var="userLearn">
+                <c:forEach items="${inseats}" var="inseat">
                     <tr>
                         <td><input type="checkbox"></td>
-                        <td>${userLearn.sno}</td>
-                        <td>${userLearn.name}</td>
-                        <td>${userLearn.college}</td>
-                        <td>${userLearn.major}</td>
-                        <td>${userLearn.classes}</td>
-                        <td>${userLearn.seatnumber}</td>
-                        <td>${userLearn.period}</td>
-                        <td>学习中</td>
+                        <td>${inseat.sno}</td>
+                        <td>${inseat.seatnumber}</td>
+                        <td>${inseat.leftside==0?"左":"右"}侧${inseat.row}排${inseat.columns}列</td>
+                        <td><fmt:formatDate value="${inseat.bstime}" pattern="yyyy-MM-dd HH:mm:ss"/>-<fmt:formatDate value="${inseat.betime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                        <td><fmt:formatDate value="${inseat.stime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                        <td>${inseat.statue==1?"入座":"临时离开"}</td>
                         <td>
-                            <button type="button" class="btn btn-danger btn-sm">操作</button>
+                            <button type="button" class="btn btn-danger btn-sm">释放</button>
                         </td>
                     </tr>
                 </c:forEach>
@@ -100,7 +96,7 @@
                             <a href="#" class="disabled">&laquo;</a>
                         </c:if>
                         <c:if test="${currentPage != 1}">
-                            <a href="${pageContext.request.contextPath }/jsp/seat_In_Use.form?page=${currentPage-1}&floor=${floor}">&laquo;</a>
+                            <a href="${pageContext.request.contextPath }/jsp/seat_In_Use.form?page=${currentPage-1}">&laquo;</a>
                         </c:if>
                     </li>
                     <c:if test="${currentPage==1}">
@@ -108,7 +104,7 @@
                     </c:if>
                     <c:if test="${currentPage!=1}">
                         <li>
-                            <a href="${pageContext.request.contextPath }/jsp/seat_In_Use.form?page=1&floor=${floor}">1</a>
+                            <a href="${pageContext.request.contextPath }/jsp/seat_In_Use.form?page=1">1</a>
                         </li>
                     </c:if>
                     <%
@@ -126,7 +122,7 @@
                         </c:if>
                         <c:if test="${currentPage != page}">
                             <li>
-                                <a href="${pageContext.request.contextPath }/jsp/seat_In_Use.form?page=<%=i+1%>&floor=${floor}"><%=i + 1%>
+                                <a href="${pageContext.request.contextPath }/jsp/seat_In_Use.form?page=<%=i+1%>"><%=i + 1%>
                                 </a></li>
                         </c:if>
                     </c:if>
@@ -135,7 +131,7 @@
                         <li>    <a href="#" class="active">&raquo;</a> </li>
                     </c:if>
                     <c:if test="${currentPage != pageTimes}">
-                        <li>  <a href="${pageContext.request.contextPath }/jsp/seat_In_Use.form?page=${currentPage+1}&floor=${floor}">&raquo;</a>  </li>
+                        <li>  <a href="${pageContext.request.contextPath }/jsp/seat_In_Use.form?page=${currentPage+1}">&raquo;</a>  </li>
                     </c:if>
                 </ul>
             </div>

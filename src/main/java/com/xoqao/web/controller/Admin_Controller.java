@@ -6,10 +6,8 @@ import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.seat.SeatCus;
 import com.xoqao.web.bean.user.User;
 import com.xoqao.web.bean.userbook.UserLearn;
-import com.xoqao.web.service.BuildingService;
-import com.xoqao.web.service.FloorService;
-import com.xoqao.web.service.SeatService;
-import com.xoqao.web.service.UserService;
+import com.xoqao.web.bean.weekopen.WeekOpen;
+import com.xoqao.web.service.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +39,10 @@ public class Admin_Controller {
 
     @Autowired
     private FloorService floorService;
+
+
+    @Autowired
+    private WeekOpenService weekOpenService;
 
     @RequestMapping("/seat_Now")
     public String seat_Now(Model model) throws Exception {
@@ -163,6 +165,12 @@ public class Admin_Controller {
     @RequestMapping("/addSeatSub")
     public String Seatadd(Model model, Integer left, Integer row, Integer column, String mark, HttpSession httpSession) throws Exception {
         Floor floor = (Floor) httpSession.getAttribute("admin");
+        //添加座位前需要先查看每周的开放时间是否已经设置完成
+        List<WeekOpen> weekOpens = weekOpenService.findweekByfid(floor.getFid());
+        if(weekOpens.size()!=7){
+            model.addAttribute("error_msg","请先添加每周的开放时间段.");
+            return "redirect:/view/managing_Floor";
+        }
         Seat seat = new Seat();
         seat.setColumns(column);
         seat.setFid(floor.getFid());
@@ -188,11 +196,75 @@ public class Admin_Controller {
      */
     @RequestMapping("/managing_Floor")
     public String mnaging_Floor(Model model,HttpSession httpSession) throws Exception {
-
-
-
+         Floor floor= (Floor) httpSession.getAttribute("admin");
+        List<WeekOpen> weekOpens = weekOpenService.findweekByfid(floor.getFid());
+        if(weekOpens.size()==0){
+            model.addAttribute("NullList","暂无一周当中的预约日期设置");
+        }
+        model.addAttribute("weekopens",weekOpens);
         return "admin_page/Managing_Floor";
     }
+
+    /**
+     * 提交完成添加
+     * @param model
+     * @param httpSession
+     * @param week
+     * @param param1
+     * @param param2
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/addWeekOpenSub")
+    public String addWeekOpen(Model model,HttpSession httpSession,Integer week,String param1,String param2)throws Exception{
+       Floor floor= (Floor) httpSession.getAttribute("admin");
+       WeekOpen weekOpen=new WeekOpen();
+       weekOpen.setLid(floor.getFid());
+       weekOpen.setWeek(week);
+       weekOpen.setParam1(param1);
+       weekOpen.setParam2(param2);
+       try {
+           weekOpenService.insertweek(weekOpen);
+       }catch (Exception e){
+           e.printStackTrace();
+           model.addAttribute("error_msg","周"+week+"的已存在");
+       }
+       return "redirect:/view/managing_Floor";
+    }
+
+    /**
+     * 改变一周中可预约状态
+     * @param model
+     * @param woid
+     * @param statue
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/changeWeekStatue")
+    public String changeWeekSatue(Model model,Integer woid,Integer statue)throws Exception{
+        if(statue==0){
+            weekOpenService.updatestatue(1,woid);
+        }else{
+            weekOpenService.updatestatue(0,woid);
+        }
+        return "redirect:/view/managing_Floor";
+    }
+
+
+    /**
+     * 删除周开放设置
+     * @param model
+     * @param woid
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/deleteWeek")
+    public String deleteWeekopen(Model model,Integer woid)throws Exception{
+        weekOpenService.deletestatue(woid);
+        return "redirect:/view/managing_Floor";
+    }
+
+
 
     @RequestMapping("/managing_Users")
     public String managing_Users(Model model, Integer page, String year, String college, String major, HttpSession httpSession) throws Exception {

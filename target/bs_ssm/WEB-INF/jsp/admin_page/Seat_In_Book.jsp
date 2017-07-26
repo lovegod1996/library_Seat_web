@@ -35,17 +35,17 @@
             <a href="${pageContext.request.contextPath }/jsp/seat_In_Book" class="btn btn-success btn-xs"
                style="margin-left:20px ">点击刷新</a>
             <%--<div class="pull-right">--%>
-                <%--<FORM METHOD=POST ACTION="" name="selectform">--%>
-                    <%--<SELECT NAME="building" onChange="getCity()">--%>
-                        <%--<OPTION VALUE="0">选择南北楼</OPTION>--%>
-                        <%--<OPTION VALUE="南楼">南楼</OPTION>--%>
-                        <%--<OPTION VALUE="北楼">北楼</OPTION>--%>
-                    <%--</SELECT>--%>
-                    <%--<SELECT NAME="floor" onchange="getData()" id="floor">--%>
-                        <%--<OPTION VALUE="0">选择所在楼层</OPTION>--%>
-                        <%--<OPTION VALUE="0">${floor}</OPTION>--%>
-                    <%--</SELECT>--%>
-                <%--</FORM>--%>
+            <%--<FORM METHOD=POST ACTION="" name="selectform">--%>
+            <%--<SELECT NAME="building" onChange="getCity()">--%>
+            <%--<OPTION VALUE="0">选择南北楼</OPTION>--%>
+            <%--<OPTION VALUE="南楼">南楼</OPTION>--%>
+            <%--<OPTION VALUE="北楼">北楼</OPTION>--%>
+            <%--</SELECT>--%>
+            <%--<SELECT NAME="floor" onchange="getData()" id="floor">--%>
+            <%--<OPTION VALUE="0">选择所在楼层</OPTION>--%>
+            <%--<OPTION VALUE="0">${floor}</OPTION>--%>
+            <%--</SELECT>--%>
+            <%--</FORM>--%>
             <%--</div>--%>
         </div>
         <!-- /.panel-heading -->
@@ -54,32 +54,54 @@
                 <thead>
                 <tr>
                     <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
-                    <th>学号</th>
-                    <th>姓名</th>
-                    <th>学院</th>
-                    <th>专业</th>
-                    <th>班级</th>
-                    <th>座位号</th>
-                    <th>预约时间</th>
-                    <th>座位状态</th>
-                    <th>修改</th>
+                    <th>座位编号</th>
+                    <th>位置</th>
+                    <th>当前预约状况</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
 
-                <c:forEach items="${userLearns}" var="userLearn">
+                <c:forEach items="${seatbooks}" var="seat">
                     <tr>
                         <td><input type="checkbox"></td>
-                        <td>${userLearn.sno}</td>
-                        <td>${userLearn.name}</td>
-                        <td>${userLearn.college}</td>
-                        <td>${userLearn.major}</td>
-                        <td>${userLearn.classes}</td>
-                        <td>${userLearn.seatnumber}</td>
-                        <td>${userLearn.period}</td>
-                        <td>预约中</td>
+                        <td>${seat.seatnumber}</td>
+                        <td>${seat.leftside==0?"左":"右"}侧${seat.row}排${seat.columns}列</td>
                         <td>
-                            <a href="<%=request.getContextPath()%>/jsp/releaseBook?bid=${userLearn.bid}" class="btn btn-danger btn-sm">释放</a>
+                            <table class="table">
+                                <thead>
+                                <th>预约人</th>
+                                <th>预约时间段</th>
+                                <th>当前状态</th>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${seat.bookings}" var="booking">
+                                    <tr>
+                                        <td>${booking.sno}</td>
+                                        <td><fmt:formatDate value="${booking.bstime}"
+                                                            pattern="yyyy-MM-dd HH:mm:ss"/>-<fmt:formatDate
+                                                value="${booking.betime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                        <td>
+                                            <c:if test="${booking.statue==0}">
+                                                未入座
+                                            </c:if>
+                                            <c:if test="${booking.statue==1}">
+                                                入座
+                                            </c:if>
+                                            <c:if test="${booking.statue==2}">
+                                                临时离开
+                                            </c:if>
+                                            <c:if test="${booking.statue==3}">
+                                                离开
+                                            </c:if>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td>
+                            <a href="#">入座</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -98,7 +120,7 @@
                             <a href="#" class="disabled">&laquo;</a>
                         </c:if>
                         <c:if test="${currentPage != 1}">
-                            <a href="${pageContext.request.contextPath }/jsp/seat_In_Book.form?page=${currentPage-1}&floor=${floor}">&laquo;</a>
+                            <a href="${pageContext.request.contextPath }/jsp/seat_In_Book.form?page=${currentPage-1}">&laquo;</a>
                         </c:if>
                     </li>
                     <c:if test="${currentPage==1}">
@@ -106,7 +128,7 @@
                     </c:if>
                     <c:if test="${currentPage!=1}">
                         <li>
-                            <a href="${pageContext.request.contextPath }/jsp/seat_In_Book.form?page=1&floor=${floor}">1</a>
+                            <a href="${pageContext.request.contextPath }/jsp/seat_In_Book.form?page=1">1</a>
                         </li>
                     </c:if>
                     <%
@@ -124,17 +146,19 @@
                         </c:if>
                         <c:if test="${currentPage != page}">
                             <li>
-                                <a href="${pageContext.request.contextPath }/jsp/seat_In_Book.form?page=<%=i+1%>&floor=${floor}"><%=i + 1%>
+                                <a href="${pageContext.request.contextPath }/jsp/seat_In_Book.form?page=<%=i+1%>"><%=i + 1%>
                                 </a></li>
                         </c:if>
                     </c:if>
                     <% } %>
-                        <c:if test="${currentPage == pageTimes}">
-                            <li>    <a href="#" class="active">&raquo;</a> </li>
-                        </c:if>
-                        <c:if test="${currentPage != pageTimes}">
-                          <li>  <a href="${pageContext.request.contextPath }/jsp/seat_In_Book.form?page=${currentPage+1}&floor=${floor}">&raquo;</a>  </li>
-                        </c:if>
+                    <c:if test="${currentPage == pageTimes}">
+                        <li><a href="#" class="active">&raquo;</a></li>
+                    </c:if>
+                    <c:if test="${currentPage != pageTimes}">
+                        <li>
+                            <a href="${pageContext.request.contextPath }/jsp/seat_In_Book.form?page=${currentPage+1}">&raquo;</a>
+                        </li>
+                    </c:if>
 
                 </ul>
             </div>
@@ -176,7 +200,8 @@
 
 <script type="text/javascript">
 
-    <c:if test="${!empty error_msg}">alert("${error_msg}");</c:if>
+    <c:if test="${!empty error_msg}">alert("${error_msg}");
+    </c:if>
 
     function getCity() {
         $.ajax({
@@ -197,11 +222,11 @@
                     //获得楼层下拉框的对象
                     var sltCity = document.selectform.floor;
                     //得到对应楼的楼层数组
-                    var  south=[];
-                    var north=[];
-                    south=result.south;
+                    var south = [];
+                    var north = [];
+                    south = result.south;
 //                alert(south);
-                    north=result.north;
+                    north = result.north;
 
                     var city = [
                         south,

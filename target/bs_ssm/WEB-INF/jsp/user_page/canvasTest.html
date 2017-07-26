@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+<body>
+<canvas id="canvas" style="border: 1px solid #aaa;display:block;margin:20px auto">
+    <!-- canvas默认是300*150，不能用css指定大小，在指定大小事时不要加单位，因为大小同时决定了canvas的精度。 -->
+    当前浏览器不支持canvas，请更换浏览器后再试。
+</canvas>
+
+<script type="text/javascript">
+
+    var tangram = [
+        {p: [{x: 0, y: 0}, {x: 200, y: 0}, {x: 200, y: 200}, {x: 0, y: 200}], color: "#caff67"},
+        {p: [{x: 200, y: 0}, {x: 400, y: 0}, {x: 400, y: 200}, {x: 200, y: 200}], color: "#67becf"},
+        {p: [{x: 600, y: 0}, {x: 600, y: 200}, {x: 400, y: 200}, {x: 400, y: 0}], color: "#ef3d61"},
+        {p: [{x: 600, y: 0}, {x: 800, y: 0}, {x: 800, y: 200}, {x: 600, y: 200}], color: "#f9f51a"},
+
+        {p: [{x: 0, y: 200}, {x: 200, y: 200}, {x: 200, y: 400}, {x: 0, y: 400}], color: "white"},
+        {p: [{x: 200, y: 200}, {x: 400, y: 200}, {x: 400, y: 400}, {x: 200, y: 400}], color: "#white"},
+        {p: [{x: 600, y: 200}, {x: 600, y: 400}, {x: 400, y: 400}, {x: 400, y: 200}], color: "#white"},
+        {p: [{x: 600, y: 200}, {x: 800, y: 200}, {x: 800, y: 400}, {x: 600, y: 400}], color: "#white"},
+
+        {p: [{x: 0, y: 400}, {x: 200, y: 400}, {x: 200, y: 600}, {x: 0, y: 600}], color: "#caff67"},
+        {p: [{x: 200, y: 400}, {x: 400, y: 400}, {x: 400, y: 600}, {x: 200, y: 600}], color: "#67becf"},
+        {p: [{x: 600, y: 400}, {x: 600, y: 600}, {x: 400, y: 600}, {x: 400, y: 400}], color: "#ef3d61"},
+        {p: [{x: 600, y: 400}, {x: 800, y: 400}, {x: 800, y: 600}, {x: 600, y: 600}], color: "#f9f51a"}
+
+    ];
+
+    window.onload = function () {
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext("2d");
+        canvas.width = 800;
+        canvas.height = 600;
+
+        for (var i = 0; i < tangram.length; i++)
+            draw(tangram[i], context)
+
+        canvas.onclick = function (e) {
+            e = e || event;
+            var x = e.clientX - canvas.offsetLeft;//获取点击后x的坐标
+            var y = e.clientY - canvas.offsetTop;//获取点击后y的坐标
+
+            //判断事件位置在矩形区域中,每个矩形长宽需要提前固定好
+            var hangNum = Math.ceil(y / 200);
+            var lieNum = Math.ceil(x / 200);
+
+            alert(hangNum + "行" + lieNum + "列");
+        }
+    };
+
+    function draw(piece, cxt) {
+
+        cxt.beginPath();
+        cxt.moveTo(piece.p[0].x, piece.p[0].y);
+        for (var i = 1; i < piece.p.length; i++)
+            cxt.lineTo(piece.p[i].x, piece.p[i].y);
+        cxt.closePath();
+
+        cxt.fillStyle = piece.color;
+        cxt.fill();
+
+        cxt.strokeStyle = "black";
+        cxt.lineWidth = 3;
+        cxt.stroke();
+    }
+</script>
+</body>
+</html>

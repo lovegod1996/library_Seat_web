@@ -1,6 +1,9 @@
 package com.xoqao.web.controller;
 
 import com.xoqao.web.bean.admin.Admin;
+import com.xoqao.web.bean.booking.Booking;
+import com.xoqao.web.bean.booking.BookingSeat;
+import com.xoqao.web.bean.booking.SeatBookings;
 import com.xoqao.web.bean.building.Building;
 import com.xoqao.web.bean.floors.Floor;
 import com.xoqao.web.bean.news.Notice;
@@ -11,6 +14,7 @@ import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.userbook.UserLearn;
 import com.xoqao.web.service.*;
 import com.xoqao.web.utils.DateUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,8 +39,6 @@ public class admin_pageController {
     @Autowired
     private UserLearnService userLearnService;
 
-    @Autowired
-    private NewsService newsService;
 
     @Autowired
     private SeatService seatService;
@@ -44,6 +47,10 @@ public class admin_pageController {
 
     @Autowired
     private NoticeService noticeService;
+
+
+    @Autowired
+    private BookingService bookingService;
 
     @RequestMapping("/index_Admin")
     public String index_Admin(Model model, HttpSession httpSession) throws Exception {
@@ -69,141 +76,139 @@ public class admin_pageController {
     }
 
     @RequestMapping("/seat_In_Use")
-    public String seat_In_Use(Model model, Integer page, String floor, HttpSession httpSession) throws Exception {
-
+    public String seat_In_Use(Model model, Integer page, HttpSession httpSession) throws Exception {
         int pageSize = 5;
-        if (floor != null && floor.length() > 0) {
-            if (floor.contains("%")) {
-                floor = URLDecoder.decode(floor, "utf-8");
-                floor = floor.replace("南", "S").replace("北", "N");
-            } else {
-                floor = floor.replace("南", "S").replace("北", "N");
-            }
-        }
 
-        List<UserLearn> userLearns = userLearnService.findfloorAllSeat(floor);
-        model.addAttribute("userLearnSize", userLearns.size());
-        int pageTims;
-        if (userLearns.size() % pageSize == 0) {
-            pageTims = userLearns.size() / pageSize;
+        Floor floor = (Floor) httpSession.getAttribute("admin");
+        List<BookingSeat> seatInSeat = bookingService.findSeatInSeat(floor.getFid());
+        if (seatInSeat.size() > 0) {
+            model.addAttribute("inSeatSize", seatInSeat.size());
+            int pageTims;
+            if (seatInSeat.size() % pageSize == 0) {
+                pageTims = seatInSeat.size() / pageSize;
+            } else {
+                pageTims = seatInSeat.size() / pageSize + 1;
+            }
+            httpSession.setAttribute("pageTimes", pageTims);
+            //页面初始的时候没有初试值
+            if (null == page) {
+                page = 1;
+            }
+            //每页开始的第几条记录
+            int startRow;
+            if (seatInSeat.size() < pageSize) {
+                startRow = 0;
+            } else {
+                startRow = (page - 1) * pageSize;
+            }
+            model.addAttribute("currentPage", page);
+            List<BookingSeat> seatInSeatPage = bookingService.findSeatInSeatPage(floor.getFid(), startRow, pageSize);
+            model.addAttribute("inseats", seatInSeatPage);
         } else {
-            pageTims = userLearns.size() / pageSize + 1;
+            model.addAttribute("nullList", "暂无入座数据");
         }
-        httpSession.setAttribute("pageTimes", pageTims);
-        //页面初始的时候没有初试值
-        if (null == page) {
-            page = 1;
-        }
-        //每页开始的第几条记录
-        int startRow;
-        if (userLearns.size() < pageSize) {
-            startRow = 0;
-        } else {
-            startRow = (page - 1) * pageSize;
-        }
-        model.addAttribute("currentPage", page);
-        model.addAttribute("floor", floor);
-        List<UserLearn> userLearns1 = userLearnService.findfloorAllSeatPage(floor, startRow, pageSize);
-        if (userLearns1.size() > 0) {
-            model.addAttribute("userLearned", userLearns1);
-            return "admin_page/Seat_In_Use";
-        } else {
-            model.addAttribute("nullList", "暂无数据");
-            return "admin_page/Seat_In_Use";
-        }
+        return "admin_page/Seat_In_Use";
 
     }
 
+    /**
+     * 查看当前已预约的座位信息状况
+     *
+     * @param model
+     * @param page
+     * @param httpSession
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/seat_In_Book")
-    public String seat_In_Book(Model model, Integer page, String floor, HttpSession httpSession) throws Exception {
-
-        int pageSize = 5;
-        if (floor != null && floor.length() > 0) {
-            if (floor.contains("%")) {
-                floor = URLDecoder.decode(floor, "utf-8");
-                floor = floor.replace("南", "S").replace("北", "N");
+    public String seat_In_Book(Model model, Integer page, HttpSession httpSession) throws Exception {
+        Integer pageSize = 6;
+        Floor floor = (Floor) httpSession.getAttribute("admin");
+        List<Seat> bookSeat = bookingService.findBookSeat(floor.getFid());
+        if (bookSeat.size() > 0) {
+            model.addAttribute("bookSeatSize", bookSeat.size());
+            int pageTims;
+            if (bookSeat.size() % pageSize == 0) {
+                pageTims = bookSeat.size() / pageSize;
             } else {
-                floor = floor.replace("南", "S").replace("北", "N");
+                pageTims = bookSeat.size() / pageSize + 1;
             }
-        }
-
-        List<UserLearn> userLearns = userLearnService.findfloorBookSeat(floor);
-        model.addAttribute("userLearnSize", userLearns.size());
-        int pageTims;
-        if (userLearns.size() % pageSize == 0) {
-            pageTims = userLearns.size() / pageSize;
+            httpSession.setAttribute("pageTimes", pageTims);
+            //页面初始的时候没有初试值
+            if (null == page) {
+                page = 1;
+            }
+            //每页开始的第几条记录
+            int startRow;
+            if (bookSeat.size() < pageSize) {
+                startRow = 0;
+            } else {
+                startRow = (page - 1) * pageSize;
+            }
+            model.addAttribute("currentPage", page);
+            List<Seat> bookSeatpage = bookingService.findBookSeatpage(floor.getFid(), startRow, pageSize);
+            List<SeatBookings> seatBookinges = new ArrayList<SeatBookings>();
+            for (int i = 0; i < bookSeatpage.size(); i++) {
+                SeatBookings seatBookings = new SeatBookings();
+                BeanUtils.copyProperties(bookSeatpage.get(i), seatBookings);
+                List<Booking> bookSeatBooking = bookingService.findBookSeatBooking(bookSeatpage.get(i).getSid());
+                seatBookings.setBookings(bookSeatBooking);
+                seatBookinges.add(seatBookings);
+            }
+            model.addAttribute("seatbooks", seatBookinges);
         } else {
-            pageTims = userLearns.size() / pageSize + 1;
-        }
-        httpSession.setAttribute("pageTimes", pageTims);
-        //页面初始的时候没有初试值
-        if (null == page) {
-            page = 1;
-        }
-        //每页开始的第几条记录
-        int startRow;
-        if (userLearns.size() < pageSize) {
-            startRow = 0;
-        } else {
-            startRow = (page - 1) * pageSize;
-        }
-        model.addAttribute("currentPage", page);
-        model.addAttribute("floor", floor);
-        List<UserLearn> userLearns1 = userLearnService.findfloorBookSeatPage(floor, startRow, pageSize);
-        if (userLearns1.size() > 0) {
-            model.addAttribute("userLearns", userLearns1);
-            return "admin_page/Seat_In_Book";
-        } else {
+            httpSession.setAttribute("pageTimes", 1);
             model.addAttribute("nullList", "暂无数据");
-            return "admin_page/Seat_In_Book";
         }
+        return "admin_page/Seat_In_Book";
+
     }
 
+    /**
+     * 查看当天空闲座位
+     *
+     * @param model
+     * @param page
+     * @param httpSession
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/seat_In_Empty")
-    public String seat_In_Empty(Model model, Integer page, String floor, HttpSession httpSession) throws Exception {
+    public String seat_In_Empty(Model model, Integer page, HttpSession httpSession) throws Exception {
 
-        int pageSize = 5;
-        if (floor != null && floor.length() > 0) {
-            if (floor.contains("%")) {
-                floor = URLDecoder.decode(floor, "utf-8");
-                floor = floor.replace("南", "S").replace("北", "N");
+        Integer pageSize = 6;
+        Floor floor1 = (Floor) httpSession.getAttribute("admin");
+
+        List<Seat> canBookingToday = bookingService.findCanBookingToday(floor1.getFid());
+        if (canBookingToday.size() > 0) {
+            model.addAttribute("seatSize", canBookingToday.size());
+            int pageTims;
+            if (canBookingToday.size() % pageSize == 0) {
+                pageTims = canBookingToday.size() / pageSize;
             } else {
-                floor = floor.replace("南", "S").replace("北", "N");
+                pageTims = canBookingToday.size() / pageSize + 1;
             }
+            httpSession.setAttribute("pageTimes", pageTims);
+            //页面初始的时候没有初试值
+            if (null == page) {
+                page = 1;
+            }
+            //每页开始的第几条记录
+            int startRow;
+            if (canBookingToday.size() < pageSize) {
+                startRow = 0;
+            } else {
+                startRow = (page - 1) * pageSize;
+            }
+            model.addAttribute("currentPage", page);
+            List<Seat> canBookingTodayPage = bookingService.findCanBookingTodayPage(floor1.getFid(), startRow, pageSize);
+            model.addAttribute("seats", canBookingTodayPage);
+        } else {
+            httpSession.setAttribute("pageTimes", 1);
+            model.addAttribute("nullList", "暂无未预约座位");
         }
 
-
-        List<Seat> allNoSeat = userLearnService.findAllNoSeat(floor);
-        model.addAttribute("SeatSize", allNoSeat.size());
-        int pageTims;
-        if (allNoSeat.size() % pageSize == 0) {
-            pageTims = allNoSeat.size() / pageSize;
-        } else {
-            pageTims = allNoSeat.size() / pageSize + 1;
-        }
-        httpSession.setAttribute("pageTimes", pageTims);
-        //页面初始的时候没有初试值
-        if (null == page) {
-            page = 1;
-        }
-        //每页开始的第几条记录
-        int startRow;
-        if (allNoSeat.size() < pageSize) {
-            startRow = 0;
-        } else {
-            startRow = (page - 1) * pageSize;
-        }
-        model.addAttribute("currentPage", page);
-        model.addAttribute("floor", floor);
-        List<Seat> allNoSeatPage = userLearnService.findAllNoSeatPage(floor, startRow, pageSize);
-        if (allNoSeatPage.size() > 0) {
-            model.addAttribute("seats", allNoSeatPage);
-            return "admin_page/Seat_In_Empty";
-        } else {
-            model.addAttribute("nullList", "暂无数据");
-            return "admin_page/Seat_In_Empty";
-        }
-
+        return "admin_page/Seat_In_Empty";
     }
 
     @RequestMapping("/add_News")
@@ -247,7 +252,7 @@ public class admin_pageController {
 
     @RequestMapping("/adSeatBookSub")
     public String adSeatBook(Model model, String seatNum, String sno, String stime, String etime, Integer page, HttpSession httpSession) throws Exception {
-                return "admin_page/Seat_In_Empty";
+        return "admin_page/Seat_In_Empty";
     }
 
     /**
@@ -263,7 +268,7 @@ public class admin_pageController {
     @RequestMapping("/releaseBook")
     public String releaseBook(Model model, Integer bid, Integer page, HttpSession httpSession) throws Exception {
 
-            return "admin_page/Seat_In_Empty";
+        return "admin_page/Seat_In_Empty";
     }
 
     public static HttpSession getSession() {

@@ -112,7 +112,7 @@
 
     function getData() {
         // 基于准备好的dom，初始化echarts图表
-        var myChart = echarts.init(document.getElementById('main'),'macarons');
+        var myChart = echarts.init(document.getElementById('main'));
 
         myChart.showLoading({text: '正在努力的读取数据中...'});    //数据加载完之前先显示一段简单的loading动画
 

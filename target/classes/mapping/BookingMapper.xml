@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoqao.web.dao.BookingMapper">
+    <!--查询当前楼层未预约座位-->
+    <select id="findCanBookingToday" resultType="com.xoqao.web.bean.seat.Seat">
+        SELECT seat.sid,seat.fid,seat.row,seat.leftside,seat.columns,seat.seatnumber,seat.statue FROM seat,floor
+        WHERE
+        (SELECT COUNT(1) as num FROM booking WHERE  booking.sid=seat.sid AND TO_DAYS(NOW())=TO_DAYS(booking.bstime) )=0
+        AND seat.fid=floor.fid AND floor.statue=0 AND seat.statue=0 AND floor.fid=#{fid}
+        ORDER BY seat.sid
+    </select>
+
+    <select id="findCanBookingTodayPage" resultType="com.xoqao.web.bean.seat.Seat">
+        SELECT seat.sid,seat.fid,seat.row,seat.leftside,seat.columns,seat.seatnumber,seat.statue FROM seat,floor
+        WHERE
+        (SELECT COUNT(1) as num FROM booking WHERE  booking.sid=seat.sid AND TO_DAYS(NOW())=TO_DAYS(booking.bstime))=0
+        AND seat.fid=floor.fid AND floor.statue=0 AND seat.statue=0 AND floor.fid=#{fid}
+        ORDER BY seat.sid
+        limit #{startRow},#{pageSize}
+    </select>
+    <!--获取当前已经入座的座位-->
+    <select id="findSeatInSeat" resultType="com.xoqao.web.bean.booking.BookingSeat">
+     SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.deal,seat.fid,seat.leftside,seat.row,seat.columns,seat.seatnumber
+     FROM booking,seat
+     WHERE  TO_DAYS(NOW())=TO_DAYS(booking.stime)  AND booking.statue =1 AND booking.sid=seat.sid AND seat.fid=#{fid}
+     ORDER BY  seat.sid
+    </select>
+
+    <select id="findSeatInSeatPage" resultType="com.xoqao.web.bean.booking.BookingSeat">
+        SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.deal,seat.fid,seat.leftside,seat.row,seat.columns,seat.seatnumber
+        FROM booking,seat
+        WHERE  TO_DAYS(NOW())=TO_DAYS(booking.stime)  AND booking.statue !=0 AND booking.statue !=3 AND booking.sid=seat.sid AND seat.fid=#{fid}
+        ORDER BY  seat.sid
+           limit #{startRow},#{pageSize}
+    </select>
+
+    <!--查询当天该层有预约的所有座位-->
+    <select id="findBookSeat" resultType="com.xoqao.web.bean.seat.Seat">
+         SELECT seat.sid,seat.fid,seat.row,seat.leftside,seat.columns,seat.seatnumber,seat.statue FROM seat,floor
+        WHERE
+        (SELECT COUNT(1) as num FROM booking WHERE  booking.sid=seat.sid  AND TO_DAYS(NOW())=TO_DAYS(booking.bstime)) &gt; 0
+        AND seat.fid=floor.fid AND floor.statue=0 AND seat.statue=0 AND floor.fid=#{fid}
+        ORDER BY seat.sid
+    </select>
+
+    <select id="findBookSeatpage" resultType="com.xoqao.web.bean.seat.Seat">
+        SELECT seat.sid,seat.fid,seat.row,seat.leftside,seat.columns,seat.seatnumber,seat.statue FROM seat,floor
+        WHERE
+        (SELECT COUNT(1) as num FROM booking WHERE  booking.sid=seat.sid  AND TO_DAYS(NOW())=TO_DAYS(booking.bstime)) &gt; 0
+        AND seat.fid=floor.fid AND floor.statue=0 AND seat.statue=0 AND floor.fid=#{fid}
+        ORDER BY seat.sid
+         limit #{startRow},#{pageSize}
+    </select>
+    <!--根据座位id查询当天的的预约情况-->
+    <select id="findBookSeatBooking" resultType="com.xoqao.web.bean.booking.Booking">
+        SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal
+        FROM booking
+        WHERE   sid=#{sid}  AND TO_DAYS(NOW())=TO_DAYS(bstime) OR TO_DAYS(NOW())=TO_DAYS(stime) AND  UNIX_TIMESTAMP(betime)-UNIX_TIMESTAMP(NOW()) &gt; 0
+
+    </select>
+</mapper>

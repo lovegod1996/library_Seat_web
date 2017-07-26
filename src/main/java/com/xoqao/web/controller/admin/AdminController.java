@@ -34,8 +34,7 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @Autowired
-    private NewsService newsService;
+
     @Autowired
     private UserService userService;
 

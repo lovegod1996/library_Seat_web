@@ -15,6 +15,15 @@
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+<script>
+    function changeItem(obj) {
+//    var index=obj.selectedIndex;
+        alert(obj);
+//    if(index==obj.options.length-1){
+//            document.getElementById("param2").style.display="block";
+//        }
+    }
+</script>
 
 </head>
 <body>
@@ -30,175 +39,42 @@
                 <table class="layui-table">
                     <thead>
                     <tr>
-                        <th width="15%">楼层</th>
+                        <th width="15%">一周内</th>
                         <th width="30%">时间段</th>
+                        <th width="10%">开放状态</th>
                         <th width="15%">操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>周一</td>
-                        <td style="text-align: left">
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">开始时间</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">结束时间</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="layui-btn">保存</button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>周二</td>
-                        <td style="text-align: left">
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">开始时间</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">结束时间</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="layui-btn">保存</button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>周三</td>
-                        <td style="text-align: left">
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">开始时间</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">结束时间</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="layui-btn">保存</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>周四</td>
-                        <td style="text-align: left">
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">开始时间</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">结束时间</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="layui-btn">保存</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>周五</td>
-                        <td style="text-align: left">
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">开始时间</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">结束时间</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="layui-btn">保存</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>周六</td>
-                        <td style="text-align: left">
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">开始时间</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">结束时间</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="layui-btn">保存</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>周日</td>
-                        <td style="text-align: left">
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">开始时间</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                            <div class="layui-input-inline">
-                                <select name="modules" lay-verify="required" lay-search="">
-                                    <option value="">结束时间</option>
-                                    <option value="1">layer</option>
-                                    <option value="2">form</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="layui-btn">保存</button>
-                        </td>
-                    </tr>
+                    <c:forEach items="${weekopens}" var="week">
+                        <tr>
+                            <td>周${week.week}</td>
+                            <td>${week.param1};${week.param2}</td>
+                            <td>${week.statue==0?"是":"否"}</td>
+                            <td>
+                                <a href="#">编辑</a>
+                                <c:if test="${week.statue==0}">
+                                    <a href="<%=request.getContextPath()%>/view/changeWeekStatue?woid=${week.woid}&statue=${week.statue}">关闭预约</a>
+                                </c:if>
+                                <c:if test="${week.statue==1}">
+                                    <a href="<%=request.getContextPath()%>/view/changeWeekStatue?woid=${week.woid}&statue=${week.statue}">开放预约</a>
+                                </c:if>
+                                <a href="<%=request.getContextPath()%>/view/deleteWeek?woid=${week.woid}">删除</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    <c:if test="${NullList!=null}">
+                        <tr>
+                            <td colspan="3" style="text-align: center">${NullList}</td>
+                        </tr>
+                    </c:if>
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="layui-tab-item">
           <div class="layui-form">
-              <form class="layui-form" action="" method="post">
+              <form class="layui-form" action="<%=request.getContextPath()%>/view/addWeekOpenSub" method="post">
                   <table class="layui-table">
                       <tbody>
                       <tr>
@@ -223,6 +99,7 @@
                           </td>
                       <td>
                           <select  class="layui-form-select" name="param2" id="param2" disabled style="display:none">
+                              <option></option>
                               <option>16:00-21:00</option>
                               <option>14:00-21:00</option>
                           </select>
@@ -347,13 +224,9 @@
 
 <script type="text/javascript">
 
-    function changeItem(obj) {
-//    var index=obj.selectedIndex;
-        alert(obj);
-//    if(index==obj.options.length-1){
-//            document.getElementById("param2").style.display="block";
-//        }
-    }
+    <c:if test="${!empty error_msg}">alert("${error_msg}");
+    </c:if>
+
 </script>
 </body>
 </html>

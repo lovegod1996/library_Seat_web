@@ -123,16 +123,13 @@
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body" style="height: 400px">
+
             <div class="list-group">
-                <li>南一
-                    <span class="pull-right text-muted small"><em>09:00--21:30</em></span>
-                </li>
-                <li>南一
-                    <span class="pull-right text-muted small"><em>09:00--21:30</em></span>
-                </li>
-                <li>南一
-                    <span class="pull-right text-muted small"><em>09:00--21:30</em></span>
-                </li>
+                <c:forEach items="${weekopens}" var="week" varStatus="tt">
+                    <li>${week.floor}(${week.building})
+                        <span class="pull-right text-muted small"><em>${week.param1};${week.param2}</em></span>
+                    </li>
+                </c:forEach>
             </div>
         </div>
     </div>
