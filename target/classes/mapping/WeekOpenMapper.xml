@@ -30,4 +30,11 @@
         FROM  weekopen
         WHERE week=WEEKDAY(NOW())+1 AND statue=0
     </select>
+
+    <!--查看当天某个场馆开放时间段-->
+    <select id="findopenFloortoday" resultType="com.xoqao.web.bean.weekopen.WeekOpen">
+         SELECT woid,lid,param1,param2,week,statue
+        FROM  weekopen
+         WHERE week=WEEKDAY(NOW())+1 AND statue=0 AND lid=#{fid}
+    </select>
 </mapper>

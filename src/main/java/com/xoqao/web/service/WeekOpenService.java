@@ -21,4 +21,6 @@ public interface WeekOpenService {
     void insertweek( WeekOpen weekOpen)throws Exception;
 
     List<WeekOpen> findopentody()throws Exception;
+
+    WeekOpen findopenFloortoday(Integer fid) throws Exception;
 }

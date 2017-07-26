@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>leftMenu</title>
@@ -95,28 +98,31 @@
             <li style="height:100%;margin-top: 50px;padding-left: 10px;">
                 <div class="layui-form">
                     <div class="layui-form-item">
-                        <label type="text">职责：&nbsp;&nbsp;文史阅览室管理员</label>
+                        <label type="text">图书馆：&nbsp;&nbsp;${building.employer}</label>
                     </div>
                     <div class="layui-form-item">
-                        <label type="text">姓名：&nbsp;&nbsp;小明</label>
+                        <label type="text">阅览室：&nbsp;&nbsp;${sessionScope.admin.employer}</label>
                     </div>
                     <div class="layui-form-item">
-                        <label type="text">账号：&nbsp;&nbsp;Admin1</label>
+                        <label type="text">姓名：&nbsp;&nbsp;${sessionScope.admin.name}</label>
                     </div>
                     <div class="layui-form-item">
-                        <label type="text">图书馆状态：&nbsp;&nbsp;开放</label>
+                        <label type="text">账号：&nbsp;&nbsp;${sessionScope.admin.accountnumber}</label>
                     </div>
                     <div class="layui-form-item">
-                        <label type="text">管理楼层状态：&nbsp;&nbsp;开放</label>
+                        <label type="text">楼层状态：&nbsp;&nbsp;${sessionScope.admin.statue==0?"开放":"关闭"}</label>
                     </div>
                     <div class="layui-form-item">
-                        <label type="text">该层座位：&nbsp;&nbsp;100</label>
+                        <label type="text">今天开放时间：&nbsp;&nbsp;${opentoday.param1};${opentoday.param2}</label>
                     </div>
                     <div class="layui-form-item">
-                        <label type="text">当前使用：&nbsp;&nbsp;100</label>
+                        <label type="text">该层座位：&nbsp;&nbsp;${seatSize}</label>
                     </div>
                     <div class="layui-form-item">
-                        <label type="text">可预约：&nbsp;&nbsp;100</label>
+                        <label type="text">当前已入座：&nbsp;&nbsp;${inSeat}</label>
+                    </div>
+                    <div class="layui-form-item">
+                        <label type="text">未预约：&nbsp;&nbsp;${canbook}</label>
                     </div>
                 </div>
             </li>

@@ -16,13 +16,15 @@ import java.util.List;
 @Service
 public interface WeekOpenMapper {
 
-List<WeekOpen> findweekByfid(@Param("fid") Integer fid)throws Exception;
+    List<WeekOpen> findweekByfid(@Param("fid") Integer fid) throws Exception;
 
-void updatestatue(@Param("statue") Integer statue,@Param("woid") Integer woid)throws Exception;
+    void updatestatue(@Param("statue") Integer statue, @Param("woid") Integer woid) throws Exception;
 
-void deletestatue(@Param("woid") Integer woid)throws Exception;
+    void deletestatue(@Param("woid") Integer woid) throws Exception;
 
-void insertweek(@Param("weekOpen") WeekOpen weekOpen)throws Exception;
+    void insertweek(@Param("weekOpen") WeekOpen weekOpen) throws Exception;
 
-List<WeekOpen> findopentody()throws Exception;
+    List<WeekOpen> findopentody() throws Exception;
+
+    WeekOpen findopenFloortoday(@Param("fid") Integer fid) throws Exception;
 }
