@@ -92,15 +92,6 @@
                     <button class="layui-btn" type="submit">添加座位</button>
                 </div>
             </form>
-            <div id="savePic" style="width: 35%;float: left;text-align: center">
-                <div id="qrcode"
-                     style="width: 200px;margin-left:25%;height:200px;background-image: url(<%=request.getContextPath()%>/img/qrcodebackground.png);">
-                </div>
-                <div style="margin-top: 30px"><label id="showSeatMsg" style="width: 200px;">座位信息</label></div>
-                <div style="margin-top: 50px">
-                    <button class="layui-btn" onclick="getSeatMsg();makeqrcode()">生成二维码并保存</button>
-                </div>
-            </div>
         </div>
         <%--删除座位页面--%>
         <div class="layui-tab-item">
@@ -146,30 +137,30 @@
     });
 </script>
 
-<%--//右侧二维码下面lable值--%>
-<script>
-    function getSeatMsg() {
-        var obj_hang = document.getElementById("hang"); //定位id
-        var obj_lie = document.getElementById("lie"); //定位id
+<%--&lt;%&ndash;//右侧二维码下面lable值&ndash;%&gt;--%>
+<%--<script>--%>
+    <%--function getSeatMsg() {--%>
+        <%--var obj_hang = document.getElementById("hang"); //定位id--%>
+        <%--var obj_lie = document.getElementById("lie"); //定位id--%>
 
 
-        var index_hang = obj_hang.selectedIndex; // 选中索引
-        var text_hang = obj_hang.options[index_hang].text; // 选中文本
-        var value_hang = obj_hang.options[index_hang].value; // 选中值
+        <%--var index_hang = obj_hang.selectedIndex; // 选中索引--%>
+        <%--var text_hang = obj_hang.options[index_hang].text; // 选中文本--%>
+        <%--var value_hang = obj_hang.options[index_hang].value; // 选中值--%>
 
-        var index_lie = obj_lie.selectedIndex; // 选中索引
-        var text_lie = obj_lie.options[index_lie].text; // 选中文本
-        var value_lie = obj_lie.options[index_lie].value; // 选中值
+        <%--var index_lie = obj_lie.selectedIndex; // 选中索引--%>
+        <%--var text_lie = obj_lie.options[index_lie].text; // 选中文本--%>
+        <%--var value_lie = obj_lie.options[index_lie].value; // 选中值--%>
 
-        document.getElementById('showSeatMsg').innerHTML = value_hang + "&nbsp;" + value_lie;
-        var qrcode = new QRCode(document.getElementById("qrcode"), {
-            width: 200,//设置宽高
-            height: 200
-        });
-//        qrcode.makeCode("http://www.baidu.com");
-        qrcode.makeCode(document.getElementById('showSeatMsg').innerHTML);
-    }
-</script>
+        <%--document.getElementById('showSeatMsg').innerHTML = value_hang + "&nbsp;" + value_lie;--%>
+        <%--var qrcode = new QRCode(document.getElementById("qrcode"), {--%>
+            <%--width: 200,//设置宽高--%>
+            <%--height: 200--%>
+        <%--});--%>
+<%--//        qrcode.makeCode("http://www.baidu.com");--%>
+        <%--qrcode.makeCode(document.getElementById('showSeatMsg').innerHTML);--%>
+    <%--}--%>
+<%--</script>--%>
 
 <script src="<%=request.getContextPath()%>/js/qrcode.js"></script>
 <!-- jQuery -->

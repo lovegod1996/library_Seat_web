@@ -111,7 +111,7 @@
                         <td><input type="text" disabled="disabled" name="INPUT"
                                    style="border:none;background-color: transparent;width: 100px"
                                    value=${seat.seatnumber}></td>
-                        <td>${seat.leftside}侧${seat.row}排${seat.columns}列</td>
+                        <td>${seat.leftside==0?"左":"右"}侧${seat.row}排${seat.columns}列</td>
                         <td>空闲中</td>
                         <td>
                             <button type="button" id="inSeat" class="btn btn-primary btn-sm" onclick="getTableContent(this)">入座

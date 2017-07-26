@@ -15,6 +15,7 @@
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+<<<<<<< HEAD
 <script>
     function changeItem(obj) {
 //    var index=obj.selectedIndex;
@@ -24,6 +25,9 @@
 //        }
     }
 </script>
+=======
+
+>>>>>>> 1Q841995-master
 </head>
 <body>
 
@@ -98,7 +102,10 @@
                           </td>
                       <td>
                           <select  class="layui-form-select" name="param2" id="param2" disabled style="display:none">
+<<<<<<< HEAD
                               <option></option>
+=======
+>>>>>>> 1Q841995-master
                               <option>16:00-21:00</option>
                               <option>14:00-21:00</option>
                           </select>
@@ -223,8 +230,18 @@
 
 <script type="text/javascript">
 
+<<<<<<< HEAD
     <c:if test="${!empty error_msg}">alert("${error_msg}");
     </c:if>
+=======
+    function changeItem(obj) {
+//    var index=obj.selectedIndex;
+        alert(obj);
+//    if(index==obj.options.length-1){
+//            document.getElementById("param2").style.display="block";
+//        }
+    }
+>>>>>>> 1Q841995-master
 </script>
 </body>
 </html>

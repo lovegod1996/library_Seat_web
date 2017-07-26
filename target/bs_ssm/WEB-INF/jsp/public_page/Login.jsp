@@ -54,9 +54,6 @@
                                     <input name="remember" type="checkbox" value="Remember Me">记住我
                                 </label>
                             </div>
-                            <div class="fogetPwd" style="float: left">
-                                <a data-method="notice" class="layui-btn layui-btn-mini" target="_parent">忘记密码?</a>
-                            </div>
 
                             <button class="btn btn-lg btn-success btn-block">登录</button>
 
