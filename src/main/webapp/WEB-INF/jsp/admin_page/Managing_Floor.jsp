@@ -53,10 +53,10 @@
                             <td>
                                 <a href="#">编辑</a>
                                 <c:if test="${week.statue==0}">
-                                    <a href="<%=request.getContextPath()%>/view/changeWeekStatue?woid=${week.woid}&&statue=${week.statue}">关闭预约</a>
+                                    <a href="<%=request.getContextPath()%>/view/changeWeekStatue?woid=${week.woid}&statue=${week.statue}">关闭预约</a>
                                 </c:if>
                                 <c:if test="${week.statue==1}">
-                                    <a href="<%=request.getContextPath()%>/view/changeWeekStatue?woid=${week.woid}&&statue=${week.statue}">开放预约</a>
+                                    <a href="<%=request.getContextPath()%>/view/changeWeekStatue?woid=${week.woid}&statue=${week.statue}">开放预约</a>
                                 </c:if>
                                 <a href="<%=request.getContextPath()%>/view/deleteWeek?woid=${week.woid}">删除</a>
                             </td>

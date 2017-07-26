@@ -42,11 +42,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${news}" var="newss">
+                <c:forEach items="${notices}" var="notice">
                     <tr>
-                        <td>${newss.nid}</td>
-                        <td><a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${newss.nid}" target="mainFrame_User">${newss.title}</a></td>
-                        <td><fmt:formatDate value="${newss.creattime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                        <td>${notice.nid}</td>
+                        <td><a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${notice.nid}" target="mainFrame_User">${notice.title}</a></td>
+                        <td><fmt:formatDate value="${notice.creattime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                     </tr>
                 </c:forEach>
 

@@ -34,8 +34,6 @@ public class admin_pageController {
     @Autowired
     private UserLearnService userLearnService;
 
-    @Autowired
-    private NewsService newsService;
 
     @Autowired
     private SeatService seatService;
@@ -44,6 +42,10 @@ public class admin_pageController {
 
     @Autowired
     private NoticeService noticeService;
+
+
+    @Autowired
+    private BookingService bookingService;
 
     @RequestMapping("/index_Admin")
     public String index_Admin(Model model, HttpSession httpSession) throws Exception {
@@ -159,51 +161,51 @@ public class admin_pageController {
         }
     }
 
+    /**
+     * 查看当天空闲座位
+     *
+     * @param model
+     * @param page
+     * @param httpSession
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/seat_In_Empty")
-    public String seat_In_Empty(Model model, Integer page, String floor, HttpSession httpSession) throws Exception {
+    public String seat_In_Empty(Model model, Integer page, HttpSession httpSession) throws Exception {
 
-        int pageSize = 5;
-        if (floor != null && floor.length() > 0) {
-            if (floor.contains("%")) {
-                floor = URLDecoder.decode(floor, "utf-8");
-                floor = floor.replace("南", "S").replace("北", "N");
+        Integer pageSize=6;
+        Floor floor1 = (Floor) httpSession.getAttribute("admin");
+
+        List<Seat> canBookingToday = bookingService.findCanBookingToday(floor1.getFid());
+        if(canBookingToday.size()>0){
+            model.addAttribute("seatSize", canBookingToday.size());
+            int pageTims;
+            if (canBookingToday.size() % pageSize == 0) {
+                pageTims = canBookingToday.size() / pageSize;
             } else {
-                floor = floor.replace("南", "S").replace("北", "N");
+                pageTims = canBookingToday.size() / pageSize + 1;
             }
+            httpSession.setAttribute("pageTimes", pageTims);
+            //页面初始的时候没有初试值
+            if (null == page) {
+                page = 1;
+            }
+            //每页开始的第几条记录
+            int startRow;
+            if (canBookingToday.size() < pageSize) {
+                startRow = 0;
+            } else {
+                startRow = (page - 1) * pageSize;
+            }
+            model.addAttribute("currentPage", page);
+            List<Seat> canBookingTodayPage = bookingService.findCanBookingTodayPage(floor1.getFid(), startRow, pageSize);
+            model.addAttribute("seats", canBookingTodayPage);
+        }else{
+            httpSession.setAttribute("pageTimes", 1);
+            model.addAttribute("nullList", "暂无未预约座位");
         }
 
-
-        List<Seat> allNoSeat = userLearnService.findAllNoSeat(floor);
-        model.addAttribute("SeatSize", allNoSeat.size());
-        int pageTims;
-        if (allNoSeat.size() % pageSize == 0) {
-            pageTims = allNoSeat.size() / pageSize;
-        } else {
-            pageTims = allNoSeat.size() / pageSize + 1;
-        }
-        httpSession.setAttribute("pageTimes", pageTims);
-        //页面初始的时候没有初试值
-        if (null == page) {
-            page = 1;
-        }
-        //每页开始的第几条记录
-        int startRow;
-        if (allNoSeat.size() < pageSize) {
-            startRow = 0;
-        } else {
-            startRow = (page - 1) * pageSize;
-        }
-        model.addAttribute("currentPage", page);
-        model.addAttribute("floor", floor);
-        List<Seat> allNoSeatPage = userLearnService.findAllNoSeatPage(floor, startRow, pageSize);
-        if (allNoSeatPage.size() > 0) {
-            model.addAttribute("seats", allNoSeatPage);
-            return "admin_page/Seat_In_Empty";
-        } else {
-            model.addAttribute("nullList", "暂无数据");
-            return "admin_page/Seat_In_Empty";
-        }
-
+        return "admin_page/Seat_In_Empty";
     }
 
     @RequestMapping("/add_News")
@@ -247,7 +249,7 @@ public class admin_pageController {
 
     @RequestMapping("/adSeatBookSub")
     public String adSeatBook(Model model, String seatNum, String sno, String stime, String etime, Integer page, HttpSession httpSession) throws Exception {
-                return "admin_page/Seat_In_Empty";
+        return "admin_page/Seat_In_Empty";
     }
 
     /**
@@ -263,7 +265,7 @@ public class admin_pageController {
     @RequestMapping("/releaseBook")
     public String releaseBook(Model model, Integer bid, Integer page, HttpSession httpSession) throws Exception {
 
-            return "admin_page/Seat_In_Empty";
+        return "admin_page/Seat_In_Empty";
     }
 
     public static HttpSession getSession() {

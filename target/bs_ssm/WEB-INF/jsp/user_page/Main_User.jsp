@@ -126,7 +126,7 @@
 
             <div class="list-group">
                 <c:forEach items="${weekopens}" var="week" varStatus="tt">
-                    <li>${week.building}(${week.floor})
+                    <li>${week.floor}(${week.building})
                         <span class="pull-right text-muted small"><em>${week.param1};${week.param2}</em></span>
                     </li>
                 </c:forEach>

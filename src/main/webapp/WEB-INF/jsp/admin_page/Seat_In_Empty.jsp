@@ -98,20 +98,20 @@
                 <tr>
                     <th>序号</th>
                     <th>座位号</th>
-                    <th>特别</th>
+                    <th>位置</th>
                     <th>座位状态</th>
                     <th>入座</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${seats}" var="seat">
+                <c:forEach items="${seats}" var="seat" varStatus="step">
                     <tr onclick="c1(this);">
-                        <td>${seat.sid}</td>
+                        <td>${step.index+1}</td>
                             <%--<td>${seat.seatnumber}</td>--%>
                         <td><input type="text" disabled="disabled" name="INPUT"
                                    style="border:none;background-color: transparent;width: 100px"
                                    value=${seat.seatnumber}></td>
-                        <td>${seat.seattype}</td>
+                        <td>${seat.leftside==0?"左":"右"}侧${seat.row}排${seat.columns}列</td>
                         <td>空闲中</td>
                         <td>
                             <button type="button" id="inSeat" class="btn btn-primary btn-sm" onclick="getTableContent(this)">入座
@@ -133,7 +133,7 @@
                             <a href="#" class="disabled">&laquo;</a>
                         </c:if>
                         <c:if test="${currentPage != 1}">
-                            <a href="${pageContext.request.contextPath }/jsp/seat_In_Empty.form?page=${currentPage-1}&floor=${floor}">&laquo;</a>
+                            <a href="${pageContext.request.contextPath }/jsp/seat_In_Empty.form?page=${currentPage-1}">&laquo;</a>
                         </c:if>
                     </li>
                     <c:if test="${currentPage==1}">
@@ -141,7 +141,7 @@
                     </c:if>
                     <c:if test="${currentPage!=1}">
                         <li>
-                            <a href="${pageContext.request.contextPath }/jsp/seat_In_Empty.form?page=1&floor=${floor}">1</a>
+                            <a href="${pageContext.request.contextPath }/jsp/seat_In_Empty.form?page=1">1</a>
                         </li>
                     </c:if>
                     <%
@@ -159,7 +159,7 @@
                         </c:if>
                         <c:if test="${currentPage != page}">
                             <li>
-                                <a href="${pageContext.request.contextPath }/jsp/seat_In_Empty.form?page=<%=i+1%>&floor=${floor}"><%=i + 1%>
+                                <a href="${pageContext.request.contextPath }/jsp/seat_In_Empty.form?page=<%=i+1%>"><%=i + 1%>
                                 </a></li>
                         </c:if>
                     </c:if>
@@ -169,7 +169,7 @@
                     </c:if>
                     <c:if test="${currentPage != pageTimes}">
                         <li>
-                            <a href="${pageContext.request.contextPath }/jsp/seat_In_Empty.form?page=${currentPage+1}&floor=${floor}">&raquo;</a>
+                            <a href="${pageContext.request.contextPath }/jsp/seat_In_Empty.form?page=${currentPage+1}">&raquo;</a>
                         </li>
                     </c:if>
 

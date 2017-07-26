@@ -35,8 +35,7 @@ import java.util.List;
 @RequestMapping("/jsp")
 public class user_pageController {
 
-    @Autowired
-    private NewsService newsService;
+
     @Autowired
     private UserLearnService userLearnService;
     @Autowired
@@ -87,14 +86,16 @@ public class user_pageController {
     public String news_List_User(Model model, Integer page, HttpSession httpSession) throws Exception {
         Integer pageSize = 5;
 
-        List<News> allNews = newsService.findAllNews();
 
-        model.addAttribute("NewsSize", allNews.size());
+
+        List<Notice> allNotice = noticeService.findAllNotice();
+
+        model.addAttribute("noticeSize", allNotice.size());
         int pageTims;
-        if (allNews.size() % pageSize == 0) {
-            pageTims = allNews.size() / pageSize;
+        if (allNotice.size() % pageSize == 0) {
+            pageTims = allNotice.size() / pageSize;
         } else {
-            pageTims = allNews.size() / pageSize + 1;
+            pageTims = allNotice.size() / pageSize + 1;
         }
         httpSession.setAttribute("pageTimes", pageTims);
         //页面初始的时候没有初试值
@@ -103,16 +104,18 @@ public class user_pageController {
         }
         //每页开始的第几条记录
         int startRow;
-        if (allNews.size() < pageSize) {
+        if (allNotice.size() < pageSize) {
             startRow = 0;
         } else {
             startRow = (page - 1) * pageSize;
         }
         model.addAttribute("currentPage", page);
 
-        List<News> allNewsPage = newsService.findAllNewsPage(startRow, pageSize);
-        if (allNewsPage.size() > 0) {
-            model.addAttribute("news", allNewsPage);
+
+        List<Notice> allNoticepage = noticeService.findAllNoticepage(startRow, pageSize);
+
+        if (allNoticepage.size() > 0) {
+            model.addAttribute("notices", allNoticepage);
             return "user_page/News_List_User";
         } else {
             model.addAttribute("nullList", "暂无数据");
