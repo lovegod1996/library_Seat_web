@@ -78,7 +78,6 @@ public class admin_pageController {
     @RequestMapping("/seat_In_Use")
     public String seat_In_Use(Model model, Integer page, HttpSession httpSession) throws Exception {
         int pageSize = 5;
-
         Floor floor = (Floor) httpSession.getAttribute("admin");
         List<BookingSeat> seatInSeat = bookingService.findSeatInSeat(floor.getFid());
         if (seatInSeat.size() > 0) {
@@ -146,12 +145,14 @@ public class admin_pageController {
                 startRow = (page - 1) * pageSize;
             }
             model.addAttribute("currentPage", page);
-            List<Seat> bookSeatpage = bookingService.findBookSeatpage(floor.getFid(), startRow, pageSize);
+            List<Seat> bookSeatpage = bookingService.findBookSeatpage(floor.getFid(), startRow, pageSize);//返回当前有预约的所有座位
             List<SeatBookings> seatBookinges = new ArrayList<SeatBookings>();
             for (int i = 0; i < bookSeatpage.size(); i++) {
                 SeatBookings seatBookings = new SeatBookings();
                 BeanUtils.copyProperties(bookSeatpage.get(i), seatBookings);
-                List<Booking> bookSeatBooking = bookingService.findBookSeatBooking(bookSeatpage.get(i).getSid());
+                List<Booking> bookSeatBooking = bookingService.findBookSeatBooking(bookSeatpage.get(i).getSid());  //返回每个座位的所有预约
+                Integer seatStatue = DateUtil.findSeatStatue(bookSeatBooking);  //计算当前时间座位状态
+                seatBookings.setSeatStatue(seatStatue);
                 seatBookings.setBookings(bookSeatBooking);
                 seatBookinges.add(seatBookings);
             }
@@ -250,9 +251,66 @@ public class admin_pageController {
         }
     }
 
+    /**
+     * 空闲座位直接入座
+     *
+     * @param model
+     * @param seatNum
+     * @param sno
+     * @param etime
+     * @param page
+     * @param httpSession
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/adSeatBookSub")
-    public String adSeatBook(Model model, String seatNum, String sno, String stime, String etime, Integer page, HttpSession httpSession) throws Exception {
-        return "admin_page/Seat_In_Empty";
+    public String adSeatBook(Model model, String seatNum, String sno, String etime, Integer page, HttpSession httpSession) throws Exception {
+        Date date = DateUtil.getDate(etime);
+        Integer disTime = DateUtil.getDisTime(new Date(), date);
+        if (disTime > CommenValue.MAX_LongTime) {
+            model.addAttribute("error_msg", "您选择的时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
+        } else {
+            Seat seatBynumber = seatService.findSeatBynumber(seatNum);
+            Booking booking = new Booking();
+            booking.setBstime(new Date());
+            booking.setBetime(date);
+            booking.setSno(sno);
+            booking.setSid(seatBynumber.getSid());
+            booking.setStime(new Date());
+            bookingService.insertbookingnow(booking);
+        }
+        return "redirect:/jsp/seat_In_Empty?page=1";
+    }
+
+    /**
+     * 释放已经入座的座位
+     * @param model
+     * @param bid
+     * @param type
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/releaseSeat")
+    public String realseSeat(Model model, Integer bid, Integer type) throws Exception {
+        Booking byid = bookingService.findByid(bid);
+        Integer disTime = DateUtil.getDisTime(new Date(), byid.getBetime());
+        if (disTime < CommenValue.MAX_TIME) {
+            bookingService.updateEtime(new Date(), 3, 0, bid);
+        } else {
+            if (type == 0) {  //判断是否是本人释放
+                bookingService.updateEtime(new Date(), 3, 0, bid);
+            } else {   //他人释放
+                if (byid.getStatue() == 2) {   //判断是否已经是已经离开状态
+                    Integer disTime1 = DateUtil.getDisTime(byid.getEtime(), new Date());
+                    if (disTime1 > CommenValue.MAX_TIME) {  //判断是否已经超时
+                        bookingService.updateDeal(1, 3, bid);
+                    }
+                } else {
+                    bookingService.updateEtime(new Date(), 2, 0, bid);
+                }
+            }
+        }
+        return "redirect:/jsp/seat_In_Use?page=1";
     }
 
     /**

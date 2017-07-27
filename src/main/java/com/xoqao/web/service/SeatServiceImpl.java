@@ -46,4 +46,9 @@ public class SeatServiceImpl implements SeatService {
     public void deleteSeat(Integer sid) throws Exception {
         seatMapper.deleteSeat(sid);
     }
+
+    public Seat findSeatBynumber(String seatnumber) throws Exception {
+        Seat seatBynumber = seatMapper.findSeatBynumber(seatnumber);
+        return seatBynumber;
+    }
 }

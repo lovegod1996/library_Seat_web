@@ -14,11 +14,11 @@ public class Booking {
     private Integer sid;
     private Integer statue;
     private Integer deal;
-private String sno;
-private Date bstime;
-private Date betime;
-private Date stime;
-private Date etime;
+    private String sno;
+    private Date bstime;
+    private Date betime;
+    private Date stime;
+    private Date etime;
 
     public Integer getBid() {
         return bid;

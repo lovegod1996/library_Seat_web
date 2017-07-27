@@ -76,7 +76,8 @@
                         <td><fmt:formatDate value="${inseat.stime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                         <td>${inseat.statue==1?"入座":"临时离开"}</td>
                         <td>
-                            <button type="button" class="btn btn-danger btn-sm">释放</button>
+                            <a href="<%=request.getContextPath()%>/jsp/releaseSeat?bid=${inseat.bid}&type=0">本人释放</a>
+                            <a href="<%=request.getContextPath()%>/jsp/releaseSeat?bid=${inseat.bid}&type=1">他人释放</a>
                         </td>
                     </tr>
                 </c:forEach>
