@@ -7,48 +7,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b586f57a-9de6-47dc-b0c4-58a75fa9e17e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/commen/CommenValue.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/commen/CommenValue.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/admin_pageController.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/admin_pageController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/dao/BookingMapper.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/dao/BookingMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/dao/SeatMapper.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/dao/SeatMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/service/BookingService.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/service/BookingService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/service/BookingServiceImpl.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/service/BookingServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/service/SeatService.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/service/SeatService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/service/SeatServiceImpl.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/service/SeatServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/utils/DateUtil.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/utils/DateUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/commen/CommenValue.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/commen/CommenValue.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/admin_pageController.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/admin_pageController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/dao/BookingMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/dao/BookingMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/dao/SeatMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/dao/SeatMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/service/BookingService.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/service/BookingService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/service/BookingServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/service/BookingServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/service/SeatService.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/service/SeatService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/service/SeatServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/service/SeatServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/utils/DateUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/utils/DateUtil.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/booking/Booking.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/booking/Booking.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/booking/SeatBookings.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/booking/SeatBookings.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/commen/CommenValue.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/commen/CommenValue.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin_pageController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin_pageController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/dao/BookingMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/dao/BookingMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/dao/SeatMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/dao/SeatMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/BookingService.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/BookingService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/BookingServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/BookingServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/SeatService.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/SeatService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/SeatServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/SeatServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/utils/DateUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/utils/DateUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapping/BookingMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapping/BookingMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapping/SeatMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapping/SeatMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Book.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Book.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Empty.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Empty.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Use.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Use.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/mapping/BookingMapper.xml" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/mapping/BookingMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/mapping/SeatMapper.xml" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/mapping/SeatMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/admin_page/Seat_In_Book.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/admin_page/Seat_In_Book.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/admin_page/Seat_In_Empty.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/admin_page/Seat_In_Empty.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/admin_page/Seat_In_Use.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/admin_page/Seat_In_Use.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mapping/BookingMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mapping/BookingMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mapping/SeatMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mapping/SeatMapper.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -63,8 +29,8 @@
       <file leaf-file-name="admin_pageController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin_pageController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="152" column="82" lean-forward="false" selection-start-line="152" selection-start-column="63" selection-end-line="152" selection-end-column="82" />
+            <state relative-caret-position="176">
+              <caret line="268" column="64" lean-forward="true" selection-start-line="268" selection-start-column="64" selection-end-line="268" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -73,18 +39,18 @@
       <file leaf-file-name="DateUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/utils/DateUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="168" column="30" lean-forward="true" selection-start-line="168" selection-start-column="30" selection-end-line="168" selection-end-column="30" />
+            <state relative-caret-position="300">
+              <caret line="170" column="25" lean-forward="false" selection-start-line="170" selection-start-column="25" selection-end-line="170" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BookingMapper.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BookingMapper.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/BookingMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="60" column="17" lean-forward="true" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
+            <state relative-caret-position="151">
+              <caret line="93" column="64" lean-forward="true" selection-start-line="93" selection-start-column="64" selection-end-line="93" selection-end-column="64" />
               <folding>
                 <marker date="1501148972511" expanded="true" signature="313:666" ph="SELECT seat.... seat" />
                 <marker date="1501148972511" expanded="true" signature="441:547" ph="SELECT COUNT... booking" />
@@ -111,18 +77,18 @@
       <file leaf-file-name="Seat_In_Use.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Use.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="76" column="64" lean-forward="true" selection-start-line="76" selection-start-column="64" selection-end-line="76" selection-end-column="64" />
+            <state relative-caret-position="143">
+              <caret line="37" column="49" lean-forward="true" selection-start-line="37" selection-start-column="49" selection-end-line="37" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Seat_In_Book.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Seat_In_Book.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Book.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="68" column="45" lean-forward="false" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="45" />
+            <state relative-caret-position="231">
+              <caret line="105" column="35" lean-forward="true" selection-start-line="105" selection-start-column="35" selection-end-line="105" selection-end-column="35" />
               <folding>
                 <element signature="n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#c:if#0;n#jsp:root#0;n#!!top" expanded="false" />
@@ -134,8 +100,8 @@
       <file leaf-file-name="Seat_In_Empty.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Empty.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1409">
-              <caret line="195" column="26" lean-forward="true" selection-start-line="195" selection-start-column="26" selection-end-line="195" selection-end-column="26" />
+            <state relative-caret-position="2789">
+              <caret line="189" column="97" lean-forward="true" selection-start-line="189" selection-start-column="97" selection-end-line="189" selection-end-column="97" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -209,7 +175,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/dao/SeatMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/SeatService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/SeatServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Empty.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/booking/Booking.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/commen/CommenValue.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/dao/BookingMapper.java" />
@@ -218,9 +183,10 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Use.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/booking/SeatBookings.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin_pageController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapping/BookingMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Empty.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/utils/DateUtil.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Book.jsp" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapping/BookingMapper.xml" />
       </list>
     </option>
   </component>
@@ -631,7 +597,7 @@
       <workItem from="1500859834540" duration="18909000" />
       <workItem from="1500943283103" duration="34934000" />
       <workItem from="1501029191823" duration="27369000" />
-      <workItem from="1501136054764" duration="12349000" />
+      <workItem from="1501136054764" duration="13330000" />
     </task>
     <task id="LOCAL-00001" summary="完成图书馆和楼层信息修改">
       <created>1500863380158</created>
@@ -703,11 +669,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501070180022</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="添加空闲座位立即入座,当前座位入座状态释放，判断当前预约座位状态">
+      <created>1501149205056</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1501149205056</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93561000" />
+    <option name="totallyTimeSpent" value="94542000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -788,7 +761,8 @@
     <MESSAGE value="添加查看当前楼层未预约座位" />
     <MESSAGE value="完成合并兰卓修改" />
     <MESSAGE value="完成层管理员当天预约，入座，空闲查看，以及左边侧栏状态显示" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成层管理员当天预约，入座，空闲查看，以及左边侧栏状态显示" />
+    <MESSAGE value="添加空闲座位立即入座,当前座位入座状态释放，判断当前预约座位状态" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加空闲座位立即入座,当前座位入座状态释放，判断当前预约座位状态" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1153,16 +1127,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Empty.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1409">
-          <caret line="195" column="26" lean-forward="true" selection-start-line="195" selection-start-column="26" selection-end-line="195" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/booking/Booking.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -1254,43 +1218,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/utils/DateUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="168" column="30" lean-forward="true" selection-start-line="168" selection-start-column="30" selection-end-line="168" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Use.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="76" column="64" lean-forward="true" selection-start-line="76" selection-start-column="64" selection-end-line="76" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Book.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="68" column="45" lean-forward="false" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="45" />
-          <folding>
-            <element signature="n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#c:if#0;n#jsp:root#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin_pageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="152" column="82" lean-forward="false" selection-start-line="152" selection-start-column="63" selection-end-line="152" selection-end-column="82" />
+        <state relative-caret-position="300">
+          <caret line="170" column="25" lean-forward="false" selection-start-line="170" selection-start-column="25" selection-end-line="170" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/BookingMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="60" column="17" lean-forward="true" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
+        <state relative-caret-position="151">
+          <caret line="93" column="64" lean-forward="true" selection-start-line="93" selection-start-column="64" selection-end-line="93" selection-end-column="64" />
           <folding>
             <marker date="1501148972511" expanded="true" signature="313:666" ph="SELECT seat.... seat" />
             <marker date="1501148972511" expanded="true" signature="441:547" ph="SELECT COUNT... booking" />
@@ -1309,6 +1246,43 @@
             <marker date="1501148972511" expanded="true" signature="4626:4692" ph="UPDATE booki... " />
             <marker date="1501148972511" expanded="true" signature="4824:4977" ph="SELECT bid,s... booking" />
             <marker date="1501148972511" expanded="true" signature="5099:5201" ph="SELECT bid,s... booking" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin_pageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="268" column="64" lean-forward="true" selection-start-line="268" selection-start-column="64" selection-end-line="268" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Empty.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2789">
+          <caret line="189" column="97" lean-forward="true" selection-start-line="189" selection-start-column="97" selection-end-line="189" selection-end-column="97" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Use.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="37" column="49" lean-forward="true" selection-start-line="37" selection-start-column="49" selection-end-line="37" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Book.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="105" column="35" lean-forward="true" selection-start-line="105" selection-start-column="35" selection-end-line="105" selection-end-column="35" />
+          <folding>
+            <element signature="n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#c:if#0;n#jsp:root#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>

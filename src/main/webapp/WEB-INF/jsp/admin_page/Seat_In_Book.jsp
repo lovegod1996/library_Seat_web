@@ -116,7 +116,9 @@
                             </c:if>
                         </td>
                         <td>
-                            <a href="#">入座</a>
+                            <c:if test="${seat.seatStatue==0}">
+                               <a href="#">入座</a>
+                            </c:if>
                         </td>
                     </tr>
                 </c:forEach>
