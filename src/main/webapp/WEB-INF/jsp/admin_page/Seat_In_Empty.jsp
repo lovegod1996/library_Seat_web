@@ -105,7 +105,7 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${seats}" var="seat" varStatus="step">
-                    <tr onclick="c1(this);">
+                    <tr>
                         <td>${step.index+1}</td>
                             <%--<td>${seat.seatnumber}</td>--%>
                         <td><input type="text" disabled="disabled" name="INPUT"
@@ -187,24 +187,24 @@
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body" style="height: 400px">
-            <form class="form-horizontal" role="form" action="<%= request.getContextPath()%>/jsp/adSeatBookSub"
-                  method="post" onsubmit="getnum(this);return checkStudentID()">
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">座位号</label>
-                    <div class="col-sm-9">
+            <form class="layui-form" role="form" action="<%= request.getContextPath()%>/jsp/adSeatBookSub"
+                  method="post" onsubmit="getnum(this);">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">座位号</label>
+                    <div class="layui-input-block">
                         <label type="text" class="layui-input" id="seatNum" style="width: 220px">点击入座自动填入</label>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">学号</label>
-                    <div class="col-sm-9">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">学号</label>
+                    <div class="layui-input-block">
                         <input type="text" class="layui-input" name="sno" id="checkstudentid" required
-                               placeholder="请输入学号" style="width: 220px" onblur="checkStudentID()">
+                               placeholder="请输入学号" style="width: 220px" >
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">开始</label>
-                    <div class="col-sm-9">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">开始</label>
+                    <div class="layui-input-block">
                         <div class="layui-inline">
                             <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px" required
                                    onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
@@ -212,16 +212,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">结束</label>
-                    <div class="col-sm-9">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">预计结束</label>
+                    <div class="layui-input-block">
                         <div class="layui-inline">
                             <input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px" required
                                    onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary" onclick="checkStudentID()">确定</button>
+                <button type="submit" class="btn btn-primary" >确定</button>
             </form>
         </div>
         <!-- /.panel-body -->

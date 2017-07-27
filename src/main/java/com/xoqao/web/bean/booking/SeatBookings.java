@@ -11,6 +11,7 @@ import java.util.List;
  * Email:dx96_j@163.com
  */
 public class SeatBookings extends Seat {
+    private Integer seatStatue;
     private List<Booking> bookings;
 
     public List<Booking> getBookings() {
@@ -21,10 +22,19 @@ public class SeatBookings extends Seat {
         this.bookings = bookings;
     }
 
+    public Integer getSeatStatue() {
+        return seatStatue;
+    }
+
+    public void setSeatStatue(Integer seatStatue) {
+        this.seatStatue = seatStatue;
+    }
+
     @Override
     public String toString() {
         return "SeatBookings{" +
-                "bookings=" + bookings +
+                "seatStatue=" + seatStatue +
+                ", bookings=" + bookings +
                 "} " + super.toString();
     }
 }

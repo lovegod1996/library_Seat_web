@@ -57,6 +57,7 @@
                     <th>座位编号</th>
                     <th>位置</th>
                     <th>当前预约状况</th>
+                    <th>当前座位状态</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -99,6 +100,20 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
+                        </td>
+                        <td>
+                            <c:if test="${seat.seatStatue==0}">
+                                 空闲
+                            </c:if>
+                            <c:if test="${seat.seatStatue==1}">
+                                预约时间内
+                            </c:if>
+                            <c:if test="${seat.seatStatue==2}">
+                                正在学习
+                            </c:if>
+                            <c:if test="${seat.seatStatue==3}">
+                                临时离开
+                            </c:if>
                         </td>
                         <td>
                             <a href="#">入座</a>

@@ -3,6 +3,7 @@ package com.xoqao.web.dao;
 import com.xoqao.web.bean.seat.Seat;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -26,4 +27,6 @@ public interface SeatMapper {
     Seat findByid(@Param("sid") Integer sid) throws Exception;
 
     void deleteSeat(@Param("sid") Integer sid) throws Exception;
+
+    Seat findSeatBynumber(@Param("seatnumber") String seatnumber)throws Exception;
 }

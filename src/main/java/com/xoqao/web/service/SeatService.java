@@ -23,4 +23,6 @@ public interface SeatService {
     Seat findByid(Integer sid)throws Exception;
 
     void deleteSeat( Integer sid) throws Exception;
+
+    Seat findSeatBynumber(String seatnumber)throws Exception;
 }

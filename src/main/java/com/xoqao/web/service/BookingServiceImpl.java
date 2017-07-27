@@ -7,6 +7,7 @@ import com.xoqao.web.dao.BookingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
  * Email:dx96_j@163.com
  */
 @Service
-public class BookingServiceImpl implements BookingService{
+public class BookingServiceImpl implements BookingService {
 
     @Autowired
     private BookingMapper bookingMapper;
@@ -54,5 +55,35 @@ public class BookingServiceImpl implements BookingService{
     public List<Seat> findBookSeatpage(Integer fid, Integer startRow, Integer pageSize) throws Exception {
         List<Seat> bookSeatpage = bookingMapper.findBookSeatpage(fid, startRow, pageSize);
         return bookSeatpage;
+    }
+
+    public void insertbooking(Booking booking) throws Exception {
+        bookingMapper.insertbooking(booking);
+    }
+
+    public void insertbookingnow(Booking booking) throws Exception {
+        bookingMapper.insertbookingnow(booking);
+    }
+
+    public void updateStime(Date now, Integer bid) throws Exception {
+        bookingMapper.updateStime(now, bid);
+    }
+
+    public void updateEtime(Date etime, Integer statue, Integer deal, Integer bid) throws Exception {
+        bookingMapper.updateEtime(etime, statue, deal, bid);
+    }
+
+    public void updateDeal(Integer deal,Integer  statue, Integer bid) throws Exception {
+        bookingMapper.updateDeal(deal,statue, bid);
+    }
+
+    public List<Booking> findBookingBySno(String sno, Integer date) throws Exception {
+        List<Booking> bookingBySno = bookingMapper.findBookingBySno(sno, date);
+        return bookingBySno;
+    }
+
+    public Booking findByid(Integer bid) throws Exception {
+        Booking byid = bookingMapper.findByid(bid);
+        return byid;
     }
 }

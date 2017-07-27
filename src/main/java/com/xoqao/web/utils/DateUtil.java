@@ -1,8 +1,12 @@
 package com.xoqao.web.utils;
 
+import com.xoqao.web.bean.booking.Booking;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 说明：
@@ -39,6 +43,21 @@ public class DateUtil {
         }
         return timedis;
     }
+
+    public static Integer getDisTime(Date inTime, Date ouTime) {
+        Integer timedis = 0;
+        long l = ouTime.getTime() - inTime.getTime();
+
+        long day = l / (24 * 60 * 60 * 1000);
+        long hour = (l / (60 * 60 * 1000) - day * 24);
+        long min = ((l / (60 * 1000)) - day * 24 * 60 - hour * 60);
+
+        System.out.println("" + day + "天" + hour + "小时" + min + "分");
+        timedis = (int) (day * 24 * 60 + hour * 60 + min);
+        return timedis;
+    }
+
+
 
     /**
      * 　　* 判断时间是否在时间段内 *
@@ -103,5 +122,61 @@ public class DateUtil {
             return false;
         }
     }
+    /**
+     * 判断时间是否在时间段内
+     * @param nowTime
+     * @param beginTime
+     * @param endTime
+     * @return
+     */
+    public static boolean belongCalendar(Date nowTime, Date beginTime, Date endTime) {
+        Calendar date = Calendar.getInstance();
+        date.setTime(nowTime);
 
+        Calendar begin = Calendar.getInstance();
+        begin.setTime(beginTime);
+
+        Calendar end = Calendar.getInstance();
+        end.setTime(endTime);
+
+        if (date.after(begin) && date.before(end)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 计算座位当前时间状态
+     * @param bookings
+     * @return
+     */
+    public static  Integer findSeatStatue(List<Booking> bookings){
+        Integer statue=0;
+        for (int i = 0; i <bookings.size(); i++) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//          boolean inDate = isInDate(new Date(), sdf.format(bookings.get(i).getBstime()), sdf.format(bookings.get(i).getBetime()));
+            boolean b = belongCalendar(new Date(), bookings.get(i).getBstime(), bookings.get(i).getBetime());
+            if(b){
+                if(bookings.get(i).getStime()==null){  //如果还没有入座
+                    statue=1;
+                }else{
+                    if(bookings.get(i).getEtime()==null){   //如果还没有离开
+                        statue=2;
+                    }else{
+                        if(bookings.get(i).getStatue()==2){
+                            statue=3;
+                        }else{
+                            statue=0;
+                        }
+
+                    }
+                }
+            }else{
+                statue=0;
+            }
+
+        }
+        return statue;
+    }
 }

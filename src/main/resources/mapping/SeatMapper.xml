@@ -34,4 +34,9 @@
     <delete id="deleteSeat">
     DELETE FROM seat WHERE sid=#{sid}
     </delete>
+
+    <!--根据座位编号查询座位信息-->
+    <select id="findSeatBynumber" resultType="com.xoqao.web.bean.seat.Seat">
+        SELECT sid,fid,row,leftside,columns,seatnumber,statue FROM seat WHERE seatnumber LIKE '${seatnumber}'
+    </select>
 </mapper>

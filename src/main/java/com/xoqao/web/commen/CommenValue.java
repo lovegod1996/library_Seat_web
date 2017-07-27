@@ -19,4 +19,9 @@ public class CommenValue {
      * 最多失信次数
      */
     public static Integer MAX_UNPERMISE=3;
+
+    /**
+     * 失信判定最长时间
+     */
+    public static  Integer MAX_TIME=15;
 }
