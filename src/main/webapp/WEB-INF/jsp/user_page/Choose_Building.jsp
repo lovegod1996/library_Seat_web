@@ -45,22 +45,37 @@
         }
 
         .box ul li .dask p {
+            margin-top: 10%;
             color: #fff;
-        }
-
-        .box ul li .dask a {
-            color: green;
-            text-decoration: none
         }
 
         li {
             list-style: none;
         }
 
-        a {
-            width: 50%;
-            height: 100%;
+        .ShowFloors {
+            margin-top: 50%;
+            text-align: center;
+
         }
+        .Roundseat {
+            width: 25%;
+            /*height: 40px;*/
+            background-color: #316CB2;
+            text-align: center;
+            padding: 10px;
+            color: #ffffff;
+            float: left;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+        .TheFloor{
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            color: #ffffff;
+        }
+        .TheFloor:hover{color: #ffffff}
     </style>
     <script>
         $(function () {
@@ -78,9 +93,9 @@
             var li_num = $ul.find("li").length;
             $ul.find("li").css("width", ul_width / li_num);
 
-            $('.dask').click(function () {
-                window.location.href = "/LS/jsp/book_Seat_User";
-            });
+//            $('.dask').click(function () {
+//                window.location.href = "/LS/jsp/book_Seat_User";
+//            });
         });
     </script>
 </head>
@@ -91,21 +106,40 @@
             <a href="#"><img src="<%=request.getContextPath()%>/img/touming.png"></a>
             <div class="dask">
                 <p style="font-size: 30px;margin-top: 20px;text-align: center">北楼</p>
+                <div class="ShowFloors">
+                    <div class="Roundseat">
+                        <a class="TheFloor" type="button" href="<%=request.getContextPath()%>/jsp/book_Seat_User">文史阅览室</a>
+                    </div>
+                    <div class="Roundseat">
+                        <a class="TheFloor" type="button" href="<%=request.getContextPath()%>/jsp/book_Seat_User">文史阅览室</a>
+                    </div>
+                    <div class="Roundseat">
+                        <a class="TheFloor" type="button" href="<%=request.getContextPath()%>/jsp/book_Seat_User">文史阅览室</a>
+                    </div>
+                </div>
             </div>
         </li>
         <li>
             <a href="#"><img src="<%=request.getContextPath()%>/img/touming.png"></a>
             <div class="dask">
                 <p style="font-size: 30px;margin-top: 20px;text-align: center">南楼</p>
+                <div class="ShowFloors">
+                    <div class="Roundseat">
+                        <a class="TheFloor" type="button" href="#">文史阅览室</a>
+                    </div>
+                    <div class="Roundseat">
+                        <a class="TheFloor" type="button" href="<%=request.getContextPath()%>/jsp/book_Seat_User">文史阅览室</a>
+                    </div>
+                </div>
             </div>
         </li>
     </ul>
 
     <%--底部缩略图居中--%>
     <%--<div style="width: 30%;height: 50px;margin-left: 35%;position: fixed;bottom: 0;background-color: #2b542c">--%>
-        <%--<ul class="UL_BOTTOM">--%>
+    <%--<ul class="UL_BOTTOM">--%>
 
-        <%--</ul>--%>
+    <%--</ul>--%>
     <%--</div>--%>
 </div>
 </body>

@@ -173,7 +173,10 @@ public class User_Controller {
     }
 
     @RequestMapping("choose_Building")
-    public String choose_Building(Model model) throws Exception {
+    public String choose_Building(Model model,Integer day) throws Exception {
+
+
+
         return "user_page/Choose_Building";
     }
 

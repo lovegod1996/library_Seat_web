@@ -35,6 +35,13 @@
             padding-right: 5%;
         }
     </style>
+
+    <script>
+        function show() {
+            document.getElementById("today").style.display="block";
+            document.getElementById("tomorrow").style.display="block";
+        }
+    </script>
 </head>
 <body>
 <div id="wrapper">
@@ -51,9 +58,10 @@
                 <li class="active"><a href="<%=request.getContextPath()%>/" target="_parent">首页</a></li>
 
                 <c:if test="${sessionScope.user !=null}">
-                    <li><a href="<%=request.getContextPath()%>/view/choose_Building" target="mainFrame_User">预约</a></li>
+                    <li><a href="#" onclick="show()">预约</a></li>
                 </c:if>
-
+                <li id="today" style="display: none;"><a href="<%=request.getContextPath()%>/view/choose_Building" target="_parent" style="color:#19A094 ">预约今天</a></li>
+                <li id="tomorrow" style="display: none;"><a href="<%=request.getContextPath()%>/view/choose_Building" target="_parent" style="color:#19A094 ">预约明天</a></li>
             </ul>
         </div>
 
