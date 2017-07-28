@@ -86,4 +86,9 @@ public class BookingServiceImpl implements BookingService {
         Booking byid = bookingMapper.findByid(bid);
         return byid;
     }
+
+    public List<Booking> findBookSeatBookingday(Integer sid, Integer day) throws Exception {
+        List<Booking> bookSeatBookingday = bookingMapper.findBookSeatBookingday(sid, day);
+        return bookSeatBookingday;
+    }
 }

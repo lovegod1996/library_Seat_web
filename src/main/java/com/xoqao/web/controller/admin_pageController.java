@@ -8,6 +8,7 @@ import com.xoqao.web.bean.building.Building;
 import com.xoqao.web.bean.floors.Floor;
 import com.xoqao.web.bean.news.Notice;
 import com.xoqao.web.bean.user.User;
+import com.xoqao.web.bean.weekopen.WeekOpen;
 import com.xoqao.web.commen.CommenValue;
 import com.xoqao.web.bean.news.News;
 import com.xoqao.web.bean.seat.Seat;
@@ -36,9 +37,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/jsp")
 public class admin_pageController {
-    @Autowired
-    private UserLearnService userLearnService;
-
 
     @Autowired
     private SeatService seatService;
@@ -51,6 +49,9 @@ public class admin_pageController {
 
     @Autowired
     private BookingService bookingService;
+
+    @Autowired
+    private WeekOpenService weekOpenService;
 
     @RequestMapping("/index_Admin")
     public String index_Admin(Model model, HttpSession httpSession) throws Exception {
@@ -163,6 +164,49 @@ public class admin_pageController {
         }
         return "admin_page/Seat_In_Book";
 
+    }
+
+
+    /**
+     * 添加空闲座位立即入座
+     *
+     * @param model
+     * @param sno
+     * @param seatNum
+     * @param etime
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/bookEmptSeat")
+    public String bookEmptSeat(Model model, String sno, String seatNum, String etime, HttpSession httpSession) throws Exception {
+        Integer disTime = DateUtil.getDisTime(new Date(), DateUtil.getDate(etime));
+        if (disTime < CommenValue.MAX_LongTime) {
+            Floor floor = (Floor) httpSession.getAttribute("admin"); //获取当前楼层信息
+            WeekOpen weekOpen = weekOpenService.findopenFloortoday(floor.getFid());
+            boolean b = DateUtil.getfollowTime(weekOpen, new Date(), DateUtil.getDate(etime));
+            if (b) {
+                Seat seatBynumber = seatService.findSeatBynumber(seatNum);
+                List<Booking> bookSeatBooking = bookingService.findBookSeatBooking(seatBynumber.getSid());
+                boolean checkbooksclash = DateUtil.checkbooksclash(bookSeatBooking, new Date(), DateUtil.getDate(etime));
+                if (checkbooksclash) {
+                    model.addAttribute("error_msg", "您选择的时间段已经被占用");
+                } else {
+                    Booking booking = new Booking();
+                    booking.setBstime(new Date());
+                    booking.setBetime(DateUtil.getDate(etime));
+                    booking.setSno(sno);
+                    booking.setSid(seatBynumber.getSid());
+                    booking.setStime(new Date());
+                    bookingService.insertbookingnow(booking);
+                    return "redirect:/jsp/seat_In_Use?page=1";
+                }
+            } else {
+                model.addAttribute("error_msg", "请注意开放场馆时间");
+            }
+        } else {
+            model.addAttribute("error_msg", "您选择的时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
+        }
+        return "redirect:/jsp/seat_In_Book?page=1";
     }
 
     /**
@@ -284,6 +328,7 @@ public class admin_pageController {
 
     /**
      * 释放已经入座的座位
+     *
      * @param model
      * @param bid
      * @param type

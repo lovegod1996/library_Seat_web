@@ -61,6 +61,7 @@ public interface BookingMapper {
      */
     List<Booking> findBookSeatBooking(@Param("sid") Integer sid) throws Exception;
 
+    List<Booking> findBookSeatBookingday(@Param("sid") Integer sid,@Param("day") Integer day)throws Exception;
 
     /**
      * 添加预约

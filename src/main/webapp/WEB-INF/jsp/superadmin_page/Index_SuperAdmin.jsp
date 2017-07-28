@@ -14,7 +14,7 @@
     <frame src="<%=request.getContextPath()%>/jsp/header_Admin" name="topFrame_SuperAdmin" scrolling="No" noresize="noresize"
            id="topFrame_SuperAdmin" title="topFrame_SuperAdmin"/>
     <frameset rows="*" cols="250,*" framespacing="0" frameborder="no" border="0">
-        <frame src="<%=request.getContextPath()%>/view/leftmenu_SuperAdmin" name="leftFrame_SuperAdmin" scrolling="No"
+        <frame src="<%=request.getContextPath()%>/view/leftmenu_SuperAdmin" name="leftFrame_SuperAdmin" scrolling="Yes"
                noresize="noresize" id="leftFrame_SuperAdmin"
                title="leftFrame_SuperAdmin"/>
         <frame src="<%=request.getContextPath()%>/view/main_SuperAdmin" name="mainFrame_SuperAdmin" id="mainFrame_SuperAdmin"

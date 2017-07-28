@@ -25,4 +25,6 @@ public interface SeatService {
     void deleteSeat( Integer sid) throws Exception;
 
     Seat findSeatBynumber(String seatnumber)throws Exception;
+
+    List<Seat> findOpenSeatsByFid( Integer fid) throws Exception;
 }

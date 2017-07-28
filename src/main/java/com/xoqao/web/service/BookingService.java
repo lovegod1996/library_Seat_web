@@ -86,4 +86,7 @@ public interface BookingService {
     List<Booking> findBookingBySno( String sno, Integer date) throws Exception;
 
     Booking findByid( Integer bid)throws Exception;
+
+    List<Booking> findBookSeatBookingday(Integer sid,Integer day)throws Exception;
+
 }

@@ -1,6 +1,7 @@
 package com.xoqao.web.utils;
 
 import com.xoqao.web.bean.booking.Booking;
+import com.xoqao.web.bean.weekopen.WeekOpen;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -58,7 +59,6 @@ public class DateUtil {
     }
 
 
-
     /**
      * 　　* 判断时间是否在时间段内 *
      * <p>
@@ -76,7 +76,6 @@ public class DateUtil {
      * <p>
      * 　　* @return
      * <p>
-     *
      */
 
     public static boolean isInDate(Date date, String strDateBegin, String strDateEnd) {
@@ -122,8 +121,10 @@ public class DateUtil {
             return false;
         }
     }
+
     /**
      * 判断时间是否在时间段内
+     *
      * @param nowTime
      * @param beginTime
      * @param endTime
@@ -148,34 +149,122 @@ public class DateUtil {
 
     /**
      * 计算座位当前时间状态
+     *
      * @param bookings
      * @return
      */
-    public static  Integer findSeatStatue(List<Booking> bookings){
-        Integer statue=0;
-        for (int i = 0; i <bookings.size(); i++) {
+    public static Integer findSeatStatue(List<Booking> bookings) {
+        Integer statue = 0;
+        for (int i = 0; i < bookings.size(); i++) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //          boolean inDate = isInDate(new Date(), sdf.format(bookings.get(i).getBstime()), sdf.format(bookings.get(i).getBetime()));
             boolean b = belongCalendar(new Date(), bookings.get(i).getBstime(), bookings.get(i).getBetime());
-            if(b){
-                if(bookings.get(i).getStime()==null){  //如果还没有入座
-                    statue=1;
-                }else{
-                    if(bookings.get(i).getEtime()==null){   //如果还没有离开
-                        statue=2;
-                    }else{
-                        if(bookings.get(i).getStatue()==2){
-                            statue=3;
-                        }else{
-                            statue=0;
+            if (b) {
+                if (bookings.get(i).getStime() == null) {  //如果还没有入座
+                    statue = 1;
+                } else {
+                    if (bookings.get(i).getEtime() == null) {   //如果还没有离开
+                        statue = 2;
+                    } else {
+                        if (bookings.get(i).getStatue() == 2) {
+                            statue = 3;
+                        } else {
+                            statue = 0;
                         }
                     }
                 }
-            }else{
-                statue=0;
+            } else {
+                statue = 0;
             }
 
         }
         return statue;
     }
+
+    /**
+     * 判断用户预约时间是否在开放时间段内
+     *
+     * @return
+     */
+    public static boolean getfollowTime(WeekOpen weekOpen, Date stime, Date etime) {
+        boolean b = false;
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm");//设置日期格式
+        Date opentime = null;
+        Date closeTime = null;
+        try {
+            String[] split = weekOpen.getParam1().split("-");
+            opentime = df.parse(split[0]);
+            closeTime = df.parse(split[1]);
+            String format = df.format(stime);
+            String format1 = df.format(etime);
+            stime = df.parse(format);
+            etime = df.parse(format1);
+            boolean b1 = belongCalendar(stime, opentime, closeTime);
+            if (b1) {
+                boolean b2 = belongCalendar(etime, opentime, closeTime);
+                if (b2) {
+                    b = true;
+                }
+            } else {
+                if (weekOpen.getParam2() != null) {
+                    String[] split2 = weekOpen.getParam2().split("-");
+                    opentime = df.parse(split2[0]);
+                    closeTime = df.parse(split2[1]);
+                    boolean b3 = belongCalendar(stime, opentime, closeTime);
+                    if (b3) {
+                        boolean b4 = belongCalendar(etime, opentime, closeTime);
+                        if (b4) {
+                            b = true;
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return b;
+    }
+
+    /**
+     * 检查与某一预约是否右冲突
+     *
+     * @param booking
+     * @param stime
+     * @param etime
+     * @return
+     */
+    public static boolean checkbookclash(Booking booking, Date stime, Date etime) {
+        boolean bb = false;
+        boolean b = belongCalendar(stime, booking.getBstime(), booking.getBetime());
+        if (b) {
+            bb = true;
+        } else {
+            boolean b1 = belongCalendar(etime, booking.getBstime(), booking.getBetime());
+            if (b1) {
+                bb = true;
+            }
+        }
+        return bb;
+    }
+
+
+    /**
+     * 检查预约时间是否有冲突
+     *
+     * @param bookings
+     * @param stime
+     * @param etime
+     * @return
+     */
+    public static boolean checkbooksclash(List<Booking> bookings, Date stime, Date etime) {
+        boolean b = false;
+        for (int i = 0; i < bookings.size(); i++) {
+            boolean checkbookclash = checkbookclash(bookings.get(i), stime, etime);
+            if (checkbookclash) {
+                b = true;
+            }
+        }
+        return b;
+    }
+
 }

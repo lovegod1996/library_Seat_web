@@ -58,6 +58,12 @@
         WHERE   sid=#{sid}  AND TO_DAYS(NOW())=TO_DAYS(bstime)  AND  UNIX_TIMESTAMP(betime)-UNIX_TIMESTAMP(NOW()) &gt; 0
     </select>
 
+    <select id="findBookSeatBookingday" resultType="com.xoqao.web.bean.booking.Booking">
+        SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal
+        FROM booking
+        WHERE   sid=#{sid}  AND TO_DAYS(NOW())+#{day}=TO_DAYS(bstime)  AND  UNIX_TIMESTAMP(betime)-UNIX_TIMESTAMP(NOW()) &gt; 0
+    </select>
+
     <!--添加预约记录-->
     <insert id="insertbooking">
         <selectKey resultType="java.lang.Integer" keyProperty="bid" order="AFTER">

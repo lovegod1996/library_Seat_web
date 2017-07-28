@@ -23,4 +23,8 @@ public interface WeekOpenService {
     List<WeekOpen> findopentody()throws Exception;
 
     WeekOpen findopenFloortoday(Integer fid) throws Exception;
+
+    WeekOpen findopenFloorday(Integer fid,  Integer day) throws Exception;
+
+    List<WeekOpen> findopenfloorsday(Integer day, Integer bid) throws Exception;
 }

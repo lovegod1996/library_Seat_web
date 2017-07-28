@@ -15,7 +15,41 @@
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
+    <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+    <!-- jQuery -->
+    <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <style>
+        .black_overlay {
+            display: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 1001;
+            -moz-opacity: 0.8;
+            opacity: .80;
+            filter: alpha(opacity=80);
+        }
+
+        .white_content {
+            display: none;
+            position: absolute;
+            top: 20%;
+            left: 32%;
+            width: 400px;
+            height: 300px;
+            padding: 16px;
+            border: 1px solid orange;
+            background-color: white;
+            z-index: 1002;
+            overflow: auto;
+        }
+    </style>
     <script language="JavaScript" type="text/javascript">
         //定义了楼层的二维数组，里面的顺序跟楼的顺序是相同的。通过selectedIndex获得楼的下标值来得到相应的楼层数组
 
@@ -24,8 +58,43 @@
             var url = "/LS/jsp/seat_In_Book?floor=" + floor;
             window.location.href = encodeURI(url);
         }
-
     </script>
+    <script language="JavaScript" type="text/javascript">
+        function getTableContent(node) {
+            // 按钮的父节点的父节点是tr。
+            var tr1 = node.parentNode.parentNode;
+//            alert(tr1.rowIndex);//获得行
+            //alert(tb1.rows[tr1.rowIndex].cells[1].getElementsByTagName("INPUT")[0].value);
+            document.getElementById("seatNum").innerHTML = tb1.rows[tr1.rowIndex].cells[1].innerHTML;
+//            alert(document.getElementById("seatNum").innerHTML);
+        }
+    </script>
+
+    <%--选择日期--%>
+    <script>
+        layui.use('laydate', function () {
+            var laydate = layui.laydate;
+            var start = {
+                min: laydate.now()
+                , max: '2099-06-16 23:59:59'
+                , istoday: false
+                , choose: function (datas) {
+                    end.min = datas; //开始日选好后，重置结束日的最小日期
+                    end.start = datas //将结束日的初始值设定为开始日
+                }
+            };
+
+            var end = {
+                min: laydate.now()
+                , max: '2099-06-16 23:59:59'
+                , istoday: false
+                , choose: function (datas) {
+                    start.max = datas; //结束日选好后，重置开始日的最大日期
+                }
+            };
+        });
+    </script>
+
 </head>
 <body>
 <div class="col-sm-12">
@@ -50,7 +119,7 @@
         </div>
         <!-- /.panel-heading -->
         <div class="layui-form">
-            <table class="layui-table">
+            <table class="layui-table" id="tb1">
                 <thead>
                 <tr>
                     <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
@@ -69,41 +138,69 @@
                         <td>${seat.seatnumber}</td>
                         <td>${seat.leftside==0?"左":"右"}侧${seat.row}排${seat.columns}列</td>
                         <td>
-                            <table class="table">
-                                <thead>
-                                <th>预约人</th>
-                                <th>预约时间段</th>
-                                <th>当前状态</th>
-                                </thead>
-                                <tbody>
-                                <c:forEach items="${seat.bookings}" var="booking">
-                                    <tr>
-                                        <td>${booking.sno}</td>
-                                        <td><fmt:formatDate value="${booking.bstime}"
-                                                            pattern="yyyy-MM-dd HH:mm:ss"/>-<fmt:formatDate
-                                                value="${booking.betime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                                        <td>
-                                            <c:if test="${booking.statue==0}">
-                                                未入座
-                                            </c:if>
-                                            <c:if test="${booking.statue==1}">
-                                                入座
-                                            </c:if>
-                                            <c:if test="${booking.statue==2}">
-                                                临时离开
-                                            </c:if>
-                                            <c:if test="${booking.statue==3}">
-                                                离开
-                                            </c:if>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
+                            <div class="layui-collapse" lay-accordion="">
+                                <div class="layui-colla-item">
+                                    <h2 class="layui-colla-title">当前已预约${seat.bookings.size()}人</h2>
+                                    <div class="layui-colla-content">
+                                        <ul>
+                                            <c:forEach items="${seat.bookings}" var="booking">
+                                                <li>${booking.sno}&nbsp;&nbsp;&nbsp;<fmt:formatDate
+                                                        value="${booking.bstime}"
+                                                        pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate
+                                                        value="${booking.betime}" pattern="yyyy-MM-dd HH:mm:ss"/>&nbsp;&nbsp;&nbsp;
+                                                    <c:if test="${booking.statue==0}">
+                                                        未入座
+                                                    </c:if>
+                                                    <c:if test="${booking.statue==1}">
+                                                        入座
+                                                    </c:if>
+                                                    <c:if test="${booking.statue==2}">
+                                                        临时离开
+                                                    </c:if>
+                                                    <c:if test="${booking.statue==3}">
+                                                        离开
+                                                    </c:if></li>
+                                            </c:forEach>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                                <%--<table class="table">--%>
+                                <%--<thead>--%>
+                                <%--<th>预约人</th>--%>
+                                <%--<th>预约时间段</th>--%>
+                                <%--<th>当前状态</th>--%>
+                                <%--</thead>--%>
+                                <%--<tbody>--%>
+                                <%--<c:forEach items="${seat.bookings}" var="booking">--%>
+                                <%--<tr>--%>
+                                <%--<td>${booking.sno}</td>--%>
+                                <%--<td><fmt:formatDate value="${booking.bstime}"--%>
+                                <%--pattern="yyyy-MM-dd HH:mm:ss"/>-<fmt:formatDate--%>
+                                <%--value="${booking.betime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>--%>
+                                <%--<td>--%>
+                                <%--<c:if test="${booking.statue==0}">--%>
+                                <%--未入座--%>
+                                <%--</c:if>--%>
+                                <%--<c:if test="${booking.statue==1}">--%>
+                                <%--入座--%>
+                                <%--</c:if>--%>
+                                <%--<c:if test="${booking.statue==2}">--%>
+                                <%--临时离开--%>
+                                <%--</c:if>--%>
+                                <%--<c:if test="${booking.statue==3}">--%>
+                                <%--离开--%>
+                                <%--</c:if>--%>
+                                <%--</td>--%>
+                                <%--</tr>--%>
+                                <%--</c:forEach>--%>
+                                <%--</tbody>--%>
+                                <%--</table>--%>
                         </td>
                         <td>
                             <c:if test="${seat.seatStatue==0}">
-                                 空闲
+                                空闲
                             </c:if>
                             <c:if test="${seat.seatStatue==1}">
                                 预约时间内
@@ -117,7 +214,10 @@
                         </td>
                         <td>
                             <c:if test="${seat.seatStatue==0}">
-                               <a href="#">入座</a>
+                                <button class="layui-btn layui-btn-small"
+                                        onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block';getTableContent(this);">
+                                    入座
+                                </button>
                             </c:if>
                         </td>
                     </tr>
@@ -185,6 +285,42 @@
     <!-- /.panel -->
 </div>
 <!-- /.col-sm-12 -->
+<%--添加弹出框--%>
+<div id="light" class="white_content">
+    <div style="text-align: end;width: 100%">
+        <a class="layui-icon" href="javascript:void(0)"
+           onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
+            &#x1006;</a>
+    </div>
+    <form class="layui-form" role="form" action="<%= request.getContextPath()%>/jsp/bookEmptSeat"
+          method="post" onsubmit="getnum(this);">
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 100px">座位号</label>
+            <div class="layui-input-block">
+                <label type="text" class="layui-input" id="seatNum" style="width: 220px">点击入座自动填入</label>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 100px">学号</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" name="sno" id="checkstudentid" required
+                       placeholder="请输入学号" style="width: 220px">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 100px">预计结束</label>
+            <div class="layui-input-block">
+                <div class="layui-inline">
+                    <input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px" required
+                           onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">确定</button>
+    </form>
+</div>
+<div id="fade" class="black_overlay"></div>
+
 <!-- jQuery -->
 <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
 
@@ -197,8 +333,18 @@
 <!-- Custom Theme JavaScript -->
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
 
+<script>
+    layui.use(['element', 'layer'], function () {
+        var element = layui.element();
+        var layer = layui.layer;
 
-<script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+        //监听折叠
+        element.on('collapse(test)', function (data) {
+            layer.msg('展开状态：' + data.show);
+        });
+    });
+</script>
+
 <script>
     layui.use('form', function () {
         var $ = layui.jquery, form = layui.form();
@@ -264,6 +410,19 @@
             }
         });
     }
+</script>
+
+<script type="text/javascript">
+    function getnum(form) {
+        var $form = $(form);
+//        var seatNum=$("#seatNum").val();
+        var seatNum = document.getElementById("seatNum").innerText;
+        var editor = "<input type='hidden' name='seatNum' value='" + seatNum + "' />";
+        $form.append(editor);
+    }
+
+    <c:if test="${!empty error_msg}">alert("${error_msg}");
+    </c:if>
 </script>
 </body>
 </html>
