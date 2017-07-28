@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page isELIgnored="false" %>
+
 <html>
 <head>
     <title>选择南北楼</title>
@@ -102,28 +106,24 @@
 <body>
 <div class="box">
     <ul class="UL">
-        <li>
-            <a href="#"><img src="<%=request.getContextPath()%>/img/touming.png"></a>
-            <div class="dask">
-                <p style="font-size: 30px;margin-top: 20px;text-align: center">北楼</p>
-                <div class="ShowFloors">
-                    <div class="Roundseat">
-                        <a class="TheFloor" type="button" href="<%=request.getContextPath()%>/jsp/book_Seat_User">文史阅览室</a>
+
+        <c:forEach items="${buildFloors}" var="building">
+            <li>
+                <a href="#"><img src="<%=request.getContextPath()%>/img/touming.png"></a>
+                <div class="dask">
+                    <p style="font-size: 30px;margin-top: 20px;text-align: center">${building.employer}</p>
+                    <div class="ShowFloors">
+
+                        <c:forEach items="${building.floors}" var="floor">
+                            <div class="Roundseat">
+                                <a class="TheFloor" type="button" href="<%=request.getContextPath()%>/jsp/book_Seat_User?fid=${floor.fid}&day=${day}">${floor.employer}</a>
+                            </div>
+                        </c:forEach>
+
                     </div>
                 </div>
-            </div>
-        </li>
-        <li>
-            <a href="#"><img src="<%=request.getContextPath()%>/img/touming.png"></a>
-            <div class="dask">
-                <p style="font-size: 30px;margin-top: 20px;text-align: center">南楼</p>
-                <div class="ShowFloors">
-                    <div class="Roundseat">
-                        <a class="TheFloor" type="button" href="#">文史阅览室</a>
-                    </div>
-                </div>
-            </div>
-        </li>
+            </li>
+        </c:forEach>
     </ul>
 
     <%--底部缩略图居中--%>

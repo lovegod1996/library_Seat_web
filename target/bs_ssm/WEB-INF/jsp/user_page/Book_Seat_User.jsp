@@ -87,19 +87,12 @@
 //            alert(tr1.rowIndex);
 //            alert(tb1.rows[tr1.rowIndex].cells[1].getElementsByTagName("INPUT")[0].value);
 //            document.getElementById("seatNum").innerHTML = tb1.rows[tr1.rowIndex].cells[1].getElementsByTagName("INPUT")[0].value;
-            document.getElementById("seatNum").innerHTML = document.getElementById("theseat").innerHTML;
+            document.getElementById("seatNum").innerHTML = document.getElementsByName("theseat").innerHTML;
             var objL = document.getElementById("LeftView");
             var objR = document.getElementById("RightView");
             objL.style.cssText = "width:65%;float:left";
             objR.style.cssText = "display:block;float:left;margin-left: 30px;";
         }
-    </script>
-
-    <%--//鼠标滑过显示该座位预约状况--%>
-    <script>
-        $(function () {
-            $(".popover-options a").popover({html: true});
-        });
     </script>
 
     <style>
@@ -119,15 +112,39 @@
             font-size: 12px;
         }
 
-        .LeftView{
+        .LeftView {
             width: 100%;
         }
-        .RightView{
+
+        .RightView {
             width: 30%;
+            height: 100%;
             display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+        }
+
+        .dropdown-menu {
+            background: #000;
+            opacity: 0.8;
+        }
+
+        .dropdown-menu li {
+            color: #ffffff;
+            padding-left: 10px;
+            margin-top: 10px;
         }
 
     </style>
+
+    <script>
+        $(document).ready(function () {
+            $("span").hover(function () {//鼠标悬停触发事件
+                $(".dropdown-toggle").dropdown('toggle');
+            });
+        });
+    </script>
 </head>
 <body>
 <div id="wrapper">
@@ -140,18 +157,52 @@
                    style="margin-left:20px ">点击刷新</a>
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body" style="height: 400px">
-                <div class="Roundseat">
-                    <label class="seatView_lable" id="theseat">010210308</label>
-                    <label class="seatView_lable">中原工学院图书馆南楼3排8座</label>
-                    <label class="seatView_lable">当前空闲状态</label>
-                    <p class="popover-options">
-                        <a href="#" type="button" class="btn btn-success btn-sm" title="预约情况"
-                           data-container="body" data-toggle="popover" data-trigger="hover"
-                           data-content="时间大巴回家睡觉卡市场空间市场将按市场价洒出"
-                           onclick="getTableContent(this)">点击预约</a>
-                    </p>
-                </div>
+            <div class="panel-body" style="height: 100%">
+                <c:forEach items="${seatsbooks}" var="seat">
+                    <div class="Roundseat">
+                        <label class="seatView_lable" name="theseat">${seat.seatnumber}</label>
+                        <label class="seatView_lable">${seat.leftside==0?"左":"右"}侧${seat.row}排${seat.columns}列</label>
+                        <label class="seatView_lable">
+                            <c:if test="${seat.seatStatue==0}">
+                                空闲
+                            </c:if>
+                            <c:if test="${seat.seatStatue==1}">
+                                预约时间内
+                            </c:if>
+                            <c:if test="${seat.seatStatue==2}">
+                                正在学习
+                            </c:if>
+                            <c:if test="${seat.seatStatue==3}">
+                                临时离开
+                            </c:if>
+                        </label>
+                        <div class="dropdown">
+                        <span class="dropdown-toggle btn btn-success btn-sm" type="button" data-toggle="dropdown"
+                              onclick="getTableContent(this)">点击预约</span>
+                            <ul class="dropdown-menu">
+                                <c:forEach items="${seat.bookings}" var="booking">
+                                    <li>${booking.sno}&nbsp;&nbsp;&nbsp;<fmt:formatDate
+                                            value="${booking.bstime}"
+                                            pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate
+                                            value="${booking.betime}" pattern="yyyy-MM-dd HH:mm:ss"/>&nbsp;&nbsp;&nbsp;
+                                        <c:if test="${booking.statue==0}">
+                                            未入座
+                                        </c:if>
+                                        <c:if test="${booking.statue==1}">
+                                            入座
+                                        </c:if>
+                                        <c:if test="${booking.statue==2}">
+                                            临时离开
+                                        </c:if>
+                                        <c:if test="${booking.statue==3}">
+                                            离开
+                                        </c:if></li>
+                                </c:forEach>
+                            </ul>
+                        </div>
+                    </div>
+                </c:forEach>
+
             </div>
         </div>
         <!-- /.panel -->
@@ -163,7 +214,7 @@
                 <i class="fa fa-bell fa-fw"></i> 预约座位
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body" style="height: 400px">
+            <div class="panel-body" style="height: 100%">
 
                 <c:choose>
                     <c:when test="${userLearn!=null}">
@@ -230,7 +281,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">确定</button>
+                            <button class="btn btn-primary" style="width: 30%;margin-left: 30%;margin-top: 20px">确定
+                            </button>
                         </form>
 
                     </c:otherwise>
