@@ -60,8 +60,8 @@
                 <c:if test="${sessionScope.user !=null}">
                     <li><a href="#" onclick="show()">预约</a></li>
                 </c:if>
-                <li id="today" style="display: none;"><a href="<%=request.getContextPath()%>/view/choose_Building" target="_parent" style="color:#19A094 ">预约今天</a></li>
-                <li id="tomorrow" style="display: none;"><a href="<%=request.getContextPath()%>/view/choose_Building" target="_parent" style="color:#19A094 ">预约明天</a></li>
+                <li id="today" style="display: none;"><a href="<%=request.getContextPath()%>/view/choose_Building" target="mainFrame_User" style="color:#19A094 ">预约今天</a></li>
+                <li id="tomorrow" style="display: none;"><a href="<%=request.getContextPath()%>/view/choose_Building" target="mainFrame_User" style="color:#19A094 ">预约明天</a></li>
             </ul>
         </div>
 

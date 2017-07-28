@@ -88,10 +88,6 @@
 //            alert(tb1.rows[tr1.rowIndex].cells[1].getElementsByTagName("INPUT")[0].value);
 //            document.getElementById("seatNum").innerHTML = tb1.rows[tr1.rowIndex].cells[1].getElementsByTagName("INPUT")[0].value;
             document.getElementById("seatNum").innerHTML = document.getElementById("theseat").innerHTML;
-            var objL = document.getElementById("LeftView");
-            var objR = document.getElementById("RightView");
-            objL.style.cssText = "width:65%;float:left";
-            objR.style.cssText = "display:block;float:left;margin-left: 30px;";
         }
     </script>
 
@@ -113,16 +109,17 @@
         }
 
         .LeftView {
-            width: 100%;
+            width: 65%;
+            margin-right: 20px;
         }
 
         .RightView {
             width: 30%;
             height: 100%;
-            display: none;
+            margin-left: 20px;
             position: fixed;
             top: 0;
-            right: 0;
+            right: 70px;
         }
 
         .dropdown-menu {
@@ -187,76 +184,46 @@
             <!-- /.panel-heading -->
             <div class="panel-body" style="height: 100%">
 
-                <c:choose>
-                    <c:when test="${userLearn!=null}">
-                        <table class="table" width="80%">
-                            <caption style="text-align: center">您已预约座位</caption>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <label for="hasseatnum">座位号</label>
-                                    <span id="hasseatnum" class="layui-input">${userLearn.seatnumber}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="booktime">预约时间</label>
-                                    <span id="booktime" class="layui-input"><fmt:formatDate value="${userLearn.date}"
-                                                                                            pattern="yyyy-MM-dd HH:mm:ss"/></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="timestep">预约时间段</label>
-                                    <span id="timestep" class="layui-input">${userLearn.period}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center">
-                                    <a href="<%=request.getContextPath()%>/jsp/releaseUserBook?bid=${userLearn.bid}"
-                                       class="btn btn-danger btn-sm">释放</a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </c:when>
-                    <c:otherwise>
-                        <form class="form-horizontal" role="form"
-                              action="<%= request.getContextPath()%>/jsp/bookSeatUserSub" method="post"
-                              onsubmit="getnum(this)">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">座位号</label>
-                                <div class="col-sm-9">
-                                    <label type="text" class="layui-input" id="seatNum"
-                                           style="width: 220px">点击预约自动填充</label>
-                                </div>
+                <form class="form-horizontal" role="form"
+                      action="<%= request.getContextPath()%>/jsp/bookSeatUserSub" method="post"
+                      onsubmit="getnum(this)">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">座位号</label>
+                        <div class="col-sm-9">
+                            <label type="text" class="layui-input" id="seatNum"
+                                   style="width: 220px">点击预约自动填充</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">开始</label>
+                        <div class="col-sm-9">
+                            <div class="layui-inline">
+                                <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px"
+                                       required
+                                       onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
+                                <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">开始</label>
-                                <div class="col-sm-9">
-                                    <div class="layui-inline">
-                                        <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px"
-                                               required
-                                               onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
-                                            <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">结束</label>
+                        <div class="col-sm-9">
+                            <div class="layui-inline">
+                                <input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px"
+                                       required
+                                       onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">结束</label>
-                                <div class="col-sm-9">
-                                    <div class="layui-inline">
-                                        <input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px"
-                                               required
-                                               onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="btn btn-primary" style="width: 30%;margin-left: 30%;margin-top: 20px">确定</button>
-                        </form>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" style="width: 30%;margin-left: 30%;margin-top: 20px">确定
+                    </button>
+                </form>
 
-                    </c:otherwise>
-                </c:choose>
+                <hr style="margin-top: 50px">
+                <h3 style="text-align: center;font-size: 20px;">我的预约</h3>
+                <label type="text" class="layui-input" style="width: 80%;margin-left:10%;margin-top: 25px"></label>
+                <label type="text" class="layui-input" style="width: 80%;margin-left:10%"></label>
+                <label type="text" class="layui-input" style="width: 80%;margin-left:10%"></label>
 
             </div>
             <!-- /.panel-body -->
