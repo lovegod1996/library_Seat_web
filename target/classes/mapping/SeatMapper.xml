@@ -16,6 +16,10 @@
         SELECT sid,fid,row,leftside,columns,seatnumber,statue FROM seat WHERE fid=#{fid}
     </select>
 
+    <select id="findOpenSeatsByFid" resultType="com.xoqao.web.bean.seat.Seat">
+        SELECT sid,fid,row,leftside,columns,seatnumber,statue FROM seat WHERE fid=#{fid} AND statue=0
+    </select>
+
     <select id="findSeatsByFidPage" resultType="com.xoqao.web.bean.seat.Seat">
         SELECT sid,fid,row,leftside,columns,seatnumber,statue FROM seat WHERE fid=#{fid}
          limit #{startRow},#{pageSize}

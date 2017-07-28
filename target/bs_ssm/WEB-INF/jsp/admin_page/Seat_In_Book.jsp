@@ -140,13 +140,27 @@
                         <td>
                             <div class="layui-collapse" lay-accordion="">
                                 <div class="layui-colla-item">
-                                    <h2 class="layui-colla-title">layui 更适合哪些开发者？</h2>
+                                    <h2 class="layui-colla-title">当前已预约${seat.bookings.size()}人</h2>
                                     <div class="layui-colla-content">
                                         <ul>
-                                            <li>111</li>
-                                            <li>111</li>
-                                            <li>111</li>
-                                            <li>111</li>
+                                            <c:forEach items="${seat.bookings}" var="booking">
+                                                <li>${booking.sno}&nbsp;&nbsp;&nbsp;<fmt:formatDate
+                                                        value="${booking.bstime}"
+                                                        pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate
+                                                        value="${booking.betime}" pattern="yyyy-MM-dd HH:mm:ss"/>&nbsp;&nbsp;&nbsp;
+                                                    <c:if test="${booking.statue==0}">
+                                                        未入座
+                                                    </c:if>
+                                                    <c:if test="${booking.statue==1}">
+                                                        入座
+                                                    </c:if>
+                                                    <c:if test="${booking.statue==2}">
+                                                        临时离开
+                                                    </c:if>
+                                                    <c:if test="${booking.statue==3}">
+                                                        离开
+                                                    </c:if></li>
+                                            </c:forEach>
                                         </ul>
                                     </div>
                                 </div>
@@ -278,8 +292,8 @@
            onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
             &#x1006;</a>
     </div>
-    <form class="layui-form" role="form" action=""
-          method="post">
+    <form class="layui-form" role="form" action="<%= request.getContextPath()%>/jsp/bookEmptSeat"
+          method="post" onsubmit="getnum(this);">
         <div class="layui-form-item">
             <label class="layui-form-label" style="width: 100px">座位号</label>
             <div class="layui-input-block">
@@ -320,13 +334,13 @@
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
 
 <script>
-    layui.use(['element', 'layer'], function(){
+    layui.use(['element', 'layer'], function () {
         var element = layui.element();
         var layer = layui.layer;
 
         //监听折叠
-        element.on('collapse(test)', function(data){
-            layer.msg('展开状态：'+ data.show);
+        element.on('collapse(test)', function (data) {
+            layer.msg('展开状态：' + data.show);
         });
     });
 </script>
@@ -396,6 +410,19 @@
             }
         });
     }
+</script>
+
+<script type="text/javascript">
+    function getnum(form) {
+        var $form = $(form);
+//        var seatNum=$("#seatNum").val();
+        var seatNum = document.getElementById("seatNum").innerText;
+        var editor = "<input type='hidden' name='seatNum' value='" + seatNum + "' />";
+        $form.append(editor);
+    }
+
+    <c:if test="${!empty error_msg}">alert("${error_msg}");
+    </c:if>
 </script>
 </body>
 </html>
