@@ -95,13 +95,6 @@
         }
     </script>
 
-    <%--//鼠标滑过显示该座位预约状况--%>
-    <script>
-        $(function () {
-            $(".popover-options a").popover({html: true});
-        });
-    </script>
-
     <style>
         .Roundseat {
             width: 128px;
@@ -119,15 +112,39 @@
             font-size: 12px;
         }
 
-        .LeftView{
+        .LeftView {
             width: 100%;
         }
-        .RightView{
+
+        .RightView {
             width: 30%;
+            height: 100%;
             display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+        }
+
+        .dropdown-menu {
+            background: #000;
+            opacity: 0.8;
+        }
+
+        .dropdown-menu li {
+            color: #ffffff;
+            padding-left: 10px;
+            margin-top: 10px;
         }
 
     </style>
+
+    <script>
+        $(document).ready(function () {
+            $("span").hover(function () {//鼠标悬停触发事件
+                $(".dropdown-toggle").dropdown('toggle');
+            });
+        });
+    </script>
 </head>
 <body>
 <div id="wrapper">
@@ -140,17 +157,22 @@
                    style="margin-left:20px ">点击刷新</a>
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body" style="height: 400px">
+            <div class="panel-body" style="height: 100%">
                 <div class="Roundseat">
                     <label class="seatView_lable" id="theseat">010210308</label>
                     <label class="seatView_lable">中原工学院图书馆南楼3排8座</label>
                     <label class="seatView_lable">当前空闲状态</label>
-                    <p class="popover-options">
-                        <a href="#" type="button" class="btn btn-success btn-sm" title="预约情况"
-                           data-container="body" data-toggle="popover" data-trigger="hover"
-                           data-content="时间大巴回家睡觉卡市场空间市场将按市场价洒出"
-                           onclick="getTableContent(this)">点击预约</a>
-                    </p>
+                    <div class="dropdown">
+                        <span class="dropdown-toggle btn btn-success btn-sm" type="button" data-toggle="dropdown"
+                              onclick="getTableContent(this)">点击预约</span>
+                        <ul class="dropdown-menu">
+                            <li>1</li>
+                            <li>1</li>
+                            <li>1</li>
+                            <li>1</li>
+                            <li>1</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -163,7 +185,7 @@
                 <i class="fa fa-bell fa-fw"></i> 预约座位
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body" style="height: 400px">
+            <div class="panel-body" style="height: 100%">
 
                 <c:choose>
                     <c:when test="${userLearn!=null}">
@@ -230,7 +252,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">确定</button>
+                            <button class="btn btn-primary" style="width: 30%;margin-left: 30%;margin-top: 20px">确定</button>
                         </form>
 
                     </c:otherwise>
