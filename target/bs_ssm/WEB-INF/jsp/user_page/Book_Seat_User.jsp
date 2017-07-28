@@ -264,6 +264,7 @@
                                 <label class="col-sm-3 control-label">开始</label>
                                 <div class="col-sm-9">
                                     <div class="layui-inline">
+                                        <input type="hidden" name="day" value="${day}">
                                         <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px"
                                                required
                                                onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
@@ -281,8 +282,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary" style="width: 30%;margin-left: 30%;margin-top: 20px">确定
-                            </button>
+
+                            <button class="btn btn-primary" style="width: 30%;margin-left: 30%;margin-top: 20px">确定</button>
                         </form>
 
                     </c:otherwise>

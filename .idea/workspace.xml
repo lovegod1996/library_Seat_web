@@ -6,7 +6,13 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b586f57a-9de6-47dc-b0c4-58a75fa9e17e" name="Default" comment="" />
+    <list default="true" id="b586f57a-9de6-47dc-b0c4-58a75fa9e17e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/user_pageController.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/user_pageController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/user_pageController.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/user_pageController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Book_Seat_User.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Book_Seat_User.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/user_page/Book_Seat_User.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/user_page/Book_Seat_User.jsp" />
+    </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,7 +37,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/User_Controller.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-6">
-              <caret line="153" column="37" lean-forward="true" selection-start-line="153" selection-start-column="37" selection-end-line="153" selection-end-column="37" />
+              <caret line="153" column="37" lean-forward="false" selection-start-line="153" selection-start-column="37" selection-end-line="153" selection-end-column="37" />
               <folding>
                 <element signature="e#6837#6856#0" expanded="true" />
                 <element signature="e#7226#7233#0" expanded="true" />
@@ -44,7 +50,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/phone/PhoneServerController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="47">
-              <caret line="348" column="7" lean-forward="true" selection-start-line="348" selection-start-column="7" selection-end-line="348" selection-end-column="7" />
+              <caret line="348" column="7" lean-forward="false" selection-start-line="348" selection-start-column="7" selection-end-line="348" selection-end-column="7" />
               <folding>
                 <element signature="e#11926#11939#0" expanded="true" />
               </folding>
@@ -56,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-183">
-              <caret line="164" column="9" lean-forward="true" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="9" />
+              <caret line="164" column="9" lean-forward="false" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="9" />
               <folding>
                 <element signature="e#5354#5367#0" expanded="true" />
               </folding>
@@ -64,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Seat_In_Empty.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Seat_In_Empty.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Empty.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="86" column="81" lean-forward="true" selection-start-line="86" selection-start-column="81" selection-end-line="86" selection-end-column="81" />
+            <state relative-caret-position="291">
+              <caret line="76" column="58" lean-forward="false" selection-start-line="76" selection-start-column="58" selection-end-line="76" selection-end-column="58" />
               <folding>
                 <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -76,11 +82,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Book_Seat_User.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Book_Seat_User.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Book_Seat_User.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="206" column="14" lean-forward="true" selection-start-line="206" selection-start-column="14" selection-end-line="206" selection-end-column="14" />
+            <state relative-caret-position="-897">
+              <caret line="9" column="65" lean-forward="false" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
               <folding>
                 <element signature="n#style#0;n#font#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -93,6 +99,16 @@
                 <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#2;n#form#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#form#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="canvasTest.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/canvasTest.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -209,12 +225,6 @@
       </expand>
       <select />
     </treeState>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1048" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -604,7 +614,7 @@
       <workItem from="1501029191823" duration="27369000" />
       <workItem from="1501136054764" duration="14585000" />
       <workItem from="1501158833813" duration="958000" />
-      <workItem from="1501207731824" duration="26608000" />
+      <workItem from="1501207731824" duration="27149000" />
     </task>
     <task id="LOCAL-00001" summary="完成图书馆和楼层信息修改">
       <created>1500863380158</created>
@@ -715,11 +725,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123363000" />
+    <option name="totallyTimeSpent" value="123904000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -738,7 +747,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33257404" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33257404" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26877683" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -802,7 +811,8 @@
     <MESSAGE value="完成预约状态下立即入座" />
     <MESSAGE value="Merge branch '1Q841995-master'" />
     <MESSAGE value="添加用户预约" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加用户预约" />
+    <MESSAGE value="Merge branch '1Q841995-master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/webapp/WEB-INF/jsp/user_page/Book_Seat_User.jsp&#10;#&#9;target/bs_ssm/WEB-INF/jsp/user_page/Book_Seat_User.jsp" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch '1Q841995-master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/webapp/WEB-INF/jsp/user_page/Book_Seat_User.jsp&#10;#&#9;target/bs_ssm/WEB-INF/jsp/user_page/Book_Seat_User.jsp" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -861,14 +871,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/building/Building.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/weekopen/WeekOpen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -1043,14 +1045,14 @@
         <state relative-caret-position="345">
           <caret line="18" column="34" lean-forward="false" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="34" />
           <folding>
-            <marker date="1501224183536" expanded="true" signature="673:753" ph="SELECT sid,f... " />
-            <marker date="1501224183536" expanded="true" signature="856:949" ph="SELECT sid,f... seat" />
-            <marker date="1501224183536" expanded="true" signature="1052:1171" ph="SELECT sid,f... " />
-            <marker date="1501224183536" expanded="true" signature="1253:1302" ph="UPDATE seat " />
-            <marker date="1501224183536" expanded="true" signature="1420:1500" ph="SELECT sid,f... " />
-            <marker date="1501224183536" expanded="true" signature="1570:1603" ph="DELETE FROM " />
-            <marker date="1501224183536" expanded="true" signature="1728:1791" ph="SELECT sid,f... seat" />
-            <marker date="1501224183536" expanded="true" signature="1728:1829" ph="SELECT sid,f... seat" />
+            <marker date="1501242990075" expanded="true" signature="673:753" ph="SELECT sid,f... " />
+            <marker date="1501242990075" expanded="true" signature="856:949" ph="SELECT sid,f... seat" />
+            <marker date="1501242990075" expanded="true" signature="1052:1171" ph="SELECT sid,f... " />
+            <marker date="1501242990075" expanded="true" signature="1253:1302" ph="UPDATE seat " />
+            <marker date="1501242990075" expanded="true" signature="1420:1500" ph="SELECT sid,f... " />
+            <marker date="1501242990075" expanded="true" signature="1570:1603" ph="DELETE FROM " />
+            <marker date="1501242990075" expanded="true" signature="1728:1791" ph="SELECT sid,f... seat" />
+            <marker date="1501242990075" expanded="true" signature="1728:1829" ph="SELECT sid,f... seat" />
           </folding>
         </state>
       </provider>
@@ -1110,24 +1112,24 @@
         <state relative-caret-position="163">
           <caret line="60" column="38" lean-forward="false" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="38" />
           <folding>
-            <marker date="1501224183535" expanded="true" signature="313:666" ph="SELECT seat.... seat" />
-            <marker date="1501224183535" expanded="true" signature="441:547" ph="SELECT COUNT... booking" />
-            <marker date="1501224183535" expanded="true" signature="441:548" ph="SELECT COUNT... booking" />
-            <marker date="1501224183535" expanded="true" signature="774:1164" ph="SELECT seat.... seat" />
-            <marker date="1501224183535" expanded="true" signature="902:1008" ph="SELECT COUNT... booking" />
-            <marker date="1501224183535" expanded="true" signature="1292:1670" ph="SELECT booki... booking" />
-            <marker date="1501224183535" expanded="true" signature="1783:2211" ph="SELECT booki... booking" />
-            <marker date="1501224183535" expanded="true" signature="2335:2693" ph="SELECT seat.... seat" />
-            <marker date="1501224183535" expanded="true" signature="2463:2570" ph="SELECT COUNT... booking" />
-            <marker date="1501224183535" expanded="true" signature="2794:3191" ph="SELECT seat.... seat" />
-            <marker date="1501224183535" expanded="true" signature="2922:3029" ph="SELECT COUNT... booking" />
-            <marker date="1501224183535" expanded="true" signature="3328:3526" ph="SELECT bid,s... booking" />
-            <marker date="1501224183535" expanded="true" signature="3639:3844" ph="SELECT bid,s... booking" />
-            <marker date="1501224183535" expanded="true" signature="4658:4717" ph="UPDATE booki... " />
-            <marker date="1501224183535" expanded="true" signature="4793:4873" ph="UPDATE booki... " />
-            <marker date="1501224183535" expanded="true" signature="4944:5010" ph="UPDATE booki... " />
-            <marker date="1501224183535" expanded="true" signature="5142:5295" ph="SELECT bid,s... booking" />
-            <marker date="1501224183535" expanded="true" signature="5417:5519" ph="SELECT bid,s... booking" />
+            <marker date="1501242990074" expanded="true" signature="313:666" ph="SELECT seat.... seat" />
+            <marker date="1501242990074" expanded="true" signature="441:547" ph="SELECT COUNT... booking" />
+            <marker date="1501242990074" expanded="true" signature="441:548" ph="SELECT COUNT... booking" />
+            <marker date="1501242990074" expanded="true" signature="774:1164" ph="SELECT seat.... seat" />
+            <marker date="1501242990074" expanded="true" signature="902:1008" ph="SELECT COUNT... booking" />
+            <marker date="1501242990074" expanded="true" signature="1292:1670" ph="SELECT booki... booking" />
+            <marker date="1501242990074" expanded="true" signature="1783:2211" ph="SELECT booki... booking" />
+            <marker date="1501242990074" expanded="true" signature="2335:2693" ph="SELECT seat.... seat" />
+            <marker date="1501242990074" expanded="true" signature="2463:2570" ph="SELECT COUNT... booking" />
+            <marker date="1501242990074" expanded="true" signature="2794:3191" ph="SELECT seat.... seat" />
+            <marker date="1501242990074" expanded="true" signature="2922:3029" ph="SELECT COUNT... booking" />
+            <marker date="1501242990074" expanded="true" signature="3328:3526" ph="SELECT bid,s... booking" />
+            <marker date="1501242990074" expanded="true" signature="3639:3844" ph="SELECT bid,s... booking" />
+            <marker date="1501242990074" expanded="true" signature="4658:4717" ph="UPDATE booki... " />
+            <marker date="1501242990074" expanded="true" signature="4793:4873" ph="UPDATE booki... " />
+            <marker date="1501242990074" expanded="true" signature="4944:5010" ph="UPDATE booki... " />
+            <marker date="1501242990074" expanded="true" signature="5142:5295" ph="SELECT bid,s... booking" />
+            <marker date="1501242990074" expanded="true" signature="5417:5519" ph="SELECT bid,s... booking" />
           </folding>
         </state>
       </provider>
@@ -1205,13 +1207,13 @@
         <state relative-caret-position="185">
           <caret line="42" column="33" lean-forward="false" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="33" />
           <folding>
-            <marker date="1501224183537" expanded="true" signature="315:403" ph="SELECT woid,... weekopen" />
-            <marker date="1501224183537" expanded="true" signature="473:528" ph="UPDATE weeko... " />
-            <marker date="1501224183537" expanded="true" signature="602:642" ph="DELETE FROM " />
-            <marker date="1501224183537" expanded="true" signature="1123:1236" ph="SELECT woid,... weekopen" />
-            <marker date="1501224183537" expanded="true" signature="1373:1502" ph="SELECT woid,... weekopen" />
-            <marker date="1501224183537" expanded="true" signature="1638:1902" ph="SELECT weeko... weekopen" />
-            <marker date="1501224183537" expanded="true" signature="2036:2169" ph="SELECT woid,... weekopen" />
+            <marker date="1501242990085" expanded="true" signature="315:403" ph="SELECT woid,... weekopen" />
+            <marker date="1501242990085" expanded="true" signature="473:528" ph="UPDATE weeko... " />
+            <marker date="1501242990085" expanded="true" signature="602:642" ph="DELETE FROM " />
+            <marker date="1501242990085" expanded="true" signature="1123:1236" ph="SELECT woid,... weekopen" />
+            <marker date="1501242990085" expanded="true" signature="1373:1502" ph="SELECT woid,... weekopen" />
+            <marker date="1501242990085" expanded="true" signature="1638:1902" ph="SELECT weeko... weekopen" />
+            <marker date="1501242990085" expanded="true" signature="2036:2169" ph="SELECT woid,... weekopen" />
           </folding>
         </state>
       </provider>
@@ -1221,11 +1223,11 @@
         <state relative-caret-position="70">
           <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#301#302#0" expanded="true" />
-            <element signature="e#330#331#0" expanded="true" />
-            <element signature="e#379#380#0" expanded="true" />
-            <element signature="e#415#416#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#301#302#0" expanded="false" />
+            <element signature="e#330#331#0" expanded="false" />
+            <element signature="e#379#380#0" expanded="false" />
+            <element signature="e#415#416#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1259,7 +1261,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/User_Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-6">
-          <caret line="153" column="37" lean-forward="true" selection-start-line="153" selection-start-column="37" selection-end-line="153" selection-end-column="37" />
+          <caret line="153" column="37" lean-forward="false" selection-start-line="153" selection-start-column="37" selection-end-line="153" selection-end-column="37" />
           <folding>
             <element signature="e#6837#6856#0" expanded="true" />
             <element signature="e#7226#7233#0" expanded="true" />
@@ -1304,7 +1306,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/phone/PhoneServerController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="47">
-          <caret line="348" column="7" lean-forward="true" selection-start-line="348" selection-start-column="7" selection-end-line="348" selection-end-column="7" />
+          <caret line="348" column="7" lean-forward="false" selection-start-line="348" selection-start-column="7" selection-end-line="348" selection-end-column="7" />
           <folding>
             <element signature="e#11926#11939#0" expanded="true" />
           </folding>
@@ -1314,17 +1316,35 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-183">
-          <caret line="164" column="9" lean-forward="true" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="9" />
+          <caret line="164" column="9" lean-forward="false" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="9" />
           <folding>
             <element signature="e#5354#5367#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Empty.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="76" column="58" lean-forward="false" selection-start-line="76" selection-start-column="58" selection-end-line="76" selection-end-column="58" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/canvasTest.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Book_Seat_User.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="206" column="14" lean-forward="true" selection-start-line="206" selection-start-column="14" selection-end-line="206" selection-end-column="14" />
+        <state relative-caret-position="-897">
+          <caret line="9" column="65" lean-forward="false" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
           <folding>
             <element signature="n#style#0;n#font#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1336,16 +1356,6 @@
             <element signature="n#style#0;n#input#1;n#div#0;n#div#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#2;n#form#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#form#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Empty.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="86" column="81" lean-forward="true" selection-start-line="86" selection-start-column="81" selection-end-line="86" selection-end-column="81" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

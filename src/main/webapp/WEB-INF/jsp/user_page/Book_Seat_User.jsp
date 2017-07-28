@@ -215,6 +215,7 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="height: 100%">
+
                 <c:choose>
                     <c:when test="${userLearn!=null}">
                         <table class="table" width="80%">
@@ -281,8 +282,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary" style="width: 30%;margin-left: 30%;margin-top: 20px">确定
-                            </button>
+
+                            <button class="btn btn-primary" style="width: 30%;margin-left: 30%;margin-top: 20px">确定</button>
                         </form>
 
                     </c:otherwise>
