@@ -7,45 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b586f57a-9de6-47dc-b0c4-58a75fa9e17e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/booking/BookingCusFloor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm.war" afterPath="$PROJECT_DIR$/target/bs_ssm.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/bean/booking/Booking.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/bean/booking/Booking.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/commen/CommenValue.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/commen/CommenValue.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/admin_pageController.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/admin_pageController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/phone/PhoneServerController.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/phone/PhoneServerController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/bean/seat/SeatState.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/bean/seat/SeatState.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/user_pageController.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/user_pageController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/dao/BookingMapper.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/dao/BookingMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/service/BookingService.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/service/BookingService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/service/BookingServiceImpl.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/service/BookingServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/utils/DateUtil.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/utils/DateUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/bean/booking/Booking.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/bean/booking/Booking.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/commen/CommenValue.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/commen/CommenValue.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/admin_pageController.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/admin_pageController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/phone/PhoneServerController.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/phone/PhoneServerController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/bean/seat/SeatState.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/bean/seat/SeatState.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/user_pageController.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/user_pageController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/dao/BookingMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/dao/BookingMapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/service/BookingService.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/service/BookingService.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/service/BookingServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/service/BookingServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/utils/DateUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/utils/DateUtil.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/booking/Booking.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/booking/Booking.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/commen/CommenValue.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/commen/CommenValue.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin_pageController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin_pageController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/phone/PhoneServerController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/phone/PhoneServerController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/seat/SeatState.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/seat/SeatState.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/dao/BookingMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/dao/BookingMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/BookingService.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/BookingService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/BookingServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/BookingServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/utils/DateUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/utils/DateUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapping/BookingMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapping/BookingMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Book.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Book.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Book_Seat_User.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Book_Seat_User.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/mapping/BookingMapper.xml" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/mapping/BookingMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/admin_page/Seat_In_Book.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/admin_page/Seat_In_Book.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/user_page/Book_Seat_User.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/user_page/Book_Seat_User.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mapping/BookingMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mapping/BookingMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Main_User.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Main_User.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/user_page/Main_User.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/user_page/Main_User.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,7 +26,86 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="14" column="54" lean-forward="false" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User_Controller.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/User_Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1679">
+              <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PhoneServerController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/phone/PhoneServerController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-386">
+              <caret line="217" column="23" lean-forward="true" selection-start-line="217" selection-start-column="23" selection-end-line="217" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DateUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/utils/DateUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-22">
+              <caret line="155" column="26" lean-forward="false" selection-start-line="155" selection-start-column="26" selection-end-line="155" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user_pageController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1477">
+              <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+              <folding>
+                <element signature="e#3116#3127#0" expanded="true" />
+                <element signature="e#7204#7217#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SeatState.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/seat/SeatState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+              <folding>
+                <element signature="e#906#907#0" expanded="true" />
+                <element signature="e#936#937#0" expanded="true" />
+                <element signature="e#983#984#0" expanded="true" />
+                <element signature="e#1021#1022#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main_User.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Main_User.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3537">
+              <caret line="46" column="40" lean-forward="true" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -73,6 +122,8 @@
       <find>findBookSeatBookingday</find>
       <find>findopenfloorsday</find>
       <find>findBookSeatBooking</find>
+      <find>getSeatData</find>
+      <find>floorSide</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -86,7 +137,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/FloorServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/BuildingAdmin_Controller.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/buildingadmin_page/Managing_Floor_BuildingAdmin.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/floors/Floor.java" />
@@ -100,7 +150,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/spring-mvc.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/weekopen/WeekOpenCus.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Main_User.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/News_List_User.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin/AdminController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapping/FloorsMapper.xml" />
@@ -124,7 +173,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/User_Controller.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Choose_Building.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Header_User.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Book_Seat_User.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Book.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/dao/BookingMapper.java" />
@@ -137,6 +185,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/utils/DateUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/booking/BookingCusFloor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/phone/PhoneServerController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/seat/SeatState.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Main_User.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java" />
       </list>
     </option>
   </component>
@@ -566,7 +617,7 @@
       <workItem from="1501289143158" duration="14123000" />
       <workItem from="1501312092670" duration="5465000" />
       <workItem from="1501412869715" duration="2670000" />
-      <workItem from="1501465005003" duration="746000" />
+      <workItem from="1501465005003" duration="4696000" />
     </task>
     <task id="LOCAL-00001" summary="完成图书馆和楼层信息修改">
       <created>1500863380158</created>
@@ -680,11 +731,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501247734971</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="修改后台接口添加返回图书馆信息">
+      <created>1501465858975</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1501465858975</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149875000" />
+    <option name="totallyTimeSpent" value="153825000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -772,7 +830,8 @@
     <MESSAGE value="添加用户预约" />
     <MESSAGE value="Merge branch '1Q841995-master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/webapp/WEB-INF/jsp/user_page/Book_Seat_User.jsp&#10;#&#9;target/bs_ssm/WEB-INF/jsp/user_page/Book_Seat_User.jsp" />
     <MESSAGE value="修改座位号自动填充、查看已预约信息" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改座位号自动填充、查看已预约信息" />
+    <MESSAGE value="修改后台接口添加返回图书馆信息" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改后台接口添加返回图书馆信息" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -827,109 +886,109 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java</url>
-          <line>187</line>
+          <line>231</line>
           <properties />
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java</url>
-          <line>189</line>
+          <line>233</line>
           <properties />
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java</url>
-          <line>191</line>
+          <line>235</line>
           <properties />
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java</url>
-          <line>193</line>
+          <line>237</line>
           <properties />
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java</url>
-          <line>192</line>
+          <line>236</line>
           <properties />
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java</url>
-          <line>194</line>
+          <line>238</line>
           <properties />
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java</url>
-          <line>196</line>
+          <line>240</line>
           <properties />
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java</url>
-          <line>195</line>
+          <line>239</line>
           <properties />
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java</url>
-          <line>200</line>
+          <line>244</line>
           <properties />
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java</url>
-          <line>206</line>
+          <line>250</line>
           <properties />
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java</url>
-          <line>203</line>
+          <line>247</line>
           <properties />
           <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java</url>
-          <line>212</line>
+          <line>256</line>
           <properties />
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java</url>
-          <line>218</line>
+          <line>262</line>
           <properties />
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java</url>
-          <line>221</line>
+          <line>265</line>
           <properties />
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java</url>
-          <line>223</line>
+          <line>267</line>
           <properties />
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java</url>
-          <line>154</line>
+          <line>198</line>
           <properties />
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java</url>
-          <line>170</line>
+          <line>214</line>
           <properties />
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java</url>
-          <line>168</line>
+          <line>212</line>
           <properties />
           <option name="timeStamp" value="54" />
         </line-breakpoint>
@@ -1000,37 +1059,15 @@
           <option name="timeStamp" value="72" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="76" />
+      <option name="time" value="87" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/weekopen/WeekOpenCus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="38" lean-forward="true" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/news/Notice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="5" column="6" lean-forward="true" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Edit_News.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_List_Admin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-667">
-          <caret line="12" column="6" lean-forward="true" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -1104,13 +1141,6 @@
           <folding>
             <element signature="e#2974#2983#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Public_Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="31">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1237,6 +1267,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
           <caret line="64" column="63" lean-forward="true" selection-start-line="64" selection-start-column="63" selection-end-line="64" selection-end-column="63" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1259,21 +1290,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-230">
           <caret line="65" column="14" lean-forward="true" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/public_pageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -1311,16 +1327,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="170" column="0" lean-forward="false" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
-          <folding>
-            <element signature="e#5354#5367#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Book.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1073">
@@ -1350,22 +1356,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
           <caret line="122" column="14" lean-forward="true" selection-start-line="122" selection-start-column="14" selection-end-line="122" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin_pageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6808">
-          <caret line="325" column="52" lean-forward="false" selection-start-line="325" selection-start-column="52" selection-end-line="325" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/User_Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3404">
-          <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1413,14 +1403,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/utils/DateUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="254" column="19" lean-forward="true" selection-start-line="254" selection-start-column="19" selection-end-line="254" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/booking/SeatBookings.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -1442,8 +1424,8 @@
         <state relative-caret-position="299">
           <caret line="13" column="24" lean-forward="false" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
           <folding>
-            <element signature="e#1237#1238#0" expanded="true" />
-            <element signature="e#1266#1267#0" expanded="true" />
+            <element signature="e#1237#1238#0" expanded="false" />
+            <element signature="e#1266#1267#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1453,23 +1435,111 @@
         <state relative-caret-position="299">
           <caret line="13" column="28" lean-forward="false" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
           <folding>
-            <element signature="e#282#283#0" expanded="true" />
-            <element signature="e#310#311#0" expanded="true" />
-            <element signature="e#352#353#0" expanded="true" />
-            <element signature="e#386#387#0" expanded="true" />
-            <element signature="e#421#422#0" expanded="true" />
-            <element signature="e#452#453#0" expanded="true" />
-            <element signature="e#500#501#0" expanded="true" />
-            <element signature="e#540#541#0" expanded="true" />
+            <element signature="e#282#283#0" expanded="false" />
+            <element signature="e#310#311#0" expanded="false" />
+            <element signature="e#352#353#0" expanded="false" />
+            <element signature="e#386#387#0" expanded="false" />
+            <element signature="e#421#422#0" expanded="false" />
+            <element signature="e#452#453#0" expanded="false" />
+            <element signature="e#500#501#0" expanded="false" />
+            <element signature="e#540#541#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_List_Admin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" column="6" lean-forward="true" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Public_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/public_pageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="668">
+          <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin_pageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="155" column="55" lean-forward="true" selection-start-line="155" selection-start-column="55" selection-end-line="155" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="54" lean-forward="false" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/utils/DateUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-22">
+          <caret line="155" column="26" lean-forward="false" selection-start-line="155" selection-start-column="26" selection-end-line="155" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/User_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1679">
+          <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/phone/PhoneServerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="622">
-          <caret line="559" column="34" lean-forward="true" selection-start-line="559" selection-start-column="34" selection-end-line="559" selection-end-column="34" />
+        <state relative-caret-position="-386">
+          <caret line="217" column="23" lean-forward="true" selection-start-line="217" selection-start-column="23" selection-end-line="217" selection-end-column="23" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/seat/SeatState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+          <folding>
+            <element signature="e#906#907#0" expanded="true" />
+            <element signature="e#936#937#0" expanded="true" />
+            <element signature="e#983#984#0" expanded="true" />
+            <element signature="e#1021#1022#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Main_User.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3537">
+          <caret line="46" column="40" lean-forward="true" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1477">
+          <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+          <folding>
+            <element signature="e#3116#3127#0" expanded="true" />
+            <element signature="e#7204#7217#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

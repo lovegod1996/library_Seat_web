@@ -73,15 +73,59 @@ public class user_pageController {
             weekOpenCus.setBuilding(buildingById.getEmployer());
             weekOpenCuses.add(weekOpenCus);
         }
+        List<Building> allBuilding = buildingService.findAllBuilding();
+        model.addAttribute("buildings", allBuilding);
+
         model.addAttribute("weekopens", weekOpenCuses);
         return "user_page/Main_User";
     }
 
+    /**
+     * 获取当前场馆座位状态
+     * @param building
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/getSeatData")
     public @ResponseBody
-    List<SeatState> getSeatDate(String floor) throws Exception {
-
-        return null;
+    List<SeatState> getSeatDate(Integer building) throws Exception {
+        List<SeatState> seatStates=new ArrayList<SeatState>();
+        List<Floor> floors = floorService.findfloorsBybid(building);
+        for (int i = 0; i < floors.size(); i++) {
+            SeatState seatState = new SeatState();
+            seatState.setFloor(floors.get(i).getEmployer());
+            List<Seat> openSeatsByFid = seatService.findOpenSeatsByFid(floors.get(i).getFid());
+            Integer nobook = 0;
+            Integer bookNum = 0;
+            Integer seatedNum = 0;
+            Integer snapNum = 0;
+            for (int j = 0; j < openSeatsByFid.size(); j++) {
+                    List<Booking> bookSeatBooking = bookingService.findBookSeatBookingday(openSeatsByFid.get(j).getSid(), 0);  //返回每个座位的所有预约
+                    Integer seatStatue = DateUtil.findSeatStatue(bookSeatBooking);  //计算当前时间座位状态
+                    switch (seatStatue) {
+                        case 0:
+                            nobook++;
+                            break;
+                        case 1:
+                            bookNum++;
+                            break;
+                        case 2:
+                            seatedNum++;
+                            break;
+                        case 3:
+                            snapNum++;
+                            break;
+                        default:
+                            break;
+                    }
+            }
+            seatState.setNobook(nobook);
+            seatState.setBookNum(bookNum);
+            seatState.setSeatedNum(seatedNum);
+            seatState.setSnapNum(snapNum);
+            seatStates.add(seatState);
+        }
+        return seatStates;
     }
 
 
