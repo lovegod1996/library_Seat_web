@@ -366,8 +366,8 @@ public class PhoneServerController {
             bookingSeat.setSeatnumber(byid.getSeatnumber());
 
 
-            BookingCusFloor bookingCusFloor=new BookingCusFloor();
-            BeanUtils.copyProperties(bookingSeat,bookingCusFloor);
+            BookingCusFloor bookingCusFloor = new BookingCusFloor();
+            BeanUtils.copyProperties(bookingSeat, bookingCusFloor);
             Floor floor = floorService.findfloorByid(byid.getFid());
             bookingCusFloor.setFloor(floor.getEmployer());
             Building buildingById = buildingService.findBuildingById(floor.getBid());
@@ -576,7 +576,7 @@ public class PhoneServerController {
         List<Booking> bookingBySno = bookingService.findBookingBySno(sno, 0);
         Booking findbooknow = DateUtil.findbooknow(bookingBySno);
         BookingCusFloor bookingCusFloor = new BookingCusFloor();
-        if(findbooknow!=null){
+        if (findbooknow != null) {
             BeanUtils.copyProperties(findbooknow, bookingCusFloor);
             Seat byid = seatService.findByid(findbooknow.getSid());
             bookingCusFloor.setColumns(byid.getColumns());
@@ -590,12 +590,66 @@ public class PhoneServerController {
             bookingCusFloor.setBuilding(buildingById.getEmployer());
             map.put("code", 0);
             map.put("message", "成功");
-            map.put("data", findbooknow);
-        }else{
+            map.put("data", bookingCusFloor);
+        } else {
             map.put("code", 1);
             map.put("message", "暂无预约记录");
             map.put("data", null);
         }
+        return map;
+    }
+
+    /**
+     * 根据座位号查询今明某天预约情况
+     *
+     * @param seatnumber
+     * @param day
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/seatbook")
+    public @ResponseBody
+    Map<String, Object> seatbook(String seatnumber, Integer day) throws Exception {
+        Seat seatBynumber = seatService.findSeatBynumber(seatnumber);
+        List<Booking> bookSeatBooking = bookingService.findBookSeatBookingday(seatBynumber.getSid(), day);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("code", 0);
+        map.put("message", "成功");
+        map.put("data", bookSeatBooking);
+        return map;
+    }
+
+    /**
+     * 根据学号查询所有预约记录
+     *
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/userbooks")
+    public @ResponseBody
+    Map<String, Object> userbooks(String sno) throws Exception {
+        List<Booking> finduserbook = bookingService.finduserbook(sno);
+        List<BookingCusFloor> bookingCusFloorList = new ArrayList<BookingCusFloor>();
+        for (int i = 0; i <finduserbook.size() ; i++) {
+            BookingCusFloor bookingCusFloor=new BookingCusFloor();
+            BeanUtils.copyProperties(finduserbook.get(i), bookingCusFloor);
+            Seat byid = seatService.findByid(finduserbook.get(i).getSid());
+            bookingCusFloor.setColumns(byid.getColumns());
+            bookingCusFloor.setFid(byid.getFid());
+            bookingCusFloor.setLeftside(byid.getLeftside());
+            bookingCusFloor.setRow(byid.getRow());
+            bookingCusFloor.setSeatnumber(byid.getSeatnumber());
+            Floor floor = floorService.findfloorByid(byid.getFid());
+            bookingCusFloor.setFloor(floor.getEmployer());
+            Building buildingById = buildingService.findBuildingById(floor.getBid());
+            bookingCusFloor.setBuilding(buildingById.getEmployer());
+            bookingCusFloorList.add(bookingCusFloor);
+        }
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("code", 0);
+        map.put("message", "成功");
+        map.put("data", bookingCusFloorList);
         return map;
     }
 

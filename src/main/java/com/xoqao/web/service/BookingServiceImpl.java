@@ -95,4 +95,9 @@ public class BookingServiceImpl implements BookingService {
     public void deleteByid(Integer bid) throws Exception {
         bookingMapper.deleteByid(bid);
     }
+
+    public List<Booking> finduserbook(String sno) throws Exception {
+        List<Booking> finduserbook = bookingMapper.finduserbook(sno);
+        return finduserbook;
+    }
 }

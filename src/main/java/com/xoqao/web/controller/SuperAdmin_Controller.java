@@ -36,6 +36,7 @@ public class SuperAdmin_Controller {
 
     @RequestMapping("/leftmenu_SuperAdmin")
     public String leftmenu_SuperAdmin(Model model) throws Exception {
+
         return "superadmin_page/Leftmenu_SuperAdmin";
     }
 

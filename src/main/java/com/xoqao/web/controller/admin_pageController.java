@@ -53,6 +53,9 @@ public class admin_pageController {
     @Autowired
     private WeekOpenService weekOpenService;
 
+    @Autowired
+    private BuildingService buildingService;
+
     @RequestMapping("/index_Admin")
     public String index_Admin(Model model, HttpSession httpSession) throws Exception {
         Integer type = (Integer) httpSession.getAttribute("admintype");
@@ -73,6 +76,8 @@ public class admin_pageController {
     public String main_Admin(Model model) throws Exception {
         List<Notice> allNoticetop = noticeService.findAllNoticetop();
         model.addAttribute("noticeTop", allNoticetop);
+        List<Building> allBuilding = buildingService.findAllBuilding();
+        model.addAttribute("buildings", allBuilding);
         return "admin_page/Main_Admin";
     }
 
@@ -340,10 +345,10 @@ public class admin_pageController {
         Booking byid = bookingService.findByid(bid);
         Integer disTime = DateUtil.getDisTime(new Date(), byid.getBetime());
         if (disTime < CommenValue.MAX_TIME) {
-            bookingService.updateEtime(new Date(), 3, 0,0, bid);
+            bookingService.updateEtime(new Date(), 3, 0, 0, bid);
         } else {
             if (type == 0) {  //判断是否是本人释放
-                bookingService.updateEtime(new Date(), 3, 0,0, bid);
+                bookingService.updateEtime(new Date(), 3, 0, 0, bid);
             } else {   //他人释放
                 if (byid.getStatue() == 2) {   //判断是否已经是已经离开状态
                     Integer disTime1 = DateUtil.getDisTime(byid.getEtime(), new Date());
@@ -351,7 +356,7 @@ public class admin_pageController {
                         bookingService.updateDeal(1, 3, bid);
                     }
                 } else {
-                    bookingService.updateEtime(new Date(), 2, 0,0, bid);
+                    bookingService.updateEtime(new Date(), 2, 0, 0, bid);
                 }
             }
         }

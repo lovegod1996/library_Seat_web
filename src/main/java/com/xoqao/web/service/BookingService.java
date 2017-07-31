@@ -91,4 +91,12 @@ public interface BookingService {
 
 
     void deleteByid( Integer bid)throws Exception;
+
+    /**
+     * 根据学号查询预约记录
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    List<Booking> finduserbook(String sno)throws Exception;
 }

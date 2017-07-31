@@ -113,4 +113,12 @@
     <delete id="deleteByid" >
         DELETE FROM booking WHERE bid=#{bid}
     </delete>
+
+    <!--根据学号查询所有的预约记录-->
+    <select id="finduserbook" resultType="com.xoqao.web.bean.booking.Booking">
+         SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
+        FROM booking
+        WHERE sno=#{sno}
+        ORDER BY bstime DESC
+    </select>
 </mapper>

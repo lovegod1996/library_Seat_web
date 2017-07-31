@@ -5,6 +5,7 @@ import com.xoqao.web.bean.booking.BookingSeat;
 import com.xoqao.web.bean.seat.Seat;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Date;
 import java.util.List;
@@ -127,4 +128,12 @@ public interface BookingMapper {
 
 
     void deleteByid(@Param("bid") Integer bid)throws Exception;
+
+    /**
+     * 根据学号查询预约记录
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    List<Booking> finduserbook(@Param("sno") String sno)throws Exception;
 }
