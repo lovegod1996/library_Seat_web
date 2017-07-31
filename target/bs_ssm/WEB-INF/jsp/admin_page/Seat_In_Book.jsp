@@ -149,7 +149,7 @@
                                                         pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate
                                                         value="${booking.betime}" pattern="yyyy-MM-dd HH:mm:ss"/>&nbsp;&nbsp;&nbsp;
                                                     <c:if test="${booking.statue==0}">
-                                                        未入座
+                                                        预约
                                                     </c:if>
                                                     <c:if test="${booking.statue==1}">
                                                         入座

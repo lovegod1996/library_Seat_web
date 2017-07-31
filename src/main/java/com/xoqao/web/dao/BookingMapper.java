@@ -97,7 +97,7 @@ public interface BookingMapper {
      * @param bid    预约id
      * @throws Exception
      */
-    void updateEtime(@Param("etime") Date etime, @Param("statue") Integer statue, @Param("deal") Integer deal, @Param("bid") Integer bid) throws Exception;
+    void updateEtime(@Param("etime") Date etime, @Param("statue") Integer statue,@Param("delay") Integer delay, @Param("deal") Integer deal, @Param("bid") Integer bid) throws Exception;
 
     /**
      * 修改违约状态
@@ -124,4 +124,7 @@ public interface BookingMapper {
      * @throws Exception
      */
     Booking findByid(@Param("bid") Integer bid)throws Exception;
+
+
+    void deleteByid(@Param("bid") Integer bid)throws Exception;
 }

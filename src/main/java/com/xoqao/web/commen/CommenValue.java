@@ -24,4 +24,8 @@ public class CommenValue {
      * 失信判定最长时间
      */
     public static  Integer MAX_TIME=15;
+    /**
+     * 最长临时离开时间
+     */
+    public static Integer MAX_DELAY=60;
 }

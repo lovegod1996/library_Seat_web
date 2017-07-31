@@ -160,7 +160,7 @@ public class DateUtil {
 //          boolean inDate = isInDate(new Date(), sdf.format(bookings.get(i).getBstime()), sdf.format(bookings.get(i).getBetime()));
             boolean b = belongCalendar(new Date(), bookings.get(i).getBstime(), bookings.get(i).getBetime());
             if (b) {
-                if (bookings.get(i).getStime() == null) {  //如果还没有入座
+                if (bookings.get(i).getStime() == null && bookings.get(i).getStatue() == 0) {  //如果还没有入座
                     statue = 1;
                 } else {
                     if (bookings.get(i).getEtime() == null) {   //如果还没有离开
@@ -168,6 +168,8 @@ public class DateUtil {
                     } else {
                         if (bookings.get(i).getStatue() == 2) {
                             statue = 3;
+                        } else if (bookings.get(i).getStatue() == 1) {
+                            statue = 2;
                         } else {
                             statue = 0;
                         }
@@ -179,6 +181,23 @@ public class DateUtil {
 
         }
         return statue;
+    }
+
+    /**
+     * 查找当前时间内的预约
+     *
+     * @param bookings
+     * @return
+     */
+    public static Booking findbooknow(List<Booking> bookings) {
+        for (int i = 0; i < bookings.size(); i++) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            boolean b = belongCalendar(new Date(), bookings.get(i).getBstime(), bookings.get(i).getBetime());
+            if (b) {
+                return bookings.get(i);
+            }
+        }
+        return null;
     }
 
     /**
@@ -200,6 +219,9 @@ public class DateUtil {
             stime = df.parse(format);
             etime = df.parse(format1);
             boolean b1 = belongCalendar(stime, opentime, closeTime);
+            if (stime.equals(opentime)) {
+                b1 = true;
+            }
             if (b1) {
                 boolean b2 = belongCalendar(etime, opentime, closeTime);
                 if (b2) {
@@ -244,6 +266,10 @@ public class DateUtil {
                 bb = true;
             }
         }
+        if (stime.before(booking.getBstime()) && etime.after(booking.getBetime())) {
+            bb = true;
+        }
+
         return bb;
     }
 

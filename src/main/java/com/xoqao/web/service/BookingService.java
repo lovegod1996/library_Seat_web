@@ -65,7 +65,7 @@ public interface BookingService {
      * @param bid    预约id
      * @throws Exception
      */
-    void updateEtime( Date etime,  Integer statue,  Integer deal,  Integer bid) throws Exception;
+    void updateEtime( Date etime,  Integer statue, Integer delay,  Integer deal,  Integer bid) throws Exception;
 
     /**
      * 修改违约状态
@@ -89,4 +89,6 @@ public interface BookingService {
 
     List<Booking> findBookSeatBookingday(Integer sid,Integer day)throws Exception;
 
+
+    void deleteByid( Integer bid)throws Exception;
 }

@@ -160,14 +160,15 @@
             <div class="panel-heading">
                 <i class="fa fa-bar-chart-o fa-fw"></i> 空闲座位统计
                 <font id="nowtime" style="margin-left: 20px"></font>
-                <a href="${pageContext.request.contextPath }/jsp/book_Seat_User" class="btn btn-success btn-xs"
+                <a href="${pageContext.request.contextPath }/jsp/book_Seat_User?fid=${fid}&day=${day}"
+                   class="btn btn-success btn-xs"
                    style="margin-left:20px ">点击刷新</a>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="height: 100%">
                 <c:forEach items="${seatsbooks}" var="seat">
                     <div class="Roundseat">
-                        <label class="seatView_lable" ><span class="seatnumber">${seat.seatnumber}</span> </label>
+                        <label class="seatView_lable"><span class="seatnumber">${seat.seatnumber}</span> </label>
                         <label class="seatView_lable">${seat.leftside==0?"左":"右"}侧${seat.row}排${seat.columns}列</label>
                         <label class="seatView_lable">
                             <c:if test="${seat.seatStatue==0}">
@@ -186,7 +187,7 @@
                         <div class="dropdown">
                         <span class="dropdown-toggle btn btn-success btn-sm" type="button" data-toggle="dropdown"
                               onclick="getTableContent(this)">点击预约</span>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu" style="width:10%">
                                 <c:forEach items="${seat.bookings}" var="booking">
                                     <li>${booking.sno}&nbsp;&nbsp;&nbsp;<fmt:formatDate
                                             value="${booking.bstime}"
@@ -237,6 +238,7 @@
                         <label class="col-sm-3 control-label">开始</label>
                         <div class="col-sm-9">
                             <div class="layui-inline">
+                                <input type="hidden" name="day" value="${day}">
                                 <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px"
                                        required
                                        onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
@@ -262,22 +264,23 @@
 
                 <hr style="margin-top: 50px">
                 <h3 style="text-align: center;font-size: 20px;">我的预约</h3>
-                <c:forEach items="${bookings}" var="book" varStatus="step">
-                    <c:choose>
-                        <c:when test="${step.index==1}">
-                            <label type="text" class="layui-input" style="width: 80%;margin-left:10%;margin-top: 25px">${book.seatnumber}&nbsp;&nbsp;&nbsp;<fmt:formatDate
-                                    value="${book.bstime}"
-                                    pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate
-                                    value="${book.betime}" pattern="yyyy-MM-dd HH:mm:ss"/></label>
-                        </c:when>
-                        <c:otherwise>
-                            <label type="text" class="layui-input" style="width: 80%;margin-left:10%">${book.seatnumber}&nbsp;&nbsp;&nbsp;<fmt:formatDate
-                                    value="${book.bstime}"
-                                    pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate
-                                    value="${book.betime}" pattern="yyyy-MM-dd HH:mm:ss"/></label>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
+                <ul>
+                    <c:forEach items="${bookings}" var="book" varStatus="step">
+                        <c:choose>
+                            <c:when test="${step.index==0}">
+                                <li style="width: 80%;margin-left:10%;margin-top: 25px">${book.seatnumber}&nbsp;&nbsp;&nbsp;<fmt:formatDate
+                                        value="${book.bstime}" pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate
+                                        value="${book.betime}" pattern="yyyy-MM-dd HH:mm:ss"/></li>
+                            </c:when>
+                            <c:otherwise>
+                                <li style="width: 80%;margin-left:10%">${book.seatnumber}&nbsp;&nbsp;&nbsp;<fmt:formatDate
+                                        value="${book.bstime}"
+                                        pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate
+                                        value="${book.betime}" pattern="yyyy-MM-dd HH:mm:ss"/></li>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </ul>
             </div>
             <!-- /.panel-body -->
         </div>

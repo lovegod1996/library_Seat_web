@@ -165,6 +165,7 @@ public class user_pageController {
         }
         model.addAttribute("seatsbooks", seatBookinges);
         model.addAttribute("day", day);
+        model.addAttribute("fid", fid);
         model.addAttribute("bookings", bookingSeats);
 
         return "user_page/Book_Seat_User";

@@ -69,12 +69,12 @@ public class BookingServiceImpl implements BookingService {
         bookingMapper.updateStime(now, bid);
     }
 
-    public void updateEtime(Date etime, Integer statue, Integer deal, Integer bid) throws Exception {
-        bookingMapper.updateEtime(etime, statue, deal, bid);
+    public void updateEtime(Date etime, Integer statue, Integer delay, Integer deal, Integer bid) throws Exception {
+        bookingMapper.updateEtime(etime, statue, delay, deal, bid);
     }
 
-    public void updateDeal(Integer deal,Integer  statue, Integer bid) throws Exception {
-        bookingMapper.updateDeal(deal,statue, bid);
+    public void updateDeal(Integer deal, Integer statue, Integer bid) throws Exception {
+        bookingMapper.updateDeal(deal, statue, bid);
     }
 
     public List<Booking> findBookingBySno(String sno, Integer date) throws Exception {
@@ -90,5 +90,9 @@ public class BookingServiceImpl implements BookingService {
     public List<Booking> findBookSeatBookingday(Integer sid, Integer day) throws Exception {
         List<Booking> bookSeatBookingday = bookingMapper.findBookSeatBookingday(sid, day);
         return bookSeatBookingday;
+    }
+
+    public void deleteByid(Integer bid) throws Exception {
+        bookingMapper.deleteByid(bid);
     }
 }
