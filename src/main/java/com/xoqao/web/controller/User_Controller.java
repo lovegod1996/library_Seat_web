@@ -1,8 +1,11 @@
 package com.xoqao.web.controller;
 
+import com.xoqao.web.bean.booking.Booking;
+import com.xoqao.web.bean.booking.BookingCusFloor;
 import com.xoqao.web.bean.building.Building;
 import com.xoqao.web.bean.building.BuildingCusFloors;
 import com.xoqao.web.bean.floors.Floor;
+import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.user.User;
 import com.xoqao.web.bean.userbook.UserLearn;
 import com.xoqao.web.bean.weekopen.WeekOpen;
@@ -40,38 +43,57 @@ public class User_Controller {
 
     @Autowired
     private WeekOpenService weekOpenService;
+    @Autowired
+    private SeatService seatService;
 
     @RequestMapping("/information_User")
     public String information_User(Model model) throws Exception {
+
         return "user_page/user_information/Information_User";
     }
 
+    /**
+     * 左侧导航菜单
+     *
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/userInformation_leftmenu")
     public String userInformation_leftmenu(Model model) throws Exception {
+
+
         return "user_page/user_information/UserInformation_leftmenu";
     }
 
     @RequestMapping("/userInformation_rightcontent")
     public String userInformation_rightcontent(Model model) throws Exception {
+
+
         return "user_page/user_information/UserInformation_rightcontent";
     }
 
+    /**
+     * 查询学习记录
+     * @param model
+     * @param page
+     * @param httpSession
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/study_List")
     public String study_List(Model model, Integer page, HttpSession httpSession) throws Exception {
         User user = (User) httpSession.getAttribute("user");
 
-        List<UserLearn> userLearnByUid = userLearnService.findUserLearnByUid(user.getUid());
-
-        if (userLearnByUid.size() > 0) {
-
+        List<Booking> finduserbook = bookingService.finduserbook(user.getSno());
+        if(finduserbook.size()>0){
             int pageSize = 5;
-
-            model.addAttribute("userLearnSize", userLearnByUid.size());
+            model.addAttribute("userbookSize", finduserbook.size());
             int pageTims;
-            if (userLearnByUid.size() % pageSize == 0) {
-                pageTims = userLearnByUid.size() / pageSize;
+            if (finduserbook.size() % pageSize == 0) {
+                pageTims = finduserbook.size() / pageSize;
             } else {
-                pageTims = userLearnByUid.size() / pageSize + 1;
+                pageTims = finduserbook.size() / pageSize + 1;
             }
             httpSession.setAttribute("pageTimes", pageTims);
             //页面初始的时候没有初试值
@@ -80,17 +102,32 @@ public class User_Controller {
             }
             //每页开始的第几条记录
             int startRow;
-            if (userLearnByUid.size() < pageSize) {
+            if (finduserbook.size() < pageSize) {
                 startRow = 0;
             } else {
                 startRow = (page - 1) * pageSize;
             }
             model.addAttribute("currentPage", page);
-            List<UserLearn> userLearnByUidPage = userLearnService.findUserLearnByUidPage(user.getUid(), startRow, pageSize);
+            List<Booking> finduserbookpage = bookingService.finduserbookpage(user.getSno(), startRow, pageSize);
 
-            model.addAttribute("userLearns", userLearnByUidPage);
-            return "user_page/user_information/Study_List";
-        } else {
+            List<BookingCusFloor> bookingCusFloorList = new ArrayList<BookingCusFloor>();
+            for (int i = 0; i < finduserbookpage.size(); i++) {
+                BookingCusFloor bookingCusFloor = new BookingCusFloor();
+                BeanUtils.copyProperties(finduserbookpage.get(i), bookingCusFloor);
+                Seat byid = seatService.findByid(finduserbookpage.get(i).getSid());
+                bookingCusFloor.setColumns(byid.getColumns());
+                bookingCusFloor.setFid(byid.getFid());
+                bookingCusFloor.setLeftside(byid.getLeftside());
+                bookingCusFloor.setRow(byid.getRow());
+                bookingCusFloor.setSeatnumber(byid.getSeatnumber());
+                Floor floor = floorService.findfloorByid(byid.getFid());
+                bookingCusFloor.setFloor(floor.getEmployer());
+                Building buildingById = buildingService.findBuildingById(floor.getBid());
+                bookingCusFloor.setBuilding(buildingById.getEmployer());
+                bookingCusFloorList.add(bookingCusFloor);
+            }
+            model.addAttribute("userbooks", bookingCusFloorList);
+        }else {
             httpSession.setAttribute("pageTimes", 1);
             model.addAttribute("nullList", "你怎么还不去看书呢？");
         }
@@ -101,18 +138,19 @@ public class User_Controller {
     public String unpromise_List(Model model, Integer page, HttpSession httpSession) throws Exception {
         User user = (User) httpSession.getAttribute("user");
 
-        List<UserLearn> userLearnPerByUid = userLearnService.findUserLearnPerByUid(user.getUid());
+        List<Booking> finduserbookpromise = bookingService.finduserbookpromise(user.getSno(), 1);
 
-        if (userLearnPerByUid.size() > 0) {
+
+        if (finduserbookpromise.size() > 0) {
 
             int pageSize = 5;
 
-            model.addAttribute("userLearnSize", userLearnPerByUid.size());
+            model.addAttribute("userbookSize", finduserbookpromise.size());
             int pageTims;
-            if (userLearnPerByUid.size() % pageSize == 0) {
-                pageTims = userLearnPerByUid.size() / pageSize;
+            if (finduserbookpromise.size() % pageSize == 0) {
+                pageTims = finduserbookpromise.size() / pageSize;
             } else {
-                pageTims = userLearnPerByUid.size() / pageSize + 1;
+                pageTims = finduserbookpromise.size() / pageSize + 1;
             }
             httpSession.setAttribute("pageTimes", pageTims);
             //页面初始的时候没有初试值
@@ -121,15 +159,32 @@ public class User_Controller {
             }
             //每页开始的第几条记录
             int startRow;
-            if (userLearnPerByUid.size() < pageSize) {
+            if (finduserbookpromise.size() < pageSize) {
                 startRow = 0;
             } else {
                 startRow = (page - 1) * pageSize;
             }
             model.addAttribute("currentPage", page);
-            List<UserLearn> userLearnByUidPage = userLearnService.findUserLearnPerByUidPage(user.getUid(), startRow, pageSize);
+            List<Booking> finduserbookpromisepage = bookingService.finduserbookpromisepage(user.getSno(), 1, startRow, pageSize);
 
-            model.addAttribute("userLearns", userLearnByUidPage);
+            List<BookingCusFloor> bookingCusFloorList = new ArrayList<BookingCusFloor>();
+            for (int i = 0; i < finduserbookpromisepage.size(); i++) {
+                BookingCusFloor bookingCusFloor = new BookingCusFloor();
+                BeanUtils.copyProperties(finduserbookpromisepage.get(i), bookingCusFloor);
+                Seat byid = seatService.findByid(finduserbookpromisepage.get(i).getSid());
+                bookingCusFloor.setColumns(byid.getColumns());
+                bookingCusFloor.setFid(byid.getFid());
+                bookingCusFloor.setLeftside(byid.getLeftside());
+                bookingCusFloor.setRow(byid.getRow());
+                bookingCusFloor.setSeatnumber(byid.getSeatnumber());
+                Floor floor = floorService.findfloorByid(byid.getFid());
+                bookingCusFloor.setFloor(floor.getEmployer());
+                Building buildingById = buildingService.findBuildingById(floor.getBid());
+                bookingCusFloor.setBuilding(buildingById.getEmployer());
+                bookingCusFloorList.add(bookingCusFloor);
+            }
+
+            model.addAttribute("userbooks", bookingCusFloorList);
             return "user_page/user_information/Unpromise_List";
         } else {
             httpSession.setAttribute("pageTimes", 1);
@@ -194,19 +249,19 @@ public class User_Controller {
         List<Building> allBuilding = buildingService.findAllBuilding();
         List<BuildingCusFloors> buildingCusFloorsList = new ArrayList<BuildingCusFloors>();
         for (int i = 0; i < allBuilding.size(); i++) {
-            List<WeekOpen> findopenfloorsday = weekOpenService.findopenfloorsday(day+1, allBuilding.get(i).getBid());
-            BuildingCusFloors buildingCusFloors=new BuildingCusFloors();
-            BeanUtils.copyProperties(allBuilding.get(i),buildingCusFloors);
-            List<Floor> floors=new ArrayList<Floor>();
-            for (int j = 0; j <findopenfloorsday.size() ; j++) {
+            List<WeekOpen> findopenfloorsday = weekOpenService.findopenfloorsday(day + 1, allBuilding.get(i).getBid());
+            BuildingCusFloors buildingCusFloors = new BuildingCusFloors();
+            BeanUtils.copyProperties(allBuilding.get(i), buildingCusFloors);
+            List<Floor> floors = new ArrayList<Floor>();
+            for (int j = 0; j < findopenfloorsday.size(); j++) {
                 Floor floor = floorService.findfloorByid(findopenfloorsday.get(j).getLid());
                 floors.add(floor);
             }
             buildingCusFloors.setFloors(floors);
             buildingCusFloorsList.add(buildingCusFloors);
         }
-        model.addAttribute("buildFloors",buildingCusFloorsList);
-        model.addAttribute("day",day);
+        model.addAttribute("buildFloors", buildingCusFloorsList);
+        model.addAttribute("day", day);
         return "user_page/Choose_Building";
     }
 

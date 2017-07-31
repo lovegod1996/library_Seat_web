@@ -100,4 +100,19 @@ public class BookingServiceImpl implements BookingService {
         List<Booking> finduserbook = bookingMapper.finduserbook(sno);
         return finduserbook;
     }
+
+    public List<Booking> finduserbookpage(String sno, Integer startRow, Integer pageSize) throws Exception {
+        List<Booking> finduserbookpage = bookingMapper.finduserbookpage(sno, startRow, pageSize);
+        return finduserbookpage;
+    }
+
+    public List<Booking> finduserbookpromise(String sno, Integer deal) throws Exception {
+        List<Booking> finduserbookpromise = bookingMapper.finduserbookpromise(sno, deal);
+        return finduserbookpromise;
+    }
+
+    public List<Booking> finduserbookpromisepage(String sno, Integer deal, Integer startRow, Integer pageSize) throws Exception {
+        List<Booking> finduserbookpromisepage = bookingMapper.finduserbookpromisepage(sno, deal, startRow, pageSize);
+        return finduserbookpromisepage;
+    }
 }

@@ -62,7 +62,7 @@ public interface BookingMapper {
      */
     List<Booking> findBookSeatBooking(@Param("sid") Integer sid) throws Exception;
 
-    List<Booking> findBookSeatBookingday(@Param("sid") Integer sid,@Param("day") Integer day)throws Exception;
+    List<Booking> findBookSeatBookingday(@Param("sid") Integer sid, @Param("day") Integer day) throws Exception;
 
     /**
      * 添加预约
@@ -98,7 +98,7 @@ public interface BookingMapper {
      * @param bid    预约id
      * @throws Exception
      */
-    void updateEtime(@Param("etime") Date etime, @Param("statue") Integer statue,@Param("delay") Integer delay, @Param("deal") Integer deal, @Param("bid") Integer bid) throws Exception;
+    void updateEtime(@Param("etime") Date etime, @Param("statue") Integer statue, @Param("delay") Integer delay, @Param("deal") Integer deal, @Param("bid") Integer bid) throws Exception;
 
     /**
      * 修改违约状态
@@ -107,10 +107,11 @@ public interface BookingMapper {
      * @param bid
      * @throws Exception
      */
-    void updateDeal(@Param("deal") Integer deal,@Param("statue") Integer  statue, @Param("bid") Integer bid) throws Exception;
+    void updateDeal(@Param("deal") Integer deal, @Param("statue") Integer statue, @Param("bid") Integer bid) throws Exception;
 
     /**
      * 根据学校和天数查看预约记录
+     *
      * @param sno
      * @param date
      * @return
@@ -120,20 +121,28 @@ public interface BookingMapper {
 
     /**
      * 根据bid查找预约
+     *
      * @param bid
      * @return
      * @throws Exception
      */
-    Booking findByid(@Param("bid") Integer bid)throws Exception;
+    Booking findByid(@Param("bid") Integer bid) throws Exception;
 
 
-    void deleteByid(@Param("bid") Integer bid)throws Exception;
+    void deleteByid(@Param("bid") Integer bid) throws Exception;
 
     /**
      * 根据学号查询预约记录
+     *
      * @param sno
      * @return
      * @throws Exception
      */
-    List<Booking> finduserbook(@Param("sno") String sno)throws Exception;
+    List<Booking> finduserbook(@Param("sno") String sno) throws Exception;
+
+    List<Booking> finduserbookpage(@Param("sno") String sno, @Param("startRow") Integer startRow, @Param("pageSize") Integer pageSize) throws Exception;
+
+    List<Booking> finduserbookpromise(@Param("sno") String sno, @Param("deal") Integer deal) throws Exception;
+
+    List<Booking> finduserbookpromisepage(@Param("sno") String sno, @Param("deal") Integer deal, @Param("startRow") Integer startRow, @Param("pageSize") Integer pageSize) throws Exception;
 }

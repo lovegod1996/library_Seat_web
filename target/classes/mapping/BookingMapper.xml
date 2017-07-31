@@ -121,4 +121,28 @@
         WHERE sno=#{sno}
         ORDER BY bstime DESC
     </select>
+
+    <select id="finduserbookpage" resultType="com.xoqao.web.bean.booking.Booking">
+        SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
+        FROM booking
+        WHERE sno=#{sno}
+        ORDER BY bstime DESC
+        limit #{startRow},#{pageSize}
+    </select>
+<!--根据学号和失信记录查找预约-->
+    <select id="finduserbookpromise" resultType="com.xoqao.web.bean.booking.Booking">
+        SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
+        FROM booking
+        WHERE sno=#{sno} AND  deal=#{deal}
+        ORDER BY bstime DESC
+    </select>
+
+    <select id="finduserbookpromisepage" resultType="com.xoqao.web.bean.booking.Booking">
+        SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
+        FROM booking
+        WHERE sno=#{sno} AND  deal=#{deal}
+        ORDER BY bstime DESC
+       limit #{startRow},#{pageSize}
+    </select>
+
 </mapper>

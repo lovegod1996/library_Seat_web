@@ -36,24 +36,30 @@
                 <tr>
                     <th>序号</th>
                     <th>日期</th>
+                    <th>场馆</th>
                     <th>座号</th>
-                    <th>时间段</th>
+                    <th>位置</th>
+                    <th>预订时间段</th>
+                    <th>学习时间段</th>
                 </tr>
                 </thead>
                 <tbody>
 
-                <c:forEach items="${userLearns}" var="userlearn" varStatus="step">
+                <c:forEach items="${userbooks}" var="book" varStatus="step">
                     <tr>
                         <td>${step.index}</td>
-                        <td><fmt:formatDate value="${userlearn.date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                        <td>${userlearn.seatnumber}</td>
-                        <td><fmt:formatDate value="${userlearn.downtime}" pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate value="${userlearn.uptime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                        <td><fmt:formatDate value="${book.bstime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                        <td>${book.floor}</td>
+                        <td>${book.seatnumber}</td>
+                        <td>${book.leftside==0?"左":"右"}侧${book.row}排${book.columns}列</td>
+                        <td><fmt:formatDate value="${book.bstime}" pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate value="${book.betime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                        <td><fmt:formatDate value="${book.stime}" pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate value="${book.etime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                     </tr>
                 </c:forEach>
 
                 <c:if test="${ nullList != null}">
                     <tr style="text-align: center">
-                        <td colspan="4">${nullList}</td>
+                        <td colspan="7">${nullList}</td>
                     </tr>
                 </c:if>
 

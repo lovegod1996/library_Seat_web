@@ -99,4 +99,11 @@ public interface BookingService {
      * @throws Exception
      */
     List<Booking> finduserbook(String sno)throws Exception;
+
+    List<Booking> finduserbookpage( String sno, Integer startRow, Integer pageSize)throws Exception;
+
+    List<Booking> finduserbookpromise( String sno,  Integer deal) throws Exception;
+
+    List<Booking> finduserbookpromisepage( String sno, Integer deal, Integer startRow, Integer pageSize) throws Exception;
+
 }
