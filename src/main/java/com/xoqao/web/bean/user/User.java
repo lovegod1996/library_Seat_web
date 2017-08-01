@@ -19,6 +19,7 @@ public class User implements Serializable {
     private String phone;
     private String name;
     private String major;
+    private Integer sex;
 
     public Integer getUid() {
         return uid;
@@ -92,6 +93,14 @@ public class User implements Serializable {
         this.major = major;
     }
 
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -104,6 +113,7 @@ public class User implements Serializable {
                 ", phone='" + phone + '\'' +
                 ", name='" + name + '\'' +
                 ", major='" + major + '\'' +
+                ", sex=" + sex +
                 '}';
     }
 }

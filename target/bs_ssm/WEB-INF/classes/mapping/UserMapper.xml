@@ -3,17 +3,17 @@
 <mapper namespace="com.xoqao.web.dao.UserMapper" >
 <!--根据手机号或学号查找用户-->
   <select id="findUserByphoneOrSno" resultType="com.xoqao.web.bean.user.User">
-  SELECT  uid,nick,sno,password,college,classes,phone,name,major  FROM  user where  phone LIKE  '${loginstr}'  OR  sno LIKE '${loginstr}'
+  SELECT  uid,nick,sno,password,college,classes,phone,name,major,sex  FROM  user where  phone LIKE  '${loginstr}'  OR  sno LIKE '${loginstr}'
 </select>
 
 <!--查找所有学生-->
   <select id="findAllUsers" resultType="com.xoqao.web.bean.user.User">
-     SELECT  uid,nick,sno,password,college,classes,phone,name,major
+     SELECT  uid,nick,sno,password,college,classes,phone,name,major,sex
      FROM  user
      WHERE sno LIKE '${year}%' AND college LIKE '${college}%' AND  major LIKE  '${major}%'
   </select>
   <select id="findAllUsersPage" resultType="com.xoqao.web.bean.user.User">
-    SELECT  uid,nick,sno,password,college,classes,phone,name,major
+    SELECT  uid,nick,sno,password,college,classes,phone,name,major,sex
      FROM  user
      WHERE sno LIKE '${year}%' AND college LIKE '${college}%' AND  major LIKE  '${major}%'
       limit #{startRow},#{pageSize}
@@ -28,7 +28,7 @@
     <selectKey resultType="java.lang.Integer" keyProperty="uid" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    INSERT INTO  user ( nick,sno,password,college,classes,phone,name,major ) VALUES (#{user.nick},#{user.sno},#{user.password},#{user.college},#{user.classes},#{user.phone},#{user.name},#{user.major})
+    INSERT INTO  user ( nick,sno,password,college,classes,phone,name,major,sex ) VALUES (#{user.nick},#{user.sno},#{user.password},#{user.college},#{user.classes},#{user.phone},#{user.name},#{user.major},#{user.sex})
   </insert>
   <!--查询所有的学院-->
   <select id="findAllCollege" resultType="java.lang.String">
@@ -41,7 +41,7 @@
 
     <!--根据学生学号查询具体学生-->
     <select id="findUserBySno" resultType="com.xoqao.web.bean.user.User">
-         SELECT  uid,nick,sno,password,college,classes,phone,name,major  FROM  user where  sno LIKE '${sno}'
+         SELECT  uid,nick,sno,password,college,classes,phone,name,major,sex  FROM  user where  sno LIKE '${sno}'
     </select>
 
     <!--根据学生id修改学生密码-->

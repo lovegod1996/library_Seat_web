@@ -110,7 +110,7 @@
     </select>
 
     <!--根据预约id删除预约记录-->
-    <delete id="deleteByid" >
+    <delete id="deleteByid">
         DELETE FROM booking WHERE bid=#{bid}
     </delete>
 
@@ -129,7 +129,7 @@
         ORDER BY bstime DESC
         limit #{startRow},#{pageSize}
     </select>
-<!--根据学号和失信记录查找预约-->
+    <!--根据学号和失信记录查找预约-->
     <select id="finduserbookpromise" resultType="com.xoqao.web.bean.booking.Booking">
         SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
         FROM booking
@@ -145,4 +145,17 @@
        limit #{startRow},#{pageSize}
     </select>
 
+
+    <!--查询目前预约的周数-->
+    <select id="findweekofbook" resultType="java.lang.Integer">
+       SELECT DISTINCT(WEEKOFYEAR(bstime)) FROM booking
+         WHERE YEAR(bstime)=YEAR(NOW())
+    </select>
+
+    <!--查询某一场馆在某一周内的预约情况-->
+    <select id="findbookfloorofweek" resultType="com.xoqao.web.bean.booking.Booking">
+        SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.deal,booking.delay
+        FROM booking,seat
+        WHERE  seat.fid=#{fid} AND  WEEKOFYEAR(booking.bstime)=#{week} AND booking.statue=3 AND booking.sid=seat.sid
+    </select>
 </mapper>

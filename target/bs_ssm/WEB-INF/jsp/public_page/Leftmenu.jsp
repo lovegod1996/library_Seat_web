@@ -119,7 +119,7 @@
                         <label type="text">该层座位：&nbsp;&nbsp;${seatSize}</label>
                     </div>
                     <div class="layui-form-item">
-                        <label type="text">当前已入座：&nbsp;&nbsp;${inSeat}</label>
+                        <label type="text">当前已预约：&nbsp;&nbsp;${inSeat}</label>
                     </div>
                     <div class="layui-form-item">
                         <label type="text">未预约：&nbsp;&nbsp;${canbook}</label>

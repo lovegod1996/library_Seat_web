@@ -106,4 +106,20 @@ public interface BookingService {
 
     List<Booking> finduserbookpromisepage( String sno, Integer deal, Integer startRow, Integer pageSize) throws Exception;
 
+
+    /**
+     * 查询本年度有预约记录的所有周
+     * @return
+     * @throws Exception
+     */
+    List<Integer> findweekofbook() throws Exception;
+
+    /**
+     * 查询制定周的预约情况
+     * @param fid
+     * @param week
+     * @return
+     * @throws Exception
+     */
+    List<Booking>  findbookfloorofweek(Integer fid,Integer week)throws Exception;
 }

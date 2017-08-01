@@ -145,4 +145,20 @@ public interface BookingMapper {
     List<Booking> finduserbookpromise(@Param("sno") String sno, @Param("deal") Integer deal) throws Exception;
 
     List<Booking> finduserbookpromisepage(@Param("sno") String sno, @Param("deal") Integer deal, @Param("startRow") Integer startRow, @Param("pageSize") Integer pageSize) throws Exception;
+
+    /**
+     * 查询本年度有预约记录的所有周
+     * @return
+     * @throws Exception
+     */
+    List<Integer> findweekofbook() throws Exception;
+
+    /**
+     * 查询制定周的预约情况
+     * @param fid
+     * @param week
+     * @return
+     * @throws Exception
+     */
+    List<Booking>  findbookfloorofweek(@Param("fid") Integer fid,@Param("week") Integer week)throws Exception;
 }

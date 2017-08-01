@@ -412,12 +412,12 @@ public class PhoneServerController {
                         bookingService.updateEtime(new Date(), 3, 0, 1, findbooknow.getBid());
                         map.put("code", 2);
                         map.put("message", "您已经迟到，迟到时间" + disTime + "分钟，请重新预约");
-                        map.put("data", null);
+                        map.put("data", findbooknow);
                     } else {
                         bookingService.updateStime(new Date(), findbooknow.getBid());
                         map.put("code", 0);
                         map.put("message", "入座成功");
-                        map.put("data", null);
+                        map.put("data", findbooknow);
                     }
                 } else {
                     //不是本人
@@ -426,11 +426,11 @@ public class PhoneServerController {
                         bookingService.updateEtime(new Date(), 3, 0, 1, findbooknow.getBid());
                         map.put("code", 1);
                         map.put("message", "当前座位为空，您可以选择预约入座");
-                        map.put("data", null);
+                        map.put("data", findbooknow);
                     } else {
                         map.put("code", 3);
                         map.put("message", "当前座位已预约，请选择其他座位");
-                        map.put("data", null);
+                        map.put("data", findbooknow);
                     }
                 }
             }
@@ -441,12 +441,12 @@ public class PhoneServerController {
                     //本人扫描
                     map.put("code", 4);
                     map.put("message", "当前正在学习，想要临时离开或离开？");
-                    map.put("data", null);
+                    map.put("data", booking);
                 } else {
                     bookingService.updateEtime(new Date(), 2, CommenValue.MAX_TIME, 0, booking.getBid());
                     map.put("code", 3);
                     map.put("message", "当前座位已预约，请选择其他座位");
-                    map.put("data", null);
+                    map.put("data", booking);
                 }
             }
         } else if (seatStatue == 3) {
@@ -458,12 +458,12 @@ public class PhoneServerController {
                         bookingService.updateEtime(new Date(), 3, booking.getDelay(), 1, booking.getBid());
                         map.put("code", 5);
                         map.put("message", "您的离开时间过长，该座位已释放，请再次预约入座");
-                        map.put("data", null);
+                        map.put("data", booking);
                     } else {
                         bookingService.updateEtime(new Date(), 1, booking.getDelay(), 0, booking.getBid());
                         map.put("code", 6);
                         map.put("message", "暂时离开状态已取消，继续学习吧");
-                        map.put("data", null);
+                        map.put("data", booking);
                     }
                 } else {
                     if (disTime > booking.getDelay()) {
@@ -471,7 +471,7 @@ public class PhoneServerController {
                     }
                     map.put("code", 7);
                     map.put("message", "该座位有人正在占用，换用其他座位吧");
-                    map.put("data", null);
+                    map.put("data", booking);
                 }
             }
         } else {
@@ -549,7 +549,7 @@ public class PhoneServerController {
     public @ResponseBody
     Map<String, Object> leavetem(Integer bid, Integer delay) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
-        if (delay > CommenValue.MAX_DELAY) {
+        if (delay < CommenValue.MAX_DELAY) {
             bookingService.updateEtime(new Date(), 2, delay, 0, bid);
             map.put("code", 0);
             map.put("message", "临时离开成功");

@@ -1,6 +1,8 @@
 package com.xoqao.web.controller;
 
+import com.xoqao.web.bean.booking.Booking;
 import com.xoqao.web.bean.building.Building;
+import com.xoqao.web.bean.data.WeekData;
 import com.xoqao.web.bean.floors.Floor;
 import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.seat.SeatCus;
@@ -8,6 +10,7 @@ import com.xoqao.web.bean.user.User;
 import com.xoqao.web.bean.userbook.UserLearn;
 import com.xoqao.web.bean.weekopen.WeekOpen;
 import com.xoqao.web.service.*;
+import com.xoqao.web.utils.DateUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,6 +46,9 @@ public class Admin_Controller {
 
     @Autowired
     private WeekOpenService weekOpenService;
+
+    @Autowired
+    private BookingService bookingService;
 
     @RequestMapping("/seat_Now")
     public String seat_Now(Model model) throws Exception {
@@ -167,8 +173,8 @@ public class Admin_Controller {
         Floor floor = (Floor) httpSession.getAttribute("admin");
         //添加座位前需要先查看每周的开放时间是否已经设置完成
         List<WeekOpen> weekOpens = weekOpenService.findweekByfid(floor.getFid());
-        if(weekOpens.size()!=7){
-            model.addAttribute("error_msg","请先添加每周的开放时间段.");
+        if (weekOpens.size() != 7) {
+            model.addAttribute("error_msg", "请先添加每周的开放时间段.");
             return "redirect:/view/managing_Floor";
         }
         Seat seat = new Seat();
@@ -182,7 +188,7 @@ public class Admin_Controller {
             seatService.insertSeat(seat);
         } catch (Exception e) {
             e.printStackTrace();
-            model.addAttribute("error_msg","该座位已存在");
+            model.addAttribute("error_msg", "该座位已存在");
             return "admin_page/Managing_Seat";
         }
         return "redirect:/view/floorSeat?page=1";
@@ -190,23 +196,25 @@ public class Admin_Controller {
 
     /**
      * 进入设置开放时间
+     *
      * @param model
      * @return
      * @throws Exception
      */
     @RequestMapping("/managing_Floor")
-    public String mnaging_Floor(Model model,HttpSession httpSession) throws Exception {
-         Floor floor= (Floor) httpSession.getAttribute("admin");
+    public String mnaging_Floor(Model model, HttpSession httpSession) throws Exception {
+        Floor floor = (Floor) httpSession.getAttribute("admin");
         List<WeekOpen> weekOpens = weekOpenService.findweekByfid(floor.getFid());
-        if(weekOpens.size()==0){
-            model.addAttribute("NullList","暂无一周当中的预约日期设置");
+        if (weekOpens.size() == 0) {
+            model.addAttribute("NullList", "暂无一周当中的预约日期设置");
         }
-        model.addAttribute("weekopens",weekOpens);
+        model.addAttribute("weekopens", weekOpens);
         return "admin_page/Managing_Floor";
     }
 
     /**
      * 提交完成添加
+     *
      * @param model
      * @param httpSession
      * @param week
@@ -216,24 +224,25 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/addWeekOpenSub")
-    public String addWeekOpen(Model model,HttpSession httpSession,Integer week,String param1,String param2)throws Exception{
-       Floor floor= (Floor) httpSession.getAttribute("admin");
-       WeekOpen weekOpen=new WeekOpen();
-       weekOpen.setLid(floor.getFid());
-       weekOpen.setWeek(week);
-       weekOpen.setParam1(param1);
-       weekOpen.setParam2(param2);
-       try {
-           weekOpenService.insertweek(weekOpen);
-       }catch (Exception e){
-           e.printStackTrace();
-           model.addAttribute("error_msg","周"+week+"的已存在");
-       }
-       return "redirect:/view/managing_Floor";
+    public String addWeekOpen(Model model, HttpSession httpSession, Integer week, String param1, String param2) throws Exception {
+        Floor floor = (Floor) httpSession.getAttribute("admin");
+        WeekOpen weekOpen = new WeekOpen();
+        weekOpen.setLid(floor.getFid());
+        weekOpen.setWeek(week);
+        weekOpen.setParam1(param1);
+        weekOpen.setParam2(param2);
+        try {
+            weekOpenService.insertweek(weekOpen);
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("error_msg", "周" + week + "的已存在");
+        }
+        return "redirect:/view/managing_Floor";
     }
 
     /**
      * 改变一周中可预约状态
+     *
      * @param model
      * @param woid
      * @param statue
@@ -241,11 +250,11 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/changeWeekStatue")
-    public String changeWeekSatue(Model model,Integer woid,Integer statue)throws Exception{
-        if(statue==0){
-            weekOpenService.updatestatue(1,woid);
-        }else{
-            weekOpenService.updatestatue(0,woid);
+    public String changeWeekSatue(Model model, Integer woid, Integer statue) throws Exception {
+        if (statue == 0) {
+            weekOpenService.updatestatue(1, woid);
+        } else {
+            weekOpenService.updatestatue(0, woid);
         }
         return "redirect:/view/managing_Floor";
     }
@@ -253,17 +262,17 @@ public class Admin_Controller {
 
     /**
      * 删除周开放设置
+     *
      * @param model
      * @param woid
      * @return
      * @throws Exception
      */
     @RequestMapping("/deleteWeek")
-    public String deleteWeekopen(Model model,Integer woid)throws Exception{
+    public String deleteWeekopen(Model model, Integer woid) throws Exception {
         weekOpenService.deletestatue(woid);
         return "redirect:/view/managing_Floor";
     }
-
 
 
     @RequestMapping("/managing_Users")
@@ -486,9 +495,83 @@ public class Admin_Controller {
 
     //    学习统计
     @RequestMapping("/study_DataStatistics")
-    public String study_DataStatistics(Model model) throws Exception {
+    public String study_DataStatistics(Model model, HttpSession httpSession) throws Exception {
+        Floor floor = (Floor) httpSession.getAttribute("admin");
+        List<Integer> findweekofbook = bookingService.findweekofbook();  //查看所有的预约周数
+        List<WeekData> weekDataList = new ArrayList<WeekData>();
+        for (int i = 0; i < findweekofbook.size(); i++) {
+            List<Booking> findbookfloorofweek = bookingService.findbookfloorofweek(floor.getFid(), findweekofbook.get(i));  //查看某楼层在某州的预约情况
+            WeekData weekData = new WeekData();
+            weekData.setVenue(floor.getEmployer());
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            Integer dealpro = 0;
+            for (int j = 0; j < findbookfloorofweek.size(); j++) {
+                Integer disTime = DateUtil.getDisTime(findbookfloorofweek.get(j).getStime(), findbookfloorofweek.get(j).getEtime());
+                learntime = learntime + disTime;
+                if (disTime > 0) {
+                    allLearn++;
+                }
+                if (findbookfloorofweek.get(j).getDeal() == 1) {
+                    nudeal++;
+                }
+            }
+            if (findbookfloorofweek.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / findbookfloorofweek.size()) * 100;
+            }
+            weekData.setAllLearn(allLearn);
+            weekData.setDealpro(dealpro);
+            weekData.setLearntime(learntime / 60);
+            weekData.setUndeal(nudeal);
+            weekDataList.add(weekData);
+        }
+        model.addAttribute("weekdatas", weekDataList);
+
         return "admin_page/Study_DataStatistics";
     }
 
+    /**
+     * 获取每周的学习情况
+     *
+     * @param httpSession
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/getweeklearntime")
+    public @ResponseBody
+    List<WeekData> findweeklearntim(HttpSession httpSession) throws Exception {
+        Floor floor = (Floor) httpSession.getAttribute("admin");
+        List<Integer> findweekofbook = bookingService.findweekofbook();  //查看所有的预约周数
+        List<WeekData> weekDataList = new ArrayList<WeekData>();
+        for (int i = 0; i < findweekofbook.size(); i++) {
+            List<Booking> findbookfloorofweek = bookingService.findbookfloorofweek(floor.getFid(), findweekofbook.get(i));  //查看某楼层在某州的预约情况
+            WeekData weekData = new WeekData();
+            weekData.setVenue(floor.getEmployer());
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            Integer dealpro = 0;
+            for (int j = 0; j < findbookfloorofweek.size(); j++) {
+                Integer disTime = DateUtil.getDisTime(findbookfloorofweek.get(j).getStime(), findbookfloorofweek.get(j).getEtime());
+                learntime = learntime + disTime;
+                if (disTime > 0) {
+                    allLearn++;
+                }
+                if (findbookfloorofweek.get(j).getDeal() == 1) {
+                    nudeal++;
+                }
+            }
+            if (findbookfloorofweek.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / findbookfloorofweek.size()) * 100;
+            }
+            weekData.setAllLearn(allLearn);
+            weekData.setDealpro(dealpro);
+            weekData.setLearntime(learntime / 60);
+            weekData.setUndeal(nudeal);
+            weekDataList.add(weekData);
+        }
+        return weekDataList;
+    }
 
 }

@@ -115,4 +115,14 @@ public class BookingServiceImpl implements BookingService {
         List<Booking> finduserbookpromisepage = bookingMapper.finduserbookpromisepage(sno, deal, startRow, pageSize);
         return finduserbookpromisepage;
     }
+
+    public List<Integer> findweekofbook() throws Exception {
+        List<Integer> findweekofbook = bookingMapper.findweekofbook();
+        return findweekofbook;
+    }
+
+    public List<Booking> findbookfloorofweek(Integer fid, Integer week) throws Exception {
+        List<Booking> findbookfloorofweek = bookingMapper.findbookfloorofweek(fid, week);
+        return findbookfloorofweek;
+    }
 }
