@@ -45,4 +45,15 @@ public class WeekOpenServiceImpl implements WeekOpenService {
         WeekOpen weekOpen = weekOpenMapper.findopenFloortoday(fid);
         return weekOpen;
     }
+
+    public WeekOpen findopenFloorday(Integer fid, Integer day) throws Exception {
+        WeekOpen weekOpen = weekOpenMapper.findopenFloorday(fid, day);
+        return weekOpen;
+    }
+
+    public List<WeekOpen> findopenfloorsday(Integer day, Integer bid) throws Exception {
+        List<WeekOpen> findopenfloorsday = weekOpenMapper.findopenfloorsday(day, bid);
+        return findopenfloorsday;
+    }
+
 }

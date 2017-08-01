@@ -69,12 +69,12 @@ public class BookingServiceImpl implements BookingService {
         bookingMapper.updateStime(now, bid);
     }
 
-    public void updateEtime(Date etime, Integer statue, Integer deal, Integer bid) throws Exception {
-        bookingMapper.updateEtime(etime, statue, deal, bid);
+    public void updateEtime(Date etime, Integer statue, Integer delay, Integer deal, Integer bid) throws Exception {
+        bookingMapper.updateEtime(etime, statue, delay, deal, bid);
     }
 
-    public void updateDeal(Integer deal,Integer  statue, Integer bid) throws Exception {
-        bookingMapper.updateDeal(deal,statue, bid);
+    public void updateDeal(Integer deal, Integer statue, Integer bid) throws Exception {
+        bookingMapper.updateDeal(deal, statue, bid);
     }
 
     public List<Booking> findBookingBySno(String sno, Integer date) throws Exception {
@@ -85,5 +85,34 @@ public class BookingServiceImpl implements BookingService {
     public Booking findByid(Integer bid) throws Exception {
         Booking byid = bookingMapper.findByid(bid);
         return byid;
+    }
+
+    public List<Booking> findBookSeatBookingday(Integer sid, Integer day) throws Exception {
+        List<Booking> bookSeatBookingday = bookingMapper.findBookSeatBookingday(sid, day);
+        return bookSeatBookingday;
+    }
+
+    public void deleteByid(Integer bid) throws Exception {
+        bookingMapper.deleteByid(bid);
+    }
+
+    public List<Booking> finduserbook(String sno) throws Exception {
+        List<Booking> finduserbook = bookingMapper.finduserbook(sno);
+        return finduserbook;
+    }
+
+    public List<Booking> finduserbookpage(String sno, Integer startRow, Integer pageSize) throws Exception {
+        List<Booking> finduserbookpage = bookingMapper.finduserbookpage(sno, startRow, pageSize);
+        return finduserbookpage;
+    }
+
+    public List<Booking> finduserbookpromise(String sno, Integer deal) throws Exception {
+        List<Booking> finduserbookpromise = bookingMapper.finduserbookpromise(sno, deal);
+        return finduserbookpromise;
+    }
+
+    public List<Booking> finduserbookpromisepage(String sno, Integer deal, Integer startRow, Integer pageSize) throws Exception {
+        List<Booking> finduserbookpromisepage = bookingMapper.finduserbookpromisepage(sno, deal, startRow, pageSize);
+        return finduserbookpromisepage;
     }
 }

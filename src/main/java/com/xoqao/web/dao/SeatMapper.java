@@ -20,6 +20,8 @@ public interface SeatMapper {
 
     List<Seat> findSeatsByFid(@Param("fid") Integer fid) throws Exception;
 
+    List<Seat> findOpenSeatsByFid(@Param("fid") Integer fid) throws Exception;
+
     List<Seat> findSeatsByFidPage(@Param("fid") Integer fid, @Param("startRow") Integer startRow, @Param("pageSize") Integer pageSize) throws Exception;
 
     void updateSeatSatue(@Param("statue") Integer statue, @Param("sid") Integer sid) throws Exception;

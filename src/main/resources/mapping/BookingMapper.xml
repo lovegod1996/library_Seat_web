@@ -53,9 +53,15 @@
     </select>
     <!--根据座位id查询当天的的预约情况-->
     <select id="findBookSeatBooking" resultType="com.xoqao.web.bean.booking.Booking">
-        SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal
+        SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
         FROM booking
         WHERE   sid=#{sid}  AND TO_DAYS(NOW())=TO_DAYS(bstime)  AND  UNIX_TIMESTAMP(betime)-UNIX_TIMESTAMP(NOW()) &gt; 0
+    </select>
+
+    <select id="findBookSeatBookingday" resultType="com.xoqao.web.bean.booking.Booking">
+        SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
+        FROM booking
+        WHERE   sid=#{sid}  AND TO_DAYS(NOW())+#{day}=TO_DAYS(bstime)  AND  UNIX_TIMESTAMP(betime)-UNIX_TIMESTAMP(NOW()) &gt; 0
     </select>
 
     <!--添加预约记录-->
@@ -81,7 +87,7 @@
 
     <!--根据预约id修改离座-->
     <update id="updateEtime">
-        UPDATE booking SET etime=#{etime},statue=#{statue},deal=#{deal} WHERE bid=#{bid}
+        UPDATE booking SET etime=#{etime},statue=#{statue},delay=#{delay},deal=#{deal} WHERE bid=#{bid}
     </update>
 
     <!--修改违约状态-->
@@ -91,15 +97,52 @@
 
     <!--根据学号查询今天或明天预约-->
     <select id="findBookingBySno" resultType="com.xoqao.web.bean.booking.Booking">
-        SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal
+        SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
         FROM booking
         WHERE sno LIKE '${sno}' AND  TO_DAYS(NOW())+#{date}=TO_DAYS(bstime)
     </select>
 
     <!--根据预约id查找预约-->
     <select id="findByid" resultType="com.xoqao.web.bean.booking.Booking">
-         SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal
+         SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
         FROM booking
         WHERE bid=#{bid}
     </select>
+
+    <!--根据预约id删除预约记录-->
+    <delete id="deleteByid" >
+        DELETE FROM booking WHERE bid=#{bid}
+    </delete>
+
+    <!--根据学号查询所有的预约记录-->
+    <select id="finduserbook" resultType="com.xoqao.web.bean.booking.Booking">
+         SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
+        FROM booking
+        WHERE sno=#{sno}
+        ORDER BY bstime DESC
+    </select>
+
+    <select id="finduserbookpage" resultType="com.xoqao.web.bean.booking.Booking">
+        SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
+        FROM booking
+        WHERE sno=#{sno}
+        ORDER BY bstime DESC
+        limit #{startRow},#{pageSize}
+    </select>
+<!--根据学号和失信记录查找预约-->
+    <select id="finduserbookpromise" resultType="com.xoqao.web.bean.booking.Booking">
+        SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
+        FROM booking
+        WHERE sno=#{sno} AND  deal=#{deal}
+        ORDER BY bstime DESC
+    </select>
+
+    <select id="finduserbookpromisepage" resultType="com.xoqao.web.bean.booking.Booking">
+        SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
+        FROM booking
+        WHERE sno=#{sno} AND  deal=#{deal}
+        ORDER BY bstime DESC
+       limit #{startRow},#{pageSize}
+    </select>
+
 </mapper>

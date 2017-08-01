@@ -19,6 +19,8 @@ public class Booking {
     private Date betime;
     private Date stime;
     private Date etime;
+    private Integer delay;
+
 
     public Integer getBid() {
         return bid;
@@ -92,6 +94,15 @@ public class Booking {
         this.etime = etime;
     }
 
+    public Integer getDelay() {
+        return delay;
+    }
+
+    public void setDelay(Integer delay) {
+        this.delay = delay;
+    }
+
+
     @Override
     public String toString() {
         return "Booking{" +
@@ -104,6 +115,7 @@ public class Booking {
                 ", betime=" + betime +
                 ", stime=" + stime +
                 ", etime=" + etime +
+                ", delay=" + delay +
                 '}';
     }
 }

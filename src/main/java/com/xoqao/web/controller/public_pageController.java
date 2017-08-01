@@ -23,10 +23,8 @@ import java.util.List;
 @RequestMapping("/jsp")
 public class public_pageController {
 
-
     @Autowired
     private NoticeService noticeService;
-
     @Autowired
     private SeatService seatService;
     @Autowired

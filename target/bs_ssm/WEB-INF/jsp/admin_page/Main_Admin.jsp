@@ -47,8 +47,9 @@
                 <div class="pull-right">
                     <FORM METHOD=POST ACTION="" name="selectform">
                         <SELECT NAME="building" id="floorSide" onChange="getData()">
-                            <OPTION VALUE="南楼">南楼 </OPTION>
-                            <OPTION VALUE="北楼">北楼 </OPTION>
+                            <c:forEach items="${buildings}" var="building">
+                                <OPTION VALUE="${building.bid}">${building.employer}</OPTION>
+                            </c:forEach>
                         </SELECT>
                     </FORM>
                 </div>
@@ -120,6 +121,7 @@
         var noBook = [];  //空闲
         var booknum = [];  //预约
         var seated = []; //入座
+        var snapnum = [];//临时离开
 
         var floorside = $("#floorSide").val();
 
@@ -127,7 +129,7 @@
             type: "post",
             async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
             url: "${pageContext.request.contextPath }/jsp/getSeatData.form",    //getTrendData
-            data: 'floor=' + floorside,
+            data: 'building=' + floorside,
             //  dataType : "json",        //返回数据形式为json
             success: function (result) {
                 //请求成功时执行该函数内容，result即为服务器返回的json对象
@@ -145,6 +147,9 @@
                     for (var i = 0; i < result.length; i++) {
                         seated.push(result[i].seatedNum);    //挨个取出销量并填入销量数组
                     }
+                    for (var i = 0; i < result.length; i++) {
+                        snapnum.push(result[i].snapNum);    //挨个取出销量并填入销量数组
+                    }
                     myChart.hideLoading();    //隐藏加载动画
 
                     var option = {
@@ -156,7 +161,7 @@
                             trigger: 'axis'
                         },
                         legend: {
-                            data: ['空闲中', '已预约', '已入座']
+                            data: ['空闲中', '已预约', '已入座', '临时离开']
                         },
                         calculable: true,
                         xAxis: [
@@ -185,6 +190,10 @@
                                 name: '已入座',
                                 type: 'bar',
                                 data: seated
+                            }, {
+                                name: '临时离开',
+                                type: 'bar',
+                                data: snapnum
                             }
                         ]
                     };

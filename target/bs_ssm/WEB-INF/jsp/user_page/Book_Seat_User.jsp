@@ -83,11 +83,21 @@
     <script language="javascript">
         function getTableContent(node) {
 //            按钮的父节点的父节点是tr。
-//            var tr1 = node.parentNode.parentNode;
+            var tr1 = node.parentNode.parentNode;
 //            alert(tr1.rowIndex);
 //            alert(tb1.rows[tr1.rowIndex].cells[1].getElementsByTagName("INPUT")[0].value);
 //            document.getElementById("seatNum").innerHTML = tb1.rows[tr1.rowIndex].cells[1].getElementsByTagName("INPUT")[0].value;
-            document.getElementById("seatNum").innerHTML = document.getElementById("theseat").innerHTML;
+
+//            document.getElementById("seatNum").innerHTML = document.getElementsByName("theseat").innerHTML;
+//            var objL = document.getElementById("LeftView");
+//            var objR = document.getElementById("RightView");
+//            objL.style.cssText = "width:65%;float:left";
+//            objR.style.cssText = "display:block;float:left;margin-left: 30px;";
+
+//            document.getElementById("seatNum").innerHTML = document.getElementById("theseat").innerHTML;
+//            alert(tr1.getElementsByClassName("seatnumber")[0].innerHTML);
+            document.getElementById("seatNum").innerHTML = tr1.getElementsByClassName("seatnumber")[0].innerHTML;
+
         }
     </script>
 
@@ -150,27 +160,57 @@
             <div class="panel-heading">
                 <i class="fa fa-bar-chart-o fa-fw"></i> 空闲座位统计
                 <font id="nowtime" style="margin-left: 20px"></font>
-                <a href="${pageContext.request.contextPath }/jsp/book_Seat_User" class="btn btn-success btn-xs"
+                <a href="${pageContext.request.contextPath }/jsp/book_Seat_User?fid=${fid}&day=${day}"
+                   class="btn btn-success btn-xs"
                    style="margin-left:20px ">点击刷新</a>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="height: 100%">
-                <div class="Roundseat">
-                    <label class="seatView_lable" id="theseat">010210308</label>
-                    <label class="seatView_lable">中原工学院图书馆南楼3排8座</label>
-                    <label class="seatView_lable">当前空闲状态</label>
-                    <div class="dropdown">
+                <c:forEach items="${seatsbooks}" var="seat">
+                    <div class="Roundseat">
+                        <label class="seatView_lable"><span class="seatnumber">${seat.seatnumber}</span> </label>
+                        <label class="seatView_lable">${seat.leftside==0?"左":"右"}侧${seat.row}排${seat.columns}列</label>
+                        <label class="seatView_lable">
+                            <c:if test="${seat.seatStatue==0}">
+                                空闲
+                            </c:if>
+                            <c:if test="${seat.seatStatue==1}">
+                                预约时间内
+                            </c:if>
+                            <c:if test="${seat.seatStatue==2}">
+                                正在学习
+                            </c:if>
+                            <c:if test="${seat.seatStatue==3}">
+                                临时离开
+                            </c:if>
+                        </label>
+                        <div class="dropdown">
                         <span class="dropdown-toggle btn btn-success btn-sm" type="button" data-toggle="dropdown"
                               onclick="getTableContent(this)">点击预约</span>
-                        <ul class="dropdown-menu">
-                            <li>1</li>
-                            <li>1</li>
-                            <li>1</li>
-                            <li>1</li>
-                            <li>1</li>
-                        </ul>
+                            <ul class="dropdown-menu" style="width:10%">
+                                <c:forEach items="${seat.bookings}" var="booking">
+                                    <li>${booking.sno}&nbsp;&nbsp;&nbsp;<fmt:formatDate
+                                            value="${booking.bstime}"
+                                            pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate
+                                            value="${booking.betime}" pattern="yyyy-MM-dd HH:mm:ss"/>&nbsp;&nbsp;&nbsp;
+                                        <c:if test="${booking.statue==0}">
+                                            未入座
+                                        </c:if>
+                                        <c:if test="${booking.statue==1}">
+                                            入座
+                                        </c:if>
+                                        <c:if test="${booking.statue==2}">
+                                            临时离开
+                                        </c:if>
+                                        <c:if test="${booking.statue==3}">
+                                            离开
+                                        </c:if></li>
+                                </c:forEach>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                </c:forEach>
+
             </div>
         </div>
         <!-- /.panel -->
@@ -198,6 +238,7 @@
                         <label class="col-sm-3 control-label">开始</label>
                         <div class="col-sm-9">
                             <div class="layui-inline">
+                                <input type="hidden" name="day" value="${day}">
                                 <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px"
                                        required
                                        onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
@@ -213,18 +254,33 @@
                                        required
                                        onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
                             </div>
+
                         </div>
                     </div>
                     <button class="btn btn-primary" style="width: 30%;margin-left: 30%;margin-top: 20px">确定
                     </button>
                 </form>
 
+
                 <hr style="margin-top: 50px">
                 <h3 style="text-align: center;font-size: 20px;">我的预约</h3>
-                <label type="text" class="layui-input" style="width: 80%;margin-left:10%;margin-top: 25px"></label>
-                <label type="text" class="layui-input" style="width: 80%;margin-left:10%"></label>
-                <label type="text" class="layui-input" style="width: 80%;margin-left:10%"></label>
-
+                <ul>
+                    <c:forEach items="${bookings}" var="book" varStatus="step">
+                        <c:choose>
+                            <c:when test="${step.index==0}">
+                                <li style="width: 80%;margin-left:10%;margin-top: 25px">${book.seatnumber}&nbsp;&nbsp;&nbsp;<fmt:formatDate
+                                        value="${book.bstime}" pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate
+                                        value="${book.betime}" pattern="yyyy-MM-dd HH:mm:ss"/></li>
+                            </c:when>
+                            <c:otherwise>
+                                <li style="width: 80%;margin-left:10%">${book.seatnumber}&nbsp;&nbsp;&nbsp;<fmt:formatDate
+                                        value="${book.bstime}"
+                                        pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate
+                                        value="${book.betime}" pattern="yyyy-MM-dd HH:mm:ss"/></li>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </ul>
             </div>
             <!-- /.panel-body -->
         </div>

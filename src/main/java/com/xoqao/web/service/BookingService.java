@@ -65,7 +65,7 @@ public interface BookingService {
      * @param bid    预约id
      * @throws Exception
      */
-    void updateEtime( Date etime,  Integer statue,  Integer deal,  Integer bid) throws Exception;
+    void updateEtime( Date etime,  Integer statue, Integer delay,  Integer deal,  Integer bid) throws Exception;
 
     /**
      * 修改违约状态
@@ -86,4 +86,24 @@ public interface BookingService {
     List<Booking> findBookingBySno( String sno, Integer date) throws Exception;
 
     Booking findByid( Integer bid)throws Exception;
+
+    List<Booking> findBookSeatBookingday(Integer sid,Integer day)throws Exception;
+
+
+    void deleteByid( Integer bid)throws Exception;
+
+    /**
+     * 根据学号查询预约记录
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    List<Booking> finduserbook(String sno)throws Exception;
+
+    List<Booking> finduserbookpage( String sno, Integer startRow, Integer pageSize)throws Exception;
+
+    List<Booking> finduserbookpromise( String sno,  Integer deal) throws Exception;
+
+    List<Booking> finduserbookpromisepage( String sno, Integer deal, Integer startRow, Integer pageSize) throws Exception;
+
 }

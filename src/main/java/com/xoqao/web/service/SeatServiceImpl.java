@@ -51,4 +51,9 @@ public class SeatServiceImpl implements SeatService {
         Seat seatBynumber = seatMapper.findSeatBynumber(seatnumber);
         return seatBynumber;
     }
+
+    public List<Seat> findOpenSeatsByFid(Integer fid) throws Exception {
+        List<Seat> openSeatsByFid = seatMapper.findOpenSeatsByFid(fid);
+        return openSeatsByFid;
+    }
 }

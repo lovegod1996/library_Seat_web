@@ -11,6 +11,7 @@ public class SeatState {
     private Integer nobook;
     private Integer bookNum;
     private Integer seatedNum;
+    private Integer snapNum;
 
     public String getFloor() {
         return floor;
@@ -44,4 +45,11 @@ public class SeatState {
         this.seatedNum = seatedNum;
     }
 
+    public Integer getSnapNum() {
+        return snapNum;
+    }
+
+    public void setSnapNum(Integer snapNum) {
+        this.snapNum = snapNum;
+    }
 }

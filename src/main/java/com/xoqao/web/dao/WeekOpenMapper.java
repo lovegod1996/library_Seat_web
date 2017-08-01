@@ -27,4 +27,10 @@ public interface WeekOpenMapper {
     List<WeekOpen> findopentody() throws Exception;
 
     WeekOpen findopenFloortoday(@Param("fid") Integer fid) throws Exception;
+
+    WeekOpen findopenFloorday(@Param("fid") Integer fid, @Param("day") Integer day) throws Exception;
+
+    List<WeekOpen> findopenfloorsday(@Param("day") Integer day, @Param("bid") Integer bid) throws Exception;
+
+
 }
