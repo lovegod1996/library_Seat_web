@@ -2,13 +2,18 @@ package com.xoqao.web.controller;
 
 import com.xoqao.web.bean.booking.Booking;
 import com.xoqao.web.bean.building.Building;
+import com.xoqao.web.bean.building.BuildingCusFloors;
+import com.xoqao.web.bean.data.CollgeData;
 import com.xoqao.web.bean.data.MonthData;
 import com.xoqao.web.bean.data.WeekData;
 import com.xoqao.web.bean.floors.Floor;
+import com.xoqao.web.bean.user.User;
 import com.xoqao.web.service.BookingService;
 import com.xoqao.web.service.BuildingService;
 import com.xoqao.web.service.FloorService;
+import com.xoqao.web.service.UserService;
 import com.xoqao.web.utils.DateUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.jws.WebParam;
 import javax.servlet.http.HttpSession;
+import javax.swing.*;
 import java.util.*;
 
 /**
@@ -34,7 +40,8 @@ public class SuperAdmin_Controller {
     private FloorService floorService;
     @Autowired
     private BookingService bookingService;
-
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/index_SuperAdmin")
     public String index_SuperAdmin(Model model) throws Exception {
@@ -43,7 +50,16 @@ public class SuperAdmin_Controller {
 
     @RequestMapping("/leftmenu_SuperAdmin")
     public String leftmenu_SuperAdmin(Model model) throws Exception {
-
+        List<Building> allBuilding = buildingService.findAllBuilding();
+        List<BuildingCusFloors> buildingCusFloorsList = new ArrayList<BuildingCusFloors>();
+        for (int i = 0; i < allBuilding.size(); i++) {
+            BuildingCusFloors buildingCusFloors = new BuildingCusFloors();
+            BeanUtils.copyProperties(allBuilding.get(i), buildingCusFloors);
+            List<Floor> floors = floorService.findfloorsBybid(allBuilding.get(i).getBid());
+            buildingCusFloors.setFloors(floors);
+            buildingCusFloorsList.add(buildingCusFloors);
+        }
+        model.addAttribute("buidingfloors", buildingCusFloorsList);
         return "superadmin_page/Leftmenu_SuperAdmin";
     }
 
@@ -247,20 +263,280 @@ public class SuperAdmin_Controller {
         return "superadmin_page/Managing_User_SuperAdmin";
     }
 
-    @RequestMapping("/seat_DataStatistics_SuperAdmin")
-    public String seat_DataStatistics_SuperAdmin(Model model) throws Exception {
-        return "superadmin_page/Seat_DataStatistics_SuperAdmin";
-    }
+//    @RequestMapping("/seat_DataStatistics_SuperAdmin")
+//    public String seat_DataStatistics_SuperAdmin(Model model) throws Exception {
+//        return "superadmin_page/Seat_DataStatistics_SuperAdmin";
+//    }
 
+    /**
+     * 各院系学习情况统计
+     *
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/study_DataStatistics_SuperAdmin")
     public String study_DataStatistics_SuperAdmin(Model model) throws Exception {
+        List<String> allCollege = userService.findAllCollege();
+        List<CollgeData> collgeDataList = new ArrayList<CollgeData>();
+        for (int i = 0; i < allCollege.size(); i++) {
+            CollgeData collgeData = new CollgeData();
+            collgeData.setVenue(allCollege.get(i));
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            float dealpro = 0;
+            List<Booking> bookings = bookingService.findbookofCollege(allCollege.get(i));
+            for (int j = 0; j < bookings.size(); j++) {
+                Integer disTime = DateUtil.getDisTime(bookings.get(j).getStime(), bookings.get(j).getEtime());
+                learntime = learntime + disTime;
+                if (disTime > 0) {
+                    allLearn++;
+                }
+                if (bookings.get(j).getDeal() == 1) {
+                    nudeal++;
+                }
+            }
+            if (bookings.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / (float) bookings.size()) * 100;
+            }
+            List<User> users = userService.findallStudentbyCollege(allCollege.get(i));
+            collgeData.setAllLearn(allLearn);
+            collgeData.setDealpro((int) dealpro);
+            collgeData.setLearntime(learntime / 60);
+            collgeData.setUndeal(nudeal);
+            collgeData.setStudents(users.size());
+            collgeDataList.add(collgeData);
+        }
+        model.addAttribute("collegeDatas", collgeDataList);
+
         return "superadmin_page/Study_DataStatistics_SuperAdmin";
     }
 
-    @RequestMapping("/seat_DataStatistics_ForEachBuilding")
-    public String seat_DataStatistics_ForEachBuilding(Model model,Integer fid) throws Exception {
+    /**
+     * 获取各学院学习情况
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/getcollegelearn")
+    public @ResponseBody
+    List<CollgeData> findcollegelearntim() throws Exception {
+        List<String> allCollege = userService.findAllCollege();
+        List<CollgeData> collgeDataList = new ArrayList<CollgeData>();
+        for (int i = 0; i < allCollege.size(); i++) {
+            CollgeData collgeData = new CollgeData();
+            collgeData.setVenue(allCollege.get(i));
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            float dealpro = 0;
+            List<Booking> bookings = bookingService.findbookofCollege(allCollege.get(i));
+            for (int j = 0; j < bookings.size(); j++) {
+                Integer disTime = DateUtil.getDisTime(bookings.get(j).getStime(), bookings.get(j).getEtime());
+                learntime = learntime + disTime;
+                if (disTime > 0) {
+                    allLearn++;
+                }
+                if (bookings.get(j).getDeal() == 1) {
+                    nudeal++;
+                }
+            }
+            if (bookings.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / (float) bookings.size()) * 100;
+            }
+            List<User> users = userService.findallStudentbyCollege(allCollege.get(i));
+            collgeData.setAllLearn(allLearn);
+            collgeData.setDealpro((int) dealpro);
+            collgeData.setLearntime(learntime / 60);
+            collgeData.setUndeal(nudeal);
+            collgeData.setStudents(users.size());
+            collgeDataList.add(collgeData);
+        }
+        return collgeDataList;
+    }
 
-        Floor floor =floorService.findfloorByid(fid);
+    /**
+     * 获取院系内专业的学习数据
+     *
+     * @param model
+     * @param college
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/getmajorlearn")
+    public String getmajorlearn(Model model, String college) throws Exception {
+        List<String> majorByCollege = userService.findMajorByCollege(college);
+        List<CollgeData> majorDataList = new ArrayList<CollgeData>();
+
+        for (int i = 0; i < majorByCollege.size(); i++) {
+            CollgeData collgeData = new CollgeData();
+            collgeData.setVenue(majorByCollege.get(i));
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            float dealpro = 0;
+            List<Booking> bookings = bookingService.findbookwithCollegeAndMajor(college, majorByCollege.get(i));
+            for (int j = 0; j < bookings.size(); j++) {
+                Integer disTime = DateUtil.getDisTime(bookings.get(j).getStime(), bookings.get(j).getEtime());
+                learntime = learntime + disTime;
+                if (disTime > 0) {
+                    allLearn++;
+                }
+                if (bookings.get(j).getDeal() == 1) {
+                    nudeal++;
+                }
+            }
+            if (bookings.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / (float) bookings.size()) * 100;
+            }
+            List<User> users = userService.findstudentbycollegeandmajor(college, majorByCollege.get(i));
+            collgeData.setAllLearn(allLearn);
+            collgeData.setDealpro((int) dealpro);
+            collgeData.setLearntime(learntime / 60);
+            collgeData.setUndeal(nudeal);
+            collgeData.setStudents(users.size());
+            majorDataList.add(collgeData);
+        }
+        model.addAttribute("college", college);
+        model.addAttribute("majordatas", majorDataList);
+        return "superadmin_page/Study_Major_Data_SuperAdmin";
+    }
+
+
+    /**
+     * 获取专业学习详情
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/getmajorslearn")
+    public @ResponseBody
+    List<CollgeData> findmajorslearn(String college) throws Exception {
+        List<String> majorByCollege = userService.findMajorByCollege(college);
+        List<CollgeData> majorDataList = new ArrayList<CollgeData>();
+
+        for (int i = 0; i < majorByCollege.size(); i++) {
+            CollgeData collgeData = new CollgeData();
+            collgeData.setVenue(majorByCollege.get(i));
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            float dealpro = 0;
+            List<Booking> bookings = bookingService.findbookwithCollegeAndMajor(college, majorByCollege.get(i));
+            for (int j = 0; j < bookings.size(); j++) {
+                Integer disTime = DateUtil.getDisTime(bookings.get(j).getStime(), bookings.get(j).getEtime());
+                learntime = learntime + disTime;
+                if (disTime > 0) {
+                    allLearn++;
+                }
+                if (bookings.get(j).getDeal() == 1) {
+                    nudeal++;
+                }
+            }
+            if (bookings.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / (float) bookings.size()) * 100;
+            }
+            List<User> users = userService.findstudentbycollegeandmajor(college, majorByCollege.get(i));
+            collgeData.setAllLearn(allLearn);
+            collgeData.setDealpro((int) dealpro);
+            collgeData.setLearntime(learntime / 60);
+            collgeData.setUndeal(nudeal);
+            collgeData.setStudents(users.size());
+            majorDataList.add(collgeData);
+        }
+        return majorDataList;
+    }
+
+    /**
+     * 获取班级信息
+     * @param model
+     * @param college
+     * @param major
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/getclassLearn")
+    public String getclasslearn(Model model, String college, String major) throws Exception {
+        List<String> classes = userService.findclassbymajorcollege(college, major);
+        List<CollgeData> classDataList = new ArrayList<CollgeData>();
+        for (int i = 0; i < classes.size(); i++) {
+            CollgeData collgeData = new CollgeData();
+            collgeData.setVenue(classes.get(i));
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            float dealpro = 0;
+            List<Booking> bookings = bookingService.findbookWithCollegeMajorClass(college, major, classes.get(i));
+            for (int j = 0; j < bookings.size(); j++) {
+                Integer disTime = DateUtil.getDisTime(bookings.get(j).getStime(), bookings.get(j).getEtime());
+                learntime = learntime + disTime;
+                if (disTime > 0) {
+                    allLearn++;
+                }
+                if (bookings.get(j).getDeal() == 1) {
+                    nudeal++;
+                }
+            }
+            if (bookings.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / (float) bookings.size()) * 100;
+            }
+            List<User> users = userService.findstudentbyclassmajor(college, major, classes.get(i));
+            collgeData.setAllLearn(allLearn);
+            collgeData.setDealpro((int) dealpro);
+            collgeData.setLearntime(learntime / 60);
+            collgeData.setUndeal(nudeal);
+            collgeData.setStudents(users.size());
+            classDataList.add(collgeData);
+        }
+         model.addAttribute("college",college);
+        model.addAttribute("major",major);
+        model.addAttribute("classdatas",classDataList);
+        return "superadmin_page/Study_Class_Data_SuperAdmin";
+    }
+
+    @RequestMapping("/getClasseslearn")
+    public @ResponseBody
+    List<CollgeData> findClasseslearn( String college, String major) throws Exception {
+        List<String> classes = userService.findclassbymajorcollege(college, major);
+        List<CollgeData> classDataList = new ArrayList<CollgeData>();
+        for (int i = 0; i < classes.size(); i++) {
+            CollgeData collgeData = new CollgeData();
+            collgeData.setVenue(classes.get(i));
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            float dealpro = 0;
+            List<Booking> bookings = bookingService.findbookWithCollegeMajorClass(college, major, classes.get(i));
+            for (int j = 0; j < bookings.size(); j++) {
+                Integer disTime = DateUtil.getDisTime(bookings.get(j).getStime(), bookings.get(j).getEtime());
+                learntime = learntime + disTime;
+                if (disTime > 0) {
+                    allLearn++;
+                }
+                if (bookings.get(j).getDeal() == 1) {
+                    nudeal++;
+                }
+            }
+            if (bookings.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / (float) bookings.size()) * 100;
+            }
+            List<User> users = userService.findstudentbyclassmajor(college, major, classes.get(i));
+            collgeData.setAllLearn(allLearn);
+            collgeData.setDealpro((int) dealpro);
+            collgeData.setLearntime(learntime / 60);
+            collgeData.setUndeal(nudeal);
+            collgeData.setStudents(users.size());
+            classDataList.add(collgeData);
+        }
+        return classDataList;
+    }
+
+
+    @RequestMapping("/seat_DataStatistics_ForEachBuilding")
+    public String seat_DataStatistics_ForEachBuilding(Model model, Integer fid) throws Exception {
+
+        Floor floor = floorService.findfloorByid(fid);
         List<Integer> findweekofbook = bookingService.findweekofbook();  //查看所有的预约周数
         List<WeekData> weekDataList = new ArrayList<WeekData>();
         for (int i = 0; i < findweekofbook.size(); i++) {
@@ -293,7 +569,7 @@ public class SuperAdmin_Controller {
 
         List<Integer> findmonthofbook = bookingService.findmonthofbook();
         List<MonthData> monthDataList = new ArrayList<MonthData>();
-        for (int i = 0; i <findmonthofbook.size() ; i++) {
+        for (int i = 0; i < findmonthofbook.size(); i++) {
             List<Booking> findbookfloorofmonth = bookingService.findbookfloorofmonth(floor.getFid(), findmonthofbook.get(i));
             MonthData monthData = new MonthData();
             monthData.setVenue(floor.getEmployer());
@@ -301,7 +577,7 @@ public class SuperAdmin_Controller {
             Integer allLearn = 0;
             Integer nudeal = 0;
             Integer dealpro = 0;
-            for (int j = 0; j <findbookfloorofmonth.size() ; j++) {
+            for (int j = 0; j < findbookfloorofmonth.size(); j++) {
                 Integer disTime = DateUtil.getDisTime(findbookfloorofmonth.get(j).getStime(), findbookfloorofmonth.get(j).getEtime());
                 learntime = learntime + disTime;
                 if (disTime > 0) {
@@ -323,13 +599,10 @@ public class SuperAdmin_Controller {
         }
         model.addAttribute("weekdatas", weekDataList);
         model.addAttribute("monthdatas", monthDataList);
-       model.addAttribute("floor",floor);
+        model.addAttribute("floor", floor);
 
         return "superadmin_page/Seat_DataStatistics_ForEachBuilding";
     }
-
-
-
 
 
     /**
@@ -537,16 +810,17 @@ public class SuperAdmin_Controller {
 
     /**
      * 获取每月的学习情况
+     *
      * @return
      * @throws Exception
      */
     @RequestMapping("/getmonthlearntimefloor")
     public @ResponseBody
     List<MonthData> findmonthlearntimfloor(Integer fid) throws Exception {
-        Floor floor =floorService.findfloorByid(fid);
+        Floor floor = floorService.findfloorByid(fid);
         List<Integer> findmonthofbook = bookingService.findmonthofbook();
         List<MonthData> monthDataList = new ArrayList<MonthData>();
-        for (int i = 0; i <findmonthofbook.size() ; i++) {
+        for (int i = 0; i < findmonthofbook.size(); i++) {
             List<Booking> findbookfloorofmonth = bookingService.findbookfloorofmonth(floor.getFid(), findmonthofbook.get(i));
             MonthData monthData = new MonthData();
             monthData.setVenue(floor.getEmployer());
@@ -554,7 +828,7 @@ public class SuperAdmin_Controller {
             Integer allLearn = 0;
             Integer nudeal = 0;
             Integer dealpro = 0;
-            for (int j = 0; j <findbookfloorofmonth.size() ; j++) {
+            for (int j = 0; j < findbookfloorofmonth.size(); j++) {
                 Integer disTime = DateUtil.getDisTime(findbookfloorofmonth.get(j).getStime(), findbookfloorofmonth.get(j).getEtime());
                 learntime = learntime + disTime;
                 if (disTime > 0) {
@@ -576,6 +850,7 @@ public class SuperAdmin_Controller {
         }
         return monthDataList;
     }
+
     /**
      * 获取每周的学习情况
      *

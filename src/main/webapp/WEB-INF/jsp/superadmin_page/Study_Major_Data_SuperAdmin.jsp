@@ -32,7 +32,7 @@
 <body>
 <div class="layui-tab">
     <ul class="layui-tab-title">
-        <li class="layui-this">学习情况统计</li>
+        <li class="layui-this">${college}学习情况统计</li>
     </ul>
     <div class="layui-tab-content">
         <div class="layui-tab-item layui-show">
@@ -40,8 +40,8 @@
                 <thead>
                 <tr>
                     <th>序号</th>
-                    <th>院系名称</th>
-                    <th>院系人数</th>
+                    <th>专业名称</th>
+                    <th>专业人数</th>
                     <th>学习时间</th>
                     <th>学习次数</th>
                     <th>失信次数</th>
@@ -49,15 +49,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${collegeDatas}" var="collegedata" varStatus="step">
+                <c:forEach items="${majordatas}" var="majordata" varStatus="step">
                     <tr>
                         <td>${step.index+1}</td>
-                        <td><a href="<%=request.getContextPath()%>/view/getmajorlearn?college=${collegedata.venue}">${collegedata.venue}</a> </td>
-                        <td>${collegedata.students}</td>
-                        <td>${collegedata.learntime}小时</td>
-                        <td>${collegedata.allLearn}</td>
-                        <td>${collegedata.undeal}</td>
-                        <td>${collegedata.dealpro}%</td>
+                        <td><a href="<%=request.getContextPath()%>/view/getclassLearn?college=${college}&major=${majordata.venue}">${majordata.venue}</a> </td>
+                        <td>${majordata.students}</td>
+                        <td>${majordata.learntime}小时</td>
+                        <td>${majordata.allLearn}</td>
+                        <td>${majordata.undeal}</td>
+                        <td>${majordata.dealpro}%</td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -89,8 +89,8 @@
         $.ajax({
             type: "post",
             async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-            url: "${pageContext.request.contextPath }/view/getcollegelearn.form",    //getTrendData
-            data: "",
+            url: "${pageContext.request.contextPath }/view/getmajorslearn.form",    //getTrendData
+            data: "college=${college}",
             //  dataType : "json",        //返回数据形式为json
             success: function (result) {
                 //请求成功时执行该函数内容，result即为服务器返回的json对象

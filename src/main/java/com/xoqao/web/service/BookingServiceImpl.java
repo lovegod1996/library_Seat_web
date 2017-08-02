@@ -135,4 +135,19 @@ public class BookingServiceImpl implements BookingService {
         List<Booking> findbookfloorofmonth = bookingMapper.findbookfloorofmonth(fid, month);
         return findbookfloorofmonth;
     }
+
+    public List<Booking> findbookofCollege(String college) throws Exception {
+        List<Booking> bookings = bookingMapper.findbookofCollege(college);
+        return bookings;
+    }
+
+    public List<Booking> findbookwithCollegeAndMajor(String college, String major) throws Exception {
+        List<Booking> bookings = bookingMapper.findbookwithCollegeAndMajor(college, major);
+        return bookings;
+    }
+
+    public List<Booking> findbookWithCollegeMajorClass(String college, String major, String classes) throws Exception {
+        List<Booking> bookings = bookingMapper.findbookWithCollegeMajorClass(college, major, classes);
+        return bookings;
+    }
 }

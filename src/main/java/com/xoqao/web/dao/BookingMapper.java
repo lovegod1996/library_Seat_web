@@ -177,4 +177,31 @@ public interface BookingMapper {
      * @throws Exception
      */
     List<Booking> findbookfloorofmonth(@Param("fid") Integer fid,@Param("month") Integer month)throws Exception;
+
+    /**
+     * 根据院系名称查询预约
+     * @param college
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findbookofCollege(@Param("college") String college)throws Exception;
+
+    /**
+     * 根据院系名称和专业名称查询预约
+     * @param college
+     * @param major
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findbookwithCollegeAndMajor(@Param("college") String college,@Param("major") String major)throws Exception;
+
+    /**
+     * 根据院系名称专业名称班级查询预约
+     * @param college
+     * @param major
+     * @param classes
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findbookWithCollegeMajorClass(@Param("college") String college,@Param("major") String major,@Param("classes") String classes)throws Exception;
 }

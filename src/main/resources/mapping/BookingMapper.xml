@@ -171,5 +171,22 @@
         WHERE  seat.fid=#{fid} AND  MONTH(booking.bstime)=#{month} AND booking.statue=3 AND booking.sid=seat.sid
     </select>
 
-
+    <!--根据某一院系查询所有预约情况-->
+    <select id="findbookofCollege" resultType="com.xoqao.web.bean.booking.Booking">
+          SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.deal,booking.delay
+          FROM booking,user
+          WHERE user.college LIKE '${college}' AND  booking.statue=3 AND booking.sno=user.sno
+    </select>
+    <!--根据某一院系和专业查询所有预约-->
+    <select id="findbookwithCollegeAndMajor" resultType="com.xoqao.web.bean.booking.Booking">
+          SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.deal,booking.delay
+          FROM booking,user
+          WHERE user.college LIKE '${college}' AND  user.major LIKE '${major}' AND  booking.statue=3 AND booking.sno=user.sno
+    </select>
+    <!--根据院系和专业还有班级查询预约-->
+    <select id="findbookWithCollegeMajorClass" resultType="com.xoqao.web.bean.booking.Booking">
+         SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.deal,booking.delay
+          FROM booking,user
+          WHERE user.college LIKE '${college}' AND  user.major LIKE '${major}' AND user.classes LIKE '${classes}' AND  booking.statue=3 AND booking.sno=user.sno
+    </select>
 </mapper>

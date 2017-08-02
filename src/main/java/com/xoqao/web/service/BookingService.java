@@ -3,6 +3,7 @@ package com.xoqao.web.service;
 import com.xoqao.web.bean.booking.Booking;
 import com.xoqao.web.bean.booking.BookingSeat;
 import com.xoqao.web.bean.seat.Seat;
+import com.xoqao.web.bean.user.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
@@ -138,4 +139,32 @@ public interface BookingService {
      * @throws Exception
      */
     List<Booking> findbookfloorofmonth( Integer fid, Integer month)throws Exception;
+
+
+    /**
+     * 根据院系名称查询预约
+     * @param college
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findbookofCollege( String college)throws Exception;
+
+    /**
+     * 根据院系名称和专业名称查询预约
+     * @param college
+     * @param major
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findbookwithCollegeAndMajor( String college,String major)throws Exception;
+
+    /**
+     * 根据院系名称专业名称班级查询预约
+     * @param college
+     * @param major
+     * @param classes
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findbookWithCollegeMajorClass( String college,String major, String classes)throws Exception;
 }

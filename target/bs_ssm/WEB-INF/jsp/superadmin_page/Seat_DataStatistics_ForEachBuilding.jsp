@@ -129,13 +129,11 @@
 
     });
 </script>
-
 <script>
     layui.use(['form'], function () {
 
     });
 </script>
-
 <script type="text/javascript">
     window.onload = function () {
         getweekData();

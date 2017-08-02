@@ -63,11 +63,24 @@
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="<%=request.getContextPath()%>/view/study_DataStatistics_SuperAdmin"
-                           target="mainFrame_SuperAdmin">学习情况统计</a>
+                           target="mainFrame_SuperAdmin">院系学习情况统计</a>
                     </li>
                     <li>
-                        <a href="<%=request.getContextPath()%>/view/seat_DataStatistics_SuperAdmin"
-                           target="mainFrame_SuperAdmin">座位使用统计</a>
+                        <a href="#">场馆学习情况<span class="fa arrow"></span></a>
+                        <ul class="nav">
+                            <c:forEach items="${buidingfloors}" var="building">
+                                <li>
+                                    <a href="#">${building.employer}<span class="fa arrow"></span></a>
+                                    <ul class="nav">
+                                        <c:forEach items="${building.floors}" var="floor">
+                                            <li>
+                                                <a href="<%=request.getContextPath()%>/view/seat_DataStatistics_ForEachBuilding?fid=${floor.fid}" target="mainFrame_SuperAdmin">${floor.employer}</a>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
+                                </li>
+                            </c:forEach>
+                        </ul>
                     </li>
                 </ul>
             </li>
