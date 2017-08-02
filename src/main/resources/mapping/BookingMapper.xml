@@ -189,4 +189,6 @@
           FROM booking,user
           WHERE user.college LIKE '${college}' AND  user.major LIKE '${major}' AND user.classes LIKE '${classes}' AND  booking.statue=3 AND booking.sno=user.sno
     </select>
+
+
 </mapper>

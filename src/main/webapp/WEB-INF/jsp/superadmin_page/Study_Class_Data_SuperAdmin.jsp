@@ -52,7 +52,7 @@
                 <c:forEach items="${classdatas}" var="classes" varStatus="step">
                     <tr>
                         <td>${step.index+1}</td>
-                        <td>${classes.venue} </td>
+                        <td><a href="<%=request.getContextPath()%>/view/getStudentsLearn?college=${college}&major=${major}&classes=${classes.venue}">${classes.venue}</a> </td>
                         <td>${classes.students}</td>
                         <td>${classes.learntime}小时</td>
                         <td>${classes.allLearn}</td>

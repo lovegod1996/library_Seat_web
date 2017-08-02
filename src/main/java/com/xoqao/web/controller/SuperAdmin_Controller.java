@@ -5,6 +5,7 @@ import com.xoqao.web.bean.building.Building;
 import com.xoqao.web.bean.building.BuildingCusFloors;
 import com.xoqao.web.bean.data.CollgeData;
 import com.xoqao.web.bean.data.MonthData;
+import com.xoqao.web.bean.data.UserData;
 import com.xoqao.web.bean.data.WeekData;
 import com.xoqao.web.bean.floors.Floor;
 import com.xoqao.web.bean.user.User;
@@ -450,6 +451,7 @@ public class SuperAdmin_Controller {
 
     /**
      * 获取班级信息
+     *
      * @param model
      * @param college
      * @param major
@@ -489,15 +491,15 @@ public class SuperAdmin_Controller {
             collgeData.setStudents(users.size());
             classDataList.add(collgeData);
         }
-         model.addAttribute("college",college);
-        model.addAttribute("major",major);
-        model.addAttribute("classdatas",classDataList);
+        model.addAttribute("college", college);
+        model.addAttribute("major", major);
+        model.addAttribute("classdatas", classDataList);
         return "superadmin_page/Study_Class_Data_SuperAdmin";
     }
 
     @RequestMapping("/getClasseslearn")
     public @ResponseBody
-    List<CollgeData> findClasseslearn( String college, String major) throws Exception {
+    List<CollgeData> findClasseslearn(String college, String major) throws Exception {
         List<String> classes = userService.findclassbymajorcollege(college, major);
         List<CollgeData> classDataList = new ArrayList<CollgeData>();
         for (int i = 0; i < classes.size(); i++) {
@@ -532,6 +534,56 @@ public class SuperAdmin_Controller {
         return classDataList;
     }
 
+    /**
+     * 获取班级学生学习情况
+     * @param model
+     * @param college
+     * @param major
+     * @param classes
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/getStudentsLearn")
+    public String getstudentlearn(Model model, String college, String major, String classes) throws Exception {
+        List<User> users = userService.findstudentbyclassmajor(college, major, classes);
+        List<UserData> userDataList = new ArrayList<UserData>();
+        for (int i = 0; i < users.size(); i++) {
+            List<Booking> finduserbook = bookingService.finduserbook(users.get(i).getSno());
+            UserData userData = new UserData();
+            userData.setSex(users.get(i).getSex());
+            userData.setSno(users.get(i).getSno());
+            userData.setUsername(users.get(i).getName());
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            float dealpro = 0;
+            for (int j = 0; j < finduserbook.size(); j++) {
+                if(finduserbook.get(j).getStatue()==3) {
+                    Integer disTime = DateUtil.getDisTime(finduserbook.get(j).getStime(), finduserbook.get(j).getEtime());
+                    learntime = learntime + disTime;
+                    if (disTime > 0) {
+                        allLearn++;
+                    }
+                    if (finduserbook.get(j).getDeal() == 1) {
+                        nudeal++;
+                    }
+                }
+            }
+            if (finduserbook.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / (float) finduserbook.size()) * 100;
+            }
+            userData.setLearntime(learntime/60);
+            userData.setUndeal(nudeal);
+            userData.setDealpro((int) dealpro);
+            userData.setAllLearn(allLearn);
+            userDataList.add(userData);
+        }
+        model.addAttribute("college", college);
+        model.addAttribute("major", major);
+        model.addAttribute("classes", classes);
+        model.addAttribute("studentsDatas", userDataList);
+        return "superadmin_page/Study_Students_Data_SuperAdmin";
+    }
 
     @RequestMapping("/seat_DataStatistics_ForEachBuilding")
     public String seat_DataStatistics_ForEachBuilding(Model model, Integer fid) throws Exception {
