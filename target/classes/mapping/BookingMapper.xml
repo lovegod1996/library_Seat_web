@@ -158,4 +158,18 @@
         FROM booking,seat
         WHERE  seat.fid=#{fid} AND  WEEKOFYEAR(booking.bstime)=#{week} AND booking.statue=3 AND booking.sid=seat.sid
     </select>
+
+    <!--插叙目前预约的月数-->
+    <select id="findmonthofbook" resultType="java.lang.Integer">
+        SELECT DISTINCT(MONTH(bstime)) FROM booking
+    </select>
+
+    <!--查询某一场馆在某一月内的预约情况-->
+    <select id="findbookfloorofmonth" resultType="com.xoqao.web.bean.booking.Booking">
+        SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.deal,booking.delay
+        FROM booking,seat
+        WHERE  seat.fid=#{fid} AND  MONTH(booking.bstime)=#{month} AND booking.statue=3 AND booking.sid=seat.sid
+    </select>
+
+
 </mapper>

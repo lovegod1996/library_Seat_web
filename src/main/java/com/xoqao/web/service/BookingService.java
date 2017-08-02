@@ -122,4 +122,20 @@ public interface BookingService {
      * @throws Exception
      */
     List<Booking>  findbookfloorofweek(Integer fid,Integer week)throws Exception;
+
+    /**
+     * 查询预约内所有月份
+     * @return
+     * @throws Exception
+     */
+    List<Integer> findmonthofbook()throws Exception;
+
+    /**
+     * 查询某层指定预约内的预约情况
+     * @param fid
+     * @param month
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findbookfloorofmonth( Integer fid, Integer month)throws Exception;
 }

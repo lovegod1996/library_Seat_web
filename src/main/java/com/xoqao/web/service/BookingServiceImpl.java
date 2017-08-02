@@ -125,4 +125,14 @@ public class BookingServiceImpl implements BookingService {
         List<Booking> findbookfloorofweek = bookingMapper.findbookfloorofweek(fid, week);
         return findbookfloorofweek;
     }
+
+    public List<Integer> findmonthofbook() throws Exception {
+        List<Integer> findmonthofbook = bookingMapper.findmonthofbook();
+        return findmonthofbook;
+    }
+
+    public List<Booking> findbookfloorofmonth(Integer fid, Integer month) throws Exception {
+        List<Booking> findbookfloorofmonth = bookingMapper.findbookfloorofmonth(fid, month);
+        return findbookfloorofmonth;
+    }
 }

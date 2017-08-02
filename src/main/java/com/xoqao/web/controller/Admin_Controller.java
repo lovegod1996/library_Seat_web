@@ -2,6 +2,7 @@ package com.xoqao.web.controller;
 
 import com.xoqao.web.bean.booking.Booking;
 import com.xoqao.web.bean.building.Building;
+import com.xoqao.web.bean.data.MonthData;
 import com.xoqao.web.bean.data.WeekData;
 import com.xoqao.web.bean.floors.Floor;
 import com.xoqao.web.bean.seat.Seat;
@@ -526,10 +527,86 @@ public class Admin_Controller {
             weekData.setUndeal(nudeal);
             weekDataList.add(weekData);
         }
+
+        List<Integer> findmonthofbook = bookingService.findmonthofbook();
+        List<MonthData> monthDataList = new ArrayList<MonthData>();
+        for (int i = 0; i <findmonthofbook.size() ; i++) {
+            List<Booking> findbookfloorofmonth = bookingService.findbookfloorofmonth(floor.getFid(), findmonthofbook.get(i));
+            MonthData monthData = new MonthData();
+            monthData.setVenue(floor.getEmployer());
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            Integer dealpro = 0;
+            for (int j = 0; j <findbookfloorofmonth.size() ; j++) {
+                Integer disTime = DateUtil.getDisTime(findbookfloorofmonth.get(j).getStime(), findbookfloorofmonth.get(j).getEtime());
+                learntime = learntime + disTime;
+                if (disTime > 0) {
+                    allLearn++;
+                }
+                if (findbookfloorofmonth.get(j).getDeal() == 1) {
+                    nudeal++;
+                }
+            }
+            if (findbookfloorofmonth.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / findbookfloorofmonth.size()) * 100;
+            }
+            monthData.setAllLearn(allLearn);
+            monthData.setDealpro(dealpro);
+            monthData.setLearntime(learntime / 60);
+            monthData.setUndeal(nudeal);
+            monthData.setMonth(findmonthofbook.get(i));
+            monthDataList.add(monthData);
+        }
         model.addAttribute("weekdatas", weekDataList);
+        model.addAttribute("monthdatas", monthDataList);
 
         return "admin_page/Study_DataStatistics";
     }
+
+    /**
+     * 获取每月的学习情况
+     * @param httpSession
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/getmonthlearntime")
+    public @ResponseBody
+    List<MonthData> findmonthlearntim(HttpSession httpSession) throws Exception {
+        Floor floor = (Floor) httpSession.getAttribute("admin");
+        List<Integer> findmonthofbook = bookingService.findmonthofbook();
+        List<MonthData> monthDataList = new ArrayList<MonthData>();
+        for (int i = 0; i <findmonthofbook.size() ; i++) {
+            List<Booking> findbookfloorofmonth = bookingService.findbookfloorofmonth(floor.getFid(), findmonthofbook.get(i));
+            MonthData monthData = new MonthData();
+            monthData.setVenue(floor.getEmployer());
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            Integer dealpro = 0;
+            for (int j = 0; j <findbookfloorofmonth.size() ; j++) {
+                Integer disTime = DateUtil.getDisTime(findbookfloorofmonth.get(j).getStime(), findbookfloorofmonth.get(j).getEtime());
+                learntime = learntime + disTime;
+                if (disTime > 0) {
+                    allLearn++;
+                }
+                if (findbookfloorofmonth.get(j).getDeal() == 1) {
+                    nudeal++;
+                }
+            }
+            if (findbookfloorofmonth.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / findbookfloorofmonth.size()) * 100;
+            }
+            monthData.setAllLearn(allLearn);
+            monthData.setDealpro(dealpro);
+            monthData.setLearntime(learntime / 60);
+            monthData.setUndeal(nudeal);
+            monthData.setMonth(findmonthofbook.get(i));
+            monthDataList.add(monthData);
+        }
+        return monthDataList;
+    }
+
 
     /**
      * 获取每周的学习情况

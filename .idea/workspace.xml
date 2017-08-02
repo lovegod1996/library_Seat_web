@@ -7,38 +7,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b586f57a-9de6-47dc-b0c4-58a75fa9e17e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/data/WeekData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm.war" afterPath="$PROJECT_DIR$/target/bs_ssm.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/bean/user/User.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/bean/user/User.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/data/MonthData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/Admin_Controller.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/Admin_Controller.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/phone/PhoneServerController.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/phone/PhoneServerController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/dao/BookingMapper.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/dao/BookingMapper.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/service/BookingService.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/service/BookingService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/service/BookingServiceImpl.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/service/BookingServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/bean/user/User.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/bean/user/User.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/Admin_Controller.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/Admin_Controller.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/phone/PhoneServerController.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/phone/PhoneServerController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/dao/BookingMapper.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/dao/BookingMapper.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/service/BookingService.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/service/BookingService.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/service/BookingServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/service/BookingServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/user/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/user/User.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/phone/PhoneServerController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/phone/PhoneServerController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/dao/BookingMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/dao/BookingMapper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/BookingService.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/BookingService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/BookingServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/BookingServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapping/BookingMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapping/BookingMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapping/UserMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapping/UserMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Study_DataStatistics.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Study_DataStatistics.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Leftmenu.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Leftmenu.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/mapping/BookingMapper.xml" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/mapping/BookingMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/mapping/UserMapper.xml" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/mapping/UserMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/admin_page/Study_DataStatistics.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/admin_page/Study_DataStatistics.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/public_page/Leftmenu.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/public_page/Leftmenu.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mapping/BookingMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mapping/BookingMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mapping/UserMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mapping/UserMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,105 +37,56 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Leftmenu.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Leftmenu.jsp">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="BookingMapper.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/BookingMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="161">
-              <caret line="40" column="65" lean-forward="true" selection-start-line="40" selection-start-column="65" selection-end-line="40" selection-end-column="65" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin_pageController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin_pageController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="80" column="32" lean-forward="false" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main_Admin.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Main_Admin.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="131" column="42" lean-forward="true" selection-start-line="131" selection-start-column="42" selection-end-line="131" selection-end-column="42" />
+              <caret line="160" column="0" lean-forward="true" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
               <folding>
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1501640580040" expanded="true" signature="313:666" ph="SELECT seat.... seat" />
+                <marker date="1501640580040" expanded="true" signature="441:547" ph="SELECT COUNT... booking" />
+                <marker date="1501640580040" expanded="true" signature="441:548" ph="SELECT COUNT... booking" />
+                <marker date="1501640580040" expanded="true" signature="774:1164" ph="SELECT seat.... seat" />
+                <marker date="1501640580040" expanded="true" signature="902:1008" ph="SELECT COUNT... booking" />
+                <marker date="1501640580040" expanded="true" signature="1292:1670" ph="SELECT booki... booking" />
+                <marker date="1501640580040" expanded="true" signature="1783:2211" ph="SELECT booki... booking" />
+                <marker date="1501640580040" expanded="true" signature="2335:2693" ph="SELECT seat.... seat" />
+                <marker date="1501640580040" expanded="true" signature="2463:2570" ph="SELECT COUNT... booking" />
+                <marker date="1501640580040" expanded="true" signature="2794:3191" ph="SELECT seat.... seat" />
+                <marker date="1501640580040" expanded="true" signature="2922:3029" ph="SELECT COUNT... booking" />
+                <marker date="1501640580040" expanded="true" signature="3328:3532" ph="SELECT bid,s... booking" />
+                <marker date="1501640580040" expanded="true" signature="3645:3856" ph="SELECT bid,s... booking" />
+                <marker date="1501640580040" expanded="true" signature="4670:4729" ph="UPDATE booki... " />
+                <marker date="1501640580040" expanded="true" signature="4805:4900" ph="UPDATE booki... " />
+                <marker date="1501640580040" expanded="true" signature="4971:5037" ph="UPDATE booki... " />
+                <marker date="1501640580040" expanded="true" signature="5169:5328" ph="SELECT bid,s... booking" />
+                <marker date="1501640580040" expanded="true" signature="5450:5558" ph="SELECT bid,s... booking" />
+                <marker date="1501640580040" expanded="true" signature="5635:5671" ph="DELETE FROM " />
+                <marker date="1501640580040" expanded="true" signature="5800:5937" ph="SELECT bid,s... booking" />
+                <marker date="1501640580040" expanded="true" signature="6044:6219" ph="SELECT bid,s... booking" />
+                <marker date="1501640580040" expanded="true" signature="6353:6508" ph="SELECT bid,s... booking" />
+                <marker date="1501640580040" expanded="true" signature="6622:6814" ph="SELECT bid,s... booking" />
+                <marker date="1501640580040" expanded="true" signature="6923:7011" ph="SELECT DISTI... booking" />
+                <marker date="1501640580040" expanded="true" signature="7149:7338" ph="SELECT bid,s... booking" />
+                <marker date="1501640580040" expanded="true" signature="7149:7434" ph="SELECT booki... booking" />
+                <marker date="1501640580040" expanded="true" signature="7544:7587" ph="SELECT DISTI... booking" />
+                <marker date="1501640580040" expanded="true" signature="7726:8007" ph="SELECT booki... booking" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user_pageController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java">
+      <file leaf-file-name="MonthData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/data/MonthData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-413">
-              <caret line="89" column="24" lean-forward="true" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
+            <state relative-caret-position="69">
+              <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
               <folding>
-                <element signature="e#3116#3127#0" expanded="true" />
-                <element signature="e#7204#7217#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Admin_Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="546" column="57" lean-forward="false" selection-start-line="546" selection-start-column="57" selection-end-line="546" selection-end-column="57" />
-              <folding>
-                <element signature="e#15725#15735#0" expanded="true" />
-                <element signature="e#17575#17585#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WeekData.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/data/WeekData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="12" column="26" lean-forward="false" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="26" />
-              <folding>
-                <element signature="e#310#311#0" expanded="true" />
-                <element signature="e#338#339#0" expanded="true" />
-                <element signature="e#380#381#0" expanded="true" />
-                <element signature="e#414#415#0" expanded="true" />
-                <element signature="e#451#452#0" expanded="true" />
-                <element signature="e#483#484#0" expanded="true" />
-                <element signature="e#534#535#0" expanded="true" />
-                <element signature="e#576#577#0" expanded="true" />
-                <element signature="e#612#613#0" expanded="true" />
-                <element signature="e#643#644#0" expanded="true" />
-                <element signature="e#692#693#0" expanded="true" />
-                <element signature="e#732#733#0" expanded="true" />
-                <element signature="e#766#767#0" expanded="true" />
-                <element signature="e#795#796#0" expanded="true" />
-                <element signature="e#840#841#0" expanded="true" />
-                <element signature="e#876#877#0" expanded="true" />
-                <element signature="e#911#912#0" expanded="true" />
-                <element signature="e#941#942#0" expanded="true" />
-                <element signature="e#988#989#0" expanded="true" />
-                <element signature="e#1026#1027#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Study_DataStatistics.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Study_DataStatistics.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1213">
-              <caret line="105" column="51" lean-forward="false" selection-start-line="105" selection-start-column="51" selection-end-line="105" selection-end-column="51" />
-              <folding>
-                <element signature="n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#212#213#0" expanded="true" />
+                <element signature="e#240#241#0" expanded="true" />
+                <element signature="e#283#284#0" expanded="true" />
+                <element signature="e#317#318#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -173,6 +112,7 @@
       <find>floorSide</find>
       <find>sno</find>
       <find>information_User_Self</find>
+      <find>dlink</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -186,7 +126,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/weekopen/WeekOpenCus.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/News_List_User.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin/AdminController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapping/FloorsMapper.xml" />
@@ -229,14 +168,15 @@
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/user/User.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapping/UserMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/phone/PhoneServerController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Leftmenu.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/data/WeekData.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapping/BookingMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/dao/BookingMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/BookingService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/service/BookingServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/data/WeekData.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/data/MonthData.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Study_DataStatistics.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Leftmenu.jsp" />
       </list>
     </option>
   </component>
@@ -290,9 +230,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -334,6 +274,16 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="bean" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="library_Seat_web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="library_Seat_web" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="bean" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="library_Seat_web" type="b2602c69:ProjectViewProjectNode" />
@@ -662,7 +612,8 @@
       <workItem from="1501312092670" duration="5465000" />
       <workItem from="1501412869715" duration="2670000" />
       <workItem from="1501465005003" duration="21824000" />
-      <workItem from="1501551211267" duration="18925000" />
+      <workItem from="1501551211267" duration="19050000" />
+      <workItem from="1501634704910" duration="6036000" />
     </task>
     <task id="LOCAL-00001" summary="完成图书馆和楼层信息修改">
       <created>1500863380158</created>
@@ -804,11 +755,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501508458721</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="添加学习记录查看，图表查看">
+      <created>1501596225640</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1501596225640</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="189878000" />
+    <option name="totallyTimeSpent" value="196039000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -827,7 +785,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20171674" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20439914" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -900,56 +858,57 @@
     <MESSAGE value="添加首页当前预约概况信息展示" />
     <MESSAGE value="添加后台管理侧边栏信息，管理首页动态及时座位状态查看" />
     <MESSAGE value="完成预约记录查看，查看预约记录，查看违约记录" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成预约记录查看，查看预约记录，查看违约记录" />
+    <MESSAGE value="添加学习记录查看，图表查看" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加学习记录查看，图表查看" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java</url>
-          <line>122</line>
+          <line>123</line>
           <properties />
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java</url>
-          <line>119</line>
+          <line>120</line>
           <properties />
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java</url>
-          <line>116</line>
+          <line>117</line>
           <properties />
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java</url>
-          <line>109</line>
+          <line>110</line>
           <properties />
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java</url>
-          <line>80</line>
+          <line>81</line>
           <properties />
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java</url>
-          <line>86</line>
+          <line>87</line>
           <properties />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java</url>
-          <line>78</line>
+          <line>79</line>
           <properties />
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java</url>
-          <line>79</line>
+          <line>80</line>
           <properties />
           <option name="timeStamp" value="28" />
         </line-breakpoint>
@@ -1133,22 +1092,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/service/WeekOpenService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/booking/SeatBookings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="13" column="31" lean-forward="true" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/booking/Booking.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
@@ -1411,7 +1354,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
           <caret line="54" column="175" lean-forward="true" selection-start-line="54" selection-start-column="23" selection-end-line="54" selection-end-column="175" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1419,7 +1361,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="38" column="31" lean-forward="true" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1454,10 +1395,10 @@
         <state relative-caret-position="1211">
           <caret line="101" column="5" lean-forward="true" selection-start-line="101" selection-start-column="5" selection-end-line="101" selection-end-column="5" />
           <folding>
-            <element signature="e#1686#1687#0" expanded="true" />
-            <element signature="e#1712#1713#0" expanded="true" />
-            <element signature="e#1751#1752#0" expanded="true" />
-            <element signature="e#1781#1782#0" expanded="true" />
+            <element signature="e#1686#1687#0" expanded="false" />
+            <element signature="e#1712#1713#0" expanded="false" />
+            <element signature="e#1751#1752#0" expanded="false" />
+            <element signature="e#1781#1782#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1470,22 +1411,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Leftmenu.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="40" column="65" lean-forward="true" selection-start-line="40" selection-start-column="65" selection-end-line="40" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin_pageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="80" column="32" lean-forward="false" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Index_Admin.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1494,44 +1419,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Main_Admin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="131" column="42" lean-forward="false" selection-start-line="131" selection-start-column="42" selection-end-line="131" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/service/BookingServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="125" column="35" lean-forward="true" selection-start-line="125" selection-start-column="35" selection-end-line="125" selection-end-column="35" />
+        <state relative-caret-position="345">
+          <caret line="135" column="36" lean-forward="true" selection-start-line="135" selection-start-column="36" selection-end-line="135" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/service/BookingService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="108" column="0" lean-forward="true" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+        <state relative-caret-position="414">
+          <caret line="136" column="14" lean-forward="true" selection-start-line="136" selection-start-column="14" selection-end-line="136" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/dao/BookingMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="150" column="14" lean-forward="true" selection-start-line="150" selection-start-column="14" selection-end-line="150" selection-end-column="14" />
+        <state relative-caret-position="92">
+          <caret line="167" column="24" lean-forward="true" selection-start-line="167" selection-start-column="24" selection-end-line="167" selection-end-column="24" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Main_Admin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="131" column="42" lean-forward="true" selection-start-line="131" selection-start-column="42" selection-end-line="131" selection-end-column="42" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-413">
-          <caret line="89" column="24" lean-forward="true" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
+        <state relative-caret-position="-184">
+          <caret line="89" column="24" lean-forward="false" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
           <folding>
             <element signature="e#3116#3127#0" expanded="true" />
             <element signature="e#7204#7217#0" expanded="true" />
@@ -1539,48 +1462,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/BookingMapper.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Managing_Floor.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="153" column="0" lean-forward="true" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+        <state relative-caret-position="8">
+          <caret line="125" column="0" lean-forward="false" selection-start-line="125" selection-start-column="0" selection-end-line="153" selection-end-column="9" />
           <folding>
-            <marker date="1501580403391" expanded="true" signature="313:666" ph="SELECT seat.... seat" />
-            <marker date="1501580403391" expanded="true" signature="441:547" ph="SELECT COUNT... booking" />
-            <marker date="1501580403391" expanded="true" signature="441:548" ph="SELECT COUNT... booking" />
-            <marker date="1501580403391" expanded="true" signature="774:1164" ph="SELECT seat.... seat" />
-            <marker date="1501580403391" expanded="true" signature="902:1008" ph="SELECT COUNT... booking" />
-            <marker date="1501580403391" expanded="true" signature="1292:1670" ph="SELECT booki... booking" />
-            <marker date="1501580403391" expanded="true" signature="1783:2211" ph="SELECT booki... booking" />
-            <marker date="1501580403391" expanded="true" signature="2335:2693" ph="SELECT seat.... seat" />
-            <marker date="1501580403391" expanded="true" signature="2463:2570" ph="SELECT COUNT... booking" />
-            <marker date="1501580403391" expanded="true" signature="2794:3191" ph="SELECT seat.... seat" />
-            <marker date="1501580403391" expanded="true" signature="2922:3029" ph="SELECT COUNT... booking" />
-            <marker date="1501580403391" expanded="true" signature="3328:3532" ph="SELECT bid,s... booking" />
-            <marker date="1501580403391" expanded="true" signature="3645:3856" ph="SELECT bid,s... booking" />
-            <marker date="1501580403391" expanded="true" signature="4670:4729" ph="UPDATE booki... " />
-            <marker date="1501580403391" expanded="true" signature="4805:4900" ph="UPDATE booki... " />
-            <marker date="1501580403391" expanded="true" signature="4971:5037" ph="UPDATE booki... " />
-            <marker date="1501580403391" expanded="true" signature="5169:5328" ph="SELECT bid,s... booking" />
-            <marker date="1501580403391" expanded="true" signature="5450:5558" ph="SELECT bid,s... booking" />
-            <marker date="1501580403391" expanded="true" signature="5635:5671" ph="DELETE FROM " />
-            <marker date="1501580403391" expanded="true" signature="5800:5937" ph="SELECT bid,s... booking" />
-            <marker date="1501580403391" expanded="true" signature="6044:6219" ph="SELECT bid,s... booking" />
-            <marker date="1501580403391" expanded="true" signature="6353:6508" ph="SELECT bid,s... booking" />
-            <marker date="1501580403391" expanded="true" signature="6622:6814" ph="SELECT bid,s... booking" />
-            <marker date="1501580403391" expanded="true" signature="6923:7011" ph="SELECT DISTI... booking" />
-            <marker date="1501580403391" expanded="true" signature="7149:7338" ph="SELECT bid,s... booking" />
-            <marker date="1501580403391" expanded="true" signature="7149:7434" ph="SELECT booki... booking" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="e#4987#5719#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Study_DataStatistics.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="137" column="31" lean-forward="true" selection-start-line="137" selection-start-column="31" selection-end-line="138" selection-end-column="31" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#7312#8044#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="546" column="57" lean-forward="false" selection-start-line="546" selection-start-column="57" selection-end-line="546" selection-end-column="57" />
+        <state relative-caret-position="131">
+          <caret line="569" column="14" lean-forward="true" selection-start-line="569" selection-start-column="14" selection-end-line="569" selection-end-column="14" />
           <folding>
-            <element signature="e#15725#15735#0" expanded="true" />
-            <element signature="e#17575#17585#0" expanded="true" />
+            <element signature="e#15767#15777#0" expanded="true" />
+            <element signature="e#17179#17190#0" expanded="true" />
+            <element signature="e#19133#19144#0" expanded="true" />
+            <element signature="e#20968#20978#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1589,39 +1506,72 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="12" column="26" lean-forward="false" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin_pageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="73" column="0" lean-forward="true" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/data/MonthData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
           <folding>
-            <element signature="e#310#311#0" expanded="true" />
-            <element signature="e#338#339#0" expanded="true" />
-            <element signature="e#380#381#0" expanded="true" />
-            <element signature="e#414#415#0" expanded="true" />
-            <element signature="e#451#452#0" expanded="true" />
-            <element signature="e#483#484#0" expanded="true" />
-            <element signature="e#534#535#0" expanded="true" />
-            <element signature="e#576#577#0" expanded="true" />
-            <element signature="e#612#613#0" expanded="true" />
-            <element signature="e#643#644#0" expanded="true" />
-            <element signature="e#692#693#0" expanded="true" />
-            <element signature="e#732#733#0" expanded="true" />
-            <element signature="e#766#767#0" expanded="true" />
-            <element signature="e#795#796#0" expanded="true" />
-            <element signature="e#840#841#0" expanded="true" />
-            <element signature="e#876#877#0" expanded="true" />
-            <element signature="e#911#912#0" expanded="true" />
-            <element signature="e#941#942#0" expanded="true" />
-            <element signature="e#988#989#0" expanded="true" />
-            <element signature="e#1026#1027#0" expanded="true" />
+            <element signature="e#212#213#0" expanded="true" />
+            <element signature="e#240#241#0" expanded="true" />
+            <element signature="e#283#284#0" expanded="true" />
+            <element signature="e#317#318#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Study_DataStatistics.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Leftmenu.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1213">
-          <caret line="105" column="51" lean-forward="false" selection-start-line="105" selection-start-column="51" selection-end-line="105" selection-end-column="51" />
+        <state relative-caret-position="115">
+          <caret line="81" column="21" lean-forward="true" selection-start-line="81" selection-start-column="21" selection-end-line="81" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/BookingMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="160" column="0" lean-forward="true" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
           <folding>
-            <element signature="n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1501640580040" expanded="true" signature="313:666" ph="SELECT seat.... seat" />
+            <marker date="1501640580040" expanded="true" signature="441:547" ph="SELECT COUNT... booking" />
+            <marker date="1501640580040" expanded="true" signature="441:548" ph="SELECT COUNT... booking" />
+            <marker date="1501640580040" expanded="true" signature="774:1164" ph="SELECT seat.... seat" />
+            <marker date="1501640580040" expanded="true" signature="902:1008" ph="SELECT COUNT... booking" />
+            <marker date="1501640580040" expanded="true" signature="1292:1670" ph="SELECT booki... booking" />
+            <marker date="1501640580040" expanded="true" signature="1783:2211" ph="SELECT booki... booking" />
+            <marker date="1501640580040" expanded="true" signature="2335:2693" ph="SELECT seat.... seat" />
+            <marker date="1501640580040" expanded="true" signature="2463:2570" ph="SELECT COUNT... booking" />
+            <marker date="1501640580040" expanded="true" signature="2794:3191" ph="SELECT seat.... seat" />
+            <marker date="1501640580040" expanded="true" signature="2922:3029" ph="SELECT COUNT... booking" />
+            <marker date="1501640580040" expanded="true" signature="3328:3532" ph="SELECT bid,s... booking" />
+            <marker date="1501640580040" expanded="true" signature="3645:3856" ph="SELECT bid,s... booking" />
+            <marker date="1501640580040" expanded="true" signature="4670:4729" ph="UPDATE booki... " />
+            <marker date="1501640580040" expanded="true" signature="4805:4900" ph="UPDATE booki... " />
+            <marker date="1501640580040" expanded="true" signature="4971:5037" ph="UPDATE booki... " />
+            <marker date="1501640580040" expanded="true" signature="5169:5328" ph="SELECT bid,s... booking" />
+            <marker date="1501640580040" expanded="true" signature="5450:5558" ph="SELECT bid,s... booking" />
+            <marker date="1501640580040" expanded="true" signature="5635:5671" ph="DELETE FROM " />
+            <marker date="1501640580040" expanded="true" signature="5800:5937" ph="SELECT bid,s... booking" />
+            <marker date="1501640580040" expanded="true" signature="6044:6219" ph="SELECT bid,s... booking" />
+            <marker date="1501640580040" expanded="true" signature="6353:6508" ph="SELECT bid,s... booking" />
+            <marker date="1501640580040" expanded="true" signature="6622:6814" ph="SELECT bid,s... booking" />
+            <marker date="1501640580040" expanded="true" signature="6923:7011" ph="SELECT DISTI... booking" />
+            <marker date="1501640580040" expanded="true" signature="7149:7338" ph="SELECT bid,s... booking" />
+            <marker date="1501640580040" expanded="true" signature="7149:7434" ph="SELECT booki... booking" />
+            <marker date="1501640580040" expanded="true" signature="7544:7587" ph="SELECT DISTI... booking" />
+            <marker date="1501640580040" expanded="true" signature="7726:8007" ph="SELECT booki... booking" />
           </folding>
         </state>
       </provider>
