@@ -1,19 +1,23 @@
 package com.xoqao.web.controller;
 
+import com.xoqao.web.bean.booking.Booking;
 import com.xoqao.web.bean.building.Building;
+import com.xoqao.web.bean.data.MonthData;
+import com.xoqao.web.bean.data.WeekData;
 import com.xoqao.web.bean.floors.Floor;
+import com.xoqao.web.service.BookingService;
 import com.xoqao.web.service.BuildingService;
 import com.xoqao.web.service.FloorService;
+import com.xoqao.web.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.jws.WebParam;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import javax.servlet.http.HttpSession;
+import java.util.*;
 
 /**
  * Created by 1Q84 on 2017/7/19.
@@ -28,6 +32,9 @@ public class SuperAdmin_Controller {
 
     @Autowired
     private FloorService floorService;
+    @Autowired
+    private BookingService bookingService;
+
 
     @RequestMapping("/index_SuperAdmin")
     public String index_SuperAdmin(Model model) throws Exception {
@@ -107,6 +114,7 @@ public class SuperAdmin_Controller {
 
     /**
      * 修改图书馆信息
+     *
      * @param model
      * @param bid
      * @param libaray
@@ -115,7 +123,7 @@ public class SuperAdmin_Controller {
      * @throws Exception
      */
     @RequestMapping("/editBuilding")
-    public String editBuilding(Model model,Integer bid, String libaray, String admin)throws Exception{
+    public String editBuilding(Model model, Integer bid, String libaray, String admin) throws Exception {
         Building buildingById = buildingService.findBuildingById(bid);
         buildingById.setEmployer(libaray);
         buildingById.setName(admin);
@@ -181,11 +189,11 @@ public class SuperAdmin_Controller {
         Floor floor = new Floor();
         List<Floor> floors = floorService.findfloorsBybid(bid);
         Building buildingById = buildingService.findBuildingById(bid);
-        String number=null;
-        if(floors.size()>0){
+        String number = null;
+        if (floors.size() > 0) {
             number = buildingById.getAccountnumber() + "00" + (floors.get(floors.size() - 1).getFid() + 1);
-        }else{
-            number=buildingById.getAccountnumber() + "00" +1;
+        } else {
+            number = buildingById.getAccountnumber() + "00" + 1;
         }
         floor.setAccountnumber(number);
         floor.setBid(bid);
@@ -250,13 +258,364 @@ public class SuperAdmin_Controller {
     }
 
     @RequestMapping("/seat_DataStatistics_ForEachBuilding")
-    public String seat_DataStatistics_ForEachBuilding(Model model) throws Exception {
+    public String seat_DataStatistics_ForEachBuilding(Model model,Integer fid) throws Exception {
+
+        Floor floor =floorService.findfloorByid(fid);
+        List<Integer> findweekofbook = bookingService.findweekofbook();  //查看所有的预约周数
+        List<WeekData> weekDataList = new ArrayList<WeekData>();
+        for (int i = 0; i < findweekofbook.size(); i++) {
+            List<Booking> findbookfloorofweek = bookingService.findbookfloorofweek(floor.getFid(), findweekofbook.get(i));  //查看某楼层在某州的预约情况
+            WeekData weekData = new WeekData();
+            weekData.setVenue(floor.getEmployer());
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            Integer dealpro = 0;
+            for (int j = 0; j < findbookfloorofweek.size(); j++) {
+                Integer disTime = DateUtil.getDisTime(findbookfloorofweek.get(j).getStime(), findbookfloorofweek.get(j).getEtime());
+                learntime = learntime + disTime;
+                if (disTime > 0) {
+                    allLearn++;
+                }
+                if (findbookfloorofweek.get(j).getDeal() == 1) {
+                    nudeal++;
+                }
+            }
+            if (findbookfloorofweek.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / findbookfloorofweek.size()) * 100;
+            }
+            weekData.setAllLearn(allLearn);
+            weekData.setDealpro(dealpro);
+            weekData.setLearntime(learntime / 60);
+            weekData.setUndeal(nudeal);
+            weekDataList.add(weekData);
+        }
+
+        List<Integer> findmonthofbook = bookingService.findmonthofbook();
+        List<MonthData> monthDataList = new ArrayList<MonthData>();
+        for (int i = 0; i <findmonthofbook.size() ; i++) {
+            List<Booking> findbookfloorofmonth = bookingService.findbookfloorofmonth(floor.getFid(), findmonthofbook.get(i));
+            MonthData monthData = new MonthData();
+            monthData.setVenue(floor.getEmployer());
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            Integer dealpro = 0;
+            for (int j = 0; j <findbookfloorofmonth.size() ; j++) {
+                Integer disTime = DateUtil.getDisTime(findbookfloorofmonth.get(j).getStime(), findbookfloorofmonth.get(j).getEtime());
+                learntime = learntime + disTime;
+                if (disTime > 0) {
+                    allLearn++;
+                }
+                if (findbookfloorofmonth.get(j).getDeal() == 1) {
+                    nudeal++;
+                }
+            }
+            if (findbookfloorofmonth.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / findbookfloorofmonth.size()) * 100;
+            }
+            monthData.setAllLearn(allLearn);
+            monthData.setDealpro(dealpro);
+            monthData.setLearntime(learntime / 60);
+            monthData.setUndeal(nudeal);
+            monthData.setMonth(findmonthofbook.get(i));
+            monthDataList.add(monthData);
+        }
+        model.addAttribute("weekdatas", weekDataList);
+        model.addAttribute("monthdatas", monthDataList);
+       model.addAttribute("floor",floor);
+
         return "superadmin_page/Seat_DataStatistics_ForEachBuilding";
     }
 
+
+
+
+
+    /**
+     * 查询整馆学习情况
+     *
+     * @param model
+     * @param httpSession
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/study_DataStatistics_ForEachBuilding")
-    public String study_DataStatistics_ForEachBuilding(Model model) throws Exception {
+    public String study_DataStatistics_ForEachBuilding(Model model, HttpSession httpSession) throws Exception {
+        Building building = (Building) httpSession.getAttribute("admin");
+        List<Floor> floors = floorService.findfloorsBybid(building.getBid());
+        /**
+         * 获取每周的统计数据
+         */
+        List<Integer> findweekofbook = bookingService.findweekofbook();  //查看所有的预约周数
+
+        List<WeekData> weekDataList = new ArrayList<WeekData>();  //所有周的预约统计
+
+
+        for (int i = 0; i < findweekofbook.size(); i++) {
+            WeekData weekData = new WeekData();
+            weekData.setVenue(building.getEmployer());
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            Integer dealpro = 0;
+            Integer books = 0;
+            for (int j = 0; j < floors.size(); j++) {
+                List<Booking> findbookfloorofweek = bookingService.findbookfloorofweek(floors.get(j).getFid(), findweekofbook.get(i));
+                for (int k = 0; k < findbookfloorofweek.size(); k++) {
+                    Integer disTime = DateUtil.getDisTime(findbookfloorofweek.get(k).getStime(), findbookfloorofweek.get(k).getEtime());
+                    learntime = learntime + disTime;
+                    if (disTime > 0) {
+                        allLearn++;
+                    }
+                    if (findbookfloorofweek.get(k).getDeal() == 1) {
+                        nudeal++;
+                    }
+                }
+                books = books + findbookfloorofweek.size();
+            }
+
+            if (books > 0) {
+                dealpro = (nudeal / books) * 100;
+            }
+            weekData.setAllLearn(allLearn);
+            weekData.setDealpro(dealpro);
+            weekData.setLearntime(learntime / 60);
+            weekData.setUndeal(nudeal);
+            weekDataList.add(weekData);    //添加每周的学习统计数据
+        }
+        model.addAttribute("weekdatas", weekDataList);
+        /**
+         * 获取每月的统计数据
+         */
+
+        List<MonthData> monthDataList = new ArrayList<MonthData>();   //每月的统计结果数据
+        List<Integer> findmonthofbook = bookingService.findmonthofbook();
+        for (int i = 0; i < findmonthofbook.size(); i++) {
+
+            MonthData monthData = new MonthData();
+            monthData.setVenue(building.getEmployer());
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            Integer dealpro = 0;
+            Integer books = 0;
+            for (int j = 0; j < floors.size(); j++) {
+                List<Booking> findbookfloorofmonth = bookingService.findbookfloorofmonth(floors.get(j).getFid(), findmonthofbook.get(i));
+                for (int k = 0; k < findbookfloorofmonth.size(); k++) {
+                    Integer disTime = DateUtil.getDisTime(findbookfloorofmonth.get(k).getStime(), findbookfloorofmonth.get(k).getEtime());
+                    learntime = learntime + disTime;
+                    if (disTime > 0) {
+                        allLearn++;
+                    }
+                    if (findbookfloorofmonth.get(k).getDeal() == 1) {
+                        nudeal++;
+                    }
+                }
+                books = books + findbookfloorofmonth.size();
+            }
+            if (books > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / books) * 100;
+            }
+            monthData.setAllLearn(allLearn);
+            monthData.setDealpro(dealpro);
+            monthData.setLearntime(learntime / 60);
+            monthData.setUndeal(nudeal);
+            monthData.setMonth(findmonthofbook.get(i));
+            monthDataList.add(monthData);
+        }
+        model.addAttribute("monthdatas", monthDataList);
         return "superadmin_page/Study_DataStatistics_ForEachBuilding";
+    }
+
+    /**
+     * 查询每周整馆的学习情况
+     *
+     * @param httpSession
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/getweekliblearntime")
+    public @ResponseBody
+    List<WeekData> findweekliblearntim(HttpSession httpSession) throws Exception {
+        Building building = (Building) httpSession.getAttribute("admin");
+        List<Floor> floors = floorService.findfloorsBybid(building.getBid());
+        /**
+         * 获取每周的统计数据
+         */
+        List<Integer> findweekofbook = bookingService.findweekofbook();  //查看所有的预约周数
+
+        List<WeekData> weekDataList = new ArrayList<WeekData>();  //所有周的预约统计
+
+
+        for (int i = 0; i < findweekofbook.size(); i++) {
+            WeekData weekData = new WeekData();
+            weekData.setVenue(building.getEmployer());
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            Integer dealpro = 0;
+            Integer books = 0;
+            for (int j = 0; j < floors.size(); j++) {
+                List<Booking> findbookfloorofweek = bookingService.findbookfloorofweek(floors.get(j).getFid(), findweekofbook.get(i));
+                for (int k = 0; k < findbookfloorofweek.size(); k++) {
+                    Integer disTime = DateUtil.getDisTime(findbookfloorofweek.get(k).getStime(), findbookfloorofweek.get(k).getEtime());
+                    learntime = learntime + disTime;
+                    if (disTime > 0) {
+                        allLearn++;
+                    }
+                    if (findbookfloorofweek.get(k).getDeal() == 1) {
+                        nudeal++;
+                    }
+                }
+                books = books + findbookfloorofweek.size();
+            }
+
+            if (books > 0) {
+                dealpro = (nudeal / books) * 100;
+            }
+            weekData.setAllLearn(allLearn);
+            weekData.setDealpro(dealpro);
+            weekData.setLearntime(learntime / 60);
+            weekData.setUndeal(nudeal);
+            weekDataList.add(weekData);    //添加每周的学习统计数据
+        }
+        return weekDataList;
+    }
+
+
+    /**
+     * 查询每月整馆学习情况
+     *
+     * @param httpSession
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/getmonthliblearntime")
+    public @ResponseBody
+    List<MonthData> findmonthliblearntim(HttpSession httpSession) throws Exception {
+
+        Building building = (Building) httpSession.getAttribute("admin");
+        List<Floor> floors = floorService.findfloorsBybid(building.getBid());
+        List<MonthData> monthDataList = new ArrayList<MonthData>();   //每月的统计结果数据
+        List<Integer> findmonthofbook = bookingService.findmonthofbook();
+        for (int i = 0; i < findmonthofbook.size(); i++) {
+
+            MonthData monthData = new MonthData();
+            monthData.setVenue(building.getEmployer());
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            Integer dealpro = 0;
+            Integer books = 0;
+            for (int j = 0; j < floors.size(); j++) {
+                List<Booking> findbookfloorofmonth = bookingService.findbookfloorofmonth(floors.get(j).getFid(), findmonthofbook.get(i));
+                for (int k = 0; k < findbookfloorofmonth.size(); k++) {
+                    Integer disTime = DateUtil.getDisTime(findbookfloorofmonth.get(k).getStime(), findbookfloorofmonth.get(k).getEtime());
+                    learntime = learntime + disTime;
+                    if (disTime > 0) {
+                        allLearn++;
+                    }
+                    if (findbookfloorofmonth.get(k).getDeal() == 1) {
+                        nudeal++;
+                    }
+                }
+                books = books + findbookfloorofmonth.size();
+            }
+            if (books > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / books) * 100;
+            }
+            monthData.setAllLearn(allLearn);
+            monthData.setDealpro(dealpro);
+            monthData.setLearntime(learntime / 60);
+            monthData.setUndeal(nudeal);
+            monthData.setMonth(findmonthofbook.get(i));
+            monthDataList.add(monthData);
+        }
+        return monthDataList;
+    }
+
+    /**
+     * 获取每月的学习情况
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/getmonthlearntimefloor")
+    public @ResponseBody
+    List<MonthData> findmonthlearntimfloor(Integer fid) throws Exception {
+        Floor floor =floorService.findfloorByid(fid);
+        List<Integer> findmonthofbook = bookingService.findmonthofbook();
+        List<MonthData> monthDataList = new ArrayList<MonthData>();
+        for (int i = 0; i <findmonthofbook.size() ; i++) {
+            List<Booking> findbookfloorofmonth = bookingService.findbookfloorofmonth(floor.getFid(), findmonthofbook.get(i));
+            MonthData monthData = new MonthData();
+            monthData.setVenue(floor.getEmployer());
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            Integer dealpro = 0;
+            for (int j = 0; j <findbookfloorofmonth.size() ; j++) {
+                Integer disTime = DateUtil.getDisTime(findbookfloorofmonth.get(j).getStime(), findbookfloorofmonth.get(j).getEtime());
+                learntime = learntime + disTime;
+                if (disTime > 0) {
+                    allLearn++;
+                }
+                if (findbookfloorofmonth.get(j).getDeal() == 1) {
+                    nudeal++;
+                }
+            }
+            if (findbookfloorofmonth.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / findbookfloorofmonth.size()) * 100;
+            }
+            monthData.setAllLearn(allLearn);
+            monthData.setDealpro(dealpro);
+            monthData.setLearntime(learntime / 60);
+            monthData.setUndeal(nudeal);
+            monthData.setMonth(findmonthofbook.get(i));
+            monthDataList.add(monthData);
+        }
+        return monthDataList;
+    }
+    /**
+     * 获取每周的学习情况
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/getweeklearntimefloor")
+    public @ResponseBody
+    List<WeekData> findweeklearntimfloor(Integer fid) throws Exception {
+        Floor floor = floorService.findfloorByid(fid);
+        List<Integer> findweekofbook = bookingService.findweekofbook();  //查看所有的预约周数
+        List<WeekData> weekDataList = new ArrayList<WeekData>();
+        for (int i = 0; i < findweekofbook.size(); i++) {
+            List<Booking> findbookfloorofweek = bookingService.findbookfloorofweek(floor.getFid(), findweekofbook.get(i));  //查看某楼层在某州的预约情况
+            WeekData weekData = new WeekData();
+            weekData.setVenue(floor.getEmployer());
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            Integer dealpro = 0;
+            for (int j = 0; j < findbookfloorofweek.size(); j++) {
+                Integer disTime = DateUtil.getDisTime(findbookfloorofweek.get(j).getStime(), findbookfloorofweek.get(j).getEtime());
+                learntime = learntime + disTime;
+                if (disTime > 0) {
+                    allLearn++;
+                }
+                if (findbookfloorofweek.get(j).getDeal() == 1) {
+                    nudeal++;
+                }
+            }
+            if (findbookfloorofweek.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / findbookfloorofweek.size()) * 100;
+            }
+            weekData.setAllLearn(allLearn);
+            weekData.setDealpro(dealpro);
+            weekData.setLearntime(learntime / 60);
+            weekData.setUndeal(nudeal);
+            weekDataList.add(weekData);
+        }
+        return weekDataList;
     }
 
 }

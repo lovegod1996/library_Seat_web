@@ -54,15 +54,22 @@
                 </ul>
             </li>
             <li>
-                <a href="#"><i class="fa fa-bell fa-fw"></i> 数据统计<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-bell fa-fw"></i> 学习数据统计<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="<%=request.getContextPath()%>/view/study_DataStatistics_ForEachBuilding"
-                           target="mainFrame_BuildingAdmin">学习情况统计</a>
+                           target="mainFrame_BuildingAdmin">总体查看</a>
                     </li>
                     <li>
-                        <a href="<%=request.getContextPath()%>/view/seat_DataStatistics_ForEachBuilding"
-                           target="mainFrame_BuildingAdmin">座位使用统计</a>
+                        <a href="#">分馆查看 <span class="fa arrow"></span> </a>
+                        <ul class="nav nav-third-level">
+                            <c:forEach items="${floors}" var="floor">
+                                <li>
+                                    <a href="<%=request.getContextPath()%>/view/seat_DataStatistics_ForEachBuilding?fid=${floor.fid}" target="mainFrame_BuildingAdmin">${floor.employer}</a>
+                                </li>
+                            </c:forEach>
+
+                        </ul>
                     </li>
                 </ul>
             </li>
@@ -78,7 +85,7 @@
                         <label type="text">账号：&nbsp;&nbsp;${sessionScope.admin.accountnumber}</label>
                     </div>
                     <div class="layui-form-item">
-                        <label type="text">管理阅览室：&nbsp;&nbsp;${floors}</label>
+                        <label type="text">管理阅览室：&nbsp;&nbsp;${floorsize}</label>
                     </div>
                     <div class="layui-form-item">
                         <label type="text">图书馆座位：&nbsp;&nbsp;${seatSize}</label>
