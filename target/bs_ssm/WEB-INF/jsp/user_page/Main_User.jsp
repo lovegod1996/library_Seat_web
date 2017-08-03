@@ -66,21 +66,17 @@
             <!-- /.panel-heading -->
             <div class="panel-body" style="height: 400px;padding: 0 0 0 0 ">
                 <table class="layui-table" lay-even="" lay-skin="nob">
-                    <tr>
-                        <td>第一名</td>
-                        <td>小黄</td>
-                        <td>排名依据</td>
-                    </tr>
-                    <tr>
-                        <td>第二名</td>
-                        <td>小红</td>
-                        <td>排名依据</td>
-                    </tr>
-                    <tr>
-                        <td>第三名</td>
-                        <td>小绿</td>
-                        <td>排名依据</td>
-                    </tr>
+                   <tbody>
+                    <c:forEach items="${userdatas}" var="userdata" varStatus="step">
+                        <c:if test="${step.index<6}">
+                            <tr>
+                                <td>${userdata.username}</td>
+                                <td>${userdata.venue}</td>
+                                <td>${userdata.learntime}小时</td>
+                            </tr>
+                        </c:if>
+                    </c:forEach>
+                   </tbody>
                 </table>
             </div>
             <!-- /.panel-body -->

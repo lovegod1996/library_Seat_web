@@ -150,4 +150,14 @@ public class BookingServiceImpl implements BookingService {
         List<Booking> bookings = bookingMapper.findbookWithCollegeMajorClass(college, major, classes);
         return bookings;
     }
+
+    public List<Booking> findThisMonthBook(String sno) throws Exception {
+        List<Booking> thisMonthBook = bookingMapper.findThisMonthBook(sno);
+        return thisMonthBook;
+    }
+
+    public List<String> findBookThisMonthSno() throws Exception {
+        List<String> bookThisMonthSno = bookingMapper.findBookThisMonthSno();
+        return bookThisMonthSno;
+    }
 }

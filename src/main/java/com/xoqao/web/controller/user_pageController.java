@@ -4,6 +4,7 @@ import com.xoqao.web.bean.booking.Booking;
 import com.xoqao.web.bean.booking.BookingSeat;
 import com.xoqao.web.bean.booking.SeatBookings;
 import com.xoqao.web.bean.building.Building;
+import com.xoqao.web.bean.data.UserData;
 import com.xoqao.web.bean.floors.Floor;
 import com.xoqao.web.bean.news.News;
 import com.xoqao.web.bean.news.Notice;
@@ -53,14 +54,17 @@ public class user_pageController {
     private BuildingService buildingService;
     @Autowired
     private BookingService bookingService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/main_User")
     public String main_User(Model model) throws Exception {
         List<Notice> allNoticetop = noticeService.findAllNoticetop();
         model.addAttribute("noticestop", allNoticetop);
-
+        /**
+         * 当天开放的图书馆层
+         */
         List<WeekOpen> findopentody = weekOpenService.findopentody();
-
         Iterator<WeekOpen> iterator = findopentody.iterator();
         List<WeekOpenCus> weekOpenCuses = new ArrayList<WeekOpenCus>();
         while (iterator.hasNext()) {
@@ -76,12 +80,54 @@ public class user_pageController {
         List<Building> allBuilding = buildingService.findAllBuilding();
         model.addAttribute("buildings", allBuilding);
 
+        /**
+         * 查询本月学习的时长最多的
+         */
+        List<String> bookThisMonthSno = bookingService.findBookThisMonthSno();
+        List<UserData> userDataList = new ArrayList<UserData>();
+        for (int i = 0; i < bookThisMonthSno.size(); i++) {
+            User userBySno = userService.findUserBySno(bookThisMonthSno.get(i));
+            UserData userData = new UserData();
+            userData.setUsername(userBySno.getName());
+            userData.setSno(userBySno.getSno());
+            userData.setSex(userBySno.getSex());
+            userData.setVenue(userBySno.getCollege());
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            float dealpro = 0;
+            List<Booking> thisMonthBook = bookingService.findThisMonthBook(bookThisMonthSno.get(i));
+            for (int j = 0; j < thisMonthBook.size(); j++) {
+                if (thisMonthBook.get(j).getStatue() == 3) {
+                    Integer disTime = DateUtil.getDisTime(thisMonthBook.get(j).getStime(), thisMonthBook.get(j).getEtime());
+                    learntime = learntime + disTime;
+                    if (disTime > 0) {
+                        allLearn++;
+                    }
+                    if (thisMonthBook.get(j).getDeal() == 1) {
+                        nudeal++;
+                    }
+                }
+            }
+            if (thisMonthBook.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / (float) thisMonthBook.size()) * 100;
+            }
+            userData.setLearntime(learntime / 60);
+            userData.setUndeal(nudeal);
+            userData.setDealpro((int) dealpro);
+            userData.setAllLearn(allLearn);
+            userDataList.add(userData);
+        }
+        Collections.sort(userDataList);
+        model.addAttribute("userdatas",userDataList);
+
         model.addAttribute("weekopens", weekOpenCuses);
         return "user_page/Main_User";
     }
 
     /**
      * 获取当前场馆座位状态
+     *
      * @param building
      * @return
      * @throws Exception
@@ -89,7 +135,7 @@ public class user_pageController {
     @RequestMapping("/getSeatData")
     public @ResponseBody
     List<SeatState> getSeatDate(Integer building) throws Exception {
-        List<SeatState> seatStates=new ArrayList<SeatState>();
+        List<SeatState> seatStates = new ArrayList<SeatState>();
         List<Floor> floors = floorService.findfloorsBybid(building);
         for (int i = 0; i < floors.size(); i++) {
             SeatState seatState = new SeatState();
@@ -100,24 +146,24 @@ public class user_pageController {
             Integer seatedNum = 0;
             Integer snapNum = 0;
             for (int j = 0; j < openSeatsByFid.size(); j++) {
-                    List<Booking> bookSeatBooking = bookingService.findBookSeatBookingday(openSeatsByFid.get(j).getSid(), 0);  //返回每个座位的所有预约
-                    Integer seatStatue = DateUtil.findSeatStatue(bookSeatBooking);  //计算当前时间座位状态
-                    switch (seatStatue) {
-                        case 0:
-                            nobook++;
-                            break;
-                        case 1:
-                            bookNum++;
-                            break;
-                        case 2:
-                            seatedNum++;
-                            break;
-                        case 3:
-                            snapNum++;
-                            break;
-                        default:
-                            break;
-                    }
+                List<Booking> bookSeatBooking = bookingService.findBookSeatBookingday(openSeatsByFid.get(j).getSid(), 0);  //返回每个座位的所有预约
+                Integer seatStatue = DateUtil.findSeatStatue(bookSeatBooking);  //计算当前时间座位状态
+                switch (seatStatue) {
+                    case 0:
+                        nobook++;
+                        break;
+                    case 1:
+                        bookNum++;
+                        break;
+                    case 2:
+                        seatedNum++;
+                        break;
+                    case 3:
+                        snapNum++;
+                        break;
+                    default:
+                        break;
+                }
             }
             seatState.setNobook(nobook);
             seatState.setBookNum(bookNum);

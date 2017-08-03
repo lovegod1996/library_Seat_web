@@ -167,4 +167,18 @@ public interface BookingService {
      * @throws Exception
      */
     List<Booking> findbookWithCollegeMajorClass( String college,String major, String classes)throws Exception;
+
+    /**
+     * 查找学生本月的所有预约
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findThisMonthBook( String sno)throws Exception;
+
+    /**
+     * 查找本月的有预约的学号
+     * @return
+     * @throws Exception
+     */
+    List<String> findBookThisMonthSno()throws Exception;
 }

@@ -189,6 +189,17 @@
           FROM booking,user
           WHERE user.college LIKE '${college}' AND  user.major LIKE '${major}' AND user.classes LIKE '${classes}' AND  booking.statue=3 AND booking.sno=user.sno
     </select>
+    <!--查询本月所有预约-->
+    <select id="findThisMonthBook" resultType="com.xoqao.web.bean.booking.Booking">
+       SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
+        FROM booking
+        WHERE MONTH(NOW())=MONTH(stime)  AND statue=3 AND sno LIKE '${sno}'
+    </select>
 
-
+    <!--查询本月所有预约的学号-->
+    <select id="findBookThisMonthSno" resultType="java.lang.String">
+        SELECT DISTINCT(sno)
+        FROM booking
+        WHERE MONTH(NOW())=MONTH(stime)  AND statue=3
+    </select>
 </mapper>

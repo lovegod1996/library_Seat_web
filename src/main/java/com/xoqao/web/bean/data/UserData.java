@@ -6,7 +6,7 @@ package com.xoqao.web.bean.data;
  * Date:  2017/8/2.
  * Email:dx96_j@163.com
  */
-public class UserData extends WeekData {
+public class UserData extends WeekData implements Comparable<UserData>{
     private String username;
     private String sno;
     private Integer sex;
@@ -33,5 +33,9 @@ public class UserData extends WeekData {
 
     public void setSex(Integer sex) {
         this.sex = sex;
+    }
+
+    public int compareTo(UserData o) {
+        return o.getLearntime()-this.getLearntime();
     }
 }

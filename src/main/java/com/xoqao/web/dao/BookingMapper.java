@@ -204,4 +204,18 @@ public interface BookingMapper {
      * @throws Exception
      */
     List<Booking> findbookWithCollegeMajorClass(@Param("college") String college,@Param("major") String major,@Param("classes") String classes)throws Exception;
+
+    /**
+     * 查找本月的所有预约
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findThisMonthBook(@Param("sno") String sno)throws Exception;
+
+    /**
+     * 查找本月的有预约的学号
+     * @return
+     * @throws Exception
+     */
+    List<String> findBookThisMonthSno()throws Exception;
 }
