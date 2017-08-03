@@ -202,4 +202,12 @@
         FROM booking
         WHERE MONTH(NOW())=MONTH(stime)  AND statue=3
     </select>
+
+
+    <!--查询当天未结束离开的预约-->
+    <select id="findbookNoOverToday" resultType="com.xoqao.web.bean.booking.Booking">
+         SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
+        FROM booking
+        WHERE TO_DAYS(NOW())=TO_DAYS(bstime)  AND statue !=3
+    </select>
 </mapper>

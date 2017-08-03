@@ -257,19 +257,20 @@ public class DateUtil {
      */
     public static boolean checkbookclash(Booking booking, Date stime, Date etime) {
         boolean bb = false;
-        boolean b = belongCalendar(stime, booking.getBstime(), booking.getBetime());
-        if (b) {
-            bb = true;
-        } else {
-            boolean b1 = belongCalendar(etime, booking.getBstime(), booking.getBetime());
-            if (b1) {
+        if (booking.getStatue() != 3) {
+            boolean b = belongCalendar(stime, booking.getBstime(), booking.getBetime());
+            if (b) {
+                bb = true;
+            } else {
+                boolean b1 = belongCalendar(etime, booking.getBstime(), booking.getBetime());
+                if (b1) {
+                    bb = true;
+                }
+            }
+            if (stime.before(booking.getBstime()) && etime.after(booking.getBetime())) {
                 bb = true;
             }
         }
-        if (stime.before(booking.getBstime()) && etime.after(booking.getBetime())) {
-            bb = true;
-        }
-
         return bb;
     }
 

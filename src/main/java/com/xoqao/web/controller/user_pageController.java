@@ -1,6 +1,7 @@
 package com.xoqao.web.controller;
 
 import com.xoqao.web.bean.booking.Booking;
+import com.xoqao.web.bean.booking.BookingCusFloor;
 import com.xoqao.web.bean.booking.BookingSeat;
 import com.xoqao.web.bean.booking.SeatBookings;
 import com.xoqao.web.bean.building.Building;
@@ -242,7 +243,7 @@ public class user_pageController {
             seatBookinges.add(seatBookings);
         }
         List<Booking> bookingBySno = bookingService.findBookingBySno(user.getSno(), day);
-        List<BookingSeat> bookingSeats = new ArrayList<BookingSeat>();
+        List<BookingCusFloor> bookingCusFloorList = new ArrayList<BookingCusFloor>();
         for (int i = 0; i < bookingBySno.size(); i++) {
             Seat byid = seatService.findByid(bookingBySno.get(i).getSid());
             BookingSeat bookingSeat = new BookingSeat();
@@ -251,12 +252,19 @@ public class user_pageController {
             bookingSeat.setLeftside(byid.getLeftside());
             bookingSeat.setRow(byid.getRow());
             bookingSeat.setSeatnumber(byid.getSeatnumber());
-            bookingSeats.add(bookingSeat);
+            //添加楼层信息
+            BookingCusFloor bookingCusFloor = new BookingCusFloor();
+            BeanUtils.copyProperties(bookingSeat, bookingCusFloor);
+            Floor floor = floorService.findfloorByid(byid.getFid());
+            bookingCusFloor.setFloor(floor.getEmployer());
+            Building buildingById = buildingService.findBuildingById(floor.getBid());
+            bookingCusFloor.setBuilding(buildingById.getEmployer());
+            bookingCusFloorList.add(bookingCusFloor);
         }
         model.addAttribute("seatsbooks", seatBookinges);
         model.addAttribute("day", day);
         model.addAttribute("fid", fid);
-        model.addAttribute("bookings", bookingSeats);
+        model.addAttribute("bookings", bookingCusFloorList);
 
         return "user_page/Book_Seat_User";
     }

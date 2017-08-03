@@ -181,4 +181,11 @@ public interface BookingService {
      * @throws Exception
      */
     List<String> findBookThisMonthSno()throws Exception;
+
+    /**
+     * 获取没有结束的预约
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findbookNoOverToday()throws Exception;
 }

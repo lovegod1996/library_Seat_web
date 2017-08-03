@@ -160,4 +160,9 @@ public class BookingServiceImpl implements BookingService {
         List<String> bookThisMonthSno = bookingMapper.findBookThisMonthSno();
         return bookThisMonthSno;
     }
+
+    public List<Booking> findbookNoOverToday() throws Exception {
+        List<Booking> bookings = bookingMapper.findbookNoOverToday();
+        return bookings;
+    }
 }

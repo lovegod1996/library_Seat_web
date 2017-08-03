@@ -268,15 +268,10 @@
                     <c:forEach items="${bookings}" var="book" varStatus="step">
                         <c:choose>
                             <c:when test="${step.index==0}">
-                                <li style="width: 80%;margin-left:10%;margin-top: 25px">${book.seatnumber}&nbsp;&nbsp;&nbsp;<fmt:formatDate
-                                        value="${book.bstime}" pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate
-                                        value="${book.betime}" pattern="yyyy-MM-dd HH:mm:ss"/></li>
+                                <li style="width: 80%;margin-left:10%;margin-top: 25px">${book.seatnumber}&nbsp;&nbsp;&nbsp;${book.leftside==0?"左":"右"}侧${book.row}排${book.columns}&nbsp;&nbsp;&nbsp;${book.floor}</li>
                             </c:when>
                             <c:otherwise>
-                                <li style="width: 80%;margin-left:10%">${book.seatnumber}&nbsp;&nbsp;&nbsp;<fmt:formatDate
-                                        value="${book.bstime}"
-                                        pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate
-                                        value="${book.betime}" pattern="yyyy-MM-dd HH:mm:ss"/></li>
+                                <li style="width: 80%;margin-left:10%">${book.seatnumber}&nbsp;&nbsp;&nbsp;${book.leftside==0?"左":"右"}侧${book.row}排${book.columns}&nbsp;&nbsp;&nbsp;${book.floor}</li>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
