@@ -1,6 +1,8 @@
 package com.xoqao.web.controller;
 
 import com.xoqao.web.bean.booking.Booking;
+import com.xoqao.web.bean.booking.BookingSeat;
+import com.xoqao.web.bean.booking.BookingUser;
 import com.xoqao.web.bean.building.Building;
 import com.xoqao.web.bean.building.BuildingCusFloors;
 import com.xoqao.web.bean.data.CollgeData;
@@ -8,11 +10,9 @@ import com.xoqao.web.bean.data.MonthData;
 import com.xoqao.web.bean.data.UserData;
 import com.xoqao.web.bean.data.WeekData;
 import com.xoqao.web.bean.floors.Floor;
+import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.user.User;
-import com.xoqao.web.service.BookingService;
-import com.xoqao.web.service.BuildingService;
-import com.xoqao.web.service.FloorService;
-import com.xoqao.web.service.UserService;
+import com.xoqao.web.service.*;
 import com.xoqao.web.utils.DateUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +43,8 @@ public class SuperAdmin_Controller {
     private BookingService bookingService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private SeatService seatService;
 
     @RequestMapping("/index_SuperAdmin")
     public String index_SuperAdmin(Model model) throws Exception {
@@ -536,6 +538,7 @@ public class SuperAdmin_Controller {
 
     /**
      * 获取班级学生学习情况
+     *
      * @param model
      * @param college
      * @param major
@@ -558,7 +561,7 @@ public class SuperAdmin_Controller {
             Integer nudeal = 0;
             float dealpro = 0;
             for (int j = 0; j < finduserbook.size(); j++) {
-                if(finduserbook.get(j).getStatue()==3) {
+                if (finduserbook.get(j).getStatue() == 3) {
                     Integer disTime = DateUtil.getDisTime(finduserbook.get(j).getStime(), finduserbook.get(j).getEtime());
                     learntime = learntime + disTime;
                     if (disTime > 0) {
@@ -572,7 +575,7 @@ public class SuperAdmin_Controller {
             if (finduserbook.size() > 0) {  //查看某周的预约是否未零
                 dealpro = (nudeal / (float) finduserbook.size()) * 100;
             }
-            userData.setLearntime(learntime/60);
+            userData.setLearntime(learntime / 60);
             userData.setUndeal(nudeal);
             userData.setDealpro((int) dealpro);
             userData.setAllLearn(allLearn);
@@ -944,5 +947,89 @@ public class SuperAdmin_Controller {
         }
         return weekDataList;
     }
+
+
+    /**
+     * 进入查看学生学习情况页面
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/intofindStudent")
+    public String studentstudy(Model model) {
+        return "superadmin_page/One_Student_SuperAdmin";
+    }
+
+    /**
+     * 根据学号查看学习情况
+     *
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/findStudentStuday")
+    public @ResponseBody
+    UserData findStudentStuday(String sno) throws Exception {
+        User userBySno = userService.findUserBySno(sno);
+        List<Booking> finduserbook = bookingService.finduserbook(userBySno.getSno());
+        UserData userData = new UserData();
+        userData.setSex(userBySno.getSex());
+        userData.setSno(userBySno.getSno());
+        userData.setUsername(userBySno.getName());
+        Integer learntime = 0;
+        Integer allLearn = 0;
+        Integer nudeal = 0;
+        float dealpro = 0;
+        for (int j = 0; j < finduserbook.size(); j++) {
+            if (finduserbook.get(j).getStatue() == 3) {
+                Integer disTime = DateUtil.getDisTime(finduserbook.get(j).getStime(), finduserbook.get(j).getEtime());
+                learntime = learntime + disTime;
+                if (disTime > 0) {
+                    allLearn++;
+                }
+                if (finduserbook.get(j).getDeal() == 1) {
+                    nudeal++;
+                }
+            }
+        }
+        if (finduserbook.size() > 0) {  //查看某周的预约是否未零
+            dealpro = (nudeal / (float) finduserbook.size()) * 100;
+        }
+        userData.setLearntime(learntime / 60);
+        userData.setUndeal(nudeal);
+        userData.setDealpro((int) dealpro);
+        userData.setAllLearn(allLearn);
+        return userData;
+    }
+
+    /**
+     * 获取学生学习记录
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/findStudentBookings")
+    public @ResponseBody
+    List<BookingUser> findStudentBookings(String sno) throws Exception {
+        User userBySno = userService.findUserBySno(sno);
+        List<Booking> finduserbook = bookingService.finduserbook(sno);
+        List<BookingUser> bookingSeatList = new ArrayList<BookingUser>();
+        for (int i = 0; i < finduserbook.size(); i++) {
+            BookingUser bookingSeat = new BookingUser();
+            BeanUtils.copyProperties(finduserbook.get(i), bookingSeat);
+            Seat seat = seatService.findByid(finduserbook.get(i).getSid());
+            bookingSeat.setSeatnumber(seat.getSeatnumber());
+            bookingSeat.setRow(seat.getRow());
+            bookingSeat.setLeftside(seat.getLeftside());
+            bookingSeat.setFid(seat.getFid());
+            bookingSeat.setColumns(seat.getColumns());
+            bookingSeat.setName(userBySno.getName());
+            Floor floor = floorService.findfloorByid(seat.getFid());
+            bookingSeat.setFloor(floor.getEmployer());
+            bookingSeatList.add(bookingSeat);
+        }
+        return bookingSeatList;
+    }
+
 
 }
