@@ -66,7 +66,7 @@
         .imgCom {
             width: 100px;
             height: 100px;
-            border:1px solid #34A8FF;
+            border: 1px solid #34A8FF;
         }
 
         .imgCom > img {
@@ -94,7 +94,9 @@
 <div id="wrapper">
     <div class="row">
         <div class="user_img" style="text-align: center;display:table-cell; vertical-align:middle;">
-            <p><div class="imgCom" id="preview"></div></p>
+            <p>
+            <div class="imgCom" id="preview"></div>
+            </p>
             <p><a href="javascript:;" class="upload" style="margin-top: 20px">点击上传
                 <input class="change" type="file" multiple="multiple" onchange="preview(this)"/></a></p>
         </div>
@@ -113,119 +115,147 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="layui-tab">
-            <ul class="layui-tab-title">
-                <li class="layui-this">天视图</li>
-                <li>周视图</li>
-                <li>月视图</li>
-                <li>学年视图</li>
-            </ul>
-            <div class="layui-tab-content">
-                <%-- 一页--%>
-                <div class="layui-tab-item layui-show">
-                    <table class="layui-table" lay-even="" lay-skin="nob">
-                        <colgroup>
-                            <col width="150">
-                            <col width="150">
-                            <col width="200">
-                            <col>
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th>预约次数</th>
-                            <th>不良记录</th>
-                            <th>时间统计</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>10次</td>
-                            <td>0次</td>
-                            <td>20小时</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <%--二页--%>
-                <div class="layui-tab-item">
-                    <table class="layui-table" lay-even="" lay-skin="nob">
-                        <colgroup>
-                            <col width="150">
-                            <col width="150">
-                            <col width="200">
-                            <col>
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th>预约次数</th>
-                            <th>不良记录</th>
-                            <th>时间统计</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>1次</td>
-                            <td>0次</td>
-                            <td>2小时</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <%--三页--%>
-                <div class="layui-tab-item">
-                    <table class="layui-table" lay-even="" lay-skin="nob">
-                        <colgroup>
-                            <col width="150">
-                            <col width="150">
-                            <col width="200">
-                            <col>
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th>预约次数</th>
-                            <th>不良记录</th>
-                            <th>时间统计</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>2次</td>
-                            <td>1次</td>
-                            <td>5小时</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <%--四页--%>
-                <div class="layui-tab-item">
-                    <table class="layui-table" lay-even="" lay-skin="nob">
-                        <colgroup>
-                            <col width="150">
-                            <col width="150">
-                            <col width="200">
-                            <col>
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th>预约次数</th>
-                            <th>不良记录</th>
-                            <th>时间统计</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>12次</td>
-                            <td>11次</td>
-                            <td>20小时</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+    <table class="table">
+        <caption style="text-align: center">查看每周的预约数据</caption>
+        <thead>
+        <th>序号</th>
+        <th>学习时间</th>
+        <th>学习次数</th>
+        <th>失信次数</th>
+        <th>失信次数</th>
+        </thead>
+        <tbody><c:forEach items="${weekdatas}" var="weekdata" varStatus="step">
+            <tr>
+                <td>${step.index+1}</td>
+                <td>${weekdata.learntime}小时</td>
+                <td>${weekdata.allLearn}</td>
+                <td>${weekdata.undeal}</td>
+                <td>${weekdata.dealpro}%</td>
+            </tr>
+        </c:forEach>
+
+        </tbody>
+    </table>
+
+    <!-- EChart 显示各楼层座位状态-->
+    <div id="main" style="width: 100%;height:400px;"></div>
+    <%--<div class="row">--%>
+        <%--<div class="layui-tab">--%>
+            <%--<ul class="layui-tab-title">--%>
+                <%--<li class="layui-this">天视图</li>--%>
+                <%--<li>周视图</li>--%>
+                <%--<li>月视图</li>--%>
+                <%--<li>学年视图</li>--%>
+            <%--</ul>--%>
+            <%--<div class="layui-tab-content">--%>
+                <%--&lt;%&ndash; 一页&ndash;%&gt;--%>
+                <%--<div class="layui-tab-item layui-show">--%>
+                    <%--<table class="layui-table" lay-even="" lay-skin="nob">--%>
+                        <%--<colgroup>--%>
+                            <%--<col width="150">--%>
+                            <%--<col width="150">--%>
+                            <%--<col width="200">--%>
+                            <%--<col>--%>
+                        <%--</colgroup>--%>
+                        <%--<thead>--%>
+                        <%--<tr>--%>
+                            <%--<th>预约次数</th>--%>
+                            <%--<th>不良记录</th>--%>
+                            <%--<th>时间统计</th>--%>
+                        <%--</tr>--%>
+                        <%--</thead>--%>
+                        <%--<tbody>--%>
+                        <%--<tr>--%>
+                            <%--<td>10次</td>--%>
+                            <%--<td>0次</td>--%>
+                            <%--<td>20小时</td>--%>
+                        <%--</tr>--%>
+                        <%--</tbody>--%>
+                    <%--</table>--%>
+                <%--</div>--%>
+                <%--&lt;%&ndash;二页&ndash;%&gt;--%>
+                <%--<div class="layui-tab-item">--%>
+                    <%--<table class="layui-table" lay-even="" lay-skin="nob">--%>
+                        <%--<colgroup>--%>
+                            <%--<col width="150">--%>
+                            <%--<col width="150">--%>
+                            <%--<col width="200">--%>
+                            <%--<col>--%>
+                        <%--</colgroup>--%>
+                        <%--<thead>--%>
+                        <%--<tr>--%>
+                            <%--<th>预约次数</th>--%>
+                            <%--<th>不良记录</th>--%>
+                            <%--<th>时间统计</th>--%>
+                        <%--</tr>--%>
+                        <%--</thead>--%>
+                        <%--<tbody>--%>
+                        <%--<tr>--%>
+                            <%--<td>1次</td>--%>
+                            <%--<td>0次</td>--%>
+                            <%--<td>2小时</td>--%>
+                        <%--</tr>--%>
+                        <%--</tbody>--%>
+                    <%--</table>--%>
+                <%--</div>--%>
+                <%--&lt;%&ndash;三页&ndash;%&gt;--%>
+                <%--<div class="layui-tab-item">--%>
+                    <%--<table class="layui-table" lay-even="" lay-skin="nob">--%>
+                        <%--<colgroup>--%>
+                            <%--<col width="150">--%>
+                            <%--<col width="150">--%>
+                            <%--<col width="200">--%>
+                            <%--<col>--%>
+                        <%--</colgroup>--%>
+                        <%--<thead>--%>
+                        <%--<tr>--%>
+                            <%--<th>预约次数</th>--%>
+                            <%--<th>不良记录</th>--%>
+                            <%--<th>时间统计</th>--%>
+                        <%--</tr>--%>
+                        <%--</thead>--%>
+                        <%--<tbody>--%>
+                        <%--<tr>--%>
+                            <%--<td>2次</td>--%>
+                            <%--<td>1次</td>--%>
+                            <%--<td>5小时</td>--%>
+                        <%--</tr>--%>
+                        <%--</tbody>--%>
+                    <%--</table>--%>
+                <%--</div>--%>
+                <%--&lt;%&ndash;四页&ndash;%&gt;--%>
+                <%--<div class="layui-tab-item">--%>
+                    <%--<table class="layui-table" lay-even="" lay-skin="nob">--%>
+                        <%--<colgroup>--%>
+                            <%--<col width="150">--%>
+                            <%--<col width="150">--%>
+                            <%--<col width="200">--%>
+                            <%--<col>--%>
+                        <%--</colgroup>--%>
+                        <%--<thead>--%>
+                        <%--<tr>--%>
+                            <%--<th>预约次数</th>--%>
+                            <%--<th>不良记录</th>--%>
+                            <%--<th>时间统计</th>--%>
+                        <%--</tr>--%>
+                        <%--</thead>--%>
+                        <%--<tbody>--%>
+                        <%--<tr>--%>
+                            <%--<td>12次</td>--%>
+                            <%--<td>11次</td>--%>
+                            <%--<td>20小时</td>--%>
+                        <%--</tr>--%>
+                        <%--</tbody>--%>
+                    <%--</table>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
 </div>
+
+<%--echart--%>
+<script src="<%=request.getContextPath()%>/js/echarts-all.js"></script>
+<script src="<%=request.getContextPath()%>/js/macarons.js"></script>
 
 <%--Tip页切换--%>
 <script>
@@ -255,6 +285,102 @@
         });
 
     });
+</script>
+
+<script type="text/javascript">
+    window.onload = function () {
+        getweekData();
+    };
+
+    function getweekData() {
+
+        var charts = echarts.init(document.getElementById('main'));
+
+        charts.showLoading({text: '正在努力的读取数据中...'});    //数据加载完之前先显示一段简单的loading动画
+        var weeks=[]; //所有月份
+        var learntimes=[];//学习时长
+        var alllearns=[];//学习次数
+        var undeal=[]; //失信次数
+
+        $.ajax({
+            type: "post",
+            async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+            url: "${pageContext.request.contextPath }/view/findUserBookWeek.form",    //getTrendData
+            data: "sno=${users.sno}",
+            //  dataType : "json",        //返回数据形式为json
+            success: function (result) {
+                //请求成功时执行该函数内容，result即为服务器返回的json对象
+                result = eval(result);
+                if (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        weeks.push("第"+(i+1)+"周");    //挨个取出类别并填入类别数组
+                    }
+                    for (var i = 0; i < result.length; i++) {
+                        learntimes.push(result[i].learntime);    //挨个取出销量并填入销量数组
+                    }
+                    for (var i = 0; i < result.length; i++) {
+                        alllearns.push(result[i].allLearn);    //挨个取出销量并填入销量数组
+                    }
+                    for (var i = 0; i < result.length; i++) {
+                        undeal.push(result[i].undeal);    //挨个取出销量并填入销量数组
+                    }
+
+                    charts.hideLoading();    //隐藏加载动画
+
+                    var alllearnoption = {
+                        title: {
+                            text: '',
+                            subtext: ''
+                        },
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data: ['学习时长','学习次数','失信次数']
+                        },
+                        calculable: true,
+                        xAxis: [
+                            {
+                                type: 'category',
+                                data: weeks
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'value'
+                            }
+                        ],
+                        series: [
+                            {
+                                name: '学习时长',
+                                type: 'line',
+                                data: learntimes
+                            },
+                            {
+                                name: '学习次数',
+                                type: 'line',
+                                data: alllearns
+                            },{
+                                name: '失信次数',
+                                type: 'line',
+                                data: undeal
+                            }
+                        ]
+                    };
+
+                    charts.setOption(alllearnoption);
+                }
+            },
+            error: function (errorMsg) {
+                //请求失败时执行该函数
+                alert("图表请求数据失败!");
+
+                charts.hideLoading();
+            }
+        });
+    }
+
+
 </script>
 
 </body>

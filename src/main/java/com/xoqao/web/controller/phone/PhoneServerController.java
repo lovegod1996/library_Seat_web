@@ -5,6 +5,9 @@ import com.xoqao.web.bean.booking.BookingCusFloor;
 import com.xoqao.web.bean.booking.BookingSeat;
 import com.xoqao.web.bean.booking.SeatBookings;
 import com.xoqao.web.bean.building.Building;
+import com.xoqao.web.bean.data.FloorData;
+import com.xoqao.web.bean.data.UserData;
+import com.xoqao.web.bean.data.WeekData;
 import com.xoqao.web.bean.floors.Floor;
 import com.xoqao.web.bean.news.Notice;
 import com.xoqao.web.bean.seat.Seat;
@@ -631,8 +634,8 @@ public class PhoneServerController {
     Map<String, Object> userbooks(String sno) throws Exception {
         List<Booking> finduserbook = bookingService.finduserbook(sno);
         List<BookingCusFloor> bookingCusFloorList = new ArrayList<BookingCusFloor>();
-        for (int i = 0; i <finduserbook.size() ; i++) {
-            BookingCusFloor bookingCusFloor=new BookingCusFloor();
+        for (int i = 0; i < finduserbook.size(); i++) {
+            BookingCusFloor bookingCusFloor = new BookingCusFloor();
             BeanUtils.copyProperties(finduserbook.get(i), bookingCusFloor);
             Seat byid = seatService.findByid(finduserbook.get(i).getSid());
             bookingCusFloor.setColumns(byid.getColumns());
@@ -653,5 +656,154 @@ public class PhoneServerController {
         return map;
     }
 
+    /**
+     * 获取本月排名前20的学生
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/thisMoonLearnSort")
+    public @ResponseBody
+    Map<String, Object> getThisMonthLearnSort() throws Exception {
+        /**
+         * 查询本月学习的时长最多的
+         */
+        List<String> bookThisMonthSno = bookingService.findBookThisMonthSno();
+        List<UserData> userDataList = new ArrayList<UserData>();
+        for (int i = 0; i < bookThisMonthSno.size(); i++) {
+            User userBySno = userService.findUserBySno(bookThisMonthSno.get(i));
+            UserData userData = new UserData();
+            userData.setUsername(userBySno.getName());
+            userData.setSno(userBySno.getSno());
+            userData.setSex(userBySno.getSex());
+            userData.setVenue(userBySno.getCollege());
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            float dealpro = 0;
+            List<Booking> thisMonthBook = bookingService.findThisMonthBook(bookThisMonthSno.get(i));
+            for (int j = 0; j < thisMonthBook.size(); j++) {
+                if (thisMonthBook.get(j).getStatue() == 3) {
+                    Integer disTime = DateUtil.getDisTime(thisMonthBook.get(j).getStime(), thisMonthBook.get(j).getEtime());
+                    learntime = learntime + disTime;
+                    if (disTime > 0) {
+                        allLearn++;
+                    }
+                    if (thisMonthBook.get(j).getDeal() == 1) {
+                        nudeal++;
+                    }
+                }
+            }
+            if (thisMonthBook.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / (float) thisMonthBook.size()) * 100;
+            }
+            userData.setLearntime(learntime / 60);
+            userData.setUndeal(nudeal);
+            userData.setDealpro((int) dealpro);
+            userData.setAllLearn(allLearn);
+            userDataList.add(userData);
+        }
+        Collections.sort(userDataList);
+        List<UserData> userDatas = new ArrayList<UserData>();
+        for (int i = 0; i < userDataList.size(); i++) {
+            if (i < 20) {
+                userDatas.add(userDataList.get(i));
+            }
+        }
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("code", 0);
+        map.put("message", "成功");
+        map.put("data", userDatas);
+        return map;
+    }
+
+    /**
+     * 获取某一楼层的座位情况
+     *
+     * @param fid
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/findFloorHead")
+    public @ResponseBody
+    Map<String, Object> findfloorHead(Integer fid, String sno) throws Exception {
+        Floor floor = floorService.findfloorByid(fid);
+        FloorData floorData = new FloorData();
+        floorData.setFloor(floor.getEmployer());
+        List<Seat> openSeatsByFid = seatService.findOpenSeatsByFid(floor.getFid());
+        floorData.setSeatCount(openSeatsByFid.size());
+        List<Seat> bookSeat = bookingService.findBookSeat(floor.getFid());
+        floorData.setHasBook(bookSeat.size());
+        floorData.setNoBook(openSeatsByFid.size() - bookSeat.size());
+        List<Seat> seats = bookingService.findbookSeatofUpWeek(fid);
+        float pro = (seats.size() / (float) openSeatsByFid.size()) * 100;
+        floorData.setUpWeekUsePro((double) pro);
+        List<Booking> floorBookOfUpWeek = bookingService.findFloorBookOfUpWeek(fid);
+        int manCount = 0;
+        for (int i = 0; i < floorBookOfUpWeek.size(); i++) {
+            User userBySno1 = userService.findUserBySno(floorBookOfUpWeek.get(i).getSno());
+            if (userBySno1.getSex() == 0) {
+                manCount++;
+            }
+        }
+        float v = (manCount / (float) floorBookOfUpWeek.size()) * 100;
+        floorData.setMan((double) v);
+        List<Booking> userBookOfUpWeek = bookingService.findUserBookOfUpWeek(fid, sno);
+        floorData.setMybook(userBookOfUpWeek.size());
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("code", 0);
+        map.put("message", "成功");
+        map.put("data", floorData);
+        return map;
+    }
+
+    /**
+     * 查找往周预约记录结果统计
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/findBookWeek")
+    public @ResponseBody
+    Map<String, Object> findBookWeek(String sno) throws Exception {
+        List<Integer> findweekofbook = bookingService.findweekofbook();  //查看所有的预约周数
+        List<WeekData> weekDataList = new ArrayList<WeekData>();
+        for (int i = 0; i < findweekofbook.size(); i++) {
+            WeekData weekData = new WeekData();
+            List<Booking> bookings = bookingService.findsaomeWeekBookUser(findweekofbook.get(i), sno);
+            weekData.setWeek(findweekofbook.get(i));
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            float dealpro = 0;
+            for (int j = 0; j < bookings.size(); j++) {
+                if (bookings.get(j).getStatue() == 3) {
+                    Integer disTime = DateUtil.getDisTime(bookings.get(j).getStime(), bookings.get(j).getEtime());
+                    learntime = learntime + disTime;
+                    if (disTime > 0) {
+                        allLearn++;
+                    }
+                    if (bookings.get(j).getDeal() == 1) {
+                        nudeal++;
+                    }
+                }
+            }
+            if (bookings.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / (float) bookings.size()) * 100;
+            }
+            weekData.setLearntime(learntime/60);
+            weekData.setAllLearn(allLearn);
+            weekData.setUndeal(nudeal);
+            weekData.setDealpro((int) dealpro);
+            weekDataList.add(weekData);
+        }
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("code", 0);
+        map.put("message", "成功");
+        map.put("data", weekDataList);
+        return map;
+    }
 
 }

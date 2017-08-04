@@ -188,4 +188,38 @@ public interface BookingService {
      * @throws Exception
      */
     List<Booking> findbookNoOverToday()throws Exception;
+
+    /**
+     * 查看上周的预约座位
+     * @param fid
+     * @return
+     * @throws Exception
+     */
+    List<Seat> findbookSeatofUpWeek( Integer fid) throws Exception;
+
+    /**
+     * 查找上周的场馆预约
+     * @param fid
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findFloorBookOfUpWeek( Integer fid) throws Exception;
+
+    /**
+     * 根据用户名查找某楼层的上周预约
+     * @param fid
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findUserBookOfUpWeek( Integer fid, String sno)throws Exception;
+
+    /***
+     * 根据学号和星期号查询预约
+     * @param week
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findsaomeWeekBookUser( Integer week,String sno)throws Exception;
 }

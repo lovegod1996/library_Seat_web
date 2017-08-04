@@ -36,7 +36,6 @@ public class SuperAdmin_Controller {
     @Autowired
     private BuildingService buildingService;
 
-
     @Autowired
     private FloorService floorService;
     @Autowired
@@ -601,7 +600,7 @@ public class SuperAdmin_Controller {
             Integer learntime = 0;
             Integer allLearn = 0;
             Integer nudeal = 0;
-            Integer dealpro = 0;
+            float dealpro = 0;
             for (int j = 0; j < findbookfloorofweek.size(); j++) {
                 Integer disTime = DateUtil.getDisTime(findbookfloorofweek.get(j).getStime(), findbookfloorofweek.get(j).getEtime());
                 learntime = learntime + disTime;
@@ -613,10 +612,10 @@ public class SuperAdmin_Controller {
                 }
             }
             if (findbookfloorofweek.size() > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / findbookfloorofweek.size()) * 100;
+                dealpro = (nudeal / (float)findbookfloorofweek.size()) * 100;
             }
             weekData.setAllLearn(allLearn);
-            weekData.setDealpro(dealpro);
+            weekData.setDealpro((int)dealpro);
             weekData.setLearntime(learntime / 60);
             weekData.setUndeal(nudeal);
             weekDataList.add(weekData);
@@ -631,7 +630,7 @@ public class SuperAdmin_Controller {
             Integer learntime = 0;
             Integer allLearn = 0;
             Integer nudeal = 0;
-            Integer dealpro = 0;
+            float dealpro = 0;
             for (int j = 0; j < findbookfloorofmonth.size(); j++) {
                 Integer disTime = DateUtil.getDisTime(findbookfloorofmonth.get(j).getStime(), findbookfloorofmonth.get(j).getEtime());
                 learntime = learntime + disTime;
@@ -643,10 +642,10 @@ public class SuperAdmin_Controller {
                 }
             }
             if (findbookfloorofmonth.size() > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / findbookfloorofmonth.size()) * 100;
+                dealpro = (nudeal / (float)findbookfloorofmonth.size()) * 100;
             }
             monthData.setAllLearn(allLearn);
-            monthData.setDealpro(dealpro);
+            monthData.setDealpro((int)dealpro);
             monthData.setLearntime(learntime / 60);
             monthData.setUndeal(nudeal);
             monthData.setMonth(findmonthofbook.get(i));
@@ -686,7 +685,7 @@ public class SuperAdmin_Controller {
             Integer learntime = 0;
             Integer allLearn = 0;
             Integer nudeal = 0;
-            Integer dealpro = 0;
+            float dealpro = 0;
             Integer books = 0;
             for (int j = 0; j < floors.size(); j++) {
                 List<Booking> findbookfloorofweek = bookingService.findbookfloorofweek(floors.get(j).getFid(), findweekofbook.get(i));
@@ -704,10 +703,10 @@ public class SuperAdmin_Controller {
             }
 
             if (books > 0) {
-                dealpro = (nudeal / books) * 100;
+                dealpro = (nudeal / (float)books) * 100;
             }
             weekData.setAllLearn(allLearn);
-            weekData.setDealpro(dealpro);
+            weekData.setDealpro((int)dealpro);
             weekData.setLearntime(learntime / 60);
             weekData.setUndeal(nudeal);
             weekDataList.add(weekData);    //添加每周的学习统计数据
@@ -726,7 +725,7 @@ public class SuperAdmin_Controller {
             Integer learntime = 0;
             Integer allLearn = 0;
             Integer nudeal = 0;
-            Integer dealpro = 0;
+            float dealpro = 0;
             Integer books = 0;
             for (int j = 0; j < floors.size(); j++) {
                 List<Booking> findbookfloorofmonth = bookingService.findbookfloorofmonth(floors.get(j).getFid(), findmonthofbook.get(i));
@@ -743,10 +742,10 @@ public class SuperAdmin_Controller {
                 books = books + findbookfloorofmonth.size();
             }
             if (books > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / books) * 100;
+                dealpro = (nudeal / (float)books) * 100;
             }
             monthData.setAllLearn(allLearn);
-            monthData.setDealpro(dealpro);
+            monthData.setDealpro((int)dealpro);
             monthData.setLearntime(learntime / 60);
             monthData.setUndeal(nudeal);
             monthData.setMonth(findmonthofbook.get(i));
@@ -782,7 +781,7 @@ public class SuperAdmin_Controller {
             Integer learntime = 0;
             Integer allLearn = 0;
             Integer nudeal = 0;
-            Integer dealpro = 0;
+            float dealpro = 0;
             Integer books = 0;
             for (int j = 0; j < floors.size(); j++) {
                 List<Booking> findbookfloorofweek = bookingService.findbookfloorofweek(floors.get(j).getFid(), findweekofbook.get(i));
@@ -800,10 +799,10 @@ public class SuperAdmin_Controller {
             }
 
             if (books > 0) {
-                dealpro = (nudeal / books) * 100;
+                dealpro = (nudeal / (float)books) * 100;
             }
             weekData.setAllLearn(allLearn);
-            weekData.setDealpro(dealpro);
+            weekData.setDealpro((int)dealpro);
             weekData.setLearntime(learntime / 60);
             weekData.setUndeal(nudeal);
             weekDataList.add(weekData);    //添加每周的学习统计数据
@@ -834,7 +833,7 @@ public class SuperAdmin_Controller {
             Integer learntime = 0;
             Integer allLearn = 0;
             Integer nudeal = 0;
-            Integer dealpro = 0;
+            float dealpro = 0;
             Integer books = 0;
             for (int j = 0; j < floors.size(); j++) {
                 List<Booking> findbookfloorofmonth = bookingService.findbookfloorofmonth(floors.get(j).getFid(), findmonthofbook.get(i));
@@ -851,10 +850,10 @@ public class SuperAdmin_Controller {
                 books = books + findbookfloorofmonth.size();
             }
             if (books > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / books) * 100;
+                dealpro = (nudeal /(float) books) * 100;
             }
             monthData.setAllLearn(allLearn);
-            monthData.setDealpro(dealpro);
+            monthData.setDealpro((int)dealpro);
             monthData.setLearntime(learntime / 60);
             monthData.setUndeal(nudeal);
             monthData.setMonth(findmonthofbook.get(i));
@@ -882,7 +881,7 @@ public class SuperAdmin_Controller {
             Integer learntime = 0;
             Integer allLearn = 0;
             Integer nudeal = 0;
-            Integer dealpro = 0;
+            float dealpro = 0;
             for (int j = 0; j < findbookfloorofmonth.size(); j++) {
                 Integer disTime = DateUtil.getDisTime(findbookfloorofmonth.get(j).getStime(), findbookfloorofmonth.get(j).getEtime());
                 learntime = learntime + disTime;
@@ -894,10 +893,10 @@ public class SuperAdmin_Controller {
                 }
             }
             if (findbookfloorofmonth.size() > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / findbookfloorofmonth.size()) * 100;
+                dealpro = (nudeal / (float)findbookfloorofmonth.size()) * 100;
             }
             monthData.setAllLearn(allLearn);
-            monthData.setDealpro(dealpro);
+            monthData.setDealpro((int)dealpro);
             monthData.setLearntime(learntime / 60);
             monthData.setUndeal(nudeal);
             monthData.setMonth(findmonthofbook.get(i));
@@ -925,7 +924,7 @@ public class SuperAdmin_Controller {
             Integer learntime = 0;
             Integer allLearn = 0;
             Integer nudeal = 0;
-            Integer dealpro = 0;
+            float dealpro = 0;
             for (int j = 0; j < findbookfloorofweek.size(); j++) {
                 Integer disTime = DateUtil.getDisTime(findbookfloorofweek.get(j).getStime(), findbookfloorofweek.get(j).getEtime());
                 learntime = learntime + disTime;
@@ -937,10 +936,10 @@ public class SuperAdmin_Controller {
                 }
             }
             if (findbookfloorofweek.size() > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / findbookfloorofweek.size()) * 100;
+                dealpro = (nudeal / (float)findbookfloorofweek.size()) * 100;
             }
             weekData.setAllLearn(allLearn);
-            weekData.setDealpro(dealpro);
+            weekData.setDealpro((int)dealpro);
             weekData.setLearntime(learntime / 60);
             weekData.setUndeal(nudeal);
             weekDataList.add(weekData);

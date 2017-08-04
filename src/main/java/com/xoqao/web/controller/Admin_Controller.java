@@ -507,7 +507,7 @@ public class Admin_Controller {
             Integer learntime = 0;
             Integer allLearn = 0;
             Integer nudeal = 0;
-            Integer dealpro = 0;
+            float dealpro = 0;
             for (int j = 0; j < findbookfloorofweek.size(); j++) {
                 Integer disTime = DateUtil.getDisTime(findbookfloorofweek.get(j).getStime(), findbookfloorofweek.get(j).getEtime());
                 learntime = learntime + disTime;
@@ -519,10 +519,10 @@ public class Admin_Controller {
                 }
             }
             if (findbookfloorofweek.size() > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / findbookfloorofweek.size()) * 100;
+                dealpro = (nudeal / (float)findbookfloorofweek.size()) * 100;
             }
             weekData.setAllLearn(allLearn);
-            weekData.setDealpro(dealpro);
+            weekData.setDealpro((int)dealpro);
             weekData.setLearntime(learntime / 60);
             weekData.setUndeal(nudeal);
             weekDataList.add(weekData);
@@ -537,7 +537,7 @@ public class Admin_Controller {
             Integer learntime = 0;
             Integer allLearn = 0;
             Integer nudeal = 0;
-            Integer dealpro = 0;
+            float dealpro = 0;
             for (int j = 0; j <findbookfloorofmonth.size() ; j++) {
                 Integer disTime = DateUtil.getDisTime(findbookfloorofmonth.get(j).getStime(), findbookfloorofmonth.get(j).getEtime());
                 learntime = learntime + disTime;
@@ -549,10 +549,10 @@ public class Admin_Controller {
                 }
             }
             if (findbookfloorofmonth.size() > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / findbookfloorofmonth.size()) * 100;
+                dealpro = (nudeal / (float)findbookfloorofmonth.size()) * 100;
             }
             monthData.setAllLearn(allLearn);
-            monthData.setDealpro(dealpro);
+            monthData.setDealpro((int)dealpro);
             monthData.setLearntime(learntime / 60);
             monthData.setUndeal(nudeal);
             monthData.setMonth(findmonthofbook.get(i));
@@ -583,7 +583,7 @@ public class Admin_Controller {
             Integer learntime = 0;
             Integer allLearn = 0;
             Integer nudeal = 0;
-            Integer dealpro = 0;
+            float dealpro = 0;
             for (int j = 0; j <findbookfloorofmonth.size() ; j++) {
                 Integer disTime = DateUtil.getDisTime(findbookfloorofmonth.get(j).getStime(), findbookfloorofmonth.get(j).getEtime());
                 learntime = learntime + disTime;
@@ -595,10 +595,10 @@ public class Admin_Controller {
                 }
             }
             if (findbookfloorofmonth.size() > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / findbookfloorofmonth.size()) * 100;
+                dealpro = (nudeal / (float)findbookfloorofmonth.size()) * 100;
             }
             monthData.setAllLearn(allLearn);
-            monthData.setDealpro(dealpro);
+            monthData.setDealpro((int)dealpro);
             monthData.setLearntime(learntime / 60);
             monthData.setUndeal(nudeal);
             monthData.setMonth(findmonthofbook.get(i));
@@ -628,7 +628,7 @@ public class Admin_Controller {
             Integer learntime = 0;
             Integer allLearn = 0;
             Integer nudeal = 0;
-            Integer dealpro = 0;
+            float dealpro = 0;
             for (int j = 0; j < findbookfloorofweek.size(); j++) {
                 Integer disTime = DateUtil.getDisTime(findbookfloorofweek.get(j).getStime(), findbookfloorofweek.get(j).getEtime());
                 learntime = learntime + disTime;
@@ -640,10 +640,10 @@ public class Admin_Controller {
                 }
             }
             if (findbookfloorofweek.size() > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / findbookfloorofweek.size()) * 100;
+                dealpro = (nudeal / (float)findbookfloorofweek.size()) * 100;
             }
             weekData.setAllLearn(allLearn);
-            weekData.setDealpro(dealpro);
+            weekData.setDealpro((int)dealpro);
             weekData.setLearntime(learntime / 60);
             weekData.setUndeal(nudeal);
             weekDataList.add(weekData);

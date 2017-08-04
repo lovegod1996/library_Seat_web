@@ -4,21 +4,25 @@ import com.xoqao.web.bean.booking.Booking;
 import com.xoqao.web.bean.booking.BookingCusFloor;
 import com.xoqao.web.bean.building.Building;
 import com.xoqao.web.bean.building.BuildingCusFloors;
+import com.xoqao.web.bean.data.WeekData;
 import com.xoqao.web.bean.floors.Floor;
 import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.user.User;
 import com.xoqao.web.bean.userbook.UserLearn;
 import com.xoqao.web.bean.weekopen.WeekOpen;
 import com.xoqao.web.service.*;
+import com.xoqao.web.utils.DateUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 1Q84 on 2017/7/12.
@@ -66,6 +70,13 @@ public class User_Controller {
         return "user_page/user_information/UserInformation_leftmenu";
     }
 
+    /**
+     * 进入查看用户个人信息页
+     *
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/userInformation_rightcontent")
     public String userInformation_rightcontent(Model model) throws Exception {
 
@@ -75,6 +86,7 @@ public class User_Controller {
 
     /**
      * 查询学习记录
+     *
      * @param model
      * @param page
      * @param httpSession
@@ -86,7 +98,7 @@ public class User_Controller {
         User user = (User) httpSession.getAttribute("user");
 
         List<Booking> finduserbook = bookingService.finduserbook(user.getSno());
-        if(finduserbook.size()>0){
+        if (finduserbook.size() > 0) {
             int pageSize = 5;
             model.addAttribute("userbookSize", finduserbook.size());
             int pageTims;
@@ -127,7 +139,7 @@ public class User_Controller {
                 bookingCusFloorList.add(bookingCusFloor);
             }
             model.addAttribute("userbooks", bookingCusFloorList);
-        }else {
+        } else {
             httpSession.setAttribute("pageTimes", 1);
             model.addAttribute("nullList", "你怎么还不去看书呢？");
         }
@@ -241,8 +253,81 @@ public class User_Controller {
         User user = (User) httpSession.getAttribute("user");
         model.addAttribute("users", user);
 
+        /**
+         * 获取每周的学习记录
+         */
+        List<Integer> findweekofbook = bookingService.findweekofbook();  //查看所有的预约周数
+        List<WeekData> weekDataList = new ArrayList<WeekData>();
+        for (int i = 0; i < findweekofbook.size(); i++) {
+            WeekData weekData = new WeekData();
+            List<Booking> bookings = bookingService.findsaomeWeekBookUser(findweekofbook.get(i), user.getSno());
+            weekData.setWeek(findweekofbook.get(i));
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            float dealpro = 0;
+            for (int j = 0; j < bookings.size(); j++) {
+                if (bookings.get(j).getStatue() == 3) {
+                    Integer disTime = DateUtil.getDisTime(bookings.get(j).getStime(), bookings.get(j).getEtime());
+                    learntime = learntime + disTime;
+                    if (disTime > 0) {
+                        allLearn++;
+                    }
+                    if (bookings.get(j).getDeal() == 1) {
+                        nudeal++;
+                    }
+                }
+            }
+            if (bookings.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / (float) bookings.size()) * 100;
+            }
+            weekData.setLearntime(learntime / 60);
+            weekData.setAllLearn(allLearn);
+            weekData.setUndeal(nudeal);
+            weekData.setDealpro((int) dealpro);
+            weekDataList.add(weekData);
+        }
+        model.addAttribute("weekdatas", weekDataList);
         return "user_page/user_information/Information_User_Self";
     }
+
+    @RequestMapping(value = "/findUserBookWeek")
+    public @ResponseBody
+    List<WeekData> findBookWeek(String sno) throws Exception {
+        List<Integer> findweekofbook = bookingService.findweekofbook();  //查看所有的预约周数
+        List<WeekData> weekDataList = new ArrayList<WeekData>();
+        for (int i = 0; i < findweekofbook.size(); i++) {
+            WeekData weekData = new WeekData();
+            List<Booking> bookings = bookingService.findsaomeWeekBookUser(findweekofbook.get(i), sno);
+            weekData.setWeek(findweekofbook.get(i));
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            float dealpro = 0;
+            for (int j = 0; j < bookings.size(); j++) {
+                if (bookings.get(j).getStatue() == 3) {
+                    Integer disTime = DateUtil.getDisTime(bookings.get(j).getStime(), bookings.get(j).getEtime());
+                    learntime = learntime + disTime;
+                    if (disTime > 0) {
+                        allLearn++;
+                    }
+                    if (bookings.get(j).getDeal() == 1) {
+                        nudeal++;
+                    }
+                }
+            }
+            if (bookings.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / (float) bookings.size()) * 100;
+            }
+            weekData.setLearntime(learntime / 60);
+            weekData.setAllLearn(allLearn);
+            weekData.setUndeal(nudeal);
+            weekData.setDealpro((int) dealpro);
+            weekDataList.add(weekData);
+        }
+        return weekDataList;
+    }
+
 
     @RequestMapping("choose_Building")
     public String choose_Building(Model model, Integer day) throws Exception {
