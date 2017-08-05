@@ -11,6 +11,7 @@ import com.xoqao.web.bean.data.WeekData;
 import com.xoqao.web.bean.floors.Floor;
 import com.xoqao.web.bean.news.Notice;
 import com.xoqao.web.bean.seat.Seat;
+import com.xoqao.web.bean.seat.SeatCusBookTime;
 import com.xoqao.web.bean.user.User;
 import com.xoqao.web.bean.weekopen.WeekOpen;
 import com.xoqao.web.bean.weekopen.WeekOpenCus;
@@ -761,6 +762,7 @@ public class PhoneServerController {
 
     /**
      * 查找往周预约记录结果统计
+     *
      * @param sno
      * @return
      * @throws Exception
@@ -793,7 +795,7 @@ public class PhoneServerController {
             if (bookings.size() > 0) {  //查看某周的预约是否未零
                 dealpro = (nudeal / (float) bookings.size()) * 100;
             }
-            weekData.setLearntime(learntime/60);
+            weekData.setLearntime(learntime / 60);
             weekData.setAllLearn(allLearn);
             weekData.setUndeal(nudeal);
             weekData.setDealpro((int) dealpro);
@@ -804,6 +806,51 @@ public class PhoneServerController {
         map.put("message", "成功");
         map.put("data", weekDataList);
         return map;
+    }
+
+    /**
+     * 获取推荐座位预约
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/getPushSeat")
+    public @ResponseBody
+    Map<String, Object> getPushSeat() throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<Seat> seats = new ArrayList<Seat>();
+        List<Building> allBuilding = buildingService.findAllBuilding();
+        List<Floor> floorList = new ArrayList<Floor>();
+        for (int i = 0; i < allBuilding.size(); i++) {
+            List<Floor> floors = floorService.findfloorsBybid(allBuilding.get(i).getBid());
+            floorList.addAll(floors);
+        }
+        for (int i = 0; i < floorList.size(); i++) {
+            List<Seat> canBookingToday = bookingService.findCanBookingToday(floorList.get(i).getFid());
+            seats.addAll(canBookingToday);
+        }
+        Random random = new Random();
+        Seat seat = seats.get(random.nextInt(seats.size()));
+
+        if (seat != null) {
+            SeatCusBookTime seatCusBookTime = new SeatCusBookTime();
+            BeanUtils.copyProperties(seat, seatCusBookTime);
+            Floor floor = floorService.findfloorByid(seat.getFid());
+            seatCusBookTime.setFloor(floor.getFloor());
+            seatCusBookTime.setFloorTheme(floor.getEmployer());
+            Building buildingById = buildingService.findBuildingById(floor.getBid());
+            seatCusBookTime.setBuilding(buildingById.getEmployer());
+            seatCusBookTime.setStime(new Date());
+            seatCusBookTime.setEtime(DateUtil.getTwoOursAfter());
+            map.put("code", 0);
+            map.put("message", "成功");
+            map.put("data", seatCusBookTime);
+            return map;
+        } else {
+            map.put("code", 1);
+            map.put("message", "未找到合适座位");
+            map.put("data", null);
+            return map;
+        }
     }
 
 }
