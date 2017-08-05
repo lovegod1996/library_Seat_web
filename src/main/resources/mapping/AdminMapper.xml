@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xoqao.web.dao.AdminMapper" >
+<mapper namespace="com.xoqao.web.dao.AdminMapper">
+
     <!--根据用户名或账号查询管理员-->
     <select id="findAdminByCount" resultType="com.xoqao.web.bean.admin.Admin">
-        SELECT aid,acountnumber,password,name,employer  FROM admin WHERE acountnumber LIKE '${loginstr}'
+        SELECT aid,acountnumber,password,name,employer,admin,notice,floor,user,seat  FROM admin WHERE acountnumber LIKE '${loginstr}'
     </select>
 
     <!--根据id查找管理员-->
     <select id="findAdminByid" resultType="com.xoqao.web.bean.admin.Admin">
-          SELECT aid,acountnumber,password,name,employer  FROM admin WHERE aid =#{aid}
+          SELECT aid,acountnumber,password,name,employer,admin,notice,floor,user,seat  FROM admin WHERE aid =#{aid}
+    </select>
+
+    <!--修改管理员权限-->
+    <update id="updateLimit">
+        UPDATE admin SET notice=#{notice},floor=#{floor},user=#{user},seat=#{seat} WHERE  aid=#{aid}
+    </update>
+
+    <!--添加管理员-->
+    <insert id="insertAdmin">
+        <selectKey resultType="java.lang.Integer" keyProperty="aid" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO admin (acountnumber,password,name,employer) VALUES (#{number},#{pasword},#{name},#{employer})
+    </insert>
+
+    <!--删除管理员-->
+    <delete id="deleteAdmin">
+        DELETE FROM admin WHERE aid=#{aid}
+    </delete>
+
+    <!--查看所有的党员-->
+    <select id="findAllAdmin" resultType="com.xoqao.web.bean.admin.Admin">
+          SELECT aid,acountnumber,password,name,employer,admin,notice,floor,user,seat  FROM admin
     </select>
 </mapper>

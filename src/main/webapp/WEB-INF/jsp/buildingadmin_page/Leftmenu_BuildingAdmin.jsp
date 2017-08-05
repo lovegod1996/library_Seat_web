@@ -43,17 +43,6 @@
                    target="mainFrame_BuildingAdmin"><i class="fa fa-hdd-o fa-fw"></i> 开闭馆管理</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-bell fa-fw"></i> 通知管理<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="<%=request.getContextPath()%>/jsp/news_List_Admin" target="mainFrame_BuildingAdmin">通知列表</a>
-                    </li>
-                    <li>
-                        <a href="<%=request.getContextPath()%>/jsp/add_News" target="mainFrame_BuildingAdmin">发布通知</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
                 <a href="#"><i class="fa fa-bell fa-fw"></i> 学习数据统计<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>

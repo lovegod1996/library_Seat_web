@@ -12,7 +12,11 @@ public class Admin {
     private String password;
     private String name;
     private String employer;
-
+    private Integer admin;
+    private Integer notice;
+    private Integer floor;
+    private Integer user;
+    private Integer seat;
 
     public Integer getAid() {
         return aid;
@@ -54,6 +58,46 @@ public class Admin {
         this.employer = employer;
     }
 
+    public Integer getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Integer admin) {
+        this.admin = admin;
+    }
+
+    public Integer getNotice() {
+        return notice;
+    }
+
+    public void setNotice(Integer notice) {
+        this.notice = notice;
+    }
+
+    public Integer getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Integer floor) {
+        this.floor = floor;
+    }
+
+    public Integer getUser() {
+        return user;
+    }
+
+    public void setUser(Integer user) {
+        this.user = user;
+    }
+
+    public Integer getSeat() {
+        return seat;
+    }
+
+    public void setSeat(Integer seat) {
+        this.seat = seat;
+    }
+
     @Override
     public String toString() {
         return "Admin{" +
@@ -62,6 +106,11 @@ public class Admin {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", employer='" + employer + '\'' +
+                ", admin=" + admin +
+                ", notice=" + notice +
+                ", floor=" + floor +
+                ", user=" + user +
+                ", seat=" + seat +
                 '}';
     }
 }

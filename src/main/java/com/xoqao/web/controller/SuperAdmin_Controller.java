@@ -1,5 +1,6 @@
 package com.xoqao.web.controller;
 
+import com.xoqao.web.bean.admin.Admin;
 import com.xoqao.web.bean.booking.Booking;
 import com.xoqao.web.bean.booking.BookingSeat;
 import com.xoqao.web.bean.booking.BookingUser;
@@ -18,12 +19,14 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.jws.WebParam;
 import javax.servlet.http.HttpSession;
 import javax.swing.*;
+import java.lang.reflect.Method;
 import java.util.*;
 
 /**
@@ -44,6 +47,8 @@ public class SuperAdmin_Controller {
     private UserService userService;
     @Autowired
     private SeatService seatService;
+    @Autowired
+    private AdminService adminService;
 
     @RequestMapping("/index_SuperAdmin")
     public String index_SuperAdmin(Model model) throws Exception {
@@ -63,6 +68,67 @@ public class SuperAdmin_Controller {
         }
         model.addAttribute("buidingfloors", buildingCusFloorsList);
         return "superadmin_page/Leftmenu_SuperAdmin";
+    }
+
+    /**
+     * 进入管理员管理界面
+     *
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/manage_Admin")
+    public String manageAdmin(Model model) throws Exception {
+        List<Admin> allAdmin = adminService.findAllAdmin();
+        model.addAttribute("admins", allAdmin);
+        return "superadmin_page/Managing_Admin";
+    }
+
+
+
+    /**
+     * 添加管理员
+     *
+     * @param name
+     * @param employ
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/AdAdmin")
+    public String adAdmin(String name, String employ) throws Exception {
+        List<Admin> allAdmin = adminService.findAllAdmin();
+        String password = "123456";
+        Calendar a = Calendar.getInstance();
+        Integer year = a.get(Calendar.YEAR);
+        String number = year + "00" + (allAdmin.get(allAdmin.size() - 1).getAid() + 1);
+        adminService.insertAdmin(number, password, name, employ);
+        return "redirect:/view/manage_Admin";
+    }
+
+    /**
+     * 删除管理员
+     *
+     * @param model
+     * @param aid
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/deleteAdmin")
+    public String deleteAdmin(Model model, Integer aid) throws Exception {
+        adminService.deleteAdmin(aid);
+        return "redirect:/view/manage_Admin";
+    }
+
+    /**
+     * 修改权限状态
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/UpdateAdmin/{aid}/{floor}/{notice}/{user}/{seat}")
+    public String updateAdmin(Model model, @PathVariable("aid") Integer aid, @PathVariable("floor") Integer floor, @PathVariable("notice") Integer notice, @PathVariable("user") Integer user, @PathVariable("seat") Integer seat) throws Exception {
+        adminService.updateLimit(notice, floor, user, seat, aid);
+        return "redirect:/view/manage_Admin";
     }
 
     @RequestMapping("/main_SuperAdmin")
@@ -173,6 +239,24 @@ public class SuperAdmin_Controller {
         return "superadmin_page/Managing_Floor_SuperAdmin";
     }
 
+    /**
+     * 改变楼层的开放状态
+     * @param model
+     * @param statue
+     * @param fid
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/admin/changeFloor")
+    public  String changeFloorSatue(Model model,Integer statue,Integer fid)throws Exception{
+        if (statue == 0) {
+            floorService.updateStatueByid(1, fid);
+        } else {
+            floorService.updateStatueByid(0, fid);
+        }
+        Floor floor = floorService.findfloorByid(fid);
+        return "redirect:/view/managing_Floor_SuperAdmin?bid="+floor.getBid();
+    }
     /**
      * 删除楼层
      *
@@ -612,10 +696,10 @@ public class SuperAdmin_Controller {
                 }
             }
             if (findbookfloorofweek.size() > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / (float)findbookfloorofweek.size()) * 100;
+                dealpro = (nudeal / (float) findbookfloorofweek.size()) * 100;
             }
             weekData.setAllLearn(allLearn);
-            weekData.setDealpro((int)dealpro);
+            weekData.setDealpro((int) dealpro);
             weekData.setLearntime(learntime / 60);
             weekData.setUndeal(nudeal);
             weekDataList.add(weekData);
@@ -642,10 +726,10 @@ public class SuperAdmin_Controller {
                 }
             }
             if (findbookfloorofmonth.size() > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / (float)findbookfloorofmonth.size()) * 100;
+                dealpro = (nudeal / (float) findbookfloorofmonth.size()) * 100;
             }
             monthData.setAllLearn(allLearn);
-            monthData.setDealpro((int)dealpro);
+            monthData.setDealpro((int) dealpro);
             monthData.setLearntime(learntime / 60);
             monthData.setUndeal(nudeal);
             monthData.setMonth(findmonthofbook.get(i));
@@ -703,10 +787,10 @@ public class SuperAdmin_Controller {
             }
 
             if (books > 0) {
-                dealpro = (nudeal / (float)books) * 100;
+                dealpro = (nudeal / (float) books) * 100;
             }
             weekData.setAllLearn(allLearn);
-            weekData.setDealpro((int)dealpro);
+            weekData.setDealpro((int) dealpro);
             weekData.setLearntime(learntime / 60);
             weekData.setUndeal(nudeal);
             weekDataList.add(weekData);    //添加每周的学习统计数据
@@ -742,10 +826,10 @@ public class SuperAdmin_Controller {
                 books = books + findbookfloorofmonth.size();
             }
             if (books > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / (float)books) * 100;
+                dealpro = (nudeal / (float) books) * 100;
             }
             monthData.setAllLearn(allLearn);
-            monthData.setDealpro((int)dealpro);
+            monthData.setDealpro((int) dealpro);
             monthData.setLearntime(learntime / 60);
             monthData.setUndeal(nudeal);
             monthData.setMonth(findmonthofbook.get(i));
@@ -799,10 +883,10 @@ public class SuperAdmin_Controller {
             }
 
             if (books > 0) {
-                dealpro = (nudeal / (float)books) * 100;
+                dealpro = (nudeal / (float) books) * 100;
             }
             weekData.setAllLearn(allLearn);
-            weekData.setDealpro((int)dealpro);
+            weekData.setDealpro((int) dealpro);
             weekData.setLearntime(learntime / 60);
             weekData.setUndeal(nudeal);
             weekDataList.add(weekData);    //添加每周的学习统计数据
@@ -850,10 +934,10 @@ public class SuperAdmin_Controller {
                 books = books + findbookfloorofmonth.size();
             }
             if (books > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal /(float) books) * 100;
+                dealpro = (nudeal / (float) books) * 100;
             }
             monthData.setAllLearn(allLearn);
-            monthData.setDealpro((int)dealpro);
+            monthData.setDealpro((int) dealpro);
             monthData.setLearntime(learntime / 60);
             monthData.setUndeal(nudeal);
             monthData.setMonth(findmonthofbook.get(i));
@@ -893,10 +977,10 @@ public class SuperAdmin_Controller {
                 }
             }
             if (findbookfloorofmonth.size() > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / (float)findbookfloorofmonth.size()) * 100;
+                dealpro = (nudeal / (float) findbookfloorofmonth.size()) * 100;
             }
             monthData.setAllLearn(allLearn);
-            monthData.setDealpro((int)dealpro);
+            monthData.setDealpro((int) dealpro);
             monthData.setLearntime(learntime / 60);
             monthData.setUndeal(nudeal);
             monthData.setMonth(findmonthofbook.get(i));
@@ -936,10 +1020,10 @@ public class SuperAdmin_Controller {
                 }
             }
             if (findbookfloorofweek.size() > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / (float)findbookfloorofweek.size()) * 100;
+                dealpro = (nudeal / (float) findbookfloorofweek.size()) * 100;
             }
             weekData.setAllLearn(allLearn);
-            weekData.setDealpro((int)dealpro);
+            weekData.setDealpro((int) dealpro);
             weekData.setLearntime(learntime / 60);
             weekData.setUndeal(nudeal);
             weekDataList.add(weekData);
@@ -1003,6 +1087,7 @@ public class SuperAdmin_Controller {
 
     /**
      * 获取学生学习记录
+     *
      * @param sno
      * @return
      * @throws Exception

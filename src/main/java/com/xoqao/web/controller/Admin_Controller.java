@@ -63,7 +63,8 @@ public class Admin_Controller {
     }
 
     @RequestMapping("/managing_Seat")
-    public String managing_Seat(Model model) throws Exception {
+    public String managing_Seat(Model model ,Integer fid) throws Exception {
+        model.addAttribute("fid",fid);
         return "admin_page/Managing_Seat";
     }
 
@@ -76,8 +77,8 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/floorSeat")
-    public String seatList(Model model, Integer page, HttpSession httpSession) throws Exception {
-        Floor floor = (Floor) httpSession.getAttribute("admin");
+    public String seatList(Model model, Integer page, HttpSession httpSession,Integer fid) throws Exception {
+        Floor floor = floorService.findfloorByid(fid);
         List<Seat> seatsByFid = seatService.findSeatsByFid(floor.getFid());
         Integer pageSize = 10;
         if (seatsByFid.size() > 0) {
@@ -121,9 +122,60 @@ public class Admin_Controller {
             httpSession.setAttribute("pageTimes", 1);
             model.addAttribute("nullList", "暂无座位信息");
         }
-        return "admin_page/Seat_List_Admin";
+        model.addAttribute("fid",fid);
+        return "admin_page/Seat_Floor_List_Admin";
     }
 
+
+    @RequestMapping("/floorSeatsList")
+    public String seatFloorList(Model model, Integer page, HttpSession httpSession,Integer fid) throws Exception {
+        Floor floor = floorService.findfloorByid(fid);
+        List<Seat> seatsByFid = seatService.findSeatsByFid(floor.getFid());
+        Integer pageSize = 10;
+        if (seatsByFid.size() > 0) {
+            model.addAttribute("seatSize", seatsByFid.size());
+            int pageTims;
+            if (seatsByFid.size() % pageSize == 0) {
+                pageTims = seatsByFid.size() / pageSize;
+            } else {
+                pageTims = seatsByFid.size() / pageSize + 1;
+            }
+            httpSession.setAttribute("pageTimes", pageTims);
+            //页面初始的时候没有初试值
+
+            if (null == page) {
+                page = 1;
+            }
+
+            //每页开始的第几条记录
+            int startRow;
+            if (seatsByFid.size() < pageSize) {
+                startRow = 0;
+            } else {
+                startRow = (page - 1) * pageSize;
+            }
+            model.addAttribute("currentPage", page);
+            List<Seat> seatsByFidPage = seatService.findSeatsByFidPage(floor.getFid(), startRow, pageSize);
+            List<SeatCus> seatCuses = new ArrayList<SeatCus>();
+            for (int i = 0; i < seatsByFidPage.size(); i++) {
+                SeatCus seatCus = new SeatCus();
+                //将列表中的seat中的属性复制到seatcus中
+                BeanUtils.copyProperties(seatsByFidPage.get(i), seatCus);
+                Floor floor1 = floorService.findfloorByid(seatsByFidPage.get(i).getFid());
+
+                Building buildingById = buildingService.findBuildingById(floor1.getBid());
+                seatCus.setFloor(floor1.getEmployer());
+                seatCus.setBuilding(buildingById.getEmployer());
+                seatCuses.add(seatCus);
+            }
+            model.addAttribute("seats", seatCuses);
+        } else {
+            httpSession.setAttribute("pageTimes", 1);
+            model.addAttribute("nullList", "暂无座位信息");
+        }
+        model.addAttribute("fid",fid);
+        return "admin_page/Seat_List_Admin";
+    }
     /**
      * 更改座位状态
      *
@@ -134,13 +186,13 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/changeSeatStatue")
-    public String changeSeatSatue(Model model, Integer statue, Integer sid) throws Exception {
+    public String changeSeatSatue(Model model, Integer statue, Integer sid,Integer fid) throws Exception {
         if (statue == 0) {
             seatService.updateSeatSatue(1, sid);
         } else {
             seatService.updateSeatSatue(0, sid);
         }
-        return "redirect:/view/floorSeat?page=1";
+        return "redirect:/view/floorSeat?page=1&fid="+fid;
     }
 
     /**
@@ -152,9 +204,9 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/deleteSeat")
-    public String deleteSeat(Model model, Integer sid) throws Exception {
+    public String deleteSeat(Model model, Integer sid,Integer fid) throws Exception {
         seatService.deleteSeat(sid);
-        return "redirect:/view/floorSeat?page=1";
+        return "redirect:/view/floorSeat?page=1&fid="+fid;
     }
 
     /**
@@ -165,18 +217,17 @@ public class Admin_Controller {
      * @param row
      * @param column
      * @param mark
-     * @param httpSession
      * @return
      * @throws Exception
      */
     @RequestMapping("/addSeatSub")
-    public String Seatadd(Model model, Integer left, Integer row, Integer column, String mark, HttpSession httpSession) throws Exception {
-        Floor floor = (Floor) httpSession.getAttribute("admin");
+    public String Seatadd(Model model, Integer left, Integer row, Integer column, String mark,Integer fid) throws Exception {
+        Floor floor = floorService.findfloorByid(fid);
         //添加座位前需要先查看每周的开放时间是否已经设置完成
         List<WeekOpen> weekOpens = weekOpenService.findweekByfid(floor.getFid());
         if (weekOpens.size() != 7) {
             model.addAttribute("error_msg", "请先添加每周的开放时间段.");
-            return "redirect:/view/managing_Floor";
+            return "redirect:/view/managing_Floor?fid="+fid;
         }
         Seat seat = new Seat();
         seat.setColumns(column);
@@ -192,7 +243,7 @@ public class Admin_Controller {
             model.addAttribute("error_msg", "该座位已存在");
             return "admin_page/Managing_Seat";
         }
-        return "redirect:/view/floorSeat?page=1";
+        return "redirect:/view/floorSeat?page=1&fid="+fid;
     }
 
     /**
@@ -203,13 +254,14 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/managing_Floor")
-    public String mnaging_Floor(Model model, HttpSession httpSession) throws Exception {
-        Floor floor = (Floor) httpSession.getAttribute("admin");
+    public String mnaging_Floor(Model model,Integer fid) throws Exception {
+        Floor floor = floorService.findfloorByid(fid);
         List<WeekOpen> weekOpens = weekOpenService.findweekByfid(floor.getFid());
         if (weekOpens.size() == 0) {
             model.addAttribute("NullList", "暂无一周当中的预约日期设置");
         }
         model.addAttribute("weekopens", weekOpens);
+        model.addAttribute("fid",fid);
         return "admin_page/Managing_Floor";
     }
 
@@ -225,8 +277,8 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/addWeekOpenSub")
-    public String addWeekOpen(Model model, HttpSession httpSession, Integer week, String param1, String param2) throws Exception {
-        Floor floor = (Floor) httpSession.getAttribute("admin");
+    public String addWeekOpen(Model model, HttpSession httpSession, Integer week, String param1, String param2,Integer fid) throws Exception {
+        Floor floor = floorService.findfloorByid(fid);
         WeekOpen weekOpen = new WeekOpen();
         weekOpen.setLid(floor.getFid());
         weekOpen.setWeek(week);
@@ -238,7 +290,7 @@ public class Admin_Controller {
             e.printStackTrace();
             model.addAttribute("error_msg", "周" + week + "的已存在");
         }
-        return "redirect:/view/managing_Floor";
+        return "redirect:/view/managing_Floor?fid="+fid;
     }
 
     /**
@@ -251,13 +303,13 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/changeWeekStatue")
-    public String changeWeekSatue(Model model, Integer woid, Integer statue) throws Exception {
+    public String changeWeekSatue(Model model, Integer woid, Integer statue,Integer fid) throws Exception {
         if (statue == 0) {
             weekOpenService.updatestatue(1, woid);
         } else {
             weekOpenService.updatestatue(0, woid);
         }
-        return "redirect:/view/managing_Floor";
+        return "redirect:/view/managing_Floor?fid="+fid;
     }
 
 
@@ -270,9 +322,9 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/deleteWeek")
-    public String deleteWeekopen(Model model, Integer woid) throws Exception {
+    public String deleteWeekopen(Model model, Integer woid,Integer fid) throws Exception {
         weekOpenService.deletestatue(woid);
-        return "redirect:/view/managing_Floor";
+        return "redirect:/view/managing_Floor?fid="+fid;
     }
 
 
