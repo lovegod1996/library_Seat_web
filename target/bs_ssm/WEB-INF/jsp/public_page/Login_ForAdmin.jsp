@@ -26,9 +26,38 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <!--[endif]-->
-
+    <style>
+        .row {
+            margin-right: -30px;
+            margin-top: 130px;
+        }
+        .btn-success {
+            color: #fff;
+            background-color: #92e3fa;
+            border-color: #93e2f9;
+        }
+        .btn-success:hover {
+            color: #fff;
+            background-color: #96e1f6;
+            border-color: #96e2f6;
+        }
+        .btn-success:visited {
+            color: #fff;
+            background-color: #96e1f6;
+            border-color: #96e2f6;
+        }
+        .btn-block {
+            display: block;
+            width: 60%;
+            margin: 30px auto;
+        }
+        .panel-default {
+            border-color: #91dcf6;
+            opacity: 0.94;
+        }
+    </style>
 </head>
-<body>
+<body background="<%=request.getContextPath()%>/img/library.jpg" style="background-repeat: no-repeat;background-size: 100% 100%;">
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
