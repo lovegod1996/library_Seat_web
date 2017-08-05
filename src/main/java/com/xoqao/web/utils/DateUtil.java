@@ -294,4 +294,18 @@ public class DateUtil {
         return b;
     }
 
+    /**
+     * 获取两个小时后的时间
+     *
+     * @return
+     */
+    public static Date getTwoOursAfter() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(java.util.Calendar.HOUR, 2);
+        String format = sdf.format(calendar.getTime());
+        Date parse = sdf.parse(format);
+        return parse;
+    }
 }

@@ -165,4 +165,24 @@ public class BookingServiceImpl implements BookingService {
         List<Booking> bookings = bookingMapper.findbookNoOverToday();
         return bookings;
     }
+
+    public List<Seat> findbookSeatofUpWeek(Integer fid) throws Exception {
+        List<Seat> seats = bookingMapper.findbookSeatofUpWeek(fid);
+        return seats;
+    }
+
+    public List<Booking> findFloorBookOfUpWeek(Integer fid) throws Exception {
+        List<Booking> floorBookOfUpWeek = bookingMapper.findFloorBookOfUpWeek(fid);
+        return floorBookOfUpWeek;
+    }
+
+    public List<Booking> findUserBookOfUpWeek(Integer fid, String sno) throws Exception {
+        List<Booking> userBookOfUpWeek = bookingMapper.findUserBookOfUpWeek(fid, sno);
+        return userBookOfUpWeek;
+    }
+
+    public List<Booking> findsaomeWeekBookUser(Integer week, String sno) throws Exception {
+        List<Booking> bookings = bookingMapper.findsaomeWeekBookUser(week, sno);
+        return bookings;
+    }
 }

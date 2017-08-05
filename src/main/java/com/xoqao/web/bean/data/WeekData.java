@@ -8,6 +8,7 @@ package com.xoqao.web.bean.data;
  */
 public class WeekData {
     private String venue;
+    private Integer week;
     private Integer learntime;
     private Integer allLearn;
     private Integer undeal;
@@ -51,5 +52,13 @@ public class WeekData {
 
     public void setDealpro(Integer dealpro) {
         this.dealpro = dealpro;
+    }
+
+    public Integer getWeek() {
+        return week;
+    }
+
+    public void setWeek(Integer week) {
+        this.week = week;
     }
 }

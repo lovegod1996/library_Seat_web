@@ -38,26 +38,74 @@
                 <a href="<%=request.getContextPath()%>/view/index_SuperAdmin" target="_parent" class="active"><i
                         class="fa fa-dashboard fa-fw"></i> 后台管理首页</a>
             </li>
-            <li>
-                <a href="<%=request.getContextPath()%>/view/managing_Building_SuperAdmin"
-                   target="mainFrame_SuperAdmin"><i class="fa fa-hdd-o fa-fw"></i> 创建楼和楼层</a>
-            </li>
-            <li>
-                <a href="<%=request.getContextPath()%>/view/managing_Users"
-                   target="mainFrame_SuperAdmin"><i class="fa fa-hdd-o fa-fw"></i> 用户管理</a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-bell fa-fw"></i> 通知管理<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="<%=request.getContextPath()%>/jsp/news_List_Admin"
-                           target="mainFrame_SuperAdmin">通知列表</a>
-                    </li>
-                    <li>
-                        <a href="<%=request.getContextPath()%>/jsp/add_News" target="mainFrame_SuperAdmin">发布通知</a>
-                    </li>
-                </ul>
-            </li>
+            <c:if test="${sessionScope.admin.admin==1}">
+                <li>
+                    <a href="<%=request.getContextPath()%>/view/manage_Admin"
+                       target="mainFrame_SuperAdmin"><i class="fa fa-hdd-o fa-fw"></i> 管理员管理</a>
+                </li>
+            </c:if>
+            <c:if test="${sessionScope.admin.floor==1}">
+                <li>
+                    <a href="<%=request.getContextPath()%>/view/managing_Building_SuperAdmin"
+                       target="mainFrame_SuperAdmin"><i class="fa fa-hdd-o fa-fw"></i> 创建楼和楼层</a>
+                </li>
+            </c:if>
+
+            <c:if test="${sessionScope.admin.seat==1}">
+                <li>
+                    <a href="#"><i class="fa fa-bell fa-fw"></i> 座位管理<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+
+                        <c:forEach items="${buidingfloors}" var="building">
+                            <li>
+                                <a href="#">${building.employer}<span class="fa arrow"></span></a>
+                                <ul class="nav">
+                                    <c:forEach items="${building.floors}" var="floor">
+                                        <li>
+                                            <a href="#">${floor.employer}<span class="fa arrow"></span></a>
+                                            <ul class="nav">
+                                                <li>
+                                                    <a href="<%=request.getContextPath()%>/view/managing_Seat?fid=${floor.fid}"
+                                                       target="mainFrame_SuperAdmin">增加座位</a>
+                                                </li>
+                                                <li>
+                                                    <a href="<%=request.getContextPath()%>/view/floorSeat?fid=${floor.fid}"
+                                                       target="mainFrame_SuperAdmin">查看座位</a>
+                                                </li>
+                                                <li>
+                                                    <a href="<%=request.getContextPath()%>/view/managing_Floor?fid=${floor.fid}"
+                                                       target="mainFrame_SuperAdmin">开闭馆管理</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </li>
+            </c:if>
+
+            <c:if test="${sessionScope.admin.user==1}">
+                <li>
+                    <a href="<%=request.getContextPath()%>/view/managing_Users"
+                       target="mainFrame_SuperAdmin"><i class="fa fa-hdd-o fa-fw"></i> 用户管理</a>
+                </li>
+            </c:if>
+            <c:if test="${sessionScope.admin.notice==1}">
+                <li>
+                    <a href="#"><i class="fa fa-bell fa-fw"></i> 通知管理<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="<%=request.getContextPath()%>/jsp/news_List_Admin"
+                               target="mainFrame_SuperAdmin">通知列表</a>
+                        </li>
+                        <li>
+                            <a href="<%=request.getContextPath()%>/jsp/add_News" target="mainFrame_SuperAdmin">发布通知</a>
+                        </li>
+                    </ul>
+                </li>
+            </c:if>
             <li>
                 <a href="#"><i class="fa fa-bell fa-fw"></i> 数据统计<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -78,7 +126,8 @@
                                     <ul class="nav">
                                         <c:forEach items="${building.floors}" var="floor">
                                             <li>
-                                                <a href="<%=request.getContextPath()%>/view/seat_DataStatistics_ForEachBuilding?fid=${floor.fid}" target="mainFrame_SuperAdmin">${floor.employer}</a>
+                                                <a href="<%=request.getContextPath()%>/view/seat_DataStatistics_ForEachBuilding?fid=${floor.fid}"
+                                                   target="mainFrame_SuperAdmin">${floor.employer}</a>
                                             </li>
                                         </c:forEach>
                                     </ul>
@@ -98,6 +147,35 @@
                     </div>
                     <div class="layui-form-item">
                         <label type="text">账号：&nbsp;&nbsp;${sessionScope.admin.acountnumber}</label>
+                    </div>
+                    <div class="layui-form-item">
+                        <label type="text">您的身份：&nbsp;&nbsp;
+                            <c:if test="${sessionScope.admin.admin==1}">
+                                您是超级管理员
+                            </c:if>
+                            <c:if test="${sessionScope.admin.admin==0}">
+                                您是一般管理员
+                            </c:if>
+                        </label>
+                    </div>
+                    <div class="layui-form-item">
+                        <label type="text">您的管理权限：&nbsp;&nbsp;
+                            <c:if test="${sessionScope.admin.admin==1}">
+                                管理员管理；
+                            </c:if>
+                            <c:if test="${sessionScope.admin.notice==1}">
+                                资讯管理；
+                            </c:if>
+                            <c:if test="${sessionScope.admin.floor==1}">
+                                楼层管理；
+                            </c:if>
+                            <c:if test="${sessionScope.admin.user==1}">
+                                学生管理；
+                            </c:if>
+                            <c:if test="${sessionScope.admin.seat==1}">
+                                座位管理
+                            </c:if>
+                        </label>
                     </div>
                 </div>
             </li>

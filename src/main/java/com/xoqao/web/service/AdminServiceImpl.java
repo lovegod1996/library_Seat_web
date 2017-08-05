@@ -5,6 +5,8 @@ import com.xoqao.web.dao.AdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 说明：
  * Author: lovegod
@@ -25,5 +27,22 @@ public class AdminServiceImpl implements AdminService {
     public Admin findAdminByid(Integer aid) throws Exception {
         Admin adminByid = adminMapper.findAdminByid(aid);
         return adminByid;
+    }
+
+    public void updateLimit(Integer notice, Integer floor, Integer user, Integer seat, Integer aid) throws Exception {
+        adminMapper.updateLimit(notice, floor, user, seat, aid);
+    }
+
+    public void insertAdmin(String number, String pasword, String name, String employer) throws Exception {
+        adminMapper.insertAdmin(number, pasword, name, employer);
+    }
+
+    public void deleteAdmin(Integer aid) throws Exception {
+        adminMapper.deleteAdmin(aid);
+    }
+
+    public List<Admin> findAllAdmin() throws Exception {
+        List<Admin> allAdmin = adminMapper.findAllAdmin();
+        return allAdmin;
     }
 }
