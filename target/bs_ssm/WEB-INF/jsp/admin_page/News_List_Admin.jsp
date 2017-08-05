@@ -16,6 +16,29 @@
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
+    <style>
+        body {
+            background-color: #eff3f8;
+        }
+        .col-sm-12 {
+            width: 80%;
+            margin: 15px 140px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #ffffff;
+        }
+        .btn-danger:hover {
+            background-color: #f36a5b;
+        }
+        .btn-primary:hover {
+            background-color: #286090;
+        }
+        .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+            background-color: #5c9bd1;
+        }
+    </style>
 </head>
 <body>
 <div class="col-sm-12">

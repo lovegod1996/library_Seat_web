@@ -76,4 +76,9 @@ public class public_pageController {
             return "public_page/News_Content";
         }
     }
+
+    @RequestMapping("/footer")
+    public String footer(Model model) throws Exception{
+        return "public_page/Footer";
+    }
 }

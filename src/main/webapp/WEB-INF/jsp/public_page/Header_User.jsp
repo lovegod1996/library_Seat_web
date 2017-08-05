@@ -34,6 +34,36 @@
             padding-left: 5%;
             padding-right: 5%;
         }
+        body {
+            background-color: #4d5b69;
+        }
+        .navbar-default {
+            background-color: #4d5b69;
+            border-color: #e7e7e7;
+        }
+        .navbar-default .navbar-brand {
+            color: #fff;
+        }
+        .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+            color: #4d5b69;
+            background-color: #4d5b69;
+        }
+        html {
+            font-size: 10px;
+            background-color: #eff3f8;
+        }
+        .navbar-default .navbar-brand:hover {
+            color: #ffffff;
+            background-color: transparent;
+        }
+        .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+            color: #ffffff;
+            background-color: #4d5b69;
+        }
+        a {
+            color: #ffffff;
+            text-decoration: none;
+        }
     </style>
 
     <script>
@@ -111,6 +141,7 @@
         </ul>
     </nav>
 </div>
+<div>this is a footer</div>
 <!-- jQuery -->
 <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
 

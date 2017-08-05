@@ -10,20 +10,30 @@
 <head>
     <title>FloorAdmin</title>
 </head>
-<frameset rows="50,*" cols="*" frameborder="no" border="0" framespacing="0">
-    <frame src="<%=request.getContextPath()%>/jsp/header_Admin" name="topFrame_Admin" scrolling="No" noresize="noresize"
-           id="topFrame_Admin" title="topFrame_Admin"/>
-    <frameset rows="*" cols="250,*" framespacing="0" frameborder="no" border="0">
-        <frame src="<%=request.getContextPath()%>/jsp/leftmenu" name="leftFrame_Admin" scrolling="Yes"
-               noresize="noresize" id="leftFrame_Admin"
-               title="leftFrame_Admin"/>
-        <frame src="<%=request.getContextPath()%>/jsp/main_Admin" name="mainFrame_Admin" id="mainFrame_Admin"
-               title="mainFrame_Admin"/>
-    </frameset>
-</frameset>
-<noframes>
-    <body>
+<%--<frameset rows="50,*" cols="*" frameborder="no" border="0" framespacing="0">--%>
+    <%--<frame src="<%=request.getContextPath()%>/jsp/header_Admin" name="topFrame_Admin" scrolling="No" noresize="noresize"--%>
+           <%--id="topFrame_Admin" title="topFrame_Admin"/>--%>
+    <%--<frameset rows="*" cols="250,*" framespacing="0" frameborder="no" border="0">--%>
+        <%--<frame src="<%=request.getContextPath()%>/jsp/leftmenu" name="leftFrame_Admin" scrolling="Yes"--%>
+               <%--noresize="noresize" id="leftFrame_Admin"--%>
+               <%--title="leftFrame_Admin"/>--%>
+        <%--<frame src="<%=request.getContextPath()%>/jsp/main_Admin" name="mainFrame_Admin" id="mainFrame_Admin"--%>
+               <%--title="mainFrame_Admin"/>--%>
+    <%--</frameset>--%>
+<%--</frameset>--%>
+<%--<noframes>--%>
+    <%--<body>--%>
 
-    </body>
-</noframes>
+    <%--</body>--%>
+<%--</noframes>--%>
+<frameset rows="80,*,80" frameborder="no" border="0" framespacing="0">
+    <frame src="<%=request.getContextPath()%>/jsp/header_Admin" name="topFrame_Admin" scrolling="No" noresize="noresize" id="topFrame_Admin" title="topFrame_Admin" />
+    <frameset cols="250,*" frameborder="no" border="0" framespacing="0">
+        <frame src="<%=request.getContextPath()%>/jsp/leftmenu" name="leftFrame_Admin" scrolling="Yes" noresize="noresize" id="leftFrame_Admin" title="leftFrame_Admin" />
+        <frame src="<%=request.getContextPath()%>/jsp/main_Admin" name="mainFrame_Admin" id="mainFrame_Admin" title="mainFrame_Admin" />
+    </frameset>
+    <frame src="<%=request.getContextPath()%>/jsp/footer" name="bottomFrame" scrolling="No" noresize="noresize" id="bottomFrame" title="bottomFrame" />
+</frameset>
+<noframes><body>
+</body></noframes>
 </html>

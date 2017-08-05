@@ -10,20 +10,36 @@
 <head>
     <title>SuperAdmin</title>
 </head>
-<frameset rows="50,*" cols="*" frameborder="no" border="0" framespacing="0">
-    <frame src="<%=request.getContextPath()%>/jsp/header_Admin" name="topFrame_SuperAdmin" scrolling="No" noresize="noresize"
-           id="topFrame_SuperAdmin" title="topFrame_SuperAdmin"/>
-    <frameset rows="*" cols="250,*" framespacing="0" frameborder="no" border="0">
-        <frame src="<%=request.getContextPath()%>/view/leftmenu_SuperAdmin" name="leftFrame_SuperAdmin" scrolling="Yes"
-               noresize="noresize" id="leftFrame_SuperAdmin"
-               title="leftFrame_SuperAdmin"/>
-        <frame src="<%=request.getContextPath()%>/view/main_SuperAdmin" name="mainFrame_SuperAdmin" id="mainFrame_SuperAdmin"
-               title="mainFrame_SuperAdmin"/>
+<%--<frameset rows="50,*" cols="*" frameborder="no" border="0" framespacing="0">--%>
+<%--<frame src="<%=request.getContextPath()%>/jsp/header_Admin" name="topFrame_SuperAdmin" scrolling="No" noresize="noresize"--%>
+<%--id="topFrame_SuperAdmin" title="topFrame_SuperAdmin"/>--%>
+<%--<frameset rows="*" cols="250,*" framespacing="0" frameborder="no" border="0">--%>
+<%--<frame src="<%=request.getContextPath()%>/view/leftmenu_SuperAdmin" name="leftFrame_SuperAdmin" scrolling="Yes"--%>
+<%--noresize="noresize" id="leftFrame_SuperAdmin"--%>
+<%--title="leftFrame_SuperAdmin"/>--%>
+<%--<frame src="<%=request.getContextPath()%>/view/main_SuperAdmin" name="mainFrame_SuperAdmin" id="mainFrame_SuperAdmin"--%>
+<%--title="mainFrame_SuperAdmin"/>--%>
+<%--</frameset>--%>
+<%--</frameset>--%>
+<%--<noframes>--%>
+<%--<body>--%>
+
+<%--</body>--%>
+<%--</noframes>--%>
+<frameset rows="80,*,80" frameborder="no" border="0" framespacing="0">
+    <frame src="<%=request.getContextPath()%>/jsp/header_Admin" name="topFrame_SuperAdmin" scrolling="No"
+           noresize="noresize" id="topFrame_SuperAdmin" title="topFrame_SuperAdmin"/>
+    <frameset cols="250,*" frameborder="no" border="0" framespacing="0">
+        <frame src="<%=request.getContextPath()%>/view/leftmenu_SuperAdmin" name="leftFrame_SuperAdmin"
+               scrolling="Yes" noresize="noresize" id="leftFrame_SuperAdmin" title="leftFrame_SuperAdmin"/>
+        <frame src="<%=request.getContextPath()%>/view/main_SuperAdmin" name="mainFrame_SuperAdmin"
+               id="mainFrame_SuperAdmin" title="mainFrame_SuperAdmin"/>
     </frameset>
+    <frame src="<%=request.getContextPath()%>/jsp/footer" name="bottomFrame" scrolling="No" noresize="noresize"
+           id="bottomFrame" title="bottomFrame"/>
 </frameset>
 <noframes>
     <body>
-
     </body>
 </noframes>
 </html>
