@@ -11,6 +11,8 @@ E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\service\UserLear
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\dao\UserMapper.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\dao\SeatMapper.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\dao\BookingMapper.java
+E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\service\UndealService.java
+E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\utils\DealUtils.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\controller\SuperAdmin_Controller.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\dao\BuildingMapper.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\bean\building\BuildingCusFloors.java
@@ -27,6 +29,7 @@ E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\intercepter\Logi
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\bean\weekopen\WeekOpenCus.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\bean\UserExample.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\service\FloorService.java
+E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\bean\deal\UnDeal.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\service\BookingService.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\bean\seat\Seat.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\bean\floors\Floor.java
@@ -41,6 +44,7 @@ E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\service\NoticeSe
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\bean\booking\BookingCusFloor.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\dao\NoticeMapper.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\service\BuildingService.java
+E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\dao\UndealMapper.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\service\AdminService.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\service\UserLearnService.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\bean\data\WeekData.java
@@ -49,6 +53,7 @@ E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\bean\data\Collge
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\dao\AdminMapper.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\task\ClearBooking.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\service\SeatService.java
+E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\service\UndealServiceImpl.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\controller\BuildingAdmin_Controller.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\bean\seat\SeatState.java
 E:\JAVA\idea_space\library_Seat_web\src\main\java\com\xoqao\web\bean\seat\SeatCus.java
