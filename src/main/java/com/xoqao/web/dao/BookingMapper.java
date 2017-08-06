@@ -145,6 +145,16 @@ public interface BookingMapper {
 
     List<Booking> finduserbookpromise(@Param("sno") String sno, @Param("deal") Integer deal) throws Exception;
 
+    /**
+     * 查询在某个时间之后的预约
+     * @param sno
+     * @param deal
+     * @param date
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findUserBookDeal(@Param("sno") String sno, @Param("deal") Integer deal, @Param("date") Date date) throws Exception;
+
     List<Booking> finduserbookpromisepage(@Param("sno") String sno, @Param("deal") Integer deal, @Param("startRow") Integer startRow, @Param("pageSize") Integer pageSize) throws Exception;
 
     /**
@@ -239,6 +249,7 @@ public interface BookingMapper {
 
     /**
      * 查看上周的预约座位
+     *
      * @param fid
      * @return
      * @throws Exception
@@ -247,6 +258,7 @@ public interface BookingMapper {
 
     /**
      * 查找上周的场馆预约
+     *
      * @param fid
      * @return
      * @throws Exception
@@ -255,12 +267,13 @@ public interface BookingMapper {
 
     /**
      * 根据用户名查找某楼层的上周预约
+     *
      * @param fid
      * @param sno
      * @return
      * @throws Exception
      */
-    List<Booking> findUserBookOfUpWeek(@Param("fid") Integer fid,@Param("sno") String sno)throws Exception;
+    List<Booking> findUserBookOfUpWeek(@Param("fid") Integer fid, @Param("sno") String sno) throws Exception;
 
     /***
      * 根据学号和星期号查询预约
@@ -269,5 +282,5 @@ public interface BookingMapper {
      * @return
      * @throws Exception
      */
-    List<Booking> findsaomeWeekBookUser(@Param("week") Integer week,@Param("sno") String sno)throws Exception;
+    List<Booking> findsaomeWeekBookUser(@Param("week") Integer week, @Param("sno") String sno) throws Exception;
 }

@@ -38,7 +38,7 @@ public interface BookingService {
      * @param booking
      * @throws Exception
      */
-    void insertbooking( Booking booking) throws Exception;
+    void insertbooking(Booking booking) throws Exception;
 
     /**
      * 添加直接预约入座
@@ -46,7 +46,7 @@ public interface BookingService {
      * @param booking
      * @throws Exception
      */
-    void insertbookingnow( Booking booking) throws Exception;
+    void insertbookingnow(Booking booking) throws Exception;
 
     /**
      * 更新入座位
@@ -55,7 +55,7 @@ public interface BookingService {
      * @param bid
      * @throws Exception
      */
-    void updateStime( Date now,  Integer bid) throws Exception;
+    void updateStime(Date now, Integer bid) throws Exception;
 
     /**
      * 更新离开座位
@@ -66,7 +66,7 @@ public interface BookingService {
      * @param bid    预约id
      * @throws Exception
      */
-    void updateEtime( Date etime,  Integer statue, Integer delay,  Integer deal,  Integer bid) throws Exception;
+    void updateEtime(Date etime, Integer statue, Integer delay, Integer deal, Integer bid) throws Exception;
 
     /**
      * 修改违约状态
@@ -75,41 +75,55 @@ public interface BookingService {
      * @param bid
      * @throws Exception
      */
-    void updateDeal( Integer deal, Integer  statue, Integer bid) throws Exception;
+    void updateDeal(Integer deal, Integer statue, Integer bid) throws Exception;
 
     /**
      * 根据学校和天数查看预约记录
+     *
      * @param sno
      * @param date
      * @return
      * @throws Exception
      */
-    List<Booking> findBookingBySno( String sno, Integer date) throws Exception;
+    List<Booking> findBookingBySno(String sno, Integer date) throws Exception;
 
-    Booking findByid( Integer bid)throws Exception;
+    Booking findByid(Integer bid) throws Exception;
 
-    List<Booking> findBookSeatBookingday(Integer sid,Integer day)throws Exception;
+    List<Booking> findBookSeatBookingday(Integer sid, Integer day) throws Exception;
 
 
-    void deleteByid( Integer bid)throws Exception;
+    void deleteByid(Integer bid) throws Exception;
 
     /**
      * 根据学号查询预约记录
+     *
      * @param sno
      * @return
      * @throws Exception
      */
-    List<Booking> finduserbook(String sno)throws Exception;
+    List<Booking> finduserbook(String sno) throws Exception;
 
-    List<Booking> finduserbookpage( String sno, Integer startRow, Integer pageSize)throws Exception;
+    List<Booking> finduserbookpage(String sno, Integer startRow, Integer pageSize) throws Exception;
 
-    List<Booking> finduserbookpromise( String sno,  Integer deal) throws Exception;
+    List<Booking> finduserbookpromise(String sno, Integer deal) throws Exception;
 
-    List<Booking> finduserbookpromisepage( String sno, Integer deal, Integer startRow, Integer pageSize) throws Exception;
+    /**
+     * 查询在某个时间之后的预约
+     *
+     * @param sno
+     * @param deal
+     * @param date
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findUserBookDeal(String sno, Integer deal, Date date) throws Exception;
+
+    List<Booking> finduserbookpromisepage(String sno, Integer deal, Integer startRow, Integer pageSize) throws Exception;
 
 
     /**
      * 查询本年度有预约记录的所有周
+     *
      * @return
      * @throws Exception
      */
@@ -117,102 +131,114 @@ public interface BookingService {
 
     /**
      * 查询制定周的预约情况
+     *
      * @param fid
      * @param week
      * @return
      * @throws Exception
      */
-    List<Booking>  findbookfloorofweek(Integer fid,Integer week)throws Exception;
+    List<Booking> findbookfloorofweek(Integer fid, Integer week) throws Exception;
 
     /**
      * 查询预约内所有月份
+     *
      * @return
      * @throws Exception
      */
-    List<Integer> findmonthofbook()throws Exception;
+    List<Integer> findmonthofbook() throws Exception;
 
     /**
      * 查询某层指定预约内的预约情况
+     *
      * @param fid
      * @param month
      * @return
      * @throws Exception
      */
-    List<Booking> findbookfloorofmonth( Integer fid, Integer month)throws Exception;
+    List<Booking> findbookfloorofmonth(Integer fid, Integer month) throws Exception;
 
 
     /**
      * 根据院系名称查询预约
+     *
      * @param college
      * @return
      * @throws Exception
      */
-    List<Booking> findbookofCollege( String college)throws Exception;
+    List<Booking> findbookofCollege(String college) throws Exception;
 
     /**
      * 根据院系名称和专业名称查询预约
+     *
      * @param college
      * @param major
      * @return
      * @throws Exception
      */
-    List<Booking> findbookwithCollegeAndMajor( String college,String major)throws Exception;
+    List<Booking> findbookwithCollegeAndMajor(String college, String major) throws Exception;
 
     /**
      * 根据院系名称专业名称班级查询预约
+     *
      * @param college
      * @param major
      * @param classes
      * @return
      * @throws Exception
      */
-    List<Booking> findbookWithCollegeMajorClass( String college,String major, String classes)throws Exception;
+    List<Booking> findbookWithCollegeMajorClass(String college, String major, String classes) throws Exception;
 
     /**
      * 查找学生本月的所有预约
+     *
      * @return
      * @throws Exception
      */
-    List<Booking> findThisMonthBook( String sno)throws Exception;
+    List<Booking> findThisMonthBook(String sno) throws Exception;
 
     /**
      * 查找本月的有预约的学号
+     *
      * @return
      * @throws Exception
      */
-    List<String> findBookThisMonthSno()throws Exception;
+    List<String> findBookThisMonthSno() throws Exception;
 
     /**
      * 获取没有结束的预约
+     *
      * @return
      * @throws Exception
      */
-    List<Booking> findbookNoOverToday()throws Exception;
+    List<Booking> findbookNoOverToday() throws Exception;
 
     /**
      * 查看上周的预约座位
+     *
      * @param fid
      * @return
      * @throws Exception
      */
-    List<Seat> findbookSeatofUpWeek( Integer fid) throws Exception;
+    List<Seat> findbookSeatofUpWeek(Integer fid) throws Exception;
 
     /**
      * 查找上周的场馆预约
+     *
      * @param fid
      * @return
      * @throws Exception
      */
-    List<Booking> findFloorBookOfUpWeek( Integer fid) throws Exception;
+    List<Booking> findFloorBookOfUpWeek(Integer fid) throws Exception;
 
     /**
      * 根据用户名查找某楼层的上周预约
+     *
      * @param fid
      * @param sno
      * @return
      * @throws Exception
      */
-    List<Booking> findUserBookOfUpWeek( Integer fid, String sno)throws Exception;
+    List<Booking> findUserBookOfUpWeek(Integer fid, String sno) throws Exception;
 
     /***
      * 根据学号和星期号查询预约
@@ -221,5 +247,5 @@ public interface BookingService {
      * @return
      * @throws Exception
      */
-    List<Booking> findsaomeWeekBookUser( Integer week,String sno)throws Exception;
+    List<Booking> findsaomeWeekBookUser(Integer week, String sno) throws Exception;
 }

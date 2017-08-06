@@ -136,6 +136,13 @@
         WHERE sno=#{sno} AND  deal=#{deal}
         ORDER BY bstime DESC
     </select>
+    <!--根据学号查询某个时间后的预约-->
+    <select id="findUserBookDeal" resultType="com.xoqao.web.bean.booking.Booking">
+        SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
+        FROM booking
+        WHERE sno=#{sno} AND  deal=#{deal} AND (TO_DAYS(bstime))-TO_DAYS(#{date})) &gt; 0
+        ORDER BY bstime DESC
+    </select>
 
     <select id="finduserbookpromisepage" resultType="com.xoqao.web.bean.booking.Booking">
         SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
