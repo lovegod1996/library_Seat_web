@@ -75,15 +75,6 @@
                 </ul>
             </li>
 
-            <li>
-                <a href="#"><i class="fa fa-bell fa-fw"></i> 个人信息设置<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="<%=request.getContextPath()%>/view/intoUpdatePassword"
-                           target="mainFrame_Admin">修改我的密码</a>
-                    </li>
-                </ul>
-            </li>
             <li style="height:100%;margin-top: 50px;padding-left: 10px;">
                 <div class="layui-form">
                     <div class="layui-form-item">
