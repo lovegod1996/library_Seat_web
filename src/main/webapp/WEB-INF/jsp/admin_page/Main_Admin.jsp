@@ -29,8 +29,10 @@
     <script src="<%=request.getContextPath()%>/js/nowtime.js"></script>
 
     <style type="text/css">
+
         body {
-            margin-left: 2%;
+
+            margin-top: 15px;
         }
     </style>
 </head>

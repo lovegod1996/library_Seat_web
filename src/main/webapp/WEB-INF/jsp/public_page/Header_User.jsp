@@ -64,6 +64,12 @@
             color: #ffffff;
             text-decoration: none;
         }
+        .navbar-default .navbar-nav>li>a {
+            color: #fff;
+        }
+        .navbar-default .navbar-nav>li>a:hover {
+            color: #fff;
+        }
     </style>
 
     <script>

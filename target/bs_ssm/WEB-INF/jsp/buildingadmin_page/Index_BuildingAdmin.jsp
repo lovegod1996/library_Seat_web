@@ -26,7 +26,7 @@
 
     <%--</body>--%>
 <%--</noframes>--%>
-<frameset rows="80,*,80" frameborder="no" border="0" framespacing="0">
+<frameset rows="50,*,50" frameborder="no" border="0" framespacing="0">
     <frame src="<%=request.getContextPath()%>/jsp/header_Admin" name="topFrame_BuildingAdmin" scrolling="No" noresize="noresize" id="topFrame_BuildingAdmin" title="topFrame_BuildingAdmin" />
     <frameset cols="250,*" frameborder="no" border="0" framespacing="0">
         <frame src="<%=request.getContextPath()%>/view/leftmenu_BuildingAdmin" name="leftmenu_BuildingAdmin" scrolling="Yes" noresize="noresize" id="leftmenu_BuildingAdmin" title="leftmenu_BuildingAdmin" />
