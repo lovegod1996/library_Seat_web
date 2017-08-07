@@ -15,7 +15,4 @@
       SELECT  did,sno,record FROM undeal WHERE sno LIKE '${sno}'
     </select>
 
-
-
-
 </mapper>
