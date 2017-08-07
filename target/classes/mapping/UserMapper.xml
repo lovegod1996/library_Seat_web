@@ -1,47 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xoqao.web.dao.UserMapper" >
-<!--根据手机号或学号查找用户-->
-  <select id="findUserByphoneOrSno" resultType="com.xoqao.web.bean.user.User">
-  SELECT  uid,nick,sno,password,college,classes,phone,name,major  FROM  user where  phone LIKE  '${loginstr}'  OR  sno LIKE '${loginstr}'
+<mapper namespace="com.xoqao.web.dao.UserMapper">
+    <!--根据手机号或学号查找用户-->
+    <select id="findUserByphoneOrSno" resultType="com.xoqao.web.bean.user.User">
+  SELECT  uid,nick,sno,password,college,classes,phone,name,major,sex  FROM  user where  phone LIKE  '${loginstr}'  OR  sno LIKE '${loginstr}'
 </select>
 
-<!--查找所有学生-->
-  <select id="findAllUsers" resultType="com.xoqao.web.bean.user.User">
-     SELECT  uid,nick,sno,password,college,classes,phone,name,major
+    <!--查找所有学生-->
+    <select id="findAllUsers" resultType="com.xoqao.web.bean.user.User">
+     SELECT  uid,nick,sno,password,college,classes,phone,name,major,sex
      FROM  user
      WHERE sno LIKE '${year}%' AND college LIKE '${college}%' AND  major LIKE  '${major}%'
   </select>
-  <select id="findAllUsersPage" resultType="com.xoqao.web.bean.user.User">
-    SELECT  uid,nick,sno,password,college,classes,phone,name,major
+    <select id="findAllUsersPage" resultType="com.xoqao.web.bean.user.User">
+    SELECT  uid,nick,sno,password,college,classes,phone,name,major,sex
      FROM  user
      WHERE sno LIKE '${year}%' AND college LIKE '${college}%' AND  major LIKE  '${major}%'
       limit #{startRow},#{pageSize}
   </select>
 
-  <!--删除某个学生-->
-  <delete id="deleteUserByID" >
+    <!--删除某个学生-->
+    <delete id="deleteUserByID">
     DELETE  FROM  user WHERE uid =#{uid}
   </delete>
-<!--添加一个学生-->
-  <insert id="insertUser">
-    <selectKey resultType="java.lang.Integer" keyProperty="uid" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    INSERT INTO  user ( nick,sno,password,college,classes,phone,name,major ) VALUES (#{user.nick},#{user.sno},#{user.password},#{user.college},#{user.classes},#{user.phone},#{user.name},#{user.major})
-  </insert>
-  <!--查询所有的学院-->
-  <select id="findAllCollege" resultType="java.lang.String">
+    <!--添加一个学生-->
+    <insert id="insertUser">
+        <selectKey resultType="java.lang.Integer" keyProperty="uid" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO user ( nick,sno,password,college,classes,phone,name,major,sex ) VALUES
+        (#{user.nick},#{user.sno},#{user.password},#{user.college},#{user.classes},#{user.phone},#{user.name},#{user.major},#{user.sex})
+    </insert>
+    <!--查询所有的学院-->
+    <select id="findAllCollege" resultType="java.lang.String">
     SELECT college from user GROUP BY  college
   </select>
-  <!--根据学院查询专业-->
-  <select id="findMajorByCollege" resultType="java.lang.String">
+    <!--根据学院查询专业-->
+    <select id="findMajorByCollege" resultType="java.lang.String">
     SELECT DISTINCT major FROM user WHERE college LIKE '${college}' GROUP BY major
   </select>
 
     <!--根据学生学号查询具体学生-->
     <select id="findUserBySno" resultType="com.xoqao.web.bean.user.User">
-         SELECT  uid,nick,sno,password,college,classes,phone,name,major  FROM  user where  sno LIKE '${sno}'
+         SELECT  uid,nick,sno,password,college,classes,phone,name,major,sex  FROM  user where  sno LIKE '${sno}'
     </select>
 
     <!--根据学生id修改学生密码-->
@@ -52,4 +53,35 @@
     <update id="updatePhone">
         UPDATE user SET  phone=#{phone} WHERE uid=#{uid}
     </update>
+
+    <!--查询所有院系-->
+    <select id="findcolleges" resultType="java.lang.String">
+        SELECT DISTINCT(college) FROM user
+    </select>
+    <!--根据院系名称查询所有学生-->
+    <select id="findallStudentbyCollege" resultType="com.xoqao.web.bean.user.User">
+     SELECT  uid,nick,sno,password,college,classes,phone,name,major,sex
+     FROM  user
+     WHERE  college LIKE '${college}'
+    </select>
+    <!--根据院系查询所有专业-->
+    <select id="findmajorByCollege" resultType="java.lang.String">
+        SELECT DISTINCT(major) FROM user WHERE college LIKE '${college}';
+    </select>
+    <!--根据院系和专业名称查询学生-->
+    <select id="findstudentbycollegeandmajor" resultType="com.xoqao.web.bean.user.User">
+          SELECT  uid,nick,sno,password,college,classes,phone,name,major,sex
+     FROM  user
+     WHERE  college LIKE '${college}' AND  major LIKE '${major}'
+    </select>
+    <!--根据专业查询班级-->
+    <select id="findclassbymajorcollege" resultType="java.lang.String">
+      SELECT DISTINCT(classes) FROM user WHERE college LIKE '${college}' AND major LIKE '${major}';
+    </select>
+    <!--根据院校专业和班级查询学生-->
+    <select id="findstudentbyclassmajor" resultType="com.xoqao.web.bean.user.User">
+         SELECT  uid,nick,sno,password,college,classes,phone,name,major,sex
+     FROM  user
+     WHERE  college LIKE '${college}' AND  major LIKE '${major}' AND classes LIKE '${classes}'
+    </select>
 </mapper>

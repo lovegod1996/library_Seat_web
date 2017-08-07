@@ -110,7 +110,7 @@
     </select>
 
     <!--根据预约id删除预约记录-->
-    <delete id="deleteByid" >
+    <delete id="deleteByid">
         DELETE FROM booking WHERE bid=#{bid}
     </delete>
 
@@ -129,11 +129,18 @@
         ORDER BY bstime DESC
         limit #{startRow},#{pageSize}
     </select>
-<!--根据学号和失信记录查找预约-->
+    <!--根据学号和失信记录查找预约-->
     <select id="finduserbookpromise" resultType="com.xoqao.web.bean.booking.Booking">
         SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
         FROM booking
         WHERE sno=#{sno} AND  deal=#{deal}
+        ORDER BY bstime DESC
+    </select>
+    <!--根据学号查询某个时间后的预约-->
+    <select id="findUserBookDeal" resultType="com.xoqao.web.bean.booking.Booking">
+        SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
+        FROM booking
+        WHERE sno=#{sno} AND  deal=#{deal} AND (TO_DAYS(bstime))-TO_DAYS(#{date})) &gt; 0
         ORDER BY bstime DESC
     </select>
 
@@ -145,4 +152,100 @@
        limit #{startRow},#{pageSize}
     </select>
 
+
+    <!--查询目前预约的周数-->
+    <select id="findweekofbook" resultType="java.lang.Integer">
+       SELECT DISTINCT(WEEKOFYEAR(bstime)) FROM booking
+         WHERE YEAR(bstime)=YEAR(NOW())
+         ORDER BY WEEKOFYEAR(bstime)
+    </select>
+
+    <!--查询某一场馆在某一周内的预约情况-->
+    <select id="findbookfloorofweek" resultType="com.xoqao.web.bean.booking.Booking">
+        SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.deal,booking.delay
+        FROM booking,seat
+        WHERE  seat.fid=#{fid} AND  WEEKOFYEAR(booking.bstime)=#{week} AND booking.statue=3 AND booking.sid=seat.sid
+    </select>
+
+    <!--插叙目前预约的月数-->
+    <select id="findmonthofbook" resultType="java.lang.Integer">
+        SELECT DISTINCT(MONTH(bstime)) FROM booking
+    </select>
+
+    <!--查询某一场馆在某一月内的预约情况-->
+    <select id="findbookfloorofmonth" resultType="com.xoqao.web.bean.booking.Booking">
+        SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.deal,booking.delay
+        FROM booking,seat
+        WHERE  seat.fid=#{fid} AND  MONTH(booking.bstime)=#{month} AND booking.statue=3 AND booking.sid=seat.sid
+    </select>
+
+    <!--根据某一院系查询所有预约情况-->
+    <select id="findbookofCollege" resultType="com.xoqao.web.bean.booking.Booking">
+          SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.deal,booking.delay
+          FROM booking,user
+          WHERE user.college LIKE '${college}' AND  booking.statue=3 AND booking.sno=user.sno
+    </select>
+    <!--根据某一院系和专业查询所有预约-->
+    <select id="findbookwithCollegeAndMajor" resultType="com.xoqao.web.bean.booking.Booking">
+          SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.deal,booking.delay
+          FROM booking,user
+          WHERE user.college LIKE '${college}' AND  user.major LIKE '${major}' AND  booking.statue=3 AND booking.sno=user.sno
+    </select>
+    <!--根据院系和专业还有班级查询预约-->
+    <select id="findbookWithCollegeMajorClass" resultType="com.xoqao.web.bean.booking.Booking">
+         SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.deal,booking.delay
+          FROM booking,user
+          WHERE user.college LIKE '${college}' AND  user.major LIKE '${major}' AND user.classes LIKE '${classes}' AND  booking.statue=3 AND booking.sno=user.sno
+    </select>
+
+    <!--查询本月所有预约-->
+    <select id="findThisMonthBook" resultType="com.xoqao.web.bean.booking.Booking">
+       SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
+        FROM booking
+        WHERE MONTH(NOW())=MONTH(stime)  AND statue=3 AND sno LIKE '${sno}'
+    </select>
+
+    <!--查询本月所有预约的学号-->
+    <select id="findBookThisMonthSno" resultType="java.lang.String">
+        SELECT DISTINCT(sno)
+        FROM booking
+        WHERE MONTH(NOW())=MONTH(stime)  AND statue=3
+    </select>
+
+
+    <!--查询当天未结束离开的预约-->
+    <select id="findbookNoOverToday" resultType="com.xoqao.web.bean.booking.Booking">
+         SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
+        FROM booking
+        WHERE TO_DAYS(NOW())=TO_DAYS(bstime)  AND statue !=3
+    </select>
+    <!--查看上周的被预约的座位-->
+    <select id="findbookSeatofUpWeek" resultType="com.xoqao.web.bean.seat.Seat">
+         SELECT seat.sid,seat.fid,seat.row,seat.leftside,seat.columns,seat.seatnumber,seat.statue FROM seat,floor
+        WHERE
+        (SELECT COUNT(1) as num FROM booking WHERE  booking.sid=seat.sid  AND (WEEKOFYEAR(NOW())-1)=WEEKOFYEAR(bstime)) &gt; 0
+        AND seat.fid=floor.fid  AND floor.fid=#{fid}
+        ORDER BY seat.sid
+    </select>
+
+    <!--获取上周的预约记录-->
+    <select id="findFloorBookOfUpWeek" resultType="com.xoqao.web.bean.booking.Booking">
+        SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.deal,booking.delay
+        FROM booking,seat
+        WHERE  seat.fid=#{fid} AND  WEEKOFYEAR(booking.bstime)=(WEEKOFYEAR(NOW())-1)  AND booking.sid=seat.sid
+    </select>
+
+    <!--根据学号获取上周的预约记录-->
+    <select id="findUserBookOfUpWeek" resultType="com.xoqao.web.bean.booking.Booking">
+        SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.deal,booking.delay
+        FROM booking,seat,user
+        WHERE  seat.fid=#{fid} AND  WEEKOFYEAR(booking.bstime)=(WEEKOFYEAR(NOW())-1)  AND booking.sid=seat.sid AND booking.sno=user.sno AND user.sno LIKE '${sno}'
+    </select>
+
+    <!--获取某一周的预约记录-->
+    <select id="findsaomeWeekBookUser" resultType="com.xoqao.web.bean.booking.Booking">
+        SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
+        FROM booking
+        WHERE  WEEKOFYEAR(bstime)=#{week}  AND statue=3  AND sno LIKE '${sno}'
+    </select>
 </mapper>

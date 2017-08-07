@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xoqao.web.dao.UndealMapper">
+
+    <!--添加失信惩罚-->
+    <insert id="insertUndeal">
+        <selectKey resultType="java.lang.Integer" keyProperty="did" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO undeal (sno,record) VALUES (#{sno},#{record})
+    </insert>
+
+    <!--根据学号查询所有的失信记录-->
+    <select id="findUnDealCord" resultType="com.xoqao.web.bean.deal.UnDeal">
+      SELECT  did,sno,record FROM undeal WHERE sno LIKE '${sno}'
+    </select>
+
+
+
+
+</mapper>

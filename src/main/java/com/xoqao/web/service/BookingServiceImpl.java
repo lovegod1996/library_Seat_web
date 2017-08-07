@@ -111,8 +111,83 @@ public class BookingServiceImpl implements BookingService {
         return finduserbookpromise;
     }
 
+    public List<Booking> findUserBookDeal(String sno, Integer deal, Date date) throws Exception {
+        List<Booking> userBookDeal = bookingMapper.findUserBookDeal(sno, deal, date);
+        return userBookDeal;
+    }
+
     public List<Booking> finduserbookpromisepage(String sno, Integer deal, Integer startRow, Integer pageSize) throws Exception {
         List<Booking> finduserbookpromisepage = bookingMapper.finduserbookpromisepage(sno, deal, startRow, pageSize);
         return finduserbookpromisepage;
+    }
+
+    public List<Integer> findweekofbook() throws Exception {
+        List<Integer> findweekofbook = bookingMapper.findweekofbook();
+        return findweekofbook;
+    }
+
+    public List<Booking> findbookfloorofweek(Integer fid, Integer week) throws Exception {
+        List<Booking> findbookfloorofweek = bookingMapper.findbookfloorofweek(fid, week);
+        return findbookfloorofweek;
+    }
+
+    public List<Integer> findmonthofbook() throws Exception {
+        List<Integer> findmonthofbook = bookingMapper.findmonthofbook();
+        return findmonthofbook;
+    }
+
+    public List<Booking> findbookfloorofmonth(Integer fid, Integer month) throws Exception {
+        List<Booking> findbookfloorofmonth = bookingMapper.findbookfloorofmonth(fid, month);
+        return findbookfloorofmonth;
+    }
+
+    public List<Booking> findbookofCollege(String college) throws Exception {
+        List<Booking> bookings = bookingMapper.findbookofCollege(college);
+        return bookings;
+    }
+
+    public List<Booking> findbookwithCollegeAndMajor(String college, String major) throws Exception {
+        List<Booking> bookings = bookingMapper.findbookwithCollegeAndMajor(college, major);
+        return bookings;
+    }
+
+    public List<Booking> findbookWithCollegeMajorClass(String college, String major, String classes) throws Exception {
+        List<Booking> bookings = bookingMapper.findbookWithCollegeMajorClass(college, major, classes);
+        return bookings;
+    }
+
+    public List<Booking> findThisMonthBook(String sno) throws Exception {
+        List<Booking> thisMonthBook = bookingMapper.findThisMonthBook(sno);
+        return thisMonthBook;
+    }
+
+    public List<String> findBookThisMonthSno() throws Exception {
+        List<String> bookThisMonthSno = bookingMapper.findBookThisMonthSno();
+        return bookThisMonthSno;
+    }
+
+    public List<Booking> findbookNoOverToday() throws Exception {
+        List<Booking> bookings = bookingMapper.findbookNoOverToday();
+        return bookings;
+    }
+
+    public List<Seat> findbookSeatofUpWeek(Integer fid) throws Exception {
+        List<Seat> seats = bookingMapper.findbookSeatofUpWeek(fid);
+        return seats;
+    }
+
+    public List<Booking> findFloorBookOfUpWeek(Integer fid) throws Exception {
+        List<Booking> floorBookOfUpWeek = bookingMapper.findFloorBookOfUpWeek(fid);
+        return floorBookOfUpWeek;
+    }
+
+    public List<Booking> findUserBookOfUpWeek(Integer fid, String sno) throws Exception {
+        List<Booking> userBookOfUpWeek = bookingMapper.findUserBookOfUpWeek(fid, sno);
+        return userBookOfUpWeek;
+    }
+
+    public List<Booking> findsaomeWeekBookUser(Integer week, String sno) throws Exception {
+        List<Booking> bookings = bookingMapper.findsaomeWeekBookUser(week, sno);
+        return bookings;
     }
 }

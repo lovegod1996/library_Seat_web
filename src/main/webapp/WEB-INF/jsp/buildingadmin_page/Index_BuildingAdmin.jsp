@@ -10,20 +10,30 @@
 <head>
     <title>BuildingAdmin</title>
 </head>
-<frameset rows="50,*" cols="*" frameborder="no" border="0" framespacing="0">
-    <frame src="<%=request.getContextPath()%>/jsp/header_Admin" name="topFrame_BuildingAdmin" scrolling="No" noresize="noresize"
-           id="topFrame_BuildingAdmin" title="topFrame_BuildingAdmin"/>
-    <frameset rows="*" cols="250,*" framespacing="0" frameborder="no" border="0">
-        <frame src="<%=request.getContextPath()%>/view/leftmenu_BuildingAdmin" name="leftFrame_BuildingAdmin" scrolling="Yes"
-               noresize="noresize" id="leftFrame_BuildingAdmin"
-               title="leftFrame_BuildingAdmin"/>
-        <frame src="<%=request.getContextPath()%>/view/main_BuildingAdmin" name="mainFrame_BuildingAdmin" id="mainFrame_BuildingAdmin"
-               title="mainFrame_BuildingAdmin"/>
-    </frameset>
-</frameset>
-<noframes>
-    <body>
+<%--<frameset rows="50,*" cols="*" frameborder="no" border="0" framespacing="0">--%>
+    <%--<frame src="<%=request.getContextPath()%>/jsp/header_Admin" name="topFrame_BuildingAdmin" scrolling="No" noresize="noresize"--%>
+           <%--id="topFrame_BuildingAdmin" title="topFrame_BuildingAdmin"/>--%>
+    <%--<frameset rows="*" cols="250,*" framespacing="0" frameborder="no" border="0">--%>
+        <%--<frame src="<%=request.getContextPath()%>/view/leftmenu_BuildingAdmin" name="leftFrame_BuildingAdmin" scrolling="Yes"--%>
+               <%--noresize="noresize" id="leftFrame_BuildingAdmin"--%>
+               <%--title="leftFrame_BuildingAdmin"/>--%>
+        <%--<frame src="<%=request.getContextPath()%>/view/main_BuildingAdmin" name="mainFrame_BuildingAdmin" id="mainFrame_BuildingAdmin"--%>
+               <%--title="mainFrame_BuildingAdmin"/>--%>
+    <%--</frameset>--%>
+<%--</frameset>--%>
+<%--<noframes>--%>
+    <%--<body>--%>
 
-    </body>
-</noframes>
+    <%--</body>--%>
+<%--</noframes>--%>
+<frameset rows="80,*,80" frameborder="no" border="0" framespacing="0">
+    <frame src="<%=request.getContextPath()%>/jsp/header_Admin" name="topFrame_BuildingAdmin" scrolling="No" noresize="noresize" id="topFrame_BuildingAdmin" title="topFrame_BuildingAdmin" />
+    <frameset cols="250,*" frameborder="no" border="0" framespacing="0">
+        <frame src="<%=request.getContextPath()%>/view/leftmenu_BuildingAdmin" name="leftmenu_BuildingAdmin" scrolling="Yes" noresize="noresize" id="leftmenu_BuildingAdmin" title="leftmenu_BuildingAdmin" />
+        <frame src="<%=request.getContextPath()%>/view/main_BuildingAdmin" name="main_BuildingAdmin" id="main_BuildingAdmin" title="main_BuildingAdmin" />
+    </frameset>
+    <frame src="<%=request.getContextPath()%>/jsp/footer" name="bottomFrame" scrolling="No" noresize="noresize" id="bottomFrame" title="bottomFrame" />
+</frameset>
+<noframes><body>
+</body></noframes>
 </html>

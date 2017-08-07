@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.awt.print.Book;
 import java.util.Date;
 import java.util.List;
 
@@ -144,5 +145,142 @@ public interface BookingMapper {
 
     List<Booking> finduserbookpromise(@Param("sno") String sno, @Param("deal") Integer deal) throws Exception;
 
+    /**
+     * 查询在某个时间之后的预约
+     * @param sno
+     * @param deal
+     * @param date
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findUserBookDeal(@Param("sno") String sno, @Param("deal") Integer deal, @Param("date") Date date) throws Exception;
+
     List<Booking> finduserbookpromisepage(@Param("sno") String sno, @Param("deal") Integer deal, @Param("startRow") Integer startRow, @Param("pageSize") Integer pageSize) throws Exception;
+
+    /**
+     * 查询本年度有预约记录的所有周
+     *
+     * @return
+     * @throws Exception
+     */
+    List<Integer> findweekofbook() throws Exception;
+
+    /**
+     * 查询制定周的预约情况
+     *
+     * @param fid
+     * @param week
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findbookfloorofweek(@Param("fid") Integer fid, @Param("week") Integer week) throws Exception;
+
+    /**
+     * 查询预约内所有月份
+     *
+     * @return
+     * @throws Exception
+     */
+    List<Integer> findmonthofbook() throws Exception;
+
+    /**
+     * 查询某层指定预约内的预约情况
+     *
+     * @param fid
+     * @param month
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findbookfloorofmonth(@Param("fid") Integer fid, @Param("month") Integer month) throws Exception;
+
+    /**
+     * 根据院系名称查询预约
+     *
+     * @param college
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findbookofCollege(@Param("college") String college) throws Exception;
+
+    /**
+     * 根据院系名称和专业名称查询预约
+     *
+     * @param college
+     * @param major
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findbookwithCollegeAndMajor(@Param("college") String college, @Param("major") String major) throws Exception;
+
+    /**
+     * 根据院系名称专业名称班级查询预约
+     *
+     * @param college
+     * @param major
+     * @param classes
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findbookWithCollegeMajorClass(@Param("college") String college, @Param("major") String major, @Param("classes") String classes) throws Exception;
+
+    /**
+     * 查找本月的所有预约
+     *
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findThisMonthBook(@Param("sno") String sno) throws Exception;
+
+    /**
+     * 查找本月的有预约的学号
+     *
+     * @return
+     * @throws Exception
+     */
+    List<String> findBookThisMonthSno() throws Exception;
+
+    /**
+     * 获取没有结束的预约
+     *
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findbookNoOverToday() throws Exception;
+
+    /**
+     * 查看上周的预约座位
+     *
+     * @param fid
+     * @return
+     * @throws Exception
+     */
+    List<Seat> findbookSeatofUpWeek(@Param("fid") Integer fid) throws Exception;
+
+    /**
+     * 查找上周的场馆预约
+     *
+     * @param fid
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findFloorBookOfUpWeek(@Param("fid") Integer fid) throws Exception;
+
+    /**
+     * 根据用户名查找某楼层的上周预约
+     *
+     * @param fid
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findUserBookOfUpWeek(@Param("fid") Integer fid, @Param("sno") String sno) throws Exception;
+
+    /***
+     * 根据学号和星期号查询预约
+     * @param week
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findsaomeWeekBookUser(@Param("week") Integer week, @Param("sno") String sno) throws Exception;
 }

@@ -5,6 +5,7 @@ import com.xoqao.web.bean.booking.Booking;
 import com.xoqao.web.bean.booking.BookingSeat;
 import com.xoqao.web.bean.booking.SeatBookings;
 import com.xoqao.web.bean.building.Building;
+import com.xoqao.web.bean.deal.UnDeal;
 import com.xoqao.web.bean.floors.Floor;
 import com.xoqao.web.bean.news.Notice;
 import com.xoqao.web.bean.user.User;
@@ -55,6 +56,8 @@ public class admin_pageController {
 
     @Autowired
     private BuildingService buildingService;
+    @Autowired
+    private UndealService undealService;
 
     @RequestMapping("/index_Admin")
     public String index_Admin(Model model, HttpSession httpSession) throws Exception {
@@ -352,11 +355,26 @@ public class admin_pageController {
             } else {   //他人释放
                 if (byid.getStatue() == 2) {   //判断是否已经是已经离开状态
                     Integer disTime1 = DateUtil.getDisTime(byid.getEtime(), new Date());
-                    if (disTime1 > CommenValue.MAX_TIME) {  //判断是否已经超时
-                        bookingService.updateDeal(1, 3, bid);
+                    if (disTime1 > byid.getDelay()) {  //判断是否已经超时
+                        bookingService.updateDeal(1, 3, bid);//添加失信
+                        /**
+                         * 失信处理
+                         */
+                        List<UnDeal> unDealCord = undealService.findUnDealCord(byid.getSno());
+                        if (unDealCord.size() > 0) {
+                            List<Booking> userBookDeal = bookingService.findUserBookDeal(byid.getSno(), 1, unDealCord.get(unDealCord.size() - 1).getRecord());
+                            if (userBookDeal.size() >= CommenValue.MAX_DEAL) {  //失信超过一定次数
+                                undealService.insertUndeal(byid.getSno(), new Date());
+                            }
+                        } else {
+                            List<Booking> finduserbookpromise = bookingService.finduserbookpromise(byid.getSno(), 1);
+                            if (finduserbookpromise.size() >= CommenValue.MAX_DEAL) {   //失信超过一定次数
+                                undealService.insertUndeal(byid.getSno(), new Date());
+                            }
+                        }
                     }
                 } else {
-                    bookingService.updateEtime(new Date(), 2, 0, 0, bid);
+                    bookingService.updateEtime(new Date(), 2, CommenValue.MAX_DELAY, 0, bid);
                 }
             }
         }

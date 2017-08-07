@@ -43,7 +43,7 @@ public class BuildingAdmin_Controller {
     public String leftmenu_BuildingAdmin(Model model, HttpSession httpSession) throws Exception {
         Building building = (Building) httpSession.getAttribute("admin");
         List<Floor> floors = floorService.findfloorsBybid(building.getBid());
-        model.addAttribute("floors", floors.size());
+        model.addAttribute("floorsize", floors.size());
         Integer seatSize = 0;
         Integer seatnow = 0;
         Integer noseat = 0;
@@ -58,6 +58,7 @@ public class BuildingAdmin_Controller {
         model.addAttribute("seatSize", seatSize);
         model.addAttribute("seatnow", seatnow);
         model.addAttribute("noseat", noseat);
+        model.addAttribute("floors",floors);
         return "buildingadmin_page/Leftmenu_BuildingAdmin";
     }
 

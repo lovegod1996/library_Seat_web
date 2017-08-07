@@ -82,6 +82,7 @@
                         <th>藏书信息</th>
                         <th>管理员</th>
                         <th>姓名</th>
+                        <th>状态</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -93,10 +94,14 @@
                             <td>${floor.employer}</td>
                             <td>${floor.accountnumber}</td>
                             <td>${floor.name}</td>
+                            <td>${floor.statue==0?"开放":"关闭"}</td>
                             <td>
                                 <button type="button" class="layui-btn layui-btn-small" onclick="document.getElementById('light1').style.display='block';
                                         document.getElementById('fade').style.display='block';getTableContent(this)">编辑
                                 </button>
+                                <c:if test="${floor.statue==0}">
+                                    <a href="<%=request.getContextPath()%>/view/admin/changeFloor?fid=${floor.fid}&&statue=${floor.statue}">关闭</a> </c:if>
+                                <c:if test="${floor.statue==1}"><a href="<%=request.getContextPath()%>/view/admin/changeFloor?fid=${floor.fid}&&statue=${floor.statue}">开馆</a> </c:if>
                                 <a href="<%=request.getContextPath()%>/view/deletefloor?bid=${building.bid}&&fid=${floor.fid}" class="layui-btn layui-btn-small">删除</a>
                             </td>
                         </tr>

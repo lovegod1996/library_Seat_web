@@ -59,28 +59,11 @@
             <li>
                 <a href="#"><i class="fa fa-puzzle-piece fa-fw"></i> 座位管理<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
+
                     <li>
-                        <a href="<%=request.getContextPath()%>/view/managing_Seat" target="mainFrame_Admin">增加座位</a>
-                    </li>
-                    <li>
-                        <a href="<%=request.getContextPath()%>/view/floorSeat" target="mainFrame_Admin">查看座位</a>
-                    </li>
-                    <li>
-                        <a href="<%=request.getContextPath()%>/view/managing_Floor" target="mainFrame_Admin">开闭馆管理</a>
+                        <a href="<%=request.getContextPath()%>/view/floorSeat?fid=${sessionScope.admin.fid}" target="mainFrame_Admin">查看座位</a>
                     </li>
                 </ul>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-bell fa-fw"></i> 通知管理<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="<%=request.getContextPath()%>/jsp/news_List_Admin" target="mainFrame_Admin">通知列表</a>
-                    </li>
-                    <li>
-                        <a href="<%=request.getContextPath()%>/jsp/add_News" target="mainFrame_Admin">发布通知</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
             </li>
             <li>
                 <a href="#"><i class="fa fa-bell fa-fw"></i> 数据统计<span class="fa arrow"></span></a>
@@ -89,10 +72,10 @@
                         <a href="<%=request.getContextPath()%>/view/study_DataStatistics"
                            target="mainFrame_Admin">学习情况统计</a>
                     </li>
-                    <li>
-                        <a href="<%=request.getContextPath()%>/view/seat_DataStatistics"
-                           target="mainFrame_Admin">座位使用统计</a>
-                    </li>
+                    <%--<li>--%>
+                        <%--<a href="<%=request.getContextPath()%>/view/seat_DataStatistics"--%>
+                           <%--target="mainFrame_Admin">座位使用统计</a>--%>
+                    <%--</li>--%>
                 </ul>
             </li>
             <li style="height:100%;margin-top: 50px;padding-left: 10px;">
@@ -119,7 +102,7 @@
                         <label type="text">该层座位：&nbsp;&nbsp;${seatSize}</label>
                     </div>
                     <div class="layui-form-item">
-                        <label type="text">当前已入座：&nbsp;&nbsp;${inSeat}</label>
+                        <label type="text">当前已预约：&nbsp;&nbsp;${inSeat}</label>
                     </div>
                     <div class="layui-form-item">
                         <label type="text">未预约：&nbsp;&nbsp;${canbook}</label>

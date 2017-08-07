@@ -5,9 +5,14 @@ import com.xoqao.web.bean.booking.BookingCusFloor;
 import com.xoqao.web.bean.booking.BookingSeat;
 import com.xoqao.web.bean.booking.SeatBookings;
 import com.xoqao.web.bean.building.Building;
+import com.xoqao.web.bean.data.FloorData;
+import com.xoqao.web.bean.data.UserData;
+import com.xoqao.web.bean.data.WeekData;
+import com.xoqao.web.bean.deal.UnDeal;
 import com.xoqao.web.bean.floors.Floor;
 import com.xoqao.web.bean.news.Notice;
 import com.xoqao.web.bean.seat.Seat;
+import com.xoqao.web.bean.seat.SeatCusBookTime;
 import com.xoqao.web.bean.user.User;
 import com.xoqao.web.bean.weekopen.WeekOpen;
 import com.xoqao.web.bean.weekopen.WeekOpenCus;
@@ -50,6 +55,8 @@ public class PhoneServerController {
     private SeatService seatService;
     @Autowired
     private BookingService bookingService;
+    @Autowired
+    private UndealService undealService;
 
     /**
      * 用户登录
@@ -294,6 +301,14 @@ public class PhoneServerController {
         Integer disTime = DateUtil.getDisTime(DateUtil.getDate(stime), DateUtil.getDate(etime));
         Map<String, Object> map = new HashMap<String, Object>();
         if (disTime < CommenValue.MAX_LongTime) {
+            //计算预约惩罚天数据周期
+            List<UnDeal> unDealCord = undealService.findUnDealCord(sno);
+            Integer disTime1=0;
+            if(unDealCord.size()>0){
+                Date daysAfter = DateUtil.getDaysAfter(unDealCord.get(unDealCord.size() - 1).getRecord());
+                disTime1 = DateUtil.getDisTime(new Date(), daysAfter);
+            }
+            if(disTime1<=0){
             Seat seatBynumber = seatService.findSeatBynumber(seatNum);
             Floor floor = floorService.findfloorByid(seatBynumber.getFid());
             WeekOpen weekOpen = weekOpenService.findopenFloorday(floor.getFid(), day + 1);
@@ -332,6 +347,11 @@ public class PhoneServerController {
             } else {
                 map.put("code", 1);
                 map.put("message", "请注意场馆开放时间");
+                map.put("data", null);
+            }
+            }else{
+                map.put("code", 1);
+                map.put("message", "您的失信记录过多，正在惩罚时间内");
                 map.put("data", null);
             }
         } else {
@@ -410,27 +430,61 @@ public class PhoneServerController {
                         //超过规定时间到达，违约
                         bookingService.updateStime(new Date(), findbooknow.getBid());
                         bookingService.updateEtime(new Date(), 3, 0, 1, findbooknow.getBid());
+
+                        /**
+                         * 失信处理
+                         */
+                        List<UnDeal> unDealCord = undealService.findUnDealCord(findbooknow.getSno());
+                        if (unDealCord.size() > 0) {
+                            List<Booking> userBookDeal = bookingService.findUserBookDeal(findbooknow.getSno(), 1, unDealCord.get(unDealCord.size() - 1).getRecord());
+                            if (userBookDeal.size() >= CommenValue.MAX_DEAL) {  //失信超过一定次数
+                                undealService.insertUndeal(findbooknow.getSno(), new Date());
+                            }
+                        } else {
+                            List<Booking> finduserbookpromise = bookingService.finduserbookpromise(findbooknow.getSno(), 1);
+                            if (finduserbookpromise.size() >= CommenValue.MAX_DEAL) {   //失信超过一定次数
+                                undealService.insertUndeal(findbooknow.getSno(), new Date());
+                            }
+                        }
+
+
                         map.put("code", 2);
                         map.put("message", "您已经迟到，迟到时间" + disTime + "分钟，请重新预约");
-                        map.put("data", null);
+                        map.put("data", findbooknow);
                     } else {
                         bookingService.updateStime(new Date(), findbooknow.getBid());
                         map.put("code", 0);
                         map.put("message", "入座成功");
-                        map.put("data", null);
+                        map.put("data", findbooknow);
                     }
                 } else {
                     //不是本人
                     if (disTime > CommenValue.MAX_LATER) {
                         bookingService.updateStime(new Date(), findbooknow.getBid());
                         bookingService.updateEtime(new Date(), 3, 0, 1, findbooknow.getBid());
+
+                        /**
+                         * 失信处理
+                         */
+                        List<UnDeal> unDealCord = undealService.findUnDealCord(findbooknow.getSno());
+                        if (unDealCord.size() > 0) {
+                            List<Booking> userBookDeal = bookingService.findUserBookDeal(findbooknow.getSno(), 1, unDealCord.get(unDealCord.size() - 1).getRecord());
+                            if (userBookDeal.size() >= CommenValue.MAX_DEAL) {  //失信超过一定次数
+                                undealService.insertUndeal(findbooknow.getSno(), new Date());
+                            }
+                        } else {
+                            List<Booking> finduserbookpromise = bookingService.finduserbookpromise(findbooknow.getSno(), 1);
+                            if (finduserbookpromise.size() >= CommenValue.MAX_DEAL) {   //失信超过一定次数
+                                undealService.insertUndeal(findbooknow.getSno(), new Date());
+                            }
+                        }
                         map.put("code", 1);
                         map.put("message", "当前座位为空，您可以选择预约入座");
-                        map.put("data", null);
+                        map.put("data", findbooknow);
                     } else {
                         map.put("code", 3);
                         map.put("message", "当前座位已预约，请选择其他座位");
-                        map.put("data", null);
+                        map.put("data", findbooknow);
                     }
                 }
             }
@@ -441,37 +495,71 @@ public class PhoneServerController {
                     //本人扫描
                     map.put("code", 4);
                     map.put("message", "当前正在学习，想要临时离开或离开？");
-                    map.put("data", null);
+                    map.put("data", booking);
                 } else {
                     bookingService.updateEtime(new Date(), 2, CommenValue.MAX_TIME, 0, booking.getBid());
                     map.put("code", 3);
                     map.put("message", "当前座位已预约，请选择其他座位");
-                    map.put("data", null);
+                    map.put("data", booking);
                 }
             }
         } else if (seatStatue == 3) {
             Booking booking = DateUtil.findbooknow(bookSeatBooking);
+            List<UnDeal> unDealCord = undealService.findUnDealCord(booking.getSno());
             if (booking != null) {
                 Integer disTime = DateUtil.getDisTime(booking.getEtime(), new Date());//计算当前时间与预约时间的时间差
                 if (sno.equals(booking.getSno())) {
                     if (disTime > booking.getDelay()) {
                         bookingService.updateEtime(new Date(), 3, booking.getDelay(), 1, booking.getBid());
+
+
+                        /**
+                         * 失信处理
+                         */
+
+                        if (unDealCord.size() > 0) {
+                            List<Booking> userBookDeal = bookingService.findUserBookDeal(booking.getSno(), 1, unDealCord.get(unDealCord.size() - 1).getRecord());
+                            if (userBookDeal.size() >= CommenValue.MAX_DEAL) {  //失信超过一定次数
+                                undealService.insertUndeal(booking.getSno(), new Date());
+                            }
+                        } else {
+                            List<Booking> finduserbookpromise = bookingService.finduserbookpromise(booking.getSno(), 1);
+                            if (finduserbookpromise.size() >= CommenValue.MAX_DEAL) {   //失信超过一定次数
+                                undealService.insertUndeal(booking.getSno(), new Date());
+                            }
+                        }
                         map.put("code", 5);
                         map.put("message", "您的离开时间过长，该座位已释放，请再次预约入座");
-                        map.put("data", null);
+                        map.put("data", booking);
                     } else {
                         bookingService.updateEtime(new Date(), 1, booking.getDelay(), 0, booking.getBid());
                         map.put("code", 6);
                         map.put("message", "暂时离开状态已取消，继续学习吧");
-                        map.put("data", null);
+                        map.put("data", booking);
                     }
                 } else {
                     if (disTime > booking.getDelay()) {
                         bookingService.updateEtime(new Date(), 3, booking.getDelay(), 1, booking.getBid());
+
+                        /**
+                         * 失信处理
+                         */
+
+                        if (unDealCord.size() > 0) {
+                            List<Booking> userBookDeal = bookingService.findUserBookDeal(booking.getSno(), 1, unDealCord.get(unDealCord.size() - 1).getRecord());
+                            if (userBookDeal.size() >= CommenValue.MAX_DEAL) {  //失信超过一定次数
+                                undealService.insertUndeal(booking.getSno(), new Date());
+                            }
+                        } else {
+                            List<Booking> finduserbookpromise = bookingService.finduserbookpromise(booking.getSno(), 1);
+                            if (finduserbookpromise.size() >= CommenValue.MAX_DEAL) {   //失信超过一定次数
+                                undealService.insertUndeal(booking.getSno(), new Date());
+                            }
+                        }
                     }
                     map.put("code", 7);
                     map.put("message", "该座位有人正在占用，换用其他座位吧");
-                    map.put("data", null);
+                    map.put("data", booking);
                 }
             }
         } else {
@@ -501,6 +589,22 @@ public class PhoneServerController {
                 if (disTime > CommenValue.MAX_LATER) {
                     bookingService.updateStime(new Date(), bid);
                     bookingService.updateEtime(new Date(), 3, 0, 1, bid);
+
+                    /**
+                     * 失信处理
+                     */
+                    List<UnDeal> unDealCord = undealService.findUnDealCord(byid.getSno());
+                    if (unDealCord.size() > 0) {
+                        List<Booking> userBookDeal = bookingService.findUserBookDeal(byid.getSno(), 1, unDealCord.get(unDealCord.size() - 1).getRecord());
+                        if (userBookDeal.size() >= CommenValue.MAX_DEAL) {  //失信超过一定次数
+                            undealService.insertUndeal(byid.getSno(), new Date());
+                        }
+                    } else {
+                        List<Booking> finduserbookpromise = bookingService.finduserbookpromise(byid.getSno(), 1);
+                        if (finduserbookpromise.size() >= CommenValue.MAX_DEAL) {   //失信超过一定次数
+                            undealService.insertUndeal(byid.getSno(), new Date());
+                        }
+                    }
                     map.put("code", 0);
                     map.put("message", "您以迟到");
                     map.put("data", null);
@@ -521,6 +625,23 @@ public class PhoneServerController {
                 Integer distTime = DateUtil.getDisTime(byid.getEtime(), new Date());
                 if (distTime > byid.getDelay()) {
                     bookingService.updateEtime(new Date(), 3, 0, 1, bid);
+
+                    /**
+                     * 失信处理
+                     */
+                    List<UnDeal> unDealCord = undealService.findUnDealCord(byid.getSno());
+                    if (unDealCord.size() > 0) {
+                        List<Booking> userBookDeal = bookingService.findUserBookDeal(byid.getSno(), 1, unDealCord.get(unDealCord.size() - 1).getRecord());
+                        if (userBookDeal.size() >= CommenValue.MAX_DEAL) {  //失信超过一定次数
+                            undealService.insertUndeal(byid.getSno(), new Date());
+                        }
+                    } else {
+                        List<Booking> finduserbookpromise = bookingService.finduserbookpromise(byid.getSno(), 1);
+                        if (finduserbookpromise.size() >= CommenValue.MAX_DEAL) {   //失信超过一定次数
+                            undealService.insertUndeal(byid.getSno(), new Date());
+                        }
+                    }
+
                     map.put("code", 0);
                     map.put("message", "您超过临时离开时间");
                     map.put("data", null);
@@ -549,7 +670,7 @@ public class PhoneServerController {
     public @ResponseBody
     Map<String, Object> leavetem(Integer bid, Integer delay) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
-        if (delay > CommenValue.MAX_DELAY) {
+        if (delay < CommenValue.MAX_DELAY) {
             bookingService.updateEtime(new Date(), 2, delay, 0, bid);
             map.put("code", 0);
             map.put("message", "临时离开成功");
@@ -631,8 +752,8 @@ public class PhoneServerController {
     Map<String, Object> userbooks(String sno) throws Exception {
         List<Booking> finduserbook = bookingService.finduserbook(sno);
         List<BookingCusFloor> bookingCusFloorList = new ArrayList<BookingCusFloor>();
-        for (int i = 0; i <finduserbook.size() ; i++) {
-            BookingCusFloor bookingCusFloor=new BookingCusFloor();
+        for (int i = 0; i < finduserbook.size(); i++) {
+            BookingCusFloor bookingCusFloor = new BookingCusFloor();
             BeanUtils.copyProperties(finduserbook.get(i), bookingCusFloor);
             Seat byid = seatService.findByid(finduserbook.get(i).getSid());
             bookingCusFloor.setColumns(byid.getColumns());
@@ -650,6 +771,220 @@ public class PhoneServerController {
         map.put("code", 0);
         map.put("message", "成功");
         map.put("data", bookingCusFloorList);
+        return map;
+    }
+
+    /**
+     * 获取本月排名前20的学生
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/thisMoonLearnSort")
+    public @ResponseBody
+    Map<String, Object> getThisMonthLearnSort() throws Exception {
+        /**
+         * 查询本月学习的时长最多的
+         */
+        List<String> bookThisMonthSno = bookingService.findBookThisMonthSno();
+        List<UserData> userDataList = new ArrayList<UserData>();
+        for (int i = 0; i < bookThisMonthSno.size(); i++) {
+            User userBySno = userService.findUserBySno(bookThisMonthSno.get(i));
+            UserData userData = new UserData();
+            userData.setUsername(userBySno.getName());
+            userData.setSno(userBySno.getSno());
+            userData.setSex(userBySno.getSex());
+            userData.setVenue(userBySno.getCollege());
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            float dealpro = 0;
+            List<Booking> thisMonthBook = bookingService.findThisMonthBook(bookThisMonthSno.get(i));
+            for (int j = 0; j < thisMonthBook.size(); j++) {
+                if (thisMonthBook.get(j).getStatue() == 3) {
+                    Integer disTime = DateUtil.getDisTime(thisMonthBook.get(j).getStime(), thisMonthBook.get(j).getEtime());
+                    learntime = learntime + disTime;
+                    if (disTime > 0) {
+                        allLearn++;
+                    }
+                    if (thisMonthBook.get(j).getDeal() == 1) {
+                        nudeal++;
+                    }
+                }
+            }
+            if (thisMonthBook.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / (float) thisMonthBook.size()) * 100;
+            }
+            userData.setLearntime(learntime / 60);
+            userData.setUndeal(nudeal);
+            userData.setDealpro((int) dealpro);
+            userData.setAllLearn(allLearn);
+            userDataList.add(userData);
+        }
+        Collections.sort(userDataList);
+        List<UserData> userDatas = new ArrayList<UserData>();
+        for (int i = 0; i < userDataList.size(); i++) {
+            if (i < 20) {
+                userDatas.add(userDataList.get(i));
+            }
+        }
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("code", 0);
+        map.put("message", "成功");
+        map.put("data", userDatas);
+        return map;
+    }
+
+    /**
+     * 获取某一楼层的座位情况
+     *
+     * @param fid
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/findFloorHead")
+    public @ResponseBody
+    Map<String, Object> findfloorHead(Integer fid, String sno) throws Exception {
+        Floor floor = floorService.findfloorByid(fid);
+        FloorData floorData = new FloorData();
+        floorData.setFloor(floor.getEmployer());
+        List<Seat> openSeatsByFid = seatService.findOpenSeatsByFid(floor.getFid());
+        floorData.setSeatCount(openSeatsByFid.size());
+        List<Seat> bookSeat = bookingService.findBookSeat(floor.getFid());
+        floorData.setHasBook(bookSeat.size());
+        floorData.setNoBook(openSeatsByFid.size() - bookSeat.size());
+        List<Seat> seats = bookingService.findbookSeatofUpWeek(fid);
+        float pro = (seats.size() / (float) openSeatsByFid.size()) * 100;
+        floorData.setUpWeekUsePro((double) pro);
+        List<Booking> floorBookOfUpWeek = bookingService.findFloorBookOfUpWeek(fid);
+        int manCount = 0;
+        for (int i = 0; i < floorBookOfUpWeek.size(); i++) {
+            User userBySno1 = userService.findUserBySno(floorBookOfUpWeek.get(i).getSno());
+            if (userBySno1.getSex() == 0) {
+                manCount++;
+            }
+        }
+        float v = (manCount / (float) floorBookOfUpWeek.size()) * 100;
+        floorData.setMan((double) v);
+        List<Booking> userBookOfUpWeek = bookingService.findUserBookOfUpWeek(fid, sno);
+        floorData.setMybook(userBookOfUpWeek.size());
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("code", 0);
+        map.put("message", "成功");
+        map.put("data", floorData);
+        return map;
+    }
+
+    /**
+     * 查找往周预约记录结果统计
+     *
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/findBookWeek")
+    public @ResponseBody
+    Map<String, Object> findBookWeek(String sno) throws Exception {
+        List<Integer> findweekofbook = bookingService.findweekofbook();  //查看所有的预约周数
+        List<WeekData> weekDataList = new ArrayList<WeekData>();
+        for (int i = 0; i < findweekofbook.size(); i++) {
+            WeekData weekData = new WeekData();
+            List<Booking> bookings = bookingService.findsaomeWeekBookUser(findweekofbook.get(i), sno);
+            weekData.setWeek(findweekofbook.get(i));
+            Integer learntime = 0;
+            Integer allLearn = 0;
+            Integer nudeal = 0;
+            float dealpro = 0;
+            for (int j = 0; j < bookings.size(); j++) {
+                if (bookings.get(j).getStatue() == 3) {
+                    Integer disTime = DateUtil.getDisTime(bookings.get(j).getStime(), bookings.get(j).getEtime());
+                    learntime = learntime + disTime;
+                    if (disTime > 0) {
+                        allLearn++;
+                    }
+                    if (bookings.get(j).getDeal() == 1) {
+                        nudeal++;
+                    }
+                }
+            }
+            if (bookings.size() > 0) {  //查看某周的预约是否未零
+                dealpro = (nudeal / (float) bookings.size()) * 100;
+            }
+            weekData.setLearntime(learntime / 60);
+            weekData.setAllLearn(allLearn);
+            weekData.setUndeal(nudeal);
+            weekData.setDealpro((int) dealpro);
+            weekDataList.add(weekData);
+        }
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("code", 0);
+        map.put("message", "成功");
+        map.put("data", weekDataList);
+        return map;
+    }
+
+    /**
+     * 获取推荐座位预约
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/getPushSeat")
+    public @ResponseBody
+    Map<String, Object> getPushSeat() throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<Seat> seats = new ArrayList<Seat>();
+        List<Building> allBuilding = buildingService.findAllBuilding();
+        List<Floor> floorList = new ArrayList<Floor>();
+        for (int i = 0; i < allBuilding.size(); i++) {
+            List<Floor> floors = floorService.findfloorsBybid(allBuilding.get(i).getBid());
+            floorList.addAll(floors);
+        }
+        for (int i = 0; i < floorList.size(); i++) {
+            List<Seat> canBookingToday = bookingService.findCanBookingToday(floorList.get(i).getFid());
+            seats.addAll(canBookingToday);
+        }
+        Random random = new Random();
+        Seat seat = seats.get(random.nextInt(seats.size()));
+
+        if (seat != null) {
+            SeatCusBookTime seatCusBookTime = new SeatCusBookTime();
+            BeanUtils.copyProperties(seat, seatCusBookTime);
+            Floor floor = floorService.findfloorByid(seat.getFid());
+            seatCusBookTime.setFloor(floor.getFloor());
+            seatCusBookTime.setFloorTheme(floor.getEmployer());
+            Building buildingById = buildingService.findBuildingById(floor.getBid());
+            seatCusBookTime.setBuilding(buildingById.getEmployer());
+            seatCusBookTime.setStime(new Date());
+            seatCusBookTime.setEtime(DateUtil.getTwoOursAfter());
+            map.put("code", 0);
+            map.put("message", "成功");
+            map.put("data", seatCusBookTime);
+            return map;
+        } else {
+            map.put("code", 1);
+            map.put("message", "未找到合适座位");
+            map.put("data", null);
+            return map;
+        }
+    }
+
+    /**
+     * 获取失信惩罚记录
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/getDealCord")
+    public @ResponseBody
+    Map<String, Object> getDealCord(String sno) throws Exception {
+        List<UnDeal> unDealCord = undealService.findUnDealCord(sno);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("code", 0);
+        map.put("message", "成功");
+        map.put("data", unDealCord);
         return map;
     }
 

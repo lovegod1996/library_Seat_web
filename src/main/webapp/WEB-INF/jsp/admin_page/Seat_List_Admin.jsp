@@ -59,14 +59,14 @@
                             <div class="layui-btn-group">
                                 <a href="#" class="layui-btn layui-btn-primary layui-btn-small">二维码</a>
                                 <c:if test="${seat.statue==0}">
-                                    <a href="${pageContext.request.contextPath }/view/changeSeatStatue?statue=${seat.statue}&&sid=${seat.sid}"
+                                    <a href="${pageContext.request.contextPath }/view/changeSeatStatue?statue=${seat.statue}&sid=${seat.sid}&fid=${fid}"
                                        class="layui-btn layui-btn-primary layui-btn-small">关闭预约</a>
                                 </c:if>
                                 <c:if test="${seat.statue==1}">
-                                    <a href="${pageContext.request.contextPath }/view/changeSeatStatue?statue=${seat.statue}&&sid=${seat.sid}"
+                                    <a href="${pageContext.request.contextPath }/view/changeSeatStatue?statue=${seat.statue}&sid=${seat.sid}&fid=${fid}"
                                        class="layui-btn layui-btn-primary layui-btn-small">开启预约</a>
                                 </c:if>
-                                <a href="${pageContext.request.contextPath }/view/deleteSeat?sid=${seat.sid}"
+                                <a href="${pageContext.request.contextPath }/view/deleteSeat?sid=${seat.sid}&fid=${fid}"
                                    class="layui-btn layui-btn-primary layui-btn-small">删除</a>
                             </div>
 
@@ -88,7 +88,7 @@
                             <a href="#" class="disabled">&laquo;</a>
                         </c:if>
                         <c:if test="${currentPage != 1}">
-                            <a href="${pageContext.request.contextPath }/view/floorSeat?page=${currentPage-1}">&laquo;</a>
+                            <a href="${pageContext.request.contextPath }/view/floorSeat?page=${currentPage-1}&fid=${fid}">&laquo;</a>
                         </c:if>
                     </li>
                     <c:if test="${currentPage==1}">
@@ -96,7 +96,7 @@
                     </c:if>
                     <c:if test="${currentPage!=1}">
                         <li>
-                            <a href="${pageContext.request.contextPath }/view/floorSeat?page=1">1</a>
+                            <a href="${pageContext.request.contextPath }/view/floorSeat?page=1&fid=${fid}">1</a>
                         </li>
                     </c:if>
                     <%
@@ -114,7 +114,7 @@
                         </c:if>
                         <c:if test="${currentPage != page}">
                             <li>
-                                <a href="${pageContext.request.contextPath }/view/floorSeat?page=<%=i+1%>"><%=i + 1%>
+                                <a href="${pageContext.request.contextPath }/view/floorSeat?page=<%=i+1%>&fid=${fid}"><%=i + 1%>
                                 </a></li>
                         </c:if>
                     </c:if>
@@ -124,7 +124,7 @@
                     </c:if>
                     <c:if test="${currentPage != pageTimes}">
                         <li>
-                            <a href="${pageContext.request.contextPath }/view/floorSeat?page=${currentPage+1}">&raquo;</a>
+                            <a href="${pageContext.request.contextPath }/view/floorSeat?page=${currentPage+1}&fid=${fid}">&raquo;</a>
                         </li>
                     </c:if>
 

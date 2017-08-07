@@ -26,7 +26,35 @@
         body {
             width: 80%;
             margin-left: 10%;
+            background-color: #eff3f8;
         }
+        #wrapper {
+            margin-top:15px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
+        }
+        .panel-default {
+            border-color: #eff3f8;
+        }
+        li {
+            list-style: none;
+            color: #93a2a9;
+            margin-bottom: 15px;
+        }
+        li span{
+            margin-top: 10px;
+            margin-right:10px;
+        }
+        .btn-block {
+            display: block;
+            width: 100px;
+            margin: 30px auto;
+            background-color: #8895a9;
+        }
+
     </style>
 
 </head>
@@ -41,7 +69,7 @@
                    style="margin-left:20px ">点击刷新</a>
                 <div class="pull-right">
                     <FORM METHOD=POST ACTION="" name="selectform">
-                        <SELECT NAME="building" id="floorSide" onChange="getData()">
+                        <SELECT NAME="building" id="floorSide" onChange="getData()" style="border-radius: 15px;">
                             <c:forEach items="${buildings}" var="building">
                                 <OPTION VALUE="${building.bid}">${building.employer}</OPTION>
                             </c:forEach>
@@ -66,21 +94,23 @@
             <!-- /.panel-heading -->
             <div class="panel-body" style="height: 400px;padding: 0 0 0 0 ">
                 <table class="layui-table" lay-even="" lay-skin="nob">
-                    <tr>
-                        <td>第一名</td>
-                        <td>小黄</td>
-                        <td>排名依据</td>
-                    </tr>
-                    <tr>
-                        <td>第二名</td>
-                        <td>小红</td>
-                        <td>排名依据</td>
-                    </tr>
-                    <tr>
-                        <td>第三名</td>
-                        <td>小绿</td>
-                        <td>排名依据</td>
-                    </tr>
+                   <tbody>
+                        <tr style="color:#93a2a9;font-weight:bold;background-color: #f9f9f9;">
+                           <td>&nbsp;&nbsp;姓名</td>
+                           <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学院</td>
+                           <td>总时长</td>
+                        </tr>
+                    <c:forEach items="${userdatas}" var="userdata" varStatus="step">
+                        <c:if test="${step.index<6}">
+
+                            <tr style="color:#93a2a9;background-color: #ffffff;">
+                                <td>${userdata.username}</td>
+                                <td>${userdata.venue}</td>
+                                <td>${userdata.learntime}小时</td>
+                            </tr>
+                        </c:if>
+                    </c:forEach>
+                   </tbody>
                 </table>
             </div>
             <!-- /.panel-body -->
@@ -92,8 +122,26 @@
 </div>
 <!-- /#wrapper -->
 
-
 <div class="col-sm-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="glyphicon glyphicon-time"></i> 开馆时间安排
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body" style="height: 400px">
+
+            <div class="list-group">
+                <c:forEach items="${weekopens}" var="week" varStatus="tt">
+                    <li>${week.floor}(${week.building})
+                        <span class="pull-right text-muted small"><em>${week.param1};${week.param2}</em></span>
+                    </li>
+                </c:forEach>
+            </div>
+        </div>
+    </div>
+</div><br>
+
+<div class="col-sm-4">
     <div class="panel panel-default">
         <div class="panel-heading">
             <i class="fa fa-bell fa-fw"></i> 公告
@@ -117,24 +165,7 @@
         <!-- /.panel-body -->
     </div>
 </div>
-<div class="col-sm-4">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <i class="glyphicon glyphicon-time"></i> 开馆时间安排
-        </div>
-        <!-- /.panel-heading -->
-        <div class="panel-body" style="height: 400px">
 
-            <div class="list-group">
-                <c:forEach items="${weekopens}" var="week" varStatus="tt">
-                    <li>${week.floor}(${week.building})
-                        <span class="pull-right text-muted small"><em>${week.param1};${week.param2}</em></span>
-                    </li>
-                </c:forEach>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- jQuery -->
 <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
 

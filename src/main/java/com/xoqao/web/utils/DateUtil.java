@@ -2,6 +2,7 @@ package com.xoqao.web.utils;
 
 import com.xoqao.web.bean.booking.Booking;
 import com.xoqao.web.bean.weekopen.WeekOpen;
+import com.xoqao.web.commen.CommenValue;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -257,19 +258,20 @@ public class DateUtil {
      */
     public static boolean checkbookclash(Booking booking, Date stime, Date etime) {
         boolean bb = false;
-        boolean b = belongCalendar(stime, booking.getBstime(), booking.getBetime());
-        if (b) {
-            bb = true;
-        } else {
-            boolean b1 = belongCalendar(etime, booking.getBstime(), booking.getBetime());
-            if (b1) {
+        if (booking.getStatue() != 3) {
+            boolean b = belongCalendar(stime, booking.getBstime(), booking.getBetime());
+            if (b) {
+                bb = true;
+            } else {
+                boolean b1 = belongCalendar(etime, booking.getBstime(), booking.getBetime());
+                if (b1) {
+                    bb = true;
+                }
+            }
+            if (stime.before(booking.getBstime()) && etime.after(booking.getBetime())) {
                 bb = true;
             }
         }
-        if (stime.before(booking.getBstime()) && etime.after(booking.getBetime())) {
-            bb = true;
-        }
-
         return bb;
     }
 
@@ -291,6 +293,37 @@ public class DateUtil {
             }
         }
         return b;
+    }
+
+    /**
+     * 获取两个小时后的时间
+     *
+     * @return
+     */
+    public static Date getTwoOursAfter() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(java.util.Calendar.HOUR, 2);
+        String format = sdf.format(calendar.getTime());
+        Date parse = sdf.parse(format);
+        return parse;
+    }
+
+    /**
+     * 获取一定时间后的日期
+     * @param date
+     * @return
+     * @throws ParseException
+     */
+    public static Date getDaysAfter(Date date) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(Calendar.DATE, CommenValue.MAX_NOBOOK_DAY);
+        String format = sdf.format(calendar.getTime());
+        Date parse = sdf.parse(format);
+        return parse;
     }
 
 }
