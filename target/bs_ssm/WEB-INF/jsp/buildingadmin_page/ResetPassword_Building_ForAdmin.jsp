@@ -60,7 +60,7 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">新密码</label>
                     <div class="layui-input-inline">
-                        <input type="password" id="newPwd" class="layui-input" style="width: 250px">
+                        <input type="password" name="newPwd" id="newPwd" class="layui-input" style="width: 250px">
                     </div>
                 </div>
                 <div class="layui-inline">

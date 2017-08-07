@@ -1,5 +1,6 @@
 package com.xoqao.web.controller;
 
+import com.xoqao.web.bean.admin.Admin;
 import com.xoqao.web.bean.booking.Booking;
 import com.xoqao.web.bean.booking.BookingCusFloor;
 import com.xoqao.web.bean.building.Building;
@@ -49,6 +50,8 @@ public class User_Controller {
     private WeekOpenService weekOpenService;
     @Autowired
     private SeatService seatService;
+    @Autowired
+    private AdminService adminService;
 
     @RequestMapping("/information_User")
     public String information_User(Model model) throws Exception {
@@ -220,15 +223,36 @@ public class User_Controller {
      */
     @RequestMapping("/setNewPassSub")
     public String setNewPassSub(Model model, String oldPwd, String newPwd, HttpSession httpSession) throws Exception {
-        User user = (User) httpSession.getAttribute("user");
-        if (oldPwd.trim().equals(user.getPassword())) {
-            userService.updatePhone(user.getUid(), newPwd);
-            return "forward:/information_User_Self";
-        } else {
-            model.addAttribute("error_msg", "您的旧密码输入错误，请重新输入！");
-            return "user_page/user_information/SetNewPassword";
+        Integer type = (Integer) httpSession.getAttribute("admintype");
+        if (type == 1) {   //是楼层管理员
+            Floor floor = (Floor) httpSession.getAttribute("admin");
+            if (oldPwd.trim().equals(floor.getPassword())) {
+                floorService.updatePassword(newPwd, floor.getFid());
+                return "redirect:/jsp/main_Admin";
+            } else {
+                model.addAttribute("error_msg", "您的旧密码输入错误，请重新输入！");
+                return "public_page/ResetPassword_ForAdmin";
+            }
+        } else if (type == 2) {   //是楼管理员
+            Building building = (Building) httpSession.getAttribute("admin");
+            if (oldPwd.trim().equals(building.getPassword())) {
+                buildingService.updatePassword(newPwd, building.getBid());
+                return "redirect:/jsp/main_Admin";
+            } else {
+                model.addAttribute("error_msg", "您的旧密码输入错误，请重新输入！");
+                return "public_page/ResetPassword_ForAdmin";
+            }
+        } else if (type == 3) {  //是超级管理员
+            Admin admin = (Admin) httpSession.getAttribute("admin");
+            if (oldPwd.trim().equals(admin.getPassword())) {
+                adminService.updatePassword(newPwd, admin.getAid());
+                return "redirect:/jsp/main_Admin";
+            } else {
+                model.addAttribute("error_msg", "您的旧密码输入错误，请重新输入！");
+                return "public_page/ResetPassword_ForAdmin";
+            }
         }
-
+        return "public_page/ResetPassword_ForAdmin";
     }
 
 

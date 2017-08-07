@@ -45,4 +45,8 @@ public class BulidingServiceImpl implements BuildingService {
     public void updateBuilding(Building building) throws Exception {
         buildingMapper.updateBuilding(building);
     }
+
+    public void updatePassword(String password, Integer bid) throws Exception {
+        buildingMapper.updatePassword(password, bid);
+    }
 }

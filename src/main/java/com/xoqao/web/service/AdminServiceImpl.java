@@ -45,4 +45,8 @@ public class AdminServiceImpl implements AdminService {
         List<Admin> allAdmin = adminMapper.findAllAdmin();
         return allAdmin;
     }
+
+    public void updatePassword(String password, Integer aid) throws Exception {
+        adminMapper.updatePassword(password, aid);
+    }
 }

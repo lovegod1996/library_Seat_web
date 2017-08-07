@@ -72,10 +72,16 @@
                         <a href="<%=request.getContextPath()%>/view/study_DataStatistics"
                            target="mainFrame_Admin">学习情况统计</a>
                     </li>
-                    <%--<li>--%>
-                        <%--<a href="<%=request.getContextPath()%>/view/seat_DataStatistics"--%>
-                           <%--target="mainFrame_Admin">座位使用统计</a>--%>
-                    <%--</li>--%>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#"><i class="fa fa-bell fa-fw"></i> 个人信息设置<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="<%=request.getContextPath()%>/view/intoUpdatePassword"
+                           target="mainFrame_Admin">修改我的密码</a>
+                    </li>
                 </ul>
             </li>
             <li style="height:100%;margin-top: 50px;padding-left: 10px;">

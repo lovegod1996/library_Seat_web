@@ -33,4 +33,9 @@
     <delete id="deleteLibaray">
         DELETE FROM buliding WHERE  bid=#{bid}
     </delete>
+
+    <!--修改密码-->
+    <update id="updatePassword">
+        UPDATE buliding SET password=#{password} WHERE bid=#{bid}
+    </update>
 </mapper>
