@@ -53,22 +53,25 @@
     </c:when>
     <c:otherwise>
         <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <a class="dropdown-toggle" href="#">
                 <i class="fa fa-user fa-fw"></i><span>${sessionScope.admin.name}</span>
             </a>
-            <!-- /.dropdown-user -->
         </li>
         <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-gear fa-fw"></i><span>设置</span>
+            <%--
+            判断管理员类型，修改target=""
+            层管理员：target="mainFrame_Admin"
+            楼管理员：target="main_BuildingAdmin"
+            系统管理员：target="mainFrame_SuperAdmin"
+            --%>
+            <a class="dropdown-toggle" href="<%=request.getContextPath()%>/view/resetPassword_ForAdmin" target="mainFrame_Admin">
+                <i class="fa fa-gear fa-fw"></i><span>重置密码</span>
             </a>
-            <!-- /.dropdown-user -->
         </li>
         <li class="dropdown">
             <a class="dropdown-toggle"  href="${pageContext.request.contextPath }/admin/loginOut" target="_parent">
                 <i class="fa fa-power-off fa-fw"></i><span>退出</span>
             </a>
-            <!-- /.dropdown-user -->
         </li>
     </c:otherwise>
 </c:choose>
