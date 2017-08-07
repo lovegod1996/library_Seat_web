@@ -190,4 +190,9 @@ public class BookingServiceImpl implements BookingService {
         List<Booking> bookings = bookingMapper.findsaomeWeekBookUser(week, sno);
         return bookings;
     }
+
+    public BookingSeat findNoLeaveBookSeat(String sno) throws Exception {
+        BookingSeat noLeaveBookSeat = bookingMapper.findNoLeaveBookSeat(sno);
+        return noLeaveBookSeat;
+    }
 }

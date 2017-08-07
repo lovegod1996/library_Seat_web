@@ -34,6 +34,14 @@
            limit #{startRow},#{pageSize}
     </select>
 
+    <!--获取还未离开的最近预约-->
+    <select id="findNoLeaveBookSeat" resultType="com.xoqao.web.bean.booking.BookingSeat">
+        SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.deal,seat.fid,seat.leftside,seat.row,seat.columns,seat.seatnumber
+        FROM booking,seat
+        WHERE   booking.statue !=3 AND booking.sid=seat.sid AND booking.sno LIKE '${sno}'
+        ORDER BY  booking.bstime  limit 0,1
+    </select>
+
     <!--查询当天该层有预约的所有座位-->
     <select id="findBookSeat" resultType="com.xoqao.web.bean.seat.Seat">
          SELECT seat.sid,seat.fid,seat.row,seat.leftside,seat.columns,seat.seatnumber,seat.statue FROM seat,floor

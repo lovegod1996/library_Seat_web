@@ -283,4 +283,12 @@ public interface BookingMapper {
      * @throws Exception
      */
     List<Booking> findsaomeWeekBookUser(@Param("week") Integer week, @Param("sno") String sno) throws Exception;
+
+    /**
+     * 根据学号查询最近预约
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    BookingSeat findNoLeaveBookSeat(@Param("sno") String sno)throws Exception;
 }

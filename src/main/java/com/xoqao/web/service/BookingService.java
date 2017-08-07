@@ -248,4 +248,13 @@ public interface BookingService {
      * @throws Exception
      */
     List<Booking> findsaomeWeekBookUser(Integer week, String sno) throws Exception;
+
+
+    /**
+     * 根据学号查询最近预约
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    BookingSeat findNoLeaveBookSeat(String sno)throws Exception;
 }
