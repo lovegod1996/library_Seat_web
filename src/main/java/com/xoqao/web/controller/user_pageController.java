@@ -61,6 +61,7 @@ public class user_pageController {
     @Autowired
     private UndealService undealService;
 
+
     @RequestMapping("/main_User")
     public String main_User(Model model) throws Exception {
         List<Notice> allNoticetop = noticeService.findAllNoticetop();

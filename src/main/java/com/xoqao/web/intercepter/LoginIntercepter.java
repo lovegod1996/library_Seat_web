@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,35 +49,35 @@ public class LoginIntercepter implements HandlerInterceptor {
                     case 1:  //学生
                         User user = (User) session.getAttribute("user");
                         if (user == null) {
-                            httpServletRequest.getRequestDispatcher("/jsp/login").forward(httpServletRequest, httpServletResponse);
+                            httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
                             return false;
                         }
                         break;
                     case 2://场馆管理员
                         Floor floor = (Floor) session.getAttribute("admin");
                         if (floor == null) {
-                            httpServletRequest.getRequestDispatcher("/jsp/login").forward(httpServletRequest, httpServletResponse);
+                            httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
                             return false;
                         }
                         break;
                     case 3:  //楼
                         Building building = (Building) session.getAttribute("admin");
                         if (building == null) {
-                            httpServletRequest.getRequestDispatcher("/jsp/login").forward(httpServletRequest, httpServletResponse);
+                            httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
                             return false;
                         }
                         break;
                     case 4:  //管理员
                         Admin admin = (Admin) session.getAttribute("admin");
                         if (admin == null) {
-                            httpServletRequest.getRequestDispatcher("/jsp/login").forward(httpServletRequest, httpServletResponse);
+                            httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
                             return false;
                         }
                         break;
                     case 5:  //消息管理员
                         Admin admin1 = (Admin) session.getAttribute("admin");
                         if (admin1 == null) {
-                            httpServletRequest.getRequestDispatcher("/jsp/login").forward(httpServletRequest, httpServletResponse);
+                            httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
                             return false;
                         }else{
                             if(admin1.getNotice()==0){   //管理员没有这个权限
@@ -88,7 +89,7 @@ public class LoginIntercepter implements HandlerInterceptor {
                     case 6:  //楼层管理员
                         Admin admin2 = (Admin) session.getAttribute("admin");
                         if (admin2 == null) {
-                            httpServletRequest.getRequestDispatcher("/jsp/login").forward(httpServletRequest, httpServletResponse);
+                            httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
                             return false;
                         }else{
                             if(admin2.getFloor()==0){   //管理员没有这个权限
@@ -100,7 +101,7 @@ public class LoginIntercepter implements HandlerInterceptor {
                     case 7:  //学生管理员
                         Admin admin3 = (Admin) session.getAttribute("admin");
                         if (admin3 == null) {
-                            httpServletRequest.getRequestDispatcher("/jsp/login").forward(httpServletRequest, httpServletResponse);
+                            httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
                             return false;
                         }else{
                             if(admin3.getUser()==0){   //管理员没有这个权限
@@ -112,7 +113,7 @@ public class LoginIntercepter implements HandlerInterceptor {
                     case 8:  //学生管理员
                         Admin admin4 = (Admin) session.getAttribute("admin");
                         if (admin4 == null) {
-                            httpServletRequest.getRequestDispatcher("/jsp/login").forward(httpServletRequest, httpServletResponse);
+                            httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
                             return false;
                         }else{
                             if(admin4.getSeat()==0){   //管理员没有这个权限
@@ -124,7 +125,7 @@ public class LoginIntercepter implements HandlerInterceptor {
                     case 9:  //学生管理员
                         Admin admin5 = (Admin) session.getAttribute("admin");
                         if (admin5 == null) {
-                            httpServletRequest.getRequestDispatcher("/jsp/login").forward(httpServletRequest, httpServletResponse);
+                            httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
                             return false;
                         }else{
                             if(admin5.getAdmin()==0){   //管理员没有这个权限
