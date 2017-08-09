@@ -17,6 +17,17 @@
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
     <!-- jQuery -->
     <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
+    <style>
+        body {
+            background-color: #eff3f8;
+            margin-top: 15px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
+        }
+    </style>
 </head>
 <body>
 <div class="layui-tab">

@@ -16,6 +16,52 @@
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
+    <style>
+        body {
+            background-color: #eff3f8;
+            margin-top: 15px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
+        }
+        body {background-color: #f1f3fa;}
+        .panel-default>.panel-heading {
+            color: #9e9e9e;
+            background-color: #f1f3fa;
+            border-color: #f1f3fa;
+            font-size: 15px;
+            font-weight: bold;
+            font-family: inherit;
+        }
+        .panel-default {
+            border-color: #f1f3fa;
+        }
+        .panel {
+            background-color: #f1f3fa;
+        }
+        .layui-table {
+            width: 100%;
+            margin: 10px 0;
+            background-color: #fff;
+            margin-left: -15px;
+        }
+        .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+            z-index: 3;
+            color: #fff;
+            cursor: default;
+            background-color: #5c9bd1;
+            border-color: #5c9bd1;
+        }
+        .layui-table thead tr {
+            background-color: #f1f3fa;
+        }
+        .col-sm-12 {
+            width: 100%;
+            margin-left:15px;
+        }
+    </style>
 </head>
 <body>
 <div class="col-sm-12">

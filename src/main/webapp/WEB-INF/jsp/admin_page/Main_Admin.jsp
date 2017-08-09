@@ -29,10 +29,20 @@
     <script src="<%=request.getContextPath()%>/js/nowtime.js"></script>
 
     <style type="text/css">
-
         body {
-
+            background-color: #eff3f8;
             margin-top: 15px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
+        }
+        .btn-block {
+            display: block;
+            width: 100px;
+            margin: 30px auto;
+            background-color: #8895a9;
         }
     </style>
 </head>

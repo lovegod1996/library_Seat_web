@@ -49,6 +49,21 @@
             z-index: 1002;
             overflow: auto;
         }
+        body {
+            background-color: #eff3f8;
+            margin-top: 15px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
+        }
+        .btn-block {
+            display: block;
+            width: 100px;
+            margin: 30px auto;
+            background-color: #8895a9;
+        }
     </style>
     <script language="JavaScript" type="text/javascript">
         //定义了楼层的二维数组，里面的顺序跟楼的顺序是相同的。通过selectedIndex获得楼的下标值来得到相应的楼层数组

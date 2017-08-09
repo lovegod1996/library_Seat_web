@@ -142,7 +142,45 @@
             padding-left: 10px;
             margin-top: 10px;
         }
-
+        body {
+            background-color: #eff3f8;
+            margin-top: 15px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
+        }
+        .btn-block {
+            display: block;
+            width: 100px;
+            margin: 30px auto;
+            background-color: #8895a9;
+        }
+        .Roundseat {
+            width: 128px;
+            height: 128px;
+            border-radius: 64px;
+            background-color: #316CB2;
+            text-align: center;
+            padding: 15px;
+            color: #ffffff;
+            float: left;
+            margin: 25px;
+        }
+        .dropdown-menu {
+            width: 50px;
+            margin-top: 50px;
+            margin-left: -30px;
+        }
+        .RightView {
+            width: 30%;
+            height: 100%;
+            margin-left: 20px;
+            position: absolute;
+            top: 15px;
+            right: 70px;
+        }
     </style>
 
     <script>
@@ -187,7 +225,7 @@
                         <div class="dropdown">
                         <span class="dropdown-toggle btn btn-success btn-sm" type="button" data-toggle="dropdown"
                               onclick="getTableContent(this)">点击预约</span>
-                            <ul class="dropdown-menu" style="width:10%">
+                            <ul class="dropdown-menu">
                                 <c:forEach items="${seat.bookings}" var="booking">
                                     <li>${booking.sno}&nbsp;&nbsp;&nbsp;<fmt:formatDate
                                             value="${booking.bstime}"
@@ -222,7 +260,7 @@
                 <i class="fa fa-bell fa-fw"></i> 预约座位
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body" style="height: 100%">
+            <div class="panel-body" style="height: 98%">
 
                 <form class="form-horizontal" role="form"
                       action="<%= request.getContextPath()%>/jsp/bookSeatUserSub" method="post"

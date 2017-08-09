@@ -28,6 +28,13 @@
         body {
             background-color: #F8F8F8;
         }
+        .navbar-default {
+            background-color: #eff3f8;
+            border-color: #e7e7e7;
+        }
+        .sidebar ul li a.active {
+            background-color: rgba(226, 226, 226, 0.44);
+        }
     </style>
 </head>
 <body>

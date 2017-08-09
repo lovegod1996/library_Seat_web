@@ -15,6 +15,60 @@
     <%--layui --%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+    <style>
+        body {
+            background-color: #eff3f8;
+            margin-top: 15px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
+        }
+        .panel-default>.panel-heading {
+            color: #9e9e9e;
+            background-color: #f1f3fa;
+            border-color: #f1f3fa;
+            font-size: 15px;
+            font-weight: bold;
+            font-family: inherit;
+        }
+        .panel-default {
+            border-color: #f1f3fa;
+        }
+        .panel {
+            background-color: #f1f3fa;
+        }
+        .layui-table {
+            width: 90%;
+            margin: 10px 0;
+            background-color: #fff;
+            margin-left: 5%;
+        }
+        .pagination {
+            display: inline-block;
+            padding-left: 0;
+            margin: 20px;
+            margin-left: -10%;
+            border-radius: 4px;
+        }
+        .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+            z-index: 3;
+            color: #fff;
+            cursor: default;
+            background-color: #5c9bd1;
+            border-color: #5c9bd1;
+        }
+        .layui-table thead tr {
+            background-color: #f1f3fa;
+        }
+        .layui-table {
+            width: 80%;
+            margin: 10px 0;
+            background-color: #fff;
+            margin-left: 5%;
+        }
+    </style>
 </head>
 <body>
 <fieldset class="layui-elem-field layui-field-title">

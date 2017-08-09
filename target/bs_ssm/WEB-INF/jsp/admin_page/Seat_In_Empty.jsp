@@ -68,10 +68,62 @@
             };
         });
     </script>
-
+    <style>
+        body {
+            background-color: #eff3f8;
+            margin-top: 15px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
+        }
+        .table .table {
+            background-color: #fff;
+            font-size: 14px;
+            color: #93a2a9;
+        }
+        .panel-default {
+            border-color: #fff;
+            height: 500px;
+        }
+        .layui-form-label {
+            float: left;
+            display: block;
+            padding: 9px 15px;
+            width: 100px;
+            font-weight: 400;
+            text-align: right;
+        }
+        .panel-body {
+            padding: 70px;
+        }
+        .btn1 {
+            display: inline-block;
+            padding: 6px 20px;
+            margin-bottom: 0;
+            margin-left: 180px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
-<div class="col-sm-8">
+<div class="col-sm-6">
     <div class="panel panel-default">
         <div class="panel-heading">
             <i class="fa fa-bar-chart-o fa-fw"></i> 空闲座位统计
@@ -97,10 +149,10 @@
                 <thead>
                 <tr>
                     <th>序号</th>
-                    <th>座位号</th>
-                    <th>位置</th>
+                    <th>&nbsp;&nbsp;座位号</th>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;位置</th>
                     <th>座位状态</th>
-                    <th>入座</th>
+                    <th>&nbsp;&nbsp;入座</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -180,7 +232,7 @@
     </div>
     <!-- /.panel -->
 </div>
-<div class="col-sm-4">
+<div class="col-sm-6">
     <div class="panel panel-default">
         <div class="panel-heading">
             <i class="fa fa-bell fa-fw"></i> 预约座位
@@ -211,7 +263,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary" >确定</button>
+                <button type="submit" class="btn1 btn-primary" >确定</button>
             </form>
         </div>
         <!-- /.panel-body -->

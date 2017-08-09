@@ -20,6 +20,7 @@
         body {
             width: 50%;
             margin-left: 20%;
+            background-color: #f1f3fa;
         }
 
         .content_title {
@@ -34,6 +35,14 @@
             width: 100px;
             margin-left: 30%;
             margin-top: 50px;
+        }
+        .layui-btn {
+            background-color: #31c7b2;
+        }
+        .layui-btn-primary {
+            border: 1px solid #44cbb9;
+            background-color: #44cbb9;
+            color: #fff;
         }
     </style>
 </head>
