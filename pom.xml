@@ -228,6 +228,13 @@
       <artifactId>aopalliance</artifactId>
       <version>1.0</version>
     </dependency>
+    <!--百度云推送-->
+    <!-- https://mvnrepository.com/artifact/cn.featherfly/bccs-api -->
+    <dependency>
+      <groupId>cn.featherfly</groupId>
+      <artifactId>bccs-api</artifactId>
+      <version>3.0.1</version>
+    </dependency>
 
 
   </dependencies>
