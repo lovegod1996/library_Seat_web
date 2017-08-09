@@ -297,52 +297,6 @@
     <c:if test="${!empty error_msg}">alert("${error_msg}");
     </c:if>
 
-
-    function getCity() {
-        $.ajax({
-            type: "post",
-            async: false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-            url: "${pageContext.request.contextPath }/admin/getfloors.form",    //getTrendData
-            data: "",
-            //  dataType : "json",        //返回数据形式为json
-            success: function (result) {
-//            alert(result);
-                //请求成功时执行该函数内容，result即为服务器返回的json对象
-//            result = eval(result);
-                var result = eval('(' + result + ')');
-                if (result) {
-
-                    //获得南北楼下拉框的对象
-                    var sltProvince = document.selectform.building;
-                    //获得楼层下拉框的对象
-                    var sltCity = document.selectform.floor;
-                    //得到对应楼的楼层数组
-                    var south = [];
-                    var north = [];
-                    south = result.south;
-//                alert(south);
-                    north = result.north;
-
-                    var city = [
-                        south,
-                        north
-                    ];
-                    var provinceCity = city[sltProvince.selectedIndex - 1];
-                    //清空楼层下拉框，仅留提示选项
-                    sltCity.length = 1;
-                    //将楼层数组中的值填充到楼下拉框中
-                    for (var i = 0; i < provinceCity.length; i++) {
-                        sltCity[i + 1] = new Option(provinceCity[i], provinceCity[i]);
-                    }
-                }
-            },
-            error: function (errorMsg) {
-                //请求失败时执行该函数
-                alert("请求数据失败!");
-            }
-        });
-    }
-
 </script>
 
 </body>

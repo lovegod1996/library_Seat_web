@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -186,7 +187,7 @@ public class admin_pageController {
      * @throws Exception
      */
     @RequestMapping("/bookEmptSeat")
-    public String bookEmptSeat(Model model, String sno, String seatNum, String etime, HttpSession httpSession) throws Exception {
+    public String bookEmptSeat(Model model, String sno, String seatNum, String etime, HttpSession httpSession,RedirectAttributes  redirectAttributes) throws Exception {
         Integer disTime = DateUtil.getDisTime(new Date(), DateUtil.getDate(etime));
         if (disTime < CommenValue.MAX_LongTime) {
             Floor floor = (Floor) httpSession.getAttribute("admin"); //获取当前楼层信息
@@ -197,6 +198,7 @@ public class admin_pageController {
                 List<Booking> bookSeatBooking = bookingService.findBookSeatBooking(seatBynumber.getSid());
                 boolean checkbooksclash = DateUtil.checkbooksclash(bookSeatBooking, new Date(), DateUtil.getDate(etime));
                 if (checkbooksclash) {
+                    redirectAttributes.addFlashAttribute("error_msg", "您选择的时间段已经被占用");
                     model.addAttribute("error_msg", "您选择的时间段已经被占用");
                 } else {
                     Booking booking = new Booking();
@@ -210,9 +212,11 @@ public class admin_pageController {
                 }
             } else {
                 model.addAttribute("error_msg", "请注意开放场馆时间");
+                redirectAttributes.addFlashAttribute("error_msg", "请注意开放场馆时间");
             }
         } else {
             model.addAttribute("error_msg", "您选择的时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
+            redirectAttributes.addFlashAttribute("error_msg", "您选择的时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
         }
         return "redirect:/jsp/seat_In_Book?page=1";
     }
@@ -316,11 +320,11 @@ public class admin_pageController {
      * @throws Exception
      */
     @RequestMapping("/adSeatBookSub")
-    public String adSeatBook(Model model, String seatNum, String sno, String etime, Integer page, HttpSession httpSession) throws Exception {
+    public String adSeatBook(Model model, String seatNum, String sno, String etime, Integer page, HttpSession httpSession , RedirectAttributes redirectAttributes) throws Exception {
         Date date = DateUtil.getDate(etime);
         Integer disTime = DateUtil.getDisTime(new Date(), date);
         if (disTime > CommenValue.MAX_LongTime) {
-            model.addAttribute("error_msg", "您选择的时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
+            redirectAttributes.addFlashAttribute("error_msg", "您选择的时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
         } else {
             Seat seatBynumber = seatService.findSeatBynumber(seatNum);
             Booking booking = new Booking();
@@ -331,6 +335,7 @@ public class admin_pageController {
             booking.setStime(new Date());
             bookingService.insertbookingnow(booking);
         }
+
         return "redirect:/jsp/seat_In_Empty?page=1";
     }
 

@@ -13,6 +13,7 @@ import com.xoqao.web.bean.data.WeekData;
 import com.xoqao.web.bean.floors.Floor;
 import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.user.User;
+import com.xoqao.web.exception.CustomException;
 import com.xoqao.web.service.*;
 import com.xoqao.web.utils.DateUtil;
 import org.springframework.beans.BeanUtils;
@@ -101,7 +102,12 @@ public class SuperAdmin_Controller {
         Calendar a = Calendar.getInstance();
         Integer year = a.get(Calendar.YEAR);
         String number = year + "00" + (allAdmin.get(allAdmin.size() - 1).getAid() + 1);
-        adminService.insertAdmin(number, password, name, employ);
+        try {
+            adminService.insertAdmin(number, password, name, employ);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new CustomException("添加管理员失败");
+        }
         return "redirect:/view/manage_Admin";
     }
 
@@ -115,7 +121,13 @@ public class SuperAdmin_Controller {
      */
     @RequestMapping("/deleteAdmin")
     public String deleteAdmin(Model model, Integer aid) throws Exception {
-        adminService.deleteAdmin(aid);
+        try {
+            adminService.deleteAdmin(aid);
+        }catch (Exception e){
+            throw new CustomException("删除管理员失败");
+        }
+
+
         return "redirect:/view/manage_Admin";
     }
 
@@ -174,6 +186,7 @@ public class SuperAdmin_Controller {
             buildingService.insertLibaray(building);
         } catch (Exception e) {
             e.printStackTrace();
+            throw new CustomException("添加图书馆失败");
         }
         List<Building> allBuilding1 = buildingService.findAllBuilding();
         model.addAttribute("allbuidings", allBuilding1);

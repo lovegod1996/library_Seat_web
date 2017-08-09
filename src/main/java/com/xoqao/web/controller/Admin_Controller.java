@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.net.URLDecoder;
@@ -278,7 +279,7 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/addWeekOpenSub")
-    public String addWeekOpen(Model model, HttpSession httpSession, Integer week, String param1, String param2, Integer fid) throws Exception {
+    public String addWeekOpen(Model model, HttpSession httpSession, Integer week, String param1, String param2, Integer fid,RedirectAttributes redirectAttributes) throws Exception {
         Floor floor = floorService.findfloorByid(fid);
         WeekOpen weekOpen = new WeekOpen();
         weekOpen.setLid(floor.getFid());
@@ -290,6 +291,7 @@ public class Admin_Controller {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("error_msg", "周" + week + "的已存在");
+            redirectAttributes.addFlashAttribute("error_msg", "周" + week + "的已存在");
         }
         return "redirect:/view/managing_Floor?fid=" + fid;
     }
