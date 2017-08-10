@@ -2,6 +2,7 @@ package com.xoqao.web.controller;
 
 import com.xoqao.web.bean.booking.Booking;
 import com.xoqao.web.bean.building.Building;
+import com.xoqao.web.bean.code.CodeModel;
 import com.xoqao.web.bean.data.MonthData;
 import com.xoqao.web.bean.data.WeekData;
 import com.xoqao.web.bean.floors.Floor;
@@ -10,7 +11,9 @@ import com.xoqao.web.bean.seat.SeatCus;
 import com.xoqao.web.bean.user.User;
 import com.xoqao.web.bean.userbook.UserLearn;
 import com.xoqao.web.bean.weekopen.WeekOpen;
+import com.xoqao.web.commen.CommenValue;
 import com.xoqao.web.service.*;
+import com.xoqao.web.utils.CodeCreator;
 import com.xoqao.web.utils.DateUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -231,6 +235,7 @@ public class Admin_Controller {
             model.addAttribute("error_msg", "请先添加每周的开放时间段.");
             return "redirect:/view/managing_Floor?fid=" + fid;
         }
+        Building buildingById = buildingService.findBuildingById(floor.getBid());
         Seat seat = new Seat();
         seat.setColumns(column);
         seat.setFid(floor.getFid());
@@ -240,6 +245,27 @@ public class Admin_Controller {
         seat.setSeatnumber(number);
         try {
             seatService.insertSeat(seat);
+
+            //生成二维码并下载到本地
+            CodeCreator creator = new CodeCreator();
+            CodeModel info = new CodeModel();
+            info.setWidth(550);
+            info.setHeight(600);
+            info.setFontSize(24);
+            //info.setContents("<a href='http://www.sohu.com'>人生就是拼搏</a>");
+            //info.setContents("http://www.sohu.com");
+            info.setContents(number);
+            info.setLogoFile(new File(CommenValue.SCHOOL_EMBLEM));
+            String leftside=null;
+            if(seat.getLeftside()==0){
+                leftside="左";
+            }else{
+                leftside="右";
+            }
+            info.setDesc(buildingById.getEmployer()+"\n    "+floor.getEmployer()+"\n    "+leftside+"侧"+seat.getRow()+"排"+seat.getColumns()+"列");
+            //info.setLogoDesc("一叶浮萍归大海，adsasfbhtjg人生何处不相逢");
+            //info.setLogoDesc("一叶浮萍");
+            creator.createCodeImage(info, CommenValue.CODEPATH+number+"."+ info.getFormat());
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("error_msg", "该座位已存在");

@@ -228,16 +228,25 @@ public class DateUtil {
                 if (b2) {
                     b = true;
                 }
+                if(etime.equals(closeTime)){
+                    b=true;
+                }
             } else {
                 if (weekOpen.getParam2() != null) {
                     String[] split2 = weekOpen.getParam2().split("-");
                     opentime = df.parse(split2[0]);
                     closeTime = df.parse(split2[1]);
                     boolean b3 = belongCalendar(stime, opentime, closeTime);
+                    if (stime.equals(opentime)) {
+                        b3 = true;
+                    }
                     if (b3) {
                         boolean b4 = belongCalendar(etime, opentime, closeTime);
                         if (b4) {
                             b = true;
+                        }
+                        if(etime.equals(closeTime)){
+                            b=true;
                         }
                     }
                 }
@@ -265,6 +274,9 @@ public class DateUtil {
             } else {
                 boolean b1 = belongCalendar(etime, booking.getBstime(), booking.getBetime());
                 if (b1) {
+                    bb = true;
+                }
+                if(etime.equals(booking.getEtime())){
                     bb = true;
                 }
             }

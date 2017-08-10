@@ -139,10 +139,10 @@ public class PhoneServerController {
      * @return
      * @throws Exception
      */
-    @RequestMapping(value = "/opentoday")
+    @RequestMapping(value = "/findopen")
     public @ResponseBody
-    Map<String, Object> findopenToday() throws Exception {
-        List<WeekOpen> findopentody = weekOpenService.findopentody();
+    Map<String, Object> findopen(Integer day) throws Exception {
+        List<WeekOpen> findopentody = weekOpenService.findopen(day);
         Iterator<WeekOpen> iterator = findopentody.iterator();
         List<WeekOpenCus> weekOpenCuses = new ArrayList<WeekOpenCus>();
         while (iterator.hasNext()) {
@@ -303,6 +303,7 @@ public class PhoneServerController {
             Integer disTime1 = 0;
             if (unDealCord.size() > 0) {
                 Date daysAfter = DateUtil.getDaysAfter(unDealCord.get(unDealCord.size() - 1).getRecord());
+                //暂不提供最后一天预约第二天的预约
                 disTime1 = DateUtil.getDisTime(new Date(), daysAfter);
             }
             if (disTime1 <= 0) {
@@ -335,10 +336,17 @@ public class PhoneServerController {
                             booking.setBstime(DateUtil.getDate(stime));
                             booking.setBetime(DateUtil.getDate(etime));
                             booking.setSid(seatBynumber.getSid());
-                            bookingService.insertbooking(booking);
-                            map.put("code", 0);
-                            map.put("message", "预约成功");
-                            map.put("data", null);
+                            try {
+                                bookingService.insertbooking(booking);
+                                map.put("code", 0);
+                                map.put("message", "预约成功");
+                                map.put("data", null);
+                            }catch (Exception e){
+                                map.put("code", 1);
+                                map.put("message", "您选择的时间段已经被占用");
+                                map.put("data", null);
+                            }
+
                         }
                     }
                 } else {

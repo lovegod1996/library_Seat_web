@@ -36,8 +36,8 @@ public class WeekOpenServiceImpl implements WeekOpenService {
         weekOpenMapper.insertweek(weekOpen);
     }
 
-    public List<WeekOpen> findopentody() throws Exception {
-        List<WeekOpen> findopentody = weekOpenMapper.findopentody();
+    public List<WeekOpen> findopen(Integer day) throws Exception {
+        List<WeekOpen> findopentody = weekOpenMapper.findopen(day);
         return findopentody;
     }
 

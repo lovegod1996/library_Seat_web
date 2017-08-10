@@ -70,7 +70,7 @@ public class user_pageController {
         /**
          * 当天开放的图书馆层
          */
-        List<WeekOpen> findopentody = weekOpenService.findopentody();
+        List<WeekOpen> findopentody = weekOpenService.findopen(1);
         Iterator<WeekOpen> iterator = findopentody.iterator();
         List<WeekOpenCus> weekOpenCuses = new ArrayList<WeekOpenCus>();
         while (iterator.hasNext()) {

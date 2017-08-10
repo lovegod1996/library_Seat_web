@@ -175,7 +175,6 @@ public class AdminController {
             Map<String, Object> map = BaiduPushUtils.pushMsgToAll("新资讯消息", title, System.currentTimeMillis() / 1000 + 120, 3600*5, 1, 2, null, 3, "");
             for (Map.Entry<String, Object> entry : map.entrySet()) {
                 System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-
             }
         } catch (Exception e) {
             e.printStackTrace();
