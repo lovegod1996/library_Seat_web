@@ -25,6 +25,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.net.URLDecoder;
@@ -60,6 +61,7 @@ public class user_pageController {
     private UserService userService;
     @Autowired
     private UndealService undealService;
+
 
     @RequestMapping("/main_User")
     public String main_User(Model model) throws Exception {
@@ -284,7 +286,7 @@ public class user_pageController {
      * @throws Exception
      */
     @RequestMapping("/bookSeatUserSub")
-    public String bookSeatUserSub(Model model, String seatNum, String stime, String etime, Integer day, HttpSession httpSession) throws Exception {
+    public String bookSeatUserSub(Model model, String seatNum, String stime, String etime, Integer day, HttpSession httpSession,RedirectAttributes redirectAttributes) throws Exception {
         User user = (User) httpSession.getAttribute("user");
         Seat seatBynumber = seatService.findSeatBynumber(seatNum);
         Floor floor = floorService.findfloorByid(seatBynumber.getFid());
@@ -306,6 +308,7 @@ public class user_pageController {
                     boolean checkbooksclash = DateUtil.checkbooksclash(bookSeatBooking, new Date(), DateUtil.getDate(etime));
                     if (checkbooksclash) {
                         model.addAttribute("error_msg", "您选择的时间段已经被占用");
+                        redirectAttributes.addFlashAttribute("error_msg", "您选择的时间段已经被占用");
                     } else {
                         //查看近两天的学生预约记录
                         List<Booking> bookingBySno = bookingService.findBookingBySno(user.getSno(), 0);
@@ -316,6 +319,8 @@ public class user_pageController {
                         boolean checkbooksclash1 = DateUtil.checkbooksclash(bookingBySno, DateUtil.getDate(stime), DateUtil.getDate(etime));
                         if (checkbooksclash1) {
                             model.addAttribute("error_msg", "您选择的时间段您已预约过");
+                            redirectAttributes.addFlashAttribute("error_msg", "您选择的时间段您已预约过");
+
                         } else {
                             Booking booking = new Booking();
                             booking.setSno(user.getSno());
@@ -327,12 +332,17 @@ public class user_pageController {
                     }
                 } else {
                     model.addAttribute("error_msg", "请注意场馆开放时间");
+                    redirectAttributes.addFlashAttribute("error_msg", "请注意场馆开放时间");
+
                 }
             } else {
                 model.addAttribute("error_msg", "选择时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
+                redirectAttributes.addFlashAttribute("error_msg", "选择时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
+
             }
         } else {
             model.addAttribute("error_msg", "目前还在惩罚时间内");
+            redirectAttributes.addFlashAttribute("error_msg", "目前还在惩罚时间内");
         }
 
         return "redirect:/jsp/book_Seat_User?fid=" + floor.getFid() + "&day=" + day;

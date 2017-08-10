@@ -30,8 +30,14 @@
         DELETE FROM admin WHERE aid=#{aid}
     </delete>
 
-    <!--查看所有的党员-->
+    <!--查看所有的管理员-->
     <select id="findAllAdmin" resultType="com.xoqao.web.bean.admin.Admin">
           SELECT aid,acountnumber,password,name,employer,admin,notice,floor,user,seat  FROM admin
     </select>
+
+    <!--修改管理员密码-->
+    <update id="updatePassword">
+        UPDATE admin SET password=#{password} WHERE aid=#{aid}
+    </update>
+
 </mapper>

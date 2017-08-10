@@ -27,5 +27,8 @@ public interface FloorsMapper {
     void deletefloor(@Param("fid") Integer fid) throws Exception;
 
     void updateFloor(@Param("floor") Floor floor) throws Exception;
-    void updateStatueByid(@Param("statue") Integer statue,@Param("fid") Integer fid)throws Exception;
+
+    void updateStatueByid(@Param("statue") Integer statue, @Param("fid") Integer fid) throws Exception;
+
+    void updatePassword(@Param("password")String password, @Param("fid") Integer fid)throws Exception;
 }

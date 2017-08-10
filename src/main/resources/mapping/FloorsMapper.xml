@@ -37,4 +37,9 @@
     <update id="updateStatueByid">
         UPDATE floor SET statue=#{statue} WHERE fid=#{fid}
     </update>
+
+    <!--根据用户id修改密码-->
+    <update id="updatePassword">
+        UPDATE floor SET password=#{password} WHERE fid=#{fid}
+    </update>
 </mapper>

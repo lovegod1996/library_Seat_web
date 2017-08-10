@@ -23,4 +23,6 @@ public interface AdminService {
     void deleteAdmin(Integer aid) throws Exception;
 
     List<Admin> findAllAdmin() throws Exception;
+
+    void updatePassword( String password,Integer aid)throws Exception;
 }
