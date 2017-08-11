@@ -80,6 +80,7 @@
             color: #6c5c32;
         }
         .TheFloor:hover{color: #ffffff}
+
     </style>
     <script>
         $(function () {

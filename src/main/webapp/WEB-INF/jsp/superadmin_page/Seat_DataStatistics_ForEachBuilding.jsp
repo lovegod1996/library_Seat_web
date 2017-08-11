@@ -45,13 +45,6 @@
             background-color: #fff;
             margin-left: 5%;
         }
-        .pagination {
-            display: inline-block;
-            padding-left: 0;
-            margin: 20px;
-            margin-left: -10%;
-            border-radius: 4px;
-        }
         .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
             z-index: 3;
             color: #fff;

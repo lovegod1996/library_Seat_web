@@ -181,6 +181,15 @@
             top: 15px;
             right: 70px;
         }
+        .dropdown-menu {
+            width: 100px;
+            margin-top: -100px;
+            margin-left: -30px;
+        }
+        .dropdown-menu {
+            background: #4d5b69;
+            opacity: 0.9;
+        }
     </style>
 
     <script>

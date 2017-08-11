@@ -28,6 +28,23 @@
         body {
             background-color: #F8F8F8;
         }
+        .navbar-default {
+            background-color: #eff3f8;
+            border-color: #e7e7e7;
+        }
+        .sidebar ul li a.active {
+            background-color: rgba(226, 226, 226, 0.44);
+        }
+        label {
+            display: inline-block;
+            max-width: 100%;
+            margin: 0 10px;
+            color: #4d5b69;
+        }
+        a:focus, a:hover, a:visited {
+            color: #d01414;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -40,21 +57,21 @@
             </li>
             <li>
                 <a href="<%=request.getContextPath()%>/view/managing_Floor_BuildingAdmin"
-                   target="mainFrame_BuildingAdmin"><i class="fa fa-hdd-o fa-fw"></i> 开闭馆管理</a>
+                   target="main_BuildingAdmin"><i class="fa fa-hdd-o fa-fw"></i> 开闭馆管理</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-bell fa-fw"></i> 学习数据统计<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="<%=request.getContextPath()%>/view/study_DataStatistics_ForEachBuilding"
-                           target="mainFrame_BuildingAdmin">总体查看</a>
+                           target="main_BuildingAdmin">总体查看</a>
                     </li>
                     <li>
                         <a href="#">分馆查看 <span class="fa arrow"></span> </a>
                         <ul class="nav nav-third-level">
                             <c:forEach items="${floors}" var="floor">
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/view/seat_DataStatistics_ForEachBuilding?fid=${floor.fid}" target="mainFrame_BuildingAdmin">${floor.employer}</a>
+                                    <a href="<%=request.getContextPath()%>/view/seat_DataStatistics_ForEachBuilding?fid=${floor.fid}" target="main_BuildingAdmin">${floor.employer}</a>
                                 </li>
                             </c:forEach>
 
@@ -66,25 +83,25 @@
                 <div class="layui-form">
                     <div class="layui-form-item">
                         <label type="text">场馆：&nbsp;&nbsp;${sessionScope.admin.employer}</label>
-                    </div>
+                    </div><hr>
                     <div class="layui-form-item">
                         <label type="text">姓名：&nbsp;&nbsp;${sessionScope.admin.name}</label>
-                    </div>
+                    </div><hr>
                     <div class="layui-form-item">
                         <label type="text">账号：&nbsp;&nbsp;${sessionScope.admin.accountnumber}</label>
-                    </div>
+                    </div><hr>
                     <div class="layui-form-item">
                         <label type="text">管理阅览室：&nbsp;&nbsp;${floorsize}</label>
-                    </div>
+                    </div><hr>
                     <div class="layui-form-item">
                         <label type="text">图书馆座位：&nbsp;&nbsp;${seatSize}</label>
-                    </div>
+                    </div><hr>
                     <div class="layui-form-item">
                         <label type="text">当前使用：&nbsp;&nbsp;${seatnow}</label>
-                    </div>
+                    </div><hr>
                     <div class="layui-form-item">
                         <label type="text">可预约：&nbsp;&nbsp;${noseat}</label>
-                    </div>
+                    </div><hr>
                 </div>
             </li>
         </ul>
