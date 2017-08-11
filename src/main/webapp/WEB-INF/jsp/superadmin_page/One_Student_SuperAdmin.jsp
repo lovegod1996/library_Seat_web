@@ -27,6 +27,16 @@
             background-color: #ffffff;
             border-color: #f9f9f9;
         }
+        h4 {
+            font-size:14px;
+            margin-left:-90%;
+            font-weight: bold;
+            color: #949494;
+            margin-top:20px;
+        }
+        .layui-table thead tr {
+            background-color: #eff3f8;
+        }
     </style>
 </head>
 <body>
@@ -42,17 +52,17 @@
                 <tr>
                     <td>
                         <label for="sno">请输入要查询的学号：</label>
-                        <input type="text" placeholder="请输入学号" id="sno" width="100%">
+                        <input type="text" placeholder="请输入学号" id="sno" style="width:300px;height:30px;">
                     </td>
                     <td>
-                        <button type="button" id="find">查询</button>
+                        <button type="button" id="find" style="width:55px;height:30px">查询</button>
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <hr>
+
             <table id="total" style="width: 100%" class="layui-table">
-                <caption style="text-align: center"><h4>学习情况概览</h4></caption>
+                <caption style="text-align: center"><h4>学习情况概览:</h4></caption>
                 <thead>
                 <th>姓名</th>
                 <th>学号</th>
@@ -65,9 +75,9 @@
 
                 </tbody>
             </table>
-            <hr>
+
             <table id="detail" style="width: 100%" class="layui-table">
-                <caption style="text-align: center"><h4>学习记录</h4></caption>
+                <caption style="text-align: center"><h4>学习记录:</h4></caption>
                 <thead>
                 <th>学号</th>
                 <th>场馆</th>

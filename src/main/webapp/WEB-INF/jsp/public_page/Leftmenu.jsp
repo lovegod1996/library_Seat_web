@@ -38,6 +38,10 @@
         .sidebar ul li a.active {
             background-color: rgba(226, 226, 226, 0.44);
         }
+        a:focus, a:hover {
+            color: #d01414;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>

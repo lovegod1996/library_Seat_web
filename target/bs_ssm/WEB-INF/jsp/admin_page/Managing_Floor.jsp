@@ -40,6 +40,16 @@
             margin: 30px auto;
             background-color: #8895a9;
         }
+        button, input, optgroup, option, select, textarea {
+            font-family: inherit;
+            font-size: inherit;
+            font-style: inherit;
+            font-weight: inherit;
+            outline: 0;
+            width: 100px;
+            height: 30px;
+            background-color: #eff3f8;
+        }
     </style>
 
 </head>

@@ -38,11 +38,13 @@
             background-color: #ffffff;
             border-color: #f9f9f9;
         }
-        .btn-block {
-            display: block;
-            width: 100px;
-            margin: 30px auto;
-            background-color: #8895a9;
+        .layui-table thead tr {
+            background-color: #eff3f8;
+        }
+        .layui-table {
+            width: 90%;
+            margin: 10px 5%;
+            background-color: #fff;
         }
     </style>
 </head>

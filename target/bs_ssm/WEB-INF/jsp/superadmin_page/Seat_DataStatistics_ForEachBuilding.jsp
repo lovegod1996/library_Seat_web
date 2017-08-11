@@ -64,9 +64,8 @@
         }
         .layui-table {
             width: 80%;
-            margin: 10px 0;
+            margin: 10px 10%;
             background-color: #fff;
-            margin-left: 5%;
         }
     </style>
 </head>
@@ -112,7 +111,7 @@
                     <div id="weekalllearn" style="width: 100%;height:400px;"></div>
                 </div>
                 <div class="layui-tab-item">
-                    <table class="layui-table" id="tb2">
+                    <table class="layui-table" id="tb2" style="margin-left: 3%;">
                         <thead>
                         <tr>
                             <th>月份</th>

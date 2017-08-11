@@ -34,12 +34,6 @@
             background-color: #ffffff;
             border-color: #f9f9f9;
         }
-        .btn-block {
-            display: block;
-            width: 100px;
-            margin: 30px auto;
-            background-color: #8895a9;
-        }
         .layui-table thead tr {
             background-color: #eff3f8;
         }
@@ -53,6 +47,13 @@
             height: 30px;
             background-color: #eff3f8;
         }
+        .layui-table {
+            width: 86%;
+            margin: 10px 7%;
+            background-color: #fff;
+        }
+
+
     </style>
 </head>
 <body>
@@ -68,7 +69,7 @@
                 <table class="layui-table">
                     <thead>
                     <tr>
-                        <th width="10%">姓名</th>
+                        <th width="5%">姓名</th>
                         <th width="10%">账号</th>
                         <th width="10%">身份单位</th>
                         <th width="10%">权限状态</th>
@@ -85,9 +86,7 @@
                                 <table>
                                     <tbody>
                                     <c:if test="${admin.admin==1}">
-                                        <tr>
-                                            <td> ${admin.admin==0?"一般":"超级"}</td>
-                                        </tr>
+                                        <caption> ${admin.admin==0?"一般管理员":"超级管理员"}</caption>
                                     </c:if>
 
                                     <tr>
@@ -97,18 +96,16 @@
                                                    title="点击关闭"> <span style="color: #4CAF50">楼层管理</span> </a>
                                             </td>
                                         </c:if>
-                                        <c:if test="${admin.floor==0}">
-                                            <td>
-                                                <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/1/${admin.notice}/${admin.user}/${admin.seat}"
-                                                   title="点击开启"><span style="color: #7d9096"></span>楼层管理</a>
-                                            </td>
-                                        </c:if>
-                                    </tr>
-                                    <tr>
                                         <c:if test="${admin.notice==1}">
                                             <td>
                                                 <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/${admin.floor}/0/${admin.user}/${admin.seat}"
                                                    title="点击关闭"> <span style="color: #4CAF50">消息管理</span> </a>
+                                            </td>
+                                        </c:if>
+                                        <c:if test="${admin.floor==0}">
+                                            <td>
+                                                <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/1/${admin.notice}/${admin.user}/${admin.seat}"
+                                                   title="点击开启"><span style="color: #7d9096"></span>楼层管理</a>
                                             </td>
                                         </c:if>
                                         <c:if test="${admin.notice==0}">
@@ -118,6 +115,7 @@
                                             </td>
                                         </c:if>
                                     </tr>
+
                                     <tr>
                                         <c:if test="${admin.user==1}">
                                             <td>
@@ -125,18 +123,17 @@
                                                    title="点击关闭"> <span style="color: #4CAF50">学生管理</span> </a>
                                             </td>
                                         </c:if>
-                                        <c:if test="${admin.user==0}">
-                                            <td>
-                                                <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/${admin.floor}/${admin.notice}/1/${admin.seat}"
-                                                   title="点击开启"><span style="color: #7d9096"></span>学生管理</a>
-                                            </td>
-                                        </c:if>
-                                    </tr>
-                                    <tr>
                                         <c:if test="${admin.seat==1}">
                                             <td>
                                                 <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/${admin.floor}/${admin.notice}/${admin.user}/0"
                                                    title="点击关闭"> <span style="color: #4CAF50">座位管理</span> </a>
+                                            </td>
+                                        </c:if>
+
+                                        <c:if test="${admin.user==0}">
+                                            <td>
+                                                <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/${admin.floor}/${admin.notice}/1/${admin.seat}"
+                                                   title="点击开启"><span style="color: #7d9096"></span>学生管理</a>
                                             </td>
                                         </c:if>
                                         <c:if test="${admin.seat==0}">
@@ -150,7 +147,7 @@
                                 </table>
                             </td>
                             <td>
-                                <a href="<%=request.getContextPath()%>/view/deleteAdmin?aid=${admin.aid}">删除</a>
+                                <a href="<%=request.getContextPath()%>/view/deleteAdmin?aid=${admin.aid}" style="color:red;">删除</a>
                             </td>
                         </tr>
                     </c:forEach>
