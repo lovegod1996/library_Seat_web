@@ -19,6 +19,7 @@ public class CodeModel {
     private File logoFile;
     private float logoRatio = 0.20f;
     private String desc;
+    private String location;
     private int whiteWidth;//白边的宽度
     private int[] bottomStart;//二维码最下边的开始坐标
     private int[] bottomEnd;//二维码最下边的结束坐标
@@ -118,5 +119,13 @@ public class CodeModel {
 
     public void setBottomEnd(int[] bottomEnd) {
         this.bottomEnd = bottomEnd;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

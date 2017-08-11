@@ -57,7 +57,7 @@
                         <td>${seat.statue==0?"是":"否"}</td>
                         <td>
                             <div class="layui-btn-group">
-                                <a href="#" class="layui-btn layui-btn-primary layui-btn-small">二维码</a>
+                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}" class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码">二维码</a>
                                 <c:if test="${seat.statue==0}">
                                     <a href="${pageContext.request.contextPath }/view/changeSeatStatue?statue=${seat.statue}&sid=${seat.sid}&fid=${fid}"
                                        class="layui-btn layui-btn-primary layui-btn-small">关闭预约</a>

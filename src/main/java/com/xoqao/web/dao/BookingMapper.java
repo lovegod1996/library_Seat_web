@@ -19,6 +19,7 @@ import java.util.List;
  * Email:dx96_j@163.com
  */
 @Service
+@Transactional
 public interface BookingMapper {
 
     /**

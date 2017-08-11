@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.net.URLDecoder;
@@ -216,6 +218,48 @@ public class Admin_Controller {
     }
 
     /**
+     * 查看下载二维码
+     * @param model
+     * @param seatNumber
+     * @param httpServletResponse
+     * @throws Exception
+     */
+    @RequestMapping("/getSeatPic")
+    public void GetSeatPic(Model model, String seatNumber, HttpServletResponse httpServletResponse) throws Exception {
+        Seat seatBynumber = seatService.findSeatBynumber(seatNumber);
+        Floor floor = floorService.findfloorByid(seatBynumber.getFid());
+        Building buildingById = buildingService.findBuildingById(floor.getBid());
+        //生成二维码并下载到本地
+        CodeCreator creator = new CodeCreator();
+        CodeModel info = new CodeModel();
+        info.setWidth(550);
+        info.setHeight(550);
+        info.setFontSize(24);
+        //info.setContents("<a href='http://www.sohu.com'>人生就是拼搏</a>");
+        //info.setContents("http://www.sohu.com");
+        info.setContents(seatBynumber.getSeatnumber());
+        info.setLogoFile(new File(CommenValue.SCHOOL_EMBLEM));
+        String leftside = null;
+        if (seatBynumber.getLeftside() == 0) {
+            leftside = "左";
+        } else {
+            leftside = "右";
+        }
+        info.setDesc(buildingById.getEmployer() + "\n       " + floor.getEmployer() +"\n                    "+leftside + "侧" + seatBynumber.getRow() + "排" + seatBynumber.getColumns() + "列");
+        //info.setLogoDesc("一叶浮萍归大海，adsasfbhtjg人生何处不相逢");
+        //info.setLogoDesc("一叶浮萍");
+//        creator.createCodeImage(info, CommenValue.CODEPATH + seatBynumber.getSeatnumber() + "." + info.getFormat());
+        httpServletResponse.setContentType("image/jpeg");
+        httpServletResponse.setCharacterEncoding("UTF-8");
+        httpServletResponse.setHeader("Content-Disposition", "attachment;fileName=" + new String((seatBynumber.getSeatnumber() + "." + info.getFormat()).getBytes("gbk"), "ISO8859-1"));
+        ServletOutputStream outputStream = httpServletResponse.getOutputStream();
+        creator.createCodeImage(info, outputStream);
+        outputStream.flush();
+        outputStream.close();
+    }
+
+
+    /**
      * 提交座位添加
      *
      * @param model
@@ -227,12 +271,13 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/addSeatSub")
-    public String Seatadd(Model model, Integer left, Integer row, Integer column, String mark, Integer fid) throws Exception {
+    public String Seatadd(Model model, Integer left, Integer row, Integer column, String mark, Integer fid, HttpServletResponse httpServletResponse,RedirectAttributes  redirectAttributes) throws Exception {
         Floor floor = floorService.findfloorByid(fid);
         //添加座位前需要先查看每周的开放时间是否已经设置完成
         List<WeekOpen> weekOpens = weekOpenService.findweekByfid(floor.getFid());
         if (weekOpens.size() != 7) {
             model.addAttribute("error_msg", "请先添加每周的开放时间段.");
+            redirectAttributes.addFlashAttribute("error_msg", "请先添加每周的开放时间段");
             return "redirect:/view/managing_Floor?fid=" + fid;
         }
         Building buildingById = buildingService.findBuildingById(floor.getBid());
@@ -250,22 +295,29 @@ public class Admin_Controller {
             CodeCreator creator = new CodeCreator();
             CodeModel info = new CodeModel();
             info.setWidth(550);
-            info.setHeight(600);
+            info.setHeight(550);
             info.setFontSize(24);
             //info.setContents("<a href='http://www.sohu.com'>人生就是拼搏</a>");
             //info.setContents("http://www.sohu.com");
             info.setContents(number);
             info.setLogoFile(new File(CommenValue.SCHOOL_EMBLEM));
-            String leftside=null;
-            if(seat.getLeftside()==0){
-                leftside="左";
-            }else{
-                leftside="右";
+            String leftside = null;
+            if (seat.getLeftside() == 0) {
+                leftside = "左";
+            } else {
+                leftside = "右";
             }
-            info.setDesc(buildingById.getEmployer()+"\n    "+floor.getEmployer()+"\n    "+leftside+"侧"+seat.getRow()+"排"+seat.getColumns()+"列");
+            info.setDesc(buildingById.getEmployer() + "\n       " + floor.getEmployer() +"\n                  "+leftside + "侧" + seat.getRow() + "排" + seat.getColumns() + "列");
             //info.setLogoDesc("一叶浮萍归大海，adsasfbhtjg人生何处不相逢");
             //info.setLogoDesc("一叶浮萍");
-            creator.createCodeImage(info, CommenValue.CODEPATH+number+"."+ info.getFormat());
+//            creator.createCodeImage(info, CommenValue.CODEPATH + number + "." + info.getFormat());
+            httpServletResponse.setContentType("image/jpeg");
+            httpServletResponse.setCharacterEncoding("UTF-8");
+            httpServletResponse.setHeader("Content-Disposition", "attachment;fileName=" + new String((number + "." + info.getFormat()).getBytes("gbk"), "ISO8859-1"));
+            ServletOutputStream outputStream = httpServletResponse.getOutputStream();
+            creator.createCodeImage(info, outputStream);
+            outputStream.flush();
+            outputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("error_msg", "该座位已存在");
@@ -305,7 +357,7 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/addWeekOpenSub")
-    public String addWeekOpen(Model model, HttpSession httpSession, Integer week, String param1, String param2, Integer fid,RedirectAttributes redirectAttributes) throws Exception {
+    public String addWeekOpen(Model model, HttpSession httpSession, Integer week, String param1, String param2, Integer fid, RedirectAttributes redirectAttributes) throws Exception {
         Floor floor = floorService.findfloorByid(fid);
         WeekOpen weekOpen = new WeekOpen();
         weekOpen.setLid(floor.getFid());
@@ -431,6 +483,7 @@ public class Admin_Controller {
         user.setClasses(classes);
         user.setMajor(major);
         user.setCollege(college);
+        user.setPassword("123456");
         user.setSno(sno);
         user.setName(name);
         try {
@@ -577,13 +630,14 @@ public class Admin_Controller {
 
     /**
      * 进入到密码修改界面
+     *
      * @param model
      * @return
      * @throws Exception
      */
     @RequestMapping("/intoUpdatePassword")
     public String intoUpdatePassword(Model model) throws Exception {
-     return "public_page/ResetPassword_ForAdmin";
+        return "public_page/ResetPassword_ForAdmin";
     }
 
 

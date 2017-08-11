@@ -341,7 +341,7 @@ public class PhoneServerController {
                                 map.put("code", 0);
                                 map.put("message", "预约成功");
                                 map.put("data", null);
-                            }catch (Exception e){
+                            } catch (Exception e) {
                                 map.put("code", 1);
                                 map.put("message", "您选择的时间段已经被占用");
                                 map.put("data", null);
@@ -421,6 +421,48 @@ public class PhoneServerController {
         Seat seatBynumber = seatService.findSeatBynumber(seatnumber);
         List<Booking> bookSeatBooking = bookingService.findBookSeatBookingday(seatBynumber.getSid(), 0);  //返回每个座位的所有预约
         Integer seatStatue = DateUtil.findSeatStatue(bookSeatBooking);  //计算当前时间座位状态
+        //根据预约状态来判断处理情况
+        BookingSeat noLeaveBookSeat = bookingService.findNoLeaveBookSeat(sno);
+        if (noLeaveBookSeat != null) {
+            if (noLeaveBookSeat.getBetime().before(new Date())) {
+                switch (noLeaveBookSeat.getStatue()) {
+                    case 0:
+                        Integer disTime = DateUtil.getDisTime(noLeaveBookSeat.getBstime(), new Date());//计算当前时间与预约时间的时间差
+                        if (disTime > CommenValue.MAX_LATER) {
+                            //超过规定时间到达，违约
+                            bookingService.updateStime(new Date(), noLeaveBookSeat.getBid());
+                            bookingService.updateEtime(new Date(), 3, 0, 1, noLeaveBookSeat.getBid());
+                            /**
+                             * 失信处理
+                             */
+                            List<UnDeal> unDealCord = undealService.findUnDealCord(sno);
+                            if (unDealCord.size() > 0) {
+                                List<Booking> userBookDeal = bookingService.findUserBookDeal(sno, 1, unDealCord.get(unDealCord.size() - 1).getRecord());
+                                if (userBookDeal.size() >= CommenValue.MAX_DEAL) {  //失信超过一定次数
+                                    undealService.insertUndeal(sno, new Date());
+                                }
+                            } else {
+                                List<Booking> finduserbookpromise = bookingService.finduserbookpromise(sno, 1);
+                                if (finduserbookpromise.size() >= CommenValue.MAX_DEAL) {   //失信超过一定次数
+                                    undealService.insertUndeal(sno, new Date());
+                                }
+                            }
+                        }else{
+                            bookingService.deleteByid(noLeaveBookSeat.getBid());
+                        }
+                        break;
+                    case 1:
+                        bookingService.updateEtime(new Date(), 3, 0, 0, noLeaveBookSeat.getBid());
+                        break;
+                    case 2:
+                        bookingService.updateEtime(new Date(), 3, 0, 0, noLeaveBookSeat.getBid());
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        //根据座位状态来处理
         if (seatStatue == 0) {
             map.put("code", 1);
             map.put("message", "当前座位为空，您可以选择预约入座");
@@ -516,8 +558,6 @@ public class PhoneServerController {
                 if (sno.equals(booking.getSno())) {
                     if (disTime > booking.getDelay()) {
                         bookingService.updateEtime(new Date(), 3, booking.getDelay(), 1, booking.getBid());
-
-
                         /**
                          * 失信处理
                          */
@@ -549,7 +589,6 @@ public class PhoneServerController {
                         /**
                          * 失信处理
                          */
-
                         if (unDealCord.size() > 0) {
                             List<Booking> userBookDeal = bookingService.findUserBookDeal(booking.getSno(), 1, unDealCord.get(unDealCord.size() - 1).getRecord());
                             if (userBookDeal.size() >= CommenValue.MAX_DEAL) {  //失信超过一定次数
@@ -594,7 +633,6 @@ public class PhoneServerController {
                 if (disTime > CommenValue.MAX_LATER) {
                     bookingService.updateStime(new Date(), bid);
                     bookingService.updateEtime(new Date(), 3, 0, 1, bid);
-
                     /**
                      * 失信处理
                      */
@@ -1001,7 +1039,7 @@ public class PhoneServerController {
         Map<String, Object> map = new HashMap<String, Object>();
         if (noLeaveBookSeat != null) {
             BookingUserCusFloor bookingUserCusFloor = new BookingUserCusFloor();
-            BeanUtils.copyProperties(noLeaveBookSeat,bookingUserCusFloor);
+            BeanUtils.copyProperties(noLeaveBookSeat, bookingUserCusFloor);
             User userBySno = userService.findUserBySno(sno);
             bookingUserCusFloor.setName(userBySno.getName());
             Floor floor = floorService.findfloorByid(noLeaveBookSeat.getFid());
