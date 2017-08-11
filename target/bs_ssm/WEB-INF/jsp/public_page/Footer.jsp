@@ -21,11 +21,26 @@
         }
         html{
             height:5px;
-            overflow: hidden;
+            overflow: hidden;}
+
+
+
+        .btmbg{
+            width:100%; overflow:hidden;
         }
+        .btm{
+            width:100%; overflow:hidden; color:#999999; font-family:"宋体";
+            text-align:center;margin-top: -10px;font-size:13px;color:white;
+        }
+
     </style>
 </head>
 <body>
-<span>我是页脚，哈哈哈</span>
+    <div class="btmbg">
+        <div class="btm">
+         <p>郑州小桥科技有限公司 版权所有&nbsp;|&nbsp;(MyCodes.Net) all rights reserved 2002-2017 京ICP备05005711号</p>
+        </div>
+    </div>
+
 </body>
 </html>
