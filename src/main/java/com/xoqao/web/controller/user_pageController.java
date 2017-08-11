@@ -126,7 +126,8 @@ public class user_pageController {
         model.addAttribute("userdatas", userDataList);
 
         model.addAttribute("weekopens", weekOpenCuses);
-        return "user_page/Main_User";
+//        return "user_page/Main_User";
+        return "user_page/NewMainUser";
     }
 
     /**
