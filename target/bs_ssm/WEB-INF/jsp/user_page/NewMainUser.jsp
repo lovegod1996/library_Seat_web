@@ -17,9 +17,68 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- jQuery -->
     <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
+
+    <style>
+        body {
+            width: 90%;
+            margin-left: 5%;
+            background-color: #eff3f8;
+        }
+        .carousel {
+            margin-top: 2px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
+        }
+        .panel-default {
+            border-color: #eff3f8;
+        }
+        li {
+            list-style: none;
+            color: #2b4454;
+            margin-bottom: 15px;
+        }
+        li span{
+            margin-top: 10px;
+            margin-right:10px;
+        }
+        .btn-block {
+            display: block;
+            width: 100px;
+            margin: 30px auto;
+            background-color: #8895a9;
+        }
+        .pull-right {
+            float: right!important;
+            margin-top: 15px;
+        }
+        a:focus, a:hover {
+            color: #8895a9;
+            text-decoration: underline;
+        }
+        a {
+            color: #4d5b69;
+            text-decoration: none;
+        }
+        caption {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            color: #777;
+            text-align: left;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        .panel-default {
+            border-color: #eff3f8;
+            margin-left: -18px;
+            margin-right: -18px;
+        }
+    </style>
 </head>
 <body>
-<div id="myCarousel" class="carousel slide" style="height: 65%;">
+<div id="myCarousel" class="carousel slide" style="height: 75%;">
     <!-- 轮播（Carousel）指标 -->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -29,10 +88,10 @@
     <!-- 轮播（Carousel）项目 -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="<%=request.getContextPath()%>/img/library.jpg" alt="First slide" style="height: 100%;width: 100%">
+            <img src="<%=request.getContextPath()%>/img/bg1.jpg" alt="First slide" style="height: 100%;width: 100%">
         </div>
         <div class="item">
-            <img src="<%=request.getContextPath()%>/img/library.jpg" alt="Second slide" style="height: 100%;width: 100%">
+            <img src="<%=request.getContextPath()%>/img/bg2.jpg" alt="Second slide" style="height: 100%;width: 100%">
         </div>
         <div class="item">
             <img src="<%=request.getContextPath()%>/img/library.jpg" alt="Third slide" style="height: 100%;width: 100%">
@@ -47,7 +106,7 @@
 
 <div style="height: 50%;margin-top: 30px">
     <div class="col-sm-6">
-        <div class="panel panel-default">
+        <div class="panel panel-default" style="margin-right:10px;">
             <div class="panel-heading">
                 <i class="glyphicon glyphicon-time"></i> 开馆时间安排
             </div>
@@ -66,9 +125,12 @@
     </div>
 
     <div class="col-sm-6">
-        <div class="panel panel-default">
+        <div class="panel panel-default" style="margin-left:10px;">
             <div class="panel-heading">
                 <i class="fa fa-bell fa-fw"></i> 公告
+
+            <a href="<%=request.getContextPath()%>/jsp/news_List_Admin" target="mainFrame_User"
+               style="float:right;">查看更多&nbsp;> </a>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="height: 100%">
@@ -83,8 +145,7 @@
                 </c:forEach>
 
                 <!-- /.list-group -->
-                <a href="<%=request.getContextPath()%>/jsp/news_List_User" target="mainFrame_User"
-                   class="btn btn-default btn-block">查看更多</a>
+
             </div>
             <!-- /.panel-body -->
         </div>
@@ -109,13 +170,17 @@
         </div>
         <!-- /.panel-heading -->
         <!-- EChart 显示各楼层座位状态-->
-        <div id="main" style="width:100%;height:400px;"></div>
+        <div id="main" style="width:100%;height:500px;"></div>
     </div>
 </div>
-<div class="col-sm-12" style="margin-top: 30px">
-    <div class="col-sm-6">
+<div class="col-sm-12">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="glyphicon glyphicon-star"></i> 排行榜
+    </div>
+    <div class="col-sm-6"  style="background-color: white;">
         <table class="table table-striped">
-            <caption>1--10</caption>
+            <caption>1--10名</caption>
             <thead style="color:#93a2a9;font-weight:bold;background-color: #f9f9f9;">
                 <th>&nbsp;&nbsp;姓名</th>
                 <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学院</th>
@@ -134,9 +199,9 @@
             </tbody>
         </table>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-6" style="background-color: white;">
         <table class="table table-striped">
-            <caption>10--20</caption>
+            <caption>10--20名</caption>
             <thead>
             <thead style="color:#93a2a9;font-weight:bold;background-color: #f9f9f9;">
             <th>&nbsp;&nbsp;姓名</th>
@@ -157,6 +222,7 @@
             </c:forEach>
             </tbody>
         </table>
+    </div>
     </div>
 </div>
 
