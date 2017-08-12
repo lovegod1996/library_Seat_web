@@ -83,7 +83,7 @@
                 </c:forEach>
 
                 <!-- /.list-group -->
-                <a href="<%=request.getContextPath()%>/jsp/news_List_Admin" target="mainFrame_User"
+                <a href="<%=request.getContextPath()%>/jsp/news_List_User" target="mainFrame_User"
                    class="btn btn-default btn-block">查看更多</a>
             </div>
             <!-- /.panel-body -->

@@ -64,7 +64,7 @@
             <c:if test="${sessionScope.admin.floor==1}">
                 <li>
                     <a href="<%=request.getContextPath()%>/view/managing_Building_SuperAdmin"
-                       target="mainFrame_SuperAdmin"><i class="fa fa-hdd-o fa-fw"></i> 创建楼和楼层</a>
+                       target="mainFrame_SuperAdmin"><i class="fa fa-hdd-o fa-fw"></i>管理楼和楼层</a>
                 </li>
             </c:if>
 

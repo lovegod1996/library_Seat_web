@@ -67,7 +67,7 @@
         <li>
             <button class="layui-btn layui-btn-small" href="javascript:void(0)"
                     onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">
-                <i class="layui-icon"></i>添加楼层
+                <i class="layui-icon"></i>添加场馆
             </button>
         </li>
     </ul>

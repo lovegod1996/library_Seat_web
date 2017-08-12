@@ -107,7 +107,7 @@
 
         <ul class="nav navbar-top-links navbar-right">
             <c:choose>
-                <c:when test="${empty sessionScope}">
+                <c:when test="${empty sessionScope.user && empty sessionScope.admin}">
                     <li class="dropdown">
                         <a href="<%=request.getContextPath()%>/jsp/login" target="_parent">
                             <i class="fa fa-user fa-fw"></i><span>登录</span>

@@ -346,7 +346,6 @@ public class PhoneServerController {
                                 map.put("message", "您选择的时间段已经被占用");
                                 map.put("data", null);
                             }
-
                         }
                     }
                 } else {
