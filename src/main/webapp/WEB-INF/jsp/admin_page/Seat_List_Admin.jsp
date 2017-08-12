@@ -88,7 +88,7 @@
                             <a href="#" class="disabled">&laquo;</a>
                         </c:if>
                         <c:if test="${currentPage != 1}">
-                            <a href="${pageContext.request.contextPath }/view/floorSeat?page=${currentPage-1}&fid=${fid}">&laquo;</a>
+                            <a href="<%=request.getContextPath()%>/view/floorSeatsList?fid=${fid}&page=${currentPage-1}">&laquo;</a>
                         </c:if>
                     </li>
                     <c:if test="${currentPage==1}">
@@ -96,7 +96,7 @@
                     </c:if>
                     <c:if test="${currentPage!=1}">
                         <li>
-                            <a href="${pageContext.request.contextPath }/view/floorSeat?page=1&fid=${fid}">1</a>
+                            <a href="${pageContext.request.contextPath }/view/floorSeatsList?page=1&fid=${fid}">1</a>
                         </li>
                     </c:if>
                     <%
@@ -114,7 +114,7 @@
                         </c:if>
                         <c:if test="${currentPage != page}">
                             <li>
-                                <a href="${pageContext.request.contextPath }/view/floorSeat?page=<%=i+1%>&fid=${fid}"><%=i + 1%>
+                                <a href="${pageContext.request.contextPath }/view/floorSeatsList?page=<%=i+1%>&fid=${fid}"><%=i + 1%>
                                 </a></li>
                         </c:if>
                     </c:if>
@@ -124,7 +124,7 @@
                     </c:if>
                     <c:if test="${currentPage != pageTimes}">
                         <li>
-                            <a href="${pageContext.request.contextPath }/view/floorSeat?page=${currentPage+1}&fid=${fid}">&raquo;</a>
+                            <a href="${pageContext.request.contextPath }/view/floorSeatsList?page=${currentPage+1}&fid=${fid}">&raquo;</a>
                         </li>
                     </c:if>
 

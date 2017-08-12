@@ -18,8 +18,25 @@
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <style type="text/css">
         body {
-            width: 75%;
-            margin-left: 2%;
+            width: 90%;
+            margin: 5%;
+            background-color: #eff3f8;
+            margin-top: 15px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
+        }
+        .btn-block {
+            display: block;
+            width: 100px;
+            margin: 30px auto;
+            background-color: #8895a9;
+        }
+        .layui-input-block {
+            margin: 20px 20px 20px 110px;
+            min-height: 36px;
         }
     </style>
 </head>
@@ -41,11 +58,11 @@
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">内容</label>
                 <div class="layui-input-block">
-                    <textarea placeholder="请输入内容" name="content" class="layui-textarea" required rows="10"></textarea>
+                    <textarea placeholder="请输入内容,并确保内容总字数小于一千字" name="content" class="layui-textarea" required rows="10"></textarea>
                 </div>
             </div>
             <div class="layui-form-item layui-form-text">
-                <button type="submit" class="btn btn-primary" style="margin-left: 110px">发布</button>
+                <button type="submit" class="btn btn-primary" style="margin-left:50%;">发布</button>
             </div>
         </form>
     </div>

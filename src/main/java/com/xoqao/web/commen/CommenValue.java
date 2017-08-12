@@ -40,8 +40,8 @@ public class CommenValue {
     /**
      * 学校校徽
      */
-    public static String SCHOOL_EMBLEM="C:\\Users\\东旭\\Pictures\\libseat\\zut.jpg";
-//    public static String SCHOOL_EMBLEM="/home/ubuntu/java/pic/zut.jpg";
+//    public static String SCHOOL_EMBLEM="C:\\Users\\东旭\\Pictures\\libseat\\zut.jpg";
+    public static String SCHOOL_EMBLEM="/home/ubuntu/java/pic/zut.jpg";
 
     public static String CODEPATH="C:\\Users\\东旭\\Pictures\\libseat\\code\\";
 }

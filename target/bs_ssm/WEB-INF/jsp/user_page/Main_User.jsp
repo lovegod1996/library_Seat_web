@@ -128,14 +128,14 @@
             <i class="glyphicon glyphicon-time"></i> 开馆时间安排
         </div>
         <!-- /.panel-heading -->
-        <div class="panel-body" style="height: 400px">
+        <div class="panel-body" style="height: 300px">
 
             <div class="list-group">
                 <c:forEach items="${weekopens}" var="week" varStatus="tt">
-                    <li>${week.floor}(${week.building})
-                        <span class="pull-right text-muted small"><em>${week.param1};${week.param2}</em></span>
-                    </li>
-                </c:forEach>
+                <li>${week.floor}(${week.building})
+                    <span class="pull-right text-muted small"><em>${week.param1};${week.param2}</em></span>
+                </li>
+            </c:forEach>
             </div>
         </div>
     </div>
@@ -147,7 +147,7 @@
             <i class="fa fa-bell fa-fw"></i> 公告
         </div>
         <!-- /.panel-heading -->
-        <div class="panel-body" style="height: 400px">
+        <div class="panel-body" style="height: 300px">
 
             <c:forEach items="${noticestop}" var="notice">
                 <div class="list-group">

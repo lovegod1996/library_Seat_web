@@ -28,6 +28,22 @@
         .layui-nav-tree{
             width: 100%;
         }
+        #wrapper {
+            width: 80%;
+            margin-left: -70px;
+        }
+        .layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-this, .layui-nav-tree .layui-this>a, .layui-nav-tree .layui-this>a:hover {
+            background-color: #31c7b2;
+            color: #fff;
+        }
+        .layui-nav {
+            background-color: #707b88;
+        }
+        body {
+            padding-left: 20%;
+            text-align: center;
+            background-color: #f1f3fa;
+        }
     </style>
 </head>
 <body>

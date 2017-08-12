@@ -92,10 +92,12 @@ public class user_pageController {
         for (int i = 0; i < bookThisMonthSno.size(); i++) {
             User userBySno = userService.findUserBySno(bookThisMonthSno.get(i));
             UserData userData = new UserData();
-            userData.setUsername(userBySno.getName());
-            userData.setSno(userBySno.getSno());
-            userData.setSex(userBySno.getSex());
-            userData.setVenue(userBySno.getCollege());
+            if(userBySno!=null){
+                userData.setUsername(userBySno.getName());
+                userData.setSno(userBySno.getSno());
+                userData.setSex(userBySno.getSex());
+                userData.setVenue(userBySno.getCollege());
+            }
             Integer learntime = 0;
             Integer allLearn = 0;
             Integer nudeal = 0;

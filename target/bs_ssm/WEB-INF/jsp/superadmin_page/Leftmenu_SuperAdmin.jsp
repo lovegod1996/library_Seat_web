@@ -28,6 +28,23 @@
         body {
             background-color: #F8F8F8;
         }
+        .navbar-default {
+            background-color: #eff3f8;
+            border-color: #e7e7e7;
+        }
+        .sidebar ul li a.active {
+            background-color: rgba(226, 226, 226, 0.44);
+        }
+        label {
+            display: inline-block;
+            max-width: 100%;
+            margin: 0 10px;
+            color: #4d5b69;
+        }
+        a:focus, a:hover {
+            color: #d01414;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -137,17 +154,17 @@
                     </li>
                 </ul>
             </li>
-            <li style="height:100%;margin-top: 50px;padding-left: 10px;">
+            <li style="height:100%;margin-top: 30px;padding-left: 10px;">
                 <div class="layui-form">
                     <div class="layui-form-item">
                         <label type="text">职责：&nbsp;&nbsp;${sessionScope.admin.employer}</label>
-                    </div>
+                    </div><hr>
                     <div class="layui-form-item">
                         <label type="text">姓名：&nbsp;&nbsp;${sessionScope.admin.name}</label>
-                    </div>
+                    </div><hr>
                     <div class="layui-form-item">
                         <label type="text">账号：&nbsp;&nbsp;${sessionScope.admin.acountnumber}</label>
-                    </div>
+                    </div><hr>
                     <div class="layui-form-item">
                         <label type="text">您的身份：&nbsp;&nbsp;
                             <c:if test="${sessionScope.admin.admin==1}">
@@ -157,7 +174,7 @@
                                 您是一般管理员
                             </c:if>
                         </label>
-                    </div>
+                    </div><hr>
                     <div class="layui-form-item">
                         <label type="text">您的管理权限：&nbsp;&nbsp;
                             <c:if test="${sessionScope.admin.admin==1}">
@@ -176,7 +193,7 @@
                                 座位管理
                             </c:if>
                         </label>
-                    </div>
+                    </div><hr>
                 </div>
             </li>
         </ul>

@@ -46,6 +46,21 @@
             z-index: 1002;
             overflow: auto;
         }
+        .layui-btn {
+            background-color: #5c9bd1;
+        }
+        body {
+            background-color: #eff3f8;
+            margin-top: 15px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
+        }
+        .layui-table thead tr {
+            background-color: #eff3f8;
+        }
     </style>
 
     <script language="javascript">
