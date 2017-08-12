@@ -64,11 +64,11 @@ public class AdminController {
     @RequestMapping("/userloginSub")
     public String userLoginSub(Model model, String loginId, String password, HttpSession httpSession) throws Exception {
         User userByphoneOrSno = userService.findUserBySno(loginId);
-        if (password.trim().equals(userByphoneOrSno.getPassword())) {
+        if (userByphoneOrSno!=null&&password.trim().equals(userByphoneOrSno.getPassword())) {
             httpSession.setAttribute("user", userByphoneOrSno);
             return "toIndex";
         } else {
-            model.addAttribute("error_msg", "密码输入错误！");
+            model.addAttribute("error_msg", "信息输入错误！");
             return "public_page/Login";
         }
     }
