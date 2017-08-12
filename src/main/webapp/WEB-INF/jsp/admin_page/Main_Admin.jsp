@@ -89,10 +89,9 @@
                             <span class="pull-right text-muted small"><em><fmt:formatDate value="${notice.creattime}" pattern="yyyy-MM-dd HH:mm:ss"/></em></span>
                         </a>
                     </c:forEach>
-
                 </div>
                 <!-- /.list-group -->
-                <a href="<%=request.getContextPath()%>/jsp/news_List_Admin" target="mainFrame_Admin"
+                <a href="<%=request.getContextPath()%>/jsp/news_List_User" target="mainFrame_Admin"
                    class="btn btn-default btn-block">查看更多</a>
             </div>
             <!-- /.panel-body -->
