@@ -28,4 +28,6 @@ public interface AdminMapper {
     void deleteAdmin(@Param("aid") Integer aid)throws Exception;
 
     List<Admin> findAllAdmin()throws Exception;
+
+    void updatePassword(@Param("password") String password,@Param("aid") Integer aid)throws Exception;
 }

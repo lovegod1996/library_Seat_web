@@ -5,6 +5,7 @@ import com.xoqao.web.bean.booking.BookingSeat;
 import com.xoqao.web.bean.seat.Seat;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.awt.print.Book;
@@ -18,6 +19,7 @@ import java.util.List;
  * Email:dx96_j@163.com
  */
 @Service
+@Transactional
 public interface BookingMapper {
 
     /**
@@ -71,6 +73,7 @@ public interface BookingMapper {
      * @param booking
      * @throws Exception
      */
+    @Transactional
     void insertbooking(@Param("booking") Booking booking) throws Exception;
 
     /**
@@ -79,6 +82,7 @@ public interface BookingMapper {
      * @param booking
      * @throws Exception
      */
+    @Transactional
     void insertbookingnow(@Param("booking") Booking booking) throws Exception;
 
     /**
@@ -144,6 +148,16 @@ public interface BookingMapper {
     List<Booking> finduserbookpage(@Param("sno") String sno, @Param("startRow") Integer startRow, @Param("pageSize") Integer pageSize) throws Exception;
 
     List<Booking> finduserbookpromise(@Param("sno") String sno, @Param("deal") Integer deal) throws Exception;
+
+    /**
+     * 查询在某个时间之后的预约
+     * @param sno
+     * @param deal
+     * @param date
+     * @return
+     * @throws Exception
+     */
+    List<Booking> findUserBookDeal(@Param("sno") String sno, @Param("deal") Integer deal, @Param("date") Date date) throws Exception;
 
     List<Booking> finduserbookpromisepage(@Param("sno") String sno, @Param("deal") Integer deal, @Param("startRow") Integer startRow, @Param("pageSize") Integer pageSize) throws Exception;
 
@@ -239,6 +253,7 @@ public interface BookingMapper {
 
     /**
      * 查看上周的预约座位
+     *
      * @param fid
      * @return
      * @throws Exception
@@ -247,6 +262,7 @@ public interface BookingMapper {
 
     /**
      * 查找上周的场馆预约
+     *
      * @param fid
      * @return
      * @throws Exception
@@ -255,12 +271,13 @@ public interface BookingMapper {
 
     /**
      * 根据用户名查找某楼层的上周预约
+     *
      * @param fid
      * @param sno
      * @return
      * @throws Exception
      */
-    List<Booking> findUserBookOfUpWeek(@Param("fid") Integer fid,@Param("sno") String sno)throws Exception;
+    List<Booking> findUserBookOfUpWeek(@Param("fid") Integer fid, @Param("sno") String sno) throws Exception;
 
     /***
      * 根据学号和星期号查询预约
@@ -269,5 +286,13 @@ public interface BookingMapper {
      * @return
      * @throws Exception
      */
-    List<Booking> findsaomeWeekBookUser(@Param("week") Integer week,@Param("sno") String sno)throws Exception;
+    List<Booking> findsaomeWeekBookUser(@Param("week") Integer week, @Param("sno") String sno) throws Exception;
+
+    /**
+     * 根据学号查询最近预约
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    BookingSeat findNoLeaveBookSeat(@Param("sno") String sno)throws Exception;
 }

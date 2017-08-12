@@ -2,6 +2,7 @@ package com.xoqao.web.controller;
 
 import com.xoqao.web.bean.booking.Booking;
 import com.xoqao.web.bean.building.Building;
+import com.xoqao.web.bean.code.CodeModel;
 import com.xoqao.web.bean.data.MonthData;
 import com.xoqao.web.bean.data.WeekData;
 import com.xoqao.web.bean.floors.Floor;
@@ -10,7 +11,9 @@ import com.xoqao.web.bean.seat.SeatCus;
 import com.xoqao.web.bean.user.User;
 import com.xoqao.web.bean.userbook.UserLearn;
 import com.xoqao.web.bean.weekopen.WeekOpen;
+import com.xoqao.web.commen.CommenValue;
 import com.xoqao.web.service.*;
+import com.xoqao.web.utils.CodeCreator;
 import com.xoqao.web.utils.DateUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +21,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,8 +70,8 @@ public class Admin_Controller {
     }
 
     @RequestMapping("/managing_Seat")
-    public String managing_Seat(Model model ,Integer fid) throws Exception {
-        model.addAttribute("fid",fid);
+    public String managing_Seat(Model model, Integer fid) throws Exception {
+        model.addAttribute("fid", fid);
         return "admin_page/Managing_Seat";
     }
 
@@ -77,7 +84,7 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/floorSeat")
-    public String seatList(Model model, Integer page, HttpSession httpSession,Integer fid) throws Exception {
+    public String seatList(Model model, Integer page, HttpSession httpSession, Integer fid) throws Exception {
         Floor floor = floorService.findfloorByid(fid);
         List<Seat> seatsByFid = seatService.findSeatsByFid(floor.getFid());
         Integer pageSize = 10;
@@ -122,13 +129,13 @@ public class Admin_Controller {
             httpSession.setAttribute("pageTimes", 1);
             model.addAttribute("nullList", "暂无座位信息");
         }
-        model.addAttribute("fid",fid);
+        model.addAttribute("fid", fid);
         return "admin_page/Seat_Floor_List_Admin";
     }
 
 
     @RequestMapping("/floorSeatsList")
-    public String seatFloorList(Model model, Integer page, HttpSession httpSession,Integer fid) throws Exception {
+    public String seatFloorList(Model model, Integer page, HttpSession httpSession, Integer fid) throws Exception {
         Floor floor = floorService.findfloorByid(fid);
         List<Seat> seatsByFid = seatService.findSeatsByFid(floor.getFid());
         Integer pageSize = 10;
@@ -173,9 +180,10 @@ public class Admin_Controller {
             httpSession.setAttribute("pageTimes", 1);
             model.addAttribute("nullList", "暂无座位信息");
         }
-        model.addAttribute("fid",fid);
+        model.addAttribute("fid", fid);
         return "admin_page/Seat_List_Admin";
     }
+
     /**
      * 更改座位状态
      *
@@ -186,13 +194,13 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/changeSeatStatue")
-    public String changeSeatSatue(Model model, Integer statue, Integer sid,Integer fid) throws Exception {
+    public String changeSeatSatue(Model model, Integer statue, Integer sid, Integer fid) throws Exception {
         if (statue == 0) {
             seatService.updateSeatSatue(1, sid);
         } else {
             seatService.updateSeatSatue(0, sid);
         }
-        return "redirect:/view/floorSeat?page=1&fid="+fid;
+        return "redirect:/view/floorSeat?page=1&fid=" + fid;
     }
 
     /**
@@ -204,10 +212,52 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/deleteSeat")
-    public String deleteSeat(Model model, Integer sid,Integer fid) throws Exception {
+    public String deleteSeat(Model model, Integer sid, Integer fid) throws Exception {
         seatService.deleteSeat(sid);
-        return "redirect:/view/floorSeat?page=1&fid="+fid;
+        return "redirect:/view/floorSeat?page=1&fid=" + fid;
     }
+
+    /**
+     * 查看下载二维码
+     * @param model
+     * @param seatNumber
+     * @param httpServletResponse
+     * @throws Exception
+     */
+    @RequestMapping("/getSeatPic")
+    public void GetSeatPic(Model model, String seatNumber, HttpServletResponse httpServletResponse) throws Exception {
+        Seat seatBynumber = seatService.findSeatBynumber(seatNumber);
+        Floor floor = floorService.findfloorByid(seatBynumber.getFid());
+        Building buildingById = buildingService.findBuildingById(floor.getBid());
+        //生成二维码并下载到本地
+        CodeCreator creator = new CodeCreator();
+        CodeModel info = new CodeModel();
+        info.setWidth(550);
+        info.setHeight(550);
+        info.setFontSize(24);
+        //info.setContents("<a href='http://www.sohu.com'>人生就是拼搏</a>");
+        //info.setContents("http://www.sohu.com");
+        info.setContents(seatBynumber.getSeatnumber());
+        info.setLogoFile(new File(CommenValue.SCHOOL_EMBLEM));
+        String leftside = null;
+        if (seatBynumber.getLeftside() == 0) {
+            leftside = "左";
+        } else {
+            leftside = "右";
+        }
+        info.setDesc(buildingById.getEmployer() + "\n       " + floor.getEmployer() +"\n                    "+leftside + "侧" + seatBynumber.getRow() + "排" + seatBynumber.getColumns() + "列");
+        //info.setLogoDesc("一叶浮萍归大海，adsasfbhtjg人生何处不相逢");
+        //info.setLogoDesc("一叶浮萍");
+//        creator.createCodeImage(info, CommenValue.CODEPATH + seatBynumber.getSeatnumber() + "." + info.getFormat());
+        httpServletResponse.setContentType("image/jpeg");
+        httpServletResponse.setCharacterEncoding("UTF-8");
+        httpServletResponse.setHeader("Content-Disposition", "attachment;fileName=" + new String((seatBynumber.getSeatnumber() + "." + info.getFormat()).getBytes("gbk"), "ISO8859-1"));
+        ServletOutputStream outputStream = httpServletResponse.getOutputStream();
+        creator.createCodeImage(info, outputStream);
+        outputStream.flush();
+        outputStream.close();
+    }
+
 
     /**
      * 提交座位添加
@@ -221,14 +271,16 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/addSeatSub")
-    public String Seatadd(Model model, Integer left, Integer row, Integer column, String mark,Integer fid) throws Exception {
+    public String Seatadd(Model model, Integer left, Integer row, Integer column, String mark, Integer fid, HttpServletResponse httpServletResponse,RedirectAttributes  redirectAttributes) throws Exception {
         Floor floor = floorService.findfloorByid(fid);
         //添加座位前需要先查看每周的开放时间是否已经设置完成
         List<WeekOpen> weekOpens = weekOpenService.findweekByfid(floor.getFid());
         if (weekOpens.size() != 7) {
             model.addAttribute("error_msg", "请先添加每周的开放时间段.");
-            return "redirect:/view/managing_Floor?fid="+fid;
+            redirectAttributes.addFlashAttribute("error_msg", "请先添加每周的开放时间段");
+            return "redirect:/view/managing_Floor?fid=" + fid;
         }
+        Building buildingById = buildingService.findBuildingById(floor.getBid());
         Seat seat = new Seat();
         seat.setColumns(column);
         seat.setFid(floor.getFid());
@@ -238,12 +290,40 @@ public class Admin_Controller {
         seat.setSeatnumber(number);
         try {
             seatService.insertSeat(seat);
+
+            //生成二维码并下载到本地
+            CodeCreator creator = new CodeCreator();
+            CodeModel info = new CodeModel();
+            info.setWidth(550);
+            info.setHeight(550);
+            info.setFontSize(24);
+            //info.setContents("<a href='http://www.sohu.com'>人生就是拼搏</a>");
+            //info.setContents("http://www.sohu.com");
+            info.setContents(number);
+            info.setLogoFile(new File(CommenValue.SCHOOL_EMBLEM));
+            String leftside = null;
+            if (seat.getLeftside() == 0) {
+                leftside = "左";
+            } else {
+                leftside = "右";
+            }
+            info.setDesc(buildingById.getEmployer() + "\n       " + floor.getEmployer() +"\n                  "+leftside + "侧" + seat.getRow() + "排" + seat.getColumns() + "列");
+            //info.setLogoDesc("一叶浮萍归大海，adsasfbhtjg人生何处不相逢");
+            //info.setLogoDesc("一叶浮萍");
+//            creator.createCodeImage(info, CommenValue.CODEPATH + number + "." + info.getFormat());
+            httpServletResponse.setContentType("image/jpeg");
+            httpServletResponse.setCharacterEncoding("UTF-8");
+            httpServletResponse.setHeader("Content-Disposition", "attachment;fileName=" + new String((number + "." + info.getFormat()).getBytes("gbk"), "ISO8859-1"));
+            ServletOutputStream outputStream = httpServletResponse.getOutputStream();
+            creator.createCodeImage(info, outputStream);
+            outputStream.flush();
+            outputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("error_msg", "该座位已存在");
             return "admin_page/Managing_Seat";
         }
-        return "redirect:/view/floorSeat?page=1&fid="+fid;
+        return "redirect:/view/floorSeat?page=1&fid=" + fid;
     }
 
     /**
@@ -254,14 +334,14 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/managing_Floor")
-    public String mnaging_Floor(Model model,Integer fid) throws Exception {
+    public String mnaging_Floor(Model model, Integer fid) throws Exception {
         Floor floor = floorService.findfloorByid(fid);
         List<WeekOpen> weekOpens = weekOpenService.findweekByfid(floor.getFid());
         if (weekOpens.size() == 0) {
             model.addAttribute("NullList", "暂无一周当中的预约日期设置");
         }
         model.addAttribute("weekopens", weekOpens);
-        model.addAttribute("fid",fid);
+        model.addAttribute("fid", fid);
         return "admin_page/Managing_Floor";
     }
 
@@ -277,7 +357,7 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/addWeekOpenSub")
-    public String addWeekOpen(Model model, HttpSession httpSession, Integer week, String param1, String param2,Integer fid) throws Exception {
+    public String addWeekOpen(Model model, HttpSession httpSession, Integer week, String param1, String param2, Integer fid, RedirectAttributes redirectAttributes) throws Exception {
         Floor floor = floorService.findfloorByid(fid);
         WeekOpen weekOpen = new WeekOpen();
         weekOpen.setLid(floor.getFid());
@@ -289,8 +369,9 @@ public class Admin_Controller {
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("error_msg", "周" + week + "的已存在");
+            redirectAttributes.addFlashAttribute("error_msg", "周" + week + "的已存在");
         }
-        return "redirect:/view/managing_Floor?fid="+fid;
+        return "redirect:/view/managing_Floor?fid=" + fid;
     }
 
     /**
@@ -303,13 +384,13 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/changeWeekStatue")
-    public String changeWeekSatue(Model model, Integer woid, Integer statue,Integer fid) throws Exception {
+    public String changeWeekSatue(Model model, Integer woid, Integer statue, Integer fid) throws Exception {
         if (statue == 0) {
             weekOpenService.updatestatue(1, woid);
         } else {
             weekOpenService.updatestatue(0, woid);
         }
-        return "redirect:/view/managing_Floor?fid="+fid;
+        return "redirect:/view/managing_Floor?fid=" + fid;
     }
 
 
@@ -322,9 +403,9 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/deleteWeek")
-    public String deleteWeekopen(Model model, Integer woid,Integer fid) throws Exception {
+    public String deleteWeekopen(Model model, Integer woid, Integer fid) throws Exception {
         weekOpenService.deletestatue(woid);
-        return "redirect:/view/managing_Floor?fid="+fid;
+        return "redirect:/view/managing_Floor?fid=" + fid;
     }
 
 
@@ -402,6 +483,7 @@ public class Admin_Controller {
         user.setClasses(classes);
         user.setMajor(major);
         user.setCollege(college);
+        user.setPassword("123456");
         user.setSno(sno);
         user.setName(name);
         try {
@@ -546,6 +628,19 @@ public class Admin_Controller {
         return "admin_page/Seat_DataStatistics";
     }
 
+    /**
+     * 进入到密码修改界面
+     *
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/intoUpdatePassword")
+    public String intoUpdatePassword(Model model) throws Exception {
+        return "public_page/ResetPassword_ForAdmin";
+    }
+
+
     //    学习统计
     @RequestMapping("/study_DataStatistics")
     public String study_DataStatistics(Model model, HttpSession httpSession) throws Exception {
@@ -571,10 +666,10 @@ public class Admin_Controller {
                 }
             }
             if (findbookfloorofweek.size() > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / (float)findbookfloorofweek.size()) * 100;
+                dealpro = (nudeal / (float) findbookfloorofweek.size()) * 100;
             }
             weekData.setAllLearn(allLearn);
-            weekData.setDealpro((int)dealpro);
+            weekData.setDealpro((int) dealpro);
             weekData.setLearntime(learntime / 60);
             weekData.setUndeal(nudeal);
             weekDataList.add(weekData);
@@ -582,7 +677,7 @@ public class Admin_Controller {
 
         List<Integer> findmonthofbook = bookingService.findmonthofbook();
         List<MonthData> monthDataList = new ArrayList<MonthData>();
-        for (int i = 0; i <findmonthofbook.size() ; i++) {
+        for (int i = 0; i < findmonthofbook.size(); i++) {
             List<Booking> findbookfloorofmonth = bookingService.findbookfloorofmonth(floor.getFid(), findmonthofbook.get(i));
             MonthData monthData = new MonthData();
             monthData.setVenue(floor.getEmployer());
@@ -590,7 +685,7 @@ public class Admin_Controller {
             Integer allLearn = 0;
             Integer nudeal = 0;
             float dealpro = 0;
-            for (int j = 0; j <findbookfloorofmonth.size() ; j++) {
+            for (int j = 0; j < findbookfloorofmonth.size(); j++) {
                 Integer disTime = DateUtil.getDisTime(findbookfloorofmonth.get(j).getStime(), findbookfloorofmonth.get(j).getEtime());
                 learntime = learntime + disTime;
                 if (disTime > 0) {
@@ -601,10 +696,10 @@ public class Admin_Controller {
                 }
             }
             if (findbookfloorofmonth.size() > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / (float)findbookfloorofmonth.size()) * 100;
+                dealpro = (nudeal / (float) findbookfloorofmonth.size()) * 100;
             }
             monthData.setAllLearn(allLearn);
-            monthData.setDealpro((int)dealpro);
+            monthData.setDealpro((int) dealpro);
             monthData.setLearntime(learntime / 60);
             monthData.setUndeal(nudeal);
             monthData.setMonth(findmonthofbook.get(i));
@@ -618,6 +713,7 @@ public class Admin_Controller {
 
     /**
      * 获取每月的学习情况
+     *
      * @param httpSession
      * @return
      * @throws Exception
@@ -628,7 +724,7 @@ public class Admin_Controller {
         Floor floor = (Floor) httpSession.getAttribute("admin");
         List<Integer> findmonthofbook = bookingService.findmonthofbook();
         List<MonthData> monthDataList = new ArrayList<MonthData>();
-        for (int i = 0; i <findmonthofbook.size() ; i++) {
+        for (int i = 0; i < findmonthofbook.size(); i++) {
             List<Booking> findbookfloorofmonth = bookingService.findbookfloorofmonth(floor.getFid(), findmonthofbook.get(i));
             MonthData monthData = new MonthData();
             monthData.setVenue(floor.getEmployer());
@@ -636,7 +732,7 @@ public class Admin_Controller {
             Integer allLearn = 0;
             Integer nudeal = 0;
             float dealpro = 0;
-            for (int j = 0; j <findbookfloorofmonth.size() ; j++) {
+            for (int j = 0; j < findbookfloorofmonth.size(); j++) {
                 Integer disTime = DateUtil.getDisTime(findbookfloorofmonth.get(j).getStime(), findbookfloorofmonth.get(j).getEtime());
                 learntime = learntime + disTime;
                 if (disTime > 0) {
@@ -647,10 +743,10 @@ public class Admin_Controller {
                 }
             }
             if (findbookfloorofmonth.size() > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / (float)findbookfloorofmonth.size()) * 100;
+                dealpro = (nudeal / (float) findbookfloorofmonth.size()) * 100;
             }
             monthData.setAllLearn(allLearn);
-            monthData.setDealpro((int)dealpro);
+            monthData.setDealpro((int) dealpro);
             monthData.setLearntime(learntime / 60);
             monthData.setUndeal(nudeal);
             monthData.setMonth(findmonthofbook.get(i));
@@ -692,10 +788,10 @@ public class Admin_Controller {
                 }
             }
             if (findbookfloorofweek.size() > 0) {  //查看某周的预约是否未零
-                dealpro = (nudeal / (float)findbookfloorofweek.size()) * 100;
+                dealpro = (nudeal / (float) findbookfloorofweek.size()) * 100;
             }
             weekData.setAllLearn(allLearn);
-            weekData.setDealpro((int)dealpro);
+            weekData.setDealpro((int) dealpro);
             weekData.setLearntime(learntime / 60);
             weekData.setUndeal(nudeal);
             weekDataList.add(weekData);

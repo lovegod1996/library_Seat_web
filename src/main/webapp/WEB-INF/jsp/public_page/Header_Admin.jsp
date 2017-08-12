@@ -83,36 +83,57 @@
 
         <ul class="nav navbar-top-links navbar-right">
 
-<c:choose>
-    <c:when test="${empty sessionScope.admin}">
-        <li class="dropdown">
-            <a class="dropdown-toggle"  href="${pageContext.request.contextPath }/jsp/login" target="_parent">
-                <i class="fa fa-user fa-fw"></i><span>登录</span>
-            </a>
-            <!-- /.dropdown-user -->
-        </li>
-    </c:when>
-    <c:otherwise>
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i><span>${sessionScope.admin.name}</span>
-            </a>
-            <!-- /.dropdown-user -->
-        </li>
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-gear fa-fw"></i><span>设置</span>
-            </a>
-            <!-- /.dropdown-user -->
-        </li>
-        <li class="dropdown">
-            <a class="dropdown-toggle"  href="${pageContext.request.contextPath }/admin/loginOut" target="_parent">
-                <i class="fa fa-power-off fa-fw"></i><span>退出</span>
-            </a>
-            <!-- /.dropdown-user -->
-        </li>
-    </c:otherwise>
-</c:choose>
+            <c:choose>
+                <c:when test="${empty sessionScope.admin}">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="${pageContext.request.contextPath }/jsp/login"
+                           target="_parent">
+                            <i class="fa fa-user fa-fw"></i><span>登录</span>
+                        </a>
+                        <!-- /.dropdown-user -->
+                    </li>
+                </c:when>
+                <c:otherwise>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#">
+                            <i class="fa fa-user fa-fw"></i><span>${sessionScope.admin.name}</span>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                            <%--
+                            判断管理员类型，修改target=""
+                            层管理员：target="mainFrame_Admin"
+                            楼管理员：target="main_BuildingAdmin"
+                            系统管理员：target="mainFrame_SuperAdmin"
+                            --%>
+                        <c:if test="${sessionScope.admintype==1}">
+                            <a class="dropdown-toggle" href="<%=request.getContextPath()%>/view/resetPassword_ForAdmin"
+                               target="mainFrame_Admin">
+                                <i class="fa fa-gear fa-fw"></i><span>重置密码</span>
+                            </a>
+                        </c:if>
+                        <c:if test="${sessionScope.admintype==2}">
+                            <a class="dropdown-toggle" href="<%=request.getContextPath()%>/view/resetPassword_ForAdmin"
+                               target="main_BuildingAdmin">
+                                <i class="fa fa-gear fa-fw"></i><span>重置密码</span>
+                            </a>
+                        </c:if>
+                        <c:if test="${sessionScope.admintype==3}">
+                            <a class="dropdown-toggle" href="<%=request.getContextPath()%>/view/resetPassword_ForAdmin"
+                               target="mainFrame_SuperAdmin">
+                                <i class="fa fa-gear fa-fw"></i><span>重置密码</span>
+                            </a>
+                        </c:if>
+
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="${pageContext.request.contextPath }/admin/loginOut"
+                           target="_parent">
+                            <i class="fa fa-power-off fa-fw"></i><span>退出</span>
+                        </a>
+                    </li>
+                </c:otherwise>
+            </c:choose>
         </ul>
         <!-- /.navbar-top-links -->
     </nav>

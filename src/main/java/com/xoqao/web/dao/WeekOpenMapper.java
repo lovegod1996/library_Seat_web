@@ -24,7 +24,7 @@ public interface WeekOpenMapper {
 
     void insertweek(@Param("weekOpen") WeekOpen weekOpen) throws Exception;
 
-    List<WeekOpen> findopentody() throws Exception;
+    List<WeekOpen> findopen(@Param("day") Integer day) throws Exception;
 
     WeekOpen findopenFloortoday(@Param("fid") Integer fid) throws Exception;
 

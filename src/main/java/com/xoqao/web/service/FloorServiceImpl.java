@@ -51,5 +51,9 @@ public class FloorServiceImpl implements FloorService {
         floorsMapper.updateStatueByid(statue, fid);
     }
 
+    public void updatePassword(String password, Integer fid) throws Exception {
+        floorsMapper.updatePassword(password, fid);
+    }
+
 
 }

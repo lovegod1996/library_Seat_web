@@ -26,10 +26,10 @@
         (#{weekOpen.lid},#{weekOpen.param1},#{weekOpen.param2},#{weekOpen.week},0)
     </insert>
     <!--查看当天场馆开放情况-->
-    <select id="findopentody" resultType="com.xoqao.web.bean.weekopen.WeekOpen">
+    <select id="findopen" resultType="com.xoqao.web.bean.weekopen.WeekOpen">
         SELECT woid,lid,param1,param2,week,statue
         FROM  weekopen
-        WHERE week=WEEKDAY(NOW())+1 AND statue=0
+        WHERE week=WEEKDAY(NOW())+#{day} AND statue=0
     </select>
 
     <!--查看当天某个场馆开放时间段-->

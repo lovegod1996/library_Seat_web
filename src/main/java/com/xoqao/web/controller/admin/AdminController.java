@@ -9,6 +9,7 @@ import com.xoqao.web.bean.seat.Floors;
 import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.user.User;
 import com.xoqao.web.service.*;
+import com.xoqao.web.utils.BaiduPushUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 说明：
@@ -169,6 +172,10 @@ public class AdminController {
         notice.setCreattime(new Date());
         try {
             noticeService.insertNotice(notice);
+            Map<String, Object> map = BaiduPushUtils.pushMsgToAll("新资讯消息", title, System.currentTimeMillis() / 1000 + 120, 3600*5, 1, 2, null, 3, "");
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

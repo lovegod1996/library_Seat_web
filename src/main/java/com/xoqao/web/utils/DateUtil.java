@@ -2,6 +2,7 @@ package com.xoqao.web.utils;
 
 import com.xoqao.web.bean.booking.Booking;
 import com.xoqao.web.bean.weekopen.WeekOpen;
+import com.xoqao.web.commen.CommenValue;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -227,16 +228,25 @@ public class DateUtil {
                 if (b2) {
                     b = true;
                 }
+                if(etime.equals(closeTime)){
+                    b=true;
+                }
             } else {
                 if (weekOpen.getParam2() != null) {
                     String[] split2 = weekOpen.getParam2().split("-");
                     opentime = df.parse(split2[0]);
                     closeTime = df.parse(split2[1]);
                     boolean b3 = belongCalendar(stime, opentime, closeTime);
+                    if (stime.equals(opentime)) {
+                        b3 = true;
+                    }
                     if (b3) {
                         boolean b4 = belongCalendar(etime, opentime, closeTime);
                         if (b4) {
                             b = true;
+                        }
+                        if(etime.equals(closeTime)){
+                            b=true;
                         }
                     }
                 }
@@ -264,6 +274,9 @@ public class DateUtil {
             } else {
                 boolean b1 = belongCalendar(etime, booking.getBstime(), booking.getBetime());
                 if (b1) {
+                    bb = true;
+                }
+                if(etime.equals(booking.getEtime())){
                     bb = true;
                 }
             }
@@ -308,4 +321,21 @@ public class DateUtil {
         Date parse = sdf.parse(format);
         return parse;
     }
+
+    /**
+     * 获取一定时间后的日期
+     * @param date
+     * @return
+     * @throws ParseException
+     */
+    public static Date getDaysAfter(Date date) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(Calendar.DATE, CommenValue.MAX_NOBOOK_DAY);
+        String format = sdf.format(calendar.getTime());
+        Date parse = sdf.parse(format);
+        return parse;
+    }
+
 }

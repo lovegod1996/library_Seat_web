@@ -5,6 +5,7 @@ import com.xoqao.web.bean.booking.Booking;
 import com.xoqao.web.bean.booking.BookingSeat;
 import com.xoqao.web.bean.booking.SeatBookings;
 import com.xoqao.web.bean.building.Building;
+import com.xoqao.web.bean.deal.UnDeal;
 import com.xoqao.web.bean.floors.Floor;
 import com.xoqao.web.bean.news.Notice;
 import com.xoqao.web.bean.user.User;
@@ -22,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -55,6 +57,8 @@ public class admin_pageController {
 
     @Autowired
     private BuildingService buildingService;
+    @Autowired
+    private UndealService undealService;
 
     @RequestMapping("/index_Admin")
     public String index_Admin(Model model, HttpSession httpSession) throws Exception {
@@ -183,7 +187,7 @@ public class admin_pageController {
      * @throws Exception
      */
     @RequestMapping("/bookEmptSeat")
-    public String bookEmptSeat(Model model, String sno, String seatNum, String etime, HttpSession httpSession) throws Exception {
+    public String bookEmptSeat(Model model, String sno, String seatNum, String etime, HttpSession httpSession,RedirectAttributes  redirectAttributes) throws Exception {
         Integer disTime = DateUtil.getDisTime(new Date(), DateUtil.getDate(etime));
         if (disTime < CommenValue.MAX_LongTime) {
             Floor floor = (Floor) httpSession.getAttribute("admin"); //获取当前楼层信息
@@ -194,6 +198,7 @@ public class admin_pageController {
                 List<Booking> bookSeatBooking = bookingService.findBookSeatBooking(seatBynumber.getSid());
                 boolean checkbooksclash = DateUtil.checkbooksclash(bookSeatBooking, new Date(), DateUtil.getDate(etime));
                 if (checkbooksclash) {
+                    redirectAttributes.addFlashAttribute("error_msg", "您选择的时间段已经被占用");
                     model.addAttribute("error_msg", "您选择的时间段已经被占用");
                 } else {
                     Booking booking = new Booking();
@@ -207,9 +212,11 @@ public class admin_pageController {
                 }
             } else {
                 model.addAttribute("error_msg", "请注意开放场馆时间");
+                redirectAttributes.addFlashAttribute("error_msg", "请注意开放场馆时间");
             }
         } else {
             model.addAttribute("error_msg", "您选择的时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
+            redirectAttributes.addFlashAttribute("error_msg", "您选择的时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
         }
         return "redirect:/jsp/seat_In_Book?page=1";
     }
@@ -313,11 +320,11 @@ public class admin_pageController {
      * @throws Exception
      */
     @RequestMapping("/adSeatBookSub")
-    public String adSeatBook(Model model, String seatNum, String sno, String etime, Integer page, HttpSession httpSession) throws Exception {
+    public String adSeatBook(Model model, String seatNum, String sno, String etime, Integer page, HttpSession httpSession , RedirectAttributes redirectAttributes) throws Exception {
         Date date = DateUtil.getDate(etime);
         Integer disTime = DateUtil.getDisTime(new Date(), date);
         if (disTime > CommenValue.MAX_LongTime) {
-            model.addAttribute("error_msg", "您选择的时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
+            redirectAttributes.addFlashAttribute("error_msg", "您选择的时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
         } else {
             Seat seatBynumber = seatService.findSeatBynumber(seatNum);
             Booking booking = new Booking();
@@ -328,6 +335,7 @@ public class admin_pageController {
             booking.setStime(new Date());
             bookingService.insertbookingnow(booking);
         }
+
         return "redirect:/jsp/seat_In_Empty?page=1";
     }
 
@@ -352,11 +360,26 @@ public class admin_pageController {
             } else {   //他人释放
                 if (byid.getStatue() == 2) {   //判断是否已经是已经离开状态
                     Integer disTime1 = DateUtil.getDisTime(byid.getEtime(), new Date());
-                    if (disTime1 > CommenValue.MAX_TIME) {  //判断是否已经超时
-                        bookingService.updateDeal(1, 3, bid);
+                    if (disTime1 > byid.getDelay()) {  //判断是否已经超时
+                        bookingService.updateDeal(1, 3, bid);//添加失信
+                        /**
+                         * 失信处理
+                         */
+                        List<UnDeal> unDealCord = undealService.findUnDealCord(byid.getSno());
+                        if (unDealCord.size() > 0) {
+                            List<Booking> userBookDeal = bookingService.findUserBookDeal(byid.getSno(), 1, unDealCord.get(unDealCord.size() - 1).getRecord());
+                            if (userBookDeal.size() >= CommenValue.MAX_DEAL) {  //失信超过一定次数
+                                undealService.insertUndeal(byid.getSno(), new Date());
+                            }
+                        } else {
+                            List<Booking> finduserbookpromise = bookingService.finduserbookpromise(byid.getSno(), 1);
+                            if (finduserbookpromise.size() >= CommenValue.MAX_DEAL) {   //失信超过一定次数
+                                undealService.insertUndeal(byid.getSno(), new Date());
+                            }
+                        }
                     }
                 } else {
-                    bookingService.updateEtime(new Date(), 2, 0, 0, bid);
+                    bookingService.updateEtime(new Date(), 2, CommenValue.MAX_DELAY, 0, bid);
                 }
             }
         }

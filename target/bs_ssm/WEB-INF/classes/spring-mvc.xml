@@ -108,20 +108,20 @@
     </mvc:annotation-driven>
 
     <!--拦截器-->
-    <!--<mvc:interceptors>-->
-        <!--&lt;!&ndash;多个拦截器，顺序执行&ndash;&gt;-->
-        <!--&lt;!&ndash;登陆身份验证&ndash;&gt;-->
-        <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/**"/>-->
-            <!--<mvc:exclude-mapping path="/**/fonts/*"/>-->
-            <!--<mvc:exclude-mapping path="/**/*.css"/>-->
-            <!--<mvc:exclude-mapping path="/**/*.js"/>-->
-            <!--<mvc:exclude-mapping path="/**/*.png"/>-->
-            <!--<mvc:exclude-mapping path="/**/*.gif"/>-->
-            <!--<mvc:exclude-mapping path="/**/*.jpg"/>-->
-            <!--<mvc:exclude-mapping path="/**/*.jpeg"/>-->
-            <!--<bean class="com.xoqao.web.intercepter.LoginIntercepter">-->
-            <!--</bean>-->
-        <!--</mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
+    <mvc:interceptors>
+        <!--多个拦截器，顺序执行-->
+        <!--登陆身份验证-->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/**/fonts/*"/>
+            <mvc:exclude-mapping path="/**/*.css"/>
+            <mvc:exclude-mapping path="/**/*.js"/>
+            <mvc:exclude-mapping path="/**/*.png"/>
+            <mvc:exclude-mapping path="/**/*.gif"/>
+            <mvc:exclude-mapping path="/**/*.jpg"/>
+            <mvc:exclude-mapping path="/**/*.jpeg"/>
+            <bean class="com.xoqao.web.intercepter.LoginIntercepter">
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

@@ -86,7 +86,7 @@
                                                        target="mainFrame_SuperAdmin">增加座位</a>
                                                 </li>
                                                 <li>
-                                                    <a href="<%=request.getContextPath()%>/view/floorSeat?fid=${floor.fid}"
+                                                    <a href="<%=request.getContextPath()%>/view/floorSeatsList?fid=${floor.fid}"
                                                        target="mainFrame_SuperAdmin">查看座位</a>
                                                 </li>
                                                 <li>

@@ -38,7 +38,7 @@
 <body>
     <div class="btmbg">
         <div class="btm">
-         <p>郑州小桥科技有限公司 版权所有&nbsp;|&nbsp;(MyCodes.Net) all rights reserved 2002-2017 京ICP备05005711号</p>
+         <p>郑州小桥科技有限公司 版权所有&nbsp;|&nbsp;(MyCodes.Net) all rights reserved 2002-2017 豫ICP备********号</p>
         </div>
     </div>
 

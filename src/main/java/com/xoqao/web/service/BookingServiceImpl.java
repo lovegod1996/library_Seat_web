@@ -111,6 +111,11 @@ public class BookingServiceImpl implements BookingService {
         return finduserbookpromise;
     }
 
+    public List<Booking> findUserBookDeal(String sno, Integer deal, Date date) throws Exception {
+        List<Booking> userBookDeal = bookingMapper.findUserBookDeal(sno, deal, date);
+        return userBookDeal;
+    }
+
     public List<Booking> finduserbookpromisepage(String sno, Integer deal, Integer startRow, Integer pageSize) throws Exception {
         List<Booking> finduserbookpromisepage = bookingMapper.finduserbookpromisepage(sno, deal, startRow, pageSize);
         return finduserbookpromisepage;
@@ -184,5 +189,10 @@ public class BookingServiceImpl implements BookingService {
     public List<Booking> findsaomeWeekBookUser(Integer week, String sno) throws Exception {
         List<Booking> bookings = bookingMapper.findsaomeWeekBookUser(week, sno);
         return bookings;
+    }
+
+    public BookingSeat findNoLeaveBookSeat(String sno) throws Exception {
+        BookingSeat noLeaveBookSeat = bookingMapper.findNoLeaveBookSeat(sno);
+        return noLeaveBookSeat;
     }
 }

@@ -12,18 +12,20 @@ import java.util.List;
  * Email:dx96_j@163.com
  */
 public interface FloorService {
-    Floor findFloorBycount(String count)throws Exception;
+    Floor findFloorBycount(String count) throws Exception;
 
-    Floor findfloorByid( Integer fid)throws Exception;
+    Floor findfloorByid(Integer fid) throws Exception;
 
 
-    List<Floor> findfloorsBybid(Integer bid)throws Exception;
+    List<Floor> findfloorsBybid(Integer bid) throws Exception;
 
-    void insertFloors(Floor floor)throws Exception;
+    void insertFloors(Floor floor) throws Exception;
 
-    void deletefloor( Integer fid)throws Exception;
+    void deletefloor(Integer fid) throws Exception;
 
-    void updateFloor( Floor floor) throws Exception;
+    void updateFloor(Floor floor) throws Exception;
 
-    void updateStatueByid( Integer statue, Integer fid)throws Exception;
+    void updateStatueByid(Integer statue, Integer fid) throws Exception;
+
+    void updatePassword(String password, Integer fid) throws Exception;
 }
