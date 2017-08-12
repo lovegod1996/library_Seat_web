@@ -201,7 +201,7 @@ public class admin_pageController {
                 boolean checkbooksclash = DateUtil.checkbooksclash(bookSeatBooking, new Date(), DateUtil.getDate(etime));
                 if (checkbooksclash) {
                     redirectAttributes.addFlashAttribute("error_msg", "您选择的时间段已经被占用");
-                    model.addAttribute("error_msg", "您选择的时间段已经被占用");
+//                    model.addAttribute("error_msg", "您选择的时间段已经被占用");
                 } else {
                     User userBySno = userService.findUserBySno(sno);
                     if(userBySno!=null){
@@ -220,11 +220,11 @@ public class admin_pageController {
                     }
                 }
             } else {
-                model.addAttribute("error_msg", "请注意开放场馆时间");
+//                model.addAttribute("error_msg", "请注意开放场馆时间");
                 redirectAttributes.addFlashAttribute("error_msg", "请注意开放场馆时间");
             }
         } else {
-            model.addAttribute("error_msg", "您选择的时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
+//            model.addAttribute("error_msg", "您选择的时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
             redirectAttributes.addFlashAttribute("error_msg", "您选择的时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
         }
         return "redirect:/jsp/seat_In_Book?page=1";

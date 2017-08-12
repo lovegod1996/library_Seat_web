@@ -200,7 +200,7 @@ public class Admin_Controller {
         } else {
             seatService.updateSeatSatue(0, sid);
         }
-        return "redirect:/view/floorSeat?page=1&fid=" + fid;
+        return "redirect:/view/floorSeatsList?page=1&fid=" + fid;
     }
 
     /**
@@ -214,11 +214,12 @@ public class Admin_Controller {
     @RequestMapping("/deleteSeat")
     public String deleteSeat(Model model, Integer sid, Integer fid) throws Exception {
         seatService.deleteSeat(sid);
-        return "redirect:/view/floorSeat?page=1&fid=" + fid;
+        return "redirect:/view/floorSeatsList?page=1&fid=" + fid;
     }
 
     /**
      * 查看下载二维码
+     *
      * @param model
      * @param seatNumber
      * @param httpServletResponse
@@ -245,7 +246,7 @@ public class Admin_Controller {
         } else {
             leftside = "右";
         }
-        info.setDesc(buildingById.getEmployer() + "\n       " + floor.getEmployer() +"\n                    "+leftside + "侧" + seatBynumber.getRow() + "排" + seatBynumber.getColumns() + "列");
+        info.setDesc(buildingById.getEmployer() + "\n       " + floor.getEmployer() + "\n                    " + leftside + "侧" + seatBynumber.getRow() + "排" + seatBynumber.getColumns() + "列");
         //info.setLogoDesc("一叶浮萍归大海，adsasfbhtjg人生何处不相逢");
         //info.setLogoDesc("一叶浮萍");
 //        creator.createCodeImage(info, CommenValue.CODEPATH + seatBynumber.getSeatnumber() + "." + info.getFormat());
@@ -271,7 +272,11 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/addSeatSub")
-    public String Seatadd(Model model, Integer left, Integer row, Integer column, String mark, Integer fid, HttpServletResponse httpServletResponse,RedirectAttributes  redirectAttributes) throws Exception {
+    public String Seatadd(Model model, Integer left, Integer row, Integer column, String mark, Integer fid, HttpServletResponse httpServletResponse, RedirectAttributes redirectAttributes) throws Exception {
+
+        if(left!=null&&row!=null&&column!=null&&fid!=null){
+
+
         Floor floor = floorService.findfloorByid(fid);
         //添加座位前需要先查看每周的开放时间是否已经设置完成
         List<WeekOpen> weekOpens = weekOpenService.findweekByfid(floor.getFid());
@@ -307,7 +312,7 @@ public class Admin_Controller {
             } else {
                 leftside = "右";
             }
-            info.setDesc(buildingById.getEmployer() + "\n       " + floor.getEmployer() +"\n                  "+leftside + "侧" + seat.getRow() + "排" + seat.getColumns() + "列");
+            info.setDesc(buildingById.getEmployer() + "\n       " + floor.getEmployer() + "\n                  " + leftside + "侧" + seat.getRow() + "排" + seat.getColumns() + "列");
             //info.setLogoDesc("一叶浮萍归大海，adsasfbhtjg人生何处不相逢");
             //info.setLogoDesc("一叶浮萍");
 //            creator.createCodeImage(info, CommenValue.CODEPATH + number + "." + info.getFormat());
@@ -320,10 +325,16 @@ public class Admin_Controller {
             outputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
+            model.addAttribute("fid", fid);
             model.addAttribute("error_msg", "该座位已存在");
             return "admin_page/Managing_Seat";
         }
         return "redirect:/view/floorSeat?page=1&fid=" + fid;
+        }else{
+            model.addAttribute("fid", fid);
+            model.addAttribute("error_msg", "请选择必要的参数");
+            return "admin_page/Managing_Seat";
+        }
     }
 
     /**
