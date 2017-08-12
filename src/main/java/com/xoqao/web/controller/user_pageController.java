@@ -289,6 +289,7 @@ public class user_pageController {
     @RequestMapping("/bookSeatUserSub")
     public String bookSeatUserSub(Model model, String seatNum, String stime, String etime, Integer day, HttpSession httpSession,RedirectAttributes redirectAttributes) throws Exception {
         User user = (User) httpSession.getAttribute("user");
+
         Seat seatBynumber = seatService.findSeatBynumber(seatNum);
         Floor floor = floorService.findfloorByid(seatBynumber.getFid());
 

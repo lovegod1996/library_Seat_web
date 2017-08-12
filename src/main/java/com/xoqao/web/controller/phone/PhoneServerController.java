@@ -346,7 +346,6 @@ public class PhoneServerController {
                                 map.put("message", "您选择的时间段已经被占用");
                                 map.put("data", null);
                             }
-
                         }
                     }
                 } else {
@@ -447,7 +446,7 @@ public class PhoneServerController {
                                     undealService.insertUndeal(sno, new Date());
                                 }
                             }
-                        }else{
+                        } else {
                             bookingService.deleteByid(noLeaveBookSeat.getBid());
                         }
                         break;
@@ -1000,11 +999,72 @@ public class PhoneServerController {
             seatCusBookTime.setFloorTheme(floor.getEmployer());
             Building buildingById = buildingService.findBuildingById(floor.getBid());
             seatCusBookTime.setBuilding(buildingById.getEmployer());
-            seatCusBookTime.setStime(new Date());
-            seatCusBookTime.setEtime(DateUtil.getTwoOursAfter());
-            map.put("code", 0);
-            map.put("message", "成功");
-            map.put("data", seatCusBookTime);
+            WeekOpen weekOpen = weekOpenService.findopenFloorday(seatCusBookTime.getFid(), 1);
+            Integer weekOpenDiten = DateUtil.getWeekOpenDiten(weekOpen, new Date());
+            switch (weekOpenDiten) {
+                case 0:
+                    Date weekOpentime = DateUtil.getWeekOpentime(weekOpen, 1, 1);
+                    seatCusBookTime.setStime(weekOpentime);
+                    Integer weekOpenDiten1 = DateUtil.getWeekOpenDiten(weekOpen, DateUtil.getTwoOursAfter(weekOpentime));
+                    if (weekOpenDiten1 == 1) {
+                        seatCusBookTime.setEtime(DateUtil.getTwoOursAfter(weekOpentime));
+                    } else {
+                        seatCusBookTime.setEtime(DateUtil.getWeekOpentime(weekOpen, 1, 2));
+                    }
+                    map.put("code", 0);
+                    map.put("message", "成功");
+                    map.put("data", seatCusBookTime);
+                    break;
+                case 1:
+                    seatCusBookTime.setStime(new Date());
+                    Integer weekOpenDiten2 = DateUtil.getWeekOpenDiten(weekOpen, DateUtil.getTwoOursAfter(new Date()));
+                    if (weekOpenDiten2 == 1) {
+                        seatCusBookTime.setEtime(DateUtil.getTwoOursAfter(new Date()));
+                    } else {
+                        seatCusBookTime.setEtime(DateUtil.getWeekOpentime(weekOpen, 1, 2));
+                    }
+                    map.put("code", 0);
+                    map.put("message", "成功");
+                    map.put("data", seatCusBookTime);
+                    break;
+                case 2:
+                    if (weekOpen.getParam2() != null) {
+                        seatCusBookTime.setStime(DateUtil.getWeekOpentime(weekOpen, 2, 1));
+                        Integer weekOpenDiten3 = DateUtil.getWeekOpenDiten(weekOpen, DateUtil.getTwoOursAfter(DateUtil.getWeekOpentime(weekOpen, 2, 1)));
+                        if (weekOpenDiten3 == 3) {
+                            seatCusBookTime.setEtime(DateUtil.getTwoOursAfter(DateUtil.getWeekOpentime(weekOpen, 2, 1)));
+                        } else {
+                            seatCusBookTime.setEtime(DateUtil.getWeekOpentime(weekOpen, 2, 2));
+                        }
+                        map.put("code", 0);
+                        map.put("message", "成功");
+                        map.put("data", seatCusBookTime);
+                    } else {
+                        map.put("code", 2);
+                        map.put("message", "当前时间没有空闲");
+                        map.put("data", null);
+                    }
+                    break;
+                case 3:
+                    seatCusBookTime.setStime(new Date());
+                    Integer weekOpenDiten4 = DateUtil.getWeekOpenDiten(weekOpen, DateUtil.getTwoOursAfter(new Date()));
+                    if (weekOpenDiten4 == 3) {
+                        seatCusBookTime.setEtime(DateUtil.getTwoOursAfter(new Date()));
+                    } else {
+                        seatCusBookTime.setEtime(DateUtil.getWeekOpentime(weekOpen, 2, 2));
+                    }
+                    map.put("code", 0);
+                    map.put("message", "成功");
+                    map.put("data", seatCusBookTime);
+                    break;
+                case 4:
+                    map.put("code", 2);
+                    map.put("message", "当前时间没有空闲");
+                    map.put("data", null);
+                    break;
+                default:
+                    break;
+            }
             return map;
         } else {
             map.put("code", 1);

@@ -79,7 +79,7 @@
                             <div class="radio" style="float: left">
                                 <label>
                                     <input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="1"
-                                           checked>楼层管理员
+                                           checked>场馆管理员
                                 </label>
                                 <label>
                                     <input type="radio" name="optionsRadiosinline" id="optionsRadios2" value="2">图书馆管理员

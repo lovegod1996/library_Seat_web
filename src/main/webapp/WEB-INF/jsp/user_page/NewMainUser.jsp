@@ -75,6 +75,13 @@
             margin-left: -18px;
             margin-right: -18px;
         }
+        .carousel-control {
+            opacity: 0;
+        }
+        .carousel-control:focus, .carousel-control:hover {
+            color: rgb(141, 165, 177);
+            opacity: 0.1;
+        }
     </style>
 </head>
 <body>
@@ -129,7 +136,7 @@
             <div class="panel-heading">
                 <i class="fa fa-bell fa-fw"></i> 公告
 
-            <a href="<%=request.getContextPath()%>/jsp/news_List_Admin" target="mainFrame_User"
+            <a href="<%=request.getContextPath()%>/jsp/news_List_User" target="mainFrame_User"
                style="float:right;">查看更多&nbsp;> </a>
             </div>
             <!-- /.panel-heading -->
