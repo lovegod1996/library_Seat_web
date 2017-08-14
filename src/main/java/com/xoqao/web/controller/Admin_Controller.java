@@ -15,6 +15,7 @@ import com.xoqao.web.commen.CommenValue;
 import com.xoqao.web.service.*;
 import com.xoqao.web.utils.CodeCreator;
 import com.xoqao.web.utils.DateUtil;
+import com.xoqao.web.utils.MD5Util;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -494,7 +495,7 @@ public class Admin_Controller {
         user.setClasses(classes);
         user.setMajor(major);
         user.setCollege(college);
-        user.setPassword("123456");
+        user.setPassword(MD5Util.encode(sno.substring(sno.length()-6,sno.length())));
         user.setSno(sno);
         user.setName(name);
         try {

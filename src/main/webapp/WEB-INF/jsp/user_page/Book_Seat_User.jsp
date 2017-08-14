@@ -120,6 +120,7 @@
 
         .LeftView {
             width: 65%;
+            height: 100%;
             margin-right: 20px;
         }
 
@@ -145,6 +146,7 @@
         body {
             background-color: #eff3f8;
             margin-top: 15px;
+            height: 100%;
         }
         .panel-default>.panel-heading {
             color: #5c9bd1;
