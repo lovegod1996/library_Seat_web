@@ -147,7 +147,9 @@
                                 </table>
                             </td>
                             <td>
-                                <a href="<%=request.getContextPath()%>/view/deleteAdmin?aid=${admin.aid}" style="color:red;">删除</a>
+                                <c:if test="${admin.admin==0}">
+                                    <a href="<%=request.getContextPath()%>/view/deleteAdmin?aid=${admin.aid}" style="color:red;">删除</a>
+                                </c:if>
                             </td>
                         </tr>
                     </c:forEach>

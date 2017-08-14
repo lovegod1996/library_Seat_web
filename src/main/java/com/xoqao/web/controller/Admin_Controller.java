@@ -291,7 +291,7 @@ public class Admin_Controller {
         seat.setFid(floor.getFid());
         seat.setLeftside(left);
         seat.setRow(row);
-        String number = floor.getBid() + String.format("%02d", floor.getFloor()) + left + String.format("%02d", row) + String.format("%02d", column);
+        String number = floor.getBid() + String.format("%02d", floor.getFloor())+String.format("%02d",floor.getFid())+ left + String.format("%02d", row) + String.format("%02d", column);
         seat.setSeatnumber(number);
         try {
             seatService.insertSeat(seat);

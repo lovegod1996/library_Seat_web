@@ -7,7 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27eb40c9-198f-4615-8ccf-e9302682d220" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/commen/CommenValue.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/commen/CommenValue.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/Admin_Controller.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/Admin_Controller.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/commen/CommenValue.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/commen/CommenValue.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/Admin_Controller.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/Admin_Controller.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/commen/CommenValue.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/commen/CommenValue.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Admin.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Admin.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/superadmin_page/Managing_Admin.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/superadmin_page/Managing_Admin.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,7 +26,50 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="Managing_Admin.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Admin.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3105">
+              <caret line="153" column="29" lean-forward="false" selection-start-line="153" selection-start-column="29" selection-end-line="153" selection-end-column="29" />
+              <folding>
+                <element signature="n#style#0;n#a#0;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Managing_Seat.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Managing_Seat.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="41" column="86" lean-forward="false" selection-start-line="41" selection-start-column="86" selection-end-line="41" selection-end-column="86" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Admin_Controller.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1321">
+              <caret line="300" column="45" lean-forward="true" selection-start-line="300" selection-start-column="45" selection-end-line="300" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommenValue.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/commen/CommenValue.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -48,7 +99,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Header_Admin.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_List_Admin.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/commen/CommenValue.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin/AdminController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/utils/DateUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java" />
@@ -63,8 +113,10 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Main_Admin.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Floor_SuperAdmin.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin_pageController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/News_Content.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Admin.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/commen/CommenValue.java" />
       </list>
     </option>
   </component>
@@ -496,7 +548,7 @@
       <workItem from="1502529502028" duration="3299000" />
       <workItem from="1502541932927" duration="3713000" />
       <workItem from="1502586756895" duration="733000" />
-      <workItem from="1502673647820" duration="57000" />
+      <workItem from="1502673647820" duration="3327000" />
     </task>
     <task id="LOCAL-00001" summary="修改当前预约推荐时间段问题">
       <created>1502511097424</created>
@@ -526,17 +578,25 @@
       <option name="project" value="LOCAL" />
       <updated>1502546736585</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="修改座位控制消失，周日期添加重复等问题">
+      <created>1502673716764</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1502673716764</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28869000" />
+    <option name="totallyTimeSpent" value="32139000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -557,12 +617,11 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42938498" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42938498" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -610,20 +669,30 @@
           <properties />
           <option name="timeStamp" value="152" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java</url>
+          <line>283</line>
+          <properties />
+          <option name="timeStamp" value="176" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java</url>
+          <line>327</line>
+          <properties />
+          <option name="timeStamp" value="180" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java</url>
+          <line>328</line>
+          <properties />
+          <option name="timeStamp" value="182" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="175" />
+      <option name="time" value="186" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/BuildingAdmin_Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Public_Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
@@ -772,13 +841,6 @@
             <marker date="1502076343826" expanded="true" signature="3328:3420" ph="SELECT DISTI... user" />
             <marker date="1502076343826" expanded="true" signature="3554:3731" ph="SELECT uid,n... user" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/commen/CommenValue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="35" column="7" lean-forward="false" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -945,14 +1007,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Admin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Index_SuperAdmin.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="782">
@@ -1056,14 +1110,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7038">
-          <caret line="335" column="36" lean-forward="false" selection-start-line="335" selection-start-column="36" selection-end-line="335" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/News_Content.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -1080,14 +1126,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Managing_Seat.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="112" column="10" lean-forward="true" selection-start-line="112" selection-start-column="10" selection-end-line="112" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_List_Admin.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
@@ -1100,6 +1138,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1426">
           <caret line="254" column="26" lean-forward="true" selection-start-line="254" selection-start-column="26" selection-end-line="254" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_User_SuperAdmin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Admin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3105">
+          <caret line="153" column="29" lean-forward="false" selection-start-line="153" selection-start-column="29" selection-end-line="153" selection-end-column="29" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Managing_Seat.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="41" column="86" lean-forward="false" selection-start-line="41" selection-start-column="86" selection-end-line="41" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/commen/CommenValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1321">
+          <caret line="300" column="45" lean-forward="true" selection-start-line="300" selection-start-column="45" selection-end-line="300" selection-end-column="45" />
           <folding />
         </state>
       </provider>
