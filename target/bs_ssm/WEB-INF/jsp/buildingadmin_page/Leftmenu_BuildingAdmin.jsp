@@ -41,7 +41,9 @@
             margin: 0 10px;
             color: #4d5b69;
         }
-  
+        a:focus, a:hover {
+            color: #d9534f;
+        }
     </style>
 </head>
 <body>
