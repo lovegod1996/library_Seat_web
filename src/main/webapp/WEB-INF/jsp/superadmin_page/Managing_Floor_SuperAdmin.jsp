@@ -45,6 +45,21 @@
             z-index: 1002;
             overflow: auto;
         }
+        .layui-btn {
+            background-color: #5c9bd1;
+        }
+        body {
+            background-color: #eff3f8;
+            margin-top: 15px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
+        }
+        .layui-table thead tr {
+            background-color: #eff3f8;
+        }
     </style>
 
     <script language="javascript">
@@ -59,6 +74,9 @@
             document.getElementById("floorid").value = tb1.rows[tr1.rowIndex].cells[0].value;
         }
     </script>
+    <style>
+
+    </style>
 </head>
 <body>
 <div class="layui-tab">
@@ -100,8 +118,8 @@
                                         document.getElementById('fade').style.display='block';getTableContent(this)">编辑
                                 </button>
                                 <c:if test="${floor.statue==0}">
-                                    <a href="<%=request.getContextPath()%>/view/admin/changeFloor?fid=${floor.fid}&&statue=${floor.statue}">关闭</a> </c:if>
-                                <c:if test="${floor.statue==1}"><a href="<%=request.getContextPath()%>/view/admin/changeFloor?fid=${floor.fid}&&statue=${floor.statue}">开馆</a> </c:if>
+                                    <a href="<%=request.getContextPath()%>/view/admin/changeFloor?fid=${floor.fid}&&statue=${floor.statue}" class="layui-btn layui-btn-small">关闭</a> </c:if>
+                                <c:if test="${floor.statue==1}"><a href="<%=request.getContextPath()%>/view/admin/changeFloor?fid=${floor.fid}&&statue=${floor.statue}" class="layui-btn layui-btn-small">开馆</a> </c:if>
                                 <a href="<%=request.getContextPath()%>/view/deletefloor?bid=${building.bid}&&fid=${floor.fid}" class="layui-btn layui-btn-small">删除</a>
                             </td>
                         </tr>
