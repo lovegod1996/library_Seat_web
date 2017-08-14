@@ -32,8 +32,6 @@ import java.util.Map;
 @RequestMapping("/view")
 public class User_Controller {
 
-    @Autowired
-    private UserLearnService userLearnService;
 
     @Autowired
     private UserService userService;

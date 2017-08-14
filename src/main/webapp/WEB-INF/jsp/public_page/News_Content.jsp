@@ -40,13 +40,13 @@
         ${notice.content}
       </p>
 </div>
-<div class="content_bootom">
-    <c:if test="${notice.nid!=1}">
-        <span>上一篇</span>&nbsp;<a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${notice.nid-1}">点我就是上一篇</a>
-    </c:if>
-    <br>
-    <span>下一篇</span>&nbsp;<a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${notice.nid+1}">点我就是下一篇</a>
-</div>
+<%--<div class="content_bootom">--%>
+    <%--<c:if test="${notice.nid!=1}">--%>
+        <%--<span>上一篇</span>&nbsp;<a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${notice.nid-1}">点我就是上一篇</a>--%>
+    <%--</c:if>--%>
+    <%--<br>--%>
+    <%--<span>下一篇</span>&nbsp;<a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${notice.nid+1}">点我就是下一篇</a>--%>
+<%--</div>--%>
 
 <script type="text/javascript">
     <c:if test="${!empty error_msg}">alert("${error_msg}");</c:if>

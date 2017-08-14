@@ -65,7 +65,7 @@
         .Roundseat {
             width: 25%;
             /*height: 40px;*/
-            background-color: #316CB2;
+            background-color: #8fe2fc;
             text-align: center;
             padding: 10px;
             color: #ffffff;
@@ -77,9 +77,10 @@
             width: 100%;
             height: 100%;
             background: transparent;
-            color: #ffffff;
+            color: #6c5c32;
         }
         .TheFloor:hover{color: #ffffff}
+
     </style>
     <script>
         $(function () {

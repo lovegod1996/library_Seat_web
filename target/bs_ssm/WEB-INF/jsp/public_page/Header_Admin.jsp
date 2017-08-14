@@ -24,7 +24,48 @@
     <!-- Custom Fonts -->
     <link href="<%= request.getContextPath()%>/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet"
           type="text/css">
-
+    <style>
+        body {
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+        body {
+            background-color: #4d5b69;
+        }
+        .navbar-default {
+            background-color: #4d5b69;
+            border-color: #e7e7e7;
+        }
+        .navbar-default .navbar-brand {
+            color: #fff;
+        }
+        .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+            color: #4d5b69;
+            background-color: #4d5b69;
+        }
+        html {
+            font-size: 10px;
+            background-color: #eff3f8;
+        }
+        .navbar-default .navbar-brand:hover {
+            color: #ffffff;
+            background-color: transparent;
+        }
+        .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+            color: #ffffff;
+            background-color: #4d5b69;
+        }
+        a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .navbar-default .navbar-nav>li>a {
+            color: #fff;
+        }
+        .navbar-default .navbar-nav>li>a:hover {
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
 <div id="wrapper">
@@ -36,8 +77,7 @@
         </div>
         <div class="navbar-header">
             <a class="navbar-brand" href="<%=request.getContextPath()%>/jsp/index_Admin" target="_parent">图书馆座位预约系统</a>
-            <a class="navbar-brand" href="<%=request.getContextPath()%>/index.jsp" target="_parent"
-               style="color:#337AB7">用户首页</a>
+            <a class="navbar-brand" href="<%=request.getContextPath()%>/index.jsp" target="_parent">用户首页</a>
         </div>
         <!-- /.navbar-header -->
 

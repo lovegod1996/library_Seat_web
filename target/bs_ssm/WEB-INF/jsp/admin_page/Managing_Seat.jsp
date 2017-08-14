@@ -19,6 +19,15 @@
         .layui-input-block {
             width: 250px;
         }
+        body {
+            background-color: #eff3f8;
+            margin-top: 15px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
+        }
     </style>
 </head>
 <body>
@@ -93,7 +102,7 @@
                     </div>
                 </div>
                 <div class="layui-form-item" style="text-align: center">
-                    <button class="layui-btn" type="submit">添加座位</button>
+                    <button class="layui-btn" type="submit" style="background-color: #5c9bd1;">添加座位</button>
                 </div>
             </form>
         </div>

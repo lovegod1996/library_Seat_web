@@ -20,14 +20,14 @@
     </select>
     <!--获取当前已经入座的座位-->
     <select id="findSeatInSeat" resultType="com.xoqao.web.bean.booking.BookingSeat">
-     SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.deal,seat.fid,seat.leftside,seat.row,seat.columns,seat.seatnumber
+     SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.delay,booking.deal,seat.fid,seat.leftside,seat.row,seat.columns,seat.seatnumber
      FROM booking,seat
      WHERE  TO_DAYS(NOW())=TO_DAYS(booking.stime)  AND booking.statue !=0 AND booking.statue !=3 AND booking.sid=seat.sid AND seat.fid=#{fid}
      ORDER BY  seat.sid
     </select>
 
     <select id="findSeatInSeatPage" resultType="com.xoqao.web.bean.booking.BookingSeat">
-        SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.deal,seat.fid,seat.leftside,seat.row,seat.columns,seat.seatnumber
+        SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.delay,booking.deal,seat.fid,seat.leftside,seat.row,seat.columns,seat.seatnumber
         FROM booking,seat
         WHERE  TO_DAYS(NOW())=TO_DAYS(booking.stime)  AND booking.statue !=0 AND booking.statue !=3 AND booking.sid=seat.sid AND seat.fid=#{fid}
         ORDER BY  seat.sid
@@ -36,7 +36,7 @@
 
     <!--获取还未离开的最近预约-->
     <select id="findNoLeaveBookSeat" resultType="com.xoqao.web.bean.booking.BookingSeat">
-        SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.deal,seat.fid,seat.leftside,seat.row,seat.columns,seat.seatnumber
+        SELECT booking.bid,booking.sno,booking.bstime,booking.betime,booking.sid,booking.stime,booking.etime,booking.statue,booking.delay,booking.deal,seat.fid,seat.leftside,seat.row,seat.columns,seat.seatnumber
         FROM booking,seat
         WHERE   booking.statue !=3 AND booking.sid=seat.sid AND booking.sno LIKE '${sno}'
         ORDER BY  booking.bstime  limit 0,1
@@ -63,13 +63,13 @@
     <select id="findBookSeatBooking" resultType="com.xoqao.web.bean.booking.Booking">
         SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
         FROM booking
-        WHERE   sid=#{sid}  AND TO_DAYS(NOW())=TO_DAYS(bstime)  AND  UNIX_TIMESTAMP(betime)-UNIX_TIMESTAMP(NOW()) &gt; 0
+        WHERE   sid=#{sid}  AND TO_DAYS(NOW())=TO_DAYS(bstime)  AND statue !=3   AND  UNIX_TIMESTAMP(betime)-UNIX_TIMESTAMP(NOW()) &gt; 0
     </select>
 
     <select id="findBookSeatBookingday" resultType="com.xoqao.web.bean.booking.Booking">
         SELECT bid,sno,bstime,betime,sid,stime,etime,statue,deal,delay
         FROM booking
-        WHERE   sid=#{sid}  AND TO_DAYS(NOW())+#{day}=TO_DAYS(bstime)  AND  UNIX_TIMESTAMP(betime)-UNIX_TIMESTAMP(NOW()) &gt; 0
+        WHERE   sid=#{sid}  AND TO_DAYS(NOW())+#{day}=TO_DAYS(bstime) AND statue !=3  AND  UNIX_TIMESTAMP(betime)-UNIX_TIMESTAMP(NOW()) &gt; 0
     </select>
 
     <!--添加预约记录-->

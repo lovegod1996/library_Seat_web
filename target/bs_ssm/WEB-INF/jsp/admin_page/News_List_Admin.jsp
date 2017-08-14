@@ -38,6 +38,11 @@
         .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
             background-color: #5c9bd1;
         }
+        .col-sm-12 {
+            width: 90%;
+            margin: 15px 140px;
+            margin-left: 5%;
+        }
     </style>
 </head>
 <body>

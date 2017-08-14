@@ -49,7 +49,7 @@
         .btn-block {
             display: block;
             width: 60%;
-            margin: 30px auto;
+            margin: 60px auto 0 auto;
         }
         .panel-default {
             border-color: #91dcf6;
@@ -79,7 +79,7 @@
                             <div class="radio" style="float: left">
                                 <label>
                                     <input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="1"
-                                           checked>楼层管理员
+                                           checked>场馆管理员
                                 </label>
                                 <label>
                                     <input type="radio" name="optionsRadiosinline" id="optionsRadios2" value="2">图书馆管理员
@@ -92,7 +92,7 @@
                                 <label>
                                     <input name="remember" type="checkbox" value="Remember Me">记住我
                                 </label>
-                            </div>
+                            </div><br>
                             <%--<div class="fogetPwd" style="float: left">--%>
                                 <%--<a data-method="notice" class="layui-btn layui-btn-mini" target="_parent">忘记密码?</a>--%>
                             <%--</div>--%>

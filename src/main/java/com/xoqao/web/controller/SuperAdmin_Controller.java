@@ -173,12 +173,16 @@ public class SuperAdmin_Controller {
     @RequestMapping("/admin/adbuilding")
     public String adBuilding(Model model, String libaray, String admin) throws Exception {
         List<Building> allBuilding = buildingService.findAllBuilding();
-        Building building1 = allBuilding.get(allBuilding.size() - 1);
+        Building building = new Building();
         Calendar a = Calendar.getInstance();
         Integer year = a.get(Calendar.YEAR);
         Random random = new Random();
-        Building building = new Building();
-        building.setAccountnumber(year + "" + random.nextInt(100) + "" + (building1.getBid() + 1));
+        if(allBuilding.size()>0){
+            Building building1 = allBuilding.get(allBuilding.size() - 1);
+            building.setAccountnumber(year + "" + random.nextInt(100) + "" + (building1.getBid() + 1));
+        }else{
+            building.setAccountnumber(year + "" + random.nextInt(100) + "" + 1);
+        }
         building.setEmployer(libaray);
         building.setName(admin);
         building.setPassword("123456");

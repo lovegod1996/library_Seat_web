@@ -5,6 +5,7 @@ import com.xoqao.web.bean.booking.BookingSeat;
 import com.xoqao.web.bean.seat.Seat;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.awt.print.Book;
@@ -18,6 +19,7 @@ import java.util.List;
  * Email:dx96_j@163.com
  */
 @Service
+@Transactional
 public interface BookingMapper {
 
     /**
@@ -71,6 +73,7 @@ public interface BookingMapper {
      * @param booking
      * @throws Exception
      */
+    @Transactional
     void insertbooking(@Param("booking") Booking booking) throws Exception;
 
     /**
@@ -79,6 +82,7 @@ public interface BookingMapper {
      * @param booking
      * @throws Exception
      */
+    @Transactional
     void insertbookingnow(@Param("booking") Booking booking) throws Exception;
 
     /**

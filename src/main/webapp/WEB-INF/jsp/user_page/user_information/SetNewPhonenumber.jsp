@@ -22,6 +22,7 @@
         body {
             width: 50%;
             margin-left: 20%;
+            background-color: #f1f3fa;
         }
 
         .content_title {
@@ -36,6 +37,14 @@
             width: 100px;
             margin-left: 30%;
             margin-top: 50px;
+        }
+        .layui-btn {
+            background-color: #31c7b2;
+        }
+        .layui-btn-primary {
+            border: 1px solid #44cbb9;
+            background-color: #44cbb9;
+            color: #fff;
         }
     </style>
 </head>
@@ -55,7 +64,7 @@
     <div class="form-group" style="margin-top: 10px">
         <label class="col-sm-3 layui-form-label">验证码</label>
         <div class="col-sm-7">
-            <input type="text" class="layui-input" id="checkcode" placeholder="输入" style="width: 120px;float: left" onblur="checkCode()">
+            <input type="text" class="layui -input" id="checkcode" placeholder="输入" style="width: 120px;float: left" onblur="checkCode()">
             <input type="button" class="layui-btn layui-btn-primary" value="点击发送验证码"
                    style="width: 120px;float: left;margin-left: 10px"
                    onclick="sendCode(this)"/>

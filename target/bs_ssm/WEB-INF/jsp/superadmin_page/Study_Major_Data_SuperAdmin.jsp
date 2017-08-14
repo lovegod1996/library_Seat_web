@@ -28,6 +28,25 @@
     <%--return buildingname;--%>
     <%--}--%>
     <%--</script>--%>
+    <style>
+        body {
+            background-color: #eff3f8;
+            margin-top: 15px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
+        }
+        .layui-table thead tr {
+            background-color: #eff3f8;
+        }
+        .layui-table {
+            width: 90%;
+            margin: 10px 5%;
+            background-color: #fff;
+        }
+    </style>
 </head>
 <body>
 <div class="layui-tab">

@@ -73,6 +73,29 @@
             width: 100%;
             height: 100%;
         }
+        #wrapper {
+            width: 100%;
+            margin-left: -60px;
+        }
+         .layui-nav-tree .layui-this, {
+            background-color: #31c7b2;
+            color: #fff;
+        }
+        .layui-nav {
+            background-color: #707b88;
+        }
+        body {
+            width: 60%;
+            margin-left: 20%;
+            background-color: #f1f3fa;
+        }
+        .user_msg {
+            height: 50px;
+            float: left;
+            width: 800px;
+            margin-top: 25px;
+            margin-left:20px;
+        }
     </style>
     <script type="text/javascript">
         function preview(file) {
@@ -92,28 +115,23 @@
 </head>
 <body>
 <div id="wrapper">
-    <div class="row">
-        <div class="user_img" style="text-align: center;display:table-cell; vertical-align:middle;">
-            <p>
-            <div class="imgCom" id="preview"></div>
-            </p>
-            <p><a href="javascript:;" class="upload" style="margin-top: 20px">点击上传
-                <input class="change" type="file" multiple="multiple" onchange="preview(this)"/></a></p>
-        </div>
-        <div class="user_msg">
-            <label class="control-label">姓名</label><label class="control-label"
-                                                          style="margin-left: 20px">${users.name}</label><br>
-            <label class="control-label">学号</label><label class="control-label"
-                                                          style="margin-left: 20px">${users.sno}</label><br>
-            <label class="control-label">学院</label><label class="control-label"
-                                                          style="margin-left: 20px">${users.college}</label><br>
-            <label class="control-label">专业</label><label class="control-label"
-                                                          style="margin-left: 20px">${users.major}</label><br>
-            <label class="control-label">班级</label><label class="control-label"
-                                                          style="margin-left: 20px">${users.classes}</label><br>
 
-        </div>
+    <div class="row">
+                <div class="user_msg">
+                    <label class="control-label">姓名：</label><label class="control-label"
+                                                                   style="">${users.name}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label class="control-label">学号：</label><label class="control-label"
+                                                                   style="">${users.sno}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label class="control-label">学院：</label><label class="control-label"
+                                                                   style="">${users.college}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label class="control-label">专业：</label><label class="control-label"
+                                                                   style="">${users.major}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label class="control-label">班级：</label><label class="control-label"
+                                                                   style="">${users.classes}&nbsp;&nbsp;&nbsp;&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+
     </div>
+
 
     <table class="table">
         <caption style="text-align: center">查看每周的预约数据</caption>
@@ -139,118 +157,6 @@
 
     <!-- EChart 显示各楼层座位状态-->
     <div id="main" style="width: 100%;height:400px;"></div>
-    <%--<div class="row">--%>
-        <%--<div class="layui-tab">--%>
-            <%--<ul class="layui-tab-title">--%>
-                <%--<li class="layui-this">天视图</li>--%>
-                <%--<li>周视图</li>--%>
-                <%--<li>月视图</li>--%>
-                <%--<li>学年视图</li>--%>
-            <%--</ul>--%>
-            <%--<div class="layui-tab-content">--%>
-                <%--&lt;%&ndash; 一页&ndash;%&gt;--%>
-                <%--<div class="layui-tab-item layui-show">--%>
-                    <%--<table class="layui-table" lay-even="" lay-skin="nob">--%>
-                        <%--<colgroup>--%>
-                            <%--<col width="150">--%>
-                            <%--<col width="150">--%>
-                            <%--<col width="200">--%>
-                            <%--<col>--%>
-                        <%--</colgroup>--%>
-                        <%--<thead>--%>
-                        <%--<tr>--%>
-                            <%--<th>预约次数</th>--%>
-                            <%--<th>不良记录</th>--%>
-                            <%--<th>时间统计</th>--%>
-                        <%--</tr>--%>
-                        <%--</thead>--%>
-                        <%--<tbody>--%>
-                        <%--<tr>--%>
-                            <%--<td>10次</td>--%>
-                            <%--<td>0次</td>--%>
-                            <%--<td>20小时</td>--%>
-                        <%--</tr>--%>
-                        <%--</tbody>--%>
-                    <%--</table>--%>
-                <%--</div>--%>
-                <%--&lt;%&ndash;二页&ndash;%&gt;--%>
-                <%--<div class="layui-tab-item">--%>
-                    <%--<table class="layui-table" lay-even="" lay-skin="nob">--%>
-                        <%--<colgroup>--%>
-                            <%--<col width="150">--%>
-                            <%--<col width="150">--%>
-                            <%--<col width="200">--%>
-                            <%--<col>--%>
-                        <%--</colgroup>--%>
-                        <%--<thead>--%>
-                        <%--<tr>--%>
-                            <%--<th>预约次数</th>--%>
-                            <%--<th>不良记录</th>--%>
-                            <%--<th>时间统计</th>--%>
-                        <%--</tr>--%>
-                        <%--</thead>--%>
-                        <%--<tbody>--%>
-                        <%--<tr>--%>
-                            <%--<td>1次</td>--%>
-                            <%--<td>0次</td>--%>
-                            <%--<td>2小时</td>--%>
-                        <%--</tr>--%>
-                        <%--</tbody>--%>
-                    <%--</table>--%>
-                <%--</div>--%>
-                <%--&lt;%&ndash;三页&ndash;%&gt;--%>
-                <%--<div class="layui-tab-item">--%>
-                    <%--<table class="layui-table" lay-even="" lay-skin="nob">--%>
-                        <%--<colgroup>--%>
-                            <%--<col width="150">--%>
-                            <%--<col width="150">--%>
-                            <%--<col width="200">--%>
-                            <%--<col>--%>
-                        <%--</colgroup>--%>
-                        <%--<thead>--%>
-                        <%--<tr>--%>
-                            <%--<th>预约次数</th>--%>
-                            <%--<th>不良记录</th>--%>
-                            <%--<th>时间统计</th>--%>
-                        <%--</tr>--%>
-                        <%--</thead>--%>
-                        <%--<tbody>--%>
-                        <%--<tr>--%>
-                            <%--<td>2次</td>--%>
-                            <%--<td>1次</td>--%>
-                            <%--<td>5小时</td>--%>
-                        <%--</tr>--%>
-                        <%--</tbody>--%>
-                    <%--</table>--%>
-                <%--</div>--%>
-                <%--&lt;%&ndash;四页&ndash;%&gt;--%>
-                <%--<div class="layui-tab-item">--%>
-                    <%--<table class="layui-table" lay-even="" lay-skin="nob">--%>
-                        <%--<colgroup>--%>
-                            <%--<col width="150">--%>
-                            <%--<col width="150">--%>
-                            <%--<col width="200">--%>
-                            <%--<col>--%>
-                        <%--</colgroup>--%>
-                        <%--<thead>--%>
-                        <%--<tr>--%>
-                            <%--<th>预约次数</th>--%>
-                            <%--<th>不良记录</th>--%>
-                            <%--<th>时间统计</th>--%>
-                        <%--</tr>--%>
-                        <%--</thead>--%>
-                        <%--<tbody>--%>
-                        <%--<tr>--%>
-                            <%--<td>12次</td>--%>
-                            <%--<td>11次</td>--%>
-                            <%--<td>20小时</td>--%>
-                        <%--</tr>--%>
-                        <%--</tbody>--%>
-                    <%--</table>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</div>--%>
 </div>
 
 <%--echart--%>

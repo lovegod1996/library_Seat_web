@@ -24,7 +24,37 @@
 //        }
         }
     </script>
+    <style>
+        body {
+            background-color: #eff3f8;
+            margin-top: 15px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
+        }
+        .layui-table thead tr {
+            background-color: #eff3f8;
+        }
+        button, input, optgroup, option, select, textarea {
+            font-family: inherit;
+            font-size: inherit;
+            font-style: inherit;
+            font-weight: inherit;
+            outline: 0;
+            width: 100px;
+            height: 30px;
+            background-color: #eff3f8;
+        }
+        .layui-table {
+            width: 86%;
+            margin: 10px 7%;
+            background-color: #fff;
+        }
 
+
+    </style>
 </head>
 <body>
 
@@ -39,11 +69,11 @@
                 <table class="layui-table">
                     <thead>
                     <tr>
-                        <th width="15%">姓名</th>
-                        <th width="30%">账号</th>
+                        <th width="5%">姓名</th>
+                        <th width="10%">账号</th>
                         <th width="10%">身份单位</th>
                         <th width="10%">权限状态</th>
-                        <th width="15%">操作</th>
+                        <th width="10%">操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -56,9 +86,7 @@
                                 <table>
                                     <tbody>
                                     <c:if test="${admin.admin==1}">
-                                        <tr>
-                                            <td> ${admin.admin==0?"一般":"超级"}</td>
-                                        </tr>
+                                        <caption> ${admin.admin==0?"一般管理员":"超级管理员"}</caption>
                                     </c:if>
 
                                     <tr>
@@ -68,18 +96,16 @@
                                                    title="点击关闭"> <span style="color: #4CAF50">楼层管理</span> </a>
                                             </td>
                                         </c:if>
-                                        <c:if test="${admin.floor==0}">
-                                            <td>
-                                                <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/1/${admin.notice}/${admin.user}/${admin.seat}"
-                                                   title="点击开启"><span style="color: #7d9096"></span>楼层管理</a>
-                                            </td>
-                                        </c:if>
-                                    </tr>
-                                    <tr>
                                         <c:if test="${admin.notice==1}">
                                             <td>
                                                 <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/${admin.floor}/0/${admin.user}/${admin.seat}"
                                                    title="点击关闭"> <span style="color: #4CAF50">消息管理</span> </a>
+                                            </td>
+                                        </c:if>
+                                        <c:if test="${admin.floor==0}">
+                                            <td>
+                                                <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/1/${admin.notice}/${admin.user}/${admin.seat}"
+                                                   title="点击开启"><span style="color: #7d9096"></span>楼层管理</a>
                                             </td>
                                         </c:if>
                                         <c:if test="${admin.notice==0}">
@@ -89,6 +115,7 @@
                                             </td>
                                         </c:if>
                                     </tr>
+
                                     <tr>
                                         <c:if test="${admin.user==1}">
                                             <td>
@@ -96,18 +123,17 @@
                                                    title="点击关闭"> <span style="color: #4CAF50">学生管理</span> </a>
                                             </td>
                                         </c:if>
-                                        <c:if test="${admin.user==0}">
-                                            <td>
-                                                <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/${admin.floor}/${admin.notice}/1/${admin.seat}"
-                                                   title="点击开启"><span style="color: #7d9096"></span>学生管理</a>
-                                            </td>
-                                        </c:if>
-                                    </tr>
-                                    <tr>
                                         <c:if test="${admin.seat==1}">
                                             <td>
                                                 <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/${admin.floor}/${admin.notice}/${admin.user}/0"
                                                    title="点击关闭"> <span style="color: #4CAF50">座位管理</span> </a>
+                                            </td>
+                                        </c:if>
+
+                                        <c:if test="${admin.user==0}">
+                                            <td>
+                                                <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/${admin.floor}/${admin.notice}/1/${admin.seat}"
+                                                   title="点击开启"><span style="color: #7d9096"></span>学生管理</a>
                                             </td>
                                         </c:if>
                                         <c:if test="${admin.seat==0}">
@@ -121,7 +147,7 @@
                                 </table>
                             </td>
                             <td>
-                                <a href="<%=request.getContextPath()%>/view/deleteAdmin?aid=${admin.aid}">删除</a>
+                                <a href="<%=request.getContextPath()%>/view/deleteAdmin?aid=${admin.aid}" style="color:red;">删除</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -137,30 +163,25 @@
         <div class="layui-tab-item">
             <div class="layui-form">
                 <form class="layui-form" action="<%=request.getContextPath()%>/view/AdAdmin" method="post">
-                    <table class="layui-table">
-                        <caption style="text-align: center">添加管理员</caption>
+                    <table class="layui-table" style="width:60%;margin-left:20%">
+                        <caption style="text-align: center;font-size: 18px;
+    font-weight: bold;">添加管理员</caption>
                         <tbody>
                         <tr>
                             <td>
-                                <label>请输入添加人员的姓名</label>
-                                <input type="text" name="name" placeholder="请输入姓名"/>
+                                <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请输入添加人员的姓名:</label>
+                                <input type="text" name="name" placeholder="请输入姓名" style="width:250px;height:25px;"/>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label>请输入添加人员的身份单位</label>
-                                <input type="text" name="employ" placeholder="请输入身份单位"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <button class="btn btn-primary">提交</button>
+                                <label>请输入添加人员的身份单位:</label>
+                                <input type="text" name="employ" placeholder="请输入身份单位" style="width:250px;height:25px;"/>
                             </td>
                         </tr>
                         </tbody>
                     </table>
-
-
+                    <button class="btn btn-primary" style="margin-left: 45%">提交</button>
                 </form>
             </div>
 

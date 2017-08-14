@@ -31,6 +31,17 @@
         body {
             background-color: #F8F8F8;
         }
+        .navbar-default {
+            background-color: #eff3f8;
+            border-color: #e7e7e7;
+        }
+        .sidebar ul li a.active {
+            background-color: rgba(226, 226, 226, 0.44);
+        }
+        a:focus, a:hover {
+            color: #d01414;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -79,31 +90,31 @@
                 <div class="layui-form">
                     <div class="layui-form-item">
                         <label type="text">图书馆：&nbsp;&nbsp;${building.employer}</label>
-                    </div>
+                    </div><hr>
                     <div class="layui-form-item">
                         <label type="text">阅览室：&nbsp;&nbsp;${sessionScope.admin.employer}</label>
-                    </div>
+                    </div><hr>
                     <div class="layui-form-item">
                         <label type="text">姓名：&nbsp;&nbsp;${sessionScope.admin.name}</label>
-                    </div>
+                    </div><hr>
                     <div class="layui-form-item">
                         <label type="text">账号：&nbsp;&nbsp;${sessionScope.admin.accountnumber}</label>
-                    </div>
+                    </div><hr>
                     <div class="layui-form-item">
                         <label type="text">楼层状态：&nbsp;&nbsp;${sessionScope.admin.statue==0?"开放":"关闭"}</label>
-                    </div>
+                    </div><hr>
                     <div class="layui-form-item">
                         <label type="text">今天开放时间：&nbsp;&nbsp;${opentoday.param1};${opentoday.param2}</label>
-                    </div>
+                    </div><hr>
                     <div class="layui-form-item">
                         <label type="text">该层座位：&nbsp;&nbsp;${seatSize}</label>
-                    </div>
+                    </div><hr>
                     <div class="layui-form-item">
                         <label type="text">当前已预约：&nbsp;&nbsp;${inSeat}</label>
-                    </div>
+                    </div><hr>
                     <div class="layui-form-item">
                         <label type="text">未预约：&nbsp;&nbsp;${canbook}</label>
-                    </div>
+                    </div><hr>
                 </div>
             </li>
         </ul>

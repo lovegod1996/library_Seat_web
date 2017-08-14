@@ -37,4 +37,11 @@ public class CommenValue {
      * 最长不能预约时间（天）
      */
     public static Integer MAX_NOBOOK_DAY = 10;
+    /**
+     * 学校校徽
+     */
+//    public static String SCHOOL_EMBLEM="C:\\Users\\东旭\\Pictures\\libseat\\zut.jpg";
+    public static String SCHOOL_EMBLEM="/home/ubuntu/java/pic/zut.jpg";
+
+    public static String CODEPATH="C:\\Users\\东旭\\Pictures\\libseat\\code\\";
 }

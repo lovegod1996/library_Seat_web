@@ -30,7 +30,19 @@
 
     <style type="text/css">
         body {
-            margin-left: 2%;
+            background-color: #eff3f8;
+            margin-top: 15px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
+        }
+        .btn-block {
+            display: block;
+            width: 100px;
+            margin: 30px auto;
+            background-color: #8895a9;
         }
     </style>
 </head>
@@ -77,10 +89,9 @@
                             <span class="pull-right text-muted small"><em><fmt:formatDate value="${notice.creattime}" pattern="yyyy-MM-dd HH:mm:ss"/></em></span>
                         </a>
                     </c:forEach>
-
                 </div>
                 <!-- /.list-group -->
-                <a href="<%=request.getContextPath()%>/jsp/news_List_Admin" target="mainFrame_Admin"
+                <a href="<%=request.getContextPath()%>/jsp/news_List_User" target="mainFrame_Admin"
                    class="btn btn-default btn-block">查看更多</a>
             </div>
             <!-- /.panel-body -->

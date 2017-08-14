@@ -64,6 +64,16 @@
             color: #ffffff;
             text-decoration: none;
         }
+        .navbar-default .navbar-nav>li>a {
+            color: #fff;
+        }
+        .navbar-default .navbar-nav>li>a:hover {
+            color: #fff;
+        }
+        .navbar-default .navbar-nav>li>a:hover {
+            color: #fff;
+            background-color: transparent;
+        }
     </style>
 
     <script>
@@ -90,14 +100,14 @@
                 <c:if test="${sessionScope.user !=null}">
                     <li><a href="#" onclick="show()">预约</a></li>
                 </c:if>
-                <li id="today" style="display: none;"><a href="<%=request.getContextPath()%>/view/choose_Building?day=0" target="mainFrame_User" style="color:#19A094 ">预约今天</a></li>
-                <li id="tomorrow" style="display: none;"><a href="<%=request.getContextPath()%>/view/choose_Building?day=1" target="mainFrame_User" style="color:#19A094 ">预约明天</a></li>
+                <li id="today" style="display: none;"><a href="<%=request.getContextPath()%>/view/choose_Building?day=0" target="mainFrame_User" style="color:#ffffff ">预约今天</a></li>
+                <li id="tomorrow" style="display: none;"><a href="<%=request.getContextPath()%>/view/choose_Building?day=1" target="mainFrame_User" style="color:#ffffff ">预约明天</a></li>
             </ul>
         </div>
 
         <ul class="nav navbar-top-links navbar-right">
             <c:choose>
-                <c:when test="${empty sessionScope}">
+                <c:when test="${empty sessionScope.user && empty sessionScope.admin}">
                     <li class="dropdown">
                         <a href="<%=request.getContextPath()%>/jsp/login" target="_parent">
                             <i class="fa fa-user fa-fw"></i><span>登录</span>

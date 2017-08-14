@@ -228,15 +228,24 @@ public class DateUtil {
                 if (b2) {
                     b = true;
                 }
+                if (etime.equals(closeTime)) {
+                    b = true;
+                }
             } else {
                 if (weekOpen.getParam2() != null) {
                     String[] split2 = weekOpen.getParam2().split("-");
                     opentime = df.parse(split2[0]);
                     closeTime = df.parse(split2[1]);
                     boolean b3 = belongCalendar(stime, opentime, closeTime);
+                    if (stime.equals(opentime)) {
+                        b3 = true;
+                    }
                     if (b3) {
                         boolean b4 = belongCalendar(etime, opentime, closeTime);
                         if (b4) {
+                            b = true;
+                        }
+                        if (etime.equals(closeTime)) {
                             b = true;
                         }
                     }
@@ -267,6 +276,9 @@ public class DateUtil {
                 if (b1) {
                     bb = true;
                 }
+                if (etime.equals(booking.getEtime())) {
+                    bb = true;
+                }
             }
             if (stime.before(booking.getBstime()) && etime.after(booking.getBetime())) {
                 bb = true;
@@ -275,6 +287,94 @@ public class DateUtil {
         return bb;
     }
 
+    /**
+     * 查找选择时间段的区分
+     *
+     * @return
+     */
+    public static Integer getWeekOpenDiten(WeekOpen weekOpen, Date time) {
+        int statue = 0;
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm");//设置日期格式
+        Date opentime = null;
+        Date closeTime = null;
+        try {
+            String[] split = weekOpen.getParam1().split("-");
+            opentime = df.parse(split[0]);
+            closeTime = df.parse(split[1]);
+            String format = df.format(time);
+            time = df.parse(format);
+            boolean b1 = belongCalendar(time, opentime, closeTime);
+            if (time.equals(opentime) || time.equals(closeTime)) {
+                statue = 1;
+            }
+            if (b1) {
+                statue = 1;  //时间在第一时间端内
+            } else {
+                if (time.before(opentime)) {
+                    statue = 0;  //时间在第一时间段之前
+                } else  if(time.after(closeTime)){
+                    if(weekOpen.getParam2()!=null){
+                        String[] split2 = weekOpen.getParam2().split("-");
+                        opentime = df.parse(split2[0]);
+                        closeTime = df.parse(split2[1]);
+                        boolean b3 = belongCalendar(time, opentime, closeTime);
+                        if(b3){
+                            statue=3; //时间在第二是时间段内
+                        }else{
+                            if(time.equals(opentime)||time.equals(closeTime)){
+                                statue=3;
+                            }
+                            if(time.before(opentime)){
+                                statue=2;//时间在第一时间段后，第二时间段前
+                            }
+                            if(time.after(closeTime)){
+                                statue=4;//时间在第二时间段后
+                            }
+                        }
+
+                    }else{
+                        statue=2;
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return statue;
+    }
+
+    /**
+     * 获取时间段的开始时间或结束时间
+     * @param weekOpen  开放时间
+     * @param para 第一时间段或第二
+     * @param type 开始还是结束
+     * @return
+     */
+    public static Date getWeekOpentime(WeekOpen weekOpen,Integer para,Integer type) throws ParseException {
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm");//设置日期格式
+        Date date=null;
+        Date date1 = new Date();
+        if(para==1){
+            String[] split = weekOpen.getParam1().split("-");
+            if(type==1){
+                date = df.parse(split[0]);
+            }else{
+                date = df.parse(split[1]);
+            }
+        }else{
+            String[] split = weekOpen.getParam2().split("-");
+            if(type==1){
+                date = df.parse(split[0]);
+            }else{
+                date = df.parse(split[1]);
+            }
+        }
+        date.setDate(date1.getDate());
+        date.setMonth(date1.getMonth());
+        date.setYear(date1.getYear());
+        return date;
+    }
 
     /**
      * 检查预约时间是否有冲突
@@ -300,10 +400,10 @@ public class DateUtil {
      *
      * @return
      */
-    public static Date getTwoOursAfter() throws ParseException {
+    public static Date getTwoOursAfter(Date date) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
+        calendar.setTime(date);
         calendar.add(java.util.Calendar.HOUR, 2);
         String format = sdf.format(calendar.getTime());
         Date parse = sdf.parse(format);
@@ -312,6 +412,7 @@ public class DateUtil {
 
     /**
      * 获取一定时间后的日期
+     *
      * @param date
      * @return
      * @throws ParseException

@@ -24,6 +24,34 @@
 //        }
     }
 </script>
+    <style>
+        body {
+            background-color: #eff3f8;
+            margin-top: 15px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
+        }
+        .layui-table thead tr {
+            background-color: #eff3f8;
+        }
+        button, input, optgroup, option, select, textarea {
+            font-family: inherit;
+            font-size: inherit;
+            font-style: inherit;
+            font-weight: inherit;
+            outline: 0;
+            width: 100px;
+            height: 30px;
+            background-color: #eff3f8;
+        }
+        a {
+            color: red;
+            font-size:13px;
+        }
+    </style>
 
 </head>
 <body>
@@ -52,12 +80,12 @@
                             <td>${week.param1};${week.param2}</td>
                             <td>${week.statue==0?"是":"否"}</td>
                             <td>
-                                <a href="#">编辑</a>
+                                <a href="#">编辑&nbsp;&nbsp;</a>
                                 <c:if test="${week.statue==0}">
-                                    <a href="<%=request.getContextPath()%>/view/changeWeekStatue?woid=${week.woid}&statue=${week.statue}&fid=${fid}">关闭预约</a>
+                                    <a href="<%=request.getContextPath()%>/view/changeWeekStatue?woid=${week.woid}&statue=${week.statue}&fid=${fid}">关闭预约&nbsp;&nbsp;</a>
                                 </c:if>
                                 <c:if test="${week.statue==1}">
-                                    <a href="<%=request.getContextPath()%>/view/changeWeekStatue?woid=${week.woid}&statue=${week.statue}&fid=${fid}">开放预约</a>
+                                    <a href="<%=request.getContextPath()%>/view/changeWeekStatue?woid=${week.woid}&statue=${week.statue}&fid=${fid}">开放预约&nbsp;&nbsp;</a>
                                 </c:if>
                                 <a href="<%=request.getContextPath()%>/view/deleteWeek?woid=${week.woid}&fid=${fid}">删除</a>
                             </td>
