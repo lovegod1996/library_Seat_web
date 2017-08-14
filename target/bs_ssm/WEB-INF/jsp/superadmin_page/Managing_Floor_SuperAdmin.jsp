@@ -69,9 +69,9 @@
             //alert(tr1.rowIndex);获得行
             //alert(tb1.rows[tr1.rowIndex].cells[1].getElementsByTagName("INPUT")[0].value);
             document.getElementById("floorname").value= tb1.rows[tr1.rowIndex].cells[1].innerHTML;
-            document.getElementById("flooradmin").value = tb1.rows[tr1.rowIndex].cells[4].value;
+            document.getElementById("flooradmin").value = tb1.rows[tr1.rowIndex].cells[4].innerHTML;
             document.getElementById("floorsort").value = tb1.rows[tr1.rowIndex].cells[2].innerHTML;
-            document.getElementById("floorid").value = tb1.rows[tr1.rowIndex].cells[0].value;
+            document.getElementById("floorid").value = tb1.rows[tr1.rowIndex].cells[0].innerHTML;
         }
     </script>
     <style>

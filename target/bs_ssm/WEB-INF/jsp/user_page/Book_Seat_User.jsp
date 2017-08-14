@@ -120,6 +120,7 @@
 
         .LeftView {
             width: 65%;
+            height: 100%;
             margin-right: 20px;
         }
 
@@ -212,7 +213,7 @@
                    style="margin-left:20px ">点击刷新</a>
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body" style="height: 100%">
+            <div class="panel-body" style="height: auto">
                 <c:forEach items="${seatsbooks}" var="seat">
                     <div class="Roundseat">
                         <label class="seatView_lable"><span class="seatnumber">${seat.seatnumber}</span> </label>

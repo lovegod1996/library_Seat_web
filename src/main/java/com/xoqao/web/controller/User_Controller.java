@@ -13,6 +13,7 @@ import com.xoqao.web.bean.userbook.UserLearn;
 import com.xoqao.web.bean.weekopen.WeekOpen;
 import com.xoqao.web.service.*;
 import com.xoqao.web.utils.DateUtil;
+import com.xoqao.web.utils.MD5Util;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -224,8 +225,8 @@ public class User_Controller {
         Integer type = (Integer) httpSession.getAttribute("admintype");
         if (type == 1) {   //是楼层管理员
             Floor floor = (Floor) httpSession.getAttribute("admin");
-            if (oldPwd.trim().equals(floor.getPassword())) {
-                floorService.updatePassword(newPwd, floor.getFid());
+            if (MD5Util.encode(oldPwd.trim()).equals(floor.getPassword())) {
+                floorService.updatePassword(MD5Util.encode(newPwd), floor.getFid());
                 return "redirect:/jsp/main_Admin";
             } else {
                 model.addAttribute("error_msg", "您的旧密码输入错误，请重新输入！");
@@ -233,8 +234,8 @@ public class User_Controller {
             }
         } else if (type == 2) {   //是楼管理员
             Building building = (Building) httpSession.getAttribute("admin");
-            if (oldPwd.trim().equals(building.getPassword())) {
-                buildingService.updatePassword(newPwd, building.getBid());
+            if (MD5Util.encode(oldPwd.trim()).equals(building.getPassword())) {
+                buildingService.updatePassword(MD5Util.encode(newPwd), building.getBid());
                 return "redirect:/jsp/main_Admin";
             } else {
                 model.addAttribute("error_msg", "您的旧密码输入错误，请重新输入！");
@@ -242,8 +243,8 @@ public class User_Controller {
             }
         } else if (type == 3) {  //是超级管理员
             Admin admin = (Admin) httpSession.getAttribute("admin");
-            if (oldPwd.trim().equals(admin.getPassword())) {
-                adminService.updatePassword(newPwd, admin.getAid());
+            if (MD5Util.encode(oldPwd.trim()).equals(admin.getPassword())) {
+                adminService.updatePassword(MD5Util.encode(newPwd), admin.getAid());
                 return "redirect:/jsp/main_Admin";
             } else {
                 model.addAttribute("error_msg", "您的旧密码输入错误，请重新输入！");
@@ -253,6 +254,27 @@ public class User_Controller {
         return "public_page/ResetPassword_ForAdmin";
     }
 
+    /**
+     * 修改用户的密码
+     * @param model
+     * @param oldPwd
+     * @param newPwd
+     * @param httpSession
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/updateUserPass")
+    public String userChangePass(Model model,String oldPwd,String newPwd,HttpSession httpSession)throws Exception{
+        User user = (User) httpSession.getAttribute("user");
+        if(MD5Util.encode(oldPwd).equals(user.getPassword())){
+            userService.updatePass(user.getUid(),MD5Util.encode(newPwd));
+            httpSession.invalidate();
+            return "toIndex";
+        }else{
+            model.addAttribute("error_msg", "您的旧密码输入错误，请重新输入！");
+         return   "user_page/user_information/SetNewPassword";
+        }
+    }
 
     @RequestMapping("setNewPhonenumber")
     public String setNewPhonenumber(Model model) throws Exception {

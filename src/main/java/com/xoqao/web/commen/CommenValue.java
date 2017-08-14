@@ -10,7 +10,7 @@ public class CommenValue {
     /**
      * 预约最长时长
      */
-    public static Integer MAX_LongTime = 240;
+    public static Integer MAX_LongTime = 241;
     /**
      * 最长迟到时间
      */
@@ -27,7 +27,7 @@ public class CommenValue {
     /**
      * 最长临时离开时间
      */
-    public static Integer MAX_DELAY = 60;
+    public static Integer MAX_DELAY = 61;
 
     /**
      * 最多失信次数

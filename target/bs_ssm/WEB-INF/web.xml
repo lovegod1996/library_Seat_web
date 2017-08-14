@@ -61,14 +61,14 @@
   </session-config>
 
     <!--404错误拦截 -->
-    <!--<error-page>-->
-        <!--<error-code>404</error-code>-->
-        <!--<location>/404.jsp</location>-->
-    <!--</error-page>-->
-    <!--&lt;!&ndash;500错误拦截&ndash;&gt;-->
-    <!--<error-page>-->
-        <!--<error-code>500</error-code>-->
-        <!--<location>/500.jsp</location>-->
-    <!--</error-page>-->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.jsp</location>
+    </error-page>
+    <!--500错误拦截-->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/500.jsp</location>
+    </error-page>
 
 </web-app>

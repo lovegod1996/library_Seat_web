@@ -10,6 +10,7 @@ import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.user.User;
 import com.xoqao.web.service.*;
 import com.xoqao.web.utils.BaiduPushUtils;
+import com.xoqao.web.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,7 +65,7 @@ public class AdminController {
     @RequestMapping("/userloginSub")
     public String userLoginSub(Model model, String loginId, String password, HttpSession httpSession) throws Exception {
         User userByphoneOrSno = userService.findUserBySno(loginId);
-        if (userByphoneOrSno!=null&&password.trim().equals(userByphoneOrSno.getPassword())) {
+        if (userByphoneOrSno!=null&& MD5Util.encode(password).equals(userByphoneOrSno.getPassword())) {
             httpSession.setAttribute("user", userByphoneOrSno);
             return "toIndex";
         } else {
@@ -88,7 +89,7 @@ public class AdminController {
     public String adminLoginSub(Model model, String loginId, String password, Integer optionsRadiosinline, HttpSession httpSession) throws Exception {
         if (optionsRadiosinline == 1) {
             Floor floorBycount = floorService.findFloorBycount(loginId);
-            if (floorBycount != null && password.equals(floorBycount.getPassword())) {
+            if (floorBycount != null && MD5Util.encode(password).equals(floorBycount.getPassword())) {
                 httpSession.setAttribute("admin", floorBycount);
                 httpSession.setAttribute("admintype", 1);
                 return "admin_page/Index_Admin";
@@ -98,7 +99,7 @@ public class AdminController {
             }
         } else if (optionsRadiosinline == 2) {
             Building buildAdminByCount = buildingService.findBuildAdminByCount(loginId);
-            if (buildAdminByCount != null && password.equals(buildAdminByCount.getPassword())) {
+            if (buildAdminByCount != null && MD5Util.encode(password).equals(buildAdminByCount.getPassword())) {
                 httpSession.setAttribute("admin", buildAdminByCount);
                 httpSession.setAttribute("admintype", 2);
                 return "buildingadmin_page/Index_BuildingAdmin";
@@ -108,7 +109,7 @@ public class AdminController {
             }
         } else if (optionsRadiosinline == 3) {
             Admin adminByCount = adminService.findAdminByCount(loginId);
-            if (adminByCount != null && password.equals(adminByCount.getPassword())) {
+            if (adminByCount != null && MD5Util.encode(password).equals(adminByCount.getPassword())) {
                 httpSession.setAttribute("admin", adminByCount);
                 httpSession.setAttribute("admintype", 3);
                 return "superadmin_page/Index_SuperAdmin";

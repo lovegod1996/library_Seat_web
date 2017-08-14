@@ -16,6 +16,7 @@ import com.xoqao.web.bean.user.User;
 import com.xoqao.web.exception.CustomException;
 import com.xoqao.web.service.*;
 import com.xoqao.web.utils.DateUtil;
+import com.xoqao.web.utils.MD5Util;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -98,7 +99,7 @@ public class SuperAdmin_Controller {
     @RequestMapping(value = "/AdAdmin")
     public String adAdmin(String name, String employ) throws Exception {
         List<Admin> allAdmin = adminService.findAllAdmin();
-        String password = "123456";
+        String password = MD5Util.encode("123456");
         Calendar a = Calendar.getInstance();
         Integer year = a.get(Calendar.YEAR);
         String number = year + "00" + (allAdmin.get(allAdmin.size() - 1).getAid() + 1);
@@ -185,7 +186,7 @@ public class SuperAdmin_Controller {
         }
         building.setEmployer(libaray);
         building.setName(admin);
-        building.setPassword("123456");
+        building.setPassword(MD5Util.encode("123456"));
         try {
             buildingService.insertLibaray(building);
         } catch (Exception e) {
@@ -319,7 +320,7 @@ public class SuperAdmin_Controller {
         floor.setEmployer(floorsort);
         floor.setFloor(floorname);
         floor.setName(username);
-        floor.setPassword("123456");
+        floor.setPassword(MD5Util.encode("123456"));
         try {
             floorService.insertFloors(floor);
         } catch (Exception e) {
