@@ -49,8 +49,8 @@
 </head>
 <body>
 <div class="navbar-default sidebar" role="navigation">
-    <div class="sidebar-nav navbar-collapse">
-        <ul class="nav" id="side-menu">
+    <div class="sidebar-nav">
+        <ul class="nav navbar-collapse" id="side-menu">
             <li>
                 <a href="<%=request.getContextPath()%>/view/index_SuperAdmin" target="_parent" class="active"><i
                         class="fa fa-dashboard fa-fw"></i> 后台管理首页</a>
