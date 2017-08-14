@@ -16,18 +16,27 @@ import com.xoqao.web.service.*;
 import com.xoqao.web.utils.CodeCreator;
 import com.xoqao.web.utils.DateUtil;
 import com.xoqao.web.utils.MD5Util;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.FileInputStream;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -275,63 +284,63 @@ public class Admin_Controller {
     @RequestMapping("/addSeatSub")
     public String Seatadd(Model model, Integer left, Integer row, Integer column, String mark, Integer fid, HttpServletResponse httpServletResponse, RedirectAttributes redirectAttributes) throws Exception {
 
-        if(left!=null&&row!=null&&column!=null&&fid!=null){
+        if (left != null && row != null && column != null && fid != null) {
 
 
-        Floor floor = floorService.findfloorByid(fid);
-        //添加座位前需要先查看每周的开放时间是否已经设置完成
-        List<WeekOpen> weekOpens = weekOpenService.findweekByfid(floor.getFid());
-        if (weekOpens.size() != 7) {
-            model.addAttribute("error_msg", "请先添加每周的开放时间段.");
-            redirectAttributes.addFlashAttribute("error_msg", "请先添加每周的开放时间段");
-            return "redirect:/view/managing_Floor?fid=" + fid;
-        }
-        Building buildingById = buildingService.findBuildingById(floor.getBid());
-        Seat seat = new Seat();
-        seat.setColumns(column);
-        seat.setFid(floor.getFid());
-        seat.setLeftside(left);
-        seat.setRow(row);
-        String number = floor.getBid() + String.format("%02d", floor.getFloor())+String.format("%02d",floor.getFid())+ left + String.format("%02d", row) + String.format("%02d", column);
-        seat.setSeatnumber(number);
-        try {
-            seatService.insertSeat(seat);
-
-            //生成二维码并下载到本地
-            CodeCreator creator = new CodeCreator();
-            CodeModel info = new CodeModel();
-            info.setWidth(550);
-            info.setHeight(550);
-            info.setFontSize(24);
-            //info.setContents("<a href='http://www.sohu.com'>人生就是拼搏</a>");
-            //info.setContents("http://www.sohu.com");
-            info.setContents(number);
-            info.setLogoFile(new File(CommenValue.SCHOOL_EMBLEM));
-            String leftside = null;
-            if (seat.getLeftside() == 0) {
-                leftside = "左";
-            } else {
-                leftside = "右";
+            Floor floor = floorService.findfloorByid(fid);
+            //添加座位前需要先查看每周的开放时间是否已经设置完成
+            List<WeekOpen> weekOpens = weekOpenService.findweekByfid(floor.getFid());
+            if (weekOpens.size() != 7) {
+                model.addAttribute("error_msg", "请先添加每周的开放时间段.");
+                redirectAttributes.addFlashAttribute("error_msg", "请先添加每周的开放时间段");
+                return "redirect:/view/managing_Floor?fid=" + fid;
             }
-            info.setDesc(buildingById.getEmployer() + "\n       " + floor.getEmployer() + "\n                  " + leftside + "侧" + seat.getRow() + "排" + seat.getColumns() + "列");
-            //info.setLogoDesc("一叶浮萍归大海，adsasfbhtjg人生何处不相逢");
-            //info.setLogoDesc("一叶浮萍");
+            Building buildingById = buildingService.findBuildingById(floor.getBid());
+            Seat seat = new Seat();
+            seat.setColumns(column);
+            seat.setFid(floor.getFid());
+            seat.setLeftside(left);
+            seat.setRow(row);
+            String number = floor.getBid() + String.format("%02d", floor.getFloor()) + String.format("%02d", floor.getFid()) + left + String.format("%02d", row) + String.format("%02d", column);
+            seat.setSeatnumber(number);
+            try {
+                seatService.insertSeat(seat);
+
+                //生成二维码并下载到本地
+                CodeCreator creator = new CodeCreator();
+                CodeModel info = new CodeModel();
+                info.setWidth(550);
+                info.setHeight(550);
+                info.setFontSize(24);
+                //info.setContents("<a href='http://www.sohu.com'>人生就是拼搏</a>");
+                //info.setContents("http://www.sohu.com");
+                info.setContents(number);
+                info.setLogoFile(new File(CommenValue.SCHOOL_EMBLEM));
+                String leftside = null;
+                if (seat.getLeftside() == 0) {
+                    leftside = "左";
+                } else {
+                    leftside = "右";
+                }
+                info.setDesc(buildingById.getEmployer() + "\n       " + floor.getEmployer() + "\n                  " + leftside + "侧" + seat.getRow() + "排" + seat.getColumns() + "列");
+                //info.setLogoDesc("一叶浮萍归大海，adsasfbhtjg人生何处不相逢");
+                //info.setLogoDesc("一叶浮萍");
 //            creator.createCodeImage(info, CommenValue.CODEPATH + number + "." + info.getFormat());
-            httpServletResponse.setContentType("image/jpeg");
-            httpServletResponse.setCharacterEncoding("UTF-8");
-            httpServletResponse.setHeader("Content-Disposition", "attachment;fileName=" + new String((number + "." + info.getFormat()).getBytes("gbk"), "ISO8859-1"));
-            ServletOutputStream outputStream = httpServletResponse.getOutputStream();
-            creator.createCodeImage(info, outputStream);
-            outputStream.flush();
-            outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            model.addAttribute("fid", fid);
-            model.addAttribute("error_msg", "该座位已存在");
-            return "admin_page/Managing_Seat";
-        }
-        return "redirect:/view/floorSeat?page=1&fid=" + fid;
-        }else{
+                httpServletResponse.setContentType("image/jpeg");
+                httpServletResponse.setCharacterEncoding("UTF-8");
+                httpServletResponse.setHeader("Content-Disposition", "attachment;fileName=" + new String((number + "." + info.getFormat()).getBytes("gbk"), "ISO8859-1"));
+                ServletOutputStream outputStream = httpServletResponse.getOutputStream();
+                creator.createCodeImage(info, outputStream);
+                outputStream.flush();
+                outputStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                model.addAttribute("fid", fid);
+                model.addAttribute("error_msg", "该座位已存在");
+                return "admin_page/Managing_Seat";
+            }
+            return "redirect:/view/floorSeat?page=1&fid=" + fid;
+        } else {
             model.addAttribute("fid", fid);
             model.addAttribute("error_msg", "请选择必要的参数");
             return "admin_page/Managing_Seat";
@@ -483,6 +492,71 @@ public class Admin_Controller {
     }
 
     /**
+     * 批量提交用户
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/allUserUp")
+    public String AllUserUp(Model model, MultipartFile excelfile, HttpSession httpSession, RedirectAttributes redirectAttributes) throws Exception {
+        //获取文件名称
+        String fileName = excelfile.getOriginalFilename();
+        String leftPath = httpSession.getServletContext().getRealPath("/file");
+        File file = new File(leftPath, fileName);
+        excelfile.transferTo(file);
+        String filePath = leftPath +"\\"+ fileName;
+        try {
+            //进行文件解析
+            FileInputStream inputStream = new FileInputStream(filePath);
+            //正则表达式 判断 文件时 xls 2003   还是 xlsx  2007
+            if (filePath.matches("^.+\\.(?i)((xls)|(xlsx))$")) {
+                boolean is03eExcel = filePath.matches("^.+\\.(?i)((xls))$");
+                //1.读取工作簿
+                Workbook workbook = is03eExcel ? new HSSFWorkbook(inputStream) : new XSSFWorkbook(inputStream);
+                //2.读取工作表
+                Sheet sheet = workbook.getSheetAt(0);
+                //3.读取所有行
+                Integer add = 0;
+                Integer mis = 0;
+
+                for (Row row : sheet) {
+                    try {
+                        String name = row.getCell(0).getStringCellValue();
+                        row.getCell(1).setCellType(Cell.CELL_TYPE_STRING);
+                        String sno = row.getCell(1).getStringCellValue();
+                        String college = row.getCell(2).getStringCellValue();
+                        String major = row.getCell(3).getStringCellValue();
+                        String classes = row.getCell(4).getStringCellValue();
+                        String sexstr = row.getCell(5).getStringCellValue();
+                        Integer sex = 0;
+                        if (sexstr.equals("女")) {
+                            sex = 1;
+                        }
+                        User user = new User();
+                        user.setName(name);
+                        user.setSno(sno);
+                        user.setPassword(MD5Util.encode(sno.substring(sno.length() - 6, sno.length())));
+                        user.setCollege(college);
+                        user.setMajor(major);
+                        user.setClasses(classes);
+                        user.setSex(sex);
+                        userService.insertUser(user);
+                        add++;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        mis++;
+                    }
+                }
+                redirectAttributes.addFlashAttribute("error_msg", "成功添加" + add + "条,添加失败" + mis + "条");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/view/managing_Users";
+    }
+
+
+    /**
      * 添加用户提交
      *
      * @param model
@@ -495,7 +569,7 @@ public class Admin_Controller {
         user.setClasses(classes);
         user.setMajor(major);
         user.setCollege(college);
-        user.setPassword(MD5Util.encode(sno.substring(sno.length()-6,sno.length())));
+        user.setPassword(MD5Util.encode(sno.substring(sno.length() - 6, sno.length())));
         user.setSno(sno);
         user.setName(name);
         try {

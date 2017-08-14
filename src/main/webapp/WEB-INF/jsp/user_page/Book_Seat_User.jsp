@@ -146,7 +146,6 @@
         body {
             background-color: #eff3f8;
             margin-top: 15px;
-            height: 100%;
         }
         .panel-default>.panel-heading {
             color: #5c9bd1;
@@ -214,7 +213,7 @@
                    style="margin-left:20px ">点击刷新</a>
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body" style="height: 100%">
+            <div class="panel-body" style="height: auto">
                 <c:forEach items="${seatsbooks}" var="seat">
                     <div class="Roundseat">
                         <label class="seatView_lable"><span class="seatnumber">${seat.seatnumber}</span> </label>

@@ -106,6 +106,12 @@
                     </c:if>
                 </select>
             </form>
+            <div>
+                <form action="${pageContext.request.contextPath }/view/allUserUp" method="post" enctype="multipart/form-data">
+                    <input type="file" id="inputfile" name="excelfile" accept=".xls,.xlsx">
+                    <button type="submit">提交</button>
+                </form>
+            </div>
             <button type="button" data-method="notice" class="layui-btn layui-btn-mini" style="margin-left:20px ">添加用户
             </button>
             <button type="button" class="layui-btn layui-btn-mini layui-btn-danger" style="margin-left:20px ">删除用户

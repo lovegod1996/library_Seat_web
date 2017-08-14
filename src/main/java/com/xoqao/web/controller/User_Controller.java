@@ -254,6 +254,27 @@ public class User_Controller {
         return "public_page/ResetPassword_ForAdmin";
     }
 
+    /**
+     * 修改用户的密码
+     * @param model
+     * @param oldPwd
+     * @param newPwd
+     * @param httpSession
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/updateUserPass")
+    public String userChangePass(Model model,String oldPwd,String newPwd,HttpSession httpSession)throws Exception{
+        User user = (User) httpSession.getAttribute("user");
+        if(MD5Util.encode(oldPwd).equals(user.getPassword())){
+            userService.updatePass(user.getUid(),MD5Util.encode(newPwd));
+            httpSession.invalidate();
+            return "toIndex";
+        }else{
+            model.addAttribute("error_msg", "您的旧密码输入错误，请重新输入！");
+         return   "user_page/user_information/SetNewPassword";
+        }
+    }
 
     @RequestMapping("setNewPhonenumber")
     public String setNewPhonenumber(Model model) throws Exception {
