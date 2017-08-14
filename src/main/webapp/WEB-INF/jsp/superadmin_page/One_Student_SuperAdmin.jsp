@@ -46,22 +46,23 @@
     </ul>
     <div class="layui-tab-content">
         <div class="layui-tab-item layui-show">
-            <table class="layui-table" id="tb1">
+            <table class="layui-table" id="tb1" style="width:50%;margin-left:23%;">
                 <caption style="text-align: center"><h3>查询学生学习情况</h3></caption>
                 <tbody>
                 <tr>
                     <td>
                         <label for="sno">请输入要查询的学号：</label>
                         <input type="text" placeholder="请输入学号" id="sno" style="width:300px;height:30px;">
-                    </td>
-                    <td>
                         <button type="button" id="find" style="width:55px;height:30px">查询</button>
+
                     </td>
+
+
                 </tr>
                 </tbody>
             </table>
 
-            <table id="total" style="width: 100%" class="layui-table">
+            <table id="total" style="width: 90%;margin-left:5%;" class="layui-table">
                 <caption style="text-align: center"><h4>学习情况概览:</h4></caption>
                 <thead>
                 <th>姓名</th>
@@ -76,7 +77,7 @@
                 </tbody>
             </table>
 
-            <table id="detail" style="width: 100%" class="layui-table">
+            <table id="detail" style="width: 90%;margin-left:5%;" class="layui-table">
                 <caption style="text-align: center"><h4>学习记录:</h4></caption>
                 <thead>
                 <th>学号</th>

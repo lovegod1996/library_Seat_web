@@ -106,7 +106,7 @@
                             <td>${building.bid}</td>
                             <td>
                                 <a href="<%=request.getContextPath()%>/view/managing_Floor_SuperAdmin?bid=${building.bid}"
-                                   target="mainFrame_SuperAdmin">${building.employer}</a></td>
+                                   target="mainFrame_SuperAdmin" style="color:#6aa3d4;">${building.employer}</a></td>
                             <td>${building.accountnumber}</td>
                             <td>${building.name}</td>
                             <td>

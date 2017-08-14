@@ -17,31 +17,42 @@
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <style>
-        body {
-            background-color: #eff3f8;
-        }
-        .col-sm-12 {
-            width: 80%;
-            margin: 15px 140px;
-        }
+        body {background-color: #f1f3fa;}
         .panel-default>.panel-heading {
-            color: #5c9bd1;
-            background-color: #ffffff;
-            border-color: #ffffff;
+            color: #9e9e9e;
+            background-color: #f1f3fa;
+            border-color: #f1f3fa;
+            font-size: 15px;
+            font-weight: bold;
+            font-family: inherit;
         }
-        .btn-danger:hover {
-            background-color: #f36a5b;
+        .panel-default {
+            border-color: #f1f3fa;
         }
-        .btn-primary:hover {
-            background-color: #286090;
+        .panel {
+            background-color: #f1f3fa;
+        }
+        .layui-table {
+            width: 90%;
+            margin: 10px 5%;
+            background-color: #fff;
+        }
+        .pagination {
+            display: inline-block;
+            padding-left: 0;
+            margin: 20px;
+            margin-left: -10%;
+            border-radius: 4px;
         }
         .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+            z-index: 3;
+            color: #fff;
+            cursor: default;
             background-color: #5c9bd1;
+            border-color: #5c9bd1;
         }
-        .col-sm-12 {
-            width: 90%;
-            margin: 15px 140px;
-            margin-left: 5%;
+        .layui-table thead tr {
+            background-color: #f1f3fa;
         }
     </style>
 </head>
