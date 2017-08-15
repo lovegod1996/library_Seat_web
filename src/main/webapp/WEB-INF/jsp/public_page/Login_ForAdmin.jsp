@@ -66,7 +66,7 @@
         var flag = {
             "loginId":false,
             "password":false,
-        };
+        };managing_Floor_SuperAdmin
 
         $(function(){
 

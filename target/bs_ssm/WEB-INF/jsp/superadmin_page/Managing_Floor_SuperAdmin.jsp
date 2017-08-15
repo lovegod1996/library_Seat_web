@@ -60,6 +60,9 @@
         .layui-table thead tr {
             background-color: #eff3f8;
         }
+        .layui-form-label {
+          width: 85px
+        }
     </style>
 
     <script language="javascript">
