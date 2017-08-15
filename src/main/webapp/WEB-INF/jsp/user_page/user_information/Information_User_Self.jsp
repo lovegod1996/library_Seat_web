@@ -77,7 +77,7 @@
             width: 100%;
             margin-left: -60px;
         }
-         .layui-nav-tree .layui-this, {
+         .layui-nav-tree .layui-this {
             background-color: #31c7b2;
             color: #fff;
         }
@@ -194,6 +194,9 @@
 </script>
 
 <script type="text/javascript">
+
+    <c:if test="${!empty error_msg}">alert("${error_msg}");</c:if>
+
     window.onload = function () {
         getweekData();
     };

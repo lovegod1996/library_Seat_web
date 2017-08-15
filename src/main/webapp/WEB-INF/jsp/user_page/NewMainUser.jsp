@@ -188,7 +188,7 @@
     <div class="col-sm-6"  style="background-color: white;">
         <table class="table table-striped">
             <caption>1--10名</caption>
-            <thead style="color:#93a2a9;font-weight:bold;background-color: #f9f9f9;">
+            <thead style="color:#555;font-weight:bold;background-color: #f9f9f9;">
                 <th>&nbsp;&nbsp;姓名</th>
                 <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学院</th>
                 <th>总时长</th>
@@ -196,7 +196,7 @@
             <tbody>
             <c:forEach items="${userdatas}" var="userdata" varStatus="step">
                 <c:if test="${step.index<9}">
-                    <tr style="color:#93a2a9;background-color: #ffffff;">
+                    <tr style="color:#555;background-color: #ffffff;">
                         <td>${userdata.username}</td>
                         <td>${userdata.venue}</td>
                         <td>${userdata.learntime}小时</td>
@@ -210,7 +210,7 @@
         <table class="table table-striped">
             <caption>10--20名</caption>
             <thead>
-            <thead style="color:#93a2a9;font-weight:bold;background-color: #f9f9f9;">
+            <thead style="color:#555;font-weight:bold;background-color: #f9f9f9;">
             <th>&nbsp;&nbsp;姓名</th>
             <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学院</th>
             <th>总时长</th>
@@ -219,7 +219,7 @@
             <c:forEach items="${userdatas}" var="userdata" varStatus="step">
                 <c:if test="${step.index>9}">
                     <c:if test="${step.index<19}">
-                        <tr style="color:#93a2a9;background-color: #ffffff;">
+                        <tr style="color:#555;background-color: #ffffff;">
                             <td>${userdata.username}</td>
                             <td>${userdata.venue}</td>
                             <td>${userdata.learntime}小时</td>

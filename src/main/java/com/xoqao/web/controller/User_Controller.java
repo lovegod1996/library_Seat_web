@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -256,6 +257,7 @@ public class User_Controller {
 
     /**
      * 修改用户的密码
+     *
      * @param model
      * @param oldPwd
      * @param newPwd
@@ -264,15 +266,15 @@ public class User_Controller {
      * @throws Exception
      */
     @RequestMapping("/updateUserPass")
-    public String userChangePass(Model model,String oldPwd,String newPwd,HttpSession httpSession)throws Exception{
+    public String userChangePass(Model model, String oldPwd, String newPwd, HttpSession httpSession, RedirectAttributes redirectAttributes) throws Exception {
         User user = (User) httpSession.getAttribute("user");
-        if(MD5Util.encode(oldPwd).equals(user.getPassword())){
-            userService.updatePass(user.getUid(),MD5Util.encode(newPwd));
-            httpSession.invalidate();
-            return "toIndex";
-        }else{
+        if (MD5Util.encode(oldPwd).equals(user.getPassword())) {
+            userService.updatePass(user.getUid(), MD5Util.encode(newPwd));
+            redirectAttributes.addFlashAttribute("error_msg", "密码修改成功，请记住自己的密码");
+            return "redirect:/view/information_User_Self";
+        } else {
             model.addAttribute("error_msg", "您的旧密码输入错误，请重新输入！");
-         return   "user_page/user_information/SetNewPassword";
+            return "user_page/user_information/SetNewPassword";
         }
     }
 

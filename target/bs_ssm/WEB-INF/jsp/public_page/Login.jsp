@@ -69,7 +69,7 @@
         $(function(){
 
             $("#txtUserName").blur(function(){
-                // 用户名校验
+                // 学号校验
                 var loginId = $(this).val();
 
                 // 校验规则，可调整
