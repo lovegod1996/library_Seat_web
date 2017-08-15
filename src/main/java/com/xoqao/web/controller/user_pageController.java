@@ -289,64 +289,66 @@ public class user_pageController {
     @RequestMapping("/bookSeatUserSub")
     public String bookSeatUserSub(Model model, String seatNum, String stime, String etime, Integer day, HttpSession httpSession,RedirectAttributes redirectAttributes) throws Exception {
         User user = (User) httpSession.getAttribute("user");
-
+        Integer disTime2 = DateUtil.getDisTime(DateUtil.getDate(stime), DateUtil.getDate(etime));
         Seat seatBynumber = seatService.findSeatBynumber(seatNum);
         Floor floor = floorService.findfloorByid(seatBynumber.getFid());
+        if(disTime2>CommenValue.MIN_BOOK) {
+            List<UnDeal> unDealCord = undealService.findUnDealCord(user.getSno());
+            Integer disTime1 = 0;
+            if (unDealCord.size() > 0) {
+                Date daysAfter = DateUtil.getDaysAfter(unDealCord.get(unDealCord.size() - 1).getRecord());
+                disTime1 = DateUtil.getDisTime(new Date(), daysAfter);
+            }
+            if (disTime1 <= 0) {
+                Integer disTime = DateUtil.getDisTime(new Date(), DateUtil.getDate(etime));
 
-        List<UnDeal> unDealCord = undealService.findUnDealCord(user.getSno());
-        Integer disTime1 = 0;
-        if (unDealCord.size() > 0) {
-            Date daysAfter = DateUtil.getDaysAfter(unDealCord.get(unDealCord.size() - 1).getRecord());
-            disTime1 = DateUtil.getDisTime(new Date(), daysAfter);
-        }
-        if (disTime1 <= 0) {
-            Integer disTime = DateUtil.getDisTime(new Date(), DateUtil.getDate(etime));
-
-            if (disTime < CommenValue.MAX_LongTime) {
-                WeekOpen weekOpen = weekOpenService.findopenFloortoday(floor.getFid());
-                boolean b = DateUtil.getfollowTime(weekOpen, DateUtil.getDate(stime), DateUtil.getDate(etime));
-                if (b) {
-                    List<Booking> bookSeatBooking = bookingService.findBookSeatBooking(seatBynumber.getSid());
-                    boolean checkbooksclash = DateUtil.checkbooksclash(bookSeatBooking, new Date(), DateUtil.getDate(etime));
-                    if (checkbooksclash) {
-                        model.addAttribute("error_msg", "您选择的时间段已经被占用");
-                        redirectAttributes.addFlashAttribute("error_msg", "您选择的时间段已经被占用");
-                    } else {
-                        //查看近两天的学生预约记录
-                        List<Booking> bookingBySno = bookingService.findBookingBySno(user.getSno(), 0);
-                        List<Booking> bookingBySno2 = bookingService.findBookingBySno(user.getSno(), 1);
-                        for (int i = 0; i < bookingBySno2.size(); i++) {
-                            bookingBySno.add(bookingBySno2.get(i));
-                        }
-                        boolean checkbooksclash1 = DateUtil.checkbooksclash(bookingBySno, DateUtil.getDate(stime), DateUtil.getDate(etime));
-                        if (checkbooksclash1) {
-                            model.addAttribute("error_msg", "您选择的时间段您已预约过");
-                            redirectAttributes.addFlashAttribute("error_msg", "您选择的时间段您已预约过");
-
+                if (disTime < CommenValue.MAX_LongTime) {
+                    WeekOpen weekOpen = weekOpenService.findopenFloortoday(floor.getFid());
+                    boolean b = DateUtil.getfollowTime(weekOpen, DateUtil.getDate(stime), DateUtil.getDate(etime));
+                    if (b) {
+                        List<Booking> bookSeatBooking = bookingService.findBookSeatBooking(seatBynumber.getSid());
+                        boolean checkbooksclash = DateUtil.checkbooksclash(bookSeatBooking, new Date(), DateUtil.getDate(etime));
+                        if (checkbooksclash) {
+                            model.addAttribute("error_msg", "您选择的时间段已经被占用");
+                            redirectAttributes.addFlashAttribute("error_msg", "您选择的时间段已经被占用");
                         } else {
-                            Booking booking = new Booking();
-                            booking.setSno(user.getSno());
-                            booking.setBstime(DateUtil.getDate(stime));
-                            booking.setBetime(DateUtil.getDate(etime));
-                            booking.setSid(seatBynumber.getSid());
-                            bookingService.insertbooking(booking);
+                            //查看近两天的学生预约记录
+                            List<Booking> bookingBySno = bookingService.findBookingBySno(user.getSno(), 0);
+                            List<Booking> bookingBySno2 = bookingService.findBookingBySno(user.getSno(), 1);
+                            for (int i = 0; i < bookingBySno2.size(); i++) {
+                                bookingBySno.add(bookingBySno2.get(i));
+                            }
+                            boolean checkbooksclash1 = DateUtil.checkbooksclash(bookingBySno, DateUtil.getDate(stime), DateUtil.getDate(etime));
+                            if (checkbooksclash1) {
+                                model.addAttribute("error_msg", "您选择的时间段您已预约过");
+                                redirectAttributes.addFlashAttribute("error_msg", "您选择的时间段您已预约过");
+
+                            } else {
+                                Booking booking = new Booking();
+                                booking.setSno(user.getSno());
+                                booking.setBstime(DateUtil.getDate(stime));
+                                booking.setBetime(DateUtil.getDate(etime));
+                                booking.setSid(seatBynumber.getSid());
+                                bookingService.insertbooking(booking);
+                            }
                         }
+                    } else {
+                        model.addAttribute("error_msg", "请注意场馆开放时间");
+                        redirectAttributes.addFlashAttribute("error_msg", "请注意场馆开放时间");
+
                     }
                 } else {
-                    model.addAttribute("error_msg", "请注意场馆开放时间");
-                    redirectAttributes.addFlashAttribute("error_msg", "请注意场馆开放时间");
+                    model.addAttribute("error_msg", "选择时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
+                    redirectAttributes.addFlashAttribute("error_msg", "选择时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
 
                 }
             } else {
-                model.addAttribute("error_msg", "选择时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
-                redirectAttributes.addFlashAttribute("error_msg", "选择时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
-
+                model.addAttribute("error_msg", "目前还在惩罚时间内");
+                redirectAttributes.addFlashAttribute("error_msg", "目前还在惩罚时间内");
             }
-        } else {
-            model.addAttribute("error_msg", "目前还在惩罚时间内");
-            redirectAttributes.addFlashAttribute("error_msg", "目前还在惩罚时间内");
+        }else{
+            redirectAttributes.addFlashAttribute("error_msg", "预约时间过短");
         }
-
         return "redirect:/jsp/book_Seat_User?fid=" + floor.getFid() + "&day=" + day;
     }
 

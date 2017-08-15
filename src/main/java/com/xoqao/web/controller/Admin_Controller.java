@@ -3,6 +3,7 @@ package com.xoqao.web.controller;
 import com.xoqao.web.bean.booking.Booking;
 import com.xoqao.web.bean.building.Building;
 import com.xoqao.web.bean.code.CodeModel;
+import com.xoqao.web.bean.code.FontSide;
 import com.xoqao.web.bean.data.MonthData;
 import com.xoqao.web.bean.data.WeekData;
 import com.xoqao.web.bean.floors.Floor;
@@ -236,18 +237,13 @@ public class Admin_Controller {
      * @throws Exception
      */
     @RequestMapping("/getSeatPic")
-    public void GetSeatPic(Model model, String seatNumber, HttpServletResponse httpServletResponse) throws Exception {
+    public void GetSeatPic(Model model, String seatNumber, Integer type, HttpServletResponse httpServletResponse) throws Exception {
         Seat seatBynumber = seatService.findSeatBynumber(seatNumber);
         Floor floor = floorService.findfloorByid(seatBynumber.getFid());
         Building buildingById = buildingService.findBuildingById(floor.getBid());
         //生成二维码并下载到本地
         CodeCreator creator = new CodeCreator();
         CodeModel info = new CodeModel();
-        info.setWidth(550);
-        info.setHeight(550);
-        info.setFontSize(24);
-        //info.setContents("<a href='http://www.sohu.com'>人生就是拼搏</a>");
-        //info.setContents("http://www.sohu.com");
         info.setContents(seatBynumber.getSeatnumber());
         info.setLogoFile(new File(CommenValue.SCHOOL_EMBLEM));
         String leftside = null;
@@ -256,15 +252,58 @@ public class Admin_Controller {
         } else {
             leftside = "右";
         }
-        info.setDesc(buildingById.getEmployer() + "\n       " + floor.getEmployer() + "\n                    " + leftside + "侧" + seatBynumber.getRow() + "排" + seatBynumber.getColumns() + "列");
-        //info.setLogoDesc("一叶浮萍归大海，adsasfbhtjg人生何处不相逢");
-        //info.setLogoDesc("一叶浮萍");
-//        creator.createCodeImage(info, CommenValue.CODEPATH + seatBynumber.getSeatnumber() + "." + info.getFormat());
         httpServletResponse.setContentType("image/jpeg");
         httpServletResponse.setCharacterEncoding("UTF-8");
         httpServletResponse.setHeader("Content-Disposition", "attachment;fileName=" + new String((seatBynumber.getSeatnumber() + "." + info.getFormat()).getBytes("gbk"), "ISO8859-1"));
         ServletOutputStream outputStream = httpServletResponse.getOutputStream();
-        creator.createCodeImage(info, outputStream);
+        switch (type) {
+            case 1:
+                info.setWidth(330);
+                info.setHeight(330);
+                info.setFontSize(24);
+                FontSide desc=new FontSide();  //楼层描述
+                desc.setColor(0x7E3805);
+                desc.setDes(buildingById.getEmployer() + "\n       " + floor.getEmployer());
+                desc.setFontsize(36);
+                desc.setStartx(40);
+                desc.setStarty(690);
+                FontSide location=new FontSide();  //位置描述
+                location.setColor(0x000000);
+                location.setFontsize(48);
+                location.setDes(leftside + "侧" + seatBynumber.getRow() + "排" + seatBynumber.getColumns() + "列");
+                location.setStartx(195);
+                location.setStarty(570);
+                info.setFontSideDes(desc);
+                info.setFontSideLocal(location);
+                info.setCodestart(new int[]{160,130});
+                info.setBackimg(new File(CommenValue.CODE_XIAOPOHAI));
+                creator.createCodeImgXiaoPoHai(info, outputStream);
+                break;
+            default:
+                info.setWidth(330);
+                info.setHeight(330);
+                info.setFontSize(24);
+
+                info.setDesc(buildingById.getEmployer() + "\n       " + floor.getEmployer() + "\n                    " + leftside + "侧 " + seatBynumber.getRow() + " 排 " + seatBynumber.getColumns() + " 列");
+
+                creator.createCodeImage(info, outputStream);
+                outputStream.flush();
+                outputStream.close();
+                break;
+        }
+
+////        info.setDesc(buildingById.getEmployer() + "\n       " + floor.getEmployer() + "\n                    " + leftside + "侧 " + seatBynumber.getRow() + " 排 " + seatBynumber.getColumns() + " 列");
+//        info.setDesc(buildingById.getEmployer() + "\n       " + floor.getEmployer());
+//        info.setLocation(leftside + "侧" + seatBynumber.getRow() + "排" + seatBynumber.getColumns() + "列");
+//        //info.setLogoDesc("一叶浮萍归大海，adsasfbhtjg人生何处不相逢");
+//        //info.setLogoDesc("一叶浮萍");
+////        creator.createCodeImage(info, CommenValue.CODEPATH + seatBynumber.getSeatnumber() + "." + info.getFormat());
+//        httpServletResponse.setContentType("image/jpeg");
+//        httpServletResponse.setCharacterEncoding("UTF-8");
+//        httpServletResponse.setHeader("Content-Disposition", "attachment;fileName=" + new String((seatBynumber.getSeatnumber() + "." + info.getFormat()).getBytes("gbk"), "ISO8859-1"));
+//        ServletOutputStream outputStream = httpServletResponse.getOutputStream();
+////        creator.createCodeImage(info, outputStream);
+//        creator.createCodeImgXiaoPoHai(info, outputStream);
         outputStream.flush();
         outputStream.close();
     }
@@ -309,8 +348,8 @@ public class Admin_Controller {
                 //生成二维码并下载到本地
                 CodeCreator creator = new CodeCreator();
                 CodeModel info = new CodeModel();
-                info.setWidth(550);
-                info.setHeight(550);
+                info.setWidth(300);
+                info.setHeight(300);
                 info.setFontSize(24);
                 //info.setContents("<a href='http://www.sohu.com'>人生就是拼搏</a>");
                 //info.setContents("http://www.sohu.com");
@@ -322,7 +361,7 @@ public class Admin_Controller {
                 } else {
                     leftside = "右";
                 }
-                info.setDesc(buildingById.getEmployer() + "\n       " + floor.getEmployer() + "\n                  " + leftside + "侧" + seat.getRow() + "排" + seat.getColumns() + "列");
+                info.setDesc(buildingById.getEmployer() + "\n       " + floor.getEmployer() + "\n                  " + leftside + "侧 " + seat.getRow() + " 排 " + seat.getColumns() + " 列");
                 //info.setLogoDesc("一叶浮萍归大海，adsasfbhtjg人生何处不相逢");
                 //info.setLogoDesc("一叶浮萍");
 //            creator.createCodeImage(info, CommenValue.CODEPATH + number + "." + info.getFormat());
@@ -504,7 +543,7 @@ public class Admin_Controller {
         String leftPath = httpSession.getServletContext().getRealPath("/file");
         File file = new File(leftPath, fileName);
         excelfile.transferTo(file);
-        String filePath = leftPath +"\\"+ fileName;
+        String filePath = leftPath + "\\" + fileName;
         try {
             //进行文件解析
             FileInputStream inputStream = new FileInputStream(filePath);
