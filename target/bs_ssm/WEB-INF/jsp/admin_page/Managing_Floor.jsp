@@ -15,6 +15,8 @@
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+    <%--操作确认--%>
+    <script src="<%=request.getContextPath()%>/js/dialog.js"></script>
 <script>
     function changeItem(obj) {
 //    var index=obj.selectedIndex;
@@ -82,12 +84,12 @@
                             <td>
                                 <a href="#">编辑&nbsp;&nbsp;</a>
                                 <c:if test="${week.statue==0}">
-                                    <a href="<%=request.getContextPath()%>/view/changeWeekStatue?woid=${week.woid}&statue=${week.statue}&fid=${fid}">关闭预约&nbsp;&nbsp;</a>
+                                    <a href="<%=request.getContextPath()%>/view/changeWeekStatue?woid=${week.woid}&statue=${week.statue}&fid=${fid}" onclick="return confirmAct()">关闭预约&nbsp;&nbsp;</a>
                                 </c:if>
                                 <c:if test="${week.statue==1}">
-                                    <a href="<%=request.getContextPath()%>/view/changeWeekStatue?woid=${week.woid}&statue=${week.statue}&fid=${fid}">开放预约&nbsp;&nbsp;</a>
+                                    <a href="<%=request.getContextPath()%>/view/changeWeekStatue?woid=${week.woid}&statue=${week.statue}&fid=${fid}" onclick="return confirmAct()">开放预约&nbsp;&nbsp;</a>
                                 </c:if>
-                                <a href="<%=request.getContextPath()%>/view/deleteWeek?woid=${week.woid}&fid=${fid}">删除</a>
+                                <a href="<%=request.getContextPath()%>/view/deleteWeek?woid=${week.woid}&fid=${fid}" onclick="return confirmAct()">删除</a>
                             </td>
                         </tr>
                     </c:forEach>

@@ -16,6 +16,8 @@
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
+    <%--操作确认--%>
+    <script src="<%=request.getContextPath()%>/js/dialog.js"></script>
 
     <script language="JavaScript" type="text/javascript">
         //定义了楼层的二维数组，里面的顺序跟楼的顺序是相同的。通过selectedIndex获得楼的下标值来得到相应的楼层数组
@@ -51,26 +53,12 @@
             <i class="fa fa-bar-chart-o fa-fw"></i> 使用中座位统计
             <a href="${pageContext.request.contextPath }/jsp/seat_In_Use" class="btn btn-success btn-xs"
                style="margin-left:20px ">点击刷新</a>
-            <%--<div class="pull-right">--%>
-                <%--<FORM METHOD=POST ACTION="" name="selectform">--%>
-                    <%--<SELECT NAME="building" onChange="getCity()">--%>
-                        <%--<OPTION VALUE="0">选择南北楼 </OPTION>--%>
-                        <%--<OPTION VALUE="南楼">南楼 </OPTION>--%>
-                        <%--<OPTION VALUE="北楼">北楼 </OPTION>--%>
-                    <%--</SELECT>--%>
-                    <%--<SELECT NAME="floor" onchange="getData()" id="floor">--%>
-                        <%--<OPTION VALUE="0">选择所在楼层 </OPTION>--%>
-                        <%--<OPTION VALUE="0">${floor}</OPTION>--%>
-                    <%--</SELECT>--%>
-                <%--</FORM>--%>
-            <%--</div>--%>
         </div>
         <!-- /.panel-heading -->
         <div class="layui-form">
             <table class="layui-table">
                 <thead>
                 <tr>
-                    <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
                     <th>学号</th>
                     <th>座位号</th>
                     <th>位置</th>
@@ -83,7 +71,6 @@
                 <tbody>
                 <c:forEach items="${inseats}" var="inseat">
                     <tr>
-                        <td><input type="checkbox"></td>
                         <td>${inseat.sno}</td>
                         <td>${inseat.seatnumber}</td>
                         <td>${inseat.leftside==0?"左":"右"}侧${inseat.row}排${inseat.columns}列</td>
@@ -91,8 +78,8 @@
                         <td><fmt:formatDate value="${inseat.stime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                         <td>${inseat.statue==1?"入座":"临时离开"}</td>
                         <td>
-                            <a href="<%=request.getContextPath()%>/jsp/releaseSeat?bid=${inseat.bid}&type=0">本人释放</a>
-                            <a href="<%=request.getContextPath()%>/jsp/releaseSeat?bid=${inseat.bid}&type=1">他人释放</a>
+                            <a href="<%=request.getContextPath()%>/jsp/releaseSeat?bid=${inseat.bid}&type=0" onclick="return confirmAct()">本人释放</a>
+                            <a href="<%=request.getContextPath()%>/jsp/releaseSeat?bid=${inseat.bid}&type=1" onclick="return confirmAct()">他人释放</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -170,22 +157,6 @@
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
 
 <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
-<script>
-    layui.use('form', function () {
-        var $ = layui.jquery, form = layui.form();
-
-        //全选
-        form.on('checkbox(allChoose)', function (data) {
-            //language=JQuery-CSS
-            var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
-            child.each(function (index, item) {
-                item.checked = data.elem.checked;
-            });
-            form.render('checkbox');
-        });
-
-    });
-</script>
 
 <script type="text/javascript">
 

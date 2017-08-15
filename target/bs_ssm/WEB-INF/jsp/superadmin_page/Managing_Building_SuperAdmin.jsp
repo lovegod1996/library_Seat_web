@@ -18,6 +18,9 @@
     <!-- jQuery -->
     <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
 
+    <%--操作确认--%>
+    <script src="<%=request.getContextPath()%>/js/dialog.js"></script>
+
     <style>
         .black_overlay {
             display: none;
@@ -114,7 +117,7 @@
                                         document.getElementById('fade').style.display='block';getTableContent(this)">编辑
                                 </button>
                                 <a href="<%=request.getContextPath()%>/view/buidingdelete?bid=${building.bid}"
-                                   class="layui-btn layui-btn-small">删除</a>
+                                   class="layui-btn layui-btn-small" onclick="return confirmAct()">删除</a>
                             </td>
                         </tr>
                     </c:forEach>

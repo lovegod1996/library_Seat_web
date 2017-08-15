@@ -118,26 +118,12 @@
             <i class="fa fa-bar-chart-o fa-fw"></i> 预约中座位统计
             <a href="${pageContext.request.contextPath }/jsp/seat_In_Book" class="btn btn-success btn-xs"
                style="margin-left:20px ">点击刷新</a>
-            <%--<div class="pull-right">--%>
-            <%--<FORM METHOD=POST ACTION="" name="selectform">--%>
-            <%--<SELECT NAME="building" onChange="getCity()">--%>
-            <%--<OPTION VALUE="0">选择南北楼</OPTION>--%>
-            <%--<OPTION VALUE="南楼">南楼</OPTION>--%>
-            <%--<OPTION VALUE="北楼">北楼</OPTION>--%>
-            <%--</SELECT>--%>
-            <%--<SELECT NAME="floor" onchange="getData()" id="floor">--%>
-            <%--<OPTION VALUE="0">选择所在楼层</OPTION>--%>
-            <%--<OPTION VALUE="0">${floor}</OPTION>--%>
-            <%--</SELECT>--%>
-            <%--</FORM>--%>
-            <%--</div>--%>
         </div>
         <!-- /.panel-heading -->
         <div class="layui-form">
             <table class="layui-table" id="tb1">
                 <thead>
                 <tr>
-                    <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
                     <th>座位编号</th>
                     <th>位置</th>
                     <th>当前预约状况</th>
@@ -149,7 +135,6 @@
 
                 <c:forEach items="${seatbooks}" var="seat">
                     <tr>
-                        <td><input type="checkbox"></td>
                         <td>${seat.seatnumber}</td>
                         <td>${seat.leftside==0?"左":"右"}侧${seat.row}排${seat.columns}列</td>
                         <td>
@@ -180,38 +165,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                                <%--<table class="table">--%>
-                                <%--<thead>--%>
-                                <%--<th>预约人</th>--%>
-                                <%--<th>预约时间段</th>--%>
-                                <%--<th>当前状态</th>--%>
-                                <%--</thead>--%>
-                                <%--<tbody>--%>
-                                <%--<c:forEach items="${seat.bookings}" var="booking">--%>
-                                <%--<tr>--%>
-                                <%--<td>${booking.sno}</td>--%>
-                                <%--<td><fmt:formatDate value="${booking.bstime}"--%>
-                                <%--pattern="yyyy-MM-dd HH:mm:ss"/>-<fmt:formatDate--%>
-                                <%--value="${booking.betime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>--%>
-                                <%--<td>--%>
-                                <%--<c:if test="${booking.statue==0}">--%>
-                                <%--未入座--%>
-                                <%--</c:if>--%>
-                                <%--<c:if test="${booking.statue==1}">--%>
-                                <%--入座--%>
-                                <%--</c:if>--%>
-                                <%--<c:if test="${booking.statue==2}">--%>
-                                <%--临时离开--%>
-                                <%--</c:if>--%>
-                                <%--<c:if test="${booking.statue==3}">--%>
-                                <%--离开--%>
-                                <%--</c:if>--%>
-                                <%--</td>--%>
-                                <%--</tr>--%>
-                                <%--</c:forEach>--%>
-                                <%--</tbody>--%>
-                                <%--</table>--%>
                         </td>
                         <td>
                             <c:if test="${seat.seatStatue==0}">
@@ -356,22 +309,6 @@
         //监听折叠
         element.on('collapse(test)', function (data) {
             layer.msg('展开状态：' + data.show);
-        });
-    });
-</script>
-
-<script>
-    layui.use('form', function () {
-        var $ = layui.jquery, form = layui.form();
-
-        //全选
-        form.on('checkbox(allChoose)', function (data) {
-            //language=JQuery-CSS
-            var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
-            child.each(function (index, item) {
-                item.checked = data.elem.checked;
-            });
-            form.render('checkbox');
         });
     });
 </script>

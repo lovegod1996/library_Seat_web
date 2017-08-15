@@ -74,27 +74,6 @@
         <div class="layui-tab-item layui-show">
             <form class="layui-form" action="">
                 <div class="layui-form-item">
-                    <%--<div class="layui-input-inline">--%>
-                    <%--<select name="modules" lay-verify="required" lay-search="">--%>
-                    <%--<option value="">学院搜索选择</option>--%>
-                    <%--<option value="1">layer</option>--%>
-                    <%--<option value="2">form</option>--%>
-                    <%--</select>--%>
-                    <%--</div>--%>
-                    <%--<div class="layui-input-inline">--%>
-                    <%--<select name="modules" lay-verify="required" lay-search="">--%>
-                    <%--<option value="">专业搜索选择</option>--%>
-                    <%--<option value="1">layer</option>--%>
-                    <%--<option value="2">form</option>--%>
-                    <%--</select>--%>
-                    <%--</div>--%>
-                    <%--<div class="layui-input-inline">--%>
-                    <%--<select name="modules" lay-verify="required" lay-search="">--%>
-                    <%--<option value="">班级搜索选择</option>--%>
-                    <%--<option value="1">layer</option>--%>
-                    <%--<option value="2">form</option>--%>
-                    <%--</select>--%>
-                    <%--</div>--%>
                     <div class="layui-input-inline">
                         <button type="button" class="layui-btn layui-btn-small"
                                 onclick="tableToExcel('tablename', 'name', '学习情况统计.xls')">导出
