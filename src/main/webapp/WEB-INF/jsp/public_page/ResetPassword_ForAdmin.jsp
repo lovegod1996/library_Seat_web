@@ -18,7 +18,7 @@
     <style type="text/css">
         body {
             width: 50%;
-            margin-left: 20%;
+            background-color: #eff3f8;
         }
 
         form {
@@ -39,6 +39,11 @@
 
         .layui-inline {
             margin-top: 10px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
         }
     </style>
 </head>

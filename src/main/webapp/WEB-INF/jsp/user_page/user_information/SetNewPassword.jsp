@@ -73,7 +73,7 @@
 
         <%--Tip  一页--%>
         <div class="layui-tab-item layui-show">
-            <form class="form-horizontal" role="form" onsubmit="return checkSetPassword_ByOldpassword()" action="<%= request.getContextPath()%>/view/setNewPassSub" method="post">
+            <form class="form-horizontal" role="form" onsubmit="return checkSetPassword_ByOldpassword()" action="<%= request.getContextPath()%>/view/updateUserPass" method="post">
                 <div class="layui-inline">
                     <label class="layui-form-label">旧密码</label>
                     <div class="layui-input-inline">
@@ -83,7 +83,7 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">新密码</label>
                     <div class="layui-input-inline">
-                        <input type="password" name="newPwd" id="newPwd" class="layui-input" style="width: 250px">
+                        <input type="password"  id="newPwd" class="layui-input" style="width: 250px">
                     </div>
                 </div>
                 <div class="layui-inline">

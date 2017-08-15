@@ -23,6 +23,8 @@
     <mvc:resources mapping="/vendor/**" location="/vendor/"/>
     <mvc:resources mapping="/dist/**" location="/dist/"/>
     <mvc:resources mapping="/layui/**" location="/layui/"/>
+    <!--文件上传地址-->
+    <mvc:resources mapping="/file/**" location="/file/"/>
 
     <!--定时任务-->
     <task:annotation-driven />

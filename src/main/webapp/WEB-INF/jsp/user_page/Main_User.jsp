@@ -28,6 +28,7 @@
             margin-left: 10%;
             background-color: #eff3f8;
         }
+
         #wrapper {
             margin-top:15px;
         }
@@ -38,6 +39,18 @@
         }
         .panel-default {
             border-color: #eff3f8;
+        }
+
+        html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            overflow-y: auto;
+        }
+        a{
+            overflow: hidden;
+            /*white-space: nowrap;*/
+            text-overflow: ellipsis;
         }
         li {
             list-style: none;

@@ -27,6 +27,8 @@
     <!--[if lt IE 9]-->
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
     <!--[endif]-->
     <style>
         .row {
@@ -58,6 +60,47 @@
             opacity: 0.94;
         }
     </style>
+    <script>
+        var flag = {
+            "loginId":false,
+            "password":false,
+        };
+
+        $(function(){
+
+            $("#txtUserName").blur(function(){
+                // 用户名校验
+                var loginId = $(this).val();
+
+                // 校验规则，可调整
+                var pattern = /\b(^[0-9]{1,20}$)\b/;
+                if(!pattern.test(loginId)){
+                    $("#loginId\\.info").html("用户名错误");
+                    return;
+                }else{
+                    $("#loginId\\.info").html("");
+                    flag.loginId = true;
+                }
+            });
+
+//            密码校验
+            $("#txtPassword").blur(function(){
+                var password=$(this).val();
+
+                var pattern = /^(\w){6,15}$/;
+                if (!pattern.test(password)) {
+                    $("#password\\.info").html("密码错误");
+                    return;
+                }else{
+                    $("#password\\.info").html("");
+                    //flag.password=true;
+                    return;
+                }
+            });
+
+        })
+    </script>
+
 </head>
 <body background="<%=request.getContextPath()%>/img/library.jpg" style="background-repeat: no-repeat;background-size: 100% 100%;">
 <div class="container">
@@ -70,13 +113,17 @@
                 <div class="panel-body">
                     <form action="${pageContext.request.contextPath }/admin/userloginSub" method="post">
                         <fieldset>
+
                             <div class="form-group">
-                                <input class="form-control" placeholder="学号/工号" name="loginId" autofocus
+                                <input class="form-control" id="txtUserName" placeholder="学号/工号" name="loginId" autofocus
                                        required>
+                                <span id="loginId.info" style="color:red"></span>
                             </div>
+
                             <div class="form-group">
-                                <input class="form-control" placeholder="密码" name="password" type="password" value=""
+                                <input class="form-control" id="txtPassword" placeholder="密码" name="password" type="password" value=""
                                        required>
+                                <span id="password.info" style="color:red"></span>
                             </div>
                             <div class="checkbox" style="float: left">
                                 <label>

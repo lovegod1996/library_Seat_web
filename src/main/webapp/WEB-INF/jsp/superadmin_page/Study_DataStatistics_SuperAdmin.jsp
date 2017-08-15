@@ -46,6 +46,12 @@
             margin: 10px 5%;
             background-color: #fff;
         }
+        a {
+            color: #48b;
+        }
+        a:hover {
+            color: #48b;
+        }
     </style>
 </head>
 <body>

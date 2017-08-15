@@ -1122,5 +1122,31 @@ public class PhoneServerController {
         }
     }
 
+    /**
+     * 用户修改密码
+     * @param uid
+     * @param password
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/updateUserPas")
+    public @ResponseBody
+    Map<String, Object> UpdateUserPas(Integer uid, String password) throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            userService.updatePass(uid, password);
+            map.put("code", 0);
+            map.put("message", "成功");
+            map.put("data", null);
+            return map;
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put("code", 1);
+            map.put("message", "修改密码失败");
+            map.put("data", null);
+            return map;
+        }
+
+    }
 
 }
