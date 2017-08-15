@@ -68,6 +68,32 @@
             };
         });
     </script>
+
+    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+        var flag = {
+            "sno":false,
+        };
+
+        $(function(){
+
+            $("#checkstudentid").blur(function(){
+                // 学号校验
+                var sno = $(this).val();
+
+                // 校验规则，可调整
+                var pattern = /\b(^[0-9]{1,20}$)\b/;
+                if(!pattern.test(sno)){
+                    $("#sno\\.info").html("格式错误");
+                    return;
+                }else{
+                    $("#sno\\.info").html("");
+                    flag.sno = true;
+                }
+            });
+
+        })
+    </script>
     <style>
         body {
             background-color: #eff3f8;
@@ -81,7 +107,7 @@
         .table .table {
             background-color: #fff;
             font-size: 14px;
-            color: #93a2a9;
+            color: #555;
         }
         .panel-default {
             border-color: #fff;
@@ -109,16 +135,6 @@
             text-align: center;
             white-space: nowrap;
             vertical-align: middle;
-            -ms-touch-action: manipulation;
-            touch-action: manipulation;
-            cursor: pointer;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            background-image: none;
-            border: 1px solid transparent;
-            border-radius: 4px;
         }
     </style>
 </head>
@@ -252,6 +268,7 @@
                     <div class="layui-input-block">
                         <input type="text" class="layui-input" name="sno" id="checkstudentid" required
                                placeholder="请输入学号" style="width: 220px" >
+                        <span id="sno.info" style="color:red"></span>
                     </div>
                 </div>
                 <div class="layui-form-item">
