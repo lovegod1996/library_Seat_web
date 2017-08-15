@@ -29,7 +29,6 @@ public interface UserService {
 
     User findUserBySno(String sno)throws Exception;
 
-
     void updatePass(Integer uid,String password)throws Exception;
 
     void updatePhone(Integer uid,String phone)throws Exception;

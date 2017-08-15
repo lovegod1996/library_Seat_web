@@ -16,6 +16,7 @@ import com.xoqao.web.bean.weekopen.WeekOpenCus;
 import com.xoqao.web.commen.CommenValue;
 import com.xoqao.web.service.*;
 import com.xoqao.web.utils.DateUtil;
+import com.xoqao.web.utils.MD5Util;
 import org.omg.CORBA.MARSHAL;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +70,7 @@ public class PhoneServerController {
     Map<String, Object> login(String sno, String password) throws Exception {
         User userBySno = userService.findUserBySno(sno);
         Map<String, Object> map = new HashMap<String, Object>();
-        if (userBySno != null && password.equals(userBySno.getPassword())) {
+        if (userBySno != null && MD5Util.encode(password).equals(userBySno.getPassword())) {
             map.put("code", 0);
             map.put("message", "成功");
             map.put("data", userBySno);
@@ -1134,7 +1135,7 @@ public class PhoneServerController {
     Map<String, Object> UpdateUserPas(Integer uid, String password) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            userService.updatePass(uid, password);
+            userService.updatePass(uid, MD5Util.encode(password));
             map.put("code", 0);
             map.put("message", "成功");
             map.put("data", null);
