@@ -29,10 +29,11 @@
         .panel-default {
             border-color: #f1f3fa;
         }
+
         .panel-default>.panel-heading {
-            color: #5c9bd1;
-            background-color: #ffffff;
-            border-color: #ffffff;
+            color: #9e9e9e;
+            background-color: #f1f3fa;
+            border-color: #f1f3fa;
         }
         .panel {
             background-color: #f1f3fa;

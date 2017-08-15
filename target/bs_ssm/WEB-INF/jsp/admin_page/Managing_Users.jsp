@@ -279,6 +279,7 @@
                     ,
                     content: ['/LS/view/add_User']
                     ,
+
                     success: function (layero) {
                         var btn = layero.find('.layui-layer-btn');
                         btn.css('text-align', 'center');
