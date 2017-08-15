@@ -188,7 +188,7 @@
     <div class="col-sm-6"  style="background-color: white;">
         <table class="table table-striped">
             <caption>1--10名</caption>
-            <thead style="color:#93a2a9;font-weight:bold;background-color: #f9f9f9;">
+            <thead style="color:#555;font-weight:bold;background-color: #f9f9f9;">
                 <th>&nbsp;&nbsp;姓名</th>
                 <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学院</th>
                 <th>总时长</th>

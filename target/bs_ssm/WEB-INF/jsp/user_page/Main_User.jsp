@@ -116,7 +116,7 @@
                     <c:forEach items="${userdatas}" var="userdata" varStatus="step">
                         <c:if test="${step.index<6}">
 
-                            <tr style="color:#93a2a9;background-color: #ffffff;">
+                            <tr style="color:#555;background-color: #ffffff;">
                                 <td>${userdata.username}</td>
                                 <td>${userdata.venue}</td>
                                 <td>${userdata.learntime}小时</td>

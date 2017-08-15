@@ -38,6 +38,33 @@
             background-color: #eff3f8;
         }
     </style>
+
+    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+        var flag = {
+            "loginId":false,
+            "password":false,
+        };
+
+        $(function(){
+
+            $("#sno").blur(function(){
+                // 学号校验
+                var loginId = $(this).val();
+
+                // 校验规则，可调整
+                var pattern = /\b(^[0-9]{1,20}$)\b/;
+                if(!pattern.test(loginId)){
+                    $("#loginId\\.info").html("用户名错误");
+                    return;
+                }else{
+                    $("#loginId\\.info").html("");
+                    flag.loginId = true;
+                }
+            });
+
+        })
+    </script>
 </head>
 <body>
 <div class="layui-tab">
@@ -52,8 +79,9 @@
                 <tr>
                     <td>
                         <label for="sno">请输入要查询的学号：</label>
-                        <input type="text" placeholder="请输入学号" id="sno" style="width:300px;height:30px;">
-                        <button type="button" id="find" style="width:55px;height:30px">查询</button>
+                        <input type="text" placeholder="请输入学号" name="loginId" id="sno" style="width:300px;height:30px;">
+                        <button type="button" id="find" style="width:55px;height:30px">查询</button><br>
+                        <span id="loginId.info" style="color:red;margin-left:150px;"></span>
 
                     </td>
 
