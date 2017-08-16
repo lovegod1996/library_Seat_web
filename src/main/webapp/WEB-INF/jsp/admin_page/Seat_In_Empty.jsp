@@ -21,6 +21,15 @@
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
 
+    <!-- jQuery -->
+    <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="<%= request.getContextPath()%>/js/combodate.js"></script>
+    <script src="<%= request.getContextPath()%>/js/moment.js"></script>
+
     <%--验证表单--%>
     <script src="<%=request.getContextPath()%>/js/checkForm.js"></script>
 
@@ -69,7 +78,16 @@
         });
     </script>
 
-    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('#time').combodate({
+                firstItem: 'name', //show 'hour' and 'minute' string at first item of dropdown
+                minuteStep: 1
+            });
+        });
+    </script>
+
+    <%--<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>--%>
     <script>
         var flag = {
             "sno":false,
@@ -275,8 +293,9 @@
                     <label class="layui-form-label">预计结束</label>
                     <div class="layui-input-block">
                         <div class="layui-inline">
-                            <input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px" required
-                                   onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
+                            <%--<input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px" required--%>
+                                   <%--onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">--%>
+                                <input name="etime" type="text" id="time" data-format="HH:mm" data-template="HH : mm" style="width: 220px">
                         </div>
                     </div>
                 </div>
@@ -288,12 +307,6 @@
     <!-- /.panel -->
 </div>
 <!-- /.col-sm-12 -->
-
-<!-- jQuery -->
-<script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
     function getnum(form) {

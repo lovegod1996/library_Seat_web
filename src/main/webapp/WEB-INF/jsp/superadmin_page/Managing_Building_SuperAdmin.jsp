@@ -63,6 +63,50 @@
         }
     </style>
 
+    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+        var flag = {
+            "library":false,
+        };
+
+        $(function(){
+
+            $("#addLibrary").blur(function(){
+                // 添加图书馆校验
+                var libaray = $(this).val().length;
+//                alert (libaray);
+                // 校验规则，可调整
+//                var pattern =  /^[\u4E00-\u9FA5A-Za-z0-9]+$/;
+                if(libaray > 8){
+
+                    $("#libaray\\.info").html("字数超过限制");
+                    alert(library);
+                    return;
+                }else{
+                    $("#libaray\\.info").html("");
+                    flag.libaray = true;
+                }
+            });
+
+            $("#addAdmin").blur(function(){
+                // 添加管理员校验
+                var admin = $(this).val().length;
+                // 校验规则，可调整
+//                var pattern =  /^[\u4E00-\u9FA5A-Za-z0-9]+$/;
+                if(admin > 8){
+
+                    $("#admin\\.info").html("字数超过限制");
+                    return;
+                }else{
+                    $("#admin\\.info").html("");
+                    flag.admin = true;
+                }
+            });
+
+
+        })
+    </script>
+
     <script language="javascript">
         function getTableContent(node) {
             // 按钮的父节点的父节点是tr。
@@ -135,13 +179,15 @@
         <div class="layui-form-item">
             <label class="layui-form-label">添加图书馆</label>
             <div class="layui-input-inline">
-                <input placeholder="请输入" name="libaray" class="layui-input" required>
+                <input placeholder="请输入" name="libaray" class="layui-input"  id="addLibrary" required >
+                <span id="libaray.info" style="color:red"></span>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">添加管理员</label>
             <div class="layui-input-inline">
-                <input placeholder="请输入" name="admin" class="layui-input" required>
+                <input placeholder="请输入" name="admin" class="layui-input" id="addAdmin" required>
+                <span id="admin.info" style="color:red"></span>
             </div>
         </div>
         <div class="layui-form-item">

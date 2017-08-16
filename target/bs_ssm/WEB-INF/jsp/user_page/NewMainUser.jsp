@@ -12,11 +12,15 @@
 <html>
 <head>
     <title>Title</title><!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <%--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">--%>
+    <%--<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>--%>
+    <%--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
     <!-- jQuery -->
     <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core CSS -->
+    <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <style>
         body {
@@ -196,7 +200,7 @@
             <tbody>
             <c:forEach items="${userdatas}" var="userdata" varStatus="step">
                 <c:if test="${step.index<9}">
-                    <tr style="color:#93a2a9;background-color: #ffffff;">
+                    <tr style="color:#555;background-color: #ffffff;">
                         <td>${userdata.username}</td>
                         <td>${userdata.venue}</td>
                         <td>${userdata.learntime}小时</td>
@@ -210,7 +214,7 @@
         <table class="table table-striped">
             <caption>10--20名</caption>
             <thead>
-            <thead style="color:#93a2a9;font-weight:bold;background-color: #f9f9f9;">
+            <thead style="color:#555;font-weight:bold;background-color: #f9f9f9;">
             <th>&nbsp;&nbsp;姓名</th>
             <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学院</th>
             <th>总时长</th>
@@ -219,7 +223,7 @@
             <c:forEach items="${userdatas}" var="userdata" varStatus="step">
                 <c:if test="${step.index>9}">
                     <c:if test="${step.index<19}">
-                        <tr style="color:#93a2a9;background-color: #ffffff;">
+                        <tr style="color:#555;background-color: #ffffff;">
                             <td>${userdata.username}</td>
                             <td>${userdata.venue}</td>
                             <td>${userdata.learntime}小时</td>

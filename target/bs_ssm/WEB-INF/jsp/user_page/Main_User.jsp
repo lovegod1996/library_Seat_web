@@ -108,7 +108,7 @@
             <div class="panel-body" style="height: 400px;padding: 0 0 0 0 ">
                 <table class="layui-table" lay-even="" lay-skin="nob">
                    <tbody>
-                        <tr style="color:#93a2a9;font-weight:bold;background-color: #f9f9f9;">
+                        <tr style="color:#555;font-weight:bold;background-color: #f9f9f9;">
                            <td>&nbsp;&nbsp;姓名</td>
                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学院</td>
                            <td>总时长</td>

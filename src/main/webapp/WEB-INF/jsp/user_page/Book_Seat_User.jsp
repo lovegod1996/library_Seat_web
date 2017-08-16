@@ -25,6 +25,9 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
 
+    <script src="<%= request.getContextPath()%>/js/combodate.js"></script>
+    <script src="<%= request.getContextPath()%>/js/moment.js"></script>
+
     <%--获取当前时间--%>
     <script src="<%=request.getContextPath()%>/js/nowtime.js"></script>
     <script>
@@ -266,6 +269,17 @@
 
     <div class="RightView" id="RightView">
         <div class="panel panel-default">
+            <div style="margin: 25px;font-size:14px;line-height: 150%;color: #757575;">
+                <h4 style="color:#5c9bd1;margin-left:-10px;margin-bottom: 10px;">预约规则：</h4>
+                1、读者可使用浏览器登录“山东大学图书馆阅览座位预约系统”或图书馆微信公众号的“座位预约”模块，预约每天早晨开馆时的座位。预约系统用户名为校园卡账号，密码为校园卡查询密码。
+                <br>
+                2、中心校区文理分馆、洪家楼校区分馆、趵突泉校区分馆、兴
+                隆山校区分馆的阅览座位可以有条件地预约使用。
+                <br>
+                3、预约系统开放时间为每日20:00至次日7:30。读者可以预约次（/当）日早8:00开馆时的座位。
+                <br>
+            </div>
+            <hr>
             <div class="panel-heading">
                 <i class="fa fa-bell fa-fw"></i> 预约座位
             </div>
@@ -287,10 +301,12 @@
                         <div class="col-sm-9">
                             <div class="layui-inline">
                                 <input type="hidden" name="day" value="${day}">
-                                <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px"
-                                       required
-                                       onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
-                                <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
+                                <%--<input class="layui-input"  name="stime" placeholder="开始时间" style="width: 220px"--%>
+                                       <%--required--%>
+                                       <%--onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">--%>
+                                <%--&lt;%&ndash;now(0)表示今天；now(1)表示明天,限制预约只能今天明天&ndash;%&gt;--%>
+                                <input name="stime" type="text" id="time" data-format="HH:mm" data-template="HH : mm">
+
                             </div>
                         </div>
                     </div>
@@ -298,9 +314,10 @@
                         <label class="col-sm-3 control-label">结束</label>
                         <div class="col-sm-9">
                             <div class="layui-inline">
-                                <input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px"
-                                       required
-                                       onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
+                                <%--<input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px"--%>
+                                       <%--required--%>
+                                       <%--onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">--%>
+                                    <input name="etime" type="text" id="time1" data-format="HH:mm" data-template="HH : mm">
                             </div>
 
                         </div>
@@ -331,6 +348,19 @@
     </div>
     <!-- /.col-lg-4 -->
 </div>
+
+<script>
+    $(function(){
+        $('#time').combodate({
+            firstItem: 'name', //show 'hour' and 'minute' string at first item of dropdown
+            minuteStep: 1
+        });
+        $('#time1').combodate({
+            firstItem: 'name', //show 'hour' and 'minute' string at first item of dropdown
+            minuteStep: 1
+        });
+    });
+</script>
 
 <script type="text/javascript">
     function getnum(form) {

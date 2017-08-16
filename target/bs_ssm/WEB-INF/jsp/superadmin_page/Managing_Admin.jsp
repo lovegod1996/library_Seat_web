@@ -59,6 +59,12 @@
 <body>
 
 <div class="layui-tab">
+    <div style="margin: 30px;font-size:14px;line-height: 150%;color: #757575;">
+        <h4 style="color:#5c9bd1;margin-left:-10px;margin-bottom: 10px;">使用规则</h4>
+        1、要添加管理员啊之类的要添加管理员啊之类的要添加管理员啊之类的要添加管之类的要添加管理员啊之类的要添加管理员啊之类的要添加管理员啊之类的要添加管理员啊之类的
+        <br>2、要添加管理员啊之类的要添加管理员啊之类的要添加管理员啊之类的要添加管啊之类的要添加管理员啊之类的要添加管理员啊之类的要添加管理员啊之类的要添加管理员啊之类的
+        <br>3、要添加管理员啊之类的要添加管理员啊之类的要添加管理员啊之类的要添加管理员啊之类的
+    </div><hr>
     <ul class="layui-tab-title">
         <li class="layui-this">管理员状态</li>
         <li class="layui">添加</li>
@@ -164,7 +170,7 @@
         </div>
         <div class="layui-tab-item">
             <div class="layui-form">
-                <form class="layui-form" action="<%=request.getContextPath()%>/view/AdAdmin" method="post">
+                <form class="layui-form" action="<%=request.getContextPath()%>/view/AdAd    min" method="post">
                     <table class="layui-table" style="width:60%;margin-left:20%">
                         <caption style="text-align: center;font-size: 18px;
     font-weight: bold;">添加管理员</caption>
