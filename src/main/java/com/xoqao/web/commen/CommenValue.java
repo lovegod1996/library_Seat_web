@@ -49,6 +49,7 @@ public class CommenValue {
      * 二维码主题
      */
     public static String CODE_XIAOPOHAI="C:\\Users\\东旭\\Pictures\\libseat\\xiaopohai.jpg";
+    public static String CODE_BLUSKY="C:\\Users\\东旭\\Pictures\\libseat\\bluesky.jpg";
 
 
     public static String CODEPATH = "C:\\Users\\东旭\\Pictures\\libseat\\code\\";

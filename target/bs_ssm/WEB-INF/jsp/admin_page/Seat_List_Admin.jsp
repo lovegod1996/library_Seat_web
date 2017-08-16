@@ -17,8 +17,11 @@
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <style>
-        body {background-color: #f1f3fa;}
-        .panel-default>.panel-heading {
+        body {
+            background-color: #f1f3fa;
+        }
+
+        .panel-default > .panel-heading {
             color: #9e9e9e;
             background-color: #f1f3fa;
             border-color: #f1f3fa;
@@ -26,23 +29,27 @@
             font-weight: bold;
             font-family: inherit;
         }
+
         .panel-default {
             border-color: #f1f3fa;
         }
 
-        .panel-default>.panel-heading {
+        .panel-default > .panel-heading {
             color: #9e9e9e;
             background-color: #f1f3fa;
             border-color: #f1f3fa;
         }
+
         .panel {
             background-color: #f1f3fa;
         }
+
         .layui-table {
             width: 90%;
             margin: 10px 5%;
             background-color: #fff;
         }
+
         .pagination {
             display: inline-block;
             padding-left: 0;
@@ -50,13 +57,15 @@
             margin-left: -10%;
             border-radius: 4px;
         }
-        .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+
+        .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
             z-index: 3;
             color: #fff;
             cursor: default;
             background-color: #5c9bd1;
             border-color: #5c9bd1;
         }
+
         .layui-table thead tr {
             background-color: #f1f3fa;
         }
@@ -102,7 +111,17 @@
                         <td>${seat.statue==0?"是":"否"}</td>
                         <td>
                             <div class="layui-btn-group">
-                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}" class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码">二维码</a>
+                                    <%--<a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=1"--%>
+                                    <%--class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码">二维码</a>--%>
+
+                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=0"
+                                   class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 默认</a>
+                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=1"
+                                   class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 主题1</a>
+                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=2"
+                                   class="layui-btn layui-btn-primary layui-btn-small"  title="点击下载二维码"> 主题2</a>
+
+
                                 <c:if test="${seat.statue==0}">
                                     <a href="${pageContext.request.contextPath }/view/changeSeatStatue?statue=${seat.statue}&sid=${seat.sid}&fid=${fid}"
                                        class="layui-btn layui-btn-primary layui-btn-small">关闭预约</a>
@@ -114,7 +133,6 @@
                                 <a href="${pageContext.request.contextPath }/view/deleteSeat?sid=${seat.sid}&fid=${fid}"
                                    class="layui-btn layui-btn-primary layui-btn-small">删除</a>
                             </div>
-
                         </td>
                     </tr>
                 </c:forEach>

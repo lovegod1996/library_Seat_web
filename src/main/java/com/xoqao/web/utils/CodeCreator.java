@@ -59,7 +59,7 @@ public class CodeCreator {
     }
 
     //小破孩主题二维码
-    public void createCodeImgXiaoPoHai(CodeModel info, OutputStream outputStream) {
+    public void createCodeImgTheme(CodeModel info, OutputStream outputStream) {
         BufferedImage bm = createCodeImage(info);
         File logoFile = info.getLogoFile();
         if (logoFile != null && logoFile.exists()) {
@@ -97,6 +97,7 @@ public class CodeCreator {
                 Font font1 = new Font("棕色", Font.BOLD, info.getFontSideDes().getFontsize());
                 graphics.setColor(new Color(info.getFontSideDes().getColor()));
                 graphics.setFont(font1);
+                new Color(0xFFFFFF);
                 graphics.drawString(info.getFontSideDes().getDes(), info.getFontSideDes().getStartx(), info.getFontSideDes().getStarty());
                 graphics.dispose();
                 bm=back;

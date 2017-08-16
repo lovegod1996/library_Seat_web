@@ -277,7 +277,29 @@ public class Admin_Controller {
                 info.setFontSideLocal(location);
                 info.setCodestart(new int[]{160,130});
                 info.setBackimg(new File(CommenValue.CODE_XIAOPOHAI));
-                creator.createCodeImgXiaoPoHai(info, outputStream);
+                creator.createCodeImgTheme(info, outputStream);
+                break;
+            case 2:
+                info.setWidth(125);
+                info.setHeight(125);
+                info.setFontSize(24);
+                FontSide desc2=new FontSide();  //楼层描述
+                desc2.setColor(0xFFFFFF);
+                desc2.setDes(buildingById.getEmployer() + "\n       " + floor.getEmployer());
+                desc2.setFontsize(18);
+                desc2.setStartx(30);
+                desc2.setStarty(437);
+                FontSide location2=new FontSide();  //位置描述
+                location2.setColor(0x5e7d91);
+                location2.setFontsize(36);
+                location2.setDes(leftside + "侧" + seatBynumber.getRow() + "排" + seatBynumber.getColumns() + "列");
+                location2.setStartx(80);
+                location2.setStarty(55);
+                info.setFontSideDes(desc2);
+                info.setFontSideLocal(location2);
+                info.setCodestart(new int[]{112,217});
+                info.setBackimg(new File(CommenValue.CODE_BLUSKY));
+                creator.createCodeImgTheme(info, outputStream);
                 break;
             default:
                 info.setWidth(330);
@@ -287,8 +309,8 @@ public class Admin_Controller {
                 info.setDesc(buildingById.getEmployer() + "\n       " + floor.getEmployer() + "\n                    " + leftside + "侧 " + seatBynumber.getRow() + " 排 " + seatBynumber.getColumns() + " 列");
 
                 creator.createCodeImage(info, outputStream);
-                outputStream.flush();
-                outputStream.close();
+//                outputStream.flush();
+//                outputStream.close();
                 break;
         }
 

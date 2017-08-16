@@ -2,6 +2,7 @@ package com.xoqao.web.controller.phone;
 
 import com.xoqao.web.bean.booking.*;
 import com.xoqao.web.bean.building.Building;
+import com.xoqao.web.bean.building.BuildingSeatStatue;
 import com.xoqao.web.bean.data.FloorData;
 import com.xoqao.web.bean.data.UserData;
 import com.xoqao.web.bean.data.WeekData;
@@ -1156,7 +1157,61 @@ public class PhoneServerController {
             map.put("data", null);
             return map;
         }
+    }
 
+    /**
+     * 查看楼层状态
+     *
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/findFloorStatue")
+    public @ResponseBody
+    Map<String, Object> findFloorStatue(String sno) throws Exception {
+        List<BuildingSeatStatue> buildingSeatStatueList = new ArrayList<BuildingSeatStatue>();
+        List<Building> allBuilding = buildingService.findAllBuilding();
+        for (int i = 0; i <allBuilding.size() ; i++) {
+            BuildingSeatStatue buildingSeatStatue=new BuildingSeatStatue();
+            buildingSeatStatue.setBid(allBuilding.get(i).getBid());
+            buildingSeatStatue.setBuilding(allBuilding.get(i).getEmployer());
+            List<Floor> floors = floorService.findfloorsBybid(allBuilding.get(i).getBid());
+            List<FloorData> floorDataList=new ArrayList<FloorData>();
+            for (int j = 0; j <floors.size() ; j++) {
+
+                Floor floor = floors.get(j);
+                FloorData floorData = new FloorData();
+                floorData.setFloor(floor.getEmployer());
+                List<Seat> openSeatsByFid = seatService.findOpenSeatsByFid(floor.getFid());
+                floorData.setSeatCount(openSeatsByFid.size());
+                List<Seat> bookSeat = bookingService.findBookSeat(floor.getFid());
+                floorData.setHasBook(bookSeat.size());
+                floorData.setNoBook(openSeatsByFid.size() - bookSeat.size());
+                List<Seat> seats = bookingService.findbookSeatofUpWeek(floor.getFid());
+                float pro = (seats.size() / (float) openSeatsByFid.size()) * 100;
+                floorData.setUpWeekUsePro((double) pro);
+                List<Booking> floorBookOfUpWeek = bookingService.findFloorBookOfUpWeek(floor.getFid());
+                int manCount = 0;
+                for (int k = 0; k < floorBookOfUpWeek.size(); k++) {
+                    User userBySno1 = userService.findUserBySno(floorBookOfUpWeek.get(k).getSno());
+                    if (userBySno1.getSex() == 0) {
+                        manCount++;
+                    }
+                }
+                float v = (manCount / (float) floorBookOfUpWeek.size()) * 100;
+                floorData.setMan((double) v);
+                List<Booking> userBookOfUpWeek = bookingService.findUserBookOfUpWeek(floor.getFid(), sno);
+                floorData.setMybook(userBookOfUpWeek.size());
+                floorDataList.add(floorData);
+            }
+            buildingSeatStatue.setFloorDataList(floorDataList);
+            buildingSeatStatueList.add(buildingSeatStatue);
+        }
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("code", 0);
+        map.put("message", "成功");
+        map.put("data", buildingSeatStatueList);
+        return map;
     }
 
 }
