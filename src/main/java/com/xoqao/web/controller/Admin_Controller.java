@@ -1,5 +1,6 @@
 package com.xoqao.web.controller;
 
+import com.mysql.jdbc.CacheAdapter;
 import com.xoqao.web.bean.booking.Booking;
 import com.xoqao.web.bean.building.Building;
 import com.xoqao.web.bean.code.CodeModel;
@@ -261,21 +262,31 @@ public class Admin_Controller {
                 info.setWidth(330);
                 info.setHeight(330);
                 info.setFontSize(24);
-                FontSide desc=new FontSide();  //楼层描述
-                desc.setColor(0x7E3805);
-                desc.setDes(buildingById.getEmployer() + "\n       " + floor.getEmployer());
-                desc.setFontsize(36);
-                desc.setStartx(40);
-                desc.setStarty(690);
-                FontSide location=new FontSide();  //位置描述
-                location.setColor(0x000000);
-                location.setFontsize(48);
-                location.setDes(leftside + "侧" + seatBynumber.getRow() + "排" + seatBynumber.getColumns() + "列");
-                location.setStartx(195);
-                location.setStarty(570);
-                info.setFontSideDes(desc);
-                info.setFontSideLocal(location);
-                info.setCodestart(new int[]{160,130});
+                FontSide building1 = new FontSide();  //楼层描述
+                building1.setColor(0x7E3805);
+                building1.setDes(buildingById.getEmployer());
+                building1.setFontsize(36);
+                building1.setStartx(40);
+                building1.setStarty(690);
+
+                FontSide room1 = new FontSide();  //场馆描述
+                room1.setColor(0x7E3805);
+                room1.setDes(floor.getEmployer());
+                room1.setFontsize(36);
+                room1.setStartx(325);
+                room1.setStarty(690);
+
+                FontSide location1 = new FontSide();  //位置描述
+                location1.setColor(0x000000);
+                location1.setFontsize(48);
+                location1.setDes(leftside + "侧" + seatBynumber.getRow() + "排" + seatBynumber.getColumns() + "列");
+                location1.setStartx(195);
+                location1.setStarty(570);
+
+                info.setFontSideLocal(location1);
+                info.setFontSideRoom(room1);
+                info.setFontSideBuiding(building1);
+                info.setCodestart(new int[]{160, 130});
                 info.setBackimg(new File(CommenValue.CODE_XIAOPOHAI));
                 creator.createCodeImgTheme(info, outputStream);
                 break;
@@ -283,23 +294,229 @@ public class Admin_Controller {
                 info.setWidth(125);
                 info.setHeight(125);
                 info.setFontSize(24);
-                FontSide desc2=new FontSide();  //楼层描述
-                desc2.setColor(0xFFFFFF);
-                desc2.setDes(buildingById.getEmployer() + "\n       " + floor.getEmployer());
-                desc2.setFontsize(18);
-                desc2.setStartx(30);
-                desc2.setStarty(437);
-                FontSide location2=new FontSide();  //位置描述
+                FontSide building2 = new FontSide();  //楼层描述
+                building2.setColor(0xFFFFFF);
+                building2.setDes(buildingById.getEmployer());
+                building2.setFontsize(18);
+                building2.setStartx(30);
+                building2.setStarty(437);
+
+                FontSide room2 = new FontSide();  //场馆描述
+                room2.setColor(0xFFFFFF);
+                room2.setDes(floor.getEmployer());
+                room2.setFontsize(18);
+                room2.setStartx(175);
+                room2.setStarty(437);
+
+                FontSide location2 = new FontSide();  //位置描述
                 location2.setColor(0x5e7d91);
                 location2.setFontsize(36);
                 location2.setDes(leftside + "侧" + seatBynumber.getRow() + "排" + seatBynumber.getColumns() + "列");
                 location2.setStartx(80);
                 location2.setStarty(55);
-                info.setFontSideDes(desc2);
+
                 info.setFontSideLocal(location2);
-                info.setCodestart(new int[]{112,217});
+                info.setFontSideRoom(room2);
+                info.setFontSideBuiding(building2);
+                info.setCodestart(new int[]{112, 217});
                 info.setBackimg(new File(CommenValue.CODE_BLUSKY));
                 creator.createCodeImgTheme(info, outputStream);
+                break;
+
+            case 3:
+                info.setWidth(140);
+                info.setHeight(140);
+                info.setFontSize(24);
+                FontSide building3 = new FontSide();  //楼层描述
+                building3.setColor(0xFFFFFF);
+                building3.setDes(buildingById.getEmployer());
+                building3.setFontsize(20);
+                building3.setStartx(75);
+                building3.setStarty(522);
+
+                FontSide room3 = new FontSide();  //场馆描述
+                room3.setColor(0xFFFFFF);
+                room3.setDes(floor.getEmployer());
+                room3.setFontsize(20);
+                room3.setStartx(80);
+                room3.setStarty(552);
+
+                FontSide location3 = new FontSide();  //位置描述
+                location3.setColor(0xFFFFFF);
+                location3.setFontsize(30);
+                location3.setDes(leftside + "侧" + seatBynumber.getRow() + "排" + seatBynumber.getColumns() + "列");
+                location3.setStartx(50);
+                location3.setStarty(270);
+
+                info.setFontSideLocal(location3);
+                info.setFontSideRoom(room3);
+                info.setFontSideBuiding(building3);
+                info.setCodestart(new int[]{80, 350});
+                info.setBackimg(new File(CommenValue.CODE_TAG));
+                creator.createCodeImgTheme(info, outputStream);
+                break;
+            case 4:
+                info.setWidth(235);
+                info.setHeight(235);
+                info.setFontSize(24);
+                FontSide building4 = new FontSide();  //楼层描述
+                building4.setColor(0xec5801);
+                building4.setDes(buildingById.getEmployer());
+                building4.setFontsize(20);
+                building4.setStartx(70);
+                building4.setStarty(150);
+
+                FontSide room4 = new FontSide();  //场馆描述
+                room4.setColor(0xec5801);
+                room4.setDes(floor.getEmployer());
+                room4.setFontsize(20);
+                room4.setStartx(287);
+                room4.setStarty(150);
+
+                FontSide location4 = new FontSide();  //位置描述
+                location4.setColor(0xa02503);
+                location4.setFontsize(30);
+                location4.setDes(leftside + "侧" + seatBynumber.getRow() + "排" + seatBynumber.getColumns() + "列");
+                location4.setStartx(165);
+                location4.setStarty(60);
+
+                info.setFontSideLocal(location4);
+                info.setFontSideRoom(room4);
+                info.setFontSideBuiding(building4);
+                info.setCodestart(new int[]{148, 218});
+                info.setBackimg(new File(CommenValue.CODE_AIGUO));
+                creator.createCodeImgTheme(info, outputStream);
+                break;
+            case 5:
+
+                info.setWidth(218);
+                info.setHeight(218);
+                info.setFontSize(24);
+                FontSide building5 = new FontSide();  //楼层描述
+                building5.setColor(0xFFFFFF);
+                building5.setDes(buildingById.getEmployer());
+                building5.setFontsize(14);
+                building5.setStartx(50);
+                building5.setStarty(663);
+
+                FontSide room5 = new FontSide();  //场馆描述
+                room5.setColor(0xFFFFFF);
+                room5.setDes(floor.getEmployer());
+                room5.setFontsize(14);
+                room5.setStartx(285);
+                room5.setStarty(663);
+
+                FontSide location5 = new FontSide();  //位置描述
+                location5.setColor(0xFFFFFF);
+                location5.setFontsize(30);
+                location5.setDes(leftside + "侧" + seatBynumber.getRow() + "排" + seatBynumber.getColumns() + "列");
+                location5.setStartx(150);
+                location5.setStarty(80);
+
+                info.setFontSideLocal(location5);
+                info.setFontSideRoom(room5);
+                info.setFontSideBuiding(building5);
+                info.setCodestart(new int[]{130, 400});
+                info.setBackimg(new File(CommenValue.CODE_BOY));
+                creator.createCodeImgTheme(info, outputStream);
+                break;
+            case 6:
+                info.setWidth(204);
+                info.setHeight(204);
+                info.setFontSize(24);
+                FontSide building6 = new FontSide();  //楼层描述
+                building6.setColor(0x000000);
+                building6.setDes(buildingById.getEmployer());
+                building6.setFontsize(18);
+                building6.setStartx(29);
+                building6.setStarty(540);
+
+                FontSide room6 = new FontSide();  //场馆描述
+                room6.setColor(0x000000);
+                room6.setDes(floor.getEmployer());
+                room6.setFontsize(18);
+                room6.setStartx(296);
+                room6.setStarty(540);
+
+                FontSide location6 = new FontSide();  //位置描述
+                location6.setColor(0x000000);
+                location6.setFontsize(36);
+                location6.setDes(leftside + "侧" + seatBynumber.getRow() + "排" + seatBynumber.getColumns() + "列");
+                location6.setStartx(110);
+                location6.setStarty(60);
+
+                info.setFontSideLocal(location6);
+                info.setFontSideRoom(room6);
+                info.setFontSideBuiding(building6);
+                info.setCodestart(new int[]{147, 212});
+                info.setBackimg(new File(CommenValue.CODE_KNOT));
+                creator.createCodeImgTheme(info, outputStream);
+                break;
+
+            case 7:
+                info.setWidth(275);
+                info.setHeight(275);
+                info.setFontSize(24);
+                FontSide building7 = new FontSide();  //楼层描述
+                building7.setColor(0x6aa839);
+                building7.setDes(buildingById.getEmployer());
+                building7.setFontsize(20);
+                building7.setStartx(25);
+                building7.setStarty(545);
+
+                FontSide room7 = new FontSide();  //场馆描述
+                room7.setColor(0x6aa839);
+                room7.setDes(floor.getEmployer());
+                room7.setFontsize(20);
+                room7.setStartx(270);
+                room7.setStarty(545);
+
+                FontSide location7 = new FontSide();  //位置描述
+                location7.setColor(0xFFFFFF);
+                location7.setFontsize(48);
+                location7.setDes(leftside + "侧" + seatBynumber.getRow() + "排" + seatBynumber.getColumns() + "列");
+                location7.setStartx(85);
+                location7.setStarty(110);
+
+                info.setFontSideLocal(location7);
+                info.setFontSideRoom(room7);
+                info.setFontSideBuiding(building7);
+                info.setCodestart(new int[]{85, 225});
+                info.setBackimg(new File(CommenValue.CODE_GREEN));
+                creator.createCodeImgTheme(info, outputStream);
+                break;
+            case 8:
+                info.setWidth(244);
+                info.setHeight(244);
+                info.setFontSize(24);
+                FontSide building8 = new FontSide();  //楼层描述
+                building8.setColor(0x000000);
+                building8.setDes(buildingById.getEmployer());
+                building8.setFontsize(24);
+                building8.setStartx(74);
+                building8.setStarty(594);
+
+                FontSide room8 = new FontSide();  //场馆描述
+                room8.setColor(0x000000);
+                room8.setDes(floor.getEmployer());
+                room8.setFontsize(24);
+                room8.setStartx(250);
+                room8.setStarty(594);
+
+                FontSide location8 = new FontSide();  //位置描述
+                location8.setColor(0x000000);
+                location8.setFontsize(42);
+                location8.setDes(leftside + "侧" + seatBynumber.getRow() + "排" + seatBynumber.getColumns() + "列");
+                location8.setStartx(113);
+                location8.setStarty(70);
+
+                info.setFontSideLocal(location8);
+                info.setFontSideRoom(room8);
+                info.setFontSideBuiding(building8);
+                info.setCodestart(new int[]{134, 240});
+                info.setBackimg(new File(CommenValue.CODE_CLOUDS));
+                creator.createCodeImgTheme(info, outputStream);
+
                 break;
             default:
                 info.setWidth(330);

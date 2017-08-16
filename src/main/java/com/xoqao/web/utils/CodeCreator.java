@@ -94,13 +94,21 @@ public class CodeCreator {
                 graphics.setColor(new Color(info.getFontSideLocal().getColor()));
                 graphics.drawString(info.getFontSideLocal().getDes(), info.getFontSideLocal().getStartx(), info.getFontSideLocal().getStarty());
 
-                Font font1 = new Font("棕色", Font.BOLD, info.getFontSideDes().getFontsize());
-                graphics.setColor(new Color(info.getFontSideDes().getColor()));
+                Font font1 = new Font("棕色", Font.BOLD, info.getFontSideBuiding().getFontsize());
+                graphics.setColor(new Color(info.getFontSideBuiding().getColor()));
                 graphics.setFont(font1);
-                new Color(0xFFFFFF);
-                graphics.drawString(info.getFontSideDes().getDes(), info.getFontSideDes().getStartx(), info.getFontSideDes().getStarty());
+                new Color(info.getFontSideBuiding().getColor());
+                graphics.drawString(info.getFontSideBuiding().getDes(), info.getFontSideBuiding().getStartx(), info.getFontSideBuiding().getStarty());
+
+                Font font2 = new Font("棕色", Font.BOLD, info.getFontSideRoom().getFontsize());
+                graphics.setColor(new Color(info.getFontSideRoom().getColor()));
+                graphics.setFont(font2);
+                new Color(info.getFontSideRoom().getColor());
+                graphics.drawString(info.getFontSideRoom().getDes(), info.getFontSideRoom().getStartx(), info.getFontSideRoom().getStarty());
+
+
                 graphics.dispose();
-                bm=back;
+                bm = back;
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -111,19 +111,32 @@
                                 <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=1"
                                    class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 主题1</a>
                                 <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=2"
-                                   class="layui-btn layui-btn-primary layui-btn-small"  title="点击下载二维码"> 主题2</a>
-
-
+                                   class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 主题2</a>
+                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=3"
+                                   class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 主题3</a>
+                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=4"
+                                   class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 主题4</a>
+                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=5"
+                                   class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 主题5</a>
+                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=6"
+                                   class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 主题6</a>
+                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=7"
+                                   class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 主题7</a>
+                                        <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=8"
+                                           class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 主题8</a>
                                 <c:if test="${seat.statue==0}">
                                     <a href="${pageContext.request.contextPath }/view/changeSeatStatue?statue=${seat.statue}&sid=${seat.sid}&fid=${fid}"
-                                       class="layui-btn layui-btn-primary layui-btn-small" onclick="return confirmAct()">关闭预约</a>
+                                       class="layui-btn layui-btn-primary layui-btn-small"
+                                       onclick="return confirmAct()">关闭预约</a>
                                 </c:if>
                                 <c:if test="${seat.statue==1}">
                                     <a href="${pageContext.request.contextPath }/view/changeSeatStatue?statue=${seat.statue}&sid=${seat.sid}&fid=${fid}"
-                                       class="layui-btn layui-btn-primary layui-btn-small" onclick="return confirmAct()">开启预约</a>
+                                       class="layui-btn layui-btn-primary layui-btn-small"
+                                       onclick="return confirmAct()">开启预约</a>
                                 </c:if>
                                 <a href="${pageContext.request.contextPath }/view/deleteSeat?sid=${seat.sid}&fid=${fid}"
-                                   class="layui-btn layui-btn-primary layui-btn-small" onclick="return confirmAct()">删除</a>
+                                   class="layui-btn layui-btn-primary layui-btn-small"
+                                   onclick="return confirmAct()">删除</a>
                             </div>
                         </td>
                     </tr>

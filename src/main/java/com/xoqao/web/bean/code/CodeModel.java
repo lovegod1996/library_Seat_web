@@ -25,7 +25,8 @@ public class CodeModel {
     private int[] bottomEnd;//二维码最下边的结束坐标
 
     private int[] codestart;  //二维码起始坐标
-    private FontSide fontSideDes; //场馆描述
+    private FontSide fontSideBuiding; //楼层描述
+    private FontSide fontSideRoom; //场馆描述
     private FontSide fontSideLocal; //位置
     private File backimg;   //背景图
 
@@ -141,12 +142,20 @@ public class CodeModel {
         this.codestart = codestart;
     }
 
-    public FontSide getFontSideDes() {
-        return fontSideDes;
+    public FontSide getFontSideBuiding() {
+        return fontSideBuiding;
     }
 
-    public void setFontSideDes(FontSide fontSideDes) {
-        this.fontSideDes = fontSideDes;
+    public void setFontSideBuiding(FontSide fontSideBuiding) {
+        this.fontSideBuiding = fontSideBuiding;
+    }
+
+    public FontSide getFontSideRoom() {
+        return fontSideRoom;
+    }
+
+    public void setFontSideRoom(FontSide fontSideRoom) {
+        this.fontSideRoom = fontSideRoom;
     }
 
     public FontSide getFontSideLocal() {
