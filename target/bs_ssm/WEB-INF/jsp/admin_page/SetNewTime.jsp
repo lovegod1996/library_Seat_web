@@ -12,6 +12,8 @@
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+    <%--操作确认--%>
+    <script src="<%=request.getContextPath()%>/js/dialog.js"></script>
 
     <style type="text/css">
         body {
@@ -46,7 +48,7 @@
             <input type="password" id="newTime" class="layui-input" placeholder="请输入（小时）" required style="width: 250px">
         </div>
     </div>
-    <button type="submit" class="layui-btn">确定</button>
+    <button type="submit" class="layui-btn" onclick="return confirmAct()">确定</button>
 </form>
 
 </body>

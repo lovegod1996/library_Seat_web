@@ -17,6 +17,8 @@
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
     <!-- jQuery -->
     <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
+    <%--操作确认--%>
+    <script src="<%=request.getContextPath()%>/js/dialog.js"></script>
     <style>
         .black_overlay {
             display: none;
@@ -121,9 +123,9 @@
                                         document.getElementById('fade').style.display='block';getTableContent(this)">编辑
                                 </button>
                                 <c:if test="${floor.statue==0}">
-                                    <a href="<%=request.getContextPath()%>/view/admin/changeFloor?fid=${floor.fid}&&statue=${floor.statue}" class="layui-btn layui-btn-small">关闭</a> </c:if>
-                                <c:if test="${floor.statue==1}"><a href="<%=request.getContextPath()%>/view/admin/changeFloor?fid=${floor.fid}&&statue=${floor.statue}" class="layui-btn layui-btn-small">开馆</a> </c:if>
-                                <a href="<%=request.getContextPath()%>/view/deletefloor?bid=${building.bid}&&fid=${floor.fid}" class="layui-btn layui-btn-small">删除</a>
+                                    <a href="<%=request.getContextPath()%>/view/admin/changeFloor?fid=${floor.fid}&&statue=${floor.statue}" class="layui-btn layui-btn-small" onclick="return confirmAct()">关闭</a> </c:if>
+                                <c:if test="${floor.statue==1}"><a href="<%=request.getContextPath()%>/view/admin/changeFloor?fid=${floor.fid}&&statue=${floor.statue}" class="layui-btn layui-btn-small" onclick="return confirmAct()">开馆</a> </c:if>
+                                <a href="<%=request.getContextPath()%>/view/deletefloor?bid=${building.bid}&&fid=${floor.fid}" class="layui-btn layui-btn-small" onclick="return confirmAct()">删除</a>
                             </td>
                         </tr>
                     </c:forEach>

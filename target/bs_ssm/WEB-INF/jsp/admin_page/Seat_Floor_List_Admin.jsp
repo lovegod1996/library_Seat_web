@@ -74,7 +74,6 @@
             <table class="layui-table">
                 <thead>
                 <tr>
-                    <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
                     <th>所属楼层</th>
                     <th>座位编号</th>
                     <th>分布</th>
@@ -87,7 +86,6 @@
 
                 <c:forEach items="${seats}" var="seat">
                     <tr>
-                        <td><input type="checkbox"></td>
                         <td>${seat.building}(${seat.floor})</td>
                         <td>${seat.seatnumber}</td>
                         <td>${seat.leftside==0?"左侧":"右侧"}</td>
@@ -177,21 +175,5 @@
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
 
 <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
-<script>
-    layui.use('form', function () {
-        var $ = layui.jquery, form = layui.form();
-
-        //全选
-        form.on('checkbox(allChoose)', function (data) {
-            //language=JQuery-CSS
-            var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
-            child.each(function (index, item) {
-                item.checked = data.elem.checked;
-            });
-            form.render('checkbox');
-        });
-
-    });
-</script>
 </body>
 </html>

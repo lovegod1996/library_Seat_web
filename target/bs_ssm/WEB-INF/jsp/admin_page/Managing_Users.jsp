@@ -16,6 +16,8 @@
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
+    <%--操作确认--%>
+    <script src="<%=request.getContextPath()%>/js/dialog.js"></script>
 
 
     <script language="JavaScript" type="text/javascript">
@@ -55,22 +57,26 @@
         }
 
     </script>
+
     <style>
         body {
             background-color: #eff3f8;
             margin-top: 15px;
         }
-        .panel-default>.panel-heading {
+
+        .panel-default > .panel-heading {
             color: #5c9bd1;
             background-color: #ffffff;
             border-color: #f9f9f9;
         }
+
         .btn-block {
             display: block;
             width: 100px;
             margin: 30px auto;
             background-color: #8895a9;
         }
+
         input[type=file] {
             display: inline;
         }
@@ -94,7 +100,7 @@
                     <option value="2014">2014</option>
                 </select>
                 <select name="college" id="college" onchange="getCollege()" style="float: left;margin-left: 1%">
-                    <option >--选择学院名称--</option>
+                    <option>--选择学院名称--</option>
                     <c:if test="${college!=null}">
                         <option value="${college}" selected>${college}</option>
                     </c:if>
@@ -110,7 +116,8 @@
                 </select>
             </form>
             <div>
-                <form action="${pageContext.request.contextPath }/view/allUserUp" method="post" enctype="multipart/form-data">
+                <form action="${pageContext.request.contextPath }/view/allUserUp" method="post"
+                      enctype="multipart/form-data">
 
                     <input type="file" id="inputfile" name="excelfile" accept=".xls,.xlsx">
                     <button type="submit">提交</button>
@@ -118,7 +125,8 @@
             </div>
             <button type="button" data-method="notice" class="layui-btn layui-btn-mini" style="margin-left:20px ">添加用户
             </button>
-            <button type="button" data-method="notice" class="layui-btn layui-btn-mini layui-btn-normal" style="margin-left:20px ">批量导入
+            <button type="button" data-method="notice" class="layui-btn layui-btn-mini layui-btn-normal"
+                    style="margin-left:20px ">批量导入
             </button>
             <button type="button" class="layui-btn layui-btn-mini layui-btn-danger" style="margin-left:20px ">删除用户
             </button>
@@ -132,7 +140,6 @@
             <table class="layui-table">
                 <thead>
                 <tr>
-                    <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
                     <th>序号</th>
                     <th>姓名</th>
                     <th>学号</th>
@@ -146,7 +153,6 @@
 
                 <c:forEach items="${users}" var="userss">
                     <tr>
-                        <td><input type="checkbox" name="" lay-skin="primary"></td>
                         <td>${userss.uid}</td>
                         <td>${userss.name}</td>
                         <td>${userss.sno}</td>
@@ -154,7 +160,8 @@
                         <td>${userss.major}</td>
                         <td>${userss.classes}</td>
                         <td>
-                            <a href="${pageContext.request.contextPath }/view/userDelete?uid=${userss.uid}" class="btn btn-danger btn-sm">删除</a>
+                            <a href="${pageContext.request.contextPath }/view/userDelete?uid=${userss.uid}"
+                               class="btn btn-danger btn-sm" onclick="return confirmAct()">删除</a>
                         </td>
                     </tr>
 
@@ -237,22 +244,6 @@
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
 
 <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
-<script>
-    layui.use('form', function () {
-        var $ = layui.jquery, form = layui.form();
-
-        //全选
-        form.on('checkbox(allChoose)', function (data) {
-            //language=JQuery-CSS
-            var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
-            child.each(function (index, item) {
-                item.checked = data.elem.checked;
-            });
-            form.render('checkbox');
-        });
-
-    });
-</script>
 <script type="text/javascript">
     <c:if test="${!empty error_msg}">alert("${error_msg}");
     </c:if>
@@ -294,7 +285,6 @@
                 });
             }
         };
-
 
 
         $('.layui-btn').on('click', function () {

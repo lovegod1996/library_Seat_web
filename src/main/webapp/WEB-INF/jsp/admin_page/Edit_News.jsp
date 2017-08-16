@@ -16,6 +16,8 @@
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
+    <%--操作确认--%>
+    <script src="<%=request.getContextPath()%>/js/dialog.js"></script>
     <style type="text/css">
         body {
             width: 75%;
@@ -50,7 +52,7 @@
                     <%--<input type="file" id="inputfile">--%>
                 <%--</div>--%>
                 <div class="col-sm-1" >
-                    <button type="submit" class="btn btn-primary">发布</button>
+                    <button type="submit" class="btn btn-primary" onclick="return confirmAct()">发布</button>
                 </div>
             </div>
         </form>
