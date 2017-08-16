@@ -145,19 +145,6 @@
             <i class="fa fa-bar-chart-o fa-fw"></i> 空闲座位统计
             <a href="${pageContext.request.contextPath }/jsp/seat_In_Empty" class="btn btn-success btn-xs"
                style="margin-left:20px ">点击刷新</a>
-            <%--<div class="pull-right">--%>
-                <%--<FORM METHOD=POST ACTION="" name="selectform">--%>
-                    <%--<SELECT NAME="building" onChange="getCity()">--%>
-                        <%--<OPTION VALUE="0">选择南北楼</OPTION>--%>
-                        <%--<OPTION VALUE="南楼">南楼</OPTION>--%>
-                        <%--<OPTION VALUE="北楼">北楼</OPTION>--%>
-                    <%--</SELECT>--%>
-                    <%--<SELECT NAME="floor" onchange="getData()" id="floor">--%>
-                        <%--<OPTION VALUE="0">选择所在楼层</OPTION>--%>
-                        <%--<OPTION VALUE="0">${floor}</OPTION>--%>
-                    <%--</SELECT>--%>
-                <%--</FORM>--%>
-            <%--</div>--%>
         </div>
         <!-- /.panel-heading -->
         <div class="table table-condensed">

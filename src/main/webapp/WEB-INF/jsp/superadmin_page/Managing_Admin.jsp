@@ -15,6 +15,8 @@
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+    <%--操作确认--%>
+    <script src="<%=request.getContextPath()%>/js/dialog.js"></script>
     <script>
         function changeItem(obj) {
 //    var index=obj.selectedIndex;
@@ -148,7 +150,7 @@
                             </td>
                             <td>
                                 <c:if test="${admin.admin==0}">
-                                    <a href="<%=request.getContextPath()%>/view/deleteAdmin?aid=${admin.aid}" style="color:red;">删除</a>
+                                    <a href="<%=request.getContextPath()%>/view/deleteAdmin?aid=${admin.aid}" style="color:red;" onclick="return confirmAct()">删除</a>
                                 </c:if>
                             </td>
                         </tr>

@@ -16,6 +16,8 @@
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
+    <%--操作确认--%>
+    <script src="<%=request.getContextPath()%>/js/dialog.js"></script>
     <style>
         body {background-color: #f1f3fa;}
         .panel-default>.panel-heading {
@@ -91,7 +93,7 @@
                         <td><fmt:formatDate value="${notice.creattime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                         <td>
                             <a href="<%=request.getContextPath()%>/admin/editNews?nid=${notice.nid}" class="btn btn-primary btn-sm">编辑</a>
-                            <a href="<%=request.getContextPath()%>/admin/newsDele?nid=${notice.nid}" class="btn btn-danger btn-sm">删除</a>
+                            <a href="<%=request.getContextPath()%>/admin/newsDele?nid=${notice.nid}" class="btn btn-danger btn-sm" onclick="return confirmAct()">删除</a>
                         </td>
                     </tr>
                 </c:forEach>

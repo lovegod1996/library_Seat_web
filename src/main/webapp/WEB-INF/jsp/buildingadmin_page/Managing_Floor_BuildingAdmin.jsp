@@ -15,6 +15,8 @@
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+    <%--操作确认--%>
+    <script src="<%=request.getContextPath()%>/js/dialog.js"></script>
     <style>
         body {
             background-color: #eff3f8;
@@ -57,8 +59,8 @@
                             <td>${floor.statue == 0?"开放":"关闭"}</td>
                             <td>
                                 <c:if test="${floor.statue==0}">
-                                    <a href="<%=request.getContextPath()%>/view/floor/changestatue?fid=${floor.fid}&&statue=${floor.statue}">关闭</a> </c:if>
-                                <c:if test="${floor.statue==1}"><a href="<%=request.getContextPath()%>/view/floor/changestatue?fid=${floor.fid}&&statue=${floor.statue}">开馆</a> </c:if>
+                                    <a href="<%=request.getContextPath()%>/view/floor/changestatue?fid=${floor.fid}&&statue=${floor.statue}" onclick="return confirmAct()">关闭</a> </c:if>
+                                <c:if test="${floor.statue==1}"><a href="<%=request.getContextPath()%>/view/floor/changestatue?fid=${floor.fid}&&statue=${floor.statue}" onclick="return confirmAct()">开馆</a> </c:if>
                             </td>
                         </tr>
                     </c:forEach>
@@ -100,22 +102,6 @@
 
         element.on('tab(test)', function (elem) {
             location.hash = 'test=' + $(this).attr('lay-id');
-        });
-
-    });
-</script>
-
-<%--//全选--%>
-<script>
-    layui.use('form', function () {
-        var $ = layui.jquery, form = layui.form();
-        //全选
-        form.on('checkbox(allChoose)', function (data) {
-            var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
-            child.each(function (index, item) {
-                item.checked = data.elem.checked;
-            });
-            form.render('checkbox');
         });
 
     });

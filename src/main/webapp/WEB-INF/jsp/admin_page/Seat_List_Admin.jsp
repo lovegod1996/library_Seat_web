@@ -16,6 +16,8 @@
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <%--layui--%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
+    <%--操作确认--%>
+    <script src="<%=request.getContextPath()%>/js/dialog.js"></script>
     <style>
         body {background-color: #f1f3fa;}
         .panel-default>.panel-heading {
@@ -71,17 +73,8 @@
         <!-- /.panel-heading -->
         <div class="layui-form">
             <table class="layui-table">
-                <%--<colgroup>--%>
-                <%--<col>--%>
-                <%--<col width="8%">--%>
-                <%--<col width="20%">--%>
-                <%--<col width="8%">--%>
-                <%--<col width="15%">--%>
-                <%--<col width="40%">--%>
-                <%--</colgroup>--%>
                 <thead>
                 <tr>
-                    <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
                     <th>所属楼层</th>
                     <th>座位编号</th>
                     <th>分布</th>
@@ -94,7 +87,6 @@
 
                 <c:forEach items="${seats}" var="seat">
                     <tr>
-                        <td><input type="checkbox"></td>
                         <td>${seat.building}(${seat.floor})</td>
                         <td>${seat.seatnumber}</td>
                         <td>${seat.leftside==0?"左侧":"右侧"}</td>
@@ -105,14 +97,14 @@
                                 <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}" class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码">二维码</a>
                                 <c:if test="${seat.statue==0}">
                                     <a href="${pageContext.request.contextPath }/view/changeSeatStatue?statue=${seat.statue}&sid=${seat.sid}&fid=${fid}"
-                                       class="layui-btn layui-btn-primary layui-btn-small">关闭预约</a>
+                                       class="layui-btn layui-btn-primary layui-btn-small" onclick="return confirmAct()">关闭预约</a>
                                 </c:if>
                                 <c:if test="${seat.statue==1}">
                                     <a href="${pageContext.request.contextPath }/view/changeSeatStatue?statue=${seat.statue}&sid=${seat.sid}&fid=${fid}"
-                                       class="layui-btn layui-btn-primary layui-btn-small">开启预约</a>
+                                       class="layui-btn layui-btn-primary layui-btn-small" onclick="return confirmAct()">开启预约</a>
                                 </c:if>
                                 <a href="${pageContext.request.contextPath }/view/deleteSeat?sid=${seat.sid}&fid=${fid}"
-                                   class="layui-btn layui-btn-primary layui-btn-small">删除</a>
+                                   class="layui-btn layui-btn-primary layui-btn-small" onclick="return confirmAct()">删除</a>
                             </div>
 
                         </td>
@@ -195,21 +187,5 @@
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
 
 <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
-<script>
-    layui.use('form', function () {
-        var $ = layui.jquery, form = layui.form();
-
-        //全选
-        form.on('checkbox(allChoose)', function (data) {
-            //language=JQuery-CSS
-            var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
-            child.each(function (index, item) {
-                item.checked = data.elem.checked;
-            });
-            form.render('checkbox');
-        });
-
-    });
-</script>
 </body>
 </html>
