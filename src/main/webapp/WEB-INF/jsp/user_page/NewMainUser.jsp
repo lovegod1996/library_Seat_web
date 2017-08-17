@@ -11,12 +11,15 @@
 <%@ page isELIgnored="false" %>
 <html>
 <head>
-    <title>Title</title><!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Title</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <%--layui --%>
+    <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <!-- jQuery -->
     <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <style>
         body {
@@ -24,44 +27,54 @@
             margin-left: 5%;
             background-color: #eff3f8;
         }
+
         .carousel {
             margin-top: 2px;
         }
-        .panel-default>.panel-heading {
+
+        .panel-default > .panel-heading {
             color: #5c9bd1;
             background-color: #ffffff;
             border-color: #f9f9f9;
         }
+
         .panel-default {
             border-color: #eff3f8;
         }
+
         li {
             list-style: none;
             color: #2b4454;
             margin-bottom: 15px;
         }
-        li span{
+
+        li span {
             margin-top: 10px;
-            margin-right:10px;
+            margin-right: 10px;
         }
+
         .btn-block {
             display: block;
             width: 100px;
             margin: 30px auto;
             background-color: #8895a9;
         }
+
         .pull-right {
-            float: right!important;
+            float: right !important;
             margin-top: 15px;
         }
+
         a:focus, a:hover {
             color: #8895a9;
             text-decoration: underline;
         }
+
         a {
             color: #4d5b69;
             text-decoration: none;
         }
+
         caption {
             padding-top: 8px;
             padding-bottom: 8px;
@@ -70,14 +83,17 @@
             font-weight: 600;
             margin-left: 10px;
         }
+
         .panel-default {
             border-color: #eff3f8;
             margin-left: -18px;
             margin-right: -18px;
         }
+
         .carousel-control {
             opacity: 0;
         }
+
         .carousel-control:focus, .carousel-control:hover {
             color: rgb(141, 165, 177);
             opacity: 0.1;
@@ -112,8 +128,8 @@
 </div>
 
 <div style="height: 50%;margin-top: 30px">
-    <div class="col-sm-6">
-        <div class="panel panel-default" style="margin-right:10px;">
+    <div class="col-sm-4">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="glyphicon glyphicon-time"></i> 开馆时间安排
             </div>
@@ -131,13 +147,13 @@
         </div>
     </div>
 
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <div class="panel panel-default" style="margin-left:10px;">
             <div class="panel-heading">
                 <i class="fa fa-bell fa-fw"></i> 公告
 
-            <a href="<%=request.getContextPath()%>/jsp/news_List_User" target="mainFrame_User"
-               style="float:right;">查看更多&nbsp;> </a>
+                <a href="<%=request.getContextPath()%>/jsp/news_List_User" target="mainFrame_User"
+                   style="float:right;">查看更多&nbsp;> </a>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="height: 100%">
@@ -152,6 +168,25 @@
                 </c:forEach>
 
                 <!-- /.list-group -->
+
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="panel panel-default" style="margin-left:10px;">
+            <div class="panel-heading">
+                <i class="fa fa-bell fa-fw"></i> 手机客户端
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body" style="height: 100%">
+                <div style="text-align: center;width: 100%;height: auto">
+                    <img src="<%=request.getContextPath()%>/img/Android_qrcode.jpg" style="height: 200px;width: 200px;">
+                </div>
+                <div style="text-align: center;width: 100%;height: 100%;margin-top: 10px">
+                    <span class="layui-input" style="border: none">扫一扫下载手机客户端</span>
+                </div>
 
             </div>
             <!-- /.panel-body -->
@@ -182,54 +217,54 @@
 </div>
 <div class="col-sm-12">
     <div class="panel panel-default">
-    <div class="panel-heading">
-        <i class="glyphicon glyphicon-star"></i> 排行榜
-    </div>
-    <div class="col-sm-6"  style="background-color: white;">
-        <table class="table table-striped">
-            <caption>1--10名</caption>
-            <thead style="color:#555;font-weight:bold;background-color: #f9f9f9;">
+        <div class="panel-heading">
+            <i class="glyphicon glyphicon-star"></i> 排行榜
+        </div>
+        <div class="col-sm-6" style="background-color: white;">
+            <table class="table table-striped">
+                <caption>1--10名</caption>
+                <thead style="color:#555;font-weight:bold;background-color: #f9f9f9;">
                 <th>&nbsp;&nbsp;姓名</th>
                 <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学院</th>
                 <th>总时长</th>
-            </thead>
-            <tbody>
-            <c:forEach items="${userdatas}" var="userdata" varStatus="step">
-                <c:if test="${step.index<9}">
-                    <tr style="color:#555;background-color: #ffffff;">
-                        <td>${userdata.username}</td>
-                        <td>${userdata.venue}</td>
-                        <td>${userdata.learntime}小时</td>
-                    </tr>
-                </c:if>
-            </c:forEach>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-sm-6" style="background-color: white;">
-        <table class="table table-striped">
-            <caption>10--20名</caption>
-            <thead>
-            <thead style="color:#555;font-weight:bold;background-color: #f9f9f9;">
-            <th>&nbsp;&nbsp;姓名</th>
-            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学院</th>
-            <th>总时长</th>
-            </thead>
-            <tbody>
-            <c:forEach items="${userdatas}" var="userdata" varStatus="step">
-                <c:if test="${step.index>9}">
-                    <c:if test="${step.index<19}">
+                </thead>
+                <tbody>
+                <c:forEach items="${userdatas}" var="userdata" varStatus="step">
+                    <c:if test="${step.index<9}">
                         <tr style="color:#555;background-color: #ffffff;">
                             <td>${userdata.username}</td>
                             <td>${userdata.venue}</td>
                             <td>${userdata.learntime}小时</td>
                         </tr>
                     </c:if>
-                </c:if>
-            </c:forEach>
-            </tbody>
-        </table>
-    </div>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6" style="background-color: white;">
+            <table class="table table-striped">
+                <caption>10--20名</caption>
+                <thead>
+                <thead style="color:#555;font-weight:bold;background-color: #f9f9f9;">
+                <th>&nbsp;&nbsp;姓名</th>
+                <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学院</th>
+                <th>总时长</th>
+                </thead>
+                <tbody>
+                <c:forEach items="${userdatas}" var="userdata" varStatus="step">
+                    <c:if test="${step.index>9}">
+                        <c:if test="${step.index<19}">
+                            <tr style="color:#555;background-color: #ffffff;">
+                                <td>${userdata.username}</td>
+                                <td>${userdata.venue}</td>
+                                <td>${userdata.learntime}小时</td>
+                            </tr>
+                        </c:if>
+                    </c:if>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
