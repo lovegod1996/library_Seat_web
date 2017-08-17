@@ -994,9 +994,22 @@ public class PhoneServerController {
             List<Floor> floors = floorService.findfloorsBybid(allBuilding.get(i).getBid());
             floorList.addAll(floors);
         }
-        for (int i = 0; i < floorList.size(); i++) {
-            List<Seat> canBookingToday = bookingService.findCanBookingToday(floorList.get(i).getFid());
-            seats.addAll(canBookingToday);
+        Iterator<Floor> iterator = floorList.iterator();  //筛选当前处于闭馆的场馆
+        while (iterator.hasNext()) {
+            Floor floor = iterator.next();
+            WeekOpen weekOpen = weekOpenService.findopenFloorday(floor.getFid(), 1);
+            Integer weekOpenDiten = DateUtil.getWeekOpenDiten(weekOpen, new Date());
+           if(weekOpenDiten==2){
+               if(weekOpen.getParam2()==null){
+                   iterator.remove();
+               }else{
+                   List<Seat> canBookingToday = bookingService.findCanBookingToday(floor.getFid());
+                   seats.addAll(canBookingToday);
+               }
+           }else{
+               List<Seat> canBookingToday = bookingService.findCanBookingToday(floor.getFid());
+               seats.addAll(canBookingToday);
+           }
         }
         Random random = new Random();
         Seat seat = seats.get(random.nextInt(seats.size()));
@@ -1171,13 +1184,13 @@ public class PhoneServerController {
     Map<String, Object> findFloorStatue(String sno) throws Exception {
         List<BuildingSeatStatue> buildingSeatStatueList = new ArrayList<BuildingSeatStatue>();
         List<Building> allBuilding = buildingService.findAllBuilding();
-        for (int i = 0; i <allBuilding.size() ; i++) {
-            BuildingSeatStatue buildingSeatStatue=new BuildingSeatStatue();
+        for (int i = 0; i < allBuilding.size(); i++) {
+            BuildingSeatStatue buildingSeatStatue = new BuildingSeatStatue();
             buildingSeatStatue.setBid(allBuilding.get(i).getBid());
             buildingSeatStatue.setBuilding(allBuilding.get(i).getEmployer());
             List<Floor> floors = floorService.findfloorsBybid(allBuilding.get(i).getBid());
-            List<FloorData> floorDataList=new ArrayList<FloorData>();
-            for (int j = 0; j <floors.size() ; j++) {
+            List<FloorData> floorDataList = new ArrayList<FloorData>();
+            for (int j = 0; j < floors.size(); j++) {
 
                 Floor floor = floors.get(j);
                 FloorData floorData = new FloorData();
