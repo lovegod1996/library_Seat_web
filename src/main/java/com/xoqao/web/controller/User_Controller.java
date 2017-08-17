@@ -11,6 +11,7 @@ import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.user.User;
 import com.xoqao.web.bean.userbook.UserLearn;
 import com.xoqao.web.bean.weekopen.WeekOpen;
+import com.xoqao.web.commen.CommenValue;
 import com.xoqao.web.service.*;
 import com.xoqao.web.utils.DateUtil;
 import com.xoqao.web.utils.MD5Util;
@@ -23,9 +24,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by 1Q84 on 2017/7/12.
@@ -391,6 +391,7 @@ public class User_Controller {
             buildingCusFloors.setFloors(floors);
             buildingCusFloorsList.add(buildingCusFloors);
         }
+
         model.addAttribute("buildFloors", buildingCusFloorsList);
         model.addAttribute("day", day);
         return "user_page/Choose_Building";

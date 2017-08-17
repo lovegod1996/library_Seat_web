@@ -92,7 +92,7 @@ public class user_pageController {
         for (int i = 0; i < bookThisMonthSno.size(); i++) {
             User userBySno = userService.findUserBySno(bookThisMonthSno.get(i));
             UserData userData = new UserData();
-            if(userBySno!=null){
+            if (userBySno != null) {
                 userData.setUsername(userBySno.getName());
                 userData.setSno(userBySno.getSno());
                 userData.setSex(userBySno.getSex());
@@ -267,6 +267,16 @@ public class user_pageController {
             bookingCusFloor.setBuilding(buildingById.getEmployer());
             bookingCusFloorList.add(bookingCusFloor);
         }
+        Date now = new Date();
+        if (day == 1) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(new Date());
+            calendar.add(Calendar.DATE, 1);
+            String format = sdf.format(calendar.getTime());
+            now = sdf.parse(format);
+        }
+        model.addAttribute("now", now);
         model.addAttribute("seatsbooks", seatBookinges);
         model.addAttribute("day", day);
         model.addAttribute("fid", fid);
@@ -287,12 +297,12 @@ public class user_pageController {
      * @throws Exception
      */
     @RequestMapping("/bookSeatUserSub")
-    public String bookSeatUserSub(Model model, String seatNum, String stime, String etime, Integer day, HttpSession httpSession,RedirectAttributes redirectAttributes) throws Exception {
+    public String bookSeatUserSub(Model model, String seatNum, String stime, String etime, Integer day, HttpSession httpSession, RedirectAttributes redirectAttributes) throws Exception {
         User user = (User) httpSession.getAttribute("user");
-        Integer disTime2 = DateUtil.getDisTime(DateUtil.getDate(stime), DateUtil.getDate(etime));
+        Integer disTime2 = DateUtil.getDisTime(DateUtil.getTimeDate(stime, day), DateUtil.getTimeDate(etime, day));
         Seat seatBynumber = seatService.findSeatBynumber(seatNum);
         Floor floor = floorService.findfloorByid(seatBynumber.getFid());
-        if(disTime2>CommenValue.MIN_BOOK) {
+        if (disTime2 > CommenValue.MIN_BOOK) {
             List<UnDeal> unDealCord = undealService.findUnDealCord(user.getSno());
             Integer disTime1 = 0;
             if (unDealCord.size() > 0) {
@@ -300,14 +310,14 @@ public class user_pageController {
                 disTime1 = DateUtil.getDisTime(new Date(), daysAfter);
             }
             if (disTime1 <= 0) {
-                Integer disTime = DateUtil.getDisTime(new Date(), DateUtil.getDate(etime));
+                Integer disTime = DateUtil.getDisTime(new Date(), DateUtil.getTimeDate(etime, day));
 
                 if (disTime < CommenValue.MAX_LongTime) {
                     WeekOpen weekOpen = weekOpenService.findopenFloortoday(floor.getFid());
-                    boolean b = DateUtil.getfollowTime(weekOpen, DateUtil.getDate(stime), DateUtil.getDate(etime));
+                    boolean b = DateUtil.getfollowTime(weekOpen, DateUtil.getTimeDate(stime, day), DateUtil.getTimeDate(etime, day));
                     if (b) {
                         List<Booking> bookSeatBooking = bookingService.findBookSeatBooking(seatBynumber.getSid());
-                        boolean checkbooksclash = DateUtil.checkbooksclash(bookSeatBooking, new Date(), DateUtil.getDate(etime));
+                        boolean checkbooksclash = DateUtil.checkbooksclash(bookSeatBooking, new Date(), DateUtil.getTimeDate(etime, day));
                         if (checkbooksclash) {
                             model.addAttribute("error_msg", "您选择的时间段已经被占用");
                             redirectAttributes.addFlashAttribute("error_msg", "您选择的时间段已经被占用");
@@ -318,7 +328,7 @@ public class user_pageController {
                             for (int i = 0; i < bookingBySno2.size(); i++) {
                                 bookingBySno.add(bookingBySno2.get(i));
                             }
-                            boolean checkbooksclash1 = DateUtil.checkbooksclash(bookingBySno, DateUtil.getDate(stime), DateUtil.getDate(etime));
+                            boolean checkbooksclash1 = DateUtil.checkbooksclash(bookingBySno, DateUtil.getTimeDate(stime, day), DateUtil.getTimeDate(etime, day));
                             if (checkbooksclash1) {
                                 model.addAttribute("error_msg", "您选择的时间段您已预约过");
                                 redirectAttributes.addFlashAttribute("error_msg", "您选择的时间段您已预约过");
@@ -326,8 +336,8 @@ public class user_pageController {
                             } else {
                                 Booking booking = new Booking();
                                 booking.setSno(user.getSno());
-                                booking.setBstime(DateUtil.getDate(stime));
-                                booking.setBetime(DateUtil.getDate(etime));
+                                booking.setBstime(DateUtil.getTimeDate(stime, day));
+                                booking.setBetime(DateUtil.getTimeDate(etime, day));
                                 booking.setSid(seatBynumber.getSid());
                                 bookingService.insertbooking(booking);
                             }
@@ -346,7 +356,7 @@ public class user_pageController {
                 model.addAttribute("error_msg", "目前还在惩罚时间内");
                 redirectAttributes.addFlashAttribute("error_msg", "目前还在惩罚时间内");
             }
-        }else{
+        } else {
             redirectAttributes.addFlashAttribute("error_msg", "预约时间过短");
         }
         return "redirect:/jsp/book_Seat_User?fid=" + floor.getFid() + "&day=" + day;

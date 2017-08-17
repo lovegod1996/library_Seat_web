@@ -27,40 +27,6 @@
 
     <%--获取当前时间--%>
     <script src="<%=request.getContextPath()%>/js/nowtime.js"></script>
-    <script>
-        layui.use('laydate', function () {
-            var laydate = layui.laydate;
-            var start = {
-                min: laydate.now()
-                , max: '2099-06-16 23:59:59'
-                , istoday: false
-                , choose: function (datas) {
-                    end.min = datas; //开始日选好后，重置结束日的最小日期
-                    end.start = datas //将结束日的初始值设定为开始日
-                }
-            };
-
-            var end = {
-                min: laydate.now()
-                , max: '2099-06-16 23:59:59'
-                , istoday: false
-                , choose: function (datas) {
-                    start.max = datas; //结束日选好后，重置开始日的最大日期
-                }
-            };
-
-            document.getElementById('LAY_demorange_s').onclick = function () {
-                start.elem = this;
-                laydate(start);
-            };
-            document.getElementById('LAY_demorange_e').onclick = function () {
-                end.elem = this;
-                laydate(end);
-            }
-
-        });
-    </script>
-
     <style type="text/css">
         body {
             width: 90%;
@@ -143,21 +109,25 @@
             padding-left: 10px;
             margin-top: 10px;
         }
+
         body {
             background-color: #eff3f8;
             margin-top: 15px;
         }
-        .panel-default>.panel-heading {
+
+        .panel-default > .panel-heading {
             color: #5c9bd1;
             background-color: #ffffff;
             border-color: #f9f9f9;
         }
+
         .btn-block {
             display: block;
             width: 100px;
             margin: 30px auto;
             background-color: #8895a9;
         }
+
         .Roundseat {
             width: 128px;
             height: 128px;
@@ -169,11 +139,13 @@
             float: left;
             margin: 25px;
         }
+
         .dropdown-menu {
             width: 50px;
             margin-top: 50px;
             margin-left: -30px;
         }
+
         .RightView {
             width: 30%;
             height: 100%;
@@ -182,15 +154,18 @@
             top: 15px;
             right: 70px;
         }
+
         .dropdown-menu {
             width: 100px;
             margin-top: -100px;
             margin-left: -30px;
         }
+
         .dropdown-menu {
             background: #4d5b69;
             opacity: 0.9;
         }
+
     </style>
 
     <script>
@@ -283,14 +258,21 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-sm-3 control-label">日期</label>
+                        <div class="col-sm-9">
+                            <div class="layui-inline">
+                                <label><fmt:formatDate value="${now}" pattern="yyyy-MM-dd"/></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-sm-3 control-label">开始</label>
                         <div class="col-sm-9">
                             <div class="layui-inline">
                                 <input type="hidden" name="day" value="${day}">
-                                <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px"
-                                       required
-                                       onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
-                                <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
+                                <input type="time" class="layui-input" name="stime" placeholder="开始时间"
+                                       style="width: 220px" required>
+
                             </div>
                         </div>
                     </div>
@@ -298,9 +280,8 @@
                         <label class="col-sm-3 control-label">结束</label>
                         <div class="col-sm-9">
                             <div class="layui-inline">
-                                <input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px"
-                                       required
-                                       onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
+                                <input type="time" class="layui-input" name="etime" placeholder="结束时间"
+                                       style="width: 220px" required>
                             </div>
 
                         </div>
@@ -316,10 +297,10 @@
                     <c:forEach items="${bookings}" var="book" varStatus="step">
                         <c:choose>
                             <c:when test="${step.index==0}">
-                                <li style="width: 80%;margin-left:10%;margin-top: 25px">${book.seatnumber}&nbsp;&nbsp;&nbsp;${book.leftside==0?"左":"右"}侧${book.row}排${book.columns}&nbsp;&nbsp;&nbsp;${book.floor}</li>
+                                <li style="width: 80%;margin-left:10%;margin-top: 25px">${book.building}&nbsp;&nbsp;&nbsp;${book.leftside==0?"左":"右"}侧${book.row}排${book.columns}&nbsp;&nbsp;&nbsp;${book.floor}</li>
                             </c:when>
                             <c:otherwise>
-                                <li style="width: 80%;margin-left:10%">${book.seatnumber}&nbsp;&nbsp;&nbsp;${book.leftside==0?"左":"右"}侧${book.row}排${book.columns}&nbsp;&nbsp;&nbsp;${book.floor}</li>
+                                <li style="width: 80%;margin-left:10%">${book.building}&nbsp;&nbsp;&nbsp;${book.leftside==0?"左":"右"}侧${book.row}排${book.columns}&nbsp;&nbsp;&nbsp;${book.floor}</li>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
