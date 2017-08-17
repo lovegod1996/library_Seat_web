@@ -182,13 +182,13 @@
                         <tr>
                             <td>
                                 <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请输入添加人员的姓名:</label>
-                                <input type="text" name="name" placeholder="请输入姓名" style="width:250px;height:25px;"/>
+                                <input type="text" name="name" placeholder="请输入姓名" style="width:250px;height:25px;" required/>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label>请输入添加人员的身份单位:</label>
-                                <input type="text" name="employ" placeholder="请输入身份单位" style="width:250px;height:25px;"/>
+                                <input type="text" name="employ" placeholder="请输入身份单位" style="width:250px;height:25px;" required/>
                             </td>
                         </tr>
                         </tbody>

@@ -118,8 +118,8 @@
             </div>
             <button type="button" data-method="notice" class="layui-btn layui-btn-mini" style="margin-left:20px ">添加用户
             </button>
-            <button type="button" data-method="notice" class="layui-btn layui-btn-mini layui-btn-normal" style="margin-left:20px ">批量导入
-            </button>
+            <%--<button type="button" data-method="notice" class="layui-btn layui-btn-mini layui-btn-normal" style="margin-left:20px ">批量导入--%>
+            <%--</button>--%>
             <button type="button" class="layui-btn layui-btn-mini layui-btn-danger" style="margin-left:20px ">删除用户
             </button>
             <a href="${pageContext.request.contextPath }/view/managing_Users.form?year=${year}&college=${college}&major=${major}"

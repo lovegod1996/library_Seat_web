@@ -20,6 +20,17 @@
         body {
             width: 75%;
             margin-left: 2%;
+            background-color: #eff3f8;
+            margin-top: 15px;
+        }
+        .panel-default>.panel-heading {
+            color: #5c9bd1;
+            background-color: #ffffff;
+            border-color: #f9f9f9;
+        }
+        .col-sm-1 {
+            width: 8.33333333%;
+            margin-left: 50%;
         }
     </style>
 </head>

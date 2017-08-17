@@ -66,7 +66,8 @@
     <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
     <script>
         var flag = {
-            "library":false,
+            "libaray":false,
+            "admin":false,
         };
 
         $(function(){
@@ -101,6 +102,14 @@
                     $("#admin\\.info").html("");
                     flag.admin = true;
                 }
+            });
+            $("form").submit(function () {
+                var ok = flag.libaray&&flag.admin;
+                if (ok == false) {
+                    alert("输入有误！");
+                    return false;
+                }
+                return true;
             });
 
 
@@ -181,7 +190,7 @@
            onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
             &#x1006;</a>
     </div>
-    <form class="layui-form" action="<%=request.getContextPath()%>/view/admin/adbuilding" method="post">
+    <form class="layui-form" id="form" action="<%=request.getContextPath()%>/view/admin/adbuilding" method="post">
         <div class="layui-form-item">
             <label class="layui-form-label">添加图书馆</label>
             <div class="layui-input-inline">

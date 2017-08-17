@@ -7,15 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b586f57a-9de6-47dc-b0c4-58a75fa9e17e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/img/bg3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/img/bg4.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Edit_News.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Edit_News.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Managing_Users.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Managing_Users.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Admin.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Admin.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Building_SuperAdmin.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Building_SuperAdmin.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/NewMainUser.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/NewMainUser.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/admin_page/Edit_News.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/admin_page/Edit_News.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/admin_page/Managing_Users.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/admin_page/Managing_Users.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/superadmin_page/Managing_Admin.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/superadmin_page/Managing_Admin.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/superadmin_page/Managing_Building_SuperAdmin.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/superadmin_page/Managing_Building_SuperAdmin.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/user_page/NewMainUser.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/user_page/NewMainUser.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -65,44 +65,21 @@
       <file leaf-file-name="Managing_Building_SuperAdmin.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Building_SuperAdmin.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1587">
-              <caret line="129" column="14" lean-forward="false" selection-start-line="129" selection-start-column="14" selection-end-line="129" selection-end-column="14" />
+            <state relative-caret-position="259">
+              <caret line="196" column="101" lean-forward="false" selection-start-line="196" selection-start-column="93" selection-end-line="196" selection-end-column="101" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#3;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NewMainUser.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/NewMainUser.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2369">
-              <caret line="103" column="26" lean-forward="false" selection-start-line="103" selection-start-column="26" selection-end-line="103" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SuperAdmin_Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/SuperAdmin_Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="85" column="43" lean-forward="false" selection-start-line="85" selection-start-column="43" selection-end-line="85" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#40854#40855#0" expanded="false" />
-                <element signature="e#40917#40918#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Managing_Admin.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Managing_Admin.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Admin.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="81" column="36" lean-forward="false" selection-start-line="81" selection-start-column="36" selection-end-line="81" selection-end-column="36" />
+            <state relative-caret-position="3519">
+              <caret line="191" column="33" lean-forward="true" selection-start-line="191" selection-start-column="33" selection-end-line="191" selection-end-column="33" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -113,17 +90,24 @@
                 <element signature="n#style#0;n#span#0;n#a#0;n#td#2;n#tr#1;n#tbody#0;n#table#0;n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#a#0;n#td#3;n#tr#1;n#tbody#0;n#table#0;n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Managing_Floor_SuperAdmin.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Floor_SuperAdmin.jsp">
+      <file leaf-file-name="ResetPassword_ForAdmin.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/ResetPassword_ForAdmin.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="966">
-              <caret line="199" column="10" lean-forward="true" selection-start-line="199" selection-start-column="10" selection-end-line="199" selection-end-column="10" />
-              <folding />
+            <state relative-caret-position="512">
+              <caret line="80" column="82" lean-forward="true" selection-start-line="80" selection-start-column="82" selection-end-line="80" selection-end-column="82" />
+              <folding>
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#1;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -143,6 +127,9 @@
       <find>notice</find>
       <find>预约</find>
       <find>bg</find>
+      <find>请输入</find>
+      <find>批量</find>
+      <find>请输入姓名</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -158,7 +145,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Login_ForAdmin.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_List_Admin.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Managing_Users.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Login.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/One_Student_SuperAdmin.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/News_List_User.jsp" />
@@ -173,6 +159,8 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/NewMainUser.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Building_SuperAdmin.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Admin.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Managing_Users.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Edit_News.jsp" />
       </list>
     </option>
   </component>
@@ -383,6 +371,32 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="library_Seat_web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="library_Seat_web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -393,7 +407,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="managing_Building_SuperAdmin&#9;FILE&#9;file://C:/Users/xq/IdeaProjects/library_Seat_web/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Building_SuperAdmin.jsp&#10;manage_Admin&#9;null&#9;null&#10;managing_Floor_SuperAdmin&#9;FILE&#9;file://C:/Users/xq/IdeaProjects/library_Seat_web/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Floor_SuperAdmin.jsp&#10;index_SuperAdmin&#9;FILE&#9;file://C:/Users/xq/IdeaProjects/library_Seat_web/src/main/webapp/WEB-INF/jsp/superadmin_page/Index_SuperAdmin.jsp&#10;book_Seat_User&#9;FILE&#9;file://C:/Users/xq/IdeaProjects/library_Seat_web/src/main/webapp/WEB-INF/jsp/user_page/Book_Seat_User.jsp&#10;seat_In_Empty&#9;FILE&#9;file://C:/Users/xq/IdeaProjects/library_Seat_web/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Empty.jsp&#10;resetPassword_ForAdmin&#9;FILE&#9;file://C:/Users/xq/IdeaProjects/library_Seat_web/src/main/webapp/WEB-INF/jsp/public_page/ResetPassword_ForAdmin.jsp&#10;news_List_User&#9;null&#9;null&#10;intofindStudent&#9;null&#9;null&#10;managing_Users&#9;FILE&#9;file://D:/Users/zhanglulu/IdeaProjects/library_Seat_web/src/main/webapp/WEB-INF/jsp/admin_page/Managing_Users.jsp&#10;floorSeatsList&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="resetPassword_ForAdmin&#9;FILE&#9;file://C:/Users/xq/IdeaProjects/library_Seat_web/src/main/webapp/WEB-INF/jsp/public_page/ResetPassword_ForAdmin.jsp&#10;editNews&#9;FILE&#9;file://C:/Users/xq/IdeaProjects/library_Seat_web/src/main/webapp/WEB-INF/jsp/admin_page/Edit_News.jsp&#10;managing_Users&#9;FILE&#9;file://C:/Users/xq/IdeaProjects/library_Seat_web/src/main/webapp/WEB-INF/jsp/admin_page/Managing_Users.jsp&#10;managing_Building_SuperAdmin&#9;FILE&#9;file://C:/Users/xq/IdeaProjects/library_Seat_web/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Building_SuperAdmin.jsp&#10;manage_Admin&#9;null&#9;null&#10;managing_Floor_SuperAdmin&#9;FILE&#9;file://C:/Users/xq/IdeaProjects/library_Seat_web/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Floor_SuperAdmin.jsp&#10;index_SuperAdmin&#9;FILE&#9;file://C:/Users/xq/IdeaProjects/library_Seat_web/src/main/webapp/WEB-INF/jsp/superadmin_page/Index_SuperAdmin.jsp&#10;book_Seat_User&#9;FILE&#9;file://C:/Users/xq/IdeaProjects/library_Seat_web/src/main/webapp/WEB-INF/jsp/user_page/Book_Seat_User.jsp&#10;seat_In_Empty&#9;FILE&#9;file://C:/Users/xq/IdeaProjects/library_Seat_web/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Empty.jsp&#10;news_List_User&#9;null&#9;null&#10;intofindStudent&#9;null&#9;null&#10;floorSeatsList&#9;null&#9;null" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -910,7 +924,7 @@
       <workItem from="1502770544157" duration="1459000" />
       <workItem from="1502772968995" duration="11165000" />
       <workItem from="1502863325211" duration="26788000" />
-      <workItem from="1502939753364" duration="12267000" />
+      <workItem from="1502939753364" duration="15682000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'wordlu-master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/admin/AdminController.class&#10;#&#9;target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/admin_pageController.class&#10;#&#9;target/classes/com/xoqao/web/controller/admin/AdminController.class&#10;#&#9;target/classes/com/xoqao/web/controller/admin_pageController.class">
       <created>1502759258691</created>
@@ -933,11 +947,18 @@
       <option name="project" value="LOCAL" />
       <updated>1502892822726</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="8.17 权限开关 完成">
+      <created>1502957682553</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1502957682554</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59851000" />
+    <option name="totallyTimeSpent" value="63266000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -976,7 +997,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32287583" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22708334" sideWeight="0.49362478" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15972222" sideWeight="0.49362478" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3106223" sideWeight="0.50637525" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1000,7 +1021,8 @@
     <MESSAGE value="8.15更新验证" />
     <MESSAGE value="更换预约时间控件 完成。" />
     <MESSAGE value="用户页更换预约时间控件 完成。" />
-    <option name="LAST_COMMIT_MESSAGE" value="用户页更换预约时间控件 完成。" />
+    <MESSAGE value="8.17 权限开关 完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="8.17 权限开关 完成" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1229,14 +1251,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Edit_News.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="23" column="12" lean-forward="false" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -1259,21 +1273,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
           <caret line="28" column="9" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="28" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/ResetPassword_ForAdmin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-46">
-          <caret line="52" column="40" lean-forward="false" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Managing_Users.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2633">
-          <caret line="74" column="18" lean-forward="true" selection-start-line="74" selection-start-column="18" selection-end-line="74" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1342,13 +1341,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/checkForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="162" column="41" lean-forward="false" selection-start-line="162" selection-start-column="41" selection-end-line="162" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Main_User.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2392">
@@ -1391,10 +1383,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/checkForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="22" column="22" lean-forward="true" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Floor_SuperAdmin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="206" column="39" lean-forward="false" selection-start-line="206" selection-start-column="39" selection-end-line="206" selection-end-column="39" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/SuperAdmin_Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="85" column="43" lean-forward="false" selection-start-line="85" selection-start-column="43" selection-end-line="85" selection-end-column="43" />
+        <state relative-caret-position="207">
+          <caret line="94" column="20" lean-forward="true" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="false" />
             <element signature="e#40854#40855#0" expanded="false" />
@@ -1403,17 +1413,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Floor_SuperAdmin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="966">
-          <caret line="199" column="10" lean-forward="true" selection-start-line="199" selection-start-column="10" selection-end-line="199" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/NewMainUser.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2369">
+        <state relative-caret-position="-46">
           <caret line="103" column="26" lean-forward="false" selection-start-line="103" selection-start-column="26" selection-end-line="103" selection-end-column="26" />
           <folding />
         </state>
@@ -1421,18 +1423,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Building_SuperAdmin.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1587">
-          <caret line="129" column="14" lean-forward="false" selection-start-line="129" selection-start-column="14" selection-end-line="129" selection-end-column="14" />
+        <state relative-caret-position="259">
+          <caret line="196" column="101" lean-forward="false" selection-start-line="196" selection-start-column="93" selection-end-line="196" selection-end-column="101" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#3;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Edit_News.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-138">
+          <caret line="24" column="9" lean-forward="false" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Managing_Users.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="127" column="0" lean-forward="true" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
+          <folding>
+            <marker date="1502960229787" expanded="false" signature="4880:4897" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Admin.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="81" column="36" lean-forward="false" selection-start-line="81" selection-start-column="36" selection-end-line="81" selection-end-column="36" />
+        <state relative-caret-position="3519">
+          <caret line="191" column="33" lean-forward="true" selection-start-line="191" selection-start-column="33" selection-end-line="191" selection-end-column="33" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#a#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1443,6 +1464,21 @@
             <element signature="n#style#0;n#span#0;n#a#0;n#td#2;n#tr#1;n#tbody#0;n#table#0;n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#a#0;n#td#3;n#tr#1;n#tbody#0;n#table#0;n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/ResetPassword_ForAdmin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="80" column="82" lean-forward="true" selection-start-line="80" selection-start-column="82" selection-end-line="80" selection-end-column="82" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#3;n#form#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
