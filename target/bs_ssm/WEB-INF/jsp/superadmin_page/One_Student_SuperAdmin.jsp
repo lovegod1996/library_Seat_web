@@ -68,6 +68,11 @@
 </head>
 <body>
 <div class="layui-tab">
+    <div style="margin: 30px;font-size:14px;line-height: 150%;color: #757575;">
+        <h4 style="color:#5c9bd1;margin-left:-10px;margin-bottom: 10px;">使用规则</h4>
+        1、该页面仅提供查询学生个人详细记录
+        <br>2、请正确输入学生的学工号信息。
+    </div><hr>
     <ul class="layui-tab-title">
         <li class="layui-this">学生预约情况查看</li>
     </ul>

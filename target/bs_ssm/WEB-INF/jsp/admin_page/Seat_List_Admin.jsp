@@ -79,6 +79,13 @@
         <div class="panel-heading">
             <i class="fa fa-bar-chart-o fa-fw"></i> 座位列表
         </div>
+        <div style="margin: 30px;font-size:14px;line-height: 150%;color: #757575;">
+            <h4 style="color:#5c9bd1;margin-left:-10px;margin-bottom: 10px;">使用规则</h4>
+            1、谨慎操作、数据无价
+            <br>2、本页面可查看该场馆的所由座位信息，提供有多种二维码主题样式供选择，点击即可自动下载到本地。
+            <br>3、点击关闭预约按钮可关闭该座位的开放状态，该座位可不被预约。
+            <br>4、点击删除确认即可删除座位信息，请谨慎操作。
+        </div><hr>
         <!-- /.panel-heading -->
         <div class="layui-form">
             <table class="layui-table">

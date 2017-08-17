@@ -33,22 +33,27 @@
             background-color: #eff3f8;
             margin-top: 15px;
         }
-        .panel-default>.panel-heading {
+
+        .panel-default > .panel-heading {
             color: #5c9bd1;
             background-color: #ffffff;
             border-color: #f9f9f9;
         }
+
         .layui-table thead tr {
             background-color: #eff3f8;
         }
+
         .layui-table {
             width: 90%;
             margin: 10px 5%;
             background-color: #fff;
         }
+
         a {
             color: #48b;
         }
+
         a:hover {
             color: #48b;
         }
@@ -56,6 +61,16 @@
 </head>
 <body>
 <div class="layui-tab">
+
+    <div style="margin: 30px;font-size:14px;line-height: 150%;color: #757575;">
+        <h4 style="color:#5c9bd1;margin-left:-10px;margin-bottom: 10px;">使用规则</h4>
+        1、谨慎操作、数据无价
+        <br>2、该页面可查看所有学院的学习状况，可查看各院校的学习总时间、总次数、失信率等。
+        <br>3、点击学院，即可查看学院所属的专业、班级、直至个人的学习概况信息。
+        <br>4、数据无价，谨慎外传。
+    </div>
+    <hr>
+
     <ul class="layui-tab-title">
         <li class="layui-this">学习情况统计</li>
     </ul>
@@ -77,7 +92,9 @@
                 <c:forEach items="${collegeDatas}" var="collegedata" varStatus="step">
                     <tr>
                         <td>${step.index+1}</td>
-                        <td><a href="<%=request.getContextPath()%>/view/getmajorlearn?college=${collegedata.venue}">${collegedata.venue}</a> </td>
+                        <td>
+                            <a href="<%=request.getContextPath()%>/view/getmajorlearn?college=${collegedata.venue}">${collegedata.venue}</a>
+                        </td>
                         <td>${collegedata.students}</td>
                         <td>${collegedata.learntime}小时</td>
                         <td>${collegedata.allLearn}</td>

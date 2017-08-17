@@ -140,7 +140,7 @@
         <th>学习时间</th>
         <th>学习次数</th>
         <th>失信次数</th>
-        <th>失信次数</th>
+        <th>失信率</th>
         </thead>
         <tbody><c:forEach items="${weekdatas}" var="weekdata" varStatus="step">
             <tr>

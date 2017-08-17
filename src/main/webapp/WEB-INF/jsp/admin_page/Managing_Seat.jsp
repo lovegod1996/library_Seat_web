@@ -32,6 +32,12 @@
 </head>
 <body>
 <div class="layui-tab">
+    <div style="margin: 30px;font-size:14px;line-height: 150%;color: #757575;">
+        <h4 style="color:#5c9bd1;margin-left:-10px;margin-bottom: 10px;">使用规则</h4>
+        1、谨慎操作、数据无价
+        <br>2、左右、行、列，为必选项，请记得添加此类信息，标志可不选。
+        <br>3、添加保存即可添加成功，并且会生成默认的二维码下载本地。
+    </div><hr>
     <ul class="layui-tab-title">
         <li class="layui-this">单个增加</li>
         <%--<li>删除</li>--%>

@@ -79,9 +79,61 @@
             document.getElementById("floorid").value = tb1.rows[tr1.rowIndex].cells[0].innerHTML;
         }
     </script>
-    <style>
 
-    </style>
+    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+        var flag = {
+            "library":false,
+        };
+
+        $(function(){
+
+            $("#addFloor").blur(function(){
+                // 添加楼层校验
+                var floorname = $(this).val().length;
+                // 校验规则，可调整
+//                var pattern =  /^[\u4E00-\u9FA5A-Za-z0-9]+$/;
+                if(floorname > 8){
+
+                    $("#floorname\\.info").html("字数超过限制");
+                    return;
+                }else{
+                    $("#floorname\\.info").html("");
+                    flag.floorname = true;
+                }
+            });
+
+            $("#addSort").blur(function(){
+                // 添加藏书类别校验
+                var floorsort = $(this).val().length;
+                // 校验规则，可调整
+                if(floorsort > 8){
+
+                    $("#floorsort\\.info").html("字数超过限制");
+                    return;
+                }else{
+                    $("#floorsort\\.info").html("");
+                    flag.floorsort = true;
+                }
+            });
+
+            $("#addUsername").blur(function(){
+                // 添加管理员校验
+                var username = $(this).val().length;
+                // 校验规则，可调整
+//                var pattern =  /^[\u4E00-\u9FA5A-Za-z0-9]+$/;
+                if(username > 8){
+
+                    $("#username\\.info").html("字数超过限制");
+                    return;
+                }else{
+                    $("#username\\.info").html("");
+                    flag.username = true;
+                }
+            });
+
+        })
+    </script>
 </head>
 <body>
 <div class="layui-tab">
@@ -154,19 +206,22 @@
             <label class="layui-form-label">添加楼层</label>
             <div class="layui-input-inline">
                 <input type="hidden" value="${building.bid}" name="bid">
-                <input placeholder="请输入" name="floorname" class="layui-input" required>
+                <input placeholder="请输入" name="floorname" class="layui-input" id="addFloor" required>
+                <span id="floorname.info" style="color:red"></span>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">添加藏书类别</label>
             <div class="layui-input-inline">
-                <input placeholder="请输入" name="floorsort" class="layui-input" required>
+                <input placeholder="请输入" name="floorsort" id="addSort" class="layui-input" required>
+                <span id="floorsort.info" style="color:red"></span>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">添加管理员</label>
             <div class="layui-input-inline">
-                <input placeholder="请输入" name="username" class="layui-input" required>
+                <input placeholder="请输入" name="username" id="addUsername" class="layui-input" required>
+                <span id="username.info" style="color: red"></span>
             </div>
         </div>
         <div class="layui-form-item">
@@ -193,7 +248,7 @@
             <label class="layui-form-label">编辑楼层</label>
             <div class="layui-input-inline">
                 <input type="hidden" id="floorid" name="fid">
-                <input id="floorname"  name="floorname" class="layui-input" required>
+                <input id="floorname"  name="floorname"  class="layui-input" required>
             </div>
         </div>
         <div class="layui-form-item">

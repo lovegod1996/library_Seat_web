@@ -18,6 +18,7 @@
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <!-- jQuery -->
     <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
+
     <!-- Bootstrap Core JavaScript -->
     <script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
 
@@ -111,13 +112,13 @@
     <!-- 轮播（Carousel）项目 -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="<%=request.getContextPath()%>/img/bg1.jpg" alt="First slide" style="height: 100%;width: 100%">
+            <img src="<%=request.getContextPath()%>/img/bg3.jpg" alt="First slide" style="height: 100%;width: 100%">
         </div>
         <div class="item">
-            <img src="<%=request.getContextPath()%>/img/bg2.jpg" alt="Second slide" style="height: 100%;width: 100%">
+            <img src="<%=request.getContextPath()%>/img/bg4.jpg" alt="Second slide" style="height: 100%;width: 100%">
         </div>
         <div class="item">
-            <img src="<%=request.getContextPath()%>/img/library.jpg" alt="Third slide" style="height: 100%;width: 100%">
+            <img src="<%=request.getContextPath()%>/img/bg1.jpg" alt="Third slide" style="height: 100%;width: 100%">
         </div>
     </div>
     <!-- 轮播（Carousel）导航 -->

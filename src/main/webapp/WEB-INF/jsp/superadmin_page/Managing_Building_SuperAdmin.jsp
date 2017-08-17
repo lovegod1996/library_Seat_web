@@ -49,22 +49,79 @@
             z-index: 1002;
             overflow: auto;
         }
+
         .layui-btn {
             background-color: #5c9bd1;
         }
+
         body {
             background-color: #eff3f8;
             margin-top: 15px;
         }
-        .panel-default>.panel-heading {
+
+        .panel-default > .panel-heading {
             color: #5c9bd1;
             background-color: #ffffff;
             border-color: #f9f9f9;
         }
+
         .layui-table thead tr {
             background-color: #eff3f8;
         }
     </style>
+
+    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+        var flag = {
+            "libaray": false,
+            "admin": false,
+        };
+
+        $(function () {
+
+            $("#addLibrary").blur(function () {
+                // 添加图书馆校验
+                var libaray = $(this).val().length;
+//                alert (libaray);
+                // 校验规则，可调整
+//                var pattern =  /^[\u4E00-\u9FA5A-Za-z0-9]+$/;
+                if (libaray > 8) {
+
+                    $("#libaray\\.info").html("字数超过限制");
+                    alert(library);
+                    return;
+                } else {
+                    $("#libaray\\.info").html("");
+                    flag.libaray = true;
+                }
+            });
+
+            $("#addAdmin").blur(function () {
+                // 添加管理员校验
+                var admin = $(this).val().length;
+                // 校验规则，可调整
+//                var pattern =  /^[\u4E00-\u9FA5A-Za-z0-9]+$/;
+                if (admin > 8) {
+
+                    $("#admin\\.info").html("字数超过限制");
+                    return;
+                } else {
+                    $("#admin\\.info").html("");
+                    flag.admin = true;
+                }
+            });
+            $("form").submit(function () {
+                var ok = flag.libaray && flag.admin;
+                if (ok == false) {
+                    alert("输入有误！");
+                    return false;
+                }
+                return true;
+            });
+
+
+        })
+    </script>
 
     <script language="javascript">
         function getTableContent(node) {
@@ -81,6 +138,14 @@
 </head>
 <body>
 <div class="layui-tab">
+    <div style="margin: 30px;font-size:14px;line-height: 150%;color: #757575;">
+        <h4 style="color:#5c9bd1;margin-left:-10px;margin-bottom: 10px;">使用规则</h4>
+        1、数据无价，谨慎操作。
+        <br>2、可以添加多个图书馆，请按照要求输入相关信息，注意控制图书馆名称字体长度，过长可能会影响二维码的生成外观。
+        <br>3、图书馆还可添加对应的每层的场馆，注意正确输入数据。
+        <br>4、登录账号由系统自动生成，默认密码为“123456”，投入使用后，请注意修改登录密码。
+    </div>
+    <hr>
     <ul class="layui-tab-title">
         <li class="layui-this">管理图书馆</li>
         <li>
@@ -134,17 +199,19 @@
            onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">
             &#x1006;</a>
     </div>
-    <form class="layui-form" action="<%=request.getContextPath()%>/view/admin/adbuilding" method="post">
+    <form class="layui-form" id="form" action="<%=request.getContextPath()%>/view/admin/adbuilding" method="post">
         <div class="layui-form-item">
             <label class="layui-form-label">添加图书馆</label>
             <div class="layui-input-inline">
-                <input placeholder="请输入" name="libaray" class="layui-input" required>
+                <input placeholder="请输入" name="libaray" class="layui-input" id="addLibrary" required>
+                <span id="libaray.info" style="color:red"></span>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">添加管理员</label>
             <div class="layui-input-inline">
-                <input placeholder="请输入" name="admin" class="layui-input" required>
+                <input placeholder="请输入" name="admin" class="layui-input" id="addAdmin" required>
+                <span id="admin.info" style="color:red"></span>
             </div>
         </div>
         <div class="layui-form-item">
@@ -169,7 +236,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">编辑图书馆</label>
             <div class="layui-input-inline">
-                <input  id="buildingname" name="libaray" class="layui-input" required>
+                <input id="buildingname" name="libaray" class="layui-input" required>
                 <input type="hidden" id="buildingid" name="bid">
             </div>
         </div>

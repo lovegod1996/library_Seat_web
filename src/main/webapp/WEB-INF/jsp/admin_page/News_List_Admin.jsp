@@ -61,6 +61,13 @@
 <body>
 <div class="col-sm-12">
     <div class="panel panel-default">
+        <div style="margin: 30px;font-size:14px;line-height: 150%;color: #757575;">
+            <h4 style="color:#5c9bd1;margin-left:-10px;margin-bottom: 10px;">使用规则</h4>
+            1、谨慎操作、数据无价
+            <br>2、该页面可查看所有公告记录信息。
+            <br>3、点击编辑可对该条公告内容做修改，请谨慎操作。
+            <br>4、点击删除确认即可删除该条公告，谨慎操作。
+        </div><hr>
         <div class="panel-heading">
             <i class="fa fa-bar-chart-o fa-fw"></i> 通知列表
         </div>

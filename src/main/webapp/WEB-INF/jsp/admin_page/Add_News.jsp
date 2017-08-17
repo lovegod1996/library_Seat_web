@@ -45,6 +45,13 @@
     <div class="panel-heading">
         <i class="fa fa-bar-chart-o fa-fw"></i> 发布通知
     </div>
+
+    <div style="margin: 30px;font-size:14px;line-height: 150%;color: #757575;">
+        <h4 style="color:#5c9bd1;margin-left:-10px;margin-bottom: 10px;">使用规则</h4>
+        1、谨慎操作、数据无价
+        <br>2、请按照要求输入相关的内容
+        <br>3、本公告不提供图片输入，请正确操作。
+    </div><hr>
     <!-- /.panel-heading -->
     <div class="table table-condensed">
         <form class="layui-form" role="form" action="<%= request.getContextPath()%>/admin/adNewsSub" method="post">

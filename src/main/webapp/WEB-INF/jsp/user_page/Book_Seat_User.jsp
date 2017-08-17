@@ -25,6 +25,9 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
 
+    <script src="<%= request.getContextPath()%>/js/combodate.js"></script>
+    <script src="<%= request.getContextPath()%>/js/moment.js"></script>
+
     <%--获取当前时间--%>
     <script src="<%=request.getContextPath()%>/js/nowtime.js"></script>
     <style type="text/css">
@@ -241,6 +244,18 @@
 
     <div class="RightView" id="RightView">
         <div class="panel panel-default">
+            <div style="margin: 25px;font-size:14px;line-height: 150%;color: #757575;">
+                <h4 style="color:#5c9bd1;margin-left:-10px;margin-bottom: 10px;">使用规则：</h4>
+                1、请正确登录本系统后开始预约操作。
+                <br>
+                2、本系统采用更加精确的自定义分时预约机制，同学们预约的时候一定要注意不要预约重复的时间段，点击“点击预约”按钮，即可看到该座位的当前预约时间段，该座位信息会自动传到右边输入框内，请同学们按需输入预计学习的时间段。
+                <br>
+                3、如果预约失败，请检查当前场馆是否已经关闭，或是预约的时间已经被预约，或是自己处于被惩罚的时间段内。
+                <br>
+                4、请大家自觉遵守预约规则，按时入座、离座，禁止撕毁、涂改二维码等信息。
+                <br>
+            </div>
+            <hr>
             <div class="panel-heading">
                 <i class="fa fa-bell fa-fw"></i> 预约座位
             </div>
@@ -282,6 +297,7 @@
                             <div class="layui-inline">
                                 <input type="time" class="layui-input" name="etime" placeholder="结束时间"
                                        style="width: 220px" required>
+
                             </div>
 
                         </div>
@@ -312,6 +328,19 @@
     </div>
     <!-- /.col-lg-4 -->
 </div>
+
+<script>
+    $(function(){
+        $('#time').combodate({
+            firstItem: 'name', //show 'hour' and 'minute' string at first item of dropdown
+            minuteStep: 1
+        });
+        $('#time1').combodate({
+            firstItem: 'name', //show 'hour' and 'minute' string at first item of dropdown
+            minuteStep: 1
+        });
+    });
+</script>
 
 <script type="text/javascript">
     function getnum(form) {
