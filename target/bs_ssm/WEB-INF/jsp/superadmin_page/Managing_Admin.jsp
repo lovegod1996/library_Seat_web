@@ -78,8 +78,8 @@
                         <th width="5%">姓名</th>
                         <th width="10%">账号</th>
                         <th width="10%">身份单位</th>
-                        <th width="10%">权限状态</th>
-                        <th width="10%">操作</th>
+                        <th width="15%">权限状态</th>
+                        <th width="5%">操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -98,26 +98,30 @@
                                     <tr>
                                         <c:if test="${admin.floor==1}">
                                             <td>
-                                                <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/0/${admin.notice}/${admin.user}/${admin.seat}"
-                                                   title="点击关闭"> <span style="color: #4CAF50">楼层管理</span> </a>
+                                                <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/0/${admin.notice}/${admin.user}/${admin.seat}" title="点击关闭">
+                                                    <span style="color: #4CAF50" onclick="confirmAct()">楼层管理&nbsp;&nbsp;<input type="checkbox" checked></span>
+                                                    </a>
                                             </td>
                                         </c:if>
                                         <c:if test="${admin.notice==1}">
                                             <td>
-                                                <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/${admin.floor}/0/${admin.user}/${admin.seat}"
-                                                   title="点击关闭"> <span style="color: #4CAF50">消息管理</span> </a>
+                                                <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/${admin.floor}/0/${admin.user}/${admin.seat}" title="点击关闭">
+                                                    <span style="color: #4CAF50" onclick="confirmAct()">消息管理&nbsp;&nbsp;<input type="checkbox" checked></span>
+                                                </a>
                                             </td>
                                         </c:if>
+
                                         <c:if test="${admin.floor==0}">
                                             <td>
-                                                <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/1/${admin.notice}/${admin.user}/${admin.seat}"
-                                                   title="点击开启"><span style="color: #7d9096"></span>楼层管理</a>
+                                                <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/1/${admin.notice}/${admin.user}/${admin.seat}" title="点击开启">
+                                                    <span style="color: #7d9096" onclick="confirmAct()">楼层管理&nbsp;&nbsp;<input type="checkbox"> </span>
+                                                    </a>
                                             </td>
                                         </c:if>
                                         <c:if test="${admin.notice==0}">
                                             <td>
                                                 <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/${admin.floor}/1/${admin.user}/${admin.seat}"
-                                                   title="点击开启"><span style="color: #7d9096"></span>消息管理</a>
+                                                   title="点击开启"><span style="color: #7d9096" onclick="confirmAct()">消息管理&nbsp;&nbsp;<input type="checkbox"></span></a>
                                             </td>
                                         </c:if>
                                     </tr>
@@ -126,26 +130,26 @@
                                         <c:if test="${admin.user==1}">
                                             <td>
                                                 <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/${admin.floor}/${admin.notice}/0/${admin.seat}"
-                                                   title="点击关闭"> <span style="color: #4CAF50">学生管理</span> </a>
+                                                   title="点击关闭"> <span style="color: #4CAF50" onclick="confirmAct()">学生管理&nbsp;&nbsp;<input type="checkbox" checked></span> </a>
                                             </td>
                                         </c:if>
                                         <c:if test="${admin.seat==1}">
                                             <td>
                                                 <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/${admin.floor}/${admin.notice}/${admin.user}/0"
-                                                   title="点击关闭"> <span style="color: #4CAF50">座位管理</span> </a>
+                                                   title="点击关闭"> <span style="color: #4CAF50" onclick="confirmAct()">座位管理&nbsp;&nbsp;<input type="checkbox" checked></span> </a>
                                             </td>
                                         </c:if>
 
                                         <c:if test="${admin.user==0}">
                                             <td>
                                                 <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/${admin.floor}/${admin.notice}/1/${admin.seat}"
-                                                   title="点击开启"><span style="color: #7d9096"></span>学生管理</a>
+                                                   title="点击开启"><span style="color: #7d9096" onclick="confirmAct()">学生管理&nbsp;&nbsp;<input type="checkbox"></span></a>
                                             </td>
                                         </c:if>
                                         <c:if test="${admin.seat==0}">
                                             <td>
                                                 <a href="<%=request.getContextPath()%>/view/UpdateAdmin/${admin.aid}/${admin.floor}/${admin.notice}/${admin.user}/1"
-                                                   title="点击开启"><span style="color: #7d9096"></span>座位管理</a>
+                                                   title="点击开启"><span style="color: #7d9096" onclick="confirmAct()">座位管理&nbsp;&nbsp;<input type="checkbox"></span></a>
                                             </td>
                                         </c:if>
                                     </tr>
@@ -243,6 +247,14 @@
         });
 
     });
+</script>
+<script type="text/javascript">
+    function confirmAct() {
+        if (confirm('确定要执行此操作吗?')) {
+            return true;
+        }
+        return false;
+    }
 </script>
 
 <%--选择日期--%>
