@@ -27,40 +27,6 @@
 
     <%--获取当前时间--%>
     <script src="<%=request.getContextPath()%>/js/nowtime.js"></script>
-    <script>
-        layui.use('laydate', function () {
-            var laydate = layui.laydate;
-            var start = {
-                min: laydate.now()
-                , max: '2099-06-16 23:59:59'
-                , istoday: false
-                , choose: function (datas) {
-                    end.min = datas; //开始日选好后，重置结束日的最小日期
-                    end.start = datas //将结束日的初始值设定为开始日
-                }
-            };
-
-            var end = {
-                min: laydate.now()
-                , max: '2099-06-16 23:59:59'
-                , istoday: false
-                , choose: function (datas) {
-                    start.max = datas; //结束日选好后，重置开始日的最大日期
-                }
-            };
-
-            document.getElementById('LAY_demorange_s').onclick = function () {
-                start.elem = this;
-                laydate(start);
-            };
-            document.getElementById('LAY_demorange_e').onclick = function () {
-                end.elem = this;
-                laydate(end);
-            }
-
-        });
-    </script>
-
     <style type="text/css">
         body {
             width: 90%;
@@ -191,6 +157,7 @@
             background: #4d5b69;
             opacity: 0.9;
         }
+
     </style>
 
     <script>
@@ -287,10 +254,8 @@
                         <div class="col-sm-9">
                             <div class="layui-inline">
                                 <input type="hidden" name="day" value="${day}">
-                                <input class="layui-input" name="stime" placeholder="开始时间" style="width: 220px"
-                                       required
-                                       onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
-                                <%--now(0)表示今天；now(1)表示明天,限制预约只能今天明天--%>
+                                <input type="time" class="layui-input" name="stime" placeholder="开始时间" style="width: 220px" required>
+
                             </div>
                         </div>
                     </div>
@@ -298,9 +263,7 @@
                         <label class="col-sm-3 control-label">结束</label>
                         <div class="col-sm-9">
                             <div class="layui-inline">
-                                <input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px"
-                                       required
-                                       onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
+                                    <input type="time" class="layui-input" name="stime" placeholder="结束时间" style="width: 220px" required>
                             </div>
 
                         </div>

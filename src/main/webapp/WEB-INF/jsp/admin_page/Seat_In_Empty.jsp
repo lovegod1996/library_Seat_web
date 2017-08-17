@@ -262,8 +262,7 @@
                     <label class="layui-form-label">预计结束</label>
                     <div class="layui-input-block">
                         <div class="layui-inline">
-                            <input class="layui-input" name="etime" placeholder="结束时间" style="width: 220px" required
-                                   onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss',min: laydate.now(0), max: laydate.now(+1)})">
+                            <input type="time" class="layui-input" name="stime" placeholder="结束时间" style="width: 220px" required>
                         </div>
                     </div>
                 </div>
