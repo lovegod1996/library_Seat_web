@@ -25,11 +25,9 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <script src="<%= request.getContextPath()%>/js/combodate.js"></script>
-    <script src="<%= request.getContextPath()%>/js/moment.js"></script>
-
     <%--获取当前时间--%>
     <script src="<%=request.getContextPath()%>/js/nowtime.js"></script>
+    <script src="<%=request.getContextPath()%>/js/timer.js"></script>
     <style type="text/css">
         body {
             width: 90%;
@@ -285,9 +283,11 @@
                         <div class="col-sm-9">
                             <div class="layui-inline">
                                 <input type="hidden" name="day" value="${day}">
-                                <input type="time" class="layui-input" name="stime" placeholder="开始时间"
-                                       style="width: 220px" required>
-
+                                <%--<input type="time" class="layui-input" name="stime" placeholder="开始时间"--%>
+                                <%--style="width: 220px" required>--%>
+                                <div id="timer" class="layui-input" style="display: none;width: 220px;text-align: center"></div>
+                                <input id="Clicktimer" class="layui-input" placeholder="开始时间" style="width: 220px;"
+                                       onclick="showTimer('timer') ;showTIME()"/>
                             </div>
                         </div>
                     </div>
@@ -295,9 +295,11 @@
                         <label class="col-sm-3 control-label">结束</label>
                         <div class="col-sm-9">
                             <div class="layui-inline">
-                                <input type="time" class="layui-input" name="etime" placeholder="结束时间"
-                                       style="width: 220px" required>
-
+                                <%--<input type="time" class="layui-input" name="etime" placeholder="结束时间"--%>
+                                       <%--style="width: 220px" required>--%>
+                                    <div id="timer1" class="layui-input" style="display: none;width: 220px;text-align: center"></div>
+                                    <input id="Clicktimer1" class="layui-input" placeholder="结束时间" style="width: 220px;"
+                                           onclick="showTimer('timer1') ;showTIME1()"/>
                             </div>
 
                         </div>
@@ -330,7 +332,23 @@
 </div>
 
 <script>
-    $(function(){
+    function showTIME() {
+        document.getElementById("timer").style.display = "block";
+        document.getElementById("Clicktimer").style.display = "none";
+    }
+    function showTIME1() {
+        document.getElementById("timer1").style.display = "block";
+        document.getElementById("Clicktimer1").style.display = "none";
+    }
+
+    //                                    获取选择的时间
+    //                                    function aa(id){
+    //                                        alert(returnTimer(id));
+    //                                    }
+</script>
+
+<script>
+    $(function () {
         $('#time').combodate({
             firstItem: 'name', //show 'hour' and 'minute' string at first item of dropdown
             minuteStep: 1

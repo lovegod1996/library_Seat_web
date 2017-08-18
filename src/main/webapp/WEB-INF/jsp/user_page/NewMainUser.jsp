@@ -23,6 +23,7 @@
     <script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <style>
+        *{margin: 0px;padding: 0px}
         body {
             width: 90%;
             margin-left: 5%;
@@ -102,7 +103,7 @@
     </style>
 </head>
 <body>
-<div id="myCarousel" class="carousel slide" style="height: 75%;">
+<div id="myCarousel" class="carousel slide" style="height: 450px;">
     <!-- 轮播（Carousel）指标 -->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -112,13 +113,13 @@
     <!-- 轮播（Carousel）项目 -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="<%=request.getContextPath()%>/img/bg3.jpg" alt="First slide" style="height: 100%;width: 100%">
+            <img src="<%=request.getContextPath()%>/img/bg3.jpg" alt="First slide" style="height: 450px;width: 100%">
         </div>
         <div class="item">
-            <img src="<%=request.getContextPath()%>/img/bg4.jpg" alt="Second slide" style="height: 100%;width: 100%">
+            <img src="<%=request.getContextPath()%>/img/bg4.jpg" alt="Second slide" style="height: 450px;width: 100%">
         </div>
         <div class="item">
-            <img src="<%=request.getContextPath()%>/img/bg1.jpg" alt="Third slide" style="height: 100%;width: 100%">
+            <img src="<%=request.getContextPath()%>/img/bg1.jpg" alt="Third slide" style="height: 450px;width: 100%">
         </div>
     </div>
     <!-- 轮播（Carousel）导航 -->
@@ -128,14 +129,14 @@
        data-slide="next">&rsaquo;</a>
 </div>
 
-<div style="height: 50%;margin-top: 30px">
+<div style="height: 350px;margin-top: 30px">
     <div class="col-sm-4">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="glyphicon glyphicon-time"></i> 开馆时间安排
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body" style="height: 100%">
+            <div class="panel-body" style="height: 350px">
 
                 <div class="list-group">
                     <c:forEach items="${weekopens}" var="week" varStatus="tt">
@@ -157,7 +158,7 @@
                    style="float:right;">查看更多&nbsp;> </a>
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body" style="height: 100%">
+            <div class="panel-body" style="height:  350px">
 
                 <c:forEach items="${noticestop}" var="notice">
                     <div class="list-group">
@@ -181,7 +182,7 @@
                 <i class="fa fa-bell fa-fw"></i> 手机客户端
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body" style="height: 100%">
+            <div class="panel-body" style="height:  350px">
                 <div style="text-align: center;width: 100%;height: auto">
                     <img src="<%=request.getContextPath()%>/img/Android_qrcode.jpg" style="height: 200px;width: 200px;">
                 </div>
@@ -194,7 +195,7 @@
         </div>
     </div>
 </div>
-<div class="col-sm-12">
+<div class="col-sm-12" style="margin-top: 30px">
     <div class="panel panel-default">
         <div class="panel-heading">
             <i class="fa fa-bar-chart-o fa-fw"></i> 座位实时使用状态
@@ -216,7 +217,7 @@
         <div id="main" style="width:100%;height:500px;"></div>
     </div>
 </div>
-<div class="col-sm-12">
+<div class="col-sm-12" style="margin-top: 30px">
     <div class="panel panel-default">
         <div class="panel-heading">
             <i class="glyphicon glyphicon-star"></i> 排行榜
