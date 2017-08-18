@@ -6,6 +6,7 @@ import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.xoqao.web.bean.code.CodeModel;
+import com.xoqao.web.commen.CommenValue;
 import org.apache.commons.lang.StringUtils;
 
 import javax.imageio.ImageIO;
@@ -25,7 +26,7 @@ public class CodeCreator {
 
     private static int BLACK = 0x000000;
     private static int WHITE = 0xFFFFFF;
-    private static int DEEPRED=0x8e162f;
+    private static int DEEPRED = 0x8e162f;
 
     private BufferedImage createCodeImage(CodeModel info) {
         String contents = info.getContents();
@@ -57,6 +58,71 @@ public class CodeCreator {
         return img;
     }
 
+    //小破孩主题二维码
+    public void createCodeImgTheme(CodeModel info, OutputStream outputStream) {
+        BufferedImage bm = createCodeImage(info);
+        File logoFile = info.getLogoFile();
+        if (logoFile != null && logoFile.exists()) {
+            try {
+                BufferedImage logoImg = ImageIO.read(logoFile);
+                int logoWidth = logoImg.getWidth();
+                int logoHeight = logoImg.getHeight();
+                int width = bm.getWidth();
+                int height = bm.getHeight();
+                float ratio = info.getLogoRatio();
+                if (ratio > 0) {
+                    logoWidth = logoWidth > width * ratio ? (int) (width * ratio) : logoWidth;
+                    logoHeight = logoHeight > height * ratio ? (int) (height * ratio) : logoHeight;
+                }
+                int x = (width - logoWidth) / 2;
+                int y = (height - logoHeight) / 2;
+                Graphics g = bm.getGraphics();
+                g.drawImage(logoImg, x, y, logoWidth, logoHeight, null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        File back_img = info.getBackimg();
+        if (back_img != null && back_img.exists()) {
+            try {
+                BufferedImage back = ImageIO.read(back_img);
+                Graphics graphics = back.getGraphics();
+                graphics.drawImage(bm, info.getCodestart()[0], info.getCodestart()[1], bm.getWidth(), bm.getHeight(), null);
+
+                Font font = new Font("黑色", Font.BOLD, info.getFontSideLocal().getFontsize());
+                graphics.setFont(font);
+                graphics.setColor(new Color(info.getFontSideLocal().getColor()));
+                graphics.drawString(info.getFontSideLocal().getDes(), info.getFontSideLocal().getStartx(), info.getFontSideLocal().getStarty());
+
+                Font font1 = new Font("棕色", Font.BOLD, info.getFontSideBuiding().getFontsize());
+                graphics.setColor(new Color(info.getFontSideBuiding().getColor()));
+                graphics.setFont(font1);
+                new Color(info.getFontSideBuiding().getColor());
+                graphics.drawString(info.getFontSideBuiding().getDes(), info.getFontSideBuiding().getStartx(), info.getFontSideBuiding().getStarty());
+
+                Font font2 = new Font("棕色", Font.BOLD, info.getFontSideRoom().getFontsize());
+                graphics.setColor(new Color(info.getFontSideRoom().getColor()));
+                graphics.setFont(font2);
+                new Color(info.getFontSideRoom().getColor());
+                graphics.drawString(info.getFontSideRoom().getDes(), info.getFontSideRoom().getStartx(), info.getFontSideRoom().getStarty());
+
+
+                graphics.dispose();
+                bm = back;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            ImageIO.write(bm, StringUtils.isEmpty(info.getFormat()) ? info.getFormat() : info.getFormat(), outputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    //默认二维码展现
     public void createCodeImage(CodeModel info, OutputStream output) {
         BufferedImage bm = createCodeImage(info);
         File logoFile = info.getLogoFile();
@@ -99,11 +165,11 @@ public class CodeCreator {
                     }
                     int totalFontHeight = fontHeight * lineNum;
                     int wordTopMargin = 12;
-                    BufferedImage bm1 = new BufferedImage(width, height + totalFontHeight + wordTopMargin + whiteWidth+20, BufferedImage.TYPE_INT_RGB);
+                    BufferedImage bm1 = new BufferedImage(width, height + totalFontHeight + wordTopMargin + whiteWidth + 20, BufferedImage.TYPE_INT_RGB);
                     Graphics g1 = bm1.getGraphics();
                     if (totalFontHeight + wordTopMargin - whiteWidth > 0) {
                         g1.setColor(Color.WHITE);
-                        g1.fillRect(0, height, width, totalFontHeight + wordTopMargin + whiteWidth+20);
+                        g1.fillRect(0, height, width, totalFontHeight + wordTopMargin + whiteWidth + 20);
                     }
                     g1.setColor(new Color(BLACK));
                     g1.setFont(font);
@@ -113,16 +179,16 @@ public class CodeCreator {
                     currentLineLen = 0;
                     int currentLineIndex = 0;
                     int baseLo = g1.getFontMetrics().getAscent();
-                    Integer fontTHeight=fontHeight;
+                    Integer fontTHeight = fontHeight;
                     for (int i = 0; i < desc.length(); i++) {
                         String c = desc.substring(i, i + 1);
                         int charWidth = g.getFontMetrics(font).stringWidth(c);
 
-                        if(currentLineIndex==(lineNum-1)){
+                        if (currentLineIndex == (lineNum - 1)) {
                             Font font2 = new Font("黑体", Font.BOLD, 30);
                             g1.setFont(font2);
                             g1.setColor(new Color(DEEPRED));
-                            fontHeight=fontTHeight+10;
+                            fontHeight = fontTHeight + 10;
                         }
                         if (currentLineLen + charWidth > width) {
                             currentLineIndex++;
@@ -147,6 +213,7 @@ public class CodeCreator {
             e.printStackTrace();
         }
     }
+
 
     public void createCodeImage(CodeModel info, File file) {
         File parent = file.getParentFile();

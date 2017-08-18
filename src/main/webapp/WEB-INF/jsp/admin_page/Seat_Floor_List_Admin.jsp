@@ -79,7 +79,6 @@
                     <th>分布</th>
                     <th>排列</th>
                     <th>可预约</th>
-                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -91,11 +90,6 @@
                         <td>${seat.leftside==0?"左侧":"右侧"}</td>
                         <td>${seat.row}排${seat.columns}列</td>
                         <td>${seat.statue==0?"是":"否"}</td>
-                        <td>
-                            <div class="layui-btn-group">
-                                <a href="#" class="layui-btn layui-btn-primary layui-btn-small">二维码</a>
-                            </div>
-                        </td>
                     </tr>
                 </c:forEach>
                 <c:if test="${ nullList != null}">

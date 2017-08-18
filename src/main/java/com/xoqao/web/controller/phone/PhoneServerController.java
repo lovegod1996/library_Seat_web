@@ -2,6 +2,7 @@ package com.xoqao.web.controller.phone;
 
 import com.xoqao.web.bean.booking.*;
 import com.xoqao.web.bean.building.Building;
+import com.xoqao.web.bean.building.BuildingSeatStatue;
 import com.xoqao.web.bean.data.FloorData;
 import com.xoqao.web.bean.data.UserData;
 import com.xoqao.web.bean.data.WeekData;
@@ -298,7 +299,7 @@ public class PhoneServerController {
     Map<String, Object> adBookingSeat(String sno, String seatNum, String stime, String etime, Integer day) throws Exception {
         Integer disTime = DateUtil.getDisTime(DateUtil.getDate(stime), DateUtil.getDate(etime));
         Map<String, Object> map = new HashMap<String, Object>();
-        if (disTime < CommenValue.MAX_LongTime) {
+        if (disTime < CommenValue.MAX_LongTime && disTime > CommenValue.MIN_BOOK) {
             //计算预约惩罚天数据周期
             List<UnDeal> unDealCord = undealService.findUnDealCord(sno);
             Integer disTime1 = 0;
@@ -361,7 +362,7 @@ public class PhoneServerController {
             }
         } else {
             map.put("code", 1);
-            map.put("message", "选择时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
+            map.put("message", "选择时间超过" + (CommenValue.MAX_LongTime / 60) + "小时或选择时间过短");
             map.put("data", null);
         }
         return map;
@@ -430,8 +431,8 @@ public class PhoneServerController {
                         Integer disTime = DateUtil.getDisTime(noLeaveBookSeat.getBstime(), new Date());//计算当前时间与预约时间的时间差
                         if (disTime > CommenValue.MAX_LATER) {
                             //超过规定时间到达，违约
-                            bookingService.updateStime(new Date(), noLeaveBookSeat.getBid());
-                            bookingService.updateEtime(new Date(), 3, 0, 1, noLeaveBookSeat.getBid());
+                            bookingService.updateStime(noLeaveBookSeat.getBstime(), noLeaveBookSeat.getBid());
+                            bookingService.updateEtime(noLeaveBookSeat.getBstime(), 3, 0, 1, noLeaveBookSeat.getBid());
                             /**
                              * 失信处理
                              */
@@ -452,10 +453,10 @@ public class PhoneServerController {
                         }
                         break;
                     case 1:
-                        bookingService.updateEtime(new Date(), 3, 0, 0, noLeaveBookSeat.getBid());
+                        bookingService.updateEtime(noLeaveBookSeat.getBetime(), 3, 0, 0, noLeaveBookSeat.getBid());
                         break;
                     case 2:
-                        bookingService.updateEtime(new Date(), 3, 0, 0, noLeaveBookSeat.getBid());
+                        bookingService.updateEtime(noLeaveBookSeat.getEtime(), 3, 0, 0, noLeaveBookSeat.getBid());
                         break;
                     default:
                         break;
@@ -493,8 +494,6 @@ public class PhoneServerController {
                                 undealService.insertUndeal(findbooknow.getSno(), new Date());
                             }
                         }
-
-
                         map.put("code", 2);
                         map.put("message", "您已经迟到，迟到时间" + disTime + "分钟，请重新预约");
                         map.put("data", findbooknow);
@@ -627,6 +626,7 @@ public class PhoneServerController {
 
         Map<String, Object> map = new HashMap<String, Object>();
         Booking byid = bookingService.findByid(bid);
+        Integer disTime2 = DateUtil.getDisTime(byid.getBetime(), new Date());
         switch (byid.getStatue()) {
             case 0:
                 Integer disTime = DateUtil.getDisTime(byid.getBstime(), new Date());
@@ -659,7 +659,12 @@ public class PhoneServerController {
                 }
                 break;
             case 1:
-                bookingService.updateEtime(new Date(), 3, 0, 0, bid);
+                Integer disTime1 = disTime2;
+                if (disTime1 < 0) {
+                    bookingService.updateEtime(new Date(), 3, 0, 0, bid);
+                } else {
+                    bookingService.updateEtime(byid.getBetime(), 3, 0, 0, bid);
+                }
                 map.put("code", 0);
                 map.put("message", "此次学习结束");
                 map.put("data", null);
@@ -689,7 +694,11 @@ public class PhoneServerController {
                     map.put("message", "您超过临时离开时间");
                     map.put("data", null);
                 } else {
-                    bookingService.updateEtime(new Date(), 3, 0, 0, bid);
+                    if (disTime2 < 0) {
+                        bookingService.updateEtime(new Date(), 3, 0, 0, bid);
+                    } else {
+                        bookingService.updateEtime(byid.getBetime(), 3, 0, 0, bid);
+                    }
                     map.put("code", 0);
                     map.put("message", "离开成功");
                     map.put("data", null);
@@ -985,9 +994,22 @@ public class PhoneServerController {
             List<Floor> floors = floorService.findfloorsBybid(allBuilding.get(i).getBid());
             floorList.addAll(floors);
         }
-        for (int i = 0; i < floorList.size(); i++) {
-            List<Seat> canBookingToday = bookingService.findCanBookingToday(floorList.get(i).getFid());
-            seats.addAll(canBookingToday);
+        Iterator<Floor> iterator = floorList.iterator();  //筛选当前处于闭馆的场馆
+        while (iterator.hasNext()) {
+            Floor floor = iterator.next();
+            WeekOpen weekOpen = weekOpenService.findopenFloorday(floor.getFid(), 1);
+            Integer weekOpenDiten = DateUtil.getWeekOpenDiten(weekOpen, new Date());
+           if(weekOpenDiten==2){
+               if(weekOpen.getParam2()==null){
+                   iterator.remove();
+               }else{
+                   List<Seat> canBookingToday = bookingService.findCanBookingToday(floor.getFid());
+                   seats.addAll(canBookingToday);
+               }
+           }else{
+               List<Seat> canBookingToday = bookingService.findCanBookingToday(floor.getFid());
+               seats.addAll(canBookingToday);
+           }
         }
         Random random = new Random();
         Seat seat = seats.get(random.nextInt(seats.size()));
@@ -1125,6 +1147,7 @@ public class PhoneServerController {
 
     /**
      * 用户修改密码
+     *
      * @param uid
      * @param password
      * @return
@@ -1147,7 +1170,61 @@ public class PhoneServerController {
             map.put("data", null);
             return map;
         }
+    }
 
+    /**
+     * 查看楼层状态
+     *
+     * @param sno
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/findFloorStatue")
+    public @ResponseBody
+    Map<String, Object> findFloorStatue(String sno) throws Exception {
+        List<BuildingSeatStatue> buildingSeatStatueList = new ArrayList<BuildingSeatStatue>();
+        List<Building> allBuilding = buildingService.findAllBuilding();
+        for (int i = 0; i < allBuilding.size(); i++) {
+            BuildingSeatStatue buildingSeatStatue = new BuildingSeatStatue();
+            buildingSeatStatue.setBid(allBuilding.get(i).getBid());
+            buildingSeatStatue.setBuilding(allBuilding.get(i).getEmployer());
+            List<Floor> floors = floorService.findfloorsBybid(allBuilding.get(i).getBid());
+            List<FloorData> floorDataList = new ArrayList<FloorData>();
+            for (int j = 0; j < floors.size(); j++) {
+
+                Floor floor = floors.get(j);
+                FloorData floorData = new FloorData();
+                floorData.setFloor(floor.getEmployer());
+                List<Seat> openSeatsByFid = seatService.findOpenSeatsByFid(floor.getFid());
+                floorData.setSeatCount(openSeatsByFid.size());
+                List<Seat> bookSeat = bookingService.findBookSeat(floor.getFid());
+                floorData.setHasBook(bookSeat.size());
+                floorData.setNoBook(openSeatsByFid.size() - bookSeat.size());
+                List<Seat> seats = bookingService.findbookSeatofUpWeek(floor.getFid());
+                float pro = (seats.size() / (float) openSeatsByFid.size()) * 100;
+                floorData.setUpWeekUsePro((double) pro);
+                List<Booking> floorBookOfUpWeek = bookingService.findFloorBookOfUpWeek(floor.getFid());
+                int manCount = 0;
+                for (int k = 0; k < floorBookOfUpWeek.size(); k++) {
+                    User userBySno1 = userService.findUserBySno(floorBookOfUpWeek.get(k).getSno());
+                    if (userBySno1.getSex() == 0) {
+                        manCount++;
+                    }
+                }
+                float v = (manCount / (float) floorBookOfUpWeek.size()) * 100;
+                floorData.setMan((double) v);
+                List<Booking> userBookOfUpWeek = bookingService.findUserBookOfUpWeek(floor.getFid(), sno);
+                floorData.setMybook(userBookOfUpWeek.size());
+                floorDataList.add(floorData);
+            }
+            buildingSeatStatue.setFloorDataList(floorDataList);
+            buildingSeatStatueList.add(buildingSeatStatue);
+        }
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("code", 0);
+        map.put("message", "成功");
+        map.put("data", buildingSeatStatueList);
+        return map;
     }
 
 }

@@ -11,36 +11,47 @@
     <title>页脚</title>
     <style>
         span {
-            color:#959595;
+            color: #959595;
 
         }
+
         body {
             background-color: #4d5b69;
             height: 5px;
-            width:100%;
+            width: 100%;
         }
-        html{
-            height:5px;
-            overflow: hidden;}
 
-
-
-        .btmbg{
-            width:100%; overflow:hidden;
+        html {
+            height: 5px;
+            overflow: hidden;
         }
-        .btm{
-            width:100%; overflow:hidden; color:#999999; font-family:"宋体";
-            text-align:center;margin-top: -10px;font-size:13px;color:white;
+
+        .btmbg {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .btm {
+            width: 100%;
+            overflow: hidden;
+            color: #999999;
+            font-family: "宋体";
+            text-align: center;
+            margin-top: -10px;
+            font-size: 13px;
+            color: white;
         }
 
     </style>
 </head>
 <body>
-    <div class="btmbg">
-        <div class="btm">
-         <p>郑州小桥科技有限公司 版权所有&nbsp;|&nbsp;(MyCodes.Net) all rights reserved 2002-2017 豫ICP备********号</p>
-        </div>
+<div class="btmbg">
+    <div class="btm">
+        <p>郑州小桥科技有限公司 版权所有&nbsp;|&nbsp;(MyCodes.Net) all rights reserved 2002-2017 豫ICP备********号&nbsp;|&nbsp;
+            <a href="<%=request.getContextPath()%>/view/bookRule"  title="点击查看预约规则" target="mainFrame_User" style="color: #ffffff">预约规则</a>&nbsp;|&nbsp;
+            <a href="<%=request.getContextPath()%>/view/loseRule" title="点击查看惩罚规则" target="mainFrame_User" style="color: #ffffff">惩罚规则</a></p>
     </div>
+</div>
 
 </body>
 </html>

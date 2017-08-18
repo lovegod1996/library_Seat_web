@@ -19,8 +19,11 @@
     <%--操作确认--%>
     <script src="<%=request.getContextPath()%>/js/dialog.js"></script>
     <style>
-        body {background-color: #f1f3fa;}
-        .panel-default>.panel-heading {
+        body {
+            background-color: #f1f3fa;
+        }
+
+        .panel-default > .panel-heading {
             color: #9e9e9e;
             background-color: #f1f3fa;
             border-color: #f1f3fa;
@@ -28,23 +31,27 @@
             font-weight: bold;
             font-family: inherit;
         }
+
         .panel-default {
             border-color: #f1f3fa;
         }
 
-        .panel-default>.panel-heading {
+        .panel-default > .panel-heading {
             color: #9e9e9e;
             background-color: #f1f3fa;
             border-color: #f1f3fa;
         }
+
         .panel {
             background-color: #f1f3fa;
         }
+
         .layui-table {
             width: 90%;
             margin: 10px 5%;
             background-color: #fff;
         }
+
         .pagination {
             display: inline-block;
             padding-left: 0;
@@ -52,13 +59,15 @@
             margin-left: -10%;
             border-radius: 4px;
         }
-        .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+
+        .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
             z-index: 3;
             color: #fff;
             cursor: default;
             background-color: #5c9bd1;
             border-color: #5c9bd1;
         }
+
         .layui-table thead tr {
             background-color: #f1f3fa;
         }
@@ -70,6 +79,13 @@
         <div class="panel-heading">
             <i class="fa fa-bar-chart-o fa-fw"></i> 座位列表
         </div>
+        <div style="margin: 30px;font-size:14px;line-height: 150%;color: #757575;">
+            <h4 style="color:#5c9bd1;margin-left:-10px;margin-bottom: 10px;">使用规则</h4>
+            1、谨慎操作、数据无价
+            <br>2、本页面可查看该场馆的所由座位信息，提供有多种二维码主题样式供选择，点击即可自动下载到本地。
+            <br>3、点击关闭预约按钮可关闭该座位的开放状态，该座位可不被预约。
+            <br>4、点击删除确认即可删除座位信息，请谨慎操作。
+        </div><hr>
         <!-- /.panel-heading -->
         <div class="layui-form">
             <table class="layui-table">
@@ -94,19 +110,41 @@
                         <td>${seat.statue==0?"是":"否"}</td>
                         <td>
                             <div class="layui-btn-group">
-                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}" class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码">二维码</a>
+                                    <%--<a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=1"--%>
+                                    <%--class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码">二维码</a>--%>
+
+                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=0"
+                                   class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 默认</a>
+                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=1"
+                                   class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 主题1</a>
+                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=2"
+                                   class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 主题2</a>
+                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=3"
+                                   class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 主题3</a>
+                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=4"
+                                   class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 主题4</a>
+                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=5"
+                                   class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 主题5</a>
+                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=6"
+                                   class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 主题6</a>
+                                <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=7"
+                                   class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 主题7</a>
+                                        <a href="${pageContext.request.contextPath }/view/getSeatPic?seatNumber=${seat.seatnumber}&type=8"
+                                           class="layui-btn layui-btn-primary layui-btn-small" title="点击下载二维码"> 主题8</a>
                                 <c:if test="${seat.statue==0}">
                                     <a href="${pageContext.request.contextPath }/view/changeSeatStatue?statue=${seat.statue}&sid=${seat.sid}&fid=${fid}"
-                                       class="layui-btn layui-btn-primary layui-btn-small" onclick="return confirmAct()">关闭预约</a>
+                                       class="layui-btn layui-btn-primary layui-btn-small"
+                                       onclick="return confirmAct()">关闭预约</a>
                                 </c:if>
                                 <c:if test="${seat.statue==1}">
                                     <a href="${pageContext.request.contextPath }/view/changeSeatStatue?statue=${seat.statue}&sid=${seat.sid}&fid=${fid}"
-                                       class="layui-btn layui-btn-primary layui-btn-small" onclick="return confirmAct()">开启预约</a>
+                                       class="layui-btn layui-btn-primary layui-btn-small"
+                                       onclick="return confirmAct()">开启预约</a>
                                 </c:if>
                                 <a href="${pageContext.request.contextPath }/view/deleteSeat?sid=${seat.sid}&fid=${fid}"
-                                   class="layui-btn layui-btn-primary layui-btn-small" onclick="return confirmAct()">删除</a>
+                                   class="layui-btn layui-btn-primary layui-btn-small"
+                                   onclick="return confirmAct()">删除</a>
                             </div>
-
                         </td>
                     </tr>
                 </c:forEach>

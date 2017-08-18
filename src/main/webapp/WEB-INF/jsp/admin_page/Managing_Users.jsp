@@ -85,6 +85,15 @@
 <body>
 <div class="col-sm-12">
     <div class="panel panel-default">
+        <div style="margin: 30px;font-size:14px;line-height: 150%;color: #757575;">
+            <h4 style="color:#5c9bd1;margin-left:-10px;margin-bottom: 10px;">使用规则</h4>
+            1、谨慎操作、数据无价
+            <br>2、本页面可查看学生的概况信息，并且对学生实现一般的简单操作。
+            <br>3、此页面可批量或单个添加学生信息，请注意选择添加方式。
+            <br>4、批量添加请按照要求的表格内容提交，避免造成提交内容错误。
+            <br>5、点击删除按钮确认即可删除改名学生的信息，谨慎操作。
+        </div><hr>
+
         <div class="panel-heading">
             <label style="float: left">用户管理</label>
             <form method="post" action="" name="selectform" style="float: left;margin-left: 20px;width: 40%">
@@ -120,14 +129,14 @@
                       enctype="multipart/form-data">
 
                     <input type="file" id="inputfile" name="excelfile" accept=".xls,.xlsx">
-                    <button type="submit">提交</button>
+                    <button type="submit">批量提交</button>
                 </form>
             </div>
             <button type="button" data-method="notice" class="layui-btn layui-btn-mini" style="margin-left:20px ">添加用户
             </button>
-            <button type="button" data-method="notice" class="layui-btn layui-btn-mini layui-btn-normal"
-                    style="margin-left:20px ">批量导入
-            </button>
+
+            <%--<button type="button" data-method="notice" class="layui-btn layui-btn-mini layui-btn-normal" style="margin-left:20px ">批量导入--%>
+            <%--</button>--%>
             <button type="button" class="layui-btn layui-btn-mini layui-btn-danger" style="margin-left:20px ">删除用户
             </button>
             <a href="${pageContext.request.contextPath }/view/managing_Users.form?year=${year}&college=${college}&major=${major}"

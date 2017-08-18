@@ -1,4 +1,5 @@
 com\xoqao\web\dao\UndealMapper.class
+com\xoqao\web\bean\building\BuildingSeatStatue.class
 com\xoqao\web\bean\deal\UnDeal.class
 com\xoqao\web\bean\data\FloorData.class
 com\xoqao\web\service\UndealService.class

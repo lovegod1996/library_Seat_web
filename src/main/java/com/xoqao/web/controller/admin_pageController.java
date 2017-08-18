@@ -190,31 +190,31 @@ public class admin_pageController {
      */
     @RequestMapping("/bookEmptSeat")
     public String bookEmptSeat(Model model, String sno, String seatNum, String etime, HttpSession httpSession, RedirectAttributes redirectAttributes) throws Exception {
-        Integer disTime = DateUtil.getDisTime(new Date(), DateUtil.getDate(etime));
+        Integer disTime = DateUtil.getDisTime(new Date(), DateUtil.getTimeDate(etime, 0));
         if (disTime < CommenValue.MAX_LongTime) {
             Floor floor = (Floor) httpSession.getAttribute("admin"); //获取当前楼层信息
             WeekOpen weekOpen = weekOpenService.findopenFloortoday(floor.getFid());
-            boolean b = DateUtil.getfollowTime(weekOpen, new Date(), DateUtil.getDate(etime));
+            boolean b = DateUtil.getfollowTime(weekOpen, new Date(), DateUtil.getTimeDate(etime, 0));
             if (b) {
                 Seat seatBynumber = seatService.findSeatBynumber(seatNum);
                 List<Booking> bookSeatBooking = bookingService.findBookSeatBooking(seatBynumber.getSid());
-                boolean checkbooksclash = DateUtil.checkbooksclash(bookSeatBooking, new Date(), DateUtil.getDate(etime));
+                boolean checkbooksclash = DateUtil.checkbooksclash(bookSeatBooking, new Date(), DateUtil.getTimeDate(etime, 0));
                 if (checkbooksclash) {
                     redirectAttributes.addFlashAttribute("error_msg", "您选择的时间段已经被占用");
 //                    model.addAttribute("error_msg", "您选择的时间段已经被占用");
                 } else {
                     User userBySno = userService.findUserBySno(sno);
-                    if(userBySno!=null){
+                    if (userBySno != null) {
                         Booking booking = new Booking();
                         booking.setBstime(new Date());
-                        booking.setBetime(DateUtil.getDate(etime));
+                        booking.setBetime(DateUtil.getTimeDate(etime, 0));
                         booking.setSno(sno);
                         booking.setSid(seatBynumber.getSid());
                         booking.setStime(new Date());
                         bookingService.insertbookingnow(booking);
                         redirectAttributes.addFlashAttribute("error_msg", "预约成功");
                         return "redirect:/jsp/seat_In_Use?page=1";
-                    }else{
+                    } else {
                         redirectAttributes.addFlashAttribute("error_msg", "学号不存在");
                         return "redirect:/jsp/seat_In_Book?page=1";
                     }
@@ -330,7 +330,7 @@ public class admin_pageController {
      */
     @RequestMapping("/adSeatBookSub")
     public String adSeatBook(Model model, String seatNum, String sno, String etime, Integer page, HttpSession httpSession, RedirectAttributes redirectAttributes) throws Exception {
-        Date date = DateUtil.getDate(etime);
+        Date date = DateUtil.getTimeDate(etime, 0);
         Integer disTime = DateUtil.getDisTime(new Date(), date);
         if (disTime > CommenValue.MAX_LongTime) {
             redirectAttributes.addFlashAttribute("error_msg", "您选择的时间超过" + (CommenValue.MAX_LongTime / 60) + "小时");
@@ -347,10 +347,10 @@ public class admin_pageController {
                 Seat seatBynumber = seatService.findSeatBynumber(seatNum);
                 Floor floor = floorService.findfloorByid(seatBynumber.getFid());
                 WeekOpen weekOpen = weekOpenService.findopenFloorday(floor.getFid(), 1);
-                boolean b = DateUtil.getfollowTime(weekOpen,new Date(), DateUtil.getDate(etime));
+                boolean b = DateUtil.getfollowTime(weekOpen, new Date(), DateUtil.getTimeDate(etime, 0));
                 if (b) {
                     List<Booking> bookSeatBooking = bookingService.findBookSeatBookingday(seatBynumber.getSid(), 0);
-                    boolean checkbooksclash = DateUtil.checkbooksclash(bookSeatBooking, new Date(), DateUtil.getDate(etime));
+                    boolean checkbooksclash = DateUtil.checkbooksclash(bookSeatBooking, new Date(), DateUtil.getTimeDate(etime, 0));
                     if (checkbooksclash) {
                         redirectAttributes.addFlashAttribute("error_msg", "您选择的时间段已经被占用");
                     } else {
@@ -360,7 +360,7 @@ public class admin_pageController {
                         for (int i = 0; i < bookingBySno2.size(); i++) {
                             bookingBySno.add(bookingBySno2.get(i));
                         }
-                        boolean checkbooksclash1 = DateUtil.checkbooksclash(bookingBySno, new Date(), DateUtil.getDate(etime));
+                        boolean checkbooksclash1 = DateUtil.checkbooksclash(bookingBySno, new Date(), DateUtil.getTimeDate(etime, 0));
                         if (checkbooksclash1) {
                             redirectAttributes.addFlashAttribute("error_msg", "您选择的时间段您已预约过");
                         } else {

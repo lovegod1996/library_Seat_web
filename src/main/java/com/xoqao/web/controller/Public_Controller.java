@@ -30,4 +30,25 @@ public class Public_Controller {
     public String resetPassword_ForAdmin (Model model) throws Exception{
         return "public_page/ResetPassword_ForAdmin";
     }
+
+    /**
+     * 进入预约规则页面
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/bookRule")
+    public String bookRule()throws Exception{
+        return "public_page/bookRule";
+    }
+
+    /**
+     * 进入失信规则
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/loseRule")
+    public String loseDealRule()throws Exception{
+        return "public_page/loseDealRule";
+    }
+
 }

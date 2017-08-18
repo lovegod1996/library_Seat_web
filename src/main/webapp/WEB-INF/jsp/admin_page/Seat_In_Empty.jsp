@@ -21,6 +21,15 @@
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
     <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
 
+    <!-- jQuery -->
+    <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="<%= request.getContextPath()%>/js/combodate.js"></script>
+    <script src="<%= request.getContextPath()%>/js/moment.js"></script>
+
     <%--验证表单--%>
     <script src="<%=request.getContextPath()%>/js/checkForm.js"></script>
 
@@ -69,7 +78,16 @@
         });
     </script>
 
-    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('#time').combodate({
+                firstItem: 'name', //show 'hour' and 'minute' string at first item of dropdown
+                minuteStep: 1
+            });
+        });
+    </script>
+
+    <%--<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>--%>
     <script>
         var flag = {
             "sno":false,
@@ -237,11 +255,27 @@
 </div>
 <div class="col-sm-6">
     <div class="panel panel-default">
+
+        <div style="margin: 25px;font-size:14px;line-height: 150%;color: #757575;">
+            <h4 style="color:#5c9bd1;margin-left:-10px;margin-bottom: 10px;">使用规则：</h4>
+            1、请正确登录本系统后开始预约操作。
+            <br>
+            2、本系统采用更加精确的自定义分时预约机制，预约的时候一定要注意不要预约重复的时间段，点击“点击预约”按钮，即可看到该座位的当前预约时间段，该座位信息会自动传到右边输入框内，请按需输入预计学习的时间段。
+            <br>
+            3、如果预约失败，请检查当前场馆是否已经关闭，或是预约的时间已经被预约，或是自己处于被惩罚的时间段内。
+            <br>
+            4、该预约仅提供当天立即入座，请老师们谨慎操作。
+            <br>
+            5、请老师们注意提醒同学们自觉遵守预约规则，按时入座、离座，禁止撕毁、涂改二维码等信息。
+            <br>
+        </div>
+        <hr>
+
         <div class="panel-heading">
             <i class="fa fa-bell fa-fw"></i> 预约座位
         </div>
         <!-- /.panel-heading -->
-        <div class="panel-body" style="height: 400px">
+        <div class="panel-body" style="height: auto">
             <form class="layui-form" role="form" action="<%= request.getContextPath()%>/jsp/adSeatBookSub"
                   method="post" onsubmit="getnum(this);">
                 <div class="layui-form-item">
@@ -262,7 +296,7 @@
                     <label class="layui-form-label">预计结束</label>
                     <div class="layui-input-block">
                         <div class="layui-inline">
-                            <input type="time" class="layui-input" name="stime" placeholder="结束时间" style="width: 220px" required>
+                            <input type="time" class="layui-input" name="etime" placeholder="结束时间" style="width: 220px" required>
                         </div>
                     </div>
                 </div>
@@ -274,12 +308,6 @@
     <!-- /.panel -->
 </div>
 <!-- /.col-sm-12 -->
-
-<!-- jQuery -->
-<script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
     function getnum(form) {

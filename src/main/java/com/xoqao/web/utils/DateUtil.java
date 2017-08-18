@@ -312,28 +312,28 @@ public class DateUtil {
             } else {
                 if (time.before(opentime)) {
                     statue = 0;  //时间在第一时间段之前
-                } else  if(time.after(closeTime)){
-                    if(weekOpen.getParam2()!=null){
+                } else if (time.after(closeTime)) {
+                    if (weekOpen.getParam2() != null) {
                         String[] split2 = weekOpen.getParam2().split("-");
                         opentime = df.parse(split2[0]);
                         closeTime = df.parse(split2[1]);
                         boolean b3 = belongCalendar(time, opentime, closeTime);
-                        if(b3){
-                            statue=3; //时间在第二是时间段内
-                        }else{
-                            if(time.equals(opentime)||time.equals(closeTime)){
-                                statue=3;
+                        if (b3) {
+                            statue = 3; //时间在第二是时间段内
+                        } else {
+                            if (time.equals(opentime) || time.equals(closeTime)) {
+                                statue = 3;
                             }
-                            if(time.before(opentime)){
-                                statue=2;//时间在第一时间段后，第二时间段前
+                            if (time.before(opentime)) {
+                                statue = 2;//时间在第一时间段后，第二时间段前
                             }
-                            if(time.after(closeTime)){
-                                statue=4;//时间在第二时间段后
+                            if (time.after(closeTime)) {
+                                statue = 4;//时间在第二时间段后
                             }
                         }
 
-                    }else{
-                        statue=2;
+                    } else {
+                        statue = 2;
                     }
                 }
             }
@@ -346,27 +346,28 @@ public class DateUtil {
 
     /**
      * 获取时间段的开始时间或结束时间
-     * @param weekOpen  开放时间
-     * @param para 第一时间段或第二
-     * @param type 开始还是结束
+     *
+     * @param weekOpen 开放时间
+     * @param para     第一时间段或第二
+     * @param type     开始还是结束
      * @return
      */
-    public static Date getWeekOpentime(WeekOpen weekOpen,Integer para,Integer type) throws ParseException {
+    public static Date getWeekOpentime(WeekOpen weekOpen, Integer para, Integer type) throws ParseException {
         SimpleDateFormat df = new SimpleDateFormat("HH:mm");//设置日期格式
-        Date date=null;
+        Date date = null;
         Date date1 = new Date();
-        if(para==1){
+        if (para == 1) {
             String[] split = weekOpen.getParam1().split("-");
-            if(type==1){
+            if (type == 1) {
                 date = df.parse(split[0]);
-            }else{
+            } else {
                 date = df.parse(split[1]);
             }
-        }else{
+        } else {
             String[] split = weekOpen.getParam2().split("-");
-            if(type==1){
+            if (type == 1) {
                 date = df.parse(split[0]);
-            }else{
+            } else {
                 date = df.parse(split[1]);
             }
         }
@@ -427,4 +428,29 @@ public class DateUtil {
         return parse;
     }
 
+
+    /**
+     * 将时间转化为日期
+     *
+     * @param time
+     * @return
+     * @throws Exception
+     */
+    public static Date getTimeDate(String time, Integer day) throws Exception {
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm");//设置日期格式
+        Date parse = df.parse(time);
+        Date now = new Date();
+        if (day == 1) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(new Date());
+            calendar.add(Calendar.DATE, 1);
+            String format = sdf.format(calendar.getTime());
+            now = sdf.parse(format);
+        }
+        parse.setYear(now.getYear());
+        parse.setMonth(now.getMonth());
+        parse.setDate(now.getDate());
+        return parse;
+    }
 }
