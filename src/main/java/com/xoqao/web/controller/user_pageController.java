@@ -248,25 +248,28 @@ public class user_pageController {
             seatBookings.setBookings(bookSeatBooking);
             seatBookinges.add(seatBookings);
         }
-        List<Booking> bookingBySno = bookingService.findBookingBySno(user.getSno(), day);
         List<BookingCusFloor> bookingCusFloorList = new ArrayList<BookingCusFloor>();
-        for (int i = 0; i < bookingBySno.size(); i++) {
-            Seat byid = seatService.findByid(bookingBySno.get(i).getSid());
-            BookingSeat bookingSeat = new BookingSeat();
-            bookingSeat.setColumns(byid.getColumns());
-            bookingSeat.setFid(byid.getFid());
-            bookingSeat.setLeftside(byid.getLeftside());
-            bookingSeat.setRow(byid.getRow());
-            bookingSeat.setSeatnumber(byid.getSeatnumber());
-            //添加楼层信息
-            BookingCusFloor bookingCusFloor = new BookingCusFloor();
-            BeanUtils.copyProperties(bookingSeat, bookingCusFloor);
-            Floor floor = floorService.findfloorByid(byid.getFid());
-            bookingCusFloor.setFloor(floor.getEmployer());
-            Building buildingById = buildingService.findBuildingById(floor.getBid());
-            bookingCusFloor.setBuilding(buildingById.getEmployer());
-            bookingCusFloorList.add(bookingCusFloor);
+        if(null!=user){
+            List<Booking> bookingBySno = bookingService.findBookingBySno(user.getSno(), day);
+            for (int i = 0; i < bookingBySno.size(); i++) {
+                Seat byid = seatService.findByid(bookingBySno.get(i).getSid());
+                BookingSeat bookingSeat = new BookingSeat();
+                bookingSeat.setColumns(byid.getColumns());
+                bookingSeat.setFid(byid.getFid());
+                bookingSeat.setLeftside(byid.getLeftside());
+                bookingSeat.setRow(byid.getRow());
+                bookingSeat.setSeatnumber(byid.getSeatnumber());
+                //添加楼层信息
+                BookingCusFloor bookingCusFloor = new BookingCusFloor();
+                BeanUtils.copyProperties(bookingSeat, bookingCusFloor);
+                Floor floor = floorService.findfloorByid(byid.getFid());
+                bookingCusFloor.setFloor(floor.getEmployer());
+                Building buildingById = buildingService.findBuildingById(floor.getBid());
+                bookingCusFloor.setBuilding(buildingById.getEmployer());
+                bookingCusFloorList.add(bookingCusFloor);
+            }
         }
+
         Date now = new Date();
         if (day == 1) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -310,9 +313,7 @@ public class user_pageController {
                 disTime1 = DateUtil.getDisTime(new Date(), daysAfter);
             }
             if (disTime1 <= 0) {
-                Integer disTime = DateUtil.getDisTime(new Date(), DateUtil.getTimeDate(etime, day));
-
-                if (disTime < CommenValue.MAX_LongTime) {
+                if (disTime2 < CommenValue.MAX_LongTime) {
                     WeekOpen weekOpen = weekOpenService.findopenFloortoday(floor.getFid());
                     boolean b = DateUtil.getfollowTime(weekOpen, DateUtil.getTimeDate(stime, day), DateUtil.getTimeDate(etime, day));
                     if (b) {

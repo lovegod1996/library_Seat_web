@@ -96,8 +96,8 @@
             height: 100%;
             margin-left: 20px;
             position: fixed;
-            top: 0;
             right: 70px;
+            top: 0;
         }
 
         .dropdown-menu {
@@ -171,7 +171,7 @@
 
     <script>
         $(document).ready(function () {
-            $("span").hover(function () {//鼠标悬停触发事件
+            $("span").click(function () {//鼠标悬停触发事件
                 $(".dropdown-toggle").dropdown('toggle');
             });
         });
@@ -182,7 +182,7 @@
     <div class="LeftView" id="LeftView">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <i class="fa fa-bar-chart-o fa-fw"></i> 空闲座位统计
+                <i class="fa fa-bar-chart-o fa-fw"></i> 座位查看
                 <font id="nowtime" style="margin-left: 20px"></font>
                 <a href="${pageContext.request.contextPath }/jsp/book_Seat_User?fid=${fid}&day=${day}"
                    class="btn btn-success btn-xs"
@@ -285,8 +285,10 @@
                                 <input type="hidden" name="day" value="${day}">
                                 <%--<input type="time" class="layui-input" name="stime" placeholder="开始时间"--%>
                                 <%--style="width: 220px" required>--%>
-                                <div id="timer" class="layui-input" style="display: none;width: 220px;text-align: center"></div>
-                                <input id="Clicktimer" class="layui-input" placeholder="开始时间" style="width: 220px;"
+                                <div id="timer" class="layui-input"
+                                     style="display: none;width: 220px;text-align: center"></div>
+                                <input id="Clicktimer" name="" class="layui-input" placeholder="开始时间"
+                                       style="width: 220px;"
                                        onclick="showTimer('timer') ;showTIME()"/>
                             </div>
                         </div>
@@ -296,10 +298,12 @@
                         <div class="col-sm-9">
                             <div class="layui-inline">
                                 <%--<input type="time" class="layui-input" name="etime" placeholder="结束时间"--%>
-                                       <%--style="width: 220px" required>--%>
-                                    <div id="timer1" class="layui-input" style="display: none;width: 220px;text-align: center"></div>
-                                    <input id="Clicktimer1" class="layui-input" placeholder="结束时间" style="width: 220px;"
-                                           onclick="showTimer('timer1') ;showTIME1()"/>
+                                <%--style="width: 220px" required>--%>
+                                <div id="timer1" class="layui-input"
+                                     style="display: none;width: 220px;text-align: center"></div>
+                                <input id="Clicktimer1" class="layui-input" placeholder="结束时间"
+                                       style="width: 220px;"
+                                       onclick="showTimer('timer1') ;showTIME1()"/>
                             </div>
 
                         </div>
@@ -336,15 +340,18 @@
         document.getElementById("timer").style.display = "block";
         document.getElementById("Clicktimer").style.display = "none";
     }
+
     function showTIME1() {
         document.getElementById("timer1").style.display = "block";
         document.getElementById("Clicktimer1").style.display = "none";
     }
 
-    //                                    获取选择的时间
-    //                                    function aa(id){
-    //                                        alert(returnTimer(id));
-    //                                    }
+
+
+    //获取选择的时间
+    //    function aa(id) {
+    //        alert(returnTimer(id));
+    //    }
 </script>
 
 <script>
@@ -366,8 +373,14 @@
 //        var seatNum=$("#seatNum").val();
         var seatNum = document.getElementById("seatNum").innerText;
 //        alert(seatNum);
+        var stime = returnTimer("timer");
+        var etime = returnTimer("timer1");
         var editor = "<input type='hidden' name='seatNum' value='" + seatNum + "' />";
+        var editor1 = "<input type='hidden' name='stime' value='" + stime + "' />";
+        var editor2 = "<input type='hidden' name='etime' value='" + etime + "' />";
         $form.append(editor);
+        $form.append(editor1);
+        $form.append(editor2);
     }
 
     <c:if test="${!empty error_msg}">alert("${error_msg}");

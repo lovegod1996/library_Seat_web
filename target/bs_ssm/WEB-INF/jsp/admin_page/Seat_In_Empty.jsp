@@ -295,7 +295,7 @@
                     <div class="layui-input-block">
                         <div class="layui-inline">
                             <div id="timer" class="layui-input" style="display: none;width: 220px;text-align: center"></div>
-                            <input id="Clicktimer" class="layui-input" placeholder="结束时间" style="width: 220px;"
+                            <input id="Clicktimer"  class="layui-input" placeholder="结束时间" style="width: 220px;"
                                    onclick="showTimer('timer') ;showTIME();"/>
                         </div>
                     </div>
@@ -325,9 +325,13 @@
     function getnum(form) {
         var $form = $(form);
 //        var seatNum=$("#seatNum").val();
+        var etime = returnTimer("timer");
+
         var seatNum = document.getElementById("seatNum").innerText;
         var editor = "<input type='hidden' name='seatNum' value='" + seatNum + "' />";
+        var editor1 = "<input type='hidden' name='etime' value='" + etime + "' />";
         $form.append(editor);
+        $form.append(editor1);
     }
 
     <c:if test="${!empty error_msg}">alert("${error_msg}");

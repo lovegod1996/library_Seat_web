@@ -16,6 +16,7 @@
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <%--layui --%>
     <link href="<%=request.getContextPath()%>/layui/css/layui.css" rel="stylesheet" media="all">
+    <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
     <!-- jQuery -->
     <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
 
@@ -35,8 +36,9 @@
         }
 
         .panel-default > .panel-heading {
-            color: #5c9bd1;
-            background-color: #ffffff;
+            /*color: #5c9bd1;*/
+            color: #ffffff;
+            background-color:rgba(1, 170, 234, 0.72);
             border-color: #f9f9f9;
         }
 
@@ -64,7 +66,7 @@
 
         .pull-right {
             float: right !important;
-            margin-top: 15px;
+            /*margin-top: 15px;*/
         }
 
         a:focus, a:hover {
@@ -74,6 +76,7 @@
 
         a {
             color: #4d5b69;
+            /*color: #ffffff;*/
             text-decoration: none;
         }
 
@@ -204,7 +207,7 @@
                style="margin-left:20px ">点击刷新</a>
             <div class="pull-right">
                 <FORM METHOD=POST ACTION="" name="selectform">
-                    <SELECT NAME="building" id="floorSide" onChange="getData()" style="border-radius: 15px;">
+                    <SELECT NAME="building" id="floorSide" onChange="getData()" style="border-radius: 15px;color: #5c9bd1;">
                         <c:forEach items="${buildings}" var="building">
                             <OPTION VALUE="${building.bid}">${building.employer}</OPTION>
                         </c:forEach>
@@ -220,20 +223,21 @@
 <div class="col-sm-12" style="margin-top: 30px">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <i class="glyphicon glyphicon-star"></i> 排行榜
+            <i class="glyphicon glyphicon-star"></i> 排行榜(前20名)
         </div>
-        <div class="col-sm-6" style="background-color: white;">
-            <table class="table table-striped">
-                <caption>1--10名</caption>
+        <div class="col-sm-6" style="background-color: white;height: 470px">
+            <table class="layui-table" lay-even="" lay-skin="nob">
                 <thead style="color:#555;font-weight:bold;background-color: #f9f9f9;">
+                <th>&nbsp;&nbsp;排名</th>
                 <th>&nbsp;&nbsp;姓名</th>
                 <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学院</th>
                 <th>总时长</th>
                 </thead>
                 <tbody>
                 <c:forEach items="${userdatas}" var="userdata" varStatus="step">
-                    <c:if test="${step.index<9}">
+                    <c:if test="${step.index<10}">
                         <tr style="color:#555;background-color: #ffffff;">
+                            <td>${step.index+1}</td>
                             <td>${userdata.username}</td>
                             <td>${userdata.venue}</td>
                             <td>${userdata.learntime}小时</td>
@@ -243,11 +247,11 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-sm-6" style="background-color: white;">
-            <table class="table table-striped">
-                <caption>10--20名</caption>
+        <div class="col-sm-6" style="background-color: white;height: 470px">
+            <table class="layui-table" lay-even="" lay-skin="nob">
                 <thead>
                 <thead style="color:#555;font-weight:bold;background-color: #f9f9f9;">
+                <th>&nbsp;&nbsp;排名</th>
                 <th>&nbsp;&nbsp;姓名</th>
                 <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学院</th>
                 <th>总时长</th>
@@ -255,8 +259,9 @@
                 <tbody>
                 <c:forEach items="${userdatas}" var="userdata" varStatus="step">
                     <c:if test="${step.index>9}">
-                        <c:if test="${step.index<19}">
+                        <c:if test="${step.index<20}">
                             <tr style="color:#555;background-color: #ffffff;">
+                                <td>${step.index+1}</td>
                                 <td>${userdata.username}</td>
                                 <td>${userdata.venue}</td>
                                 <td>${userdata.learntime}小时</td>
