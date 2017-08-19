@@ -141,6 +141,9 @@ public class DateUtil {
         Calendar end = Calendar.getInstance();
         end.setTime(endTime);
 
+        if (date.equals(begin)) {
+            return true;
+        }
         if (date.after(begin) && date.before(end)) {
             return true;
         } else {
@@ -161,23 +164,23 @@ public class DateUtil {
 //          boolean inDate = isInDate(new Date(), sdf.format(bookings.get(i).getBstime()), sdf.format(bookings.get(i).getBetime()));
             boolean b = belongCalendar(new Date(), bookings.get(i).getBstime(), bookings.get(i).getBetime());
             if (b) {
-                if (bookings.get(i).getStime() == null && bookings.get(i).getStatue() == 0) {  //如果还没有入座
-                    statue = 1;
+                if (bookings.get(i).getStatue() == 0) {  //如果还没有入座
+                    return 1;
                 } else {
                     if (bookings.get(i).getEtime() == null) {   //如果还没有离开
-                        statue = 2;
+                        return 2;
                     } else {
                         if (bookings.get(i).getStatue() == 2) {
-                            statue = 3;
+                            return 3;
                         } else if (bookings.get(i).getStatue() == 1) {
-                            statue = 2;
+                            return 2;
                         } else {
-                            statue = 0;
+                            statue=0;
                         }
                     }
                 }
             } else {
-                statue = 0;
+                statue=0;
             }
 
         }
@@ -194,6 +197,9 @@ public class DateUtil {
         for (int i = 0; i < bookings.size(); i++) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             boolean b = belongCalendar(new Date(), bookings.get(i).getBstime(), bookings.get(i).getBetime());
+            if ((new Date()).equals(bookings.get(i).getBstime())) {
+                b = true;
+            }
             if (b) {
                 return bookings.get(i);
             }

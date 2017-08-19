@@ -27,11 +27,9 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <script src="<%= request.getContextPath()%>/js/combodate.js"></script>
-    <script src="<%= request.getContextPath()%>/js/moment.js"></script>
-
     <%--验证表单--%>
     <script src="<%=request.getContextPath()%>/js/checkForm.js"></script>
+    <script src="<%=request.getContextPath()%>/js/timer.js"></script>
 
     <script language="JavaScript" type="text/javascript">
         //定义了楼层的二维数组，里面的顺序跟楼的顺序是相同的。通过selectedIndex获得楼的下标值来得到相应的楼层数组
@@ -158,7 +156,7 @@
 </head>
 <body>
 <div class="col-sm-6">
-    <div class="panel panel-default">
+    <div class="panel panel-default" style="height: 592px">
         <div class="panel-heading">
             <i class="fa fa-bar-chart-o fa-fw"></i> 空闲座位统计
             <a href="${pageContext.request.contextPath }/jsp/seat_In_Empty" class="btn btn-success btn-xs"
@@ -254,7 +252,7 @@
     <!-- /.panel -->
 </div>
 <div class="col-sm-6">
-    <div class="panel panel-default">
+    <div class="panel panel-default" style="height: auto">
 
         <div style="margin: 25px;font-size:14px;line-height: 150%;color: #757575;">
             <h4 style="color:#5c9bd1;margin-left:-10px;margin-bottom: 10px;">使用规则：</h4>
@@ -275,7 +273,7 @@
             <i class="fa fa-bell fa-fw"></i> 预约座位
         </div>
         <!-- /.panel-heading -->
-        <div class="panel-body" style="height: auto">
+        <div class="panel-body" style="height: auto;padding: 0 70px 70px 70px">
             <form class="layui-form" role="form" action="<%= request.getContextPath()%>/jsp/adSeatBookSub"
                   method="post" onsubmit="getnum(this);">
                 <div class="layui-form-item">
@@ -296,7 +294,9 @@
                     <label class="layui-form-label">预计结束</label>
                     <div class="layui-input-block">
                         <div class="layui-inline">
-                            <input type="time" class="layui-input" name="etime" placeholder="结束时间" style="width: 220px" required>
+                            <div id="timer" class="layui-input" style="display: none;width: 220px;text-align: center"></div>
+                            <input id="Clicktimer"  class="layui-input" placeholder="结束时间" style="width: 220px;"
+                                   onclick="showTimer('timer') ;showTIME();"/>
                         </div>
                     </div>
                 </div>
@@ -309,13 +309,29 @@
 </div>
 <!-- /.col-sm-12 -->
 
+<script>
+    function showTIME() {
+        document.getElementById("timer").style.display = "block";
+        document.getElementById("Clicktimer").style.display = "none";
+    }
+
+    //                                    获取选择的时间
+    //                                    function aa(id){
+    //                                        alert(returnTimer(id));
+    //                                    }
+</script>
+
 <script type="text/javascript">
     function getnum(form) {
         var $form = $(form);
 //        var seatNum=$("#seatNum").val();
+        var etime = returnTimer("timer");
+
         var seatNum = document.getElementById("seatNum").innerText;
         var editor = "<input type='hidden' name='seatNum' value='" + seatNum + "' />";
+        var editor1 = "<input type='hidden' name='etime' value='" + etime + "' />";
         $form.append(editor);
+        $form.append(editor1);
     }
 
     <c:if test="${!empty error_msg}">alert("${error_msg}");

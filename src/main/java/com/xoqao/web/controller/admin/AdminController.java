@@ -66,6 +66,7 @@ public class AdminController {
     public String userLoginSub(Model model, String loginId, String password, HttpSession httpSession) throws Exception {
         User userByphoneOrSno = userService.findUserBySno(loginId);
         if (userByphoneOrSno!=null&& MD5Util.encode(password).equals(userByphoneOrSno.getPassword())) {
+           userByphoneOrSno.setPassword(null);
             httpSession.setAttribute("user", userByphoneOrSno);
             return "toIndex";
         } else {
@@ -90,6 +91,7 @@ public class AdminController {
         if (optionsRadiosinline == 1) {
             Floor floorBycount = floorService.findFloorBycount(loginId);
             if (floorBycount != null && MD5Util.encode(password).equals(floorBycount.getPassword())) {
+               floorBycount.setPassword(null);
                 httpSession.setAttribute("admin", floorBycount);
                 httpSession.setAttribute("admintype", 1);
                 return "admin_page/Index_Admin";
@@ -100,6 +102,7 @@ public class AdminController {
         } else if (optionsRadiosinline == 2) {
             Building buildAdminByCount = buildingService.findBuildAdminByCount(loginId);
             if (buildAdminByCount != null && MD5Util.encode(password).equals(buildAdminByCount.getPassword())) {
+               buildAdminByCount.setPassword(null);
                 httpSession.setAttribute("admin", buildAdminByCount);
                 httpSession.setAttribute("admintype", 2);
                 return "buildingadmin_page/Index_BuildingAdmin";
@@ -110,6 +113,7 @@ public class AdminController {
         } else if (optionsRadiosinline == 3) {
             Admin adminByCount = adminService.findAdminByCount(loginId);
             if (adminByCount != null && MD5Util.encode(password).equals(adminByCount.getPassword())) {
+               adminByCount.setPassword(null);
                 httpSession.setAttribute("admin", adminByCount);
                 httpSession.setAttribute("admintype", 3);
                 return "superadmin_page/Index_SuperAdmin";

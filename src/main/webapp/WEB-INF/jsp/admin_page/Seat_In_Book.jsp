@@ -19,6 +19,8 @@
     <!-- jQuery -->
     <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
 
+    <script src="<%=request.getContextPath()%>/js/timer.js"></script>
+
     <!-- Bootstrap Core JavaScript -->
     <script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
     <style>
@@ -80,7 +82,7 @@
             var tr1 = node.parentNode.parentNode;
 //            alert(tr1.rowIndex);//获得行
             //alert(tb1.rows[tr1.rowIndex].cells[1].getElementsByTagName("INPUT")[0].value);
-            document.getElementById("seatNum").innerHTML = tb1.rows[tr1.rowIndex].cells[1].innerHTML;
+            document.getElementById("seatNum").innerHTML = tb1.rows[tr1.rowIndex].cells[0].innerHTML;
 //            alert(document.getElementById("seatNum").innerHTML);
         }
     </script>
@@ -279,7 +281,9 @@
             <label class="layui-form-label">预计结束</label>
             <div class="layui-input-block">
                 <div class="layui-inline">
-                    <input type="time" class="layui-input" name="etime" placeholder="结束时间" style="width: 220px" required>
+                    <div id="timer" class="layui-input" style="display: none;width: 220px;text-align: center"></div>
+                    <input id="Clicktimer"  class="layui-input" placeholder="结束时间" style="width: 220px;"
+                           onclick="showTimer('timer') ;showTIME();"/>
                 </div>
             </div>
         </div>
@@ -287,6 +291,18 @@
     </form>
 </div>
 <div id="fade" class="black_overlay"></div>
+
+<script>
+    function showTIME() {
+        document.getElementById("timer").style.display = "block";
+        document.getElementById("Clicktimer").style.display = "none";
+    }
+
+    //                                    获取选择的时间
+    //                                    function aa(id){
+    //                                        alert(returnTimer(id));
+    //                                    }
+</script>
 
 <!-- jQuery -->
 <script src="<%= request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
@@ -367,9 +383,13 @@
     function getnum(form) {
         var $form = $(form);
 //        var seatNum=$("#seatNum").val();
+
+        var etime = returnTimer("timer");
         var seatNum = document.getElementById("seatNum").innerText;
         var editor = "<input type='hidden' name='seatNum' value='" + seatNum + "' />";
+        var editor2 = "<input type='hidden' name='etime' value='" + etime + "' />";
         $form.append(editor);
+        $form.append(editor2);
     }
 
     <c:if test="${!empty error_msg}">alert("${error_msg}");
