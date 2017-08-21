@@ -213,21 +213,21 @@
                               onclick="getTableContent(this)">点击预约</span>
                             <ul class="dropdown-menu">
                                 <c:forEach items="${seat.bookings}" var="booking">
-                                    <li>${booking.sno}&nbsp;&nbsp;&nbsp;<fmt:formatDate
+                                    <li><fmt:formatDate
                                             value="${booking.bstime}"
-                                            pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate
-                                            value="${booking.betime}" pattern="yyyy-MM-dd HH:mm:ss"/>&nbsp;&nbsp;&nbsp;
+                                            pattern="HH:mm"/>--<fmt:formatDate
+                                            value="${booking.betime}" pattern="HH:mm"/>&nbsp;&nbsp;&nbsp;
                                         <c:if test="${booking.statue==0}">
-                                            未入座
+                                            已预约
                                         </c:if>
                                         <c:if test="${booking.statue==1}">
-                                            入座
+                                            已入座
                                         </c:if>
                                         <c:if test="${booking.statue==2}">
-                                            临时离开
+                                            暂离开
                                         </c:if>
                                         <c:if test="${booking.statue==3}">
-                                            离开
+                                            已离开
                                         </c:if></li>
                                 </c:forEach>
                             </ul>

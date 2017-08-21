@@ -50,7 +50,7 @@
     <select id="findopenFloorday" resultType="com.xoqao.web.bean.weekopen.WeekOpen">
         SELECT woid,lid,param1,param2,week,statue
         FROM  weekopen
-        WHERE week=WEEKDAY(NOW())+#{day} AND statue=0 AND lid=#{fid}
+        WHERE week=WEEKDAY(DATE_ADD(CURDATE(),INTERVAL #{day} DAY)) AND statue=0 AND lid=#{fid}
     </select>
 
 </mapper>

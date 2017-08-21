@@ -51,15 +51,18 @@
             z-index: 1002;
             overflow: auto;
         }
+
         body {
             background-color: #eff3f8;
             margin-top: 15px;
         }
-        .panel-default>.panel-heading {
+
+        .panel-default > .panel-heading {
             color: #5c9bd1;
             background-color: #ffffff;
             border-color: #f9f9f9;
         }
+
         .btn-block {
             display: block;
             width: 100px;
@@ -146,21 +149,21 @@
                                     <div class="layui-colla-content">
                                         <ul>
                                             <c:forEach items="${seat.bookings}" var="booking">
-                                                <li>${booking.sno}&nbsp;&nbsp;&nbsp;<fmt:formatDate
+                                                <li><fmt:formatDate
                                                         value="${booking.bstime}"
-                                                        pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate
-                                                        value="${booking.betime}" pattern="yyyy-MM-dd HH:mm:ss"/>&nbsp;&nbsp;&nbsp;
+                                                        pattern="HH:mm"/>--<fmt:formatDate
+                                                        value="${booking.betime}" pattern=" HH:mm"/>&nbsp;&nbsp;&nbsp;
                                                     <c:if test="${booking.statue==0}">
-                                                        预约
+                                                        已预约
                                                     </c:if>
                                                     <c:if test="${booking.statue==1}">
-                                                        入座
+                                                        已入座
                                                     </c:if>
                                                     <c:if test="${booking.statue==2}">
-                                                        临时离开
+                                                        暂离开
                                                     </c:if>
                                                     <c:if test="${booking.statue==3}">
-                                                        离开
+                                                        已离开
                                                     </c:if></li>
                                             </c:forEach>
                                         </ul>
@@ -282,7 +285,7 @@
             <div class="layui-input-block">
                 <div class="layui-inline">
                     <div id="timer" class="layui-input" style="display: none;width: 220px;text-align: center"></div>
-                    <input id="Clicktimer"  class="layui-input" placeholder="结束时间" style="width: 220px;"
+                    <input id="Clicktimer" class="layui-input" placeholder="结束时间" style="width: 220px;"
                            onclick="showTimer('timer') ;showTIME();"/>
                 </div>
             </div>
