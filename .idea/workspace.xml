@@ -517,7 +517,7 @@
       <workItem from="1503305575545" duration="18000" />
       <workItem from="1503309155506" duration="651000" />
       <workItem from="1503364235759" duration="6057000" />
-      <workItem from="1503381509886" duration="5000" />
+      <workItem from="1503381509886" duration="137000" />
     </task>
     <task id="LOCAL-00002" summary="修改周末转换，预约时间段控制">
       <created>1503287494187</created>
@@ -530,7 +530,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52042000" />
+    <option name="totallyTimeSpent" value="52174000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="0" />
