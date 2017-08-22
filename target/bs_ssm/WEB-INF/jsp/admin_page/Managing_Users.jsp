@@ -91,7 +91,7 @@
             <br>2、本页面可查看学生的概况信息，并且对学生实现一般的简单操作。
             <br>3、此页面可批量或单个添加学生信息，请注意选择添加方式。
             <br>4、批量添加请按照要求的表格内容提交，避免造成提交内容错误。
-            <br>5、点击删除按钮确认即可删除改名学生的信息，谨慎操作。
+            <br>5、点击删除按钮确认即可删除该名学生的信息，谨慎操作。
         </div><hr>
 
         <div class="panel-heading">
@@ -137,8 +137,8 @@
 
             <%--<button type="button" data-method="notice" class="layui-btn layui-btn-mini layui-btn-normal" style="margin-left:20px ">批量导入--%>
             <%--</button>--%>
-            <button type="button" class="layui-btn layui-btn-mini layui-btn-danger" style="margin-left:20px ">删除用户
-            </button>
+            <%--<button type="button" class="layui-btn layui-btn-mini layui-btn-danger" style="margin-left:20px ">删除用户--%>
+            <%--</button>--%>
             <a href="${pageContext.request.contextPath }/view/managing_Users.form?year=${year}&college=${college}&major=${major}"
                class="btn btn-success btn-xs" style="margin-left:20px ">点击刷新
             </a>
@@ -274,6 +274,8 @@
                     closeBtn: false
                     ,
                     area: ['400px', '550px']
+                    ,
+                    offset: '0px'
                     ,
                     shade: 0
                     ,
