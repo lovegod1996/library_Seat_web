@@ -88,7 +88,7 @@
         </div><hr>
         <!-- /.panel-heading -->
         <div class="layui-form">
-            <table class="layui-table">
+            <table class="layui-table" style="margin: 0;width: 100%">
                 <thead>
                 <tr>
                     <th>所属楼层</th>
