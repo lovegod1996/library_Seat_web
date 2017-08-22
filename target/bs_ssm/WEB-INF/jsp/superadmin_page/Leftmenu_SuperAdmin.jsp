@@ -58,7 +58,7 @@
             <c:if test="${sessionScope.admin.admin==1}">
                 <li>
                     <a href="<%=request.getContextPath()%>/view/manage_Admin"
-                       target="mainFrame_SuperAdmin"><i class="fa fa-hdd-o fa-fw"></i> 管理员管理</a>
+                       target="mainFrame_SuperAdmin"><i class="fa fa-hdd-o fa-fw"></i> 权限管理</a>
                 </li>
             </c:if>
             <c:if test="${sessionScope.admin.floor==1}">
@@ -76,11 +76,11 @@
                         <c:forEach items="${buidingfloors}" var="building">
                             <li>
                                 <a href="#">${building.employer}<span class="fa arrow"></span></a>
-                                <ul class="nav">
+                                <ul class="nav nav-third-level">
                                     <c:forEach items="${building.floors}" var="floor">
                                         <li>
                                             <a href="#">${floor.employer}<span class="fa arrow"></span></a>
-                                            <ul class="nav">
+                                            <ul class="nav nav-fourth-level">
                                                 <li>
                                                     <a href="<%=request.getContextPath()%>/view/managing_Seat?fid=${floor.fid}"
                                                        target="mainFrame_SuperAdmin">增加座位</a>
@@ -136,11 +136,11 @@
                     </li>
                     <li>
                         <a href="#">场馆学习情况<span class="fa arrow"></span></a>
-                        <ul class="nav">
+                        <ul class="nav nav-third-level">
                             <c:forEach items="${buidingfloors}" var="building">
                                 <li>
                                     <a href="#">${building.employer}<span class="fa arrow"></span></a>
-                                    <ul class="nav">
+                                    <ul class="nav nav-fourth-level">
                                         <c:forEach items="${building.floors}" var="floor">
                                             <li>
                                                 <a href="<%=request.getContextPath()%>/view/seat_DataStatistics_ForEachBuilding?fid=${floor.fid}"

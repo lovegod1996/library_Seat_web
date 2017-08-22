@@ -18,13 +18,13 @@
     <%--操作确认--%>
     <script src="<%=request.getContextPath()%>/js/dialog.js"></script>
 <script>
-    function changeItem(obj) {
+//    function changeItem(obj) {
 //    var index=obj.selectedIndex;
-        alert(obj);
+//        alert(obj);
 //    if(index==obj.options.length-1){
 //            document.getElementById("param2").style.display="block";
 //        }
-    }
+//    }
 </script>
     <style>
         body {
@@ -82,7 +82,7 @@
                             <td>${week.param1};${week.param2}</td>
                             <td>${week.statue==0?"是":"否"}</td>
                             <td>
-                                <a href="#">编辑&nbsp;&nbsp;</a>
+                                <%--<a href="#">编辑&nbsp;&nbsp;</a>--%>
                                 <c:if test="${week.statue==0}">
                                     <a href="<%=request.getContextPath()%>/view/changeWeekStatue?woid=${week.woid}&statue=${week.statue}&fid=${fid}" onclick="return confirmAct()">关闭预约&nbsp;&nbsp;</a>
                                 </c:if>
@@ -123,13 +123,13 @@
                       </tr>
                       <tr>
                           <td>
-                              <select class="layui-form-select" name="param1" id="param1" onload="changeItem(this)">
+                              <select class="layui-form-select" name="param1" id="param1">
                                   <option>9:00-21:00</option>
                                   <option>9:00-11:30</option>
                               </select>
                           </td>
                       <td>
-                          <select  class="layui-form-select" name="param2" id="param2" disabled style="display:none">
+                          <select  class="layui-form-select" name="param2" id="param2" disabled>
                               <option></option>
                               <option>16:00-21:00</option>
                               <option>14:00-21:00</option>

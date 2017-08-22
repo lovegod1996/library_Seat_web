@@ -41,90 +41,94 @@ public class ClearBooking {
     public void ClearBook() throws Exception {
         List<Booking> bookings = bookingService.findbookNoOverToday();
         for (int i = 0; i < bookings.size(); i++) {
-            List<UnDeal> unDealCord = undealService.findUnDealCord(bookings.get(i).getSno());
-            switch (bookings.get(i).getStatue()) {
-                case 0:
-                    bookingService.updateStime(new Date(), bookings.get(i).getBid());
-                    bookingService.updateEtime(new Date(), 3, 0, 1, bookings.get(i).getBid());
-                    /**
-                     * 失信处理
-                     */
-                    if (unDealCord.size() > 0) {
-                        List<Booking> userBookDeal = bookingService.findUserBookDeal(bookings.get(i).getSno(), 1, unDealCord.get(unDealCord.size() - 1).getRecord());
-                        if (userBookDeal.size() >= CommenValue.MAX_DEAL) {  //失信超过一定次数
-                            undealService.insertUndeal(bookings.get(i).getSno(), new Date());
-                        }
-                    } else {
-                        List<Booking> finduserbookpromise = bookingService.finduserbookpromise(bookings.get(i).getSno(), 1);
-                        if (finduserbookpromise.size() >= CommenValue.MAX_DEAL) {   //失信超过一定次数
-                            undealService.insertUndeal(bookings.get(i).getSno(), new Date());
-                        }
-                    }
-                    break;
-                case 1:
-                    bookingService.updateEtime(bookings.get(i).getBetime(), 3, 0, 0, bookings.get(i).getBid());
-                    break;
-                case 2:
-                    Seat seat = seatService.findByid(bookings.get(i).getSid());
-                    WeekOpen weekOpen = weekOpenService.findopenFloorday(seat.getFid(), 1);
-                    SimpleDateFormat df = new SimpleDateFormat("HH:mm");//设置日期格式
-                    if (weekOpen.getParam2() != null) {
-                        String[] split = weekOpen.getParam1().split("-");
-                        Date closeTime = df.parse(split[1]);
-                        String format1 = df.format(bookings.get(i).getEtime());
-                        Date etime = df.parse(format1);
-                        Integer disTime = DateUtil.getDisTime(etime, closeTime);
-                        if (disTime < bookings.get(i).getDelay()) {
-                            bookingService.updateEtime(bookings.get(i).getEtime(), 3, 0, 0, bookings.get(i).getBid());
+            try {
+                List<UnDeal> unDealCord = undealService.findUnDealCord(bookings.get(i).getSno());
+                switch (bookings.get(i).getStatue()) {
+                    case 0:
+                        bookingService.updateStime(new Date(), bookings.get(i).getBid());
+                        bookingService.updateEtime(new Date(), 3, 0, 1, bookings.get(i).getBid());
+                        /**
+                         * 失信处理
+                         */
+                        if (unDealCord.size() > 0) {
+                            List<Booking> userBookDeal = bookingService.findUserBookDeal(bookings.get(i).getSno(), 1, unDealCord.get(unDealCord.size() - 1).getRecord());
+                            if (userBookDeal.size() >= CommenValue.MAX_DEAL) {  //失信超过一定次数
+                                undealService.insertUndeal(bookings.get(i).getSno(), new Date());
+                            }
                         } else {
-                            bookingService.updateEtime(bookings.get(i).getEtime(), 3, 0, 1, bookings.get(i).getBid());
-
-                            /**
-                             * 失信处理
-                             */
-
-                            if (unDealCord.size() > 0) {
-                                List<Booking> userBookDeal = bookingService.findUserBookDeal(bookings.get(i).getSno(), 1, unDealCord.get(unDealCord.size() - 1).getRecord());
-                                if (userBookDeal.size() >= CommenValue.MAX_DEAL) {  //失信超过一定次数
-                                    undealService.insertUndeal(bookings.get(i).getSno(), new Date());
-                                }
+                            List<Booking> finduserbookpromise = bookingService.finduserbookpromise(bookings.get(i).getSno(), 1);
+                            if (finduserbookpromise.size() >= CommenValue.MAX_DEAL) {   //失信超过一定次数
+                                undealService.insertUndeal(bookings.get(i).getSno(), new Date());
+                            }
+                        }
+                        break;
+                    case 1:
+                        bookingService.updateEtime(bookings.get(i).getBetime(), 3, 0, 0, bookings.get(i).getBid());
+                        break;
+                    case 2:
+                        Seat seat = seatService.findByid(bookings.get(i).getSid());
+                        WeekOpen weekOpen = weekOpenService.findopenFloorday(seat.getFid(), 1);
+                        SimpleDateFormat df = new SimpleDateFormat("HH:mm");//设置日期格式
+                        if (weekOpen.getParam2() != null) {
+                            String[] split = weekOpen.getParam1().split("-");
+                            Date closeTime = df.parse(split[1]);
+                            String format1 = df.format(bookings.get(i).getEtime());
+                            Date etime = df.parse(format1);
+                            Integer disTime = DateUtil.getDisTime(etime, closeTime);
+                            if (disTime < bookings.get(i).getDelay()) {
+                                bookingService.updateEtime(bookings.get(i).getEtime(), 3, 0, 0, bookings.get(i).getBid());
                             } else {
-                                List<Booking> finduserbookpromise = bookingService.finduserbookpromise(bookings.get(i).getSno(), 1);
-                                if (finduserbookpromise.size() >= CommenValue.MAX_DEAL) {   //失信超过一定次数
-                                    undealService.insertUndeal(bookings.get(i).getSno(), new Date());
+                                bookingService.updateEtime(bookings.get(i).getEtime(), 3, 0, 1, bookings.get(i).getBid());
+
+                                /**
+                                 * 失信处理
+                                 */
+
+                                if (unDealCord.size() > 0) {
+                                    List<Booking> userBookDeal = bookingService.findUserBookDeal(bookings.get(i).getSno(), 1, unDealCord.get(unDealCord.size() - 1).getRecord());
+                                    if (userBookDeal.size() >= CommenValue.MAX_DEAL) {  //失信超过一定次数
+                                        undealService.insertUndeal(bookings.get(i).getSno(), new Date());
+                                    }
+                                } else {
+                                    List<Booking> finduserbookpromise = bookingService.finduserbookpromise(bookings.get(i).getSno(), 1);
+                                    if (finduserbookpromise.size() >= CommenValue.MAX_DEAL) {   //失信超过一定次数
+                                        undealService.insertUndeal(bookings.get(i).getSno(), new Date());
+                                    }
+                                }
+                            }
+                        } else {
+                            String[] split = weekOpen.getParam2().split("-");
+                            Date closeTime = df.parse(split[1]);
+                            String format1 = df.format(bookings.get(i).getEtime());
+                            Date etime = df.parse(format1);
+                            Integer disTime = DateUtil.getDisTime(etime, closeTime);
+                            if (disTime < bookings.get(i).getDelay()) {
+                                bookingService.updateEtime(bookings.get(i).getEtime(), 3, 0, 0, bookings.get(i).getBid());
+                            } else {
+                                bookingService.updateEtime(bookings.get(i).getEtime(), 3, 0, 1, bookings.get(i).getBid());
+                                /**
+                                 * 失信处理
+                                 */
+                                if (unDealCord.size() > 0) {
+                                    List<Booking> userBookDeal = bookingService.findUserBookDeal(bookings.get(i).getSno(), 1, unDealCord.get(unDealCord.size() - 1).getRecord());
+                                    if (userBookDeal.size() >= CommenValue.MAX_DEAL) {  //失信超过一定次数
+                                        undealService.insertUndeal(bookings.get(i).getSno(), new Date());
+                                    }
+                                } else {
+                                    List<Booking> finduserbookpromise = bookingService.finduserbookpromise(bookings.get(i).getSno(), 1);
+                                    if (finduserbookpromise.size() >= CommenValue.MAX_DEAL) {   //失信超过一定次数
+                                        undealService.insertUndeal(bookings.get(i).getSno(), new Date());
+                                    }
                                 }
                             }
                         }
-                    } else {
-                        String[] split = weekOpen.getParam2().split("-");
-                        Date closeTime = df.parse(split[1]);
-                        String format1 = df.format(bookings.get(i).getEtime());
-                        Date etime = df.parse(format1);
-                        Integer disTime = DateUtil.getDisTime(etime, closeTime);
-                        if (disTime < bookings.get(i).getDelay()) {
-                            bookingService.updateEtime(bookings.get(i).getEtime(), 3, 0, 0, bookings.get(i).getBid());
-                        } else {
-                            bookingService.updateEtime(bookings.get(i).getEtime(), 3, 0, 1, bookings.get(i).getBid());
-                            /**
-                             * 失信处理
-                             */
-                            if (unDealCord.size() > 0) {
-                                List<Booking> userBookDeal = bookingService.findUserBookDeal(bookings.get(i).getSno(), 1, unDealCord.get(unDealCord.size() - 1).getRecord());
-                                if (userBookDeal.size() >= CommenValue.MAX_DEAL) {  //失信超过一定次数
-                                    undealService.insertUndeal(bookings.get(i).getSno(), new Date());
-                                }
-                            } else {
-                                List<Booking> finduserbookpromise = bookingService.finduserbookpromise(bookings.get(i).getSno(), 1);
-                                if (finduserbookpromise.size() >= CommenValue.MAX_DEAL) {   //失信超过一定次数
-                                    undealService.insertUndeal(bookings.get(i).getSno(), new Date());
-                                }
-                            }
-                        }
-                    }
 
-                    break;
-                default:
-                    break;
+                        break;
+                    default:
+                        break;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         System.out.println(new Date() + "清理今天预约已完成！");

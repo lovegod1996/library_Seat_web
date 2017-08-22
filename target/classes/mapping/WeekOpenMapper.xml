@@ -43,7 +43,7 @@
     <select id="findopenfloorsday" resultType="com.xoqao.web.bean.weekopen.WeekOpen">
        SELECT weekopen.woid,weekopen.lid,weekopen.param1,weekopen.param2,weekopen.week,weekopen.statue
         FROM  weekopen,floor
-        WHERE weekopen.week=WEEKDAY(NOW())+#{day}  AND weekopen.statue=0 AND floor.statue=0 AND floor.bid=#{bid} AND floor.fid=weekopen.lid
+        WHERE weekopen.week=WEEKDAY(DATE_ADD(CURDATE(),INTERVAL #{day} DAY))  AND weekopen.statue=0 AND floor.statue=0 AND floor.bid=#{bid} AND floor.fid=weekopen.lid
     </select>
 
     <!--查看某天某个场馆开放时间段-->
