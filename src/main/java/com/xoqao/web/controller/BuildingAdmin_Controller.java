@@ -68,7 +68,7 @@ public class BuildingAdmin_Controller {
         return "buildingadmin_page/Main_BuildingAdmin";
     }
 
-    @RequestMapping("/managing_Floor_BuildingAdmin")
+    @RequestMapping("/open_Floor_BuildingAdmin")
     public String managing_Floor_BuildingAdmin(Model model, HttpSession httpSession) throws Exception {
         Building admin = (Building) httpSession.getAttribute("admin");
         List<Floor> floors = floorService.findfloorsBybid(admin.getBid());

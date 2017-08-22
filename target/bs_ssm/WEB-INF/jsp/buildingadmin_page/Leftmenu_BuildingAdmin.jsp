@@ -55,7 +55,7 @@
                         class="fa fa-dashboard fa-fw"></i> 后台管理首页</a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/view/managing_Floor_BuildingAdmin"
+                <a href="<%=request.getContextPath()%>/view/open_Floor_BuildingAdmin"
                    target="main_BuildingAdmin"><i class="fa fa-hdd-o fa-fw"></i> 开闭馆管理</a>
             </li>
             <li>

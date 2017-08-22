@@ -68,13 +68,7 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-puzzle-piece fa-fw"></i> 座位管理<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-
-                    <li>
-                        <a href="<%=request.getContextPath()%>/view/floorSeat?fid=${sessionScope.admin.fid}" target="mainFrame_Admin">查看座位</a>
-                    </li>
-                </ul>
+                <a href="<%=request.getContextPath()%>/view/floorSeat?fid=${sessionScope.admin.fid}" target="mainFrame_Admin"><i class="fa fa-puzzle-piece fa-fw"></i> 查看座位</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-bell fa-fw"></i> 数据统计<span class="fa arrow"></span></a>

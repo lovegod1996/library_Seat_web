@@ -65,7 +65,7 @@
             <div class="layui-form-item layui-form-text">
                 <label class="layui-form-label">内容</label>
                 <div class="layui-input-block">
-                    <textarea placeholder="请输入内容,并确保内容总字数小于一千字" name="content" class="layui-textarea" required rows="10"></textarea>
+                    <textarea placeholder="请输入内容" name="content" class="layui-textarea" required rows="10"></textarea>
                 </div>
             </div>
             <div class="layui-form-item layui-form-text">

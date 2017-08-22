@@ -130,9 +130,9 @@
                     </table>
 
                     <!-- EChart 显示各楼层座位状态-->
-                    <div id="monthlearntime" style="width: 1257px;height:400px;"></div>
+                    <div id="monthlearntime" style="width: 1086px;height:400px;"></div>
                     <br>
-                    <div id="monthalllearn" style="width: 1257px;height:400px;"></div>
+                    <div id="monthalllearn" style="width: 1086px;height:400px;"></div>
                 </div>
             </div>
         </div>
