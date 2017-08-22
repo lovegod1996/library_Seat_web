@@ -36,7 +36,7 @@
         }
         .layui-table {
             width: 90%;
-            margin: 10px 5%;
+            margin: 10px;
             background-color: #fff;
         }
         .pagination {
@@ -83,7 +83,6 @@
                 </colgroup>
                 <thead>
                 <tr>
-                    <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
                     <th>序号</th>
                     <th>标题</th>
                     <th>发布时间</th>
@@ -94,7 +93,6 @@
 
                 <c:forEach items="${notices}" var="notice">
                     <tr>
-                        <td><input type="checkbox"></td>
                         <td>${notice.nid}</td>
                         <td><a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${notice.nid}" target="mainFrame_Admin">${notice.title}</a></td>
                         <td><fmt:formatDate value="${notice.creattime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
@@ -179,21 +177,5 @@
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
 
 <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
-<script>
-    layui.use('form', function () {
-        var $ = layui.jquery, form = layui.form();
-
-        //全选
-        form.on('checkbox(allChoose)', function (data) {
-            //language=JQuery-CSS
-            var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
-            child.each(function (index, item) {
-                item.checked = data.elem.checked;
-            });
-            form.render('checkbox');
-        });
-
-    });
-</script>
 </body>
 </html>
