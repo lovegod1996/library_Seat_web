@@ -8,12 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4ef82d16-1d59-4aa9-8bcc-2d9e71a52c16" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_Floor_List_Admin.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_Floor_List_Admin.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Leftmenu.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Leftmenu.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/NewMainUser.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/NewMainUser.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/admin_page/Seat_Floor_List_Admin.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/admin_page/Seat_Floor_List_Admin.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/public_page/Leftmenu.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/public_page/Leftmenu.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/user_page/NewMainUser.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/user_page/NewMainUser.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/News_List_User.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/News_List_User.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/user_page/News_List_User.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/user_page/News_List_User.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,7 +41,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NewMainUser.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NewMainUser.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/NewMainUser.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="152">
@@ -53,6 +49,16 @@
               <folding>
                 <element signature="n#style#0;n#font#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="News_List_User.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/News_List_User.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -121,6 +127,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Leftmenu.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_Floor_List_Admin.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/NewMainUser.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/News_List_User.jsp" />
       </list>
     </option>
   </component>
@@ -261,7 +268,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="information_User_Self&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="news_List_User&#9;FILE&#9;file://F:/JetBrains/Workspace/library_Seat_web/src/main/webapp/WEB-INF/jsp/user_page/News_List_User.jsp&#10;information_User_Self&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
@@ -462,7 +469,7 @@
       <workItem from="1503363630850" duration="1005000" />
       <workItem from="1503373976974" duration="149000" />
       <workItem from="1503385720673" duration="2254000" />
-      <workItem from="1503452990872" duration="1601000" />
+      <workItem from="1503452990872" duration="2013000" />
     </task>
     <task id="LOCAL-00002" summary="修改系统管理员菜单。">
       <created>1503363859463</created>
@@ -478,11 +485,18 @@
       <option name="project" value="LOCAL" />
       <updated>1503392762985</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="层管理员leftmenu数据统计调整为一级菜单，删除二级；&#10;层管理员数据统计echart图布局超过屏幕宽度调整；&#10;首页实时座位概览添加实时时间显示。">
+      <created>1503455138606</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1503455138607</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47483000" />
+    <option name="totallyTimeSpent" value="47895000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -539,7 +553,10 @@
     <MESSAGE value="修改时间控件支持，修改浏览器兼容问题" />
     <MESSAGE value="修改系统管理员菜单。" />
     <MESSAGE value="菜单细节；月视图布局；echart调整。" />
-    <option name="LAST_COMMIT_MESSAGE" value="菜单细节；月视图布局；echart调整。" />
+    <MESSAGE value="层管理员leftmenu数据统计调整为一级菜单，删除二级；&#10;层管理员数据统计echart图布局超过屏幕宽度调整。" />
+    <MESSAGE value="层管理员leftmenu数据统计调整为一级菜单，删除二级；&#10;层管理员数据统计echart图布局超过屏幕宽度调整；&#10;首页事实概览添加实时时间显示。" />
+    <MESSAGE value="层管理员leftmenu数据统计调整为一级菜单，删除二级；&#10;层管理员数据统计echart图布局超过屏幕宽度调整；&#10;首页实时座位概览添加实时时间显示。" />
+    <option name="LAST_COMMIT_MESSAGE" value="层管理员leftmenu数据统计调整为一级菜单，删除二级；&#10;层管理员数据统计echart图布局超过屏幕宽度调整；&#10;首页实时座位概览添加实时时间显示。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -694,13 +711,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/loseDealRule.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
@@ -971,6 +981,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-456">
           <caret line="105" column="21" lean-forward="false" selection-start-line="105" selection-start-column="21" selection-end-line="105" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -978,6 +989,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="99" column="79" lean-forward="true" selection-start-line="99" selection-start-column="79" selection-end-line="99" selection-end-column="79" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1051,6 +1063,14 @@
           <folding>
             <element signature="n#style#0;n#font#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/News_List_User.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
