@@ -22,6 +22,8 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <%--获取当前时间--%>
+    <script src="<%=request.getContextPath()%>/js/nowtime.js"></script>
 
     <style>
         *{margin: 0px;padding: 0px}

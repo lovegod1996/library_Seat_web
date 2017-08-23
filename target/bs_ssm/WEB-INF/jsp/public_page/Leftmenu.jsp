@@ -31,13 +31,16 @@
         body {
             background-color: #F8F8F8;
         }
+
         .navbar-default {
             background-color: #eff3f8;
             border-color: #e7e7e7;
         }
+
         .sidebar ul li a.active {
             background-color: rgba(226, 226, 226, 0.44);
         }
+
         a:focus, a:hover {
             color: #d01414;
             text-decoration: underline;
@@ -68,47 +71,52 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/view/floorSeat?fid=${sessionScope.admin.fid}" target="mainFrame_Admin"><i class="fa fa-puzzle-piece fa-fw"></i> 查看座位</a>
+                <a href="<%=request.getContextPath()%>/view/floorSeat?fid=${sessionScope.admin.fid}"
+                   target="mainFrame_Admin"><i class="fa fa-puzzle-piece fa-fw"></i> 查看座位</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-bell fa-fw"></i> 数据统计<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="<%=request.getContextPath()%>/view/study_DataStatistics"
-                           target="mainFrame_Admin">学习情况统计</a>
-                    </li>
-                </ul>
+                <a href="<%=request.getContextPath()%>/view/study_DataStatistics"
+                   target="mainFrame_Admin"><i class="fa fa-hdd-o fa-fw"></i> 数据统计</a>
             </li>
 
             <li style="height:100%;margin-top: 50px;padding-left: 10px;">
                 <div class="layui-form">
                     <div class="layui-form-item">
                         <label type="text">图书馆：&nbsp;&nbsp;${building.employer}</label>
-                    </div><hr>
+                    </div>
+                    <hr>
                     <div class="layui-form-item">
                         <label type="text">阅览室：&nbsp;&nbsp;${sessionScope.admin.employer}</label>
-                    </div><hr>
+                    </div>
+                    <hr>
                     <div class="layui-form-item">
                         <label type="text">姓名：&nbsp;&nbsp;${sessionScope.admin.name}</label>
-                    </div><hr>
+                    </div>
+                    <hr>
                     <div class="layui-form-item">
                         <label type="text">账号：&nbsp;&nbsp;${sessionScope.admin.accountnumber}</label>
-                    </div><hr>
+                    </div>
+                    <hr>
                     <div class="layui-form-item">
                         <label type="text">楼层状态：&nbsp;&nbsp;${sessionScope.admin.statue==0?"开放":"关闭"}</label>
-                    </div><hr>
+                    </div>
+                    <hr>
                     <div class="layui-form-item">
                         <label type="text">今天开放时间：&nbsp;&nbsp;${opentoday.param1};${opentoday.param2}</label>
-                    </div><hr>
+                    </div>
+                    <hr>
                     <div class="layui-form-item">
                         <label type="text">该层座位：&nbsp;&nbsp;${seatSize}</label>
-                    </div><hr>
+                    </div>
+                    <hr>
                     <div class="layui-form-item">
                         <label type="text">当前已预约：&nbsp;&nbsp;${inSeat}</label>
-                    </div><hr>
+                    </div>
+                    <hr>
                     <div class="layui-form-item">
                         <label type="text">未预约：&nbsp;&nbsp;${canbook}</label>
-                    </div><hr>
+                    </div>
+                    <hr>
                 </div>
             </li>
         </ul>
