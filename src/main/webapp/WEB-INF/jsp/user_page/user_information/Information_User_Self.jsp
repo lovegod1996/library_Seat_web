@@ -203,7 +203,7 @@
 
     function getweekData() {
 
-        var charts = echarts.init(document.getElementById('main'));
+        var charts = echarts.init(document.getElementById('main'), 'macarons');
 
         charts.showLoading({text: '正在努力的读取数据中...'});    //数据加载完之前先显示一段简单的loading动画
         var weeks=[]; //所有月份

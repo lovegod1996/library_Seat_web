@@ -91,12 +91,12 @@
                 <tbody>
                 <c:forEach items="${userbooks}" var="book" varStatus="step">
                     <tr>
-                        <td>${step.index}</td>
-                        <td><fmt:formatDate value="${book.bstime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                        <td>${step.index+1}</td>
+                        <td><fmt:formatDate value="${book.bstime}" pattern="yyyy-MM-dd"/></td>
                         <td>${book.floor}</td>
                         <td>${book.seatnumber}</td>
                         <td>${book.leftside==0?"左":"右"}侧${book.row}排${book.columns}列</td>
-                        <td><fmt:formatDate value="${book.bstime}" pattern="yyyy-MM-dd HH:mm:ss"/>--<fmt:formatDate value="${book.betime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                        <td><fmt:formatDate value="${book.bstime}" pattern="HH:mm"/>--<fmt:formatDate value="${book.betime}" pattern="HH:mm"/></td>
                     </tr>
                 </c:forEach>
 

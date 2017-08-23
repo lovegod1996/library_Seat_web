@@ -16,8 +16,7 @@
     <link href="<%= request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
         body{
-            width: 60%;
-            margin-left: 20%;
+            width: 100%;
             background-color: #eff3f8;
             margin-top: 15px;
         }

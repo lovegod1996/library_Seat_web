@@ -59,7 +59,6 @@
         }
         .col-sm-12 {
             width: 100%;
-            margin-left:15px;
         }
     </style>
 </head>

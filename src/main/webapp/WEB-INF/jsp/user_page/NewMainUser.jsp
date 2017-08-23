@@ -22,6 +22,8 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<%= request.getContextPath()%>/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <%--获取当前时间--%>
+    <script src="<%=request.getContextPath()%>/js/nowtime.js"></script>
 
     <style>
         *{margin: 0px;padding: 0px}
@@ -155,7 +157,7 @@
     <div class="col-sm-4">
         <div class="panel panel-default" style="margin-left:10px;">
             <div class="panel-heading">
-                <i class="fa fa-bell fa-fw"></i> 公告
+                <i class="glyphicon glyphicon-bell"></i> 公告
 
                 <a href="<%=request.getContextPath()%>/jsp/news_List_User" target="mainFrame_User"
                    style="float:right;">查看更多&nbsp;> </a>
@@ -182,7 +184,7 @@
     <div class="col-sm-4">
         <div class="panel panel-default" style="margin-left:10px;">
             <div class="panel-heading">
-                <i class="fa fa-bell fa-fw"></i> 手机客户端
+                <i class="glyphicon glyphicon-phone"></i> 手机客户端
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="height:  350px">
@@ -201,7 +203,7 @@
 <div class="col-sm-12" style="margin-top: 30px">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <i class="fa fa-bar-chart-o fa-fw"></i> 座位实时使用状态
+            <i class="glyphicon glyphicon-dashboard"></i> 座位实时使用状态
             <font id="nowtime" style="margin-left: 20px"></font>
             <a href="${pageContext.request.contextPath }/jsp/main_User" class="btn btn-success btn-xs"
                style="margin-left:20px ">点击刷新</a>
