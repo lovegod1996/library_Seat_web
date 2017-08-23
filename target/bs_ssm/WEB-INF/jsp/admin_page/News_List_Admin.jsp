@@ -84,9 +84,9 @@
                 </thead>
                 <tbody>
 
-                <c:forEach items="${notices}" var="notice">
+                <c:forEach items="${notices}" var="notice" varStatus="step">
                     <tr>
-                        <td>${notice.nid}</td>
+                        <td>${step.index+1}</td>
                         <td><a href="<%=request.getContextPath()%>/jsp/news_Content?nid=${notice.nid}" target="mainFrame_Admin">${notice.title}</a></td>
                         <td><fmt:formatDate value="${notice.creattime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                         <td>
