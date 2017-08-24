@@ -649,7 +649,7 @@ public class PhoneServerController {
                         }
                     }
                     map.put("code", 0);
-                    map.put("message", "您以迟到");
+                    map.put("message", "您已迟到");
                     map.put("data", null);
                 } else {
                     bookingService.deleteByid(bid);

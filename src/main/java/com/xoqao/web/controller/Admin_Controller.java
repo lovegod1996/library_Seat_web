@@ -850,6 +850,7 @@ public class Admin_Controller {
         user.setPassword(MD5Util.encode(sno.substring(sno.length() - 6, sno.length())));
         user.setSno(sno);
         user.setName(name);
+        user.setSex(0);
         try {
             userService.insertUser(user);
         } catch (Exception e) {
