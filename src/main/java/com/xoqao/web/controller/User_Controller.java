@@ -226,6 +226,7 @@ public class User_Controller {
         Integer type = (Integer) httpSession.getAttribute("admintype");
         if (type == 1) {   //是楼层管理员
             Floor floor = (Floor) httpSession.getAttribute("admin");
+            floor = floorService.findfloorByid(floor.getFid());
             if (MD5Util.encode(oldPwd.trim()).equals(floor.getPassword())) {
                 floorService.updatePassword(MD5Util.encode(newPwd), floor.getFid());
                 return "redirect:/jsp/main_Admin";
@@ -235,6 +236,7 @@ public class User_Controller {
             }
         } else if (type == 2) {   //是楼管理员
             Building building = (Building) httpSession.getAttribute("admin");
+            building = buildingService.findBuildingById(building.getBid());
             if (MD5Util.encode(oldPwd.trim()).equals(building.getPassword())) {
                 buildingService.updatePassword(MD5Util.encode(newPwd), building.getBid());
                 return "redirect:/jsp/main_Admin";
@@ -244,8 +246,10 @@ public class User_Controller {
             }
         } else if (type == 3) {  //是超级管理员
             Admin admin = (Admin) httpSession.getAttribute("admin");
+            admin = adminService.findAdminByid(admin.getAid());
             if (MD5Util.encode(oldPwd.trim()).equals(admin.getPassword())) {
                 adminService.updatePassword(MD5Util.encode(newPwd), admin.getAid());
+                model.addAttribute("error_msg", "您的旧密码输入错误，请重新输入！");
                 return "redirect:/jsp/main_Admin";
             } else {
                 model.addAttribute("error_msg", "您的旧密码输入错误，请重新输入！");
@@ -268,6 +272,7 @@ public class User_Controller {
     @RequestMapping("/updateUserPass")
     public String userChangePass(Model model, String oldPwd, String newPwd, HttpSession httpSession, RedirectAttributes redirectAttributes) throws Exception {
         User user = (User) httpSession.getAttribute("user");
+        user = userService.findUserBySno(user.getSno());
         if (MD5Util.encode(oldPwd).equals(user.getPassword())) {
             userService.updatePass(user.getUid(), MD5Util.encode(newPwd));
             redirectAttributes.addFlashAttribute("error_msg", "密码修改成功，请记住自己的密码");
