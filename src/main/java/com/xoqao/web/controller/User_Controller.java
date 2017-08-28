@@ -385,7 +385,7 @@ public class User_Controller {
         List<Building> allBuilding = buildingService.findAllBuilding();
         List<BuildingCusFloors> buildingCusFloorsList = new ArrayList<BuildingCusFloors>();
         for (int i = 0; i < allBuilding.size(); i++) {
-            List<WeekOpen> findopenfloorsday = weekOpenService.findopenfloorsday(day + 1, allBuilding.get(i).getBid());
+            List<WeekOpen> findopenfloorsday = weekOpenService.findopenfloorsday(day , allBuilding.get(i).getBid());
             BuildingCusFloors buildingCusFloors = new BuildingCusFloors();
             BeanUtils.copyProperties(allBuilding.get(i), buildingCusFloors);
             List<Floor> floors = new ArrayList<Floor>();
