@@ -290,7 +290,7 @@
                                      style="display: none;width: 220px;text-align: center"></div>
                                 <input id="Clicktimer" name="" class="layui-input" placeholder="开始时间"
                                        style="width: 220px;"
-                                       onclick="showTimer('timer') ;showTIME()"/>
+                                       onclick="showTimer('timer') ;showTIME()"  />
                             </div>
                         </div>
                     </div>
