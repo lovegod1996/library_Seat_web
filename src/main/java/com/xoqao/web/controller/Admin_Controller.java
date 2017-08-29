@@ -561,7 +561,6 @@ public class Admin_Controller {
      */
     @RequestMapping("/addSeatSub")
     public String Seatadd(Model model, Integer left, Integer row, Integer column, String mark, Integer fid, HttpServletResponse httpServletResponse, RedirectAttributes redirectAttributes) throws Exception {
-
         if (left != null && row != null && column != null && fid != null) {
 
 
@@ -583,7 +582,7 @@ public class Admin_Controller {
             seat.setSeatnumber(number);
             try {
                 seatService.insertSeat(seat);
-
+                model.addAttribute("error_msg", "添加成功");
                 //生成二维码并下载到本地
                 CodeCreator creator = new CodeCreator();
                 CodeModel info = new CodeModel();
@@ -619,6 +618,45 @@ public class Admin_Controller {
             }
             return "redirect:/view/floorSeat?page=1&fid=" + fid;
         } else {
+            model.addAttribute("fid", fid);
+            model.addAttribute("error_msg", "请选择必要的参数");
+            return "admin_page/Managing_Seat";
+        }
+    }
+
+    @RequestMapping("/addColumsSeat")
+    public String SeataddColums(Model model, Integer left, Integer row, Integer column, Integer fid, HttpServletResponse httpServletResponse, RedirectAttributes redirectAttributes) throws Exception {
+        if (left != null && row != null && column != null && fid != null) {
+            Floor floor = floorService.findfloorByid(fid);
+            //添加座位前需要先查看每周的开放时间是否已经设置完成
+            List<WeekOpen> weekOpens = weekOpenService.findweekByfid(floor.getFid());
+            if (weekOpens.size() != 7) {
+                model.addAttribute("error_msg", "请先添加每周的开放时间段.");
+                redirectAttributes.addFlashAttribute("error_msg", "请先添加每周的开放时间段");
+                return "redirect:/view/managing_Floor?fid=" + fid;
+            }
+            int suc=0;
+            int faild=0;
+            for (int i = 1; i <=column; i++) {
+                Seat seat = new Seat();
+                seat.setColumns(i);
+                seat.setFid(floor.getFid());
+                seat.setLeftside(left);
+                seat.setRow(row);
+                String number = floor.getBid() + String.format("%02d", floor.getFloor()) + String.format("%02d", floor.getFid()) + left + String.format("%02d", row) + String.format("%02d", i);
+                seat.setSeatnumber(number);
+                try {
+                    seatService.insertSeat(seat);
+                    suc++;
+                }catch (Exception e){
+                    e.printStackTrace();
+                    faild++;
+                }
+            }
+            model.addAttribute("error_msg", "添加成功"+suc+"个，失败"+faild+"个!");
+            redirectAttributes.addFlashAttribute("error_msg", "添加成功"+suc+"个，失败"+faild+"个!");
+            return "redirect:/view/floorSeatsList?fid=" + fid;
+        }else {
             model.addAttribute("fid", fid);
             model.addAttribute("error_msg", "请选择必要的参数");
             return "admin_page/Managing_Seat";

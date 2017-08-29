@@ -266,6 +266,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">座位号</label>
                         <div class="col-sm-9">
+                            <input type="hidden" name="fid" value="${fid}">
                             <label type="text" class="layui-input" id="seatNum"
                                    style="width: 220px">点击预约自动填充</label>
                         </div>
@@ -368,6 +369,12 @@
 </script>
 
 <script type="text/javascript">
+
+    window.onload = function () {
+        var url="<%=request.getContextPath()%>/jsp/header_User";
+        window.parent.document.getElementById("topFrame_User").src=url;
+    };
+
     function getnum(form) {
         var $form = $(form);
 //        var seatNum=$("#seatNum").val();

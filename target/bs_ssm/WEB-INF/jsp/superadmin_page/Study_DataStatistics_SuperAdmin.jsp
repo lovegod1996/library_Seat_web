@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.net.URLEncoder" %><%--
   Created by IntelliJ IDEA.
   User: 1Q84
   Date: 2017/7/21
@@ -93,7 +93,10 @@
                     <tr>
                         <td>${step.index+1}</td>
                         <td>
-                            <a href="<%=request.getContextPath()%>/view/getmajorlearn?college=${collegedata.venue}">${collegedata.venue}</a>
+                            <%--<c:url value="<%=request.getContextPath()%>/view/getmajorlearn" var="collegeUri">--%>
+                                <%--<c:param name="college" value="${collegedata.venue}"/>--%>
+                            <%--</c:url>--%>
+                            <a onclick="readCollge(this)" href="javascript:void(0);">${collegedata.venue}</a>
                         </td>
                         <td>${collegedata.students}</td>
                         <td>${collegedata.learntime}小时</td>
@@ -115,6 +118,11 @@
 <script src="<%=request.getContextPath()%>/js/macarons.js"></script>
 
 <script type="text/javascript">
+    function readCollge(obj) {
+        var college=obj.innerHTML;
+        window.location.href ="${pageContext.request.contextPath }/view/getmajorlearn?college="+encodeURI(college);
+    }
+
     window.onload = function () {
         getData();
     };

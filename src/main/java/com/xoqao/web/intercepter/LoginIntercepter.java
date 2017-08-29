@@ -6,6 +6,7 @@ import com.xoqao.web.bean.floors.Floor;
 import com.xoqao.web.bean.interceptor.Intercepter;
 import com.xoqao.web.bean.user.User;
 import com.xoqao.web.service.InterCeptorService;
+import com.xoqao.web.utils.CodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -17,7 +18,9 @@ import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.lang.annotation.Target;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Author: lovegod
@@ -50,9 +53,25 @@ public class LoginIntercepter implements HandlerInterceptor {
                     case 1:  //学生
                         User user = (User) session.getAttribute("user");
                         if (user == null) {
+                            session.setAttribute("orderPage", url);
+                            Map<String, Object> map = new HashMap<String, Object>();
+                            Map<String, String[]> parameterMap = httpServletRequest.getParameterMap();
+                            for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
+                                if (entry.getValue()[0].length() < 4) {
+                                    boolean integer = CodeUtils.isInteger(entry.getValue()[0]);
+                                    if (integer) {
+                                        map.put(entry.getKey(), Integer.parseInt(entry.getValue()[0]));
+                                    } else {
+                                        map.put(entry.getKey(), entry.getValue()[0]);
+                                    }
+                                } else {
+                                    map.put(entry.getKey(), entry.getValue()[0]);
+                                }
+                            }
+                            session.setAttribute("parameterMap", map);
                             httpServletResponse.setContentType("text/html;charset=UTF-8");
-                            PrintWriter out=httpServletResponse.getWriter();
-                            out.println("<script type='text/javascript'>alert('请您先登录！');location='../jsp/main_User';</script>");
+                            PrintWriter out = httpServletResponse.getWriter();
+                            out.println("<script type='text/javascript'>alert('请您先登录！');location='../jsp/login';</script>");
 //                            httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
                             return false;
                         }
@@ -61,7 +80,7 @@ public class LoginIntercepter implements HandlerInterceptor {
                         Floor floor = (Floor) session.getAttribute("admin");
                         if (floor == null) {
                             httpServletResponse.setContentType("text/html;charset=UTF-8");
-                            PrintWriter out=httpServletResponse.getWriter();
+                            PrintWriter out = httpServletResponse.getWriter();
                             out.println("<script type='text/javascript'>alert('请您先登录！');location='../jsp/main_User';</script>");
 //                            httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
                             return false;
@@ -71,7 +90,7 @@ public class LoginIntercepter implements HandlerInterceptor {
                         Building building = (Building) session.getAttribute("admin");
                         if (building == null) {
                             httpServletResponse.setContentType("text/html;charset=UTF-8");
-                            PrintWriter out=httpServletResponse.getWriter();
+                            PrintWriter out = httpServletResponse.getWriter();
                             out.println("<script type='text/javascript'>alert('请您先登录！');location='../jsp/main_User';</script>");
 //                            httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
                             return false;
@@ -81,7 +100,7 @@ public class LoginIntercepter implements HandlerInterceptor {
                         Admin admin = (Admin) session.getAttribute("admin");
                         if (admin == null) {
                             httpServletResponse.setContentType("text/html;charset=UTF-8");
-                            PrintWriter out=httpServletResponse.getWriter();
+                            PrintWriter out = httpServletResponse.getWriter();
                             out.println("<script type='text/javascript'>alert('请您先登录！');location='../jsp/main_User';</script>");
 //                            httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
                             return false;
@@ -91,14 +110,14 @@ public class LoginIntercepter implements HandlerInterceptor {
                         Admin admin1 = (Admin) session.getAttribute("admin");
                         if (admin1 == null) {
                             httpServletResponse.setContentType("text/html;charset=UTF-8");
-                            PrintWriter out=httpServletResponse.getWriter();
+                            PrintWriter out = httpServletResponse.getWriter();
                             out.println("<script type='text/javascript'>alert('请您先登录！');location='../jsp/main_User';</script>");
                             //  httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
                             return false;
-                        }else{
-                            if(admin1.getNotice()==0){   //管理员没有这个权限
+                        } else {
+                            if (admin1.getNotice() == 0) {   //管理员没有这个权限
                                 httpServletResponse.setContentType("text/html;charset=UTF-8");
-                                PrintWriter out=httpServletResponse.getWriter();
+                                PrintWriter out = httpServletResponse.getWriter();
                                 out.println("<script type='text/javascript'>alert('您没有这个权限！');location='../jsp/main_Admin';</script>");
 //                                httpServletRequest.getRequestDispatcher("/jsp/main_Admin").forward(httpServletRequest, httpServletResponse);
                                 return false;
@@ -109,16 +128,16 @@ public class LoginIntercepter implements HandlerInterceptor {
                         Admin admin2 = (Admin) session.getAttribute("admin");
                         if (admin2 == null) {
                             httpServletResponse.setContentType("text/html;charset=UTF-8");
-                            PrintWriter out=httpServletResponse.getWriter();
+                            PrintWriter out = httpServletResponse.getWriter();
                             out.println("<script type='text/javascript'>alert('请您先登录！');location='../jsp/main_User';</script>");
                             // httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
                             return false;
-                        }else{
-                            if(admin2.getFloor()==0){   //管理员没有这个权限
+                        } else {
+                            if (admin2.getFloor() == 0) {   //管理员没有这个权限
                                 httpServletResponse.setContentType("text/html;charset=UTF-8");
-                                PrintWriter out=httpServletResponse.getWriter();
+                                PrintWriter out = httpServletResponse.getWriter();
                                 out.println("<script type='text/javascript'>alert('您没有这个权限！');location='../jsp/main_Admin';</script>");
-                              //  httpServletRequest.getRequestDispatcher("/jsp/main_Admin").forward(httpServletRequest, httpServletResponse);
+                                //  httpServletRequest.getRequestDispatcher("/jsp/main_Admin").forward(httpServletRequest, httpServletResponse);
                                 return false;
                             }
                         }
@@ -127,16 +146,16 @@ public class LoginIntercepter implements HandlerInterceptor {
                         Admin admin3 = (Admin) session.getAttribute("admin");
                         if (admin3 == null) {
                             httpServletResponse.setContentType("text/html;charset=UTF-8");
-                            PrintWriter out=httpServletResponse.getWriter();
+                            PrintWriter out = httpServletResponse.getWriter();
                             out.println("<script type='text/javascript'>alert('请您先登录！');location='../jsp/main_User';</script>");
-                           // httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
+                            // httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
                             return false;
-                        }else{
-                            if(admin3.getUser()==0){   //管理员没有这个权限
+                        } else {
+                            if (admin3.getUser() == 0) {   //管理员没有这个权限
                                 httpServletResponse.setContentType("text/html;charset=UTF-8");
-                                PrintWriter out=httpServletResponse.getWriter();
+                                PrintWriter out = httpServletResponse.getWriter();
                                 out.println("<script type='text/javascript'>alert('您没有这个权限！');location='../jsp/main_Admin';</script>");
-                              //  httpServletRequest.getRequestDispatcher("/jsp/main_Admin").forward(httpServletRequest, httpServletResponse);
+                                //  httpServletRequest.getRequestDispatcher("/jsp/main_Admin").forward(httpServletRequest, httpServletResponse);
                                 return false;
                             }
                         }
@@ -145,14 +164,14 @@ public class LoginIntercepter implements HandlerInterceptor {
                         Admin admin4 = (Admin) session.getAttribute("admin");
                         if (admin4 == null) {
                             httpServletResponse.setContentType("text/html;charset=UTF-8");
-                            PrintWriter out=httpServletResponse.getWriter();
+                            PrintWriter out = httpServletResponse.getWriter();
                             out.println("<script type='text/javascript'>alert('请您先登录！');location='../jsp/main_User';</script>");
-                           // httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
+                            // httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
                             return false;
-                        }else{
-                            if(admin4.getSeat()==0){   //管理员没有这个权限
+                        } else {
+                            if (admin4.getSeat() == 0) {   //管理员没有这个权限
                                 httpServletResponse.setContentType("text/html;charset=UTF-8");
-                                PrintWriter out=httpServletResponse.getWriter();
+                                PrintWriter out = httpServletResponse.getWriter();
                                 out.println("<script type='text/javascript'>alert('您没有这个权限！');location='../jsp/main_Admin';</script>");
                                 // httpServletRequest.getRequestDispatcher("/jsp/main_Admin").forward(httpServletRequest, httpServletResponse);
                                 return false;
@@ -163,14 +182,14 @@ public class LoginIntercepter implements HandlerInterceptor {
                         Admin admin5 = (Admin) session.getAttribute("admin");
                         if (admin5 == null) {
                             httpServletResponse.setContentType("text/html;charset=UTF-8");
-                            PrintWriter out=httpServletResponse.getWriter();
+                            PrintWriter out = httpServletResponse.getWriter();
                             out.println("<script type='text/javascript'>alert('请您先登录！');location='../jsp/main_User';</script>");
-                           // httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
+                            // httpServletRequest.getRequestDispatcher("/jsp/main_User").forward(httpServletRequest, httpServletResponse);
                             return false;
-                        }else{
-                            if(admin5.getAdmin()==0){   //管理员没有这个权限
+                        } else {
+                            if (admin5.getAdmin() == 0) {   //管理员没有这个权限
                                 httpServletResponse.setContentType("text/html;charset=UTF-8");
-                                PrintWriter out=httpServletResponse.getWriter();
+                                PrintWriter out = httpServletResponse.getWriter();
                                 out.println("<script type='text/javascript'>alert('您没有这个权限！');location='../jsp/main_Admin';</script>");
                                 // httpServletRequest.getRequestDispatcher("/jsp/main_Admin").forward(httpServletRequest, httpServletResponse);
                                 return false;

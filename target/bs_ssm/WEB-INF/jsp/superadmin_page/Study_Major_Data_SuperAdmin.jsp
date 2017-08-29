@@ -77,7 +77,7 @@
                 <c:forEach items="${majordatas}" var="majordata" varStatus="step">
                     <tr>
                         <td>${step.index+1}</td>
-                        <td><a href="<%=request.getContextPath()%>/view/getclassLearn?college=${college}&major=${majordata.venue}">${majordata.venue}</a> </td>
+                        <td><a onclick="getmajorDate(this)"  href="javascript:void(0);">${majordata.venue}</a> </td>
                         <td>${majordata.students}</td>
                         <td>${majordata.learntime}小时</td>
                         <td>${majordata.allLearn}</td>
@@ -98,6 +98,12 @@
 <script src="<%=request.getContextPath()%>/js/macarons.js"></script>
 
 <script type="text/javascript">
+    function getmajorDate(obj) {
+        var college="${college}";
+        var major=obj.innerHTML;
+        window.location.href ="${pageContext.request.contextPath }/view/getclassLearn?college="+encodeURI(college)+"&major="+encodeURI(major);
+    }
+
     window.onload = function () {
         getData();
     };

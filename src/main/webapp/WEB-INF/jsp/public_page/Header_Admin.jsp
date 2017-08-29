@@ -77,7 +77,7 @@
         </div>
         <div class="navbar-header">
             <a class="navbar-brand" href="<%=request.getContextPath()%>/jsp/index_Admin" target="_parent">图书馆座位预约系统</a>
-            <a class="navbar-brand" href="<%=request.getContextPath()%>/index.jsp" target="_parent">用户首页</a>
+            <a class="navbar-brand" href="<%=request.getContextPath()%>/" target="_parent">用户首页</a>
         </div>
         <!-- /.navbar-header -->
 

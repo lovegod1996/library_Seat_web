@@ -175,7 +175,7 @@
         </div>
         <div class="layui-tab-item">
             <div class="layui-form">
-                <form class="layui-form" action="<%=request.getContextPath()%>/view/AdAd    min" method="post">
+                <form class="layui-form" action="<%=request.getContextPath()%>/view/AdAdmin" method="post">
                     <table class="layui-table" style="width:60%;margin-left:20%">
                         <caption style="text-align: center;font-size: 18px;
     font-weight: bold;">添加管理员</caption>

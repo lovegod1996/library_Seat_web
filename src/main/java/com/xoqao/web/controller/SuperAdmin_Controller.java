@@ -29,6 +29,7 @@ import javax.jws.WebParam;
 import javax.servlet.http.HttpSession;
 import javax.swing.*;
 import java.lang.reflect.Method;
+import java.net.URLDecoder;
 import java.util.*;
 
 /**
@@ -470,6 +471,12 @@ public class SuperAdmin_Controller {
      */
     @RequestMapping("/getmajorlearn")
     public String getmajorlearn(Model model, String college) throws Exception {
+
+        if (college != null && college.length() > 0) {
+            if (college.contains("%"))
+                college = URLDecoder.decode(college, "utf-8");
+        }
+
         List<String> majorByCollege = userService.findMajorByCollege(college);
         List<CollgeData> majorDataList = new ArrayList<CollgeData>();
 
@@ -563,6 +570,15 @@ public class SuperAdmin_Controller {
      */
     @RequestMapping("/getclassLearn")
     public String getclasslearn(Model model, String college, String major) throws Exception {
+        if (college != null && college.length() > 0) {
+            if (college.contains("%"))
+                college = URLDecoder.decode(college, "utf-8");
+        }
+        if (major != null && major.length() > 0) {
+            if (major.contains("%"))
+                major = URLDecoder.decode(major, "utf-8");
+        }
+
         List<String> classes = userService.findclassbymajorcollege(college, major);
         List<CollgeData> classDataList = new ArrayList<CollgeData>();
         for (int i = 0; i < classes.size(); i++) {
@@ -603,6 +619,8 @@ public class SuperAdmin_Controller {
     @RequestMapping("/getClasseslearn")
     public @ResponseBody
     List<CollgeData> findClasseslearn(String college, String major) throws Exception {
+
+
         List<String> classes = userService.findclassbymajorcollege(college, major);
         List<CollgeData> classDataList = new ArrayList<CollgeData>();
         for (int i = 0; i < classes.size(); i++) {
@@ -649,6 +667,20 @@ public class SuperAdmin_Controller {
      */
     @RequestMapping("/getStudentsLearn")
     public String getstudentlearn(Model model, String college, String major, String classes) throws Exception {
+
+        if (college != null && college.length() > 0) {
+            if (college.contains("%"))
+                college = URLDecoder.decode(college, "utf-8");
+        }
+        if (major != null && major.length() > 0) {
+            if (major.contains("%"))
+                major = URLDecoder.decode(major, "utf-8");
+        }
+        if (classes != null && classes.length() > 0) {
+            if (classes.contains("%"))
+                classes = URLDecoder.decode(classes, "utf-8");
+        }
+
         List<User> users = userService.findstudentbyclassmajor(college, major, classes);
         List<UserData> userDataList = new ArrayList<UserData>();
         for (int i = 0; i < users.size(); i++) {

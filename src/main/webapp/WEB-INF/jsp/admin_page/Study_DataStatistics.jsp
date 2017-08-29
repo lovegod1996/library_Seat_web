@@ -422,7 +422,7 @@
                 result = eval(result);
                 if (result) {
                     for (var i = 0; i < result.length; i++) {
-                        floors.push("第"+i+"周");    //挨个取出类别并填入类别数组
+                        floors.push("第"+(i+1)+"周");    //挨个取出类别并填入类别数组
                     }
                     for (var i = 0; i < result.length; i++) {
                         learntimes.push(result[i].learntime);    //挨个取出销量并填入销量数组

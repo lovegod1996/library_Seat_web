@@ -225,5 +225,8 @@
 <script src="<%= request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
 
 <script src="<%=request.getContextPath()%>/layui/layui.js"></script>
+<script type="text/javascript">
+    <c:if test="${!empty error_msg}">alert("${error_msg}");</c:if>
+</script>
 </body>
 </html>

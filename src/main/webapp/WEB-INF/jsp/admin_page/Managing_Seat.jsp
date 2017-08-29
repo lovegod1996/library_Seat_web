@@ -40,7 +40,7 @@
     </div><hr>
     <ul class="layui-tab-title">
         <li class="layui-this">单个增加</li>
-        <%--<li>删除</li>--%>
+        <li>按行添加</li>
     </ul>
     <div class="layui-tab-content">
         <%--增加座位页面--%>
@@ -114,7 +114,68 @@
         </div>
         <%--删除座位页面--%>
         <div class="layui-tab-item">
+            <form class="layui-form" action="<%=request.getContextPath()%>/view/addColumsSeat" method="post" >
+                <div class="layui-form-item">
+                    <label class="layui-form-label">选择左右</label>
+                    <div class="layui-input-block">
+                        <input type="hidden" name="fid" value="${fid}">
+                        <select name="left" lay-filter="hang" id="cleft">
+                            <option></option>
+                            <option value="0">左</option>
+                            <option value="1">右</option>
+                        </select>
+                    </div>
+                </div>
 
+                <div class="layui-form-item">
+                    <label class="layui-form-label">选择行</label>
+                    <div class="layui-input-block">
+                        <select name="row" lay-filter="hang" id="row">
+                            <option ></option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">选择列数</label>
+                    <div class="layui-input-block">
+                        <select name="column" lay-filter="lie" id="column">
+                            <option ></option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-form-item" style="text-align: center">
+                    <button class="layui-btn" type="submit" style="background-color: #5c9bd1;">添加座位</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

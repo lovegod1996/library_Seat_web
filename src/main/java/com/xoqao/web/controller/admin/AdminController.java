@@ -10,6 +10,7 @@ import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.user.User;
 import com.xoqao.web.service.*;
 import com.xoqao.web.utils.BaiduPushUtils;
+import com.xoqao.web.utils.CodeUtils;
 import com.xoqao.web.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -63,11 +66,19 @@ public class AdminController {
      * @throws Exception
      */
     @RequestMapping("/userloginSub")
-    public String userLoginSub(Model model, String loginId, String password, HttpSession httpSession) throws Exception {
+    public String userLoginSub(Model model, String loginId, String password, HttpSession httpSession,RedirectAttributes attr) throws Exception {
         User userByphoneOrSno = userService.findUserBySno(loginId);
         if (userByphoneOrSno!=null&& MD5Util.encode(password).equals(userByphoneOrSno.getPassword())) {
            userByphoneOrSno.setPassword(null);
             httpSession.setAttribute("user", userByphoneOrSno);
+           String orderPage= (String) httpSession.getAttribute("orderPage");
+            if (orderPage!=null){
+                Map<String, Object> map = (Map<String, Object>) httpSession.getAttribute("parameterMap");
+                for (Map.Entry<String, Object> entry : map.entrySet()) {
+                        attr.addAttribute(entry.getKey(),entry.getValue());
+                }
+                return "redirect:"+orderPage;
+            }
             return "toIndex";
         } else {
             model.addAttribute("error_msg", "信息输入错误！");
