@@ -26,7 +26,11 @@
     <script src="<%=request.getContextPath()%>/js/nowtime.js"></script>
 
     <style>
-        *{margin: 0px;padding: 0px}
+        * {
+            margin: 0px;
+            padding: 0px
+        }
+
         body {
             width: 90%;
             margin-left: 5%;
@@ -40,7 +44,7 @@
         .panel-default > .panel-heading {
             /*color: #5c9bd1;*/
             color: #ffffff;
-            background-color:rgba(1, 170, 234, 0.72);
+            background-color: rgba(1, 170, 234, 0.72);
             border-color: #f9f9f9;
         }
 
@@ -71,9 +75,9 @@
             /*margin-top: 15px;*/
         }
 
-        a:focus, a:hover {
+        a:focus, a:hover, a:active {
             color: #8895a9;
-            text-decoration: underline;
+            text-decoration: none;
         }
 
         a {
@@ -105,6 +109,27 @@
             color: rgb(141, 165, 177);
             opacity: 0.1;
         }
+
+        .Middle_img {
+            height: 100px;
+            margin-top: 30px;
+            background-image: url(<%=request.getContextPath()%>/img/middleBG.jpg);
+            line-height: 100px;
+            text-align: center;
+        }
+
+        .Middle_img img{
+            border: 0;
+            transform: scale(1);
+            transition: all 0.5s ease 0s;
+            -webkit-transform: scale(1);
+        }
+
+        .Middle_img img:hover{
+            transform: scale(1.3);
+            transition: all 0.5s ease 0s;
+            -webkit-transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
@@ -134,7 +159,14 @@
        data-slide="next">&rsaquo;</a>
 </div>
 
-<div style="height: 350px;margin-top: 30px">
+<div class="col-sm-12 Middle_img">
+    <a href="<%=request.getContextPath()%>/view/choose_Building?day=0"><img
+            src="<%=request.getContextPath()%>/img/today.png" style="margin: 0 50px 0 0"></a>
+    <a href="<%=request.getContextPath()%>/view/choose_Building?day=1"><img
+            src="<%=request.getContextPath()%>/img/tomorrow.png"></a>
+</div>
+
+<div class="col-sm-12" style="height: auto;margin-top: 30px">
     <div class="col-sm-4">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -200,6 +232,7 @@
         </div>
     </div>
 </div>
+
 <div class="col-sm-12" style="margin-top: 30px">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -209,7 +242,8 @@
                style="margin-left:20px ">点击刷新</a>
             <div class="pull-right">
                 <FORM METHOD=POST ACTION="" name="selectform">
-                    <SELECT NAME="building" id="floorSide" onChange="getData()" style="border-radius: 15px;color: #5c9bd1;">
+                    <SELECT NAME="building" id="floorSide" onChange="getData()"
+                            style="border-radius: 15px;color: #5c9bd1;">
                         <c:forEach items="${buildings}" var="building">
                             <OPTION VALUE="${building.bid}">${building.employer}</OPTION>
                         </c:forEach>
@@ -222,6 +256,7 @@
         <div id="main" style="width:100%;height:500px;"></div>
     </div>
 </div>
+
 <div class="col-sm-12" style="margin-top: 30px">
     <div class="panel panel-default">
         <div class="panel-heading">

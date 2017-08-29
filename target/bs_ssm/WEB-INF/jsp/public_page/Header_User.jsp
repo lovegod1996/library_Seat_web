@@ -97,11 +97,11 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="<%=request.getContextPath()%>/" target="_parent">首页</a></li>
 
-                <%--<c:if test="${sessionScope.user !=null}">--%>
-                    <li><a href="#" onclick="show()">预约</a></li>
-                <%--</c:if>--%>
-                <li id="today" style="display: none;"><a href="<%=request.getContextPath()%>/view/choose_Building?day=0" target="mainFrame_User" style="color:#ffffff ">预约今天</a></li>
-                <li id="tomorrow" style="display: none;"><a href="<%=request.getContextPath()%>/view/choose_Building?day=1" target="mainFrame_User" style="color:#ffffff ">预约明天</a></li>
+                <%--&lt;%&ndash;<c:if test="${sessionScope.user !=null}">&ndash;%&gt;--%>
+                    <%--<li><a href="#" onclick="show()">预约</a></li>--%>
+                <%--&lt;%&ndash;</c:if>&ndash;%&gt;--%>
+                <%--<li id="today" style="display: none;"><a href="<%=request.getContextPath()%>/view/choose_Building?day=0" target="mainFrame_User" style="color:#ffffff ">预约今天</a></li>--%>
+                <%--<li id="tomorrow" style="display: none;"><a href="<%=request.getContextPath()%>/view/choose_Building?day=1" target="mainFrame_User" style="color:#ffffff ">预约明天</a></li>--%>
             </ul>
         </div>
 
