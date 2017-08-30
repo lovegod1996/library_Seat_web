@@ -203,16 +203,30 @@
     <form class="layui-form" action="<%=request.getContextPath()%>/view/adfloorSub" method="post">
 
         <div class="layui-form-item">
-            <label class="layui-form-label">添加楼层</label>
-            <div class="layui-input-inline">
-                <input type="hidden" value="${building.bid}" name="bid">
-                <input placeholder="请输入" name="floorname" class="layui-input" id="addFloor" required>
+            <label class="layui-form-label">选择楼层</label>
+            <div class="layui-input-inline" >
+                <%--<input placeholder="请输入" name="floorname" class="layui-input" id="addFloor" required>--%>
+                <select name="floorname" lay-verify="required" style="display: block;width: 190px;height: 38px">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
                 <span id="floorname.info" style="color:red"></span>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">添加藏书类别</label>
             <div class="layui-input-inline">
+                <input type="hidden" value="${building.bid}" name="bid">
                 <input placeholder="请输入" name="floorsort" id="addSort" class="layui-input" required>
                 <span id="floorsort.info" style="color:red"></span>
             </div>

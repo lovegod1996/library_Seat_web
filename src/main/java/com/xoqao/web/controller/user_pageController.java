@@ -79,6 +79,22 @@ public class user_pageController {
             BeanUtils.copyProperties(next, weekOpenCus);
             weekOpenCus.setFloor(floor.getEmployer());
             weekOpenCus.setBuilding(buildingById.getEmployer());
+            weekOpenCus.setFl(floor.getFloor());
+            List<Seat> openSeatsByFid = seatService.findOpenSeatsByFid(floor.getFid());
+            weekOpenCus.setAllSeat(openSeatsByFid.size());
+            List<Seat> seats = bookingService.findbookSeatofUpWeek(floor.getFid());
+            float pro = (seats.size() / (float) openSeatsByFid.size()) * 100;
+            weekOpenCus.setUserPro((int) pro);
+            List<Booking> floorBookOfUpWeek = bookingService.findFloorBookOfUpWeek(floor.getFid());
+            int manCount = 0;
+            for (int k = 0; k < floorBookOfUpWeek.size(); k++) {
+                User userBySno1 = userService.findUserBySno(floorBookOfUpWeek.get(k).getSno());
+                if (userBySno1.getSex() == 0) {
+                    manCount++;
+                }
+            }
+            float v = (manCount / (float) floorBookOfUpWeek.size()) * 100;
+            weekOpenCus.setWomen((int) (100 - v));
             weekOpenCuses.add(weekOpenCus);
         }
         List<Building> allBuilding = buildingService.findAllBuilding();
@@ -126,11 +142,52 @@ public class user_pageController {
         }
         Collections.sort(userDataList);
         model.addAttribute("userdatas", userDataList);
-
+        Collections.sort(weekOpenCuses);  //对当天开放时间场馆排序
         model.addAttribute("weekopens", weekOpenCuses);
 //        return "user_page/Main_User";
         return "user_page/NewMainUser";
     }
+
+    @RequestMapping("/openToday")
+    public String openFloorToday(Model model) throws Exception {
+        /**
+         * 当天开放的图书馆层
+         */
+        List<WeekOpen> findopentody = weekOpenService.findopen(1);
+        Iterator<WeekOpen> iterator = findopentody.iterator();
+        List<WeekOpenCus> weekOpenCuses = new ArrayList<WeekOpenCus>();
+        while (iterator.hasNext()) {
+            WeekOpen next = iterator.next();
+            Floor floor = floorService.findfloorByid(next.getLid());
+            Building buildingById = buildingService.findBuildingById(floor.getBid());
+            WeekOpenCus weekOpenCus = new WeekOpenCus();
+            BeanUtils.copyProperties(next, weekOpenCus);
+            weekOpenCus.setFloor(floor.getEmployer());
+            weekOpenCus.setBuilding(buildingById.getEmployer());
+            weekOpenCus.setFl(floor.getFloor());
+            List<Seat> openSeatsByFid = seatService.findOpenSeatsByFid(floor.getFid());
+            weekOpenCus.setAllSeat(openSeatsByFid.size());
+            List<Seat> seats = bookingService.findbookSeatofUpWeek(floor.getFid());
+            float pro = (seats.size() / (float) openSeatsByFid.size()) * 100;
+            weekOpenCus.setUserPro((int) pro);
+            List<Booking> floorBookOfUpWeek = bookingService.findFloorBookOfUpWeek(floor.getFid());
+            int manCount = 0;
+            for (int k = 0; k < floorBookOfUpWeek.size(); k++) {
+                User userBySno1 = userService.findUserBySno(floorBookOfUpWeek.get(k).getSno());
+                if (userBySno1.getSex() == 0) {
+                    manCount++;
+                }
+            }
+            float v = (manCount / (float) floorBookOfUpWeek.size()) * 100;
+            weekOpenCus.setWomen((int) (100 - v));
+            weekOpenCuses.add(weekOpenCus);
+        }
+        Collections.sort(weekOpenCuses);  //对当天开放时间场馆排序
+        model.addAttribute("weekopens", weekOpenCuses);
+        model.addAttribute("now",new Date());
+        return "user_page/Open_List_User";
+    }
+
 
     /**
      * 获取当前场馆座位状态
@@ -301,9 +358,9 @@ public class user_pageController {
      * @throws Exception
      */
     @RequestMapping("/bookSeatUserSub")
-    public String bookSeatUserSub(Model model, String seatNum,Integer fid, String stime, String etime, Integer day, HttpSession httpSession, RedirectAttributes redirectAttributes) throws Exception {
+    public String bookSeatUserSub(Model model, String seatNum, Integer fid, String stime, String etime, Integer day, HttpSession httpSession, RedirectAttributes redirectAttributes) throws Exception {
         User user = (User) httpSession.getAttribute("user");
-        if(null!=stime&&null!=seatNum&&null!=etime) {
+        if (null != stime && null != seatNum && null != etime) {
             Integer disTime2 = DateUtil.getDisTime(DateUtil.getTimeDate(stime, day), DateUtil.getTimeDate(etime, day));
             Seat seatBynumber = seatService.findSeatBynumber(seatNum);
             Floor floor = floorService.findfloorByid(seatBynumber.getFid());
@@ -360,7 +417,7 @@ public class user_pageController {
             } else {
                 redirectAttributes.addFlashAttribute("error_msg", "预约时间过短");
             }
-        }else{
+        } else {
             redirectAttributes.addFlashAttribute("error_msg", "请选择座位和时间段");
         }
         return "redirect:/jsp/book_Seat_User?fid=" + fid + "&day=" + day;

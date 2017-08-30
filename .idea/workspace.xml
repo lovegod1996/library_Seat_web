@@ -7,22 +7,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d73edc1-b372-4b91-a444-807e3c483cf2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/img/middleBG.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/img/today.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/img/tomorrow.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/Admin_Controller.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/Admin_Controller.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/img/bg1920.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Open_List_User.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm.war" afterPath="$PROJECT_DIR$/target/bs_ssm.war" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/bean/weekopen/WeekOpenCus.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/bean/weekopen/WeekOpenCus.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/phone/PhoneServerController.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/phone/PhoneServerController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/Admin_Controller.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/Admin_Controller.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/user_pageController.class" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/com/xoqao/web/controller/user_pageController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/bean/weekopen/WeekOpenCus.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/bean/weekopen/WeekOpenCus.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/phone/PhoneServerController.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/phone/PhoneServerController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/user_pageController.class" afterPath="$PROJECT_DIR$/target/classes/com/xoqao/web/controller/user_pageController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Header_User.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Header_User.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/weekopen/WeekOpenCus.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/weekopen/WeekOpenCus.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/phone/PhoneServerController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/phone/PhoneServerController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java" afterPath="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mapping/NoticeMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapping/NoticeMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Main_Admin.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Main_Admin.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Floor_SuperAdmin.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Floor_SuperAdmin.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Book_Seat_User.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Book_Seat_User.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/NewMainUser.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/NewMainUser.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/layui/css/layui.css" afterPath="$PROJECT_DIR$/src/main/webapp/layui/css/layui.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/target/bs_ssm/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/public_page/Header_User.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/public_page/Header_User.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/js/timer.js" afterPath="$PROJECT_DIR$/src/main/webapp/js/timer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/mapping/NoticeMapper.xml" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/classes/mapping/NoticeMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/admin_page/Main_Admin.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/admin_page/Main_Admin.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/superadmin_page/Managing_Floor_SuperAdmin.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/superadmin_page/Managing_Floor_SuperAdmin.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/user_page/Book_Seat_User.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/user_page/Book_Seat_User.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/user_page/NewMainUser.jsp" afterPath="$PROJECT_DIR$/target/bs_ssm/WEB-INF/jsp/user_page/NewMainUser.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/layui/css/layui.css" afterPath="$PROJECT_DIR$/target/bs_ssm/layui/css/layui.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/bs_ssm/js/timer.js" afterPath="$PROJECT_DIR$/target/bs_ssm/js/timer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mapping/NoticeMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mapping/NoticeMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,25 +45,43 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Book_Seat_User.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Book_Seat_User.jsp">
+      <file leaf-file-name="Open_List_User.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Open_List_User.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="304" column="94" lean-forward="true" selection-start-line="304" selection-start-column="94" selection-end-line="304" selection-end-column="94" />
+            <state relative-caret-position="115">
+              <caret line="53" column="37" lean-forward="true" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main_SuperAdmin.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Main_SuperAdmin.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="12" column="48" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main_Admin.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Main_Admin.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1633">
+              <caret line="71" column="14" lean-forward="true" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#2;n#form#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#3;n#form#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#3;n#form#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user_pageController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java">
+      <file leaf-file-name="NewMainUser.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/NewMainUser.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="288" column="34" lean-forward="false" selection-start-line="288" selection-start-column="34" selection-end-line="288" selection-end-column="34" />
+            <state relative-caret-position="303">
+              <caret line="189" column="178" lean-forward="false" selection-start-line="189" selection-start-column="178" selection-end-line="189" selection-end-column="178" />
               <folding />
             </state>
           </provider>
@@ -76,6 +105,7 @@
       <find>getStudentsLearn</find>
       <find>floorSeatsList</find>
       <find>book_Seat_User</find>
+      <find>getData</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -98,7 +128,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/SuperAdmin_Controller.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Study_Major_Data_SuperAdmin.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Study_Class_Data_SuperAdmin.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Main_Admin.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/Admin_Controller.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_List_Admin.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Header_Admin.jsp" />
@@ -107,10 +136,18 @@
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/utils/CodeUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/intercepter/LoginIntercepter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin/AdminController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/toIndex.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Header_User.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/js/timer.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Book_Seat_User.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/weekopen/WeekOpenCus.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/phone/PhoneServerController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapping/NoticeMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Floor_SuperAdmin.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/NewMainUser.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Open_List_User.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Main_Admin.jsp" />
       </list>
     </option>
   </component>
@@ -155,6 +192,9 @@
     <option name="y" value="-9" />
     <option name="width" value="1932" />
     <option name="height" value="1048" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -407,17 +447,6 @@
               <item name="jsp" type="462c0819:PsiDirectoryNode" />
               <item name="user_page" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="library_Seat_web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="library_Seat_web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="user_page" type="462c0819:PsiDirectoryNode" />
-              <item name="user_information" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -429,6 +458,12 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="SearchEverywhereHistoryKey" value="getmajorlearn&#9;null&#9;null&#10;findopenfloorsday&#9;PSI&#9;JAVA://com.xoqao.web.dao.WeekOpenMapper#findopenfloorsday&#10;choose_Building&#9;null&#9;null&#10;main_Admin&#9;null&#9;null" />
     <property name="settings.editor.selected.configurable" value="spring" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\JAVA\idea_space\library_Seat_web\src\main\webapp\WEB-INF\jsp\user_page" />
+      <recent name="E:\JAVA\idea_space\library_Seat_web\src\main\webapp\img" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -624,7 +659,8 @@
       <workItem from="1503883054436" duration="129000" />
       <workItem from="1503914932988" duration="183000" />
       <workItem from="1503916550961" duration="1849000" />
-      <workItem from="1503968194906" duration="31637000" />
+      <workItem from="1503968194906" duration="34289000" />
+      <workItem from="1504053865290" duration="14970000" />
     </task>
     <task id="LOCAL-00001" summary="修改密码设置">
       <created>1503578809899</created>
@@ -651,11 +687,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47633000" />
+    <option name="totallyTimeSpent" value="65255000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -667,11 +702,11 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299356" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32915717" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3004292" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30472103" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -778,128 +813,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Index_SuperAdmin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="34" column="64" lean-forward="false" selection-start-line="34" selection-start-column="64" selection-end-line="34" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Main_Admin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="6" lean-forward="true" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Leftmenu_SuperAdmin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1242">
-          <caret line="54" column="69" lean-forward="false" selection-start-line="54" selection-start-column="69" selection-end-line="54" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Main_SuperAdmin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin_pageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1265">
-          <caret line="86" column="32" lean-forward="false" selection-start-line="86" selection-start-column="32" selection-end-line="86" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/user_information/ForgetPassword.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1652">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Leftmenu.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1587">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/dao/WeekOpenMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="32" column="36" lean-forward="false" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/phone/PhoneServerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="195" column="40" lean-forward="false" selection-start-line="195" selection-start-column="23" selection-end-line="195" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Seat_In_Book.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="159" column="59" lean-forward="true" selection-start-line="159" selection-start-column="59" selection-end-line="159" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/user_information/SetNewPassword.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1725">
-          <caret line="75" column="155" lean-forward="false" selection-start-line="75" selection-start-column="155" selection-end-line="75" selection-end-column="155" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/ResetPassword_ForAdmin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1311">
-          <caret line="57" column="145" lean-forward="false" selection-start-line="57" selection-start-column="145" selection-end-line="57" selection-end-column="145" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/User_Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8487">
-          <caret line="394" column="13" lean-forward="false" selection-start-line="394" selection-start-column="13" selection-end-line="394" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/service/WeekOpenService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="28" column="27" lean-forward="false" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/WeekOpenMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <marker date="1504011147923" expanded="true" signature="315:403" ph="SELECT woid,... weekopen" />
-            <marker date="1504011147923" expanded="true" signature="473:528" ph="UPDATE weeko... " />
-            <marker date="1504011147923" expanded="true" signature="602:642" ph="DELETE FROM " />
-            <marker date="1504011147923" expanded="true" signature="1119:1237" ph="SELECT woid,... weekopen" />
-            <marker date="1504011147923" expanded="true" signature="1374:1503" ph="SELECT woid,... weekopen" />
-            <marker date="1504011147923" expanded="true" signature="1639:1932" ph="SELECT weeko... weekopen" />
-            <marker date="1504011147923" expanded="true" signature="2066:2228" ph="SELECT woid,... weekopen" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/interceptor/Intercepter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -931,7 +848,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="117">
           <caret line="166" column="5" lean-forward="true" selection-start-line="166" selection-start-column="5" selection-end-line="166" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -940,24 +856,6 @@
         <state relative-caret-position="-1794">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Building_SuperAdmin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1035">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/SuperAdmin_Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="720" column="50" lean-forward="false" selection-start-line="720" selection-start-column="50" selection-end-line="720" selection-end-column="50" />
-          <folding>
-            <element signature="e#16595#16607#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -998,16 +896,6 @@
         <state relative-caret-position="209">
           <caret line="4" column="22414" lean-forward="false" selection-start-line="4" selection-start-column="22414" selection-end-line="4" selection-end-column="22414" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Main_Admin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="59" column="66" lean-forward="true" selection-start-line="59" selection-start-column="66" selection-end-line="59" selection-end-column="66" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1109,22 +997,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="13" column="55" lean-forward="true" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/toIndex.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="63" lean-forward="true" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/admin/AdminController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="117">
@@ -1145,69 +1017,256 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/timer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="116" column="4" lean-forward="false" selection-start-line="116" selection-start-column="4" selection-end-line="116" selection-end-column="4" />
+          <folding>
+            <marker date="1504014092380" expanded="true" signature="3370:3424" ph="..." />
+            <marker date="1504014092380" expanded="true" signature="3450:3472" ph="..." />
+            <marker date="1504014092380" expanded="true" signature="3524:3549" ph="..." />
+            <marker date="1504014092380" expanded="true" signature="3624:3677" ph="..." />
+            <marker date="1504014092380" expanded="true" signature="3948:3988" ph="..." />
+            <marker date="1504014092380" expanded="true" signature="4089:4142" ph="..." />
+            <marker date="1504014092380" expanded="true" signature="4413:4452" ph="..." />
+            <marker date="1504014092380" expanded="true" signature="4553:4606" ph="..." />
+            <marker date="1504014092380" expanded="true" signature="4892:4903" ph="..." />
+            <marker date="1504014092380" expanded="true" signature="5014:5051" ph="..." />
+            <marker date="1504014092380" expanded="true" signature="5251:5303" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Book_Seat_User.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="369" column="0" lean-forward="true" selection-start-line="369" selection-start-column="0" selection-end-line="369" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/toIndex.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="63" lean-forward="true" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="15" column="55" lean-forward="false" selection-start-line="15" selection-start-column="55" selection-end-line="15" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/service/WeekOpenService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="376">
+          <caret line="28" column="27" lean-forward="true" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/bookRule.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="33" lean-forward="true" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#p#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/weekopen/WeekOpenCus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="49" column="33" lean-forward="false" selection-start-line="49" selection-start-column="33" selection-end-line="49" selection-end-column="33" />
+          <folding>
+            <element signature="e#682#683#0" expanded="true" />
+            <element signature="e#712#713#0" expanded="true" />
+            <element signature="e#759#760#0" expanded="true" />
+            <element signature="e#797#798#0" expanded="true" />
+            <element signature="e#828#829#0" expanded="true" />
+            <element signature="e#853#854#0" expanded="true" />
+            <element signature="e#890#891#0" expanded="true" />
+            <element signature="e#918#919#0" expanded="true" />
+            <element signature="e#983#984#0" expanded="true" />
+            <element signature="e#1030#1031#0" expanded="true" />
+            <element signature="e#1068#1069#0" expanded="true" />
+            <element signature="e#1101#1102#0" expanded="true" />
+            <element signature="e#1129#1130#0" expanded="true" />
+            <element signature="e#1172#1173#0" expanded="true" />
+            <element signature="e#1206#1207#0" expanded="true" />
+            <element signature="e#1618#1619#0" expanded="true" />
+            <element signature="e#1671#1672#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/News_List_User.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="6" lean-forward="true" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/NoticeMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+          <folding>
+            <marker date="1504078819671" expanded="true" signature="698:799" ph="SELECT nid,t... notice" />
+            <marker date="1504078819671" expanded="true" signature="901:1017" ph="SELECT nid,t... notice" />
+            <marker date="1504078819671" expanded="true" signature="1120:1266" ph="SELECT nid,t... notice" />
+            <marker date="1504078819671" expanded="true" signature="1387:1488" ph="SELECT nid,t... notice" />
+            <marker date="1504078819671" expanded="true" signature="1557:1592" ph="DELETE FROM " />
+            <marker date="1504078819671" expanded="true" signature="1665:1801" ph="UPDATE notic... " />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/public_page/Header_User.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1095">
-          <caret line="101" column="31" lean-forward="true" selection-start-line="101" selection-start-column="31" selection-end-line="101" selection-end-column="31" />
+        <state relative-caret-position="184">
+          <caret line="102" column="107" lean-forward="false" selection-start-line="102" selection-start-column="107" selection-end-line="102" selection-end-column="107" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/User_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="401" column="35" lean-forward="false" selection-start-line="401" selection-start-column="35" selection-end-line="401" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Choose_Building.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="119" column="148" lean-forward="false" selection-start-line="119" selection-start-column="72" selection-end-line="119" selection-end-column="148" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="178" column="17" lean-forward="true" selection-start-line="178" selection-start-column="17" selection-end-line="178" selection-end-column="17" />
           <folding>
-            <element signature="n#style#0;n#li#2;n#ul#0;n#div#2;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#li#2;n#ul#0;n#div#2;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#3;n#ul#0;n#div#2;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#li#3;n#ul#0;n#div#2;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#2360#2373#0" expanded="true" />
+            <element signature="e#6402#6415#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/buildingadmin_page/Index_BuildingAdmin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/buildingadmin_page/Leftmenu_BuildingAdmin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="64" column="82" lean-forward="false" selection-start-line="64" selection-start-column="82" selection-end-line="64" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Building_SuperAdmin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="186" column="29" lean-forward="true" selection-start-line="186" selection-start-column="29" selection-end-line="186" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Managing_Floor.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1311">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/bean/data/FloorData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/phone/PhoneServerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="1215" column="54" lean-forward="true" selection-start-line="1215" selection-start-column="54" selection-end-line="1215" selection-end-column="54" />
+          <folding>
+            <element signature="e#4407#4420#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Managing_Floor_SuperAdmin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="220" column="50" lean-forward="true" selection-start-line="220" selection-start-column="50" selection-end-line="220" selection-end-column="50" />
+          <folding>
+            <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#form#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/SuperAdmin_Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="309" column="34" lean-forward="true" selection-start-line="309" selection-start-column="34" selection-end-line="309" selection-end-column="34" />
+          <folding>
+            <element signature="e#16595#16607#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/NewMainUser.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-84">
-          <caret line="164" column="75" lean-forward="false" selection-start-line="164" selection-start-column="75" selection-end-line="164" selection-end-column="75" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#a#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/timer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="123" column="9" lean-forward="false" selection-start-line="123" selection-start-column="9" selection-end-line="123" selection-end-column="9" />
-          <folding>
-            <marker date="1503541647720" expanded="true" signature="3370:3424" ph="..." />
-            <marker date="1503541647720" expanded="true" signature="3450:3472" ph="..." />
-            <marker date="1503541647720" expanded="true" signature="3524:3549" ph="..." />
-            <marker date="1503541647720" expanded="true" signature="3624:3677" ph="..." />
-            <marker date="1503541647720" expanded="true" signature="3948:3988" ph="..." />
-            <marker date="1503541647720" expanded="true" signature="4089:4142" ph="..." />
-            <marker date="1503541647720" expanded="true" signature="4413:4452" ph="..." />
-            <marker date="1503541647720" expanded="true" signature="4553:4606" ph="..." />
-            <marker date="1503541647720" expanded="true" signature="4892:4903" ph="..." />
-            <marker date="1503541647720" expanded="true" signature="5014:5051" ph="..." />
-            <marker date="1503541647720" expanded="true" signature="5251:5303" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xoqao/web/controller/user_pageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="288" column="34" lean-forward="false" selection-start-line="288" selection-start-column="34" selection-end-line="288" selection-end-column="34" />
+        <state relative-caret-position="303">
+          <caret line="189" column="178" lean-forward="false" selection-start-line="189" selection-start-column="178" selection-end-line="189" selection-end-column="178" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Book_Seat_User.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/user_page/Open_List_User.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="304" column="94" lean-forward="true" selection-start-line="304" selection-start-column="94" selection-end-line="304" selection-end-column="94" />
+        <state relative-caret-position="115">
+          <caret line="53" column="37" lean-forward="true" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/superadmin_page/Main_SuperAdmin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="48" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin_page/Main_Admin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1633">
+          <caret line="71" column="14" lean-forward="true" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#2;n#form#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#3;n#form#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#3;n#form#0;n#div#2;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

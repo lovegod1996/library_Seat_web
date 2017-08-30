@@ -37,8 +37,6 @@
 
     <script language="JavaScript" type="text/javascript">
         //定义了楼层的二维数组，里面的顺序跟楼的顺序是相同的。通过selectedIndex获得楼的下标值来得到相应的楼层数组
-
-
         function getData() {
             var floor = $("#floor").val();
             var url = "/LS/jsp/book_Seat_User?floor=" + floor;

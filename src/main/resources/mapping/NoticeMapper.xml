@@ -20,7 +20,7 @@
     <select id="findAllNoticetop" resultType="com.xoqao.web.bean.news.Notice">
         SELECT nid,title,content,creattime,type,uid,workstation
         FROM notice
-        ORDER BY  creattime DESC limit 3
+        ORDER BY  creattime DESC limit 6
     </select>
     <select id="findAllNoticepage" resultType="com.xoqao.web.bean.news.Notice">
         SELECT nid,title,content,creattime,type,uid,workstation

@@ -113,19 +113,19 @@
         .Middle_img {
             height: 100px;
             margin-top: 30px;
-            background-image: url(<%=request.getContextPath()%>/img/middleBG.jpg);
-            line-height: 100px;
+            position: relative;
+        <%--background-image: url(<%=request.getContextPath()%>/img/middleBG.jpg);--%> line-height: 100px;
             text-align: center;
         }
 
-        .Middle_img img{
+        .Middle_img a img {
             border: 0;
             transform: scale(1);
             transition: all 0.5s ease 0s;
             -webkit-transform: scale(1);
         }
 
-        .Middle_img img:hover{
+        .Middle_img a img:hover {
             transform: scale(1.3);
             transition: all 0.5s ease 0s;
             -webkit-transform: scale(1.1);
@@ -160,10 +160,13 @@
 </div>
 
 <div class="col-sm-12 Middle_img">
+    <img src="<%=request.getContextPath()%>/img/middleBG.jpg" height="" width="100%">
     <a href="<%=request.getContextPath()%>/view/choose_Building?day=0"><img
-            src="<%=request.getContextPath()%>/img/today.png" style="margin: 0 50px 0 0"></a>
+            src="<%=request.getContextPath()%>/img/today.png"
+            style="position:absolute; z-index:2; right:260px; top: 20px"></a>
     <a href="<%=request.getContextPath()%>/view/choose_Building?day=1"><img
-            src="<%=request.getContextPath()%>/img/tomorrow.png"></a>
+            src="<%=request.getContextPath()%>/img/tomorrow.png"
+            style="position:absolute; z-index:2; right:50px; top:20px"></a>
 </div>
 
 <div class="col-sm-12" style="height: auto;margin-top: 30px">
@@ -171,15 +174,26 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="glyphicon glyphicon-time"></i> 开馆时间安排
+                <a href="<%=request.getContextPath()%>/jsp/openToday" target="mainFrame_User"
+                   style="float:right;">查看更多场馆&nbsp;> </a>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="height: 350px">
 
                 <div class="list-group">
                     <c:forEach items="${weekopens}" var="week" varStatus="tt">
-                        <li>${week.floor}(${week.building})
-                            <span class="pull-right text-muted small"><em>${week.param1};${week.param2}</em></span>
-                        </li>
+                        <c:if test="${tt.index<5}">
+                            <li>
+                                <div style="font-weight: bold;font-size: large">${week.floor} <span class="pull-right"
+                                                                                                    style="font-size: smaller;margin-top: 5px">${week.param1};${week.param2}</span>
+                                </div>
+                                <div style="font-size: smaller;color: #9d9d9d">${week.building}<span style="margin-left: 10px">F${week.fl}</span><span style="margin-left: 20px">共${week.allSeat}座</span>
+                                    <span class="pull-right" style="margin-top: 0px">座位使用率：<strong>${week.userPro}%</strong></span></div>
+                                    <%--<h4 style="font-weight: bold;font-size: large">${week.floor}<span class="pull-right">入座率：<strong>${week.userPro}%</strong></span></h4>--%>
+                                    <%--<span style="font-size: smaller;color: #9d9d9d">${week.building}</span>--%>
+                                    <%--<span class="pull-right text-muted small"><em style="color: #0C0C0C">${week.param1};${week.param2}</em></span>--%>
+                            </li>
+                        </c:if>
                     </c:forEach>
                 </div>
             </div>

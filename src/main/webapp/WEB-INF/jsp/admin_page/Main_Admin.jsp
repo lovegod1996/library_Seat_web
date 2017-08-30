@@ -68,7 +68,7 @@
             </div>
             <!-- /.panel-heading -->
             <!-- EChart 显示各楼层座位状态-->
-            <div id="main" style="width: 66.66666667%;height:400px;"></div>
+            <div id="main" style="width: 100%;height:400px;"></div>
         </div>
         <!-- /.panel -->
     </div>

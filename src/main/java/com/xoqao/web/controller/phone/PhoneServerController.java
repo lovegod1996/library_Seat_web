@@ -155,6 +155,22 @@ public class PhoneServerController {
             BeanUtils.copyProperties(next, weekOpenCus);
             weekOpenCus.setFloor(floor.getEmployer());
             weekOpenCus.setBuilding(buildingById.getEmployer());
+            weekOpenCus.setFl(floor.getFloor());
+            List<Seat> openSeatsByFid = seatService.findOpenSeatsByFid(floor.getFid());
+            weekOpenCus.setAllSeat(openSeatsByFid.size());
+            List<Seat> seats = bookingService.findbookSeatofUpWeek(floor.getFid());
+            float pro = (seats.size() / (float) openSeatsByFid.size()) * 100;
+            weekOpenCus.setUserPro((int) pro);
+            List<Booking> floorBookOfUpWeek = bookingService.findFloorBookOfUpWeek(floor.getFid());
+            int manCount = 0;
+            for (int k = 0; k < floorBookOfUpWeek.size(); k++) {
+                User userBySno1 = userService.findUserBySno(floorBookOfUpWeek.get(k).getSno());
+                if (userBySno1.getSex() == 0) {
+                    manCount++;
+                }
+            }
+            float v = (manCount / (float) floorBookOfUpWeek.size()) * 100;
+            weekOpenCus.setWomen((int) (100 - v));
             weekOpenCuses.add(weekOpenCus);
         }
         Map<String, Object> map = new HashMap<String, Object>();
@@ -1191,7 +1207,6 @@ public class PhoneServerController {
             List<Floor> floors = floorService.findfloorsBybid(allBuilding.get(i).getBid());
             List<FloorData> floorDataList = new ArrayList<FloorData>();
             for (int j = 0; j < floors.size(); j++) {
-
                 Floor floor = floors.get(j);
                 FloorData floorData = new FloorData();
                 floorData.setFloor(floor.getEmployer());

@@ -127,7 +127,7 @@ function showTimer(tempId) {
     var timerConent ='<table cellpadding="0" cellspacing="0" style="width:100%;height:100%;border:0px;table-layout : fixed">' +
         '<tr style="width:100%;height:100%">' +
         '<td width="90%" height="100%" style="border:0px;display:block;">' +
-        '<input type="text"  id="HH" value="00" maxlength="2" style="border: 0px; width: 30px;height:100%;text-align: left" name="HH" onchange="checkNum(' + "'" + tempId + "'," + "'HH'," + 'this.value)" onkeydown="keyDown(' + "'" + tempId + "'" + ',event.keyCode,this)" onkeyup="keyUp(event.keyCode)" onfocus="setMode(' + "'" + tempId + "','HH'" + ')"/>' +
+        '<input type="text"  id="HH" value="09" maxlength="2" style="border: 0px; width: 30px;height:100%;text-align: left" name="HH" onchange="checkNum(' + "'" + tempId + "'," + "'HH'," + 'this.value)" onkeydown="keyDown(' + "'" + tempId + "'" + ',event.keyCode,this)" onkeyup="keyUp(event.keyCode)" onfocus="setMode(' + "'" + tempId + "','HH'" + ')"/>' +
         '<input type="text"  style="border:0;background:transparent;width:6;" readOnly=true  value=":"/>' +
         '<input type="text"  id="MM" value="00" maxlength="2" style="border: 0px; width: 30px;height:100%;text-align: left" name="MM" onchange="checkNum(' + "'" + tempId + "'," + "'MM'," + 'this.value)" onkeydown="keyDown(' + "'" + tempId + "'" + ',event.keyCode,this)" onkeyup="keyUp(event.keyCode)" onfocus="setMode(' + "'" + tempId + "','MM'" + ')"/>' +
         '<input type="text"  style="border:0;background:transparent;width:6"  readOnly=true value=":"/>' +
