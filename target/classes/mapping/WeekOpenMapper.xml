@@ -27,9 +27,9 @@
     </insert>
     <!--查看当天场馆开放情况-->
     <select id="findopen" resultType="com.xoqao.web.bean.weekopen.WeekOpen">
-        SELECT woid,lid,param1,param2,week,statue
-        FROM  weekopen
-        WHERE week=WEEKDAY(NOW())+#{day} AND statue=0
+       SELECT woid,lid,param1,param2,week,weekopen.statue
+        FROM  weekopen,floor
+        WHERE weekopen.week=WEEKDAY(NOW())+#{day} AND weekopen.statue=0 AND floor.statue=0 AND weekopen.lid=floor.fid
     </select>
 
     <!--查看当天某个场馆开放时间段-->

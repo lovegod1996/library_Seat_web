@@ -117,7 +117,7 @@
                                   <option value="4">周四</option>
                                   <option value="5">周五</option>
                                   <option value="6">周六</option>
-                                  <option value="7">周七</option>
+                                  <option value="7">周日</option>
                               </select>
                           </td>
                       </tr>
@@ -126,6 +126,8 @@
                               <select class="layui-form-select" name="param1" id="param1">
                                   <option>9:00-21:00</option>
                                   <option>9:00-11:30</option>
+                                  <option>9:00-14:00</option>
+                                  <option>9:00-16:00</option>
                               </select>
                           </td>
                       <td>
