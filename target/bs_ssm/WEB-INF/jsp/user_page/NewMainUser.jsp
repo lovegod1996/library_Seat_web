@@ -188,7 +188,7 @@
                                                                                                     style="font-size: smaller;margin-top: 5px">${week.param1};${week.param2}</span>
                                 </div>
                                 <div style="font-size: smaller;color: #9d9d9d">${week.building}<span style="margin-left: 10px">F${week.fl}</span><span style="margin-left: 20px">共${week.allSeat}座</span>
-                                    <span class="pull-right" style="margin-top: 0px">座位使用率：<strong>${week.userPro}%</strong></span></div>
+                                    <span class="pull-right" style="margin-top: 0px">座位空闲率：<strong>${week.userPro}%</strong></span></div>
                                     <%--<h4 style="font-weight: bold;font-size: large">${week.floor}<span class="pull-right">入座率：<strong>${week.userPro}%</strong></span></h4>--%>
                                     <%--<span style="font-size: smaller;color: #9d9d9d">${week.building}</span>--%>
                                     <%--<span class="pull-right text-muted small"><em style="color: #0C0C0C">${week.param1};${week.param2}</em></span>--%>

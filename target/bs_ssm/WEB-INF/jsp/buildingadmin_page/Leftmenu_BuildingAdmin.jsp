@@ -52,7 +52,7 @@
         <ul class="nav navbar-collapse" id="side-menu">
             <li>
                 <a href="<%=request.getContextPath()%>/view/index_BuildingAdmin" target="_parent" class="active"><i
-                        class="fa fa-dashboard fa-fw"></i> 后台管理首页</a>
+                        class="fa fa-dashboard fa-fw"></i> 座位实时状态</a>
             </li>
             <li>
                 <a href="<%=request.getContextPath()%>/view/open_Floor_BuildingAdmin"

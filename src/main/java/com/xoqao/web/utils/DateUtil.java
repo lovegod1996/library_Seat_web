@@ -402,6 +402,16 @@ public class DateUtil {
         return b;
     }
 
+    public static Booking checkbooksclashBooking(List<Booking> bookings, Date stime, Date etime) {
+        Booking b = null;
+        for (int i = 0; i < bookings.size(); i++) {
+            boolean checkbookclash = checkbookclash(bookings.get(i), stime, etime);
+            if (checkbookclash) {
+                b = bookings.get(i);
+            }
+        }
+        return b;
+    }
     /**
      * 获取两个小时后的时间
      *

@@ -53,7 +53,7 @@
         <ul class="nav navbar-collapse" id="side-menu">
             <li>
                 <a href="<%=request.getContextPath()%>/view/index_SuperAdmin" target="_parent" class="active"><i
-                        class="fa fa-dashboard fa-fw"></i> 后台管理首页</a>
+                        class="fa fa-dashboard fa-fw"></i> 座位实时状态</a>
             </li>
             <c:if test="${sessionScope.admin.admin==1}">
                 <li>

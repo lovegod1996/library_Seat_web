@@ -15,6 +15,7 @@ import com.xoqao.web.bean.news.News;
 import com.xoqao.web.bean.seat.Seat;
 import com.xoqao.web.bean.userbook.UserLearn;
 import com.xoqao.web.service.*;
+import com.xoqao.web.utils.CodeUtils;
 import com.xoqao.web.utils.DateUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -347,65 +348,77 @@ public class admin_pageController {
     @RequestMapping("/adSeatBookSub")
     public String adSeatBook(Model model, String seatNum, String sno, String etime, Integer page, HttpSession httpSession, RedirectAttributes redirectAttributes) throws Exception {
         Date date = DateUtil.getTimeDate(etime, 0);
-        Integer disTime = DateUtil.getDisTime(new Date(), date);
-        if (disTime > CommenValue.MAX_LongTime||disTime<CommenValue.MIN_BOOK) {
-            redirectAttributes.addFlashAttribute("error_msg", "您选择的时间超过" + (CommenValue.MAX_LongTime / 60) + "小时或预约时间过短");
-        } else {
-            //计算预约惩罚天数据周期
-            List<UnDeal> unDealCord = undealService.findUnDealCord(sno);
-            Integer disTime1 = 0;
-            if (unDealCord.size() > 0) {
-                Date daysAfter = DateUtil.getDaysAfter(unDealCord.get(unDealCord.size() - 1).getRecord());
-                //暂不提供最后一天预约第二天的预约
-                disTime1 = DateUtil.getDisTime(new Date(), daysAfter);
-            }
-            if (disTime1 <= 0) {
-                Seat seatBynumber = seatService.findSeatBynumber(seatNum);
-                Floor floor = floorService.findfloorByid(seatBynumber.getFid());
-                WeekOpen weekOpen = weekOpenService.findopenFloorday(floor.getFid(), 1);
-                boolean b = DateUtil.getfollowTime(weekOpen, new Date(), DateUtil.getTimeDate(etime, 0));
-                if (b) {
-                    List<Booking> bookSeatBooking = bookingService.findBookSeatBookingday(seatBynumber.getSid(), 0);
-                    boolean checkbooksclash = DateUtil.checkbooksclash(bookSeatBooking, new Date(), DateUtil.getTimeDate(etime, 0));
-                    if (checkbooksclash) {
-                        redirectAttributes.addFlashAttribute("error_msg", "您选择的时间段已经被占用");
-                    } else {
-                        User userBySno = userService.findUserBySno(sno);
-                        if(userBySno!=null) {
-                            //查看近两天的学生预约记录
-                            List<Booking> bookingBySno = bookingService.findBookingBySno(sno, 0);
-                            List<Booking> bookingBySno2 = bookingService.findBookingBySno(sno, 1);
-                            for (int i = 0; i < bookingBySno2.size(); i++) {
-                                bookingBySno.add(bookingBySno2.get(i));
-                            }
-                            boolean checkbooksclash1 = DateUtil.checkbooksclash(bookingBySno, new Date(), DateUtil.getTimeDate(etime, 0));
-                            if (checkbooksclash1) {
-                                redirectAttributes.addFlashAttribute("error_msg", "您选择的时间段您已预约过");
+
+        SimpleDateFormat sdf=new SimpleDateFormat("HH:mm");
+        if(null!=seatNum&&null!=sno&&null!=etime) {
+            if(CodeUtils.isInteger(seatNum)) {
+                Integer disTime = DateUtil.getDisTime(new Date(), date);
+                if (disTime > CommenValue.MAX_LongTime || disTime < CommenValue.MIN_BOOK) {
+                    redirectAttributes.addFlashAttribute("error_msg", "您选择的时间超过" + (CommenValue.MAX_LongTime / 60) + "小时或预约时间过短");
+                } else {
+                    //计算预约惩罚天数据周期
+                    List<UnDeal> unDealCord = undealService.findUnDealCord(sno);
+                    Integer disTime1 = 0;
+                    if (unDealCord.size() > 0) {
+                        Date daysAfter = DateUtil.getDaysAfter(unDealCord.get(unDealCord.size() - 1).getRecord());
+                        //暂不提供最后一天预约第二天的预约
+                        disTime1 = DateUtil.getDisTime(new Date(), daysAfter);
+                    }
+                    if (disTime1 <= 0) {
+                        Seat seatBynumber = seatService.findSeatBynumber(seatNum);
+                        Floor floor = floorService.findfloorByid(seatBynumber.getFid());
+                        WeekOpen weekOpen = weekOpenService.findopenFloorday(floor.getFid(), 1);
+                        boolean b = DateUtil.getfollowTime(weekOpen, new Date(), DateUtil.getTimeDate(etime, 0));
+                        if (b) {
+                            List<Booking> bookSeatBooking = bookingService.findBookSeatBookingday(seatBynumber.getSid(), 0);
+                            boolean checkbooksclash = DateUtil.checkbooksclash(bookSeatBooking, new Date(), DateUtil.getTimeDate(etime, 0));
+                            if (checkbooksclash) {
+                                Booking booking = DateUtil.checkbooksclashBooking(bookSeatBooking, new Date(), DateUtil.getTimeDate(etime, 0));
+                                redirectAttributes.addFlashAttribute("error_msg", "时间段"+sdf.format(booking.getBstime())+"-"+sdf.format(booking.getBetime())+"已经被占用");
                             } else {
-                                Booking booking = new Booking();
-                                booking.setBstime(new Date());
-                                booking.setBetime(date);
-                                booking.setSno(sno);
-                                booking.setSid(seatBynumber.getSid());
-                                booking.setStime(new Date());
-                                try {
-                                    bookingService.insertbookingnow(booking);
-                                    redirectAttributes.addFlashAttribute("error_msg", "预约成功");
-                                } catch (Exception e) {
-                                    redirectAttributes.addFlashAttribute("error_msg", "您选择的时间段已经被占用");
+                                User userBySno = userService.findUserBySno(sno);
+                                if (userBySno != null) {
+                                    //查看近两天的学生预约记录
+                                    List<Booking> bookingBySno = bookingService.findBookingBySno(sno, 0);
+                                    List<Booking> bookingBySno2 = bookingService.findBookingBySno(sno, 1);
+                                    for (int i = 0; i < bookingBySno2.size(); i++) {
+                                        bookingBySno.add(bookingBySno2.get(i));
+                                    }
+                                    boolean checkbooksclash1 = DateUtil.checkbooksclash(bookingBySno, new Date(), DateUtil.getTimeDate(etime, 0));
+                                    if (checkbooksclash1) {
+                                        Booking booking = DateUtil.checkbooksclashBooking(bookingBySno, new Date(), DateUtil.getTimeDate(etime, 0));
+                                        redirectAttributes.addFlashAttribute("error_msg", "时间段"+sdf.format(booking.getBstime())+"-"+sdf.format(booking.getBetime())+"您已预约过");
+                                    } else {
+                                        Booking booking = new Booking();
+                                        booking.setBstime(new Date());
+                                        booking.setBetime(date);
+                                        booking.setSno(sno);
+                                        booking.setSid(seatBynumber.getSid());
+                                        booking.setStime(new Date());
+                                        try {
+                                            bookingService.insertbookingnow(booking);
+                                            redirectAttributes.addFlashAttribute("error_msg", "预约成功");
+                                        } catch (Exception e) {
+                                            redirectAttributes.addFlashAttribute("error_msg", "您选择的时间段已经被占用");
+                                        }
+                                    }
+                                } else {
+                                    redirectAttributes.addFlashAttribute("error_msg", "学号不存在");
+                                    return "redirect:/jsp/seat_In_Empty?page=1";
                                 }
                             }
-                        }else{
-                            redirectAttributes.addFlashAttribute("error_msg", "学号不存在");
-                            return "redirect:/jsp/seat_In_Empty?page=1";
+                        } else {
+                            redirectAttributes.addFlashAttribute("error_msg", "请注意场馆开放时间，开放时间：" + weekOpen.getParam1() + ";" + weekOpen.getParam2());
                         }
+                    } else {
+                        redirectAttributes.addFlashAttribute("error_msg", "您的失信记录过多，正在惩罚时间内");
                     }
-                } else {
-                    redirectAttributes.addFlashAttribute("error_msg", "请注意场馆开放时间");
                 }
-            } else {
-                redirectAttributes.addFlashAttribute("error_msg", "您的失信记录过多，正在惩罚时间内");
+            }else{
+                redirectAttributes.addFlashAttribute("error_msg", "请选择相应的座位");
             }
+        }else{
+            redirectAttributes.addFlashAttribute("error_msg", "请注意选择必要的数据");
         }
         return "redirect:/jsp/seat_In_Empty?page=1";
     }

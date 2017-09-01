@@ -57,7 +57,7 @@
                                     <td>F${week.fl}</td>
                                     <td>共${week.allSeat}座</td>
                                     <td>女生比例：${week.women}%</td>
-                                    <td>座位使用率：<strong>${week.userPro}%</strong></td>
+                                    <td>座位空闲率：<strong>${week.userPro}%</strong></td>
                                 </tr>
                                 </tbody>
                             </table>
